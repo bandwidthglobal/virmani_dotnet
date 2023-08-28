@@ -9,6 +9,7 @@ namespace DCRM.Api.Mapper
         public EntityToDtoMapping() {
 
             CreateMap<User, UserDto>();
+
             
         }
 
