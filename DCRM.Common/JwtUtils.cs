@@ -11,7 +11,9 @@ using DCRM.Common.Entity;
 
 public interface IJwtUtils
 {
-    public string GenerateJwtToken(User user);
+    public string GenerateJwtToken1(User user);
+
+    public string GenerateJwtToken(int id,string? email,string? role,string? userName);
     public int? ValidateJwtToken(string token);
     public RefreshToken GenerateRefreshToken(string ipAddress);
 }
@@ -29,7 +31,8 @@ public class JwtUtils : IJwtUtils
         _appSettings = appSettings.Value;
     }
 
-    public string GenerateJwtToken(User user)
+
+    public string GenerateJwtToken1(User user)
     {
         // generate token that is valid for 15 minutes
         var tokenHandler = new JwtSecurityTokenHandler();
@@ -40,6 +43,25 @@ public class JwtUtils : IJwtUtils
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
+            Expires = DateTime.UtcNow.AddMinutes(Convert.ToInt64(_appSettings.Expires)),
+            SigningCredentials = new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256Signature)
+        };
+        var token = tokenHandler.CreateToken(tokenDescriptor);
+        return tokenHandler.WriteToken(token);
+    }
+    public string GenerateJwtToken(int id, string email, string role,string userName)
+    {
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var key = Encoding.UTF8.GetBytes(_appSettings.Secret);
+        var signinKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.Secret));
+        var tokenDescriptor = new SecurityTokenDescriptor
+        {
+            Subject = new ClaimsIdentity(new[] { 
+                new Claim("id", id.ToString()), 
+                new Claim("email", email),
+                new Claim("role", role),
+                new Claim("userName", userName)
+            }),
             Expires = DateTime.UtcNow.AddMinutes(Convert.ToInt64(_appSettings.Expires)),
             SigningCredentials = new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256Signature)
         };

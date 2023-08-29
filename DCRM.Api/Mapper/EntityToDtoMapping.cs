@@ -10,7 +10,7 @@ namespace DCRM.Api.Mapper
 
             CreateMap<User, UserDto>();
 
-            
+            CreateMap<StaffRequest, StaffDto>();
         }
 
     }

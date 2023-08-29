@@ -11,14 +11,17 @@ public class AuthenticateResponse
     public string Email { get; set; }
     public string JwtToken { get; set; }
 
+    public string Role { get; set; }
+
     [JsonIgnore] // refresh token is returned in http only cookie
     public string RefreshToken { get; set; }
 
-    public AuthenticateResponse(User user, string jwtToken)
+    public AuthenticateResponse(string userName,string email,int id,string role, string jwtToken)
     {
-        Id = user.Id;
-        UserName = user.User_Name;
-        Email = user.Email;
+        Id = id;
+        UserName = userName;
+        Email = email;
+        Role = Role;
         JwtToken = jwtToken;
         RefreshToken = jwtToken;
     }

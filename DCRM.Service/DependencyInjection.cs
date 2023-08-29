@@ -24,17 +24,22 @@ namespace DCRM.Service
         /// <returns></returns>
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            #region Database Connection
+            #region Database Inject
             var _configurationBuilder = new ConfigurationBuilder();
             var _path = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json");
             _configurationBuilder.AddJsonFile(_path, false);
             var _root = _configurationBuilder.Build();
             var _connectionString = _root.GetSection("ConnectionString").GetSection("DefaultConnection").Value;
+            _connectionString += ";Convert Zero Datetime=True";
             services.AddDbContext<DCRMDBContext>(opt => opt .UseMySQL(_connectionString));
             #endregion
 
-            services.AddScoped<IUserService, UserService>();
+            #region Services Inject
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IStaffRepository, StaffRepository>();
+            services.AddScoped<IStaffService, StaffService>();
+            #endregion
             return services;
         }
     }

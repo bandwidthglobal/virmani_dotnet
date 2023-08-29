@@ -17,21 +17,23 @@ using DCRM.Common.RequestModel;
 
 namespace DCRM.Api.Controllers
 {
-    [Authorize]
+    [Authorize("User")]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
         public readonly IUserService _userService;
+        public readonly IStaffService _staffService;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
 
-        public UserController(IUserService userService, IMapper mapper, IConfiguration configuration)
+        public UserController(IUserService userService, IMapper mapper, IConfiguration configuration, IStaffService staffService)
         {
 
             _userService = userService;
             _mapper = mapper;
             _configuration = configuration;
+            _staffService = staffService;
         }
 
         [AllowAnonymous]
@@ -101,6 +103,21 @@ namespace DCRM.Api.Controllers
         {
             await _userService.ChangeUserPasswordAsync(model);
             return Ok("changed");
+        }
+
+
+        [HttpPost("CreateStaff")]
+        public async Task<IActionResult> CreateStaff([FromBody] StaffRequest staffRequest)
+        {
+            await _staffService.CreateStaffByUserAsync(staffRequest);
+            return Ok("created");
+        }
+
+        [HttpPost("GetStaffByUser/{userId}")]
+        public  IActionResult GetStaffByUser(int userId)
+        {
+          var staffList=  _staffService.GetStaffsByUserId(userId);
+            return Ok(staffList);
         }
     }
 }

@@ -35,24 +35,10 @@ namespace DCRM.Service.Service
             var user = await _userRepository.AuthenticateAsync(request);
             // validate
             if (user == null)
-                throw new AppException("username or password is incorrect");
+                throw new AppException("email or password is incorrect");
 
-            // authentication successful so generate jwt and refresh tokens
-            var jwtToken = _jwtUtils.GenerateJwtToken(user);
-            //user.Token = jwtToken;
-            //var refreshToken = _jwtUtils.GenerateRefreshToken(ipAddress);
-            //user.RefreshTokens.Add(refreshToken);
-
-            // remove old refresh tokens from user
-            //removeOldRefreshTokens(user);
-
-            // save changes to db
-
-            //_ebadgeContext.Update(user);
-            //_ebadgeContext.SaveChanges();
-
-
-            return new AuthenticateResponse(user, jwtToken);
+            var jwtToken = _jwtUtils.GenerateJwtToken(user.Id, user?.Email,user?.Role,user?.User_Name);
+            return new AuthenticateResponse(user.User_Name,user.Email,user.Id,user.Role, jwtToken);
         }
 
         /// <summary>
