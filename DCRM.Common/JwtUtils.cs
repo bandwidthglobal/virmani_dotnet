@@ -11,8 +11,10 @@ using DCRM.Common.Entity;
 
 public interface IJwtUtils
 {
-    public string GenerateJwtToken(User user);
-    public int? ValidateJwtToken(string token);
+    public string GenerateJwtToken1(User user);
+
+    public string GenerateJwtToken(int id,string? email,string? role,string? userName);
+    public ResponceValidateJwtToken ValidateJwtToken(string token);
     public RefreshToken GenerateRefreshToken(string ipAddress);
 }
 
@@ -29,7 +31,8 @@ public class JwtUtils : IJwtUtils
         _appSettings = appSettings.Value;
     }
 
-    public string GenerateJwtToken(User user)
+
+    public string GenerateJwtToken1(User user)
     {
         // generate token that is valid for 15 minutes
         var tokenHandler = new JwtSecurityTokenHandler();
@@ -46,11 +49,32 @@ public class JwtUtils : IJwtUtils
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
     }
+    public string GenerateJwtToken(int id, string email, string role,string userName)
+    {
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var key = Encoding.UTF8.GetBytes(_appSettings.Secret);
+        var signinKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.Secret));
+        var tokenDescriptor = new SecurityTokenDescriptor
+        {
+            Subject = new ClaimsIdentity(new[] { 
+                new Claim("id", id.ToString()), 
+                new Claim("email", email),
+                new Claim("role", role),
+                new Claim("userName", userName)
+            }),
+            Expires = DateTime.UtcNow.AddMinutes(Convert.ToInt64(_appSettings.Expires)),
+            SigningCredentials = new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256Signature)
+        };
+        var token = tokenHandler.CreateToken(tokenDescriptor);
+        return tokenHandler.WriteToken(token);
+    }
 
-    public int? ValidateJwtToken(string token)
+    public ResponceValidateJwtToken ValidateJwtToken(string token)
     {
         if (token == null)
             return null;
+
+        ResponceValidateJwtToken responceValidateJwtToken = new ResponceValidateJwtToken();
 
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.UTF8.GetBytes(_appSettings.Secret);
@@ -67,10 +91,14 @@ public class JwtUtils : IJwtUtils
             }, out SecurityToken validatedToken);
 
             var jwtToken = (JwtSecurityToken)validatedToken;
-            var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
+            var role = jwtToken.Payload.Claims.Skip(2).FirstOrDefault().Value;
 
+
+            var id = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
+            responceValidateJwtToken.Role = role;
+            responceValidateJwtToken.Id = id;
             // return user id from JWT token if validation successful
-            return userId;
+            return responceValidateJwtToken;
         }
         catch
         {

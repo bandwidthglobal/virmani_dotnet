@@ -13,8 +13,26 @@ namespace DCRM.Repository.Database
     {
         public DCRMDBContext(DbContextOptions<DCRMDBContext> options) : base(options)
         { }
-        //public DbSet<RequestUser> Users { get; set; }
+        
         public DbSet<User> Users { get; set; }
-        //public DbSet<LoginModel>? LoginModels { get; set; }
+
+        public DbSet<Staff> Staffs { get; set; }
+
+        public DbSet<StaffBankDetail> Staff_Bank_Details { get; set; }
+
+        public DbSet<StaffInsuranceDetail> Staff_Insurance_Details { get; set; }
+
+        public DbSet<StaffVaccination> Staff_Vaccination { get; set; }
+
+        public DbSet<Doctor> Doctors { get; set; }
+
+        public DbSet<DoctorsAddress> Doctors_Address { get; set; }
+
+        public DbSet<DoctorsVaccination> Doctors_Vaccination { get; set; }
+
+        public DbSet<DoctorBankDetail> Doctor_Bank_Details { get; set; }
+
+        public DbSet<DoctorInsuranceDetail> Doctor_Insurance_Details { get; set; }
+
     }
 }
