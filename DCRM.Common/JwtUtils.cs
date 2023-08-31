@@ -14,7 +14,7 @@ public interface IJwtUtils
     public string GenerateJwtToken1(User user);
 
     public string GenerateJwtToken(int id,string? email,string? role,string? userName);
-    public int? ValidateJwtToken(string token);
+    public ResponceValidateJwtToken ValidateJwtToken(string token);
     public RefreshToken GenerateRefreshToken(string ipAddress);
 }
 
@@ -69,10 +69,12 @@ public class JwtUtils : IJwtUtils
         return tokenHandler.WriteToken(token);
     }
 
-    public int? ValidateJwtToken(string token)
+    public ResponceValidateJwtToken ValidateJwtToken(string token)
     {
         if (token == null)
             return null;
+
+        ResponceValidateJwtToken responceValidateJwtToken = new ResponceValidateJwtToken();
 
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.UTF8.GetBytes(_appSettings.Secret);
@@ -89,10 +91,14 @@ public class JwtUtils : IJwtUtils
             }, out SecurityToken validatedToken);
 
             var jwtToken = (JwtSecurityToken)validatedToken;
-            var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
+            var role = jwtToken.Payload.Claims.Skip(2).FirstOrDefault().Value;
 
+
+            var id = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
+            responceValidateJwtToken.Role = role;
+            responceValidateJwtToken.Id = id;
             // return user id from JWT token if validation successful
-            return userId;
+            return responceValidateJwtToken;
         }
         catch
         {

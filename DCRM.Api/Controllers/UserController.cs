@@ -24,16 +24,18 @@ namespace DCRM.Api.Controllers
     {
         public readonly IUserService _userService;
         public readonly IStaffService _staffService;
+        public readonly IDoctorService _doctorService;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
 
-        public UserController(IUserService userService, IMapper mapper, IConfiguration configuration, IStaffService staffService)
+        public UserController(IUserService userService, IMapper mapper, IConfiguration configuration, IStaffService staffService, IDoctorService doctorService)
         {
 
             _userService = userService;
             _mapper = mapper;
             _configuration = configuration;
             _staffService = staffService;
+            _doctorService = doctorService;
         }
 
         [AllowAnonymous]
@@ -98,7 +100,7 @@ namespace DCRM.Api.Controllers
             return Ok("deleted");
         }
 
-        [HttpDelete("ChangePassword")]
+        [HttpPost("ChangePassword")]
         public async Task<IActionResult> ChangePasswordAsync(ChangePasswordRequest model)
         {
             await _userService.ChangeUserPasswordAsync(model);
@@ -118,6 +120,13 @@ namespace DCRM.Api.Controllers
         {
           var staffList=  _staffService.GetStaffsByUserId(userId);
             return Ok(staffList);
+        }
+
+        [HttpPost("CreateDoctor")]
+        public async Task<IActionResult> CreateDoctor([FromBody] DoctorRequest request)
+        {
+            await _doctorService.CreateDoctorAsync(request);
+            return Ok("created");
         }
     }
 }

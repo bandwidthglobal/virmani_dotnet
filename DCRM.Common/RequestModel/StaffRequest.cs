@@ -13,6 +13,7 @@ public class StaffRequest
 
     public string? Thumb { get; set; }
 
+
     [Required]
     public string Name { get; set; } = null!;
 

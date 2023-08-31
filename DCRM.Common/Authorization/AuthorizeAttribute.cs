@@ -22,16 +22,26 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
             return;
         User user = new User();
         StaffRequest staff = new StaffRequest();
+        DoctorRequest doctor1 = new DoctorRequest();
         if (_entityName== "User")
         {
             user = (User)context.HttpContext.Items["User"];
+            if (user == null)
+                context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
         }
         else if (_entityName == "Staff")
         {
             staff = (StaffRequest)context.HttpContext.Items["Staff"];
+            if (staff == null)
+                context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+        }
+        else if (_entityName == "Doctor")
+        {
+            var doctor = context.HttpContext.Items["Doctor"];
+            if (doctor == null)
+                context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
         }
         // authorization
-        if (user == null)
-            context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+        
     }
 }

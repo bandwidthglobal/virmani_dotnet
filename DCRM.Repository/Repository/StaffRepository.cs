@@ -217,7 +217,15 @@ namespace DCRM.Repository.Repository
                             }
                             else
                             {
-                                 _contex.Staff_Insurance_Details.Update(item);
+                                insurance.Insurance_Date = item.Insurance_Date;
+                                insurance.Insurance = item.Insurance;
+                                insurance.Renewal_Date = item.Renewal_Date;
+                                insurance.Amount_Insured = item.Amount_Insured;
+                                insurance.Amount_Paid = item.Amount_Paid;
+                                insurance.Allow_Notifications = item.Allow_Notifications;
+                                insurance.Remarks = item.Remarks;
+                                insurance.Updated_At = System.DateTime.UtcNow;
+                                _contex.Staff_Insurance_Details.Update(item);
                             }
                             _contex.SaveChanges();
                         }
@@ -234,6 +242,12 @@ namespace DCRM.Repository.Repository
                             }
                             else
                             {
+                                bankDetails.Remarks = item.Remarks;
+                                bankDetails.Bank_Account_Number = item.Bank_Account_Number;
+                                bankDetails.Bank_Name = item.Bank_Name;
+                                bankDetails.Ifsc_Code = item.Ifsc_Code;
+                                bankDetails.Remarks = item.Remarks;
+                                bankDetails.Updated_At = System.DateTime.UtcNow;
                                 _contex.Staff_Bank_Details.Update(item);
                             }
                             
@@ -252,13 +266,17 @@ namespace DCRM.Repository.Repository
                             }
                             else
                             {
+                                vaccinationDetails.Remarks = item.Remarks;
+                                vaccinationDetails.Vaccination_Date = item.Vaccination_Date;
+                                vaccinationDetails.Reminder_Date_For_Next = item.Reminder_Date_For_Next;
+                                vaccinationDetails.Vaccination_Type = item.Vaccination_Type;
+                                vaccinationDetails.Medical_History = item.Medical_History;
+                                vaccinationDetails.Updated_At = System.DateTime.UtcNow;
                                 _contex.Staff_Vaccination.Update(item);
                             }
                             _contex.SaveChanges();
                         }
                     }
-
-
                 }
                 else
                 {

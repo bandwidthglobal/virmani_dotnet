@@ -39,6 +39,8 @@ namespace DCRM.Service
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IStaffRepository, StaffRepository>();
             services.AddScoped<IStaffService, StaffService>();
+            services.AddScoped<IDoctorRepository, DoctorRepository>();
+            services.AddScoped<IDoctorService, DoctorService>();
             #endregion
             return services;
         }

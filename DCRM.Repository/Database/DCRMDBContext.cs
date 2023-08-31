@@ -24,5 +24,15 @@ namespace DCRM.Repository.Database
 
         public DbSet<StaffVaccination> Staff_Vaccination { get; set; }
 
+        public DbSet<Doctor> Doctors { get; set; }
+
+        public DbSet<DoctorsAddress> Doctors_Address { get; set; }
+
+        public DbSet<DoctorsVaccination> Doctors_Vaccination { get; set; }
+
+        public DbSet<DoctorBankDetail> Doctor_Bank_Details { get; set; }
+
+        public DbSet<DoctorInsuranceDetail> Doctor_Insurance_Details { get; set; }
+
     }
 }
