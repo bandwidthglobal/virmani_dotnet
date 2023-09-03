@@ -8,6 +8,7 @@ public class DoctorRequest
 {
     public long Id { get; set; }
 
+    
     public long User_Id { get; set; }
 
     public string? Thumb { get; set; }
@@ -27,23 +28,38 @@ public class DoctorRequest
 
     public string? Qualification { get; set; }
 
+    [DataType(DataType.EmailAddress)]
+    [EmailAddress]
     public string Email { get; set; } = null!;
 
+    [DataType(DataType.EmailAddress)]
+    [EmailAddress]
     public string? Email2 { get; set; }
 
+    [DataType(DataType.Password)]
+    [StringLength(50, MinimumLength = 8, ErrorMessage = "Password should be minimum 8 characters and a maximum of 20 characters")]
     public string? Password { get; set; }
 
+    [Required]
     public string Role { get; set; } = null!;
 
     public string? Speciality { get; set; }
 
     [Required]
+    [Phone]
+    [StringLength(10, MinimumLength = 10, ErrorMessage = "phone number should be minimum 10 digit")]
     public long? Phone1 { get; set; }
 
+    [Phone]
+    [StringLength(10, MinimumLength = 10, ErrorMessage = "phone number should be minimum 10 digit")]
     public long? Phone2 { get; set; }
 
+    [Phone]
+    [StringLength(10, MinimumLength = 10, ErrorMessage = "phone number should be minimum 10 digit")]
     public long? Phone3 { get; set; }
 
+    [Phone]
+    [StringLength(10, MinimumLength = 10, ErrorMessage = "phone number should be minimum 10 digit")]
     public long? Phone4 { get; set; }
 
     public string Pan_Number { get; set; } = null!;

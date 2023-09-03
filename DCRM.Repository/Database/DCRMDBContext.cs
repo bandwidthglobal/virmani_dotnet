@@ -1,5 +1,6 @@
 ﻿using DCRM.Common;
 using DCRM.Common.Entity;
+
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,28 @@ namespace DCRM.Repository.Database
         public DbSet<DoctorBankDetail> Doctor_Bank_Details { get; set; }
 
         public DbSet<DoctorInsuranceDetail> Doctor_Insurance_Details { get; set; }
+
+        public DbSet<Patientse> Patientses { get; set; }
+
+        public DbSet<Dealer> Dealers { get; set; }
+
+        public DbSet<DealerBankDetail> Dealer_Bank_Details { get; set; }
+
+        public DbSet<DealerMaterial> Dealer_Material { get; set; }
+
+        public DbSet<PatientScan> Patient_Scans { get; set; }
+
+        public DbSet<PatientsContact> Patients_Contact { get; set; }
+
+        public DbSet<PatientsInsuranceLoan> Patients_Insurance_Loan { get; set; }
+
+        public DbSet<PatientTest> Patient_Tests { get; set; }
+
+        public DbSet<Drug> Drugs { get; set; }
+
+        public DbSet<Appointment> Appointments { get; set; }
+
+        public DbSet<Prescription> Prescription { get; set; }
 
     }
 }

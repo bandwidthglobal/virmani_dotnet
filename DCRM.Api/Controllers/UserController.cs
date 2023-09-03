@@ -25,17 +25,18 @@ namespace DCRM.Api.Controllers
         public readonly IUserService _userService;
         public readonly IStaffService _staffService;
         public readonly IDoctorService _doctorService;
+        public readonly IPatientService _patientService;
         private readonly IMapper _mapper;
-        private readonly IConfiguration _configuration;
 
-        public UserController(IUserService userService, IMapper mapper, IConfiguration configuration, IStaffService staffService, IDoctorService doctorService)
+        public UserController(IUserService userService, IMapper mapper, IConfiguration configuration, 
+            IStaffService staffService, IDoctorService doctorService, IPatientService patientService)
         {
 
             _userService = userService;
             _mapper = mapper;
-            _configuration = configuration;
             _staffService = staffService;
             _doctorService = doctorService;
+            _patientService = patientService;
         }
 
         [AllowAnonymous]
@@ -65,6 +66,7 @@ namespace DCRM.Api.Controllers
         public async Task<IActionResult> GetUserByIdAsync(int id)
         {
             var user = await _userService.GetUserByIdAsync(id);
+         
             if (user!=null)
             {
                 UserDto userDetails = _mapper.Map<UserDto>(user);
@@ -126,6 +128,35 @@ namespace DCRM.Api.Controllers
         public async Task<IActionResult> CreateDoctor([FromBody] DoctorRequest request)
         {
             await _doctorService.CreateDoctorAsync(request);
+            return Ok("created");
+        }
+
+        [HttpGet("GetPatients/{userId}")]
+        public async Task<IEnumerable<PatientseDto>> GetPatientsAsync(int userId)
+        {
+
+            var patientList =  _patientService.GetByUserIdAsync(userId);
+            return patientList;
+        }
+
+        [HttpGet("CreatePatient")]
+        public async Task<IActionResult> CreatePatient(PatientRequest request)
+        {
+            await _patientService.CreateAsync(request);
+            return Ok("created");
+        }
+
+        [HttpGet("UpdatePatient")]
+        public async Task<IActionResult> UpdatePatient(PatientRequest request)
+        {
+             _patientService.Update(request);
+            return Ok("created");
+        }
+
+        [HttpGet("DeletePatient/{patientId}")]
+        public async Task<IActionResult> DeletePatient(Int32 patientId)
+        {
+           await _patientService.DeleteAsync(patientId);
             return Ok("created");
         }
     }
