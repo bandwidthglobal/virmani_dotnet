@@ -299,8 +299,13 @@ namespace DCRM.Repository.Repository
         public async Task DeleteStaffAsync(int id)
         {
             Staff staff = await _contex.Staffs.Where(x => x.Id == id).FirstOrDefaultAsync();
-            _contex.Remove(staff);
-            await _contex.SaveChangesAsync();
+            if (staff!=null)
+            {
+                staff.Is_Deleted = 1;
+                _contex.Update(staff);
+                await _contex.SaveChangesAsync();
+            }
+           
         }
 
         /// <summary>

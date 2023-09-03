@@ -1,0 +1,424 @@
+﻿using DCRM.Common;
+using DCRM.Common.Dto;
+using DCRM.Common.Entity;
+using DCRM.Common.Request;
+using DCRM.Repository.Database;
+using DCRM.Repository.IRepository;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Asn1.X509;
+using Org.BouncyCastle.Utilities.Encoders;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Data;
+using System.Data.SqlTypes;
+using System.Reflection;
+
+namespace DCRM.Repository.Repository
+{
+    public class PatientRepository : IPatientRepository
+    {
+
+        public readonly DCRMDBContext _contex;
+        public PatientRepository(DCRMDBContext contex)
+        {
+            _contex = contex;
+
+        }
+
+        /// <summary>
+        /// User authenticate and return token for other request
+        /// </summary>
+        /// <param name="authenticateRequest"></param>
+        /// <returns></returns>
+        public async Task<Patientse> AuthenticateAsync(AuthenticateRequest authenticateRequest)
+        {
+            var patient = await _contex.Patientses.SingleOrDefaultAsync(x => x.Is_Delete == 0 && x.Email == authenticateRequest.Email && x.Password == authenticateRequest.Password);
+
+            return patient;
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="changePasswordModel"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task ChangePatientPasswordAsync(ChangePasswordRequest changePasswordModel)
+        {
+            if (changePasswordModel.Type.ToLower() == "patient")
+            {
+                var patient = await _contex.Patientses.FirstOrDefaultAsync(x => x.Id == changePasswordModel.Id && x.Is_Delete==0);
+                if (patient != null)
+                {
+                    patient.Password = changePasswordModel.NewPassword;
+                    _contex.Update(patient);
+                    await _contex.SaveChangesAsync();
+                }
+                else { throw new KeyNotFoundException("no record found"); }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<IEnumerable<Patientse>> GetAllAsync()
+        {
+            IEnumerable<Patientse> patients =  _contex.Patientses.Where(x => x.Is_Delete == 1);
+            if (patients != null)
+            {
+                return patients;
+            }
+            else { throw new KeyNotFoundException("no record found"); }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task <Patientse> GetByIdAsync(int id)
+        {
+            Patientse patient =await _contex.Patientses.Where(x => x.Is_Delete == 1 && x.Id==id).FirstOrDefaultAsync();
+            if (patient != null)
+            {
+                return patient;
+            }
+            else { throw new KeyNotFoundException("no record found"); }
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public List<Patientse> GetByUserId(int userId)
+        {
+            List<Patientse> patients = _contex.Patientses.Where(x => x.Is_Delete == 1 && x.User_Id== userId).ToList();
+            if (patients != null)
+            {
+                return patients;
+            }
+            else { throw new KeyNotFoundException("no record found"); }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="patientId"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public List<PatientsContact> GetPatientsContacteDetailList(int patientId)
+        {
+            List<PatientsContact> patientsContacts = _contex.Patients_Contact.Where(x => x.Patient_Id == patientId).ToList();
+            if (patientsContacts != null)
+            {
+                return patientsContacts;
+            }
+            else { throw new KeyNotFoundException("no record found"); }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="patientId"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public List<PatientsInsuranceLoan> GetPatientsInsuranceLoanDetailList(int patientId)
+        {
+            List<PatientsInsuranceLoan> patientsInsuranceLoans = _contex.Patients_Insurance_Loan.Where(x => x.Patients_Id == patientId).ToList();
+            if (patientsInsuranceLoans != null)
+            {
+                return patientsInsuranceLoans;
+            }
+            else { throw new KeyNotFoundException("no record found"); }
+        }
+        /// <summary>
+        /// get patient test list
+        /// </summary>
+        /// <param name="patientId"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public List<PatientScan> GetPatientScanList(int patientId)
+        {
+            List<PatientScan> patientScan = _contex.Patient_Scans.Where(x => x.Patient_Id == patientId).ToList();
+            if (patientScan != null)
+            {
+                return patientScan;
+            }
+            else { throw new KeyNotFoundException("no record found"); }
+        }
+        public List<PatientTest> GetPatientTestList(int patientId)
+        {
+            List<PatientTest> PatientTests = _contex.Patient_Tests.Where(x => x.Patient_Id == patientId).ToList();
+            if (PatientTests != null)
+            {
+                return PatientTests;
+            }
+            else { throw new KeyNotFoundException("no record found"); }
+        }
+        /// <summary>
+        /// create patient
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task CreateAsync(PatientRequest request)
+        {
+            Patientse patient = _contex.Patientses.FirstOrDefault(x => x.Id == request.Id);
+            if (patient == null)
+            {
+                patient.Chamber_Id = request.Chamber_Id;
+                patient.UserName = request.User_name;
+                patient.Mr_Number = request.Mr_Number;
+                patient.Name = request.Name;
+                patient.UserName = request.User_name;
+                patient.Slug = request.Slug;
+                patient.Thumb = request.Thumb;
+                patient.Email = request.Email;
+                patient.Age = request.Age;
+                patient.Weight = request.Weight;
+                patient.Sex = request.Sex;
+                patient.Title = request.Title;
+                patient.Guardian = request.Guardian;
+                patient.Present_Address = request.Present_Address;
+                patient.Permanent_Address = request.Permanent_Address;
+                patient.Created_At = System.DateTime.UtcNow;
+                _contex.Patientses.Add(patient);
+                _contex.SaveChanges();
+                if (request.PatientContacts != null && request.PatientContacts.Count > 0)
+                {
+                    foreach (var item in request.PatientContacts)
+                    {
+                        var contact = _contex.Patients_Contact.FirstOrDefault(x => x.Id == item.Id);
+                        if (contact != null)
+                        {
+                            item.Patient_Id = patient.Id;
+                            _contex.Patients_Contact.Add(contact);
+                        }
+                        _contex.SaveChanges();
+                    }
+                }
+                if (request.PatientInsuranceLoans != null && request.PatientInsuranceLoans.Count > 0)
+                {
+                    foreach (var item in request.PatientInsuranceLoans)
+                    {
+                        var insuranceLoan = _contex.Patients_Insurance_Loan.FirstOrDefault(x => x.Id == item.Id);
+                        if (insuranceLoan == null)
+                        {
+                            item.Patients_Id = patient.Id;
+                            _contex.Patients_Insurance_Loan.Add(item);
+                        }
+                        _contex.SaveChanges();
+                    }
+                }
+                if (request.PatientScans != null && request.PatientScans.Count > 0)
+                {
+                    foreach (var item in request.PatientScans)
+                    {
+                        var patientScan = _contex.Patient_Scans.FirstOrDefault(x => x.Id == item.Id);
+                        if (patientScan == null)
+                        {
+                            item.Patient_Id = patient.Id;
+                            _contex.Patient_Scans.Add(item);
+                        }
+                        _contex.SaveChanges();
+                    }
+                }
+
+
+                if (request.PatientTests != null && request.PatientTests.Count > 0)
+                {
+                    foreach (var item in request.PatientTests)
+                    {
+                        var patientTest = _contex.Patient_Tests.FirstOrDefault(x => x.Id == item.Id);
+                        if (patientTest == null)
+                        {
+                            item.Patient_Id = patient.Id;
+                            _contex.Patient_Tests.Add(item);
+                        }
+                        _contex.SaveChanges();
+                    }
+                }
+            }
+            else
+            {
+                throw new Exception("some technical problem");
+            }
+        }
+
+        /// <summary>
+        /// update patient
+        /// </summary>
+        /// <param name="request"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        public void Update(PatientRequest request)
+        {
+            Patientse patient = _contex.Patientses.FirstOrDefault(x => x.Id == request.Id);
+            if (patient != null)
+            {
+                patient.Chamber_Id = request.Chamber_Id;
+                patient.UserName = request.User_name;
+                patient.Mr_Number = request.Mr_Number;
+                patient.Name = request.Name;
+                patient.UserName = request.User_name;
+                patient.Slug = request.Slug;
+                patient.Thumb = request.Thumb;
+                patient.Email = request.Email;
+                patient.Age = request.Age;
+                patient.Weight = request.Weight;
+                patient.Sex = request.Sex;
+                patient.Title = request.Title;
+                patient.Guardian = request.Guardian;
+                patient.Present_Address = request.Present_Address;
+                patient.Permanent_Address = request.Permanent_Address;
+                patient.Created_At = System.DateTime.UtcNow;
+                _contex.Patientses.Update(patient);
+                _contex.SaveChanges();
+                if (request.PatientContacts != null && request.PatientContacts.Count > 0)
+                {
+                    foreach (var item in request.PatientContacts)
+                    {
+                        var contact = _contex.Patients_Contact.FirstOrDefault(x => x.Id == item.Id);
+                        if (contact != null)
+                        {
+                            item.Patient_Id = patient.Id;
+                            _contex.Patients_Contact.Add(contact);
+                        }
+                        else
+                        {
+                            contact.Phone1 = item.Phone1;
+                            contact.Phone2 = item.Phone2;
+                            contact.Phone3 = item.Phone3;
+                            contact.Phone4 = item.Phone4;
+                            contact.Email = item.Email;
+                            contact.Email2 = item.Email2;
+                            contact.Address_R = item.Address_R;
+                            contact.City_R = item.City_R;
+                            contact.Zip_R = item.Zip_R;
+                            contact.Country_R = item.Country_R;
+                            contact.Address_O = item.Address_O;
+                            contact.City_O = item.City_O;
+                            contact.Zip_O = item.Zip_O;
+                            contact.Country_O = item.Country_O;
+                            contact.Address_Other = item.Address_Other;
+                            contact.City_Other = item.City_Other;
+                            contact.Zip_Other = item.Zip_Other;
+                            contact.Country_Other = item.Country_Other;
+                            contact.Physician = item.Physician;
+                            contact.Reffered_By = item.Reffered_By;
+                            contact.Doctor_Name = item.Doctor_Name;
+                            contact.Phone = item.Phone;
+                            contact.Relationship_Type = item.Relationship_Type;
+                            contact.Medical_History_Allergies = item.Medical_History_Allergies;
+                            contact.Special_Notes = item.Special_Notes;
+                            contact.Updated_At = System.DateTime.UtcNow;
+                            _contex.Patients_Contact.Update(contact);
+                        }
+                        _contex.SaveChanges();
+                    }
+                }
+                if (request.PatientInsuranceLoans != null && request.PatientInsuranceLoans.Count > 0)
+                {
+                    foreach (var item in request.PatientInsuranceLoans)
+                    {
+                        var insuranceLoan = _contex.Patients_Insurance_Loan.FirstOrDefault(x => x.Id == item.Id);
+                        if (insuranceLoan == null)
+                        {
+                            item.Patients_Id = patient.Id;
+                            _contex.Patients_Insurance_Loan.Add(item);
+                        }
+                        else
+                        {
+                            insuranceLoan.Balance_Spent= item.Balance_Spent;
+                            insuranceLoan.Balance_Amount= item.Balance_Amount;
+                            insuranceLoan.Amount= item.Amount;
+                            insuranceLoan.Name= item.Name;
+                            insuranceLoan.Type = item.Type;
+                            insuranceLoan.Updated_At = System.DateTime.UtcNow;
+                            _contex.Patients_Insurance_Loan.Update(insuranceLoan);
+                        }
+
+                        _contex.SaveChanges();
+                    }
+                }
+                if (request.PatientScans != null && request.PatientScans.Count > 0)
+                {
+                    foreach (var item in request.PatientScans)
+                    {
+                        var patientScan = _contex.Patient_Scans.FirstOrDefault(x => x.Id == item.Id);
+                        if (patientScan == null)
+                        {
+                            item.Patient_Id = patient.Id;
+                            _contex.Patient_Scans.Add(item);
+                        }
+                        else
+                        {
+                            patientScan.Status= item.Status;
+                            patientScan.Report= item.Report;
+                            patientScan.Report_File= item.Report_File;
+                            patientScan.Scan_Name= item.Scan_Name;
+                            patientScan.Type = item.Type;
+                            patientScan.Updated_At = System.DateTime.UtcNow;
+                            _contex.Patient_Scans.Update(patientScan);
+                        }
+                        _contex.SaveChanges();
+                    }
+                }
+
+
+                if (request.PatientTests != null && request.PatientTests.Count > 0)
+                {
+                    foreach (var item in request.PatientTests)
+                    {
+                        var patientTest = _contex.Patient_Tests.FirstOrDefault(x => x.Id == item.Id);
+                        if (patientTest == null)
+                        {
+                            item.Patient_Id = patient.Id;
+                            _contex.Patient_Tests.Add(item);
+                        }
+                        else
+                        {
+                            patientTest.Status= item.Status;
+                            patientTest.Report= item.Report;
+                            patientTest.Report_File = item.Report_File;
+                            patientTest.Report_Date= item.Report_Date;
+                            patientTest.Test_Name= item.Test_Name;
+                            patientTest.Test_Price= item.Test_Price;
+                            patientTest.Updated_At = System.DateTime.UtcNow;
+                            _contex.Patient_Tests.Update(patientTest);
+                        }
+                        _contex.SaveChanges();
+                    }
+                }
+            }
+            else
+            {
+                throw new KeyNotFoundException("no record found");
+            }
+        }
+        /// <summary>
+        /// delete patient
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+
+        public async Task DeleteAsync(int id)
+        {
+            var patient = await _contex.Patientses.FirstOrDefaultAsync(x => x.Id == id);
+            if (patient != null)
+            {
+                patient.Is_Delete = 1;
+                _contex.Patientses.Update(patient);
+                _contex.SaveChanges();
+            }
+        }
+    }
+}

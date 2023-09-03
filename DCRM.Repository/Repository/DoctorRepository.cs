@@ -308,7 +308,8 @@ namespace DCRM.Repository.Repository
             Doctor? doctor = await _contex.Doctors.FirstOrDefaultAsync(x => x.Id == id);
             if (doctor != null)
             {
-                _contex.Remove(doctor);
+                doctor.Is_Delete = 1;
+                _contex.Update(doctor);
                 await _contex.SaveChangesAsync();
             }
 

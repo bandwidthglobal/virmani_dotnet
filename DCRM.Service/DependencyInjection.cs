@@ -37,10 +37,27 @@ namespace DCRM.Service
             #region Services Inject
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+
             services.AddScoped<IStaffRepository, StaffRepository>();
             services.AddScoped<IStaffService, StaffService>();
+
             services.AddScoped<IDoctorRepository, DoctorRepository>();
             services.AddScoped<IDoctorService, DoctorService>();
+
+            services.AddScoped<IDealerRepository, DealerRepository>();
+            services.AddScoped<IDealerService, DealerService>();
+
+            services.AddScoped<IPatientRepository, PatientRepository>();
+            services.AddScoped<IPatientService, PatientService>();
+
+            services.AddScoped<IDrugRepository,DrugRepository>();
+            services.AddScoped<IDurgService, DurgService>();
+
+            services.AddScoped<IPrescriptionRepository, PrescriptionRepository>();
+            services.AddScoped<IPrescriptionService, PrescriptionService>();
+
+            services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+            services.AddScoped<IAppointmentService, AppointmentService>();
             #endregion
             return services;
         }

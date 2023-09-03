@@ -102,8 +102,13 @@ namespace DCRM.Repository.Repository
         public async Task DeleteUserAsync(int id)
         {
             User user = await _contex.Users.FirstOrDefaultAsync(x => x.Id == id);
-            _contex.Remove(user);
-            await _contex.SaveChangesAsync();
+            if (user!=null)
+            {
+                user.Status = 0;
+                _contex.Update(user);
+                await _contex.SaveChangesAsync();
+            }
+           
         }
 
         /// <summary>

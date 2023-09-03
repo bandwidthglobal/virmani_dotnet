@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DCRM.Common.Entity;
 
@@ -29,6 +30,7 @@ public partial class Doctor
 
     public string? Email2 { get; set; }
 
+    
     public string? Password { get; set; }
 
     public string Role { get; set; } = null!;
