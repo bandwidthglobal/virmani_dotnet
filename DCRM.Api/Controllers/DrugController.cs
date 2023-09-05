@@ -28,7 +28,7 @@ namespace DCRM.Api.Controllers
         [HttpGet("Get/{id}")]
         public async Task<Drug> Get(int id)
         {
-            var user = (User)(Request.HttpContext.Items["User"]);
+          
             return await _drugfService.GetByIdAsync(id);
         }
         [HttpGet("GetByUserId/{userId}")]

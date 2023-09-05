@@ -23,9 +23,9 @@ namespace DCRM.Service.Service
         /// get all dealers 
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<DealerDto>> GetAllAsync()
+        public async Task<IEnumerable<DealerDto>> GetAllAsync(long userId)
         {
-            var dealers =await _dealerRepository.GetDealersAsync();
+            var dealers =await _dealerRepository.GetDealersAsync(userId);
             List<DealerDto> dealerList = new List<DealerDto>();
             DealerDto dealerDto;
             foreach (var dealer in dealers.ToList())
@@ -78,10 +78,10 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<DealerDto> GetByIdAsync(int id)
+        public async Task<DealerDto> GetByIdAsync(long userId, int id)
         {
 
-            Dealer dealer = await _dealerRepository.GetDealerByIdAsync(id);
+            Dealer dealer = await _dealerRepository.GetDealerByIdAsync(userId,id);
             DealerDto dealerDto = new DealerDto();
             if (dealer != null)
             {
@@ -148,9 +148,9 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(long userId, int id)
         {
-            await _dealerRepository.DeleteDealerAsync(id);
+            await _dealerRepository.DeleteDealerAsync(userId, id);
         }
 
         /// <summary>
