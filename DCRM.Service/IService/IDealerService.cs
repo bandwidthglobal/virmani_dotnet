@@ -14,11 +14,11 @@ namespace DCRM.Service.IService
 {
     public interface IDealerService
     {
-        Task<IEnumerable<DealerDto>> GetAllAsync();
-         Task<DealerDto> GetByIdAsync(int id);
+        Task<IEnumerable<DealerDto>> GetAllAsync(long userId);
+         Task<DealerDto> GetByIdAsync(long userId, int id);
         Task CreateAsync(DealerRequest request);
         void Update(DealerRequest request);
-        Task DeleteAsync(int id);
+        Task DeleteAsync(long userId, int id);
         Task<List<DealerDto>> GetByUserId(int userId);
        
     }

@@ -42,6 +42,7 @@ namespace DCRM.Repository.Repository
 
         public async Task<IEnumerable<Staff>> GetStaffsAsync()
         {
+           
             IEnumerable<Staff> staffs = _contex.Staffs.Where(x => x.Status == 1);
             return staffs;
         }

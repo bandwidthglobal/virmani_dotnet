@@ -28,9 +28,10 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <returns></returns>
         /// <exception cref="KeyNotFoundException"></exception>
-        public async Task<IEnumerable<Dealer>> GetDealersAsync()
+        public async Task<IEnumerable<Dealer>> GetDealersAsync(long userId)
         {
-            IEnumerable<Dealer> dealers = _contex.Dealers.Where(x => x.Is_Deleted == 0);
+            IEnumerable<Dealer> dealers;
+             dealers = _contex.Dealers.Where(x => x.Is_Deleted == 0 && x.User_Id == userId);
             if (dealers != null)
             {
                 return dealers;
@@ -44,9 +45,9 @@ namespace DCRM.Repository.Repository
         /// <returns></returns>
         /// <exception cref="KeyNotFoundException"></exception>
 
-        public async Task<Dealer> GetDealerByIdAsync(int id)
+        public async Task<Dealer> GetDealerByIdAsync(long userId,int id)
         {
-            Dealer dealer = await _contex.Dealers.FirstOrDefaultAsync(x => x.Id == id && x.Is_Deleted == 0);
+            Dealer dealer = await _contex.Dealers.FirstOrDefaultAsync(x => x.Id == id && x.Is_Deleted == 0 && x.User_Id==userId);
             if (dealer != null)
             {
                 return dealer;
@@ -193,9 +194,9 @@ namespace DCRM.Repository.Repository
         /// <param name="id"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task DeleteDealerAsync(int id)
+        public async Task DeleteDealerAsync(long userId, int id)
         {
-            var dealerDetails =await _contex.Dealers.FirstOrDefaultAsync(x => x.Id == id);
+            var dealerDetails =await _contex.Dealers.FirstOrDefaultAsync(x => x.Id == id && x.User_Id == userId);
             if (dealerDetails!=null)
             {
                 dealerDetails.Is_Deleted = 1;

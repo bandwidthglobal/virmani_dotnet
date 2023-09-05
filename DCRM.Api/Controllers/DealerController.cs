@@ -16,7 +16,7 @@ namespace DCRM.Api.Controllers
     public class DealerController : ControllerBase
     {
         public readonly IDealerService _dealerService;
-        
+        long userId = 0;
 
         public DealerController(IDealerService dealerService)
         {
@@ -29,16 +29,24 @@ namespace DCRM.Api.Controllers
         [HttpGet("GetAll")]
         public async Task<IEnumerable<DealerDto>> GetAllAsync()
         {
-
-            var dealerList =await _dealerService.GetAllAsync();
+            var user = (User)(Request.HttpContext.Items["User"]);
+            if (user == null)
+            {
+                userId = user.Id;
+            }
+            var dealerList =await _dealerService.GetAllAsync(userId);
             return dealerList;
         }
 
         [HttpGet("Get/{id}")]
         public async Task<DealerDto> GetAsync(int id)
         {
-
-            DealerDto dealer = await _dealerService.GetByIdAsync(id);
+            var user = (User)(Request.HttpContext.Items["User"]);
+            if (user == null)
+            {
+                userId = user.Id;
+            }
+            DealerDto dealer = await _dealerService.GetByIdAsync(userId, id);
             return dealer;
         }
 
@@ -65,9 +73,9 @@ namespace DCRM.Api.Controllers
         }
 
         [HttpDelete("Delete/{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(long userId, int id)
         {
-            await _dealerService.DeleteAsync(id);
+            await _dealerService.DeleteAsync(userId, id);
             return Ok("Deleted");
         }
     }

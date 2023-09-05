@@ -16,10 +16,12 @@ namespace DCRM.Common.RequestModel
 
         [Required]
         [DataType(DataType.Password)]
-        [StringLength(50, MinimumLength = 8,ErrorMessage = "Password should be minimum 8 characters and a maximum of 20 characters")]
         public string Password { get; set; }
 
         [Required]
         public string Role { get; set; }
+
+        [Required]
+        public bool IsTermsandConditions { get; set; }
     }
 }
