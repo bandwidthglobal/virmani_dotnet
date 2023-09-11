@@ -38,7 +38,7 @@ namespace DCRM.Service.Service
                 throw new AppException("email or password is incorrect");
 
             var jwtToken = _jwtUtils.GenerateJwtToken(user.Id, user?.Email,user?.Role,user?.User_Name);
-            return new AuthenticateResponse(user.User_Name,user.Email,user.Id,user.Role, jwtToken);
+            return new AuthenticateResponse(user.Email,user.Id,user.Role, jwtToken);
         }
 
         /// <summary>
@@ -117,6 +117,7 @@ namespace DCRM.Service.Service
         /// <returns></returns>
         public async Task ChangeUserPasswordAsync(ChangePasswordRequest changePasswordModel)
         {
+            changePasswordModel.NewPassword = EncryptionDecryptionUsingSymmetricKey.EncryptString(_configuration.GetSection("PasswordHasKey").Value, changePasswordModel.NewPassword);
             await _userRepository.ChangeUserPasswordAsync(changePasswordModel);
         }
 

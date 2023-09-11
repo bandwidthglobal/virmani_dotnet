@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RMn1B5ETbKF4dbymD+LYnNc0+MjFi58iYAIgraQHi1UObjop8wDYBws/HtpyqIhhriEoPixVLIw3hWejPYFthQ==",
+  "dgSpecHash": "G4uujhVSinUdzEqVT33Zn5hUJddFjJMU35ug2EOfE8KsTza1FmPEge8URZjjtfkUMqaowAg77WGJiFJPDqd+LA==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\DCRM\\DCRM.Common\\DCRM.Common.csproj",
+  "projectFilePath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

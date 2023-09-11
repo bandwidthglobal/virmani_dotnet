@@ -16,11 +16,15 @@ namespace DCRM.Service.IService
     {
         Task<Prescription> GetByIdAsync(int id);
 
-        Task<IEnumerable<Prescription>> GetByUserId(int userId);
+        List<PrescriptionDto> GetByUserId(int userId);
 
         Task CreateAsync(Prescription request);
 
         Task DeleteAsync(int id);
+
+        List<PrescriptionDto> GetPrescriptions(int userId,int patientId);
+
+        List<PrescriptionDto> GetPrescriptions(int patientId);
 
     }
 }

@@ -21,5 +21,6 @@ namespace DCRM.Service.IService
         Task UpdateUserAsync(UserUpdateRequest user);
         Task DeleteUserAsync(int id);
         Task ChangeUserPasswordAsync(ChangePasswordRequest changePasswordModel);
+
     }
 }

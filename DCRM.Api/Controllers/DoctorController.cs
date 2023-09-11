@@ -28,7 +28,7 @@ namespace DCRM.Api.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("authenticate")]
+        [HttpPost("Authenticate")]
         public async Task<IActionResult> AuthenticateAsync([FromBody] AuthenticateRequest request)
         {
 
@@ -44,31 +44,38 @@ namespace DCRM.Api.Controllers
             return doctorList;
         }
 
-        [HttpGet("Get/{id}")]
-        public async Task<DoctorDto> GetStaffAsync(int id)
+        [HttpGet("Get")]
+        public DoctorDto GetDoctor()
         {
-
-            DoctorDto doctor = await _doctorService.GetDoctorByIdAsync(id);
+            var user = (DoctorDto)(Request.HttpContext.Items["Doctor"]);
+            DoctorDto doctor = _doctorService.GetDoctorByIdAsync(Convert.ToInt32(user.Id)).Result;
             return doctor;
         }
+
+        [AllowAnonymous]
         [HttpPost("Create")]
-        public async Task<IActionResult> Create([FromBody] DoctorRequest request)
+        public IActionResult Create([FromBody] DoctorRequest request)
         {
-            await _doctorService.CreateDoctorAsync(request);
+            request.Role = "Doctor";
+            _doctorService.CreateDoctorAsync(request);
             return Ok("created");
         }
 
         [HttpPost("Update")]
-        public async Task<IActionResult> Update(DoctorRequest request)
+        public IActionResult Update(DoctorRequest request)
         {
+            var user = (DoctorDto)(Request.HttpContext.Items["Doctor"]);
+            request.Id = user.Id;
             _doctorService.UpdateDoctor(request);
             return Ok("Updated");
         }
 
-        [HttpDelete("Delete/{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete("Delete")]
+        public  IActionResult Delete()
         {
-           await _doctorService.DeleteDoctorAsync(id);
+            var user = (DoctorDto)(Request.HttpContext.Items["Doctor"]);
+            Int32 id = Convert.ToInt32(user.Id);
+             _doctorService.DeleteDoctorAsync(id);
             return Ok("Deleted");
         }
     }

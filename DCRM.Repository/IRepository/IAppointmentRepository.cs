@@ -20,6 +20,8 @@ namespace DCRM.Repository.IRepository
 
         Task<IEnumerable<Appointment>> GetByUserId(int userId);
 
+        List<Appointment> GetByPatientId(int patientId);
+
         Task CreateAsync(Appointment request);
 
         void Update(Appointment request);

@@ -11,11 +11,15 @@ public  class TreatmentplanDto
 
     public int Doctor { get; set; }
 
+    public string DoctorName { get; set; }
+
     public string Job { get; set; } = null!;
 
     public int JobId { get; set; }
 
     public int Status { get; set; }
+
+    public int Sitting { get; set; }
 
     public int PatientId { get; set; }
 
@@ -35,6 +39,12 @@ public  class TreatmentplanDto
 
     public sbyte TreatmentStatus { get; set; }
 
+    public string Type { get; set; }
+
+    public string TeethNumber { get; set; } = null!;
+    public string TothNot { get; set; } = null!;
+
+    public int?  WorkDoneStatus { get; set; }  
     public DateTime CreatedAt { get; set; }
 
     public DateTime UpdatedAt { get; set; }

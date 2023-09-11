@@ -7,11 +7,11 @@ public class Patientse
 {
     public int Id { get; set; } 
 
-    public string Chamber_Id { get; set; } = null!;
+    public string Chamber_Id { get; set; }
 
     public int User_Id { get; set; }
 
-    public string Mr_Number { get; set; } = null!;
+    public string Mr_Number { get; set; } 
 
     public string? Name { get; set; }
 

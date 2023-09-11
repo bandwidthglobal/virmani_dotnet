@@ -50,6 +50,13 @@ namespace DCRM.Repository.Repository
             return prescriptions;
         }
 
-        
+        public List<Prescription> GetAll()
+        {
+            var prescriptions = _contex.Prescription.ToList();
+            return prescriptions;
+        }
+
+
+
     }
 }

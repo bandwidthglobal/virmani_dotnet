@@ -10,7 +10,6 @@ public partial class PatientRequest
 
     public string Chamber_Id { get; set; } = null!;
 
-    [Required]
     public int User_Id { get; set; }
 
     public string Mr_Number { get; set; } = null!;
@@ -45,7 +44,7 @@ public partial class PatientRequest
 
     public string? Guardian { get; set; }
 
-    [Required]
+    
     public string? Role { get; set; }
 
     public string? Verify_Code { get; set; }

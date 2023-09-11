@@ -28,47 +28,44 @@ namespace DCRM.Api.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("authenticate")]
+        [HttpPost("Authenticate")]
         public async Task<IActionResult> AuthenticateAsync([FromBody] AuthenticateRequest request)
         {
 
             var response = await _staffService.AuthenticateAsync(request);
-            //var cookieOptions = new CookieOptions
-            //{
-            //    HttpOnly = true,
-            //    Expires = DateTime.UtcNow.AddDays(7)
-            //};
-            //Response.Cookies.Append("refreshToken", response.RefreshToken, cookieOptions);
             return Ok(response);
         }
 
-        [HttpGet("GetAll")]
-        public async Task<IEnumerable<StaffDto>> GetStaffsAsync()
+        [HttpGet("Get")]
+        public async Task<StaffDto> GetStaffAsync()
         {
-
-            List<StaffDto> staffList = _mapper.Map<List<StaffDto>>(await _staffService.GetStaffsAsync());
-            return staffList;
-        }
-
-        [HttpGet("Get/{id}")]
-        public async Task<StaffDto> GetStaffAsync(int id)
-        {
-
-            StaffDto staff = await _staffService.GetStaffByIdAsync(id);
+            var user = (StaffDto)(Request.HttpContext.Items["Staff"]);
+            StaffDto staff = await _staffService.GetStaffByIdAsync(user.Id);
             return staff;
         }
 
+        [AllowAnonymous]
+        [HttpPost("Create")]
+        public IActionResult Create(StaffRequest staffRequest)
+        {
+            staffRequest.Role = "Staff";
+            _staffService.CreateStaffByUserAsync(staffRequest);
+            return Ok("Created");
+        }
         [HttpPost("Update")]
         public async Task<IActionResult> Update(StaffRequest staffRequest)
         {
+            var user = (StaffDto)(Request.HttpContext.Items["User"]);
+            staffRequest.Id = user.Id;
             _staffService.UpdateStaff(staffRequest);
             return Ok("Updated");
         }
 
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete("Delete")]
         public async Task<IActionResult> Delete(int id)
         {
-           await _staffService.DeleteStaffAsync(id);
+            var user = (StaffDto)(Request.HttpContext.Items["User"]);
+            await _staffService.DeleteStaffAsync(user.Id);
             return Ok("Deleted");
         }
     }

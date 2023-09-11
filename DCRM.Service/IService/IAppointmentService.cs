@@ -1,6 +1,7 @@
 ﻿using DCRM.Api.Models;
 using DCRM.Common;
 using DCRM.Common.Dto;
+using DCRM.Common.Entities;
 using DCRM.Common.Entity;
 using DCRM.Common.Request;
 using DCRM.Common.RequestModel;
@@ -19,6 +20,8 @@ namespace DCRM.Service.IService
         Task<Appointment> GetByIdAsync(int id);
 
         Task<IEnumerable<Appointment>> GetByUserId(int userId);
+
+        List<Appointment> GetByPatientId(int userId, int patientId);
 
         Task CreateAsync(Appointment request);
 

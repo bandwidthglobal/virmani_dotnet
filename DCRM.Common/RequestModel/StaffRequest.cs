@@ -28,7 +28,6 @@ public class StaffRequest
     [StringLength(50, MinimumLength = 8, ErrorMessage = "Password should be minimum 8 characters and a maximum of 20 characters")]
     public string? Password { get; set; }
 
-    [Required]
     public string? Role { get; set; }
 
     public string? Slug { get; set; }
@@ -55,7 +54,7 @@ public class StaffRequest
 
     [Required]
     [DataType(DataType.PhoneNumber)]
-    [StringLength(10, MinimumLength = 10, ErrorMessage = "Password should be minimum 8 characters and a maximum of 10 characters")]
+    [StringLength(10, MinimumLength = 10, ErrorMessage = "Phone should be minimum 10 characters and a maximum of 10 characters")]
     [Phone]
     public string? Phone { get; set; }
 

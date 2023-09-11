@@ -18,7 +18,7 @@ public class JwtMiddleware
         _appSettings = appSettings.Value;
     }
 
-    public async Task Invoke(HttpContext context, IUserService userService, IStaffService staffService, IDoctorService doctorService, IJwtUtils jwtUtils)
+    public async Task Invoke(HttpContext context, IUserService userService, IStaffService staffService, IDoctorService doctorService, IPatientService patientService, IJwtUtils jwtUtils)
     {
         var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
         var user = jwtUtils.ValidateJwtToken(token);
@@ -39,7 +39,7 @@ public class JwtMiddleware
             }
             else if (user.Role == "patient")
             {
-                context.Items["patient"] = staffService.GetStaffByIdAsync(user.Id).Result;
+                context.Items["Patient"] = patientService.GetByIdAsync(user.Id).Result;
             }
             
         }

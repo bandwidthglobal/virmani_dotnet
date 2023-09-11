@@ -20,24 +20,24 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
         var allowAnonymous = context.ActionDescriptor.EndpointMetadata.OfType<AllowAnonymousAttribute>().Any();
         if (allowAnonymous)
             return;
-        User user = new User();
-        StaffRequest staff = new StaffRequest();
-        DoctorRequest doctor1 = new DoctorRequest();
+        //User user = new User();
+        //StaffDto staff = new StaffDto();
+        //DoctorDto doctor = new DoctorDto();
         if (_entityName== "User")
         {
-            user = (User)context.HttpContext.Items["User"];
+           var user = (User)context.HttpContext.Items["User"];
             if (user == null)
                 context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
         }
         else if (_entityName == "Staff")
         {
-            staff = (StaffRequest)context.HttpContext.Items["Staff"];
+            var staff = (StaffDto)context.HttpContext.Items["Staff"];
             if (staff == null)
                 context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
         }
         else if (_entityName == "Doctor")
         {
-            var doctor = context.HttpContext.Items["Doctor"];
+            var doctor =(DoctorDto) context.HttpContext.Items["DoctorDto"];
             if (doctor == null)
                 context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
         }
