@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DCRM.Common.Entity;
 
-public partial class PatientScan
+public  class PatientScan
 {
     public int Id { get; set; }
 

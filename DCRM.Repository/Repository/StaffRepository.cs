@@ -163,7 +163,7 @@ namespace DCRM.Repository.Repository
             }
             catch (Exception ex)
             {
-                throw new Exception("some technical problem. Please contact to admin");
+                throw new Exception(ex.Message);
             }
         }
 

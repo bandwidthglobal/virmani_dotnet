@@ -60,7 +60,6 @@ public class JwtUtils : IJwtUtils
                 new Claim("id", id.ToString()), 
                 new Claim("email", email),
                 new Claim("role", role),
-                new Claim("userName", userName)
             }),
             Expires = DateTime.UtcNow.AddMinutes(Convert.ToInt64(_appSettings.Expires)),
             SigningCredentials = new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256Signature)

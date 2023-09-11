@@ -8519,11 +8519,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\DCRM\\DCRM.Common\\DCRM.Common.csproj",
+      "projectUniqueName": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj",
       "projectName": "DCRM.Common",
-      "projectPath": "D:\\Projects\\DCRM\\DCRM.Common\\DCRM.Common.csproj",
+      "projectPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj",
       "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\DCRM\\DCRM.Common\\obj\\",
+      "outputPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",

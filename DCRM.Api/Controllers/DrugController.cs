@@ -53,7 +53,7 @@ namespace DCRM.Api.Controllers
         }
 
         
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
           await  _drugfService.DeleteAsync(id);

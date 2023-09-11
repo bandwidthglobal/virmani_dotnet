@@ -160,7 +160,7 @@ namespace DCRM.Repository.Repository
                         foreach (var item in request.DealerBankDetailList)
                         {
                             item.Dealer_Id = dealer.Id;
-                            await _contex.Dealer_Bank_Details.AddAsync(item);
+                             _contex.Dealer_Bank_Details.Add(item);
                             _contex.SaveChanges();
                         }
                     }
@@ -169,7 +169,7 @@ namespace DCRM.Repository.Repository
                         foreach (var item in request.DealerMaterialList)
                         {
                             item.Dealer_Id = dealer.Id;
-                            await _contex.Dealer_Material.AddAsync(item);
+                             _contex.Dealer_Material.Add(item);
                             _contex.SaveChanges();
                         }
                     }
@@ -184,7 +184,7 @@ namespace DCRM.Repository.Repository
             }
             catch (Exception ex)
             {
-                throw new Exception("some technical problem. Please contact to admin");
+                throw new Exception(ex.Message);
             }
         }
 
@@ -316,7 +316,7 @@ namespace DCRM.Repository.Repository
             }
             catch (Exception ex)
             {
-                throw new Exception("some technical problem. Please contact to admin");
+                throw new Exception(ex.Message);
             }
         }
     }

@@ -7,7 +7,6 @@ using System.Text.Json.Serialization;
 public class AuthenticateResponse
 {
     public int Id { get; set; }
-    public string UserName { get; set; }
     public string Email { get; set; }
     public string JwtToken { get; set; }
 
@@ -16,10 +15,9 @@ public class AuthenticateResponse
     [JsonIgnore] // refresh token is returned in http only cookie
     public string RefreshToken { get; set; }
 
-    public AuthenticateResponse(string userName,string email,int id,string role, string jwtToken)
+    public AuthenticateResponse(string email,int id,string role, string jwtToken)
     {
         Id = id;
-        UserName = userName;
         Email = email;
         Role = Role;
         JwtToken = jwtToken;

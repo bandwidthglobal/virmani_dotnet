@@ -37,6 +37,12 @@ namespace DCRM.Service.Service
             return appointments;
         }
 
+        public List<Appointment> GetByPatientId(int userId, int patientId)
+        {
+            var appointments = _appointmentRepository.GetByPatientId(patientId).Where(x=>x.User_Id== userId).
+                OrderByDescending(x=>x.Id).ToList();
+            return appointments;
+        }
         public async Task<Appointment> GetByIdAsync(int id)
         {
             var appointment = await _appointmentRepository.GetByIdAsync(id);

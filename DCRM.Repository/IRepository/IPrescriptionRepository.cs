@@ -13,7 +13,8 @@ namespace DCRM.Repository.IRepository
 {
     public interface IPrescriptionRepository
     {
-       
+
+        List<Prescription> GetAll();
         Task<Prescription> GetByIdAsync(int id);
 
         Task<IEnumerable<Prescription>> GetByUserId(int userId);

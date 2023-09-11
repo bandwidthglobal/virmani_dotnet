@@ -1,6 +1,7 @@
 ﻿using DCRM.Api.Models;
 using DCRM.Common;
 using DCRM.Common.Dto;
+using DCRM.Common.Entities;
 using DCRM.Common.Entity;
 using DCRM.Common.Request;
 using DCRM.Common.RequestModel;
@@ -18,12 +19,18 @@ namespace DCRM.Service.IService
         Task<List<PatientseDto>> GetAllAsync();
         Task<PatientseDto> GetByIdAsync(int id);
         List<PatientseDto> GetByUserIdAsync(int userId);
-        Task CreateAsync(PatientRequest request);
+        void CreateAsync(PatientRequest request);
         void Update(PatientRequest request);
         Task DeleteAsync(int id);
         Task ChangePasswordAsync(ChangePasswordRequest changePasswordModel);
+        List<PatientScan> GetPatientScan(int patientId);
 
+        List<LabDataDto> GetPatientLabData(int patientId);
 
+        List<TreatmentplanDto> GetPatientTreatmentplanList(int patientId);
 
+        List<WorkDoneDto> GetPatientWorkDoneList(int patientId);
+
+        List<PaymentHistoryDto> GetPatientpaymentList(int patientId);
     }
 }

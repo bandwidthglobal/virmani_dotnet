@@ -39,7 +39,7 @@ namespace DCRM.Service.Service
 
             // authentication successful so generate jwt and refresh tokens
             var jwtToken = _jwtUtils.GenerateJwtToken(Convert.ToInt32(doctor.Id), doctor.Email, doctor.Role, doctor.Email);
-            return new AuthenticateResponse(doctor.Email, doctor.Email, Convert.ToInt32(doctor.Id), doctor.Role, jwtToken);
+            return new AuthenticateResponse(doctor.Email, Convert.ToInt32(doctor.Id), doctor.Role, jwtToken);
         }
 
         /// <summary>

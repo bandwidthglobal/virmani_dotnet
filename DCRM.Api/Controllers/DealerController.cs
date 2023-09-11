@@ -24,13 +24,11 @@ namespace DCRM.Api.Controllers
             _dealerService = dealerService;
         }
 
-       
-
         [HttpGet("GetAll")]
         public async Task<IEnumerable<DealerDto>> GetAllAsync()
         {
             var user = (User)(Request.HttpContext.Items["User"]);
-            if (user == null)
+            if (user != null)
             {
                 userId = user.Id;
             }
@@ -42,7 +40,7 @@ namespace DCRM.Api.Controllers
         public async Task<DealerDto> GetAsync(int id)
         {
             var user = (User)(Request.HttpContext.Items["User"]);
-            if (user == null)
+            if (user != null)
             {
                 userId = user.Id;
             }
@@ -50,13 +48,6 @@ namespace DCRM.Api.Controllers
             return dealer;
         }
 
-        [HttpGet("GetByUserId/{userId}")]
-        public async Task<IEnumerable<DealerDto>> GetByUserIdAsync(int userId)
-        {
-
-            var dealerList = await _dealerService.GetByUserId(userId);
-            return dealerList;
-        }
 
         [HttpPost("Create")]
         public async Task<IActionResult> Create(DealerRequest request)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DCRM.Common.Entity;
+using System;
 using System.Collections.Generic;
 
 namespace DCRM.Common.RequestModel;
@@ -38,4 +39,7 @@ public  class TreatmentplanRequest
     public DateTime CreatedAt { get; set; }
 
     public DateTime UpdatedAt { get; set; }
+
+    public Teethinfo Teethinfo { get; set; }
+    
 }

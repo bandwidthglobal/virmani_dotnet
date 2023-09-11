@@ -39,6 +39,13 @@ namespace DCRM.Repository.Repository
             }
         }
 
+        public List<Appointment> GetByPatientId(int patientId)
+        {
+            var appointments = _contex.Appointments.Where(x => x.Is_Delete == 0 && x.Patient_Id== patientId).
+                OrderByDescending(x=>x.Id).ToList();
+            return appointments;
+        }
+
         public async Task<IEnumerable<Appointment>> GetAllAsync()
         {
             var appointments = _contex.Appointments.Where(x => x.Is_Delete == 0);

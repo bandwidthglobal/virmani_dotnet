@@ -1,4 +1,5 @@
 ﻿using DCRM.Common.Authorization;
+using DCRM.Common.Dto;
 using DCRM.Common.Entity;
 using DCRM.Service.IService;
 using DCRM.Service.Service;
@@ -23,10 +24,12 @@ namespace DCRM.Api.Controllers
         {
             return await _prescriptionfService.GetByIdAsync(id);
         }
-        [HttpGet("GetByUserId/{userId}")]
-        public async Task<IEnumerable<Prescription>> GetByUserId(int userId)
+
+
+        [HttpGet("GeAll/{userId}")]
+        public  List<PrescriptionDto> Prescriptions(int userId)
         {
-            return await _prescriptionfService.GetByUserId(userId);
+            return  _prescriptionfService.GetByUserId(userId);
         }
 
         [HttpPost("Create")]

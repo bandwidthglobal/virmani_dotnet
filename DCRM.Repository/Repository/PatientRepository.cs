@@ -50,7 +50,7 @@ namespace DCRM.Repository.Repository
         {
             if (changePasswordModel.Type.ToLower() == "patient")
             {
-                var patient = await _contex.Patientses.FirstOrDefaultAsync(x => x.Id == changePasswordModel.Id && x.Is_Delete==0);
+                var patient = await _contex.Patientses.FirstOrDefaultAsync(x => x.Id == changePasswordModel.Id && x.Is_Delete == 0);
                 if (patient != null)
                 {
                     patient.Password = changePasswordModel.NewPassword;
@@ -68,7 +68,7 @@ namespace DCRM.Repository.Repository
         /// <exception cref="NotImplementedException"></exception>
         public async Task<IEnumerable<Patientse>> GetAllAsync()
         {
-            IEnumerable<Patientse> patients =  _contex.Patientses.Where(x => x.Is_Delete == 1);
+            IEnumerable<Patientse> patients = _contex.Patientses.Where(x => x.Is_Delete == 1);
             if (patients != null)
             {
                 return patients;
@@ -82,9 +82,9 @@ namespace DCRM.Repository.Repository
         /// <param name="id"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task <Patientse> GetByIdAsync(int id)
+        public async Task<Patientse> GetByIdAsync(int id)
         {
-            Patientse patient =await _contex.Patientses.Where(x => x.Is_Delete == 1 && x.Id==id).FirstOrDefaultAsync();
+            Patientse patient = await _contex.Patientses.Where(x => x.Is_Delete == 0 && x.Id == id).FirstOrDefaultAsync();
             if (patient != null)
             {
                 return patient;
@@ -101,7 +101,7 @@ namespace DCRM.Repository.Repository
         /// <exception cref="NotImplementedException"></exception>
         public List<Patientse> GetByUserId(int userId)
         {
-            List<Patientse> patients = _contex.Patientses.Where(x => x.Is_Delete == 1 && x.User_Id== userId).ToList();
+            List<Patientse> patients = _contex.Patientses.Where(x => x.Is_Delete == 1 && x.User_Id == userId).ToList();
             if (patients != null)
             {
                 return patients;
@@ -123,7 +123,7 @@ namespace DCRM.Repository.Repository
             }
             else { throw new KeyNotFoundException("no record found"); }
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -169,87 +169,100 @@ namespace DCRM.Repository.Repository
         /// <param name="request"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task CreateAsync(PatientRequest request)
+        public void CreateAsync(PatientRequest request)
         {
-            Patientse patient = _contex.Patientses.FirstOrDefault(x => x.Id == request.Id);
-            if (patient == null)
+            try
             {
-                patient.Chamber_Id = request.Chamber_Id;
-                patient.UserName = request.User_name;
-                patient.Mr_Number = request.Mr_Number;
-                patient.Name = request.Name;
-                patient.UserName = request.User_name;
-                patient.Slug = request.Slug;
-                patient.Thumb = request.Thumb;
-                patient.Email = request.Email;
-                patient.Age = request.Age;
-                patient.Weight = request.Weight;
-                patient.Sex = request.Sex;
-                patient.Title = request.Title;
-                patient.Guardian = request.Guardian;
-                patient.Present_Address = request.Present_Address;
-                patient.Permanent_Address = request.Permanent_Address;
-                patient.Created_At = System.DateTime.UtcNow;
-                _contex.Patientses.Add(patient);
-                _contex.SaveChanges();
-                if (request.PatientContacts != null && request.PatientContacts.Count > 0)
-                {
-                    foreach (var item in request.PatientContacts)
-                    {
-                        var contact = _contex.Patients_Contact.FirstOrDefault(x => x.Id == item.Id);
-                        if (contact != null)
-                        {
-                            item.Patient_Id = patient.Id;
-                            _contex.Patients_Contact.Add(contact);
-                        }
-                        _contex.SaveChanges();
-                    }
-                }
-                if (request.PatientInsuranceLoans != null && request.PatientInsuranceLoans.Count > 0)
-                {
-                    foreach (var item in request.PatientInsuranceLoans)
-                    {
-                        var insuranceLoan = _contex.Patients_Insurance_Loan.FirstOrDefault(x => x.Id == item.Id);
-                        if (insuranceLoan == null)
-                        {
-                            item.Patients_Id = patient.Id;
-                            _contex.Patients_Insurance_Loan.Add(item);
-                        }
-                        _contex.SaveChanges();
-                    }
-                }
-                if (request.PatientScans != null && request.PatientScans.Count > 0)
-                {
-                    foreach (var item in request.PatientScans)
-                    {
-                        var patientScan = _contex.Patient_Scans.FirstOrDefault(x => x.Id == item.Id);
-                        if (patientScan == null)
-                        {
-                            item.Patient_Id = patient.Id;
-                            _contex.Patient_Scans.Add(item);
-                        }
-                        _contex.SaveChanges();
-                    }
-                }
 
 
-                if (request.PatientTests != null && request.PatientTests.Count > 0)
+                var patientDetails = _contex.Patientses.FirstOrDefault(x => x.Email == request.Email);
+                if (patientDetails == null)
                 {
-                    foreach (var item in request.PatientTests)
+
+                    Patientse patient = new Patientse();
+                    patient.Chamber_Id = request.Chamber_Id;
+                    patient.UserName = request.User_name;
+                    patient.Mr_Number = request.Mr_Number;
+                    patient.Name = request.Name;
+                    patient.UserName = request.User_name;
+                    patient.Slug = request.Slug;
+                    patient.Thumb = request.Thumb;
+                    patient.Email = request.Email;
+                    patient.Age = request.Age;
+                    patient.Weight = request.Weight;
+                    patient.Sex = request.Sex;
+                    patient.Title = request.Title;
+                    patient.Role = "Patient";
+                    patient.Guardian = request.Guardian;
+                    patient.Present_Address = request.Present_Address;
+                    patient.Permanent_Address = request.Permanent_Address;
+                    patient.Created_At = System.DateTime.UtcNow;
+                    _contex.Patientses.Add(patient);
+                    _contex.SaveChanges();
+
+                    if (request.PatientContacts != null && request.PatientContacts.Count > 0)
                     {
-                        var patientTest = _contex.Patient_Tests.FirstOrDefault(x => x.Id == item.Id);
-                        if (patientTest == null)
+                        foreach (var item in request.PatientContacts)
                         {
-                            item.Patient_Id = patient.Id;
-                            _contex.Patient_Tests.Add(item);
+                            var contact = _contex.Patients_Contact.FirstOrDefault(x => x.Id == item.Id);
+                            if (contact == null)
+                            {
+                                item.Patient_Id = patient.Id;
+                                _contex.Patients_Contact.Add(item);
+                            }
+                            _contex.SaveChanges();
                         }
-                        _contex.SaveChanges();
                     }
+                    if (request.PatientInsuranceLoans != null && request.PatientInsuranceLoans.Count > 0)
+                    {
+                        foreach (var item in request.PatientInsuranceLoans)
+                        {
+                            var insuranceLoan = _contex.Patients_Insurance_Loan.FirstOrDefault(x => x.Id == item.Id);
+                            if (insuranceLoan == null)
+                            {
+                                item.Patients_Id = patient.Id;
+                                _contex.Patients_Insurance_Loan.Add(item);
+                            }
+                            _contex.SaveChanges();
+                        }
+                    }
+                    if (request.PatientScans != null && request.PatientScans.Count > 0)
+                    {
+                        foreach (var item in request.PatientScans)
+                        {
+                            var patientScan = _contex.Patient_Scans.FirstOrDefault(x => x.Id == item.Id);
+                            if (patientScan == null)
+                            {
+                                item.Patient_Id = patient.Id;
+                                _contex.Patient_Scans.Add(item);
+                            }
+                            _contex.SaveChanges();
+                        }
+                    }
+
+
+                    if (request.PatientTests != null && request.PatientTests.Count > 0)
+                    {
+                        foreach (var item in request.PatientTests)
+                        {
+                            var patientTest = _contex.Patient_Tests.FirstOrDefault(x => x.Id == item.Id);
+                            if (patientTest == null)
+                            {
+                                item.Patient_Id = patient.Id;
+                                _contex.Patient_Tests.Add(item);
+                            }
+                            _contex.SaveChanges();
+                        }
+                    }
+                }
+                else
+                {
+                    throw new SqlAlreadyFilledException("patient already exist");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                throw new Exception("some technical problem");
+                throw new Exception(ex.Message);
             }
         }
 
@@ -286,7 +299,7 @@ namespace DCRM.Repository.Repository
                     foreach (var item in request.PatientContacts)
                     {
                         var contact = _contex.Patients_Contact.FirstOrDefault(x => x.Id == item.Id);
-                        if (contact != null)
+                        if (contact == null)
                         {
                             item.Patient_Id = patient.Id;
                             _contex.Patients_Contact.Add(contact);
@@ -336,10 +349,10 @@ namespace DCRM.Repository.Repository
                         }
                         else
                         {
-                            insuranceLoan.Balance_Spent= item.Balance_Spent;
-                            insuranceLoan.Balance_Amount= item.Balance_Amount;
-                            insuranceLoan.Amount= item.Amount;
-                            insuranceLoan.Name= item.Name;
+                            insuranceLoan.Balance_Spent = item.Balance_Spent;
+                            insuranceLoan.Balance_Amount = item.Balance_Amount;
+                            insuranceLoan.Amount = item.Amount;
+                            insuranceLoan.Name = item.Name;
                             insuranceLoan.Type = item.Type;
                             insuranceLoan.Updated_At = System.DateTime.UtcNow;
                             _contex.Patients_Insurance_Loan.Update(insuranceLoan);
@@ -360,10 +373,10 @@ namespace DCRM.Repository.Repository
                         }
                         else
                         {
-                            patientScan.Status= item.Status;
-                            patientScan.Report= item.Report;
-                            patientScan.Report_File= item.Report_File;
-                            patientScan.Scan_Name= item.Scan_Name;
+                            patientScan.Status = item.Status;
+                            patientScan.Report = item.Report;
+                            patientScan.Report_File = item.Report_File;
+                            patientScan.Scan_Name = item.Scan_Name;
                             patientScan.Type = item.Type;
                             patientScan.Updated_At = System.DateTime.UtcNow;
                             _contex.Patient_Scans.Update(patientScan);
@@ -385,12 +398,12 @@ namespace DCRM.Repository.Repository
                         }
                         else
                         {
-                            patientTest.Status= item.Status;
-                            patientTest.Report= item.Report;
+                            patientTest.Status = item.Status;
+                            patientTest.Report = item.Report;
                             patientTest.Report_File = item.Report_File;
-                            patientTest.Report_Date= item.Report_Date;
-                            patientTest.Test_Name= item.Test_Name;
-                            patientTest.Test_Price= item.Test_Price;
+                            patientTest.Report_Date = item.Report_Date;
+                            patientTest.Test_Name = item.Test_Name;
+                            patientTest.Test_Price = item.Test_Price;
                             patientTest.Updated_At = System.DateTime.UtcNow;
                             _contex.Patient_Tests.Update(patientTest);
                         }
@@ -419,6 +432,19 @@ namespace DCRM.Repository.Repository
                 _contex.Patientses.Update(patient);
                 _contex.SaveChanges();
             }
+        }
+
+        public List<PatientScan> GetPatientScanList()
+        {
+            List<PatientScan> patientScans = new List<PatientScan>();
+            patientScans = _contex.Patient_Scans.ToList();
+            return patientScans;
+        }
+        public List<LabData> GetPatientLabList()
+        {
+            List<LabData> labdataList = new List<LabData>();
+            labdataList = _contex.Lab_Data.ToList();
+            return labdataList;
         }
     }
 }
