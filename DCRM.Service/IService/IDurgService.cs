@@ -24,7 +24,11 @@ namespace DCRM.Service.IService
 
         void Update(Drug drug);
 
-        Task DeleteAsync(int id);
+        void Delete(int id);
+
+        List<MedicineBrand> GetMedicineBrands();
+
+        List<MedicineCategory> GetMedicineCategoris();
 
     }
 }

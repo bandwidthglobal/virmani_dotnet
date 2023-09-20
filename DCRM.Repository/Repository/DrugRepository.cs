@@ -25,19 +25,23 @@ namespace DCRM.Repository.Repository
 
         public async Task CreateAsync(Drug drug)
         {
+            drug.Created_At = System.DateTime.UtcNow;
+            drug.Updated_At= System.DateTime.UtcNow;
+            drug.Status = 1;
+            drug.Is_Delete = 0;
             await _contex.Drugs.AddAsync(drug);
             _contex.SaveChanges();
 
         }
 
-        public async Task DeleteAsync(int id)
+        public void Delete(int id)
         {
-            var drug = await _contex.Drugs.FirstOrDefaultAsync(x => x.Id == id);
+            var drug =  _contex.Drugs.FirstOrDefault(x => x.Id == id);
             if (drug != null)
             {
                 drug.Is_Delete = 1;
                 _contex.Drugs.Update(drug);
-                await _contex.SaveChangesAsync();
+                 _contex.SaveChanges();
             }
         }
 
@@ -55,10 +59,19 @@ namespace DCRM.Repository.Repository
 
         public async Task<IEnumerable<Drug>> GetByUserId(int userId)
         {
-            var drugs = _contex.Drugs.Where(x => x.User_Id == userId && x.Is_Delete == 0);
+            var drugs = _contex.Drugs.Where(x => x.User_Id == userId && x.Is_Delete == 0).OrderByDescending(x=>x.Id);
             return drugs;
         }
-
+        public List<MedicineBrand> GetMedicineBrands()
+        {
+            var medicineBrands = _contex.Medicine_Brand.ToList();
+            return medicineBrands;
+        }
+        public List<MedicineCategory> GetMedicineCategoris()
+        {
+            var medicineCategoris = _contex.Medicine_Category.ToList();
+            return medicineCategoris;
+        }
         public void Update(Drug request)
         {
             var drug = _contex.Drugs.FirstOrDefault(x => x.Id == request.Id && x.Is_Delete == 0);

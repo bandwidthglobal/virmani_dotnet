@@ -21,7 +21,7 @@ namespace DCRM.Service.IService
         List<PatientseDto> GetByUserIdAsync(int userId);
         void CreateAsync(PatientRequest request);
         void Update(PatientRequest request);
-        Task DeleteAsync(int id);
+        void Delete(int id);
         Task ChangePasswordAsync(ChangePasswordRequest changePasswordModel);
         List<PatientScan> GetPatientScan(int patientId);
 
@@ -32,5 +32,7 @@ namespace DCRM.Service.IService
         List<WorkDoneDto> GetPatientWorkDoneList(int patientId);
 
         List<PaymentHistoryDto> GetPatientpaymentList(int patientId);
+
+        void CreatedWorkDone(Workdone_New workdone);
     }
 }

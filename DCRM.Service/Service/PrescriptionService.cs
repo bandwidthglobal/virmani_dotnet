@@ -17,16 +17,18 @@ namespace DCRM.Service.Service
         public readonly IPrescriptionRepository _prescriptionRepository;
         public readonly IDrugRepository _drugRepository;
         private readonly IRepository<Chamber> _chamberRepository;
+        private readonly IRepository<Workdone_New> _workDoneRepository;
         private readonly IPatientRepository _patientRepository;
         public PrescriptionService(IPrescriptionRepository prescriptionRepository, 
             IDrugRepository drugRepository, 
             IPatientRepository patientRepository, 
-            IRepository<Chamber> chamberRepository)
+            IRepository<Chamber> chamberRepository, IRepository<Workdone_New> workDoneRepository)
         {
             _prescriptionRepository = prescriptionRepository;
             _drugRepository = drugRepository;
             _chamberRepository = chamberRepository;
             _patientRepository = patientRepository;
+            _workDoneRepository= workDoneRepository;
         }
 
         public async Task CreateAsync(Prescription request)
@@ -172,6 +174,8 @@ namespace DCRM.Service.Service
             }
             return prescriptionsList;
         }
+
+       
 
     }
 }

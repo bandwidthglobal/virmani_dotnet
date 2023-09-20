@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DCRM.Api.Controllers
 {
     [Authorize("User")]
-    [Route("api/User/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class PrescriptionController : ControllerBase
     {
@@ -26,10 +26,11 @@ namespace DCRM.Api.Controllers
         }
 
 
-        [HttpGet("GeAll/{userId}")]
+        [HttpGet("GetAll")]
         public  List<PrescriptionDto> Prescriptions(int userId)
         {
-            return  _prescriptionfService.GetByUserId(userId);
+            var user = (User)(Request.HttpContext.Items["User"]);
+            return  _prescriptionfService.GetByUserId(user.Id);
         }
 
         [HttpPost("Create")]

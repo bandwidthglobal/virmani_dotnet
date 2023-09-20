@@ -2,13 +2,14 @@
 using DCRM.Common.Dto;
 using DCRM.Common.Entity;
 using DCRM.Service.IService;
+using DCRM.Service.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DCRM.Api.Controllers
 {
     [Authorize("User")]
-    [Route("api/User/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AppointmentController : ControllerBase
     {
@@ -28,10 +29,11 @@ namespace DCRM.Api.Controllers
         {
             return await _appointmentfService.GetByIdAsync(id);
         }
-        [HttpGet("GetByUserId/{userId}")]
-        public async Task<IEnumerable<Appointment>> GetByUserId(int userId)
+        [HttpGet("GetByUser")]
+        public async Task<IEnumerable<Appointment>> GetByUser()
         {
-            return await _appointmentfService.GetByUserId(userId);
+            var user = (User)(Request.HttpContext.Items["User"]);
+            return await _appointmentfService.GetByUserId(user.Id);
         }
 
         [HttpPost("Create")]
@@ -54,6 +56,14 @@ namespace DCRM.Api.Controllers
         {
             await _appointmentfService.DeleteAsync(id);
             return Ok("deleted");
+        }
+
+        [HttpGet("GetAppointments/{patientId}")]
+        public List<Appointment> GetAppointmentsByPatient(int patientId)
+        {
+            var user = (User)(Request.HttpContext.Items["User"]);
+            List<Appointment> appointments = _appointmentfService.GetByPatientId(user.Id, patientId);
+            return appointments;
         }
     }
 }

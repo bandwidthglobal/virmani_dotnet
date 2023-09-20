@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/oFx+M6+Hydi880fFMuCcbI01YI0VbGXqYIGrv/SmJMWwgUN3Hl54jS/GiTjaFsUQv4SaY6K/ERpj/CEUMMp6Q==",
+  "dgSpecHash": "Bw8T2VQDlJum33g4Fixo2ojS53uoBLhWsl2wigF59M9rLw3kPAfg8yf56lR+6CXcHAw3DwKS2x39er8NTwWObw==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\DCRM\\DCRM.Repository\\DCRM.Repository.csproj",
+  "projectFilePath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Repository\\DCRM.Repository.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

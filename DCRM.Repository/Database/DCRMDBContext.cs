@@ -90,6 +90,10 @@ namespace DCRM.Repository.Database
 
         public virtual DbSet<Partial_Payment> Partial_Payment { get; set; }
 
-        
+        public virtual DbSet<MedicineBrand> Medicine_Brand { get; set; }
+
+        public virtual DbSet<MedicineCategory> Medicine_Category { get; set; }
+
+
     }
 }

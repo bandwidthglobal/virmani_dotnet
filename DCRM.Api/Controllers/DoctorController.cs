@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DCRM.Api.Controllers
 {
-    [Authorize("Doctor")]
+    [Authorize("User")]
     [Route("api/[controller]")]
     [ApiController]
     public class DoctorController : ControllerBase
@@ -27,28 +27,21 @@ namespace DCRM.Api.Controllers
             _configuration = configuration;
         }
 
-        [AllowAnonymous]
-        [HttpPost("Authenticate")]
-        public async Task<IActionResult> AuthenticateAsync([FromBody] AuthenticateRequest request)
-        {
-
-            var response = await _doctorService.AuthenticateAsync(request);
-            return Ok(response);
-        }
+        
 
         [HttpGet("GetAll")]
-        public async Task<IEnumerable<DoctorDto>> GetStaffsAsync()
+        public async Task<IEnumerable<DoctorDto>> GetDoctorAsync()
         {
-
-            var doctorList = await _doctorService.GetDoctorsAsync();
+            var user = (User)(Request.HttpContext.Items["User"]);
+            var doctorList =  _doctorService.GetDoctorsByUserId(user.Id);
             return doctorList;
         }
 
-        [HttpGet("Get")]
-        public DoctorDto GetDoctor()
+        [HttpGet("Get/{id}")]
+        public DoctorDto GetDoctor(int id)
         {
-            var user = (DoctorDto)(Request.HttpContext.Items["Doctor"]);
-            DoctorDto doctor = _doctorService.GetDoctorByIdAsync(Convert.ToInt32(user.Id)).Result;
+           
+            DoctorDto doctor = _doctorService.GetDoctorByIdAsync(Convert.ToInt32(id)).Result;
             return doctor;
         }
 
@@ -56,6 +49,8 @@ namespace DCRM.Api.Controllers
         [HttpPost("Create")]
         public IActionResult Create([FromBody] DoctorRequest request)
         {
+            var user = (User)(Request.HttpContext.Items["User"]);
+            request.User_Id = user.Id;
             request.Role = "Doctor";
             _doctorService.CreateDoctorAsync(request);
             return Ok("created");
@@ -64,19 +59,15 @@ namespace DCRM.Api.Controllers
         [HttpPost("Update")]
         public IActionResult Update(DoctorRequest request)
         {
-            var user = (DoctorDto)(Request.HttpContext.Items["Doctor"]);
-            request.Id = user.Id;
             _doctorService.UpdateDoctor(request);
             return Ok("Updated");
         }
 
-        [HttpDelete("Delete")]
-        public  IActionResult Delete()
+        [HttpDelete("Delete/{id}")]
+        public  IActionResult Delete(int id)
         {
-            var user = (DoctorDto)(Request.HttpContext.Items["Doctor"]);
-            Int32 id = Convert.ToInt32(user.Id);
-             _doctorService.DeleteDoctorAsync(id);
-            return Ok("Deleted");
+            _doctorService.DeleteDoctor(id);
+            return Ok(id.ToString());
         }
     }
 }

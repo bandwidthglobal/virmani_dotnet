@@ -7,10 +7,11 @@ using DCRM.Service.IService;
 using DCRM.Service.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace DCRM.Api.Controllers
 {
-    [Authorize("Staff")]
+    [Authorize("User")]
     [Route("api/[controller]")]
     [ApiController]
     public class StaffController : ControllerBase
@@ -27,36 +28,36 @@ namespace DCRM.Api.Controllers
             _configuration = configuration;
         }
 
-        [AllowAnonymous]
-        [HttpPost("Authenticate")]
-        public async Task<IActionResult> AuthenticateAsync([FromBody] AuthenticateRequest request)
+        
+
+        [HttpGet("GetAll")]
+        public async Task<IEnumerable<Staff>> GetStaffListAsync()
         {
-
-            var response = await _staffService.AuthenticateAsync(request);
-            return Ok(response);
+            var user = (User)(Request.HttpContext.Items["User"]);
+            IEnumerable<Staff> staffList =  _staffService.GetStaffsAsync().Result.Where(x => x.User_Id == user.Id);
+            return staffList;
         }
-
-        [HttpGet("Get")]
+        [HttpGet("Get/{id}")]
         public async Task<StaffDto> GetStaffAsync()
         {
-            var user = (StaffDto)(Request.HttpContext.Items["Staff"]);
+            var user = (User)(Request.HttpContext.Items["User"]);
             StaffDto staff = await _staffService.GetStaffByIdAsync(user.Id);
             return staff;
         }
 
-        [AllowAnonymous]
         [HttpPost("Create")]
         public IActionResult Create(StaffRequest staffRequest)
         {
+            var user = (User)(Request.HttpContext.Items["User"]);
             staffRequest.Role = "Staff";
+            staffRequest.User_Id = user.Id;
             _staffService.CreateStaffByUserAsync(staffRequest);
             return Ok("Created");
         }
+
         [HttpPost("Update")]
         public async Task<IActionResult> Update(StaffRequest staffRequest)
         {
-            var user = (StaffDto)(Request.HttpContext.Items["User"]);
-            staffRequest.Id = user.Id;
             _staffService.UpdateStaff(staffRequest);
             return Ok("Updated");
         }
@@ -64,8 +65,7 @@ namespace DCRM.Api.Controllers
         [HttpDelete("Delete")]
         public async Task<IActionResult> Delete(int id)
         {
-            var user = (StaffDto)(Request.HttpContext.Items["User"]);
-            await _staffService.DeleteStaffAsync(user.Id);
+            await _staffService.DeleteStaffAsync(id);
             return Ok("Deleted");
         }
     }

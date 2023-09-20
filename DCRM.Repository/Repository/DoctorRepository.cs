@@ -303,14 +303,14 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task DeleteDoctorAsync(int id)
+        public void DeleteDoctor(int id)
         {
-            Doctor? doctor = await _contex.Doctors.FirstOrDefaultAsync(x => x.Id == id);
+            var doctor = _contex.Doctors.FirstOrDefault(x => x.Id == id);
             if (doctor != null)
             {
                 doctor.Is_Delete = 1;
                 _contex.Update(doctor);
-                await _contex.SaveChangesAsync();
+                _contex.SaveChanges();
             }
 
         }
@@ -341,7 +341,7 @@ namespace DCRM.Repository.Repository
         /// <returns></returns>
         public List<Doctor> GetDoctorsByUserId(int userId)
         {
-            var doctorList = _contex.Doctors.Where(x => x.User_Id == userId).ToList();
+            var doctorList = _contex.Doctors.Where(x => x.User_Id == userId && x.Is_Delete==0).ToList();
             return doctorList;
         }
         /// <summary>

@@ -20,9 +20,6 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
         var allowAnonymous = context.ActionDescriptor.EndpointMetadata.OfType<AllowAnonymousAttribute>().Any();
         if (allowAnonymous)
             return;
-        //User user = new User();
-        //StaffDto staff = new StaffDto();
-        //DoctorDto doctor = new DoctorDto();
         if (_entityName== "User")
         {
            var user = (User)context.HttpContext.Items["User"];

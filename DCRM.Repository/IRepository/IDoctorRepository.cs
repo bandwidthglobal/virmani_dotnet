@@ -24,7 +24,7 @@ namespace DCRM.Repository.IRepository
 
         void UpdateDoctor(DoctorRequest request);
 
-        Task DeleteDoctorAsync(int id);
+        void DeleteDoctor(int id);
 
         Task ChangeDoctorPasswordAsync(ChangePasswordRequest changePasswordModel);
 

@@ -11,6 +11,7 @@ using DCRM.Repository.Repository;
 using DCRM.Service.IService;
 using Demo_Api.Models;
 using Microsoft.Extensions.Configuration;
+using System.Reflection;
 
 namespace DCRM.Service.Service
 {
@@ -28,6 +29,7 @@ namespace DCRM.Service.Service
         public readonly IRepository<Workdone> _workdoneRepository;
         public readonly IRepository<Payment_History> _paymentHistoryRepository;
         public readonly IRepository<Payment_Details_List> _paymentDetailsRepository;
+
         #endregion
 
         #region Constructor 
@@ -67,7 +69,7 @@ namespace DCRM.Service.Service
                 throw new AppException("username or password is incorrect");
 
             var jwtToken = _jwtUtils.GenerateJwtToken(patient.Id, patient.Email, patient.Role, patient.Email);
-            return new AuthenticateResponse(patient.Email, patient.Id, patient.Role, jwtToken);
+            return new AuthenticateResponse(patient.Email, patient.Id, patient.Role, jwtToken, patient.Name, patient.Thumb);
         }
 
         /// <summary>
@@ -168,7 +170,8 @@ namespace DCRM.Service.Service
                 patientseDto.Age = patient.Age;
                 patientseDto.Weight = patient.Weight;
                 patientseDto.Sex = patient.Sex;
-                patientseDto.Title = patient.Title;
+                patientseDto.Mobile = patient.Mobile;
+                patientseDto.Title = patient.Title; 
                 patientseDto.Guardian = patient.Guardian;
                 patientseDto.Present_Address = patient.Present_Address;
                 patientseDto.Permanent_Address = patient.Permanent_Address;
@@ -207,9 +210,9 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task DeleteAsync(int id)
+        public void Delete(int id)
         {
-            await _patientRepository.DeleteAsync(id);
+            _patientRepository.Delete(id);
         }
 
         /// <summary>
@@ -405,5 +408,18 @@ namespace DCRM.Service.Service
 
         }
 
+        /// <summary>
+        /// create patient work done
+        /// </summary>
+        /// <param name="workdone"></param>
+        public void CreatedWorkDone(Workdone_New workdone)
+        {
+            _workdoneNewRepository.Insert(workdone);
+
+        }
+
+   
+    
+    
     }
 }

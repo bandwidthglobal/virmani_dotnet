@@ -33,7 +33,7 @@ namespace DCRM.Repository.IRepository
 
         void Update(PatientRequest request);
 
-        Task DeleteAsync(int id);
+        void Delete(int id);
 
         Task ChangePatientPasswordAsync(ChangePasswordRequest changePasswordModel);
 
@@ -42,6 +42,5 @@ namespace DCRM.Repository.IRepository
 
         List<LabData> GetPatientLabList();
 
-       
     } 
 }

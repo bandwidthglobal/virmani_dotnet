@@ -23,12 +23,12 @@ namespace DCRM.Api.Controllers
     public class UserController : ControllerBase
     {
         public readonly IUserService _userService;
-        public readonly IStaffService _staffService;
-        public readonly IDoctorService _doctorService;
-        public readonly IPatientService _patientService;
-        public readonly IAppointmentService _appointmentService;
-        public readonly IPrescriptionService _prescriptionService;
-        public readonly ITreatmentplanService _treatmentplanService;
+        //public readonly IStaffService _staffService;
+        //public readonly IDoctorService _doctorService;
+        //public readonly IPatientService _patientService;
+        //public readonly IAppointmentService _appointmentService;
+        //public readonly IPrescriptionService _prescriptionService;
+        //public readonly ITreatmentplanService _treatmentplanService;
         private readonly IMapper _mapper;
 
         
@@ -39,27 +39,12 @@ namespace DCRM.Api.Controllers
 
             _userService = userService;
             _mapper = mapper;
-            _staffService = staffService;
-            _doctorService = doctorService;
-            _patientService = patientService;
-            _appointmentService = appointmentService;
-            _prescriptionService = prescriptionService;
-            _treatmentplanService = treatmentplanService;
-        }
-
-        [AllowAnonymous]
-        [HttpPost("Authenticate")]
-        public async Task<IActionResult> AuthenticateAsync([FromBody]AuthenticateRequest request)
-        {
-            
-            var response = await _userService.AuthenticateAsync(request);
-            var cookieOptions = new CookieOptions
-            {
-                HttpOnly = true,
-                Expires = DateTime.UtcNow.AddDays(7)
-            };
-            Response.Cookies.Append("refreshToken", response.RefreshToken, cookieOptions);
-            return Ok(response);
+            //_staffService = staffService;
+            //_doctorService = doctorService;
+            //_patientService = patientService;
+            //_appointmentService = appointmentService;
+            //_prescriptionService = prescriptionService;
+            //_treatmentplanService = treatmentplanService;
         }
 
         [HttpGet("GetAll")]
@@ -88,7 +73,7 @@ namespace DCRM.Api.Controllers
 
         [AllowAnonymous]
         [HttpPost("Create")]
-        public async Task<IActionResult> Create([FromBody] UserRequest userRequestModel)
+        public async Task<IActionResult> Create(UserRequest userRequestModel)
         {
             await _userService.SaveUserAsync(userRequestModel);
             return  Ok("created");
@@ -118,115 +103,95 @@ namespace DCRM.Api.Controllers
         }
 
 
-        [HttpPost("CreateStaff")]
-        public async Task<IActionResult> CreateStaff([FromBody] StaffRequest staffRequest)
-        {
-            await _staffService.CreateStaffByUserAsync(staffRequest);
-            return Ok("created");
-        }
+        //[HttpPost("CreateStaff")]
+        //public async Task<IActionResult> CreateStaff([FromBody] StaffRequest staffRequest)
+        //{
+        //    await _staffService.CreateStaffByUserAsync(staffRequest);
+        //    return Ok("created");
+        //}
 
-        [HttpPost("GetStaffByUser/{userId}")]
-        public  IActionResult GetStaffByUser(int userId)
-        {
-          var staffList=  _staffService.GetStaffsByUserId(userId);
-            return Ok(staffList);
-        }
+        //[HttpPost("GetStaffByUser/{userId}")]
+        //public  IActionResult GetStaffByUser(int userId)
+        //{
+        //  var staffList=  _staffService.GetStaffsByUserId(userId);
+        //    return Ok(staffList);
+        //}
 
-        [HttpPost("CreateDoctor")]
-        public async Task<IActionResult> CreateDoctor([FromBody] DoctorRequest request)
-        {
-            await _doctorService.CreateDoctorAsync(request);
-            return Ok("created");
-        }
+        //[HttpPost("CreateDoctor")]
+        //public async Task<IActionResult> CreateDoctor([FromBody] DoctorRequest request)
+        //{
+        //    await _doctorService.CreateDoctorAsync(request);
+        //    return Ok("created");
+        //}
 
-        [HttpGet("GetPatients/{userId}")]
-        public async Task<IEnumerable<PatientseDto>> GetPatientsAsync(int userId)
-        {
+        //[HttpGet("GetPatients/{userId}")]
+        //public async Task<IEnumerable<PatientseDto>> GetPatientsAsync(int userId)
+        //{
 
-            var patientList =  _patientService.GetByUserIdAsync(userId);
-            return patientList;
-        }
+        //    var patientList =  _patientService.GetByUserIdAsync(userId);
+        //    return patientList;
+        //}
 
-        [AllowAnonymous]
-        [HttpPost("CreatePatient")]
-        public async Task<IActionResult> CreatePatient([FromBody] PatientRequest request)
-        {
-             _patientService.CreateAsync(request);
-            return Ok("created");
-        }
-        [AllowAnonymous]
-        [HttpPost("UpdatePatient")]
-        public IActionResult UpdatePatient([FromBody] PatientRequest request)
-        {
-             _patientService.Update(request);
-            return Ok("updated");
-        }
+        //[AllowAnonymous]
+        //[HttpPost("CreatePatient")]
+        //public async Task<IActionResult> CreatePatient([FromBody] PatientRequest request)
+        //{
+        //     _patientService.CreateAsync(request);
+        //    return Ok("created");
+        //}
+        //[AllowAnonymous]
+        //[HttpPost("UpdatePatient")]
+        //public IActionResult UpdatePatient([FromBody] PatientRequest request)
+        //{
+        //     _patientService.Update(request);
+        //    return Ok("updated");
+        //}
 
-        [HttpGet("DeletePatient/{patientId}")]
-        public async Task<IActionResult> DeletePatient(Int32 patientId)
-        {
-           await _patientService.DeleteAsync(patientId);
-            return Ok("created");
-        }
+        //[HttpGet("DeletePatient/{patientId}")]
+        //public async Task<IActionResult> DeletePatient(Int32 patientId)
+        //{
+        //   await _patientService.DeleteAsync(patientId);
+        //    return Ok("created");
+        //}
 
-        [HttpGet("GetAppointments/{patientId}")]
-        public  List<Appointment> GetAppointmentsByPatientId(int patientId)
-        {
-            var user = (User)(Request.HttpContext.Items["User"]);
-            List<Appointment> appointments = _appointmentService.GetByPatientId(user.Id,patientId);
-            return appointments;
-        }
+        
 
-        [HttpGet("GetPrescriptions/{patientId}")]
-        public List<PrescriptionDto> GetPrescriptionsByPatientId(int patientId)
-        {
-            var user = (User)(Request.HttpContext.Items["User"]);
-            List<PrescriptionDto> prescriptions = _prescriptionService.GetPrescriptions(user.Id, patientId);
-            return prescriptions;
-        }
+        //[HttpGet("GetPrescriptions/{patientId}")]
+        //public List<PrescriptionDto> GetPrescriptionsByPatientId(int patientId)
+        //{
+        //    var user = (User)(Request.HttpContext.Items["User"]);
+        //    List<PrescriptionDto> prescriptions = _prescriptionService.GetPrescriptions(user.Id, patientId);
+        //    return prescriptions;
+        //}
 
-        [HttpGet("GetPatientScans/{patientId}")]
-        public List<PatientScan> GetPatientScans(int patientId)
-        {
-            List<PatientScan> patientScans = _patientService.GetPatientScan(patientId);
-            return patientScans;
-        }
+        //[HttpGet("GetPatientScans/{patientId}")]
+        //public List<PatientScan> GetPatientScans(int patientId)
+        //{
+        //    List<PatientScan> patientScans = _patientService.GetPatientScan(patientId);
+        //    return patientScans;
+        //}
 
-        [HttpGet("GetPatientLabData/{patientId}")]
-        public List<LabDataDto> GetPatientLab(int patientId)
-        {
-            List<LabDataDto> labDataList = _patientService.GetPatientLabData(patientId);
-            return labDataList;
-        }
+        //[HttpGet("GetPatientLabData/{patientId}")]
+        //public List<LabDataDto> GetPatientLab(int patientId)
+        //{
+        //    List<LabDataDto> labDataList = _patientService.GetPatientLabData(patientId);
+        //    return labDataList;
+        //}
 
-        [HttpGet("GetPatientTreatmentplans/{patientId}")]
-        public List<TreatmentplanDto> GetPatientTreatmentplan(int patientId)
-        {
-            List<TreatmentplanDto> treatmentplanList = _patientService.GetPatientTreatmentplanList(patientId);
-            return treatmentplanList;
-        }
+        //[HttpGet("GetPatientTreatmentplans/{patientId}")]
+        //public List<TreatmentplanDto> GetPatientTreatmentplan(int patientId)
+        //{
+        //    List<TreatmentplanDto> treatmentplanList = _patientService.GetPatientTreatmentplanList(patientId);
+        //    return treatmentplanList;
+        //}
 
-        [HttpGet("GetPatientWorkDones/{patientId}")]
-        public List<WorkDoneDto> GetPatientWorkDone(int patientId)
-        {
-            List<WorkDoneDto> workdoneList = _patientService.GetPatientWorkDoneList(patientId);
-            return workdoneList;
-        }
+        //[HttpGet("GetPatientPayments/{patientId}")]
+        //public List<PaymentHistoryDto> GetPatientPaymentList(int patientId)
+        //{
+        //    List<PaymentHistoryDto> paymentList = _patientService.GetPatientpaymentList(patientId);
+        //    return paymentList;
+        //}
 
-
-        [HttpGet("GetPatientPayments/{patientId}")]
-        public List<PaymentHistoryDto> GetPatientPaymentList(int patientId)
-        {
-            List<PaymentHistoryDto> paymentList = _patientService.GetPatientpaymentList(patientId);
-            return paymentList;
-        }
-
-        [AllowAnonymous]
-        [HttpPost("CreateTreatmentplan")]
-        public IActionResult CreateTreatmentplan(TreatmentplanRequest treatmentplans)
-        {
-            _treatmentplanService.Create(treatmentplans);
-            return Ok("created");
-        }
+       
     }
 }

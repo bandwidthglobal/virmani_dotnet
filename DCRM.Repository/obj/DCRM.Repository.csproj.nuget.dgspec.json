@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\DCRM\\DCRM.Repository\\DCRM.Repository.csproj": {}
+    "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Repository\\DCRM.Repository.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\DCRM\\DCRM.Common\\DCRM.Common.csproj": {
+    "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\DCRM\\DCRM.Common\\DCRM.Common.csproj",
+        "projectUniqueName": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj",
         "projectName": "DCRM.Common",
-        "projectPath": "D:\\Projects\\DCRM\\DCRM.Common\\DCRM.Common.csproj",
+        "projectPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\DCRM\\DCRM.Common\\obj\\",
+        "outputPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -77,14 +77,14 @@
         }
       }
     },
-    "D:\\Projects\\DCRM\\DCRM.Repository\\DCRM.Repository.csproj": {
+    "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Repository\\DCRM.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\DCRM\\DCRM.Repository\\DCRM.Repository.csproj",
+        "projectUniqueName": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Repository\\DCRM.Repository.csproj",
         "projectName": "DCRM.Repository",
-        "projectPath": "D:\\Projects\\DCRM\\DCRM.Repository\\DCRM.Repository.csproj",
+        "projectPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Repository\\DCRM.Repository.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\DCRM\\DCRM.Repository\\obj\\",
+        "outputPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -101,8 +101,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Projects\\DCRM\\DCRM.Common\\DCRM.Common.csproj": {
-                "projectPath": "D:\\Projects\\DCRM\\DCRM.Common\\DCRM.Common.csproj"
+              "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj": {
+                "projectPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj"
               }
             }
           }

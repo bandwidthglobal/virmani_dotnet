@@ -35,6 +35,9 @@ namespace DCRM.Service
             #endregion
 
             #region Services Inject
+            services.AddScoped<ILoginRepository, LoginRepository>();
+            services.AddScoped<ILoginService, LoginService>();
+
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
 
@@ -58,6 +61,19 @@ namespace DCRM.Service
 
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<IAppointmentService, AppointmentService>();
+
+            services.AddScoped<ITreatmentplanRepository, TreatmentplanRepository>();
+            services.AddScoped<ITreatmentplanService, TreatmentplanService>();
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+            services.AddScoped<INotificationService, NotificationService>();
+
+            services.AddScoped<IWorkDoneNewService, WorkDoneNewService>();
+
+            services.AddScoped<IPaymentService, PaymentService>();
+
+           
             #endregion
             return services;
         }

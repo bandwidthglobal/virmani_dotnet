@@ -25,19 +25,19 @@ public class JwtMiddleware
         if (user != null)
         {
             // attach user to context on successful jwt validation
-            if (user.Role=="user" || user.Role=="admin")
+            if (user.Role.ToLower()=="user" || user.Role.ToLower() == "admin")
             {
                 context.Items["User"] = userService.GetUserByIdAsync(user.Id).Result;
             }
-            else if (user.Role == "doctor")
+            else if (user.Role.ToLower() == "doctor")
             {
                 context.Items["Doctor"] = doctorService.GetDoctorByIdAsync(user.Id).Result;
             }
-            else if (user.Role == "staff")
+            else if (user.Role.ToLower() == "staff")
             {
                 context.Items["Staff"] = staffService.GetStaffByIdAsync(user.Id).Result;
             }
-            else if (user.Role == "patient")
+            else if (user.Role.ToLower() == "patient")
             {
                 context.Items["Patient"] = patientService.GetByIdAsync(user.Id).Result;
             }

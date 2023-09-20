@@ -68,7 +68,7 @@ namespace DCRM.Repository.Repository
         /// <exception cref="NotImplementedException"></exception>
         public async Task<IEnumerable<Patientse>> GetAllAsync()
         {
-            IEnumerable<Patientse> patients = _contex.Patientses.Where(x => x.Is_Delete == 1);
+            IEnumerable<Patientse> patients = _contex.Patientses.Where(x => x.Is_Delete == 0);
             if (patients != null)
             {
                 return patients;
@@ -101,7 +101,7 @@ namespace DCRM.Repository.Repository
         /// <exception cref="NotImplementedException"></exception>
         public List<Patientse> GetByUserId(int userId)
         {
-            List<Patientse> patients = _contex.Patientses.Where(x => x.Is_Delete == 1 && x.User_Id == userId).ToList();
+            List<Patientse> patients = _contex.Patientses.Where(x => x.Is_Delete == 0 && x.User_Id == userId).ToList();
             if (patients != null)
             {
                 return patients;
@@ -423,9 +423,9 @@ namespace DCRM.Repository.Repository
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
 
-        public async Task DeleteAsync(int id)
+        public void Delete(int id)
         {
-            var patient = await _contex.Patientses.FirstOrDefaultAsync(x => x.Id == id);
+            var patient =  _contex.Patientses.FirstOrDefault(x => x.Id == id);
             if (patient != null)
             {
                 patient.Is_Delete = 1;
@@ -446,5 +446,7 @@ namespace DCRM.Repository.Repository
             labdataList = _contex.Lab_Data.ToList();
             return labdataList;
         }
+
+       
     }
 }

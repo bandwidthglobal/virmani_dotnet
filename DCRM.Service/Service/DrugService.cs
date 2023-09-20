@@ -34,9 +34,9 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task DeleteAsync(int id)
+        public void Delete(int id)
         {
-           await _drugRepository.DeleteAsync(id);
+            _drugRepository.Delete(id);
         }
         /// <summary>
         /// get all drugs
@@ -74,6 +74,14 @@ namespace DCRM.Service.Service
         public void Update(Drug drug)
         {
               _drugRepository.Update(drug);
+        }
+
+       public List<MedicineBrand> GetMedicineBrands() {
+         return _drugRepository.GetMedicineBrands();
+        }
+
+        public List<MedicineCategory> GetMedicineCategoris() {
+            return _drugRepository.GetMedicineCategoris();
         }
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DCRM.Api.Controllers
 {
     [Authorize("User")]
-    [Route("api/User/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class DrugController : ControllerBase
     {
@@ -21,26 +21,34 @@ namespace DCRM.Api.Controllers
         [HttpGet("GateAll")]
         public async Task<IEnumerable<Drug>> GetAllAsync()
         {
-           
-            return await _drugfService.GetAllAsync();
+            var user = (User)Request.HttpContext.Items["User"];
+            return await _drugfService.GetByUserId(user.Id);
         }
 
+       
         [HttpGet("Get/{id}")]
         public async Task<Drug> Get(int id)
         {
-          
             return await _drugfService.GetByIdAsync(id);
         }
-        [HttpGet("GetByUserId/{userId}")]
-        public async Task<IEnumerable<Drug>> GetByUserId(int userId)
-        {
-            var abc = Request.HttpContext.Items["User"];
-            return await _drugfService.GetByUserId(userId);
-        }
 
+        [AllowAnonymous]
+        [HttpGet("GetMedicineBrands")]
+        public List<MedicineBrand> GetMedicineBrands()
+        {
+            return  _drugfService.GetMedicineBrands();
+        }
+        [AllowAnonymous]
+        [HttpGet("GetMedicineCategoris")]
+        public List<MedicineCategory> GetMedicineCategoris()
+        {
+            return _drugfService.GetMedicineCategoris();
+        }
         [HttpPost("Create")]
         public async Task<IActionResult>Create(Drug drug)
         {
+            var user = (User)Request.HttpContext.Items["User"];
+            drug.User_Id = user.Id;
             await _drugfService.CreateAsync(drug);
             return Ok(drug);
         }
@@ -48,16 +56,17 @@ namespace DCRM.Api.Controllers
         [HttpPost("Update")]
         public async Task<IActionResult> Update(Drug drug)
         {
+
              _drugfService.Update(drug);
              return Ok(drug);
         }
 
         
         [HttpDelete("Delete/{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(int id)
         {
-          await  _drugfService.DeleteAsync(id);
-            return Ok("deleted");
+             _drugfService.Delete(id);
+             return Ok(id.ToString());
         }
 
     }

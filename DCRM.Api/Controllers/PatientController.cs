@@ -3,6 +3,7 @@ using DCRM.Common;
 using DCRM.Common.Authorization;
 using DCRM.Common.Dto;
 using DCRM.Common.Entity;
+using DCRM.Common.RequestModel;
 using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
 using DCRM.Service.Service;
@@ -11,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DCRM.Api.Controllers
 {
-    [Authorize("Patient")]
+    [Authorize("User")]
     [Route("api/[controller]")]
     [ApiController]
     public class PatientController : ControllerBase
@@ -19,37 +20,31 @@ namespace DCRM.Api.Controllers
         public readonly IPatientService _patientService;
         public readonly IAppointmentService _appointmentService;
         public readonly IPrescriptionService _prescriptionService;
+        public readonly ITreatmentplanService _treatmentplanService;
 
-        public PatientController(IPatientService patientService, IAppointmentService appointmentService, IPrescriptionService prescriptionService)
+        public PatientController(IPatientService patientService, IAppointmentService appointmentService, IPrescriptionService prescriptionService
+            , ITreatmentplanService treatmentplanService)
         {
 
             _patientService = patientService;
             _appointmentService = appointmentService;
             _prescriptionService = prescriptionService;
+            _treatmentplanService = treatmentplanService;
         }
 
-        [AllowAnonymous]
-        [HttpPost("Authenticate")]
-        public async Task<IActionResult> AuthenticateAsync([FromBody] AuthenticateRequest request)
-        {
-
-            var response = await _patientService.AuthenticateAsync(request);
-            return Ok(response);
-        }
-
-        [AllowAnonymous]
+        
         [HttpGet("GetAll")]
         public async Task<List<PatientseDto>> GetAllAsync()
         {
-            List<PatientseDto> patientList = await _patientService.GetAllAsync();
+            var user = (User)(Request.HttpContext.Items["User"]);
+            List<PatientseDto> patientList = _patientService.GetByUserIdAsync(Convert.ToInt32(user.Id));
             return patientList;
         }
 
-        [HttpGet("Get")]
-        public async Task<PatientseDto> GetAsync()
+        [HttpGet("Get/{id}")]
+        public async Task<PatientseDto> GetAsync(int id)
         {
-            var user = (PatientseDto)(Request.HttpContext.Items["Patient"]);
-            PatientseDto patient = await _patientService.GetByIdAsync(user.Id);
+            PatientseDto patient = await _patientService.GetByIdAsync(id);
             return patient;
         }
 
@@ -57,7 +52,8 @@ namespace DCRM.Api.Controllers
         [HttpPost("Create")]
         public IActionResult Create(PatientRequest request)
         {
-           
+            var user = (User)(Request.HttpContext.Items["User"]);
+            request.User_Id = user.Id;
             _patientService.CreateAsync(request);
             return Ok("Created");
         }
@@ -66,28 +62,52 @@ namespace DCRM.Api.Controllers
         [HttpPost("Update")]
         public async Task<IActionResult> Update(PatientRequest request)
         {
-            var user = (PatientseDto)(Request.HttpContext.Items["Patient"]);
-            request.Id = user.Id;
             _patientService.Update(request);
             return Ok("Updated");
         }
 
-        [HttpDelete("Delete")]
+        [HttpDelete("Delete/{id}")]
         public IActionResult Delete(int id)
         {
-            var user = (PatientseDto)(Request.HttpContext.Items["Patient"]);
-             _patientService.DeleteAsync(user.Id);
-            return Ok("Deleted");
+             _patientService.Delete(id);
+            return Ok(id);
         }
 
-        [HttpGet("GetPrescriptions")]
-        public List<PrescriptionDto> Prescriptions()
+        [HttpGet("Prescriptions/{patientId}")]
+        public List<PrescriptionDto> Prescriptions(int patientId)
         {
-            var user = (PatientseDto)(Request.HttpContext.Items["Patient"]);
             List<PrescriptionDto> prescriptionList = new List<PrescriptionDto>();
-           var prescriptions = _prescriptionService.GetPrescriptions(user.Id);
+           var prescriptions = _prescriptionService.GetPrescriptions(patientId);
             return prescriptions;
            
+        }
+
+        [HttpGet("PatientLabData/{patientId}")]
+        public List<LabDataDto> PatientLabData(int patientId)
+        {
+            List<LabDataDto> labDataList = _patientService.GetPatientLabData(patientId);
+            return labDataList;
+        }
+
+        [HttpGet("PatientTreatmentplans/{patientId}")]
+        public List<TreatmentplanDto> PatientTreatmentplans(int patientId)
+        {
+            List<TreatmentplanDto> treatmentplanList = _patientService.GetPatientTreatmentplanList(patientId);
+            return treatmentplanList;
+        }
+
+        [HttpGet("PatientPayments/{patientId}")]
+        public List<PaymentHistoryDto> PatientPayments(int patientId)
+        {
+            List<PaymentHistoryDto> paymentList = _patientService.GetPatientpaymentList(patientId);
+            return paymentList;
+        }
+
+        [HttpPost("Create/Treatmentplan")]
+        public IActionResult CreateTreatmentplan(TreatmentplanRequest treatmentplans)
+        {
+            _treatmentplanService.Create(treatmentplans);
+            return Ok("created");
         }
     }
 }

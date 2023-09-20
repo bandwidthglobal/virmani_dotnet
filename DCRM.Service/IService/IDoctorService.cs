@@ -20,7 +20,7 @@ namespace DCRM.Service.IService
         //Task SaveDoctorAsync(DoctorRequest request);
         Task CreateDoctorAsync(DoctorRequest request);
         void UpdateDoctor(DoctorRequest request);
-        Task DeleteDoctorAsync(int id);
+        void DeleteDoctor(int id);
         Task ChangeDoctorPasswordAsync(ChangePasswordRequest changePasswordModel);
         List<DoctorDto> GetDoctorsByUserId(int userId);
        

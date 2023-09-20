@@ -39,7 +39,7 @@ namespace DCRM.Service.Service
 
             // authentication successful so generate jwt and refresh tokens
             var jwtToken = _jwtUtils.GenerateJwtToken(Convert.ToInt32(doctor.Id), doctor.Email, doctor.Role, doctor.Email);
-            return new AuthenticateResponse(doctor.Email, Convert.ToInt32(doctor.Id), doctor.Role, jwtToken);
+            return new AuthenticateResponse(doctor.Email, Convert.ToInt32(doctor.Id), doctor.Role, jwtToken, doctor.Name, doctor.Thumb);
         }
 
         /// <summary>
@@ -149,9 +149,9 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task DeleteDoctorAsync(int id)
+        public void DeleteDoctor(int id)
         {
-            await _doctorRepository.DeleteDoctorAsync(id);
+            _doctorRepository.DeleteDoctor(id);
         }
 
         /// <summary>
