@@ -29,5 +29,7 @@ namespace DCRM.Service.IService
 
         Task DeleteAsync(int id);
 
+        List<AppointmentDto> GetAppointMentWithPatientByUserId(int userId);
+
     }
 }

@@ -92,7 +92,12 @@ namespace DCRM.Repository.Repository
             else { throw new KeyNotFoundException("no record found"); }
 
         }
-
+        public Patientse Get(int id)
+        {
+            Patientse? patient = _contex.Patientses.Where(x => x.Is_Delete == 0 && x.Id == id).FirstOrDefault();
+            return patient;
+            
+        }
         /// <summary>
         /// 
         /// </summary>

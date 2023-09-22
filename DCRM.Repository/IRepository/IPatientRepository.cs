@@ -19,6 +19,7 @@ namespace DCRM.Repository.IRepository
 
         Task<Patientse> GetByIdAsync(int id);
 
+        Patientse Get(int id);
         List<Patientse> GetByUserId(int userId);
 
         List<PatientsContact> GetPatientsContacteDetailList(int patientId);

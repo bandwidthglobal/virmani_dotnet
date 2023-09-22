@@ -1,0 +1,248 @@
+2023-09-14 09:53:26.610 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+2023-09-14 09:53:26.887 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 285.5039ms
+2023-09-14 09:53:26.894 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+2023-09-14 09:53:26.896 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+2023-09-14 09:53:26.896 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+2023-09-14 09:53:26.928 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-09-14 09:53:26.930 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 35.7551ms
+2023-09-14 09:53:26.938 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-09-14 09:53:26.939 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 42.1775ms
+2023-09-14 09:53:26.941 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+2023-09-14 09:53:26.997 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 55.8105ms
+2023-09-14 09:53:27.053 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-09-14 09:53:27.053 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 157.4499ms
+2023-09-14 09:53:27.076 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+2023-09-14 09:53:27.145 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 67.8866ms
+2023-09-14 09:53:28.262 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+2023-09-14 09:53:28.312 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/favicon-32x32.png - -
+2023-09-14 09:53:28.312 +05:30  INF  Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2023-09-14 09:53:28.312 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/favicon-32x32.png - - - 200 628 image/png 1.4126ms
+2023-09-14 09:53:28.540 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 277.5778ms
+2023-09-14 13:17:22.621 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/User/Authenticate - -
+2023-09-14 13:17:23.002 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:17:23.012 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/User/Authenticate - - - 204 - - 406.1031ms
+2023-09-14 13:17:23.025 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/User/Authenticate application/json 26
+2023-09-14 13:17:23.048 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:17:30.722 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api)'
+2023-09-14 13:17:30.899 +05:30  INF  Route matched with {action = "Authenticate", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AuthenticateAsync(DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.UserController (DCRM.Api).
+2023-09-14 13:17:31.255 +05:30  INF  Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2023-09-14 13:17:31.287 +05:30  INF  Executed action DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api) in 381.2816ms
+2023-09-14 13:17:31.296 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api)'
+2023-09-14 13:17:31.306 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/User/Authenticate application/json 26 - 400 - application/problem+json;+charset=utf-8 8280.8286ms
+2023-09-14 13:18:20.802 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-09-14 13:18:21.912 +05:30  INF  Now listening on: https://localhost:7069
+2023-09-14 13:18:21.912 +05:30  INF  Now listening on: http://localhost:5069
+2023-09-14 13:18:21.917 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-09-14 13:18:21.917 +05:30  INF  Hosting environment: Development
+2023-09-14 13:18:21.917 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+2023-09-14 13:18:25.750 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+2023-09-14 13:18:26.056 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 314.0836ms
+2023-09-14 13:18:26.058 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+2023-09-14 13:18:26.801 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 742.8943ms
+2023-09-14 13:18:26.809 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+2023-09-14 13:18:26.809 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+2023-09-14 13:18:26.810 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+2023-09-14 13:18:26.811 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+2023-09-14 13:18:26.825 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 14.5992ms
+2023-09-14 13:18:26.831 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+2023-09-14 13:18:26.931 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-09-14 13:18:26.940 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-09-14 13:18:26.941 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 109.3663ms
+2023-09-14 13:18:26.948 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 138.9230ms
+2023-09-14 13:18:26.949 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 138.1096ms
+2023-09-14 13:18:26.986 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-09-14 13:18:26.987 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 178.0915ms
+2023-09-14 13:18:27.281 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+2023-09-14 13:18:27.529 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 248.2930ms
+2023-09-14 13:19:25.621 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/User/Authenticate - -
+2023-09-14 13:19:25.630 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:19:25.633 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/User/Authenticate - - - 204 - - 12.7964ms
+2023-09-14 13:19:25.637 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/User/Authenticate application/json 26
+2023-09-14 13:19:25.637 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:19:27.272 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api)'
+2023-09-14 13:19:27.330 +05:30  INF  Route matched with {action = "Authenticate", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AuthenticateAsync(DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.UserController (DCRM.Api).
+2023-09-14 13:19:27.544 +05:30  INF  Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2023-09-14 13:19:27.575 +05:30  INF  Executed action DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api) in 238.2078ms
+2023-09-14 13:19:27.578 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api)'
+2023-09-14 13:19:27.594 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/User/Authenticate application/json 26 - 400 - application/problem+json;+charset=utf-8 1956.8365ms
+2023-09-14 13:20:13.162 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+2023-09-14 13:20:13.169 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-09-14 13:20:13.176 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 14.2723ms
+2023-09-14 13:23:21.672 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Authenticate - -
+2023-09-14 13:23:21.701 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:23:21.703 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Authenticate - - - 204 - - 31.4853ms
+2023-09-14 13:23:21.712 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate application/json 26
+2023-09-14 13:23:21.712 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:23:22.057 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate application/json 26 - 404 0 - 345.1329ms
+2023-09-14 13:23:57.215 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Authenticate - -
+2023-09-14 13:23:57.215 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:23:57.215 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Authenticate - - - 204 - - 0.5842ms
+2023-09-14 13:23:57.218 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate application/json 26
+2023-09-14 13:23:57.218 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:23:57.292 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate application/json 26 - 404 0 - 73.6056ms
+2023-09-14 13:27:57.521 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Authenticate - -
+2023-09-14 13:27:57.522 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:27:57.524 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Authenticate - - - 204 - - 2.7642ms
+2023-09-14 13:27:57.529 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate application/json 32
+2023-09-14 13:27:57.529 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:27:57.583 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate application/json 32 - 404 0 - 54.1258ms
+2023-09-14 13:29:08.815 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Authenticate/User - -
+2023-09-14 13:29:08.843 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:29:08.844 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Authenticate/User - - - 204 - - 28.9880ms
+2023-09-14 13:29:08.850 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate/User application/json 32
+2023-09-14 13:29:08.866 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:29:08.908 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-14 13:29:09.150 +05:30  INF  Route matched with {action = "Authenticate", controller = "Authenticate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authenticate(System.String, DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.AuthenticateController (DCRM.Api).
+2023-09-14 13:29:09.218 +05:30  INF  Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2023-09-14 13:29:09.223 +05:30  INF  Executed action DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api) in 71.9429ms
+2023-09-14 13:29:09.223 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-14 13:29:09.223 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate/User application/json 32 - 400 - application/problem+json;+charset=utf-8 372.8961ms
+2023-09-14 13:29:38.236 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 57
+2023-09-14 13:29:38.237 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:29:38.238 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-14 13:29:38.248 +05:30  INF  Route matched with {action = "Authenticate", controller = "Authenticate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authenticate(System.String, DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.AuthenticateController (DCRM.Api).
+2023-09-14 13:29:42.901 +05:30  INF  Executed DbCommand (33ms) [Parameters=[@__authenticateRequest_Email_0='?' (Size = 4000), @__authenticateRequest_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE ((`u`.`Status` = 1) AND (`u`.`Email` = @__authenticateRequest_Email_0)) AND (`u`.`Password` = @__authenticateRequest_Password_1)
+LIMIT 2
+2023-09-14 13:29:43.489 +05:30  INF  Executing OkObjectResult, writing value of type 'DCRM.Common.AuthenticateResponse'.
+2023-09-14 13:29:43.512 +05:30  INF  Executed action DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api) in 5264.7657ms
+2023-09-14 13:29:43.513 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-14 13:29:43.524 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 57 - 200 - application/json;+charset=utf-8 5288.1921ms
+2023-09-14 13:30:37.226 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Authenticate/user - -
+2023-09-14 13:30:37.226 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:30:37.226 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Authenticate/user - - - 204 - - 0.4500ms
+2023-09-14 13:30:37.227 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 32
+2023-09-14 13:30:37.227 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:30:37.323 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-14 13:30:37.323 +05:30  INF  Route matched with {action = "Authenticate", controller = "Authenticate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authenticate(System.String, DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.AuthenticateController (DCRM.Api).
+2023-09-14 13:30:37.326 +05:30  INF  Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2023-09-14 13:30:37.326 +05:30  INF  Executed action DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api) in 3.2836ms
+2023-09-14 13:30:37.326 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-14 13:30:37.326 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 32 - 400 - application/problem+json;+charset=utf-8 99.0107ms
+2023-09-14 13:31:49.124 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Authenticate/user - -
+2023-09-14 13:31:49.231 +05:30  INF  Executing endpoint '405 HTTP Method Not Supported'
+2023-09-14 13:31:49.363 +05:30  INF  Executed endpoint '405 HTTP Method Not Supported'
+2023-09-14 13:31:49.407 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Authenticate/user - - - 405 0 - 283.5856ms
+2023-09-14 13:32:12.323 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Authenticate/user - -
+2023-09-14 13:32:12.331 +05:30  INF  Executing endpoint '405 HTTP Method Not Supported'
+2023-09-14 13:32:12.331 +05:30  INF  Executed endpoint '405 HTTP Method Not Supported'
+2023-09-14 13:32:12.332 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Authenticate/user - - - 405 0 - 8.4494ms
+2023-09-14 13:32:50.853 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Authenticate/user - -
+2023-09-14 13:32:50.855 +05:30  INF  Executing endpoint '405 HTTP Method Not Supported'
+2023-09-14 13:32:50.855 +05:30  INF  Executed endpoint '405 HTTP Method Not Supported'
+2023-09-14 13:32:50.855 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Authenticate/user - - - 405 0 - 1.4424ms
+2023-09-14 13:34:55.723 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/User/GetAll - -
+2023-09-14 13:34:55.797 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.UserController.GetUsersAsync (DCRM.Api)'
+2023-09-14 13:34:55.973 +05:30  INF  Route matched with {action = "GetUsers", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Collections.Generic.IEnumerable`1[DCRM.Common.Dto.UserDto]] GetUsersAsync() on controller DCRM.Api.Controllers.UserController (DCRM.Api).
+2023-09-14 13:34:56.038 +05:30  INF  Authorization failed for the request at filter 'DCRM.Common.Authorization.AuthorizeAttribute'.
+2023-09-14 13:34:56.085 +05:30  INF  Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-09-14 13:34:56.124 +05:30  INF  Executed action DCRM.Api.Controllers.UserController.GetUsersAsync (DCRM.Api) in 147.6837ms
+2023-09-14 13:34:56.124 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.UserController.GetUsersAsync (DCRM.Api)'
+2023-09-14 13:34:56.125 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/User/GetAll - - - 401 - application/json;+charset=utf-8 402.1496ms
+2023-09-14 13:34:56.205 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/favicon.ico - -
+2023-09-14 13:34:56.215 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/favicon.ico - - - 404 0 - 10.2766ms
+2023-09-14 13:35:54.779 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/User/Authenticate - -
+2023-09-14 13:35:54.815 +05:30  INF  Executing endpoint '405 HTTP Method Not Supported'
+2023-09-14 13:35:54.815 +05:30  INF  Executed endpoint '405 HTTP Method Not Supported'
+2023-09-14 13:35:54.815 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/User/Authenticate - - - 405 0 - 38.1491ms
+2023-09-14 13:37:08.293 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Authenticate/user - -
+2023-09-14 13:37:08.332 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:37:08.339 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Authenticate/user - - - 204 - - 45.5616ms
+2023-09-14 13:37:08.345 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 32
+2023-09-14 13:37:08.347 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:37:08.802 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-14 13:37:08.803 +05:30  INF  Route matched with {action = "Authenticate", controller = "Authenticate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authenticate(System.String, DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.AuthenticateController (DCRM.Api).
+2023-09-14 13:37:08.977 +05:30  INF  Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2023-09-14 13:37:08.980 +05:30  INF  Executed action DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api) in 176.2529ms
+2023-09-14 13:37:08.980 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-14 13:37:08.980 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 32 - 400 - application/problem+json;+charset=utf-8 635.0657ms
+2023-09-14 13:39:32.194 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Authenticate/user - -
+2023-09-14 13:39:32.196 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:39:32.196 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Authenticate/user - - - 204 - - 3.1036ms
+2023-09-14 13:39:32.199 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 32
+2023-09-14 13:39:32.199 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:39:32.253 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-14 13:39:32.254 +05:30  INF  Route matched with {action = "Authenticate", controller = "Authenticate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authenticate(System.String, DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.AuthenticateController (DCRM.Api).
+2023-09-14 13:39:32.257 +05:30  INF  Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2023-09-14 13:39:32.259 +05:30  INF  Executed action DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api) in 5.6313ms
+2023-09-14 13:39:32.259 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-14 13:39:32.260 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 32 - 400 - application/problem+json;+charset=utf-8 61.9033ms
+2023-09-14 13:39:53.043 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Authenticate/user - -
+2023-09-14 13:39:53.044 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:39:53.044 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Authenticate/user - - - 204 - - 0.7744ms
+2023-09-14 13:39:53.046 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 32
+2023-09-14 13:39:53.047 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:39:53.079 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-14 13:39:53.079 +05:30  INF  Route matched with {action = "Authenticate", controller = "Authenticate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authenticate(System.String, DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.AuthenticateController (DCRM.Api).
+2023-09-14 13:39:53.079 +05:30  INF  Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2023-09-14 13:39:53.080 +05:30  INF  Executed action DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api) in 0.6709ms
+2023-09-14 13:39:53.080 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-14 13:39:53.080 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 32 - 400 - application/problem+json;+charset=utf-8 34.2922ms
+2023-09-14 13:42:24.617 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Authenticate/user - -
+2023-09-14 13:42:24.618 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:42:24.618 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Authenticate/user - - - 204 - - 0.6782ms
+2023-09-14 13:42:24.619 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 32
+2023-09-14 13:42:24.619 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:42:24.800 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-14 13:42:24.800 +05:30  INF  Route matched with {action = "Authenticate", controller = "Authenticate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authenticate(System.String, DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.AuthenticateController (DCRM.Api).
+2023-09-14 13:42:24.801 +05:30  INF  Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2023-09-14 13:42:24.802 +05:30  INF  Executed action DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api) in 1.1901ms
+2023-09-14 13:42:24.802 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-14 13:42:24.802 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 32 - 400 - application/problem+json;+charset=utf-8 182.7389ms
+2023-09-14 13:43:44.790 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/User/Authenticate - -
+2023-09-14 13:43:44.790 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:43:44.790 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/User/Authenticate - - - 204 - - 0.7426ms
+2023-09-14 13:43:44.792 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/User/Authenticate application/json 32
+2023-09-14 13:43:44.792 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:43:44.839 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api)'
+2023-09-14 13:43:44.840 +05:30  INF  Route matched with {action = "Authenticate", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AuthenticateAsync(DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.UserController (DCRM.Api).
+2023-09-14 13:43:44.859 +05:30  INF  Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2023-09-14 13:43:44.861 +05:30  INF  Executed action DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api) in 21.4615ms
+2023-09-14 13:43:44.861 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api)'
+2023-09-14 13:43:44.862 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/User/Authenticate application/json 32 - 400 - application/problem+json;+charset=utf-8 69.7863ms
+2023-09-14 13:44:08.032 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/User/Authenticate - -
+2023-09-14 13:44:08.033 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:44:08.033 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/User/Authenticate - - - 204 - - 0.5445ms
+2023-09-14 13:44:08.041 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/User/Authenticate application/json 32
+2023-09-14 13:44:08.041 +05:30  INF  CORS policy execution successful.
+2023-09-14 13:44:08.122 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api)'
+2023-09-14 13:44:08.122 +05:30  INF  Route matched with {action = "Authenticate", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AuthenticateAsync(DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.UserController (DCRM.Api).
+2023-09-14 13:44:08.219 +05:30  INF  Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2023-09-14 13:44:08.219 +05:30  INF  Executed action DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api) in 96.9377ms
+2023-09-14 13:44:08.219 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api)'
+2023-09-14 13:44:08.220 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/User/Authenticate application/json 32 - 400 - application/problem+json;+charset=utf-8 178.6070ms
+2023-09-14 14:39:18.612 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/User/Authenticate - -
+2023-09-14 14:39:18.640 +05:30  INF  CORS policy execution successful.
+2023-09-14 14:39:18.642 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/User/Authenticate - - - 204 - - 36.5011ms
+2023-09-14 14:39:18.645 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/User/Authenticate application/json 32
+2023-09-14 14:39:18.645 +05:30  INF  CORS policy execution successful.
+2023-09-14 14:39:18.884 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api)'
+2023-09-14 14:39:18.888 +05:30  INF  Route matched with {action = "Authenticate", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AuthenticateAsync(DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.UserController (DCRM.Api).
+2023-09-14 14:39:18.902 +05:30  INF  Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2023-09-14 14:39:18.904 +05:30  INF  Executed action DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api) in 15.7955ms
+2023-09-14 14:39:18.904 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api)'
+2023-09-14 14:39:18.904 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/User/Authenticate application/json 32 - 400 - application/problem+json;+charset=utf-8 259.6036ms
+2023-09-14 14:47:58.882 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/User/Authenticate - -
+2023-09-14 14:47:58.896 +05:30  INF  CORS policy execution successful.
+2023-09-14 14:47:58.897 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/User/Authenticate - - - 204 - - 19.9031ms
+2023-09-14 14:47:58.907 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/User/Authenticate application/json 31
+2023-09-14 14:47:58.915 +05:30  INF  CORS policy execution successful.
+2023-09-14 14:47:59.176 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api)'
+2023-09-14 14:47:59.195 +05:30  INF  Route matched with {action = "Authenticate", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AuthenticateAsync(DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.UserController (DCRM.Api).
+2023-09-14 14:47:59.232 +05:30  INF  Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2023-09-14 14:47:59.235 +05:30  INF  Executed action DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api) in 40.1857ms
+2023-09-14 14:47:59.236 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api)'
+2023-09-14 14:47:59.236 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/User/Authenticate application/json 31 - 400 - application/problem+json;+charset=utf-8 328.3153ms
+2023-09-14 14:50:34.399 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/User/Authenticate - -
+2023-09-14 14:50:34.399 +05:30  INF  CORS policy execution successful.
+2023-09-14 14:50:34.401 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/User/Authenticate - - - 204 - - 2.3965ms
+2023-09-14 14:50:34.411 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/User/Authenticate application/json 32
+2023-09-14 14:50:34.411 +05:30  INF  CORS policy execution successful.
+2023-09-14 14:50:34.460 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api)'
+2023-09-14 14:50:34.460 +05:30  INF  Route matched with {action = "Authenticate", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AuthenticateAsync(DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.UserController (DCRM.Api).
+2023-09-14 14:50:34.462 +05:30  INF  Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2023-09-14 14:50:34.462 +05:30  INF  Executed action DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api) in 2.3343ms
+2023-09-14 14:50:34.463 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.UserController.AuthenticateAsync (DCRM.Api)'
+2023-09-14 14:50:34.463 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/User/Authenticate application/json 32 - 400 - application/problem+json;+charset=utf-8 52.1027ms

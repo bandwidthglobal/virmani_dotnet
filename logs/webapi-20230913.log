@@ -1,0 +1,53 @@
+2023-09-13 09:58:46.789 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-09-13 09:58:47.367 +05:30  INF  Now listening on: https://localhost:7069
+2023-09-13 09:58:47.367 +05:30  INF  Now listening on: http://localhost:5069
+2023-09-13 09:58:47.370 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-09-13 09:58:47.371 +05:30  INF  Hosting environment: Development
+2023-09-13 09:58:47.371 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+2023-09-13 09:58:53.019 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+2023-09-13 09:58:53.242 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+2023-09-13 09:58:53.243 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 227.1717ms
+2023-09-13 09:58:53.671 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+2023-09-13 09:58:53.671 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+2023-09-13 09:58:53.671 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+2023-09-13 09:58:53.671 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+2023-09-13 09:58:53.672 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+2023-09-13 09:58:53.682 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 11.0947ms
+2023-09-13 09:58:53.682 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 439.9516ms
+2023-09-13 09:58:53.746 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-09-13 09:58:53.746 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-09-13 09:58:53.746 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 75.5572ms
+2023-09-13 09:58:53.746 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 74.6535ms
+2023-09-13 09:58:53.750 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-09-13 09:58:53.750 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 79.7106ms
+2023-09-13 09:58:53.752 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 80.8881ms
+2023-09-13 09:58:53.879 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+2023-09-13 09:58:53.907 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/favicon-32x32.png - -
+2023-09-13 09:58:53.908 +05:30  INF  Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2023-09-13 09:58:53.908 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/favicon-32x32.png - - - 200 628 image/png 0.7908ms
+2023-09-13 09:58:54.094 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 214.5113ms
+2023-09-13 13:10:19.019 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-09-13 13:10:20.394 +05:30  INF  Now listening on: https://localhost:7069
+2023-09-13 13:10:20.394 +05:30  INF  Now listening on: http://localhost:5069
+2023-09-13 13:10:20.400 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-09-13 13:10:20.401 +05:30  INF  Hosting environment: Development
+2023-09-13 13:10:20.401 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+2023-09-13 13:10:26.028 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+2023-09-13 13:10:26.269 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 249.2425ms
+2023-09-13 13:10:26.271 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+2023-09-13 13:10:27.204 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+2023-09-13 13:10:27.204 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+2023-09-13 13:10:27.204 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+2023-09-13 13:10:27.204 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+2023-09-13 13:10:27.214 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 943.0914ms
+2023-09-13 13:10:27.274 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 69.6030ms
+2023-09-13 13:10:27.467 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-09-13 13:10:27.467 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-09-13 13:10:27.467 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 262.8438ms
+2023-09-13 13:10:27.467 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 262.8630ms
+2023-09-13 13:10:27.468 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+2023-09-13 13:10:27.527 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-09-13 13:10:27.527 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 322.9423ms
+2023-09-13 13:10:28.000 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 531.8963ms
+2023-09-13 13:10:28.282 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+2023-09-13 13:10:28.942 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 660.6222ms

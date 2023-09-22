@@ -67,7 +67,7 @@ namespace DCRM.Api.Controllers
         public async Task<IActionResult> Delete(long userId, int id)
         {
             await _dealerService.DeleteAsync(userId, id);
-            return Ok("Deleted");
+            return Ok(id);
         }
     }
 }

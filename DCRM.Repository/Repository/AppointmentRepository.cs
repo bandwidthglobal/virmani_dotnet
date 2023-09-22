@@ -70,5 +70,10 @@ namespace DCRM.Repository.Repository
             _contex.SaveChanges();
             
         }
+       public List<Appointment> GetByUser(int userId)
+        {
+            var appointment = _contex.Appointments.Where(x => x.User_Id == userId && x.Is_Delete == 0).ToList();
+            return appointment;
+        }
     }
 }

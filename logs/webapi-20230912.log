@@ -1,0 +1,359 @@
+2023-09-12 15:13:56.886 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-09-12 15:13:57.441 +05:30  INF  Now listening on: https://localhost:7069
+2023-09-12 15:13:57.441 +05:30  INF  Now listening on: http://localhost:5069
+2023-09-12 15:13:57.444 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-09-12 15:13:57.445 +05:30  INF  Hosting environment: Development
+2023-09-12 15:13:57.445 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+2023-09-12 15:13:59.346 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+2023-09-12 15:13:59.625 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 286.3140ms
+2023-09-12 15:13:59.627 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+2023-09-12 15:14:00.043 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+2023-09-12 15:14:00.044 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+2023-09-12 15:14:00.044 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+2023-09-12 15:14:00.044 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+2023-09-12 15:14:00.044 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+2023-09-12 15:14:00.056 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 429.1797ms
+2023-09-12 15:14:00.064 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 20.2293ms
+2023-09-12 15:14:00.102 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-09-12 15:14:00.103 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 58.2512ms
+2023-09-12 15:14:00.116 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 71.0343ms
+2023-09-12 15:14:00.124 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-09-12 15:14:00.125 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 80.8309ms
+2023-09-12 15:14:00.136 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-09-12 15:14:00.136 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 93.0095ms
+2023-09-12 15:14:00.287 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+2023-09-12 15:14:00.475 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 188.1074ms
+2023-09-12 15:15:12.585 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-09-12 15:15:13.291 +05:30  INF  Now listening on: https://localhost:7069
+2023-09-12 15:15:13.291 +05:30  INF  Now listening on: http://localhost:5069
+2023-09-12 15:15:13.295 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-09-12 15:15:13.295 +05:30  INF  Hosting environment: Development
+2023-09-12 15:15:13.295 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+2023-09-12 15:15:15.530 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+2023-09-12 15:15:15.731 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 208.5447ms
+2023-09-12 15:15:15.732 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+2023-09-12 15:15:16.218 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+2023-09-12 15:15:16.218 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+2023-09-12 15:15:16.218 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+2023-09-12 15:15:16.219 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+2023-09-12 15:15:16.220 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+2023-09-12 15:15:16.229 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 497.6009ms
+2023-09-12 15:15:16.230 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 12.0288ms
+2023-09-12 15:15:16.266 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 47.4134ms
+2023-09-12 15:15:16.288 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-09-12 15:15:16.288 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 68.2734ms
+2023-09-12 15:15:16.290 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-09-12 15:15:16.293 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 74.9863ms
+2023-09-12 15:15:16.320 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-09-12 15:15:16.321 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 101.0931ms
+2023-09-12 15:15:16.505 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+2023-09-12 15:15:16.723 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 217.7595ms
+2023-09-12 15:15:26.282 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/WorkDone/GetWorkdoneByTreatmentId/515 - -
+2023-09-12 15:15:28.908 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.WorkDoneController.GetWorkdoneByTreatmentId (DCRM.Api)'
+2023-09-12 15:15:28.953 +05:30  INF  Route matched with {action = "GetWorkdoneByTreatmentId", controller = "WorkDone"}. Executing controller action with signature System.Collections.Generic.List`1[DCRM.Common.Entity.Workdone_New] GetWorkdoneByTreatmentId(Int32) on controller DCRM.Api.Controllers.WorkDoneController (DCRM.Api).
+2023-09-12 15:15:30.493 +05:30  INF  Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `w`.`Id`, `w`.`Created_At`, `w`.`Current_Work_Amt`, `w`.`Discount`, `w`.`Doctor_Id`, `w`.`Estimated_Amount`, `w`.`Total_Amt`, `w`.`Treatment_Id`, `w`.`Updated_At`, `w`.`Workdone_Status`
+FROM `Workdone_New` AS `w`
+2023-09-12 15:15:30.608 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DCRM.Common.Entity.Workdone_New, DCRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-09-12 15:15:30.652 +05:30  INF  Executed action DCRM.Api.Controllers.WorkDoneController.GetWorkdoneByTreatmentId (DCRM.Api) in 1692.3774ms
+2023-09-12 15:15:30.653 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.WorkDoneController.GetWorkdoneByTreatmentId (DCRM.Api)'
+2023-09-12 15:15:30.670 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/WorkDone/GetWorkdoneByTreatmentId/515 - - - 200 - application/json;+charset=utf-8 4388.1527ms
+2023-09-12 15:21:39.724 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-09-12 15:21:40.052 +05:30  INF  Now listening on: https://localhost:7069
+2023-09-12 15:21:40.052 +05:30  INF  Now listening on: http://localhost:5069
+2023-09-12 15:21:40.057 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-09-12 15:21:40.058 +05:30  INF  Hosting environment: Development
+2023-09-12 15:21:40.058 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+2023-09-12 15:21:40.624 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+2023-09-12 15:21:40.755 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 135.5142ms
+2023-09-12 15:21:40.756 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+2023-09-12 15:21:41.139 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+2023-09-12 15:21:41.139 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+2023-09-12 15:21:41.140 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+2023-09-12 15:21:41.140 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+2023-09-12 15:21:41.141 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+2023-09-12 15:21:41.146 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 390.7850ms
+2023-09-12 15:21:41.150 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 9.8361ms
+2023-09-12 15:21:41.244 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 103.0994ms
+2023-09-12 15:21:41.252 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-09-12 15:21:41.252 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-09-12 15:21:41.252 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-09-12 15:21:41.253 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 113.4532ms
+2023-09-12 15:21:41.253 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 113.8057ms
+2023-09-12 15:21:41.253 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 111.6613ms
+2023-09-12 15:21:41.406 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+2023-09-12 15:21:41.605 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 198.3690ms
+2023-09-12 15:26:57.253 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-09-12 15:26:57.499 +05:30  INF  Now listening on: https://localhost:7069
+2023-09-12 15:26:57.499 +05:30  INF  Now listening on: http://localhost:5069
+2023-09-12 15:26:57.504 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-09-12 15:26:57.504 +05:30  INF  Hosting environment: Development
+2023-09-12 15:26:57.504 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+2023-09-12 15:26:58.734 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+2023-09-12 15:26:59.732 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+2023-09-12 15:26:59.733 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 1001.9616ms
+2023-09-12 15:27:00.084 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+2023-09-12 15:27:00.084 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+2023-09-12 15:27:00.085 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+2023-09-12 15:27:00.085 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+2023-09-12 15:27:00.085 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+2023-09-12 15:27:00.102 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 370.0685ms
+2023-09-12 15:27:00.106 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 20.5405ms
+2023-09-12 15:27:00.130 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-09-12 15:27:00.131 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 46.2121ms
+2023-09-12 15:27:00.131 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-09-12 15:27:00.132 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 47.1878ms
+2023-09-12 15:27:00.148 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 62.9044ms
+2023-09-12 15:27:00.151 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-09-12 15:27:00.151 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 66.9722ms
+2023-09-12 15:27:00.347 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+2023-09-12 15:27:00.514 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 166.1425ms
+2023-09-12 15:28:18.273 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+2023-09-12 15:28:18.281 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-09-12 15:28:18.282 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 8.5498ms
+2023-09-12 16:23:59.592 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-09-12 16:24:00.176 +05:30  INF  Now listening on: https://localhost:7069
+2023-09-12 16:24:00.176 +05:30  INF  Now listening on: http://localhost:5069
+2023-09-12 16:24:00.179 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-09-12 16:24:00.179 +05:30  INF  Hosting environment: Development
+2023-09-12 16:24:00.180 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+2023-09-12 16:24:01.084 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+2023-09-12 16:24:01.272 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 193.3792ms
+2023-09-12 16:24:01.274 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+2023-09-12 16:24:01.728 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+2023-09-12 16:24:01.729 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+2023-09-12 16:24:01.729 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+2023-09-12 16:24:01.729 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+2023-09-12 16:24:01.729 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+2023-09-12 16:24:01.734 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 459.4136ms
+2023-09-12 16:24:01.743 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 14.2480ms
+2023-09-12 16:24:01.771 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-09-12 16:24:01.793 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 64.1912ms
+2023-09-12 16:24:01.800 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 71.0313ms
+2023-09-12 16:24:01.801 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-09-12 16:24:01.803 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 73.5788ms
+2023-09-12 16:24:01.818 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-09-12 16:24:01.818 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 90.2821ms
+2023-09-12 16:24:01.968 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+2023-09-12 16:24:02.172 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 203.9697ms
+2023-09-12 16:26:42.734 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-09-12 16:26:43.035 +05:30  INF  Now listening on: https://localhost:7069
+2023-09-12 16:26:43.035 +05:30  INF  Now listening on: http://localhost:5069
+2023-09-12 16:26:43.039 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-09-12 16:26:43.040 +05:30  INF  Hosting environment: Development
+2023-09-12 16:26:43.040 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+2023-09-12 16:26:43.851 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+2023-09-12 16:26:43.987 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 142.5932ms
+2023-09-12 16:26:43.987 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+2023-09-12 16:26:44.353 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+2023-09-12 16:26:44.353 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+2023-09-12 16:26:44.353 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+2023-09-12 16:26:44.353 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+2023-09-12 16:26:44.354 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+2023-09-12 16:26:44.371 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 18.1769ms
+2023-09-12 16:26:44.371 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 384.0196ms
+2023-09-12 16:26:44.439 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 85.4351ms
+2023-09-12 16:26:44.447 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-09-12 16:26:44.447 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-09-12 16:26:44.447 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-09-12 16:26:44.447 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 93.8590ms
+2023-09-12 16:26:44.447 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 94.5753ms
+2023-09-12 16:26:44.447 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 94.6201ms
+2023-09-12 16:26:44.603 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+2023-09-12 16:26:44.772 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 169.0689ms
+2023-09-12 16:28:10.345 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-09-12 16:28:10.597 +05:30  INF  Now listening on: https://localhost:7069
+2023-09-12 16:28:10.597 +05:30  INF  Now listening on: http://localhost:5069
+2023-09-12 16:28:10.600 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-09-12 16:28:10.601 +05:30  INF  Hosting environment: Development
+2023-09-12 16:28:10.601 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+2023-09-12 16:28:11.852 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+2023-09-12 16:28:12.021 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 173.6685ms
+2023-09-12 16:28:12.036 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+2023-09-12 16:28:12.463 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+2023-09-12 16:28:12.465 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+2023-09-12 16:28:12.466 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+2023-09-12 16:28:12.466 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+2023-09-12 16:28:12.467 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+2023-09-12 16:28:12.486 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 449.8103ms
+2023-09-12 16:28:12.487 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 20.8495ms
+2023-09-12 16:28:12.507 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-09-12 16:28:12.510 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 46.5366ms
+2023-09-12 16:28:12.536 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 69.0444ms
+2023-09-12 16:28:12.537 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-09-12 16:28:12.537 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-09-12 16:28:12.537 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 72.0687ms
+2023-09-12 16:28:12.537 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 71.4128ms
+2023-09-12 16:28:12.698 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+2023-09-12 16:28:12.869 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 171.1342ms
+2023-09-12 16:28:48.622 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 57
+2023-09-12 16:28:48.630 +05:30  INF  CORS policy execution successful.
+2023-09-12 16:28:51.566 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-12 16:28:51.612 +05:30  INF  Route matched with {action = "Authenticate", controller = "Authenticate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authenticate(System.String, DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.AuthenticateController (DCRM.Api).
+2023-09-12 16:29:10.512 +05:30  INF  Executed DbCommand (34ms) [Parameters=[@__authenticateRequest_Email_0='?' (Size = 4000), @__authenticateRequest_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE ((`u`.`Status` = 1) AND (`u`.`Email` = @__authenticateRequest_Email_0)) AND (`u`.`Password` = @__authenticateRequest_Password_1)
+LIMIT 2
+2023-09-12 16:29:18.575 +05:30  INF  Executing OkObjectResult, writing value of type 'DCRM.Common.AuthenticateResponse'.
+2023-09-12 16:29:18.601 +05:30  INF  Executed action DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api) in 26980.8477ms
+2023-09-12 16:29:18.603 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-12 16:29:18.622 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 57 - 200 - application/json;+charset=utf-8 29999.9249ms
+2023-09-12 16:30:57.142 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-09-12 16:30:57.423 +05:30  INF  Now listening on: https://localhost:7069
+2023-09-12 16:30:57.423 +05:30  INF  Now listening on: http://localhost:5069
+2023-09-12 16:30:57.427 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-09-12 16:30:57.427 +05:30  INF  Hosting environment: Development
+2023-09-12 16:30:57.427 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+2023-09-12 16:30:59.199 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+2023-09-12 16:30:59.352 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 157.0271ms
+2023-09-12 16:30:59.352 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+2023-09-12 16:30:59.717 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+2023-09-12 16:30:59.717 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+2023-09-12 16:30:59.717 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+2023-09-12 16:30:59.717 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+2023-09-12 16:30:59.717 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+2023-09-12 16:30:59.721 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 368.5183ms
+2023-09-12 16:30:59.723 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 6.2225ms
+2023-09-12 16:30:59.763 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-09-12 16:30:59.764 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 46.2099ms
+2023-09-12 16:30:59.782 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-09-12 16:30:59.785 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 68.7002ms
+2023-09-12 16:30:59.790 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-09-12 16:30:59.790 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 73.5046ms
+2023-09-12 16:30:59.790 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 73.4072ms
+2023-09-12 16:30:59.950 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+2023-09-12 16:31:00.130 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 179.3932ms
+2023-09-12 16:45:06.339 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-09-12 16:45:06.850 +05:30  INF  Now listening on: https://localhost:7069
+2023-09-12 16:45:06.850 +05:30  INF  Now listening on: http://localhost:5069
+2023-09-12 16:45:06.854 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-09-12 16:45:06.854 +05:30  INF  Hosting environment: Development
+2023-09-12 16:45:06.854 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+2023-09-12 16:45:08.408 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+2023-09-12 16:45:08.729 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 330.3109ms
+2023-09-12 16:45:08.732 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+2023-09-12 16:45:09.226 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+2023-09-12 16:45:09.226 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+2023-09-12 16:45:09.227 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+2023-09-12 16:45:09.226 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+2023-09-12 16:45:09.235 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+2023-09-12 16:45:09.243 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 511.3137ms
+2023-09-12 16:45:09.246 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 19.9020ms
+2023-09-12 16:45:09.317 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 85.3177ms
+2023-09-12 16:45:09.324 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-09-12 16:45:09.324 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-09-12 16:45:09.324 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 97.9407ms
+2023-09-12 16:45:09.324 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 97.0972ms
+2023-09-12 16:45:09.335 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-09-12 16:45:09.335 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 108.7825ms
+2023-09-12 16:45:09.507 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+2023-09-12 16:45:09.731 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 223.5364ms
+2023-09-12 17:04:10.351 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-09-12 17:04:10.853 +05:30  INF  Now listening on: https://localhost:7069
+2023-09-12 17:04:10.853 +05:30  INF  Now listening on: http://localhost:5069
+2023-09-12 17:04:10.856 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-09-12 17:04:10.856 +05:30  INF  Hosting environment: Development
+2023-09-12 17:04:10.857 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+2023-09-12 17:04:12.789 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+2023-09-12 17:04:13.039 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 266.1820ms
+2023-09-12 17:04:13.052 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+2023-09-12 17:04:13.454 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+2023-09-12 17:04:13.458 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+2023-09-12 17:04:13.458 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+2023-09-12 17:04:13.460 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 408.0621ms
+2023-09-12 17:04:13.462 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+2023-09-12 17:04:13.463 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+2023-09-12 17:04:13.475 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 12.8499ms
+2023-09-12 17:04:13.490 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 27.0110ms
+2023-09-12 17:04:13.519 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-09-12 17:04:13.520 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 65.0064ms
+2023-09-12 17:04:13.530 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-09-12 17:04:13.533 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 75.3015ms
+2023-09-12 17:04:13.538 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-09-12 17:04:13.538 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 80.6859ms
+2023-09-12 17:04:13.697 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+2023-09-12 17:04:13.874 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 176.7465ms
+2023-09-12 18:56:16.510 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-09-12 18:56:17.909 +05:30  INF  Now listening on: https://localhost:7069
+2023-09-12 18:56:17.909 +05:30  INF  Now listening on: http://localhost:5069
+2023-09-12 18:56:17.983 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-09-12 18:56:17.984 +05:30  INF  Hosting environment: Development
+2023-09-12 18:56:17.985 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+2023-09-12 18:56:19.231 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+2023-09-12 18:56:19.426 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 199.2366ms
+2023-09-12 18:56:19.429 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+2023-09-12 18:56:19.877 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 447.7640ms
+2023-09-12 18:56:19.881 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+2023-09-12 18:56:19.881 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+2023-09-12 18:56:19.881 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+2023-09-12 18:56:19.881 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+2023-09-12 18:56:19.881 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+2023-09-12 18:56:19.891 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 10.4125ms
+2023-09-12 18:56:19.921 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-09-12 18:56:19.936 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 54.0985ms
+2023-09-12 18:56:19.950 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 68.1747ms
+2023-09-12 18:56:19.952 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-09-12 18:56:19.952 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 70.9768ms
+2023-09-12 18:56:19.977 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-09-12 18:56:19.978 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 96.1578ms
+2023-09-12 18:56:20.144 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+2023-09-12 18:56:20.354 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 210.2053ms
+2023-09-12 18:57:01.483 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 56
+2023-09-12 18:57:01.518 +05:30  INF  CORS policy execution successful.
+2023-09-12 18:57:02.816 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-12 18:57:02.854 +05:30  INF  Route matched with {action = "Authenticate", controller = "Authenticate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authenticate(System.String, DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.AuthenticateController (DCRM.Api).
+2023-09-12 18:57:04.146 +05:30  INF  Executed DbCommand (22ms) [Parameters=[@__authenticateRequest_Email_0='?' (Size = 4000), @__authenticateRequest_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE ((`u`.`Status` = 1) AND (`u`.`Email` = @__authenticateRequest_Email_0)) AND (`u`.`Password` = @__authenticateRequest_Password_1)
+LIMIT 2
+2023-09-12 18:57:11.510 +05:30  INF  Executed action DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api) in 8650.5488ms
+2023-09-12 18:57:11.513 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-12 18:57:11.599 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 56 - 400 - application/json 10116.2195ms
+2023-09-12 18:57:34.494 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 57
+2023-09-12 18:57:34.508 +05:30  INF  CORS policy execution successful.
+2023-09-12 18:57:34.569 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-12 18:57:34.570 +05:30  INF  Route matched with {action = "Authenticate", controller = "Authenticate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authenticate(System.String, DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.AuthenticateController (DCRM.Api).
+2023-09-12 18:57:34.579 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__authenticateRequest_Email_0='?' (Size = 4000), @__authenticateRequest_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE ((`u`.`Status` = 1) AND (`u`.`Email` = @__authenticateRequest_Email_0)) AND (`u`.`Password` = @__authenticateRequest_Password_1)
+LIMIT 2
+2023-09-12 18:57:34.959 +05:30  INF  Executing OkObjectResult, writing value of type 'DCRM.Common.AuthenticateResponse'.
+2023-09-12 18:57:34.972 +05:30  INF  Executed action DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api) in 401.7477ms
+2023-09-12 18:57:34.972 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AuthenticateController.Authenticate (DCRM.Api)'
+2023-09-12 18:57:34.972 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 57 - 200 - application/json;+charset=utf-8 477.3353ms
+2023-09-12 18:57:52.931 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Appointment/GateAll - -
+2023-09-12 18:57:53.148 +05:30  INF  Executed DbCommand (15ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+2023-09-12 18:57:53.171 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AppointmentController.GetAllAsync (DCRM.Api)'
+2023-09-12 18:57:53.181 +05:30  INF  Route matched with {action = "GetAll", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Collections.Generic.IEnumerable`1[DCRM.Common.Entity.Appointment]] GetAllAsync() on controller DCRM.Api.Controllers.AppointmentController (DCRM.Api).
+2023-09-12 18:57:53.202 +05:30  INF  Executing ObjectResult, writing value of type 'Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[DCRM.Common.Entity.Appointment, DCRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-09-12 18:57:53.439 +05:30  INF  Executed DbCommand (185ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`Appointment_Status`, `a`.`Cause`, `a`.`Chair`, `a`.`Chamber_Id`, `a`.`Created_At`, `a`.`Date`, `a`.`Doctor_Id`, `a`.`Doctor_Name`, `a`.`End_Time`, `a`.`Extra_Notes`, `a`.`Files`, `a`.`Is_Delete`, `a`.`Is_Start`, `a`.`Meeting_Notes`, `a`.`Number_Of_Slot`, `a`.`Patient_Id`, `a`.`Prescription_Id`, `a`.`Serial_Id`, `a`.`Slot_Time`, `a`.`Start_Time`, `a`.`Status`, `a`.`Type`, `a`.`User_Id`
+FROM `Appointments` AS `a`
+WHERE `a`.`Is_Delete` = 0
+2023-09-12 18:57:53.530 +05:30  INF  Executed action DCRM.Api.Controllers.AppointmentController.GetAllAsync (DCRM.Api) in 348.8153ms
+2023-09-12 18:57:53.531 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AppointmentController.GetAllAsync (DCRM.Api)'
+2023-09-12 18:57:53.532 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Appointment/GateAll - - - 200 - application/json;+charset=utf-8 601.2839ms
+2023-09-12 18:58:21.565 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Appointment/GetAppointments/2 - -
+2023-09-12 18:58:21.577 +05:30  INF  Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+2023-09-12 18:58:21.578 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AppointmentController.GetAppointmentsByPatient (DCRM.Api)'
+2023-09-12 18:58:21.579 +05:30  INF  Route matched with {action = "GetAppointmentsByPatient", controller = "Appointment"}. Executing controller action with signature System.Collections.Generic.List`1[DCRM.Common.Entity.Appointment] GetAppointmentsByPatient(Int32) on controller DCRM.Api.Controllers.AppointmentController (DCRM.Api).
+2023-09-12 18:58:21.593 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__patientId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`Appointment_Status`, `a`.`Cause`, `a`.`Chair`, `a`.`Chamber_Id`, `a`.`Created_At`, `a`.`Date`, `a`.`Doctor_Id`, `a`.`Doctor_Name`, `a`.`End_Time`, `a`.`Extra_Notes`, `a`.`Files`, `a`.`Is_Delete`, `a`.`Is_Start`, `a`.`Meeting_Notes`, `a`.`Number_Of_Slot`, `a`.`Patient_Id`, `a`.`Prescription_Id`, `a`.`Serial_Id`, `a`.`Slot_Time`, `a`.`Start_Time`, `a`.`Status`, `a`.`Type`, `a`.`User_Id`
+FROM `Appointments` AS `a`
+WHERE (`a`.`Is_Delete` = 0) AND (`a`.`Patient_Id` = @__patientId_0)
+ORDER BY `a`.`Id` DESC
+2023-09-12 18:58:21.594 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DCRM.Common.Entity.Appointment, DCRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-09-12 18:58:21.595 +05:30  INF  Executed action DCRM.Api.Controllers.AppointmentController.GetAppointmentsByPatient (DCRM.Api) in 16.367ms
+2023-09-12 18:58:21.595 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AppointmentController.GetAppointmentsByPatient (DCRM.Api)'
+2023-09-12 18:58:21.595 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Appointment/GetAppointments/2 - - - 200 - application/json;+charset=utf-8 30.8129ms

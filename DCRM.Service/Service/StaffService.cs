@@ -57,34 +57,36 @@ namespace DCRM.Service.Service
         /// <returns></returns>
         public async Task<StaffDto> GetStaffByIdAsync(int id)
         {
-
-            var staff = await _staffRepository.GetStaffByIdAsync(id);
             StaffDto staffDto = new StaffDto();
-            staffDto.Id = staff.Id;
-            staffDto.User_Id = staff.User_Id;
-            staffDto.Name = staff.Name;
-            staffDto.Email = staff.Email;
-            staffDto.Father = staff.Father;
-            staffDto.Department = staff.Department;
-            staffDto.Designation = staff.Designation;
-            staffDto.Mother = staff.Mother;
-            staffDto.Gender = staff.Gender;
-            staffDto.Blood_Group = staff.Blood_Group;
-            staffDto.Marital_Status = staff.Marital_Status;
-            staffDto.Date_Of_Joining = staff.Date_Of_Joining;
-            staffDto.Dob = staff.Dob;
-            staffDto.Phone = staff.Phone;
-            staffDto.Gst = staff.Gst;
-            staffDto.Pan = staff.Pan;
-            staffDto.Qualification = staff.Qualification;
-            staffDto.Work_Experience = staff.Work_Experience;
-            staffDto.Specialization = staff.Specialization;
-            staffDto.Note = staff.Note;
-            staffDto.Permanent_Address = staff.Permanent_Address;
-            staffDto.Created_At = staff.Created_At;
-            staffDto.StaffInsuranceList = _staffRepository.GetStaffInsuranceDetailList(staff.Id);
-            staffDto.StaffBankList = _staffRepository.GetStaffBankDetailList(staff.Id);
-            staffDto.StaffVaccinationList = _staffRepository.GetStaffVaccinationList(staff.Id);
+            var staff = await _staffRepository.GetStaffByIdAsync(id);
+            if (staff != null)
+            {
+                staffDto.Id = staff.Id;
+                staffDto.User_Id = staff.User_Id;
+                staffDto.Name = staff.Name;
+                staffDto.Email = staff.Email;
+                staffDto.Father = staff.Father;
+                staffDto.Department = staff.Department;
+                staffDto.Designation = staff.Designation;
+                staffDto.Mother = staff.Mother;
+                staffDto.Gender = staff.Gender;
+                staffDto.Blood_Group = staff.Blood_Group;
+                staffDto.Marital_Status = staff.Marital_Status;
+                staffDto.Date_Of_Joining = staff.Date_Of_Joining;
+                staffDto.Dob = staff.Dob;
+                staffDto.Phone = staff.Phone;
+                staffDto.Gst = staff.Gst;
+                staffDto.Pan = staff.Pan;
+                staffDto.Qualification = staff.Qualification;
+                staffDto.Work_Experience = staff.Work_Experience;
+                staffDto.Specialization = staff.Specialization;
+                staffDto.Note = staff.Note;
+                staffDto.Permanent_Address = staff.Permanent_Address;
+                staffDto.Created_At = staff.Created_At;
+                staffDto.StaffInsuranceList = _staffRepository.GetStaffInsuranceDetailList(staff.Id);
+                staffDto.StaffBankList = _staffRepository.GetStaffBankDetailList(staff.Id);
+                staffDto.StaffVaccinationList = _staffRepository.GetStaffVaccinationList(staff.Id);
+            }
             return staffDto;
 
             // return await _staffRepository.GetStaffByIdAsync(id); ;

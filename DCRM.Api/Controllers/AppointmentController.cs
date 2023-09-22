@@ -18,7 +18,7 @@ namespace DCRM.Api.Controllers
         {
             _appointmentfService = appointmentfService;
         }
-        [HttpGet("GateAll")]
+        [HttpGet("GetAll")]
         public async Task<IEnumerable<Appointment>> GetAllAsync()
         {
             return await _appointmentfService.GetAllAsync();
@@ -36,6 +36,13 @@ namespace DCRM.Api.Controllers
             return await _appointmentfService.GetByUserId(user.Id);
         }
 
+        [HttpGet("GetWithPatientByUser")]
+        public List<AppointmentDto> GetWithPatientByUser()
+        {
+            var user = (User)(Request.HttpContext.Items["User"]);
+            return _appointmentfService.GetAppointMentWithPatientByUserId(user.Id);
+        }
+
         [HttpPost("Create")]
         public async Task<IActionResult> Create(Appointment appointment)
         {
@@ -51,11 +58,11 @@ namespace DCRM.Api.Controllers
         }
 
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await _appointmentfService.DeleteAsync(id);
-            return Ok("deleted");
+            return Ok(id);
         }
 
         [HttpGet("GetAppointments/{patientId}")]

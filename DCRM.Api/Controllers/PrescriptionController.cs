@@ -44,7 +44,7 @@ namespace DCRM.Api.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await _prescriptionfService.DeleteAsync(id);
-            return Ok("deleted");
+            return Ok(id);
         }
 
     }

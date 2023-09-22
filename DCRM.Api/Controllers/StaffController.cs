@@ -38,10 +38,9 @@ namespace DCRM.Api.Controllers
             return staffList;
         }
         [HttpGet("Get/{id}")]
-        public async Task<StaffDto> GetStaffAsync()
+        public async Task<StaffDto> GetStaffAsync(int id)
         {
-            var user = (User)(Request.HttpContext.Items["User"]);
-            StaffDto staff = await _staffService.GetStaffByIdAsync(user.Id);
+            StaffDto staff = await _staffService.GetStaffByIdAsync(id);
             return staff;
         }
 
@@ -62,11 +61,11 @@ namespace DCRM.Api.Controllers
             return Ok("Updated");
         }
 
-        [HttpDelete("Delete")]
+        [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await _staffService.DeleteStaffAsync(id);
-            return Ok("Deleted");
+            return Ok(id);
         }
     }
 }
