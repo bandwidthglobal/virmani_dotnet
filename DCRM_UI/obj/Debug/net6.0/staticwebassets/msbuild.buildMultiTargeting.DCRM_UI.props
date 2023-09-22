@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\DCRM_UI.props" />
+</Project>

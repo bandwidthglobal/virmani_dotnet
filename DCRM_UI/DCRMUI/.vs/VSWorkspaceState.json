@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\main",
+    "\\src\\app\\main\\clinic-admin",
+    "\\src\\app\\main\\clinic-admin\\appointment",
+    "\\src\\app\\main\\clinic-admin\\dealer",
+    "\\src\\app\\main\\clinic-admin\\dealer\\dealer-list",
+    "\\src\\app\\main\\clinic-admin\\prescription\\prescription-list",
+    "\\src\\app\\main\\clinic-admin\\staff\\staff-list"
+  ],
+  "SelectedNode": "\\src\\app\\main\\clinic-admin\\dealer\\dealer-list\\dealer-list.component.html",
+  "PreviewInSolutionExplorer": false
+}
