@@ -110,11 +110,9 @@ export class AuthenticationService {
             .pipe(
                 map(user => {
                     // login successful if there's a jwt token in the response
-                    debugger;
                     if (user!=null && user.token!='') {
                         // store user details and jwt token in local storage to keep user logged in between page refreshes
                         localStorage.setItem('currentUser', JSON.stringify(user));
-                      
                         localStorage.setItem('token', user.token);
                         // Display welcome toast!
                         setTimeout(() => {

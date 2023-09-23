@@ -3,17 +3,16 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { environment } from 'environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from '../../../../auth/models';
+import { User } from '../../../../../auth/models';
 
 @Injectable()
-export class PatientPreviewService implements Resolve<any> {
+export class workdonehistoryService implements Resolve<any> {
     apiData: any;
     onDrugEditChanged: BehaviorSubject<any>;
     medicinBrands: any;
     medicinCategories: any;
     onMedicinBrandChanged: BehaviorSubject<any>;
     onMedicinCategoriesChanged: BehaviorSubject<any>;
-    onAppointmentChanged: BehaviorSubject<any>;
     id;
     currentUser: any;
 
@@ -28,7 +27,6 @@ export class PatientPreviewService implements Resolve<any> {
         this.onDrugEditChanged = new BehaviorSubject({});
         this.onMedicinBrandChanged = new BehaviorSubject({});
         this.onMedicinCategoriesChanged = new BehaviorSubject({});
-        this.onAppointmentChanged = new BehaviorSubject({});
 
     }
 
@@ -44,8 +42,7 @@ export class PatientPreviewService implements Resolve<any> {
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
         let currentId = Number(route.paramMap.get('id'));
         return new Promise<void>((resolve, reject) => {
-            Promise.all([this.getDrugData(currentId), this.getBrandlist(),
-                this.getCategoryList(), this.getAppointmentList(currentId)]).then(() => {
+            Promise.all([this.getDrugData(currentId), this.getBrandlist(), this.getCategoryList()]).then(() => {
                 resolve();
             }, reject);
         });
@@ -82,25 +79,6 @@ export class PatientPreviewService implements Resolve<any> {
             this._httpClient.get(url, requestOptions).subscribe((response: any) => {
                 this.apiData = response;
                 this.onDrugEditChanged.next(this.apiData);
-                resolve(this.apiData);
-            }, reject);
-        });
-    }
-
-
-    getAppointmentList(id: number): Promise<any[]> {
-        debugger;
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.currentUser.jwtToken}`
-        });
-        const requestOptions = { headers: headers };
-        const url = `${environment.apiUrl}/Appointment/GetAppointments/${id}`;
-        this.id = id;
-        return new Promise((resolve, reject) => {
-            this._httpClient.get(url, requestOptions).subscribe((response: any) => {
-                this.apiData = response;
-                this.onAppointmentChanged.next(this.apiData);
                 resolve(this.apiData);
             }, reject);
         });

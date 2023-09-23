@@ -25,7 +25,15 @@ import {  PatientEditService } from 'app/main/clinic-admin/patient/patient-edit/
 import {  PatientPreviewComponent } from 'app/main/clinic-admin/patient/patient-preview/patient-preview.component';
 import {  PatientPreviewService } from 'app/main/clinic-admin/patient/patient-preview/patient-preview.service';
 
-
+import { PatientinfoComponent } from 'app/main/clinic-admin/patient/patient-preview/patientinfo/patientinfo.component';
+import { PatientAppointmentsComponent } from 'app/main/clinic-admin/patient/patient-preview/patient-appointments/patient-appointments.component';
+import { PatientinAppointmentsService } from 'app/main/clinic-admin/patient/patient-preview/patient-appointments/patient-appointments.service';
+import { LabComponent } from 'app/main/clinic-admin/patient/patient-preview/lab/lab.component';
+import { DigitaldataComponent } from 'app/main/clinic-admin/patient/patient-preview/digitaldata/digitaldata.component';
+import { PriscriptionsComponent } from 'app/main/clinic-admin/patient/patient-preview/priscriptions/priscriptions.component';
+import { PaymentsComponent } from 'app/main/clinic-admin/patient/patient-preview/payments/payments.component';
+import { TreatmentPalnComponent } from 'app/main/clinic-admin/patient/patient-preview/treatment-paln/treatment-paln.component';
+import { WorkdoneHistoryComponent } from 'app/main/clinic-admin/patient/patient-preview/workdonehistory/workdonehistory.component';
 // routing
 const routes: Routes = [
     {
@@ -76,6 +84,14 @@ const routes: Routes = [
         PatientListComponent,
         PatientPreviewComponent,
         PatientEditComponent,
+        PatientinfoComponent,
+        PatientAppointmentsComponent,
+        LabComponent,
+        DigitaldataComponent,
+        PriscriptionsComponent,
+        TreatmentPalnComponent,
+        PaymentsComponent,
+        WorkdoneHistoryComponent
     ],
     imports: [
         CommonModule,
@@ -90,7 +106,7 @@ const routes: Routes = [
         NgSelectModule,
         CoreSidebarModule
     ],
-    providers: [PatientListService, PatientPreviewService, PatientEditService, PatientAddService],
+    providers: [PatientListService, PatientPreviewService, PatientEditService, PatientAddService, PatientinAppointmentsService],
     exports: [PatientListComponent]
 })
 export class PatientDataModule { }

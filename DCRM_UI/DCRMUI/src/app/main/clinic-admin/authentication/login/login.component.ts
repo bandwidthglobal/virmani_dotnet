@@ -4,7 +4,7 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { takeUntil, first } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
-import { AuthenticationService } from 'app/auth/service';
+import { LoginService } from 'app/main/clinic-admin/authentication/login/login.service';
 import { CoreConfigService } from '@core/services/config.service';
 
 @Component({
@@ -36,11 +36,11 @@ export class LoginComponent implements OnInit {
     private _formBuilder: UntypedFormBuilder,
     private _route: ActivatedRoute,
     private _router: Router,
-    private _authenticationService: AuthenticationService
+      private _authenticationService: LoginService
   ) {
     // redirect to home if already logged in
     if (this._authenticationService.currentUserValue) {
-      this._router.navigate(['/admin/dashboard']);
+      this._router.navigate(['/']);
     }
 
     this._unsubscribeAll = new Subject();
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-     
+
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-              this._router.navigate(['/admin/dashboard']);
+          this._router.navigate([this.returnUrl]);
         },
         error => {
           this.error = error;
@@ -111,7 +111,7 @@ export class LoginComponent implements OnInit {
     });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/dashboard';
 
     // Subscribe to config changes
     this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
