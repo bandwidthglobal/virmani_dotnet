@@ -32,6 +32,7 @@ import { BasicCustomContextMenuComponent } from './main/extensions/context-menu/
 import { SubMenuCustomContextMenuComponent } from './main/extensions/context-menu/custom-context-menu/sub-menu-custom-context-menu/sub-menu-custom-context-menu.component';
 
 const appRoutes: Routes = [
+    
     {
         path: 'dashboard',
         loadChildren: () => import('./main/dashboard/dashboard.module').then(m => m.DashboardModule)
@@ -45,6 +46,7 @@ const appRoutes: Routes = [
         path: 'pages',
         loadChildren: () => import('./main/pages/pages.module').then(m => m.PagesModule)
     },
+   
     {
         path: 'ui',
         loadChildren: () => import('./main/ui/ui.module').then(m => m.UIModule),
@@ -77,18 +79,24 @@ const appRoutes: Routes = [
     },
     {
         path: '',
-        redirectTo: '/dashboard/ecommerce',
-        pathMatch: 'full'
+        loadChildren: () => import('./home/homedata.module').then(m => m.HomeModule)
+    },
+    {
+        path: 'auth',
+        loadChildren: () => import('./authpage/authentication/authentication.module').then(m => m.AuthenticationModule)
     },
     {
         path: 'admin',
         loadChildren: () => import('./main/clinic-admin/admin.module').then(m => m.AdminModule),
         canActivate: [AuthGuard]
-    },
+    }
+    ,
+
     {
         path: '**',
-        redirectTo: '/pages/miscellaneous/error' //Error 404 - Page not found
+        loadChildren: () => import('./miscellaneous/miscellaneous.module').then(m => m.MiscellaneousModule),
     }
+    
 ];
 
 @NgModule({
