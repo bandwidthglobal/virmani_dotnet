@@ -80,7 +80,8 @@ const appRoutes: Routes = [
     {
         path: '',
         loadChildren: () => import('./home/homedata.module').then(m => m.HomeModule)
-    },
+    }
+    ,
     {
         path: 'auth',
         loadChildren: () => import('./authpage/authentication/authentication.module').then(m => m.AuthenticationModule)
