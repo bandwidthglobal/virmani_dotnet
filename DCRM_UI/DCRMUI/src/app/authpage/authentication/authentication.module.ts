@@ -7,9 +7,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CoreCommonModule } from '@core/common.module';
 
-import { ForgotPasswordComponent } from 'app/main/pages/authentication/forgotpassword/forgotpassword.component';
-import { LoginComponent } from 'app/main/pages/authentication/login/login.component';
-import { RegisterComponent } from 'app/main/pages/authentication/register/register.component';
+import { ForgotPasswordComponent } from 'app/authpage/authentication/forgotpassword/forgotpassword.component';
+import { LoginComponent } from 'app/authpage/authentication/login/login.component';
+import { RegisterComponent } from 'app/authpage/authentication/register/register.component';
 
 // routing
 const routes: Routes = [
