@@ -4,10 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { CoreCommonModule } from '@core/common.module';
 
-import { ComingSoonComponent } from 'app/main/pages/miscellaneous/coming-soon/coming-soon.component';
-import { ErrorComponent } from 'app/main/pages/miscellaneous/error/error.component';
-import { MaintenanceComponent } from 'app/main/pages/miscellaneous/maintenance/maintenance.component';
-import { NotAuthorizedComponent } from 'app/main/pages/miscellaneous/not-authorized/not-authorized.component';
+import { ComingSoonComponent } from 'app/miscellaneous/coming-soon/coming-soon.component';
+import { ErrorComponent } from 'app/miscellaneous/error/error.component';
+import { MaintenanceComponent } from 'app/miscellaneous/maintenance/maintenance.component';
+import { NotAuthorizedComponent } from 'app/miscellaneous/not-authorized/not-authorized.component';
 
 // routing
 const routes: Routes = [

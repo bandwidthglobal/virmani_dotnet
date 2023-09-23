@@ -87,7 +87,7 @@ export class PatientPreviewComponent implements OnInit, OnDestroy {
         });
     }
     onTabChange(obj) {
-        alert(obj);
+       
     }
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
