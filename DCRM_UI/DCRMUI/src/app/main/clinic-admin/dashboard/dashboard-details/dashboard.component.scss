@@ -1,0 +1,47 @@
+.round {
+    line-height: 61px;
+    color: #ffffff;
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    font-weight: 500;
+    font-size: 30px;
+    text-align: center;
+    border-radius: 100%;
+}
+.bg-primary-soft {
+    background: rgba(40,110,251,.1) !important;
+    color: #286efb !important;
+}
+.bg-success-soft {
+    background: rgba(40,167,69,.1) !important;
+    color: #28a745 !important;
+}
+.bg-danger-soft {
+    background: rgba(220,53,69,.1) !important;
+    color: #dc3545 !important;
+}
+.bg-warning-soft {
+    background: rgba(255,193,7,.1) !important;
+    color: #ffc107 !important;
+}
+.align-self-center {
+    -ms-flex-item-align: center !important;
+    align-self: center !important;
+}
+.mt-10 {
+    margin-top: 10px !important;
+}
+
+.m-l-10 {
+    margin-left: 10px;
+}
+.flex-row {
+    -ms-flex-direction: row !important;
+    flex-direction: row !important;
+}
+
+.d-flex {
+    display: -ms-flexbox !important;
+    display: flex !important;
+}

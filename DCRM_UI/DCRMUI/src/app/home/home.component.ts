@@ -8,12 +8,12 @@ import { AuthenticationService } from 'app/auth/service';
 import { CoreConfigService } from '@core/services/config.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class LoginComponent implements OnInit {
+export class HomeComponent implements OnInit {
   //  Public
   public coreConfig: any;
   public loginForm: UntypedFormGroup;
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
   ) {
     // redirect to home if already logged in
     if (this._authenticationService.currentUserValue) {
-      this._router.navigate(['/admin/dashboard']);
+      this._router.navigate(['/']);
     }
 
     this._unsubscribeAll = new Subject();
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-     
+
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-              this._router.navigate(['/admin/dashboard']);
+          this._router.navigate([this.returnUrl]);
         },
         error => {
           this.error = error;
@@ -111,7 +111,7 @@ export class LoginComponent implements OnInit {
     });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/dashboard';
 
     // Subscribe to config changes
     this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
