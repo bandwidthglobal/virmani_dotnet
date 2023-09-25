@@ -102,6 +102,26 @@ namespace DCRM.Service.Service
                 patientseDto.Present_Address = patient.Present_Address;
                 patientseDto.Permanent_Address = patient.Permanent_Address;
                 patientseDto.Created_At = System.DateTime.UtcNow;
+                var payment = _paymentHistoryRepository.GetAll().Where(x => x.Patient_Id == patient.Id);
+                double addvancePayment = 0;
+                double duePayment = 0;
+                double totalCreditAmount = 0;
+                double totalDebitAmount = 0;
+                foreach (var item in payment)
+                {
+                    totalCreditAmount = totalCreditAmount + item.Credit_Amount;
+                    totalDebitAmount = totalDebitAmount + item.Debit_Amount;
+                }
+                if (totalDebitAmount> totalCreditAmount)
+                {
+                    addvancePayment = totalCreditAmount - totalDebitAmount;
+                }
+                if (totalCreditAmount > totalDebitAmount)
+                {
+                    duePayment = totalCreditAmount - totalDebitAmount;
+                }
+                patientseDto.AddvancePayment= addvancePayment;
+                patientseDto.DuePayment = duePayment;
                 patientseDto.PatientInsuranceLoans = _patientRepository.GetPatientsInsuranceLoanDetailList(patient.Id);
                 patientseDto.PatientTests = _patientRepository.GetPatientTestList(patient.Id);
                 patientseDto.PatientContacts = _patientRepository.GetPatientsContacteDetailList(patient.Id);
@@ -137,6 +157,7 @@ namespace DCRM.Service.Service
             patientdto.Present_Address = patient.Present_Address;
             patientdto.Permanent_Address = patient.Permanent_Address;
             patientdto.Created_At = System.DateTime.UtcNow;
+           
             patientdto.PatientInsuranceLoans = _patientRepository.GetPatientsInsuranceLoanDetailList(patient.Id);
             patientdto.PatientTests = _patientRepository.GetPatientTestList(patient.Id);
             patientdto.PatientContacts = _patientRepository.GetPatientsContacteDetailList(patient.Id);
@@ -288,13 +309,21 @@ namespace DCRM.Service.Service
                 TreatmentplanDto treatmentplanDto = new TreatmentplanDto();
                 treatmentplanDto.Id = treatment.Id;
                 treatmentplanDto.JobId = treatment.Job_Id;
+                treatmentplanDto.Job = treatment.Job;
                 treatmentplanDto.PatientId = treatment.Patient_Id;
                 treatmentplanDto.Doctor = treatment.Doctor;
+                treatmentplanDto.Sitting = treatment.Sitting_Status;
                 treatmentplanDto.Amount = treatment.Amount;
                 treatmentplanDto.CreatedAt = treatment.Created_At;
                 treatmentplanDto.UpdatedAt = treatment.Updated_At;
+                treatmentplanDto.Date = treatment.Date;
                 treatmentplanDto.Courtesy = treatment.Courtesy;
-                treatmentplanDto.TreatmentStatus = treatment.Treatment_Status;
+                if (treatment.Treatment_Status==0)
+                    treatmentplanDto.TreatmentStatus = "Observation";
+                else if(treatment.Treatment_Status == 1)
+                    treatmentplanDto.TreatmentStatus = "Completed";
+                else
+                    treatmentplanDto.TreatmentStatus = "Incompleted";
                 treatmentplanDto.Status = treatment.Status;
                 var workDoneNew = _workdoneNewRepository.GetAll().Where(x => x.Treatment_Id == treatment.Id).FirstOrDefault();
                 if (workDoneNew != null)
@@ -307,7 +336,6 @@ namespace DCRM.Service.Service
                     treatmentplanDto.Type = teethInfo.Type;
                     treatmentplanDto.TeethNumber = teethInfo.Teeth_Number_Note;
                     treatmentplanDto.TothNot = teethInfo.Toth_Note;
-                    treatmentplanDto.Type = teethInfo.Type;
                 }
                 var doctor = _doctorRepository.GetDoctorsAsync().Result.ToList().Where(x => x.Id == treatment.Doctor).FirstOrDefault();
                 if (doctor != null)
@@ -336,33 +364,49 @@ namespace DCRM.Service.Service
                 workDoneDto.ToothName = workdone.Print_Tooth_Name;
                 workDoneDto.Notesdiagnosis = workdone.Notesdiagnosis;
                 workDoneDto.AmtDueCurrentWork = workdone.Amt_Due_Current_Work;
-                workDoneDto.WorkdoneStatus = workdone.Status;
-                workDoneDto.WorkdoneStatus = workdone.Status;
+                if (workdone.Status==0)
+                {
+                    workDoneDto.WorkdoneStatus = "Observation";
+                }
+                else if (workdone.Status == 0)
+                {
+                    workDoneDto.WorkdoneStatus = "Completed";
+                }
+                else
+                {
+                    workDoneDto.WorkdoneStatus = "Incompleted";
+                }
+                var doctor = _doctorRepository.GetDoctorsAsync().Result.ToList().Where(x => x.Id == workdone.Workdone_Doc).FirstOrDefault();
+                if (doctor != null)
+                {
+                    workDoneDto.DoctorName = doctor.Name;
+                    workDoneDto.Doctor_Id = Convert.ToInt32(doctor.Id);
+                }
                 workDoneDto.ToothName = workdone.Print_Tooth_Name;
                 workDoneDto.EstimatedAmount = workdone.Estimate;
                 workDoneDto.Date = workdone.Workdone_Date;
                 workDoneDto.Discount = workdone.Discount;
-                var workDoneNew = _workdoneNewRepository.GetAll().Where(x => x.Id == workdone.Workdoneon_Id).FirstOrDefault();
-                if (workDoneNew != null)
+                if (!string.IsNullOrEmpty(workdone.Workdoneon))
                 {
-                    workDoneDto.TotalAmt = workDoneNew.Total_Amt;
-                    workDoneDto.CurrentWorkAmt = workDoneNew.Current_Work_Amt;
-                    var treatment = _treatmentplansRepository.GetAll().Where(x => x.Id == workDoneNew.Treatment_Id).FirstOrDefault();
-                    if (treatment != null)
-                    {
-                        workDoneDto.TreatmentCode = treatment.Job;
-                        workDoneDto.Treatment_Id = treatment.Id;
-                    }
-                    var doctor = _doctorRepository.GetDoctorsAsync().Result.ToList().Where(x => x.Id == workDoneNew.Doctor_Id).FirstOrDefault();
-                    if (doctor != null)
-                    {
-                        workDoneDto.DoctorName = doctor.Name;
-                        workDoneDto.Doctor_Id = Convert.ToInt32(doctor.Id);
-                    }
+                    workDoneDto.TreatmentCode = workdone.Workdoneon;
                 }
+                
+                //var workDoneNew = _workdoneNewRepository.GetAll().Where(x => x.Id == workdone.Workdoneon_Id).FirstOrDefault();
+                //if (workDoneNew != null)
+                //{
+                //    workDoneDto.TotalAmt = workDoneNew.Total_Amt;
+                //    workDoneDto.CurrentWorkAmt = workDoneNew.Current_Work_Amt;
+                //    var treatment = _treatmentplansRepository.GetAll().Where(x => x.Id == workDoneNew.Treatment_Id).FirstOrDefault();
+                //    if (treatment != null)
+                //    {
+                //        workDoneDto.TreatmentCode = treatment.Job;
+                //        workDoneDto.Treatment_Id = treatment.Id;
+                //    }
+                    
+                //}
                 workdoneList.Add(workDoneDto);
             }
-            return workdoneList;
+            return workdoneList.OrderByDescending(x=>x.Id).ToList();
 
         }
 

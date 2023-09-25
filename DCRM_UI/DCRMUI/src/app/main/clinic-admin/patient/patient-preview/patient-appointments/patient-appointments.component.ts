@@ -8,8 +8,7 @@ import { CoreConfigService } from '@core/services/config.service';
 
 import { PatientPreviewService } from 'app/main/clinic-admin/patient/patient-preview/patient-preview.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BeforeOpenEvent } from '@sweetalert2/ngx-sweetalert2';
-import Swal from 'sweetalert2';
+
 
 import * as snippet from 'app/main/extensions/sweet-alerts/sweet-alerts.snippetcode';
 @Component({
@@ -106,7 +105,6 @@ export class PatientAppointmentsComponent implements OnInit, OnDestroy {
         this.getData();
     }
     getData() {
-
         this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
             // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)
             if (config.layout.animation === 'zoomIn') {

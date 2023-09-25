@@ -54,4 +54,6 @@ public partial class PatientseDto
     public List<PatientScan>? PatientScans { get; set; }
 
     public List<PatientTest>? PatientTests { get; set; }
+    public double AddvancePayment { get; set; }
+    public double DuePayment { get; set; }
 }

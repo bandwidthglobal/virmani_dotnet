@@ -22,7 +22,7 @@ namespace DCRM.Common.Dto
 
         public double TotalAmt { get; set; }
 
-        public int WorkdoneStatus { get; set; }
+        public string? WorkdoneStatus { get; set; }
 
         public string? DoctorName { get; set; } 
 

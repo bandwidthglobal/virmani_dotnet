@@ -70,20 +70,9 @@ export class PatientPreviewComponent implements OnInit, OnDestroy {
         this._unsubscribeAll = new Subject();
     }
     ngOnInit(): void {
-        this._patientPreviewService.onMedicinBrandChanged.subscribe(res => (this.medicinBrands = res));
-        this._patientPreviewService.onMedicinCategoriesChanged.subscribe(res => (this.medicinCategories = res));
-        this._patientPreviewService.onDrugEditChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-            this.drug = response;
-            this.medicinBrands.forEach((currentValue, index) => {
-                if (currentValue.id == this.drug.medicine_Brand_Id) {
-                    this.brandName = currentValue.medicine_Brand;
-                }
-            });
-            this.medicinCategories.forEach((currentValue, index) => {
-                if (currentValue.id == this.drug.medicine_Category_Id) {
-                    this.category = currentValue.medicine_Category;
-                }
-            });
+        this._patientPreviewService.onPatientChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+            this.apiData = response;
+            debugger;
         });
     }
     onTabChange(obj) {

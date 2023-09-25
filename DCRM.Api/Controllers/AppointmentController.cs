@@ -66,10 +66,10 @@ namespace DCRM.Api.Controllers
         }
 
         [HttpGet("GetAppointments/{patientId}")]
-        public List<Appointment> GetAppointmentsByPatient(int patientId)
+        public List<AppointmentDto> GetAppointmentsByPatient(int patientId)
         {
             var user = (User)(Request.HttpContext.Items["User"]);
-            List<Appointment> appointments = _appointmentfService.GetByPatientId(user.Id, patientId);
+            List<AppointmentDto> appointments = _appointmentfService.GetByPatientId(user.Id, patientId);
             return appointments;
         }
     }

@@ -11,9 +11,9 @@ public  class TreatmentplanDto
 
     public int Doctor { get; set; }
 
-    public string DoctorName { get; set; }
+    public string? DoctorName { get; set; }
 
-    public string Job { get; set; } = null!;
+    public string? Job { get; set; } 
 
     public int JobId { get; set; }
 
@@ -25,24 +25,24 @@ public  class TreatmentplanDto
 
     public float Amount { get; set; }
 
-    public string Courtesy { get; set; } = null!;
+    public string? Courtesy { get; set; }
 
     public int WorkdoneId { get; set; }
 
-    public string PrintToothName { get; set; } = null!;
+    public string? PrintToothName { get; set; } 
 
-    public string IndividualToothWrk { get; set; } = null!;
+    public string? IndividualToothWrk { get; set; }
 
-    public string CompletedDate { get; set; } = null!;
+    public string? CompletedDate { get; set; } 
 
     public int SittingStatus { get; set; }
 
-    public sbyte TreatmentStatus { get; set; }
+    public string? TreatmentStatus { get; set; }
 
-    public string Type { get; set; }
+    public string? Type { get; set; }
 
-    public string TeethNumber { get; set; } = null!;
-    public string TothNot { get; set; } = null!;
+    public string? TeethNumber { get; set; } 
+    public string? TothNot { get; set; } 
 
     public int?  WorkDoneStatus { get; set; }  
     public DateTime CreatedAt { get; set; }

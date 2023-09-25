@@ -35,7 +35,7 @@ namespace DCRM.Repository.Repository
             _contex.SaveChanges();
         }
 
-        public T Get(int Id)
+        public T Get(long Id)
         {
             return entities.SingleOrDefault(c => c.Id == Id);
         }

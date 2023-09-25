@@ -21,7 +21,7 @@ namespace DCRM.Service.IService
 
         Task<IEnumerable<Appointment>> GetByUserId(int userId);
 
-        List<Appointment> GetByPatientId(int userId, int patientId);
+        List<AppointmentDto> GetByPatientId(int userId, int patientId);
 
         Task CreateAsync(Appointment request);
 

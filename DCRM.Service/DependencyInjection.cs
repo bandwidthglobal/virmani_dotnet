@@ -65,6 +65,9 @@ namespace DCRM.Service
             services.AddScoped<ITreatmentplanRepository, TreatmentplanRepository>();
             services.AddScoped<ITreatmentplanService, TreatmentplanService>();
 
+            services.AddScoped<IDashboardRepository, DashboardRepository>();
+            services.AddScoped<IDashboardService, DashboardService>();
+
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddScoped<INotificationService, NotificationService>();

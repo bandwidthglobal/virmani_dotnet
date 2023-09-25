@@ -16,10 +16,15 @@ namespace DCRM.Service.Service
     {
         public readonly IAppointmentRepository _appointmentRepository;
         public readonly IPatientRepository _patientRepository;
-        public AppointmentService(IAppointmentRepository appointmentRepository, IPatientRepository patientRepository)
+        public readonly IRepository<Doctor> _repository;
+        public readonly IRepository<Chair> _chairRepository;
+        public AppointmentService(IAppointmentRepository appointmentRepository, IPatientRepository patientRepository
+            , IRepository<Doctor> repository,IRepository<Chair> chairRepository)
         {
             _appointmentRepository = appointmentRepository;
             _patientRepository = patientRepository;
+            _repository= repository;
+            _chairRepository = chairRepository;
         }
 
         public async Task CreateAsync(Appointment request)
@@ -38,11 +43,31 @@ namespace DCRM.Service.Service
             return appointments;
         }
 
-        public List<Appointment> GetByPatientId(int userId, int patientId)
+        public List<AppointmentDto> GetByPatientId(int userId, int patientId)
         {
+            List<AppointmentDto> appointmentList = new List<AppointmentDto>();
+            AppointmentDto appointment = null;
             var appointments = _appointmentRepository.GetByPatientId(patientId).Where(x => x.User_Id == userId).
                 OrderByDescending(x => x.Id).ToList();
-            return appointments;
+            foreach (var item in appointments)
+            {
+                appointment = new AppointmentDto();
+                appointment.Id = item.Id;
+                if (item.Doctor_Id>0)
+                {
+                    appointment.Doctor_Name = _repository.Get(item.Doctor_Id).Name;
+                }
+                
+                appointment.Start_Time = item.Start_Time;
+                appointment.Slot_Time = item.Slot_Time;
+                appointment.Cause = item.Cause;
+                if (!string.IsNullOrEmpty(item.Chair))
+                {
+                    appointment.Chair = _chairRepository.Get(Convert.ToInt64(item.Chair)).Name;
+                }
+                appointmentList.Add(appointment);
+            }
+            return appointmentList;
         }
         public async Task<Appointment> GetByIdAsync(int id)
         {

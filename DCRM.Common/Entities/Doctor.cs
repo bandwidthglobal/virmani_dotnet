@@ -1,10 +1,11 @@
-﻿using System;
+﻿using DCRM.Common.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DCRM.Common.Entity;
 
-public partial class Doctor
+public partial class Doctor:BaseEntity
 {
     public long Id { get; set; }
 
