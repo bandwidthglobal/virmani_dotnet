@@ -61,7 +61,7 @@
                         </ng-template>
                     </ngx-datatable-column>>
                     <ngx-datatable-column name="Serial No" prop="serial_Id"[width]="100" ></ngx-datatable-column>
-                    <ngx-datatable-column name="Patient Info">
+                    <ngx-datatable-column name="Patient Info" prop="name">
                         <ng-template let-row="row" ngx-datatable-cell-template>
                             <div class="row" *ngIf="row.patient!=null">
                                 <div class="col-12">{{row.patient.name}}({{row.patient.mr_Number}})</div>
@@ -70,7 +70,7 @@
                             </div>
                         </ng-template>
                     </ngx-datatable-column>
-                    <ngx-datatable-column name="Date">
+                    <ngx-datatable-column name="Date" prop="date">
                         <ng-template let-row="row" ngx-datatable-cell-template>
                             <div class="row" style="background-color: rgba(40,110,251,.1); color: #286efb; border-radius: 20px !important;">
                               <div class="col-12" > <i class="fa fa-calendar" style="margin-right:5px;"></i>{{row.date | date: 'dd/MM/yyyy'}}</div>
@@ -82,7 +82,7 @@
                         </ng-template>
                     </ngx-datatable-column>
                     
-                    <ngx-datatable-column name="Consultation type" class="" prop="type" >
+                    <ngx-datatable-column name="Consultation Type" class="" prop="type" >
                         <ng-template let-value="value" let-row="row"  ngx-datatable-cell-template>
                             <div style="background-color: rgba(106,116,123,.1); color: #444; border-radius: 20px !important;" *ngIf="value==='offline'">
                                 <i class="fa fa-circle" style="margin-right:5px;"></i><span>{{value}}</span>

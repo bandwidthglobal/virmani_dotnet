@@ -57,8 +57,11 @@ export class TreatmentPalnComponent implements OnInit {
 
         // filter our data
         const temp = this.tempData.filter(function (d) {
-            return d.mr_Number.toLowerCase().indexOf(val) !== -1
-                || d.name.toLowerCase().indexOf(val) !== -1
+            return d.doctorName.toLowerCase().indexOf(val) !== -1
+                || d.type.toLowerCase().indexOf(val) !== -1
+                || d.treatmentStatus.toLowerCase().indexOf(val) !== -1
+                || d.teethNumber.toLowerCase().indexOf(val) !== -1
+                || d.date.toLowerCase().indexOf(val) !== -1
                 || !val;
         });
 

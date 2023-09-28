@@ -51,7 +51,7 @@ export class PatientinAppointmentsService implements Resolve<any> {
                 'Authorization': `Bearer ${currentUser.jwtToken}`
             });
             const requestOptions = { headers: headers };
-            const url = `${environment.apiUrl}/Appointment/GetAppointments/${id}`;
+            const url = `${environment.apiUrl}/Appointment/Get/Patient/${id}`;
             this._httpClient.get(url, requestOptions).subscribe((response: any) => {
                 this.rows = response;
                 debugger;

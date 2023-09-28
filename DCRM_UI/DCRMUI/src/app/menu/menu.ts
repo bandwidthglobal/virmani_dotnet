@@ -51,7 +51,7 @@ export const menu: CoreMenu[] = [
                 translate: 'MENU.APPS.Dashboards',
                 type: 'item',
                 icon: 'home',
-                url: 'dashboard/analytics'
+                url: 'admin/dashboard'
             },
             {
                 id: 'subscription',

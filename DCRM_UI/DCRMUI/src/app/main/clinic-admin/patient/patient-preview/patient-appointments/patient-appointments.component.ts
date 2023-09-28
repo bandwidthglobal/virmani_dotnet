@@ -62,8 +62,10 @@ export class PatientAppointmentsComponent implements OnInit, OnDestroy {
 
         // filter our data
         const temp = this.tempData.filter(function (d) {
-            return d.mr_Number.toLowerCase().indexOf(val) !== -1
-                || d.name.toLowerCase().indexOf(val) !== -1
+            return d.doctor_Name.toLowerCase().indexOf(val) !== -1
+                || d.slot_Time.toLowerCase().indexOf(val) !== -1
+                || d.cause.toLowerCase().indexOf(val) !== -1
+                || d.chair.toLowerCase().indexOf(val) !== -1
                 || !val;
         });
 

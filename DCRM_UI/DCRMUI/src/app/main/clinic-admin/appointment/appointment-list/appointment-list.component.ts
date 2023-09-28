@@ -61,9 +61,8 @@ export class AppointmentListComponent implements OnInit, OnDestroy {
         const val = event.target.value.toLowerCase();
         // filter our data
         const temp = this.tempData.filter(function (d) {
-            return d.medicine_Type.toLowerCase().indexOf(val) !== -1
-                || d.medicine_Company.toLowerCase().indexOf(val) !== -1
-                || d.form.toLowerCase().indexOf(val) !== -1
+            return d.serial_Id.toLowerCase().indexOf(val) !== -1
+                || d.patient.name.toLowerCase().indexOf(val) !== -1
                 || !val;
         });
 
