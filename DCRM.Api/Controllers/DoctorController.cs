@@ -4,8 +4,6 @@ using DCRM.Common.Authorization;
 using DCRM.Common.Dto;
 using DCRM.Common.Entity;
 using DCRM.Service.IService;
-using DCRM.Service.Service;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DCRM.Api.Controllers
@@ -16,23 +14,19 @@ namespace DCRM.Api.Controllers
     public class DoctorController : ControllerBase
     {
         public readonly IDoctorService _doctorService;
-        private readonly IMapper _mapper;
-        private readonly IConfiguration _configuration;
 
-        public DoctorController(IDoctorService doctorService, IMapper mapper, IConfiguration configuration)
+        public DoctorController(IDoctorService doctorService)
         {
 
             _doctorService = doctorService;
-            _mapper = mapper;
-            _configuration = configuration;
         }
 
         
 
         [HttpGet("GetAll")]
-        public async Task<IEnumerable<DoctorDto>> GetDoctorAsync()
+        public IEnumerable<DoctorDto> GetDoctorAsync()
         {
-            var user = (User)(Request.HttpContext.Items["User"]);
+            var user = Request.HttpContext.Items["User"] as User;
             var doctorList =  _doctorService.GetDoctorsByUserId(user.Id);
             return doctorList;
         }
@@ -45,22 +39,28 @@ namespace DCRM.Api.Controllers
             return doctor;
         }
 
+        [HttpGet("Get/Names")]
+        public List<DropdownDataDto> DoctorNameList()
+        {
+            var user = Request.HttpContext.Items["User"] as User;
+            return  _doctorService.NameList(user.Id);
+        }
         [AllowAnonymous]
         [HttpPost("Create")]
         public IActionResult Create([FromBody] DoctorRequest request)
         {
-            var user = (User)(Request.HttpContext.Items["User"]);
+            var user = Request.HttpContext.Items["User"] as User;
             request.User_Id = user.Id;
             request.Role = "Doctor";
             _doctorService.CreateDoctorAsync(request);
-            return Ok("created");
+            return Ok();
         }
 
         [HttpPost("Update")]
         public IActionResult Update(DoctorRequest request)
         {
             _doctorService.UpdateDoctor(request);
-            return Ok("Updated");
+            return Ok();
         }
 
         [HttpDelete("Delete/{id}")]

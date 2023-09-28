@@ -29,8 +29,14 @@ namespace DCRM.Api.Controllers
         [HttpGet("GetAll")]
         public  List<PrescriptionDto> Prescriptions(int userId)
         {
-            var user = (User)(Request.HttpContext.Items["User"]);
+            var user = Request.HttpContext.Items["User"] as User;
             return  _prescriptionfService.GetByUserId(user.Id);
+        }
+
+        [HttpGet("Get/Patient/{patientId}")]
+        public List<PrescriptionDto> Prescriptions(long patientId)
+        {
+            return _prescriptionfService.GetPrescriptions(patientId);
         }
 
         [HttpPost("Create")]

@@ -20,7 +20,7 @@ namespace DCRM.Api.Controllers
         public IActionResult Post(string type, AuthenticateRequest request)
         {
             
-            if (type.ToLower() == "user")
+            if (type.ToLower() == "user" || type.ToLower() == "admin")
             {
                 return Ok(_loginService.UserAuthenticate(request));
             }
@@ -36,28 +36,6 @@ namespace DCRM.Api.Controllers
             {
                 return Ok(_loginService.StaffAuthenticate(request));
             }
-        }
-
-        [HttpGet]
-        public IActionResult Get()
-        {
-            return Ok("");
-            //if (type == "user")
-            //{
-            //    return Ok(_loginService.UserAuthenticate(request));
-            //}
-            //else if (type == "patient")
-            //{
-            //    return Ok(_loginService.PatientAuthenticate(request));
-            //}
-            //else if (type == "doctor")
-            //{
-            //    return Ok(_loginService.DoctorAuthenticate(request));
-            //}
-            //else
-            //{
-            //    return Ok(_loginService.StaffAuthenticate(request));
-            //}
         }
     }
 }

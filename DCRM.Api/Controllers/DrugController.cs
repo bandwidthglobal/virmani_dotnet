@@ -21,7 +21,7 @@ namespace DCRM.Api.Controllers
         [HttpGet("GateAll")]
         public async Task<IEnumerable<Drug>> GetAllAsync()
         {
-            var user = (User)Request.HttpContext.Items["User"];
+            var user = Request.HttpContext.Items["User"] as User;
             return await _drugfService.GetByUserId(user.Id);
         }
 
@@ -47,7 +47,7 @@ namespace DCRM.Api.Controllers
         [HttpPost("Create")]
         public async Task<IActionResult>Create(Drug drug)
         {
-            var user = (User)Request.HttpContext.Items["User"];
+            var user = Request.HttpContext.Items["User"] as User;
             drug.User_Id = user.Id;
             await _drugfService.CreateAsync(drug);
             return Ok(drug);

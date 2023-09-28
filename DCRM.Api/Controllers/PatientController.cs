@@ -36,7 +36,7 @@ namespace DCRM.Api.Controllers
         [HttpGet("GetAll")]
         public async Task<List<PatientseDto>> GetAllAsync()
         {
-            var user = (User)(Request.HttpContext.Items["User"]);
+            var user = Request.HttpContext.Items["User"] as User;
             List<PatientseDto> patientList = _patientService.GetByUserIdAsync(Convert.ToInt32(user.Id));
             return patientList;
         }
@@ -52,7 +52,7 @@ namespace DCRM.Api.Controllers
         [HttpPost("Create")]
         public IActionResult Create(PatientRequest request)
         {
-            var user = (User)(Request.HttpContext.Items["User"]);
+            var user = Request.HttpContext.Items["User"] as User;
             request.User_Id = user.Id;
             _patientService.CreateAsync(request);
             return Ok("Created");
@@ -73,31 +73,22 @@ namespace DCRM.Api.Controllers
             return Ok(id);
         }
 
-        [HttpGet("Prescriptions/{patientId}")]
-        public List<PrescriptionDto> Prescriptions(int patientId)
+        [HttpGet("Get/Names")]
+        public List<DropdownDataDto> DoctorNameList()
         {
-            List<PrescriptionDto> prescriptionList = new List<PrescriptionDto>();
-           var prescriptions = _prescriptionService.GetPrescriptions(patientId);
-            return prescriptions;
-           
+            var user = Request.HttpContext.Items["User"] as User;
+            return _patientService.NameList(user.Id);
         }
 
-        [HttpGet("PatientLabData/{patientId}")]
-        public List<LabDataDto> PatientLabData(int patientId)
-        {
-            List<LabDataDto> labDataList = _patientService.GetPatientLabData(patientId);
-            return labDataList;
-        }
-
-        [HttpGet("PatientTreatmentplans/{patientId}")]
-        public List<TreatmentplanDto> PatientTreatmentplans(int patientId)
+        [HttpGet("Treatmentplans/{patientId}")]
+        public List<TreatmentplanDto> Treatmentplans(int patientId)
         {
             List<TreatmentplanDto> treatmentplanList = _patientService.GetPatientTreatmentplanList(patientId);
             return treatmentplanList;
         }
 
-        [HttpGet("PatientPayments/{patientId}")]
-        public List<PaymentHistoryDto> PatientPayments(int patientId)
+        [HttpGet("Payments/{patientId}")]
+        public List<PaymentHistoryDto> Payments(int patientId)
         {
             List<PaymentHistoryDto> paymentList = _patientService.GetPatientpaymentList(patientId);
             return paymentList;

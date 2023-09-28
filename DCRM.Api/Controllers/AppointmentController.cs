@@ -13,64 +13,94 @@ namespace DCRM.Api.Controllers
     [ApiController]
     public class AppointmentController : ControllerBase
     {
-        public readonly IAppointmentService _appointmentfService;
-        public AppointmentController(IAppointmentService appointmentfService)
+        public readonly IAppointmentService _appointmentService;
+        public AppointmentController(IAppointmentService appointmentService)
         {
-            _appointmentfService = appointmentfService;
+            _appointmentService = appointmentService;
         }
         [HttpGet("GetAll")]
         public async Task<IEnumerable<Appointment>> GetAllAsync()
         {
-            return await _appointmentfService.GetAllAsync();
+            return await _appointmentService.GetAllAsync();
         }
 
         [HttpGet("Get/{id}")]
         public async Task<Appointment> Get(int id)
         {
-            return await _appointmentfService.GetByIdAsync(id);
+            return await _appointmentService.GetByIdAsync(id);
         }
-        [HttpGet("GetByUser")]
-        public async Task<IEnumerable<Appointment>> GetByUser()
+        [HttpGet("Get/User")]
+        public IEnumerable<AppointmentDto> GetAppointment()
         {
-            var user = (User)(Request.HttpContext.Items["User"]);
-            return await _appointmentfService.GetByUserId(user.Id);
+            try
+            {
+                var user = Request.HttpContext.Items["User"] as User;
+                return _appointmentService.GetAppointMentWithPatientByUserId(user.Id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
-        [HttpGet("GetWithPatientByUser")]
-        public List<AppointmentDto> GetWithPatientByUser()
+        [HttpGet("Get/Patient/{patientId}")]
+        public List<AppointmentDto> GetPatientAppointment(int patientId)
         {
-            var user = (User)(Request.HttpContext.Items["User"]);
-            return _appointmentfService.GetAppointMentWithPatientByUserId(user.Id);
+            try
+            {
+                return _appointmentService.GetByPatientId(patientId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         [HttpPost("Create")]
         public async Task<IActionResult> Create(Appointment appointment)
         {
-            await _appointmentfService.CreateAsync(appointment);
-            return Ok(appointment);
+            try
+            {
+                await _appointmentService.CreateAsync(appointment);
+                return Ok(appointment);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+           
         }
 
         [HttpPost("Update")]
-        public async Task<IActionResult> Update(Appointment appointment)
+        public IActionResult Update(Appointment appointment)
         {
-            _appointmentfService.Update(appointment);
-            return Ok(appointment);
+            try
+            {
+                _appointmentService.Update(appointment);
+                return Ok(appointment);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+          
         }
 
 
         [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _appointmentfService.DeleteAsync(id);
-            return Ok(id);
-        }
-
-        [HttpGet("GetAppointments/{patientId}")]
-        public List<AppointmentDto> GetAppointmentsByPatient(int patientId)
-        {
-            var user = (User)(Request.HttpContext.Items["User"]);
-            List<AppointmentDto> appointments = _appointmentfService.GetByPatientId(user.Id, patientId);
-            return appointments;
+            try
+            {
+                await _appointmentService.DeleteAsync(id);
+                return Ok(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
     }
 }

@@ -33,7 +33,7 @@ namespace DCRM.Api.Controllers
         [HttpGet("GetAll")]
         public async Task<IEnumerable<Staff>> GetStaffListAsync()
         {
-            var user = (User)(Request.HttpContext.Items["User"]);
+            var user = Request.HttpContext.Items["User"] as User;
             IEnumerable<Staff> staffList =  _staffService.GetStaffsAsync().Result.Where(x => x.User_Id == user.Id);
             return staffList;
         }
@@ -47,7 +47,7 @@ namespace DCRM.Api.Controllers
         [HttpPost("Create")]
         public IActionResult Create(StaffRequest staffRequest)
         {
-            var user = (User)(Request.HttpContext.Items["User"]);
+            var user = (Request.HttpContext.Items["User"] as User);
             staffRequest.Role = "Staff";
             staffRequest.User_Id = user.Id;
             _staffService.CreateStaffByUserAsync(staffRequest);

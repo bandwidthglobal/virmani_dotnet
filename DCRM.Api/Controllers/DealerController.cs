@@ -27,7 +27,7 @@ namespace DCRM.Api.Controllers
         [HttpGet("GetAll")]
         public async Task<IEnumerable<DealerDto>> GetAllAsync()
         {
-            var user = (User)(Request.HttpContext.Items["User"]);
+            var user = Request.HttpContext.Items["User"] as User;
             if (user != null)
             {
                 userId = user.Id;
@@ -39,7 +39,7 @@ namespace DCRM.Api.Controllers
         [HttpGet("Get/{id}")]
         public async Task<DealerDto> GetAsync(int id)
         {
-            var user = (User)(Request.HttpContext.Items["User"]);
+            var user = Request.HttpContext.Items["User"] as User;
             if (user != null)
             {
                 userId = user.Id;
