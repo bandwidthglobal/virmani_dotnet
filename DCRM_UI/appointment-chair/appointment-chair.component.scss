@@ -1,0 +1,52 @@
+@import '@core/scss/base/pages/app-invoice.scss';
+@import '@core/scss/angular/libs/flatpickr.component.scss';
+@import '@core/scss/angular/libs/select.component.scss';
+
+.appoitment-chair-view .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.card-body {
+	background: #fff;
+	-webkit-transition: .5s;
+	transition: .5s;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	border: 1px solid #f2f2f2;
+	border-radius: 8px;
+	-webkit-box-shadow: 0 6px 24px #f1f1f1;
+	box-shadow: 0 6px 24px #f1f1f1;
+}
+
+.card-body {
+  color: #455a64;
+  display: block;
+  padding: 1rem 1rem;
+  position: relative;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.box-header.with-border {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  margin-bottom: 20px;
+}
+
+.box-title {
+  margin-bottom: 1.5rem;
+  line-height: 2.8rem;
+}
+
+.pull-right {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  display: flex;
+  gap: 10px;
+}
+.more-options-dropdown {
+  white-space: normal;
+}

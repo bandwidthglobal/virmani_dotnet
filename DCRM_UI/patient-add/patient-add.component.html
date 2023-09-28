@@ -1,0 +1,379 @@
+﻿<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <section id="multiple-column-form">
+      <div class="row match-height">
+        <div class="col-12">
+          <div class="card-body">
+            <div class="patient-header with-border">
+              <h3 class="card-title">Create New</h3>
+              <div class="patient-tools pull-right">
+                <a href="#" class="btn btn-light-secondary btn-sm">
+                  <i class="fa fa-bars"></i> All Patients
+                </a>
+              </div>
+            </div>
+            <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+              <div class="alert-body">
+                <p>{{ error }}</p>
+              </div>
+            </ngb-alert>
+            <form class="form" [formGroup]="addPatientForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <div class="avatar-upload text-center">
+                      <div class="avatar-edit">
+                        <input type="file" name="photo" id="imageUpload" accept=".png, .jpg, .jpeg">
+                        <label for="imageUpload"></label>
+                      </div>
+                      <div class="avatar-preview">
+                        <div id="imagePreview" [style.background-image]="'url(https://virmani.robotone.in/);'"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group validate">
+                        <label>Title* </label>
+                        <select id="title" name="title" placeholder="" type="text" class="form-control" autocomplete="off" aria-invalid="false">
+                          <option value="select">Select</option>
+                          <option value="Mr">Mr</option>
+                          <option value="Mrs">Mrs</option>
+                          <option value="Miss">Miss</option>
+                          <option value="Ms">Ms</option>
+                          <option value="Mx">Mx</option>
+                          <option value="Sir">Sir</option>
+                          <option value="Dr">Dr</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" required="" name="name" id="name">
+                        <span class="text-danger" id="name_error_message"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Guardian Person </label>
+                        <input type="text" class="form-control" name="guardian">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group validate">
+                        <label>Gender </label>
+                        <select class="form-control" name="sex" aria-invalid="false">
+                          <option>Select</option>
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Date of Birth</label>
+                        <input type="date" class="form-control" name="dob" id="date">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" class="form-control" id="age" name="age" min="0" max="100"
+                        oninput="this.value = !!this.value && Math.abs(this.value)>= 0 ? Math.abs(this.value) : null">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Weight </label>
+                        <input type="number" min="0" class="form-control" name="weight" aria-invalid="false">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Present Address</label>
+                        <textarea class="form-control" name="present_address"></textarea>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Permanent Address</label>
+                        <textarea class="form-control" name="permanent_address"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="">
+                <h3 class="border-bottom pb-20">Contact Information</h3>
+
+                <!-- Phone -->
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>Phone 1 <span class="text-danger">*</span></label>
+                      <input type="number" class="form-control" required name="phone1" id="phone" min="0" maxlength="10">
+                      <span class="text-danger" id="number_error_message"></span>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>Phone 2 </label>
+                      <input type="number" class="form-control" name="phone2" min="0" maxlength="10" id="phone2">
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>Phone 3 </label>
+                      <input type="number" class="form-control" name="phone3" min="0" maxlength="10" id="phone3">
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>Phone 4 </label>
+                      <input type="number" class="form-control" name="phone4" min="0" maxlength="10" id="phone4">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Email -->
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Email </label>
+                      <input type="email" class="form-control" name="email" id="email1">
+                      <span class="text-danger my-5" id="email_exist_error_message"></span>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Email 2 </label>
+                      <input type="email" class="form-control" name="email2" id="email2">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Address (Residential) -->
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Address (R)</label>
+                      <input type="text" class="form-control" name="address_r" id="address_r">
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label>City</label>
+                      <input type="text" class="form-control" name="city_r" id="city_r">
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label>Zip</label>
+                      <input type="text" class="form-control" name="zip_r" id="zip_r">
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label>Country</label>
+                      <input type="text" class="form-control" name="country_r" id="country_r">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Address (Other) -->
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Address (0)</label>
+                      <input type="text" class="form-control" name="address_o" id="address_o">
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label>City</label>
+                      <input type="text" class="form-control" name="city_o" id="city_o">
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label>Zip</label>
+                      <input type="text" class="form-control" name="zip_o" id="zip_o">
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label>Country</label>
+                      <input type="text" class="form-control" name="country_o" id="country_o">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Address (Other if living away from City) -->
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Address (Other if living away from City)</label>
+                      <input type="text" class="form-control" name="address_other" id="address_other">
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label>City</label>
+                      <input type="text" class="form-control" name="city_other" id="city_other">
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label>Zip</label>
+                      <input type="text" class="form-control" name="zip_other" id="zip_other">
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label>Country</label>
+                      <input type="text" class="form-control" name="country_other" id="country_other">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Physician -->
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>Physician</label>
+                      <input type="text" class="form-control" name="physician" id="physician">
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label>Referred By</label>
+                      <select name="referred_by" id="referred_by" class="form-control">
+                        <option value="">Select</option>
+                        <option value="Doctor">Doctor</option>
+                        <option value="Patient">Patient</option>
+                        <option value="Staff">Staff</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label id="referred_change">Enter Name</label>
+                      <input type="text" class="form-control" name="doctor_name" id="doctor_name">
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label>Phone</label>
+                      <input type="number" class="form-control" required name="phone_doctor" id="phone" maxlength="10">
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label>Relationship Type</label>
+                      <input type="text" class="form-control" name="relationship_type" id="relationship_type">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Medical History -->
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Medical History and Allergies</label>
+                      <textarea class="form-control" name="history_allergies" id="history_allergies"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Special Notes</label>
+                      <textarea class="form-control" name="special_notes" id="special_notes"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="insurance-loan-container">
+                <h3 class="border-bottom pb-20">Insurance/Loan Information</h3>
+                <div class="row" *ngFor="let item of items; let i = index">
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label>Select Type</label>
+                      <select name="insurance_loan[type]" class="form-control" [(ngModel)]="item.type">
+                        <option value="">Select Type</option>
+                        <option value="Insurance">Insurance</option>
+                        <option value="Loan">Loan</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>Name</label>
+                      <input type="text" name="insurance_loan[name]" class="form-control" [(ngModel)]="item.name">
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label>Amount</label>
+                      <input type="number" min="0" name="insurance_loan[amount]" class="form-control" [(ngModel)]="item.amount">
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label>Amount Spent</label>
+                      <input type="number" min="0" name="insurance_loan[balance_spent]" class="form-control" [(ngModel)]="item.balance_spent">
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>Balance Amount</label>
+                      <input type="number" min="0" name="insurance_loan[balance_amount]" class="form-control" [(ngModel)]="item.balance_amount">
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                    <button class="btn btn-danger" (click)="removeItem(i)">Remove</button>
+                  </div>
+                </div>
+                <span class="btn btn-primary add-more-insurance-loan" (click)="addNewItem()">
+                  <i aria-hidden="true" class="fa fa-plus"></i> Add More
+                </span>
+              </div>
+              
+              <div class="text-center mt-2">
+                <button type="submit" class="btn btn-primary" (click)="saveData()">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
