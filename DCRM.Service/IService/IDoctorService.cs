@@ -23,6 +23,6 @@ namespace DCRM.Service.IService
         void DeleteDoctor(int id);
         Task ChangeDoctorPasswordAsync(ChangePasswordRequest changePasswordModel);
         List<DoctorDto> GetDoctorsByUserId(int userId);
-       
+        List<DropdownDataDto> NameList(long userId);
     }
 }

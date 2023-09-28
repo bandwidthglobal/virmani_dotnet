@@ -43,12 +43,11 @@ namespace DCRM.Service.Service
             return appointments;
         }
 
-        public List<AppointmentDto> GetByPatientId(int userId, int patientId)
+        public List<AppointmentDto> GetByPatientId(int patientId)
         {
             List<AppointmentDto> appointmentList = new List<AppointmentDto>();
             AppointmentDto appointment = null;
-            var appointments = _appointmentRepository.GetByPatientId(patientId).Where(x => x.User_Id == userId).
-                OrderByDescending(x => x.Id).ToList();
+            var appointments = _appointmentRepository.GetByPatientId(patientId).OrderByDescending(x => x.Id).ToList();
             foreach (var item in appointments)
             {
                 appointment = new AppointmentDto();

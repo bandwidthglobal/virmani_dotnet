@@ -49,4 +49,5 @@ public  class LabDataDto
     public DateTime Created_At { get; set; }
 
     public DateTime Updated_At { get; set; }
+    public object TreatmentCode { get; set; }
 }

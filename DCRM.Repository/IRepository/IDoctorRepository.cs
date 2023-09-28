@@ -18,7 +18,7 @@ namespace DCRM.Repository.IRepository
 
         Task<Doctor> GetDoctorByIdAsync(int id);
 
-        //Task SaveDoctorAsync(Doctor doctor);
+        List<DropdownDataDto> NameList(long userId);
 
         Task  CreateDoctorAsync(DoctorRequest request);
 

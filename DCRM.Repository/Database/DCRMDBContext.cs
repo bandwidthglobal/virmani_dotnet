@@ -49,7 +49,7 @@ namespace DCRM.Repository.Database
 
         public DbSet<DealerMaterial> Dealer_Material { get; set; }
 
-        public DbSet<PatientScan> Patient_Scans { get; set; }
+        public DbSet<Patient_Scans> Patient_Scans { get; set; }
 
         public DbSet<PatientsContact> Patients_Contact { get; set; }
 
@@ -74,7 +74,7 @@ namespace DCRM.Repository.Database
 
         public virtual DbSet<Chamber> Chamber { get; set; }
 
-        public virtual DbSet<LabData> Lab_Data { get; set; }
+        public virtual DbSet<Lab_Data> Lab_Data { get; set; }
 
         public virtual DbSet<Teethinfo> Teethinfo { get; set; }
 

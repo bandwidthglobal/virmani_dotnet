@@ -205,6 +205,9 @@ namespace DCRM.Service.Service
             }
             return doctorDtoList;
         }
-
+        public List<DropdownDataDto> NameList(long userId)
+        {
+           return _doctorRepository.NameList(userId);
+        }
     }
 }

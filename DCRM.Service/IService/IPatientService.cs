@@ -23,7 +23,7 @@ namespace DCRM.Service.IService
         void Update(PatientRequest request);
         void Delete(int id);
         Task ChangePasswordAsync(ChangePasswordRequest changePasswordModel);
-        List<PatientScan> GetPatientScan(int patientId);
+        List<Patient_Scans> GetPatientScan(int patientId);
 
         List<LabDataDto> GetPatientLabData(int patientId);
 
@@ -34,5 +34,7 @@ namespace DCRM.Service.IService
         List<PaymentHistoryDto> GetPatientpaymentList(int patientId);
 
         void CreatedWorkDone(Workdone_New workdone);
+
+        List<DropdownDataDto> NameList(long userId);
     }
 }

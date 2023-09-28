@@ -9,15 +9,15 @@ public partial class PatientTest
 
     public long Patient_Id { get; set; }
 
-    public string Test_Name { get; set; } = null!;
+    public string Test_Name { get; set; } 
 
     public DateTime Report_Date { get; set; }
 
-    public string Test_Price { get; set; } = null!;
+    public string Test_Price { get; set; } 
 
     public int Status { get; set; }
 
-    public string Report { get; set; } = null!;
+    public string Report { get; set; } 
 
     public string? Report_File { get; set; }
 

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using DCRM.Common.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace DCRM.Common.Entity;
 
-public  class LabData
+public  class Lab_Data:BaseEntity
 {
     public long Id { get; set; }
 

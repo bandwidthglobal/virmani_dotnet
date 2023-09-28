@@ -251,9 +251,9 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="patientId"></param>
         /// <returns></returns>
-        public List<PatientScan> GetPatientScan(int patientId)
+        public List<Patient_Scans> GetPatientScan(int patientId)
         {
-            List<PatientScan> patientScans = new List<PatientScan>();
+            List<Patient_Scans> patientScans = new List<Patient_Scans>();
             patientScans = _patientRepository.GetPatientScanList().Where(x => x.Patient_Id == patientId).ToList();
             return patientScans;
         }
@@ -264,7 +264,7 @@ namespace DCRM.Service.Service
         /// <returns></returns>
         public List<LabDataDto> GetPatientLabData(int patientId)
         {
-            List<LabData> labDataList = new List<LabData>();
+            List<Lab_Data> labDataList = new List<Lab_Data>();
             List<LabDataDto> labDatas = new List<LabDataDto>();
             labDataList = _patientRepository.GetPatientLabList().Where(x => x.Patient_Id == patientId).ToList();
             foreach (var item in labDataList)
@@ -437,18 +437,19 @@ namespace DCRM.Service.Service
                     paymentHistoryDto.DoctorName = doctor.Name;
                     paymentHistoryDto.DoctorId = Convert.ToInt32(doctor.Id);
                 }
-                var workDoneNew = _workdoneNewRepository.GetAll().Where(x => x.Id == item.Workdone_Id).FirstOrDefault();
+                var workDoneNew = _workdoneRepository.GetAll().Where(x => x.Id == item.Workdone_Id).FirstOrDefault();
                 if (workDoneNew != null)
                 {
-                    var treatment = _treatmentplansRepository.GetAll().Where(x => x.Id == workDoneNew.Treatment_Id).FirstOrDefault();
-                    if (treatment != null)
-                    {
-                        paymentHistoryDto.ToothCode = treatment.Job;
-                    }
+                    paymentHistoryDto.ToothCode = workDoneNew.Print_Tooth_Name;
+                    //var treatment = _treatmentplansRepository.GetAll().Where(x => x.Id == workDoneNew.Treatment_Id).FirstOrDefault();
+                    //if (treatment != null)
+                    //{
+                    //    paymentHistoryDto.ToothCode = treatment.Job;
+                    //}
                 }
                 paymentList.Add(paymentHistoryDto);
             }
-            return paymentList;
+            return paymentList.OrderByDescending(x=>x.Id).ToList();
 
         }
 
@@ -462,8 +463,9 @@ namespace DCRM.Service.Service
 
         }
 
-   
-    
-    
+        public List<DropdownDataDto> NameList(long userId)
+        {
+            return _patientRepository.NameList(userId);
+        }
     }
 }

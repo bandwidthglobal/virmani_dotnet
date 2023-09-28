@@ -297,7 +297,23 @@ namespace DCRM.Repository.Repository
                 throw new Exception("some technical problem. Please contact to admin");
             }
         }
-
+        /// <summary>
+        /// get all doctor by userid
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public List<DropdownDataDto> NameList(long userId)
+        {
+           var doctors=_contex.Doctors.Where(x=>x.User_Id== userId).ToList();
+            DropdownDataDto data = new DropdownDataDto();
+            List<DropdownDataDto> dataList= new List<DropdownDataDto>();
+            foreach (var doctor in doctors)
+            {
+                data = new DropdownDataDto();
+                data.Id=doctor.Id; data.Name=doctor.Name; dataList.Add(data);
+            }
+            return dataList;
+        }
         /// <summary>
         /// remove staff by staff id from staffs table
         /// </summary>
@@ -341,7 +357,7 @@ namespace DCRM.Repository.Repository
         /// <returns></returns>
         public List<Doctor> GetDoctorsByUserId(int userId)
         {
-            var doctorList = _contex.Doctors.Where(x => x.User_Id == userId && x.Is_Delete==0).ToList();
+            var doctorList = _contex.Doctors.Where(x => x.User_Id == userId && x.Is_Delete == 0).ToList();
             return doctorList;
         }
         /// <summary>

@@ -10,9 +10,9 @@ namespace DCRM.Repository.IRepository
 {
     public interface ITreatmentplanRepository
     {
-        List<Treatmentplans> GetAll(int patientId);
+        List<Treatmentplans> GetAll(long patientId);
 
-        Treatmentplans GetById(int id);
+        Treatmentplans GetById(long id);
 
         int Create(Treatmentplans treatmentplan);
 

@@ -4,18 +4,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DCRM.Common.Entity;
 
-public partial class PatientRequest
+public  class PatientRequest
 {
     public int Id { get; set; }
 
-    public string Chamber_Id { get; set; } = null!;
+    public string? Chamber_Id { get; set; } 
 
-    public int User_Id { get; set; }
+    public int? User_Id { get; set; }
 
-    public string Mr_Number { get; set; } = null!;
+    public string? Mr_Number { get; set; }
 
     [Required]
-    public string? Name { get; set; }
+    public string Name { get; set; }
 
     public string? User_name { get; set; }
 
@@ -35,9 +35,6 @@ public partial class PatientRequest
 
     public string? Mobile { get; set; }
 
-
-    [DataType(DataType.Password)]
-    [StringLength(50, MinimumLength = 8, ErrorMessage = "Password should be minimum 8 characters and a maximum of 20 characters")]
     public string? Password { get; set; }
 
     public string? Title { get; set; }
@@ -53,14 +50,14 @@ public partial class PatientRequest
 
     public string? Permanent_Address { get; set; }
 
-    public int Is_Delete { get; set; }
+    public int? Is_Delete { get; set; }
 
     public DateTime? Created_At { get; set; }
 
     public List<PatientsContact>? PatientContacts { get; set; }
     public List<PatientsInsuranceLoan>? PatientInsuranceLoans { get; set; }
 
-    public List<PatientScan>? PatientScans { get; set; }
+    public List<Patient_Scans>? PatientScans { get; set; }
 
     public List<PatientTest>? PatientTests { get; set; }
 }

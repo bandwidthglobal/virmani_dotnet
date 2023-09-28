@@ -28,7 +28,7 @@ namespace DCRM.Repository.IRepository
 
         List<PatientTest> GetPatientTestList(int patientId);
 
-        List<PatientScan> GetPatientScanList(int patientId);
+        List<Patient_Scans> GetPatientScanList(int patientId);
 
         void CreateAsync(PatientRequest request);
 
@@ -39,9 +39,10 @@ namespace DCRM.Repository.IRepository
         Task ChangePatientPasswordAsync(ChangePasswordRequest changePasswordModel);
 
 
-        List<PatientScan> GetPatientScanList();
+        List<Patient_Scans> GetPatientScanList();
 
-        List<LabData> GetPatientLabList();
+        List<Lab_Data> GetPatientLabList();
 
+        List<DropdownDataDto> NameList(long userId);
     } 
 }

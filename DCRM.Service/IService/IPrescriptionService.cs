@@ -22,9 +22,7 @@ namespace DCRM.Service.IService
 
         Task DeleteAsync(int id);
 
-        List<PrescriptionDto> GetPrescriptions(int userId,int patientId);
-
-        List<PrescriptionDto> GetPrescriptions(int patientId);
+        List<PrescriptionDto> GetPrescriptions(long patientId);
 
     }
 }

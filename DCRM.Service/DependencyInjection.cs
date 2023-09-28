@@ -76,7 +76,11 @@ namespace DCRM.Service
 
             services.AddScoped<IPaymentService, PaymentService>();
 
-           
+            services.AddScoped<ILabService, LabService>();
+            services.AddScoped<IDigitalDataService, DigitalDataService>();
+
+            services.AddScoped<IChairService, ChairService>();
+
             #endregion
             return services;
         }

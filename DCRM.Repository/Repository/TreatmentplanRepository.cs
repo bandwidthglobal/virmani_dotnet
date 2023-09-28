@@ -27,12 +27,12 @@ namespace DCRM.Repository.Repository
 
         }
 
-        public List<Treatmentplans> GetAll(int patientId)
+        public List<Treatmentplans> GetAll(long patientId)
         {
             return _contex.Treatmentplans.Where(x => x.Patient_Id == patientId && x.Status == 0).OrderByDescending(x => x.Id).ToList();
         }
 
-        public Treatmentplans GetById(int id)
+        public Treatmentplans GetById(long id)
         {
             return _contex.Treatmentplans.Where(x => x.Id == id).FirstOrDefault();
         }

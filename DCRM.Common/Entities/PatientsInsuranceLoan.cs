@@ -9,15 +9,15 @@ public partial class PatientsInsuranceLoan
 
     public long Patients_Id { get; set; }
 
-    public string Type { get; set; } = null!;
+    public string Type { get; set; } 
 
-    public string Name { get; set; } = null!;
+    public string Name { get; set; } 
 
-    public string Amount { get; set; } = null!;
+    public string Amount { get; set; } 
 
-    public string Balance_Spent { get; set; } = null!;
+    public string Balance_Spent { get; set; } 
 
-    public string Balance_Amount { get; set; } = null!;
+    public string Balance_Amount { get; set; } 
 
     public DateTime Created_At { get; set; }
 

@@ -96,7 +96,7 @@ namespace DCRM.Repository.Repository
         {
             Patientse? patient = _contex.Patientses.Where(x => x.Is_Delete == 0 && x.Id == id).FirstOrDefault();
             return patient;
-            
+
         }
         /// <summary>
         /// 
@@ -150,9 +150,9 @@ namespace DCRM.Repository.Repository
         /// <param name="patientId"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public List<PatientScan> GetPatientScanList(int patientId)
+        public List<Patient_Scans> GetPatientScanList(int patientId)
         {
-            List<PatientScan> patientScan = _contex.Patient_Scans.Where(x => x.Patient_Id == patientId).ToList();
+            List<Patient_Scans> patientScan = _contex.Patient_Scans.Where(x => x.Patient_Id == patientId).ToList();
             if (patientScan != null)
             {
                 return patientScan;
@@ -178,21 +178,19 @@ namespace DCRM.Repository.Repository
         {
             try
             {
-
-
-                var patientDetails = _contex.Patientses.FirstOrDefault(x => x.Email == request.Email);
+                string phone = request.PatientContacts[0].Phone1.ToString();
+                var patientDetails = _contex.Patientses.FirstOrDefault(x => x.Mobile == phone);
                 if (patientDetails == null)
                 {
 
                     Patientse patient = new Patientse();
-                    patient.Chamber_Id = request.Chamber_Id;
-                    patient.UserName = request.User_name;
-                    patient.Mr_Number = request.Mr_Number;
+                    patient.Chamber_Id = request.Chamber_Id==null?"123456": request.Chamber_Id;
+                    patient.Mr_Number = request.Mr_Number == null ? "123456" : request.Mr_Number;
                     patient.Name = request.Name;
-                    patient.UserName = request.User_name;
                     patient.Slug = request.Slug;
                     patient.Thumb = request.Thumb;
-                    patient.Email = request.Email;
+                    patient.Email = request.Email == null ? phone+"@virmani.com" : request.Email;
+                    patient.Mobile = phone;
                     patient.Age = request.Age;
                     patient.Weight = request.Weight;
                     patient.Sex = request.Sex;
@@ -212,6 +210,9 @@ namespace DCRM.Repository.Repository
                             var contact = _contex.Patients_Contact.FirstOrDefault(x => x.Id == item.Id);
                             if (contact == null)
                             {
+                                item.Created_At =System.DateTime.Now;
+                                item.Updated_At
+                                    = System.DateTime.Now;
                                 item.Patient_Id = patient.Id;
                                 _contex.Patients_Contact.Add(item);
                             }
@@ -226,6 +227,9 @@ namespace DCRM.Repository.Repository
                             if (insuranceLoan == null)
                             {
                                 item.Patients_Id = patient.Id;
+                                item.Created_At = System.DateTime.Now;
+                                item.Updated_At
+                                    = System.DateTime.Now;
                                 _contex.Patients_Insurance_Loan.Add(item);
                             }
                             _contex.SaveChanges();
@@ -239,6 +243,9 @@ namespace DCRM.Repository.Repository
                             if (patientScan == null)
                             {
                                 item.Patient_Id = patient.Id;
+                                item.Created_At = System.DateTime.Now;
+                                item.Updated_At
+                                    = System.DateTime.Now;
                                 _contex.Patient_Scans.Add(item);
                             }
                             _contex.SaveChanges();
@@ -254,6 +261,9 @@ namespace DCRM.Repository.Repository
                             if (patientTest == null)
                             {
                                 item.Patient_Id = patient.Id;
+                                item.Created_At = System.DateTime.Now;
+                                item.Updated_At
+                                    = System.DateTime.Now;
                                 _contex.Patient_Tests.Add(item);
                             }
                             _contex.SaveChanges();
@@ -262,7 +272,7 @@ namespace DCRM.Repository.Repository
                 }
                 else
                 {
-                    throw new SqlAlreadyFilledException("patient already exist");
+                    throw new SqlAlreadyFilledException("phone is already exist");
                 }
             }
             catch (Exception ex)
@@ -278,17 +288,18 @@ namespace DCRM.Repository.Repository
         /// <exception cref="NotImplementedException"></exception>
         public void Update(PatientRequest request)
         {
+            string phone = request.PatientContacts[0].Phone1.ToString();
             Patientse patient = _contex.Patientses.FirstOrDefault(x => x.Id == request.Id);
             if (patient != null)
             {
-                patient.Chamber_Id = request.Chamber_Id;
+                patient.Chamber_Id = request.Chamber_Id == null ? patient.Chamber_Id : request.Chamber_Id;
                 patient.UserName = request.User_name;
-                patient.Mr_Number = request.Mr_Number;
+                patient.Mr_Number = request.Mr_Number == null ? patient.Mr_Number : request.Mr_Number;
                 patient.Name = request.Name;
                 patient.UserName = request.User_name;
                 patient.Slug = request.Slug;
                 patient.Thumb = request.Thumb;
-                patient.Email = request.Email;
+                patient.Email = request.Email == null ? patient.Email : request.Email;
                 patient.Age = request.Age;
                 patient.Weight = request.Weight;
                 patient.Sex = request.Sex;
@@ -430,7 +441,7 @@ namespace DCRM.Repository.Repository
 
         public void Delete(int id)
         {
-            var patient =  _contex.Patientses.FirstOrDefault(x => x.Id == id);
+            var patient = _contex.Patientses.FirstOrDefault(x => x.Id == id);
             if (patient != null)
             {
                 patient.Is_Delete = 1;
@@ -439,19 +450,32 @@ namespace DCRM.Repository.Repository
             }
         }
 
-        public List<PatientScan> GetPatientScanList()
+        public List<Patient_Scans> GetPatientScanList()
         {
-            List<PatientScan> patientScans = new List<PatientScan>();
+            List<Patient_Scans> patientScans = new List<Patient_Scans>();
             patientScans = _contex.Patient_Scans.ToList();
             return patientScans;
         }
-        public List<LabData> GetPatientLabList()
+        public List<Lab_Data> GetPatientLabList()
         {
-            List<LabData> labdataList = new List<LabData>();
+            List<Lab_Data> labdataList = new List<Lab_Data>();
             labdataList = _contex.Lab_Data.ToList();
             return labdataList;
         }
 
-       
+        public List<DropdownDataDto> NameList(long userId)
+        {
+            var patients = _contex.Patientses.Where(x => x.User_Id == userId).ToList();
+            DropdownDataDto data = new DropdownDataDto();
+            List<DropdownDataDto> dataList = new List<DropdownDataDto>();
+            foreach (var patient in patients)
+            {
+                data = new DropdownDataDto();
+                data.Id = patient.Id; data.Name = patient.Name; dataList.Add(data);
+            }
+            return dataList;
+        }
+
+
     }
 }

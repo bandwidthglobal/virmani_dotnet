@@ -91,9 +91,9 @@ namespace DCRM.Service.Service
             //return prescriptions;
         }
 
-        public List<PrescriptionDto> GetPrescriptions(int userId, int patientId)
+        public List<PrescriptionDto> GetPrescriptionsOld(long patientId)
         {
-            var prescriptions = _prescriptionRepository.GetAll().Where(x => x.User_Id == userId && x.Patient_Id == patientId);
+            var prescriptions = _prescriptionRepository.GetAll().Where(x =>  x.Patient_Id == patientId);
             var drugs = _drugRepository.GetAllAsync().Result;
             var patients = _patientRepository.GetAllAsync().Result;
             List<PrescriptionDto> prescriptionsList = new List<PrescriptionDto>();
@@ -133,7 +133,7 @@ namespace DCRM.Service.Service
             return prescriptionsList;
         }
 
-        public List<PrescriptionDto> GetPrescriptions(int patientId)
+        public List<PrescriptionDto> GetPrescriptions(long patientId)
         {
             var prescriptions = _prescriptionRepository.GetAll().Where(x => x.Patient_Id == patientId);
             var drugs = _drugRepository.GetAllAsync().Result;
@@ -144,14 +144,8 @@ namespace DCRM.Service.Service
             {
                 prescriptionDto = new PrescriptionDto();
                 prescriptionDto.Next_Duration = item.Next_Duration;
-                List<Drug> drugList = new List<Drug>();
-                var patientDrugIds = item.Drug_Id.Split(',');
-                foreach (var did in patientDrugIds)
-                {
-                    var patientDrug = drugs.Where(x => x.Id == Convert.ToInt32(did)).FirstOrDefault();
-                    drugList.Add(patientDrug);
-                }
-                prescriptionDto.Drugs = drugList;
+                prescriptionDto.Id= item.Id;
+                prescriptionDto.Created_At = item.Created_At;
                 var patient = patients.Where(x => x.Id == item.Patient_Id).FirstOrDefault();
                 if (patient != null)
                 {
@@ -160,16 +154,6 @@ namespace DCRM.Service.Service
                     prescriptionDto.Phone = patient.Mobile;
                     prescriptionDto.MrNumber = patient.Mr_Number;
                 }
-
-                prescriptionDto.User_Id = item.User_Id;
-                prescriptionDto.Id = item.Id;
-                prescriptionDto.Chamber_Id = item.Chamber_Id;
-                prescriptionDto.Chamber = _chamberRepository.GetAll().Where(x => x.Uid == item.Chamber_Id.ToString()).FirstOrDefault();
-                prescriptionDto.Check_Report = item.Check_Report;
-                prescriptionDto.Created_At = item.Created_At;
-                prescriptionDto.Next_Duration = item.Next_Duration;
-                prescriptionDto.Next_Time = item.Next_Time;
-                prescriptionDto.Check_Report = item.Check_Report;
                 prescriptionsList.Add(prescriptionDto);
             }
             return prescriptionsList;

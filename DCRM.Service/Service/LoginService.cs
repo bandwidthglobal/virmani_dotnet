@@ -26,8 +26,6 @@ namespace DCRM.Service.Service
         }
 
 
-       
-
         public AuthenticateResponse DoctorAuthenticate(AuthenticateRequest authenticateRequest)
         {
             authenticateRequest.Password = EncryptionDecryptionUsingSymmetricKey.EncryptString(_configuration.GetSection("PasswordHasKey").Value, authenticateRequest.Password);
