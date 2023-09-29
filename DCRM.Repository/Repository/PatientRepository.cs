@@ -46,16 +46,16 @@ namespace DCRM.Repository.Repository
         /// <param name="changePasswordModel"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task ChangePatientPasswordAsync(ChangePasswordRequest changePasswordModel)
+        public void ChangePatientPassword(ChangePasswordRequest changePasswordModel)
         {
             if (changePasswordModel.Type.ToLower() == "patient")
             {
-                var patient = await _contex.Patientses.FirstOrDefaultAsync(x => x.Id == changePasswordModel.Id && x.Is_Delete == 0);
+                var patient =  _contex.Patientses.FirstOrDefault(x => x.Id == changePasswordModel.Id && x.Is_Delete == 0);
                 if (patient != null)
                 {
                     patient.Password = changePasswordModel.NewPassword;
                     _contex.Update(patient);
-                    await _contex.SaveChangesAsync();
+                    _contex.SaveChanges();
                 }
                 else { throw new KeyNotFoundException("no record found"); }
             }
@@ -66,7 +66,7 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<IEnumerable<Patientse>> GetAllAsync()
+        public IEnumerable<Patientse> GetAll()
         {
             IEnumerable<Patientse> patients = _contex.Patientses.Where(x => x.Is_Delete == 0);
             if (patients != null)
@@ -76,23 +76,7 @@ namespace DCRM.Repository.Repository
             else { throw new KeyNotFoundException("no record found"); }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public async Task<Patientse> GetByIdAsync(int id)
-        {
-            Patientse patient = await _contex.Patientses.Where(x => x.Is_Delete == 0 && x.Id == id).FirstOrDefaultAsync();
-            if (patient != null)
-            {
-                return patient;
-            }
-            else { throw new KeyNotFoundException("no record found"); }
-
-        }
-        public Patientse Get(int id)
+        public Patientse Get(long id)
         {
             Patientse? patient = _contex.Patientses.Where(x => x.Is_Delete == 0 && x.Id == id).FirstOrDefault();
             return patient;
@@ -174,7 +158,7 @@ namespace DCRM.Repository.Repository
         /// <param name="request"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public void CreateAsync(PatientRequest request)
+        public void Create(PatientRequest request)
         {
             try
             {
@@ -187,6 +171,7 @@ namespace DCRM.Repository.Repository
                     patient.Chamber_Id = request.Chamber_Id==null?"123456": request.Chamber_Id;
                     patient.Mr_Number = request.Mr_Number == null ? "123456" : request.Mr_Number;
                     patient.Name = request.Name;
+                    patient.User_Id = request.User_Id;
                     patient.Slug = request.Slug;
                     patient.Thumb = request.Thumb;
                     patient.Email = request.Email == null ? phone+"@virmani.com" : request.Email;
@@ -439,7 +424,7 @@ namespace DCRM.Repository.Repository
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
 
-        public void Delete(int id)
+        public void Delete(long id)
         {
             var patient = _contex.Patientses.FirstOrDefault(x => x.Id == id);
             if (patient != null)
@@ -474,6 +459,20 @@ namespace DCRM.Repository.Repository
                 data.Id = patient.Id; data.Name = patient.Name; dataList.Add(data);
             }
             return dataList;
+        }
+
+        public ReferBy GetReferBy(long patientId)
+        {
+            ReferBy referBy = new ReferBy();
+            var contact=_contex.Patients_Contact.FirstOrDefault(x=>x.Patient_Id == patientId);
+            if (contact!=null)
+            {
+                referBy.RefferedBy = contact.Reffered_By;
+                referBy.Name = contact.Doctor_Name;
+                referBy.RelationshipType = contact.Relationship_Type;
+            }
+            return referBy;
+
         }
 
 

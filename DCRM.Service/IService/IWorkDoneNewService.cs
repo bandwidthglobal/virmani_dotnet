@@ -1,4 +1,5 @@
 ﻿using DCRM.Common.Entity;
+using Demo_Api.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,10 @@ namespace DCRM.Service.IService
         Workdone_New GetWorkdoneNew(int id);
 
         List<Workdone_New> GetWorkdonesByTreatMentId(int id);
+
+        void Create(Workdone workdone, long treatmentId);
+
+
 
     }
 }

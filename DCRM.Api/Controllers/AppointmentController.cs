@@ -19,42 +19,16 @@ namespace DCRM.Api.Controllers
             _appointmentService = appointmentService;
         }
         [HttpGet("GetAll")]
-        public async Task<IEnumerable<Appointment>> GetAllAsync()
+        public IEnumerable<Appointment> GetAll()
         {
-            return await _appointmentService.GetAllAsync();
+            var user = Request.HttpContext.Items["User"] as User;
+            return _appointmentService.GetAll(user.Id, user.Role);
         }
 
         [HttpGet("Get/{id}")]
-        public async Task<Appointment> Get(int id)
+        public Appointment Get(int id)
         {
-            return await _appointmentService.GetByIdAsync(id);
-        }
-        [HttpGet("Get/User")]
-        public IEnumerable<AppointmentDto> GetAppointment()
-        {
-            try
-            {
-                var user = Request.HttpContext.Items["User"] as User;
-                return _appointmentService.GetAppointMentWithPatientByUserId(user.Id);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            
-        }
-
-        [HttpGet("Get/Patient/{patientId}")]
-        public List<AppointmentDto> GetPatientAppointment(int patientId)
-        {
-            try
-            {
-                return _appointmentService.GetByPatientId(patientId);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            return  _appointmentService.Get(id);
         }
 
         [HttpPost("Create")]
@@ -62,7 +36,7 @@ namespace DCRM.Api.Controllers
         {
             try
             {
-                await _appointmentService.CreateAsync(appointment);
+                _appointmentService.Create(appointment);
                 return Ok(appointment);
             }
             catch (Exception ex)
@@ -89,11 +63,11 @@ namespace DCRM.Api.Controllers
 
 
         [HttpDelete("Delete/{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(int id)
         {
             try
             {
-                await _appointmentService.DeleteAsync(id);
+                _appointmentService.Delete(id);
                 return Ok(id);
             }
             catch (Exception ex)

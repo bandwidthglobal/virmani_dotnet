@@ -3,6 +3,7 @@ using DCRM.Common.Dto;
 using DCRM.Common.Entity;
 using DCRM.Service.IService;
 using DCRM.Service.Service;
+using Demo_Api.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata;
@@ -15,9 +16,9 @@ namespace DCRM.Api.Controllers
     public class WorkDoneController : ControllerBase
     {
         private readonly IPatientService _patientService;
-        private readonly IWorkDoneNewService _workDoneService;
+        private readonly IWorkDoneService _workDoneService;
         private readonly ILogger<WorkDoneController> _logger;
-        public WorkDoneController(IPatientService patientService, ILogger<WorkDoneController> logger, IWorkDoneNewService workDoneService)
+        public WorkDoneController(IPatientService patientService, ILogger<WorkDoneController> logger, IWorkDoneService workDoneService)
         {
             _patientService = patientService;
             _logger = logger;
@@ -26,14 +27,14 @@ namespace DCRM.Api.Controllers
 
         }
 
-        [HttpPost("Create")]
-        public IActionResult Post(Workdone_New workdone)
+        [HttpPost("Create/{treatmentId}")]
+        public IActionResult Create(Workdone workdone,long treatmentId)
         {
             try
             {
                 if (workdone != null)
                 {
-                    _patientService.CreatedWorkDone(workdone);
+                    _workDoneService.Create(workdone, treatmentId);
                     return Ok("created");
                 }
                 else
@@ -51,23 +52,31 @@ namespace DCRM.Api.Controllers
 
         }
 
-
-        [AllowAnonymous]
-        [HttpGet("GetWorkdoneByTreatment/{treatmentId}")]
-
-        public List<Workdone_New> GetWorkdoneByTreatment(int treatmentId)
+        [HttpPost("Update")]
+        public IActionResult Update(Workdone workdone)
         {
-            List<Workdone_New> workdoneList= new List<Workdone_New>();
-            workdoneList = _workDoneService.GetWorkdonesByTreatMentId(treatmentId);
-            return workdoneList;
+            try
+            {
+                if (workdone != null)
+                {
+                    _workDoneService.Update(workdone);
+                    return Ok("created");
+                }
+                else
+                {
+                    _logger.LogInformation("Bad Request");
+                    throw new BadHttpRequestException("Bad Request");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex.Message);
+                throw;
+            }
 
         }
-
-        [HttpGet("GetWorkDonesByPatient/{patientId}")]
-        public List<WorkDoneDto> GetWorkDonesByPatient(int patientId)
-        {
-            List<WorkDoneDto> workdoneList = _patientService.GetPatientWorkDoneList(patientId);
-            return workdoneList;
-        }
+      
+        
     }
 }

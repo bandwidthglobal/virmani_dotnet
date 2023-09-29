@@ -31,71 +31,27 @@ namespace DCRM.Service.Service
             _workDoneRepository= workDoneRepository;
         }
 
-        public async Task CreateAsync(Prescription request)
+        public void Create(Prescription request)
         {
-            await _prescriptionRepository.CreateAsync(request);
+             _prescriptionRepository.Create(request);
         }
 
-        public async Task DeleteAsync(int id)
+        public void Delete(long id)
         {
-            await _prescriptionRepository.DeleteAsync(id);
+             _prescriptionRepository.Delete(id);
         }
 
-        public async Task<Prescription> GetByIdAsync(int id)
+        public Prescription Get(long id)
         {
-            var prescription = await _prescriptionRepository.GetByIdAsync(id);
+            var prescription =  _prescriptionRepository.Get(id);
             return prescription;
         }
 
-        public List<PrescriptionDto> GetByUserId(int userId)
+        public List<PrescriptionDto> GetAll(long userId)
         {
             var prescriptions = _prescriptionRepository.GetAll().Where(x => x.User_Id == userId );
             var drugs = _drugRepository.GetAllAsync().Result;
-            var patients = _patientRepository.GetAllAsync().Result;
-            List<PrescriptionDto> prescriptionsList = new List<PrescriptionDto>();
-            PrescriptionDto prescriptionDto = new PrescriptionDto();
-            foreach (var item in prescriptions)
-            {
-                prescriptionDto = new PrescriptionDto();
-                prescriptionDto.Next_Duration = item.Next_Duration;
-                List<Drug> drugList = new List<Drug>();
-                var patientDrugIds = item.Drug_Id.Split(',');
-                foreach (var did in patientDrugIds)
-                {
-                    var patientDrug = drugs.Where(x => x.Id == Convert.ToInt32(did)).FirstOrDefault();
-                    drugList.Add(patientDrug);
-                }
-                prescriptionDto.Drugs = drugList;
-                var patient = patients.Where(x => x.Id == item.Patient_Id).FirstOrDefault();
-                if (patient != null)
-                {
-                    prescriptionDto.Name = patient.Name;
-                    prescriptionDto.Email = patient.Email;
-                    prescriptionDto.Phone = patient.Mobile;
-                    prescriptionDto.MrNumber = patient.Mr_Number;
-                }
-
-                prescriptionDto.User_Id = item.User_Id;
-                prescriptionDto.Id = item.Id;
-                prescriptionDto.Chamber_Id = item.Chamber_Id;
-                prescriptionDto.Chamber = _chamberRepository.GetAll().Where(x => x.Uid == item.Chamber_Id.ToString()).FirstOrDefault();
-                prescriptionDto.Check_Report = item.Check_Report;
-                prescriptionDto.Created_At = item.Created_At;
-                prescriptionDto.Next_Duration = item.Next_Duration;
-                prescriptionDto.Next_Time = item.Next_Time;
-                prescriptionDto.Check_Report = item.Check_Report;
-                prescriptionsList.Add(prescriptionDto);
-            }
-            return prescriptionsList;
-            //var prescriptions = _prescriptionRepository.GetByUserId(userId);
-            //return prescriptions;
-        }
-
-        public List<PrescriptionDto> GetPrescriptionsOld(long patientId)
-        {
-            var prescriptions = _prescriptionRepository.GetAll().Where(x =>  x.Patient_Id == patientId);
-            var drugs = _drugRepository.GetAllAsync().Result;
-            var patients = _patientRepository.GetAllAsync().Result;
+            var patients = _patientRepository.GetAll();
             List<PrescriptionDto> prescriptionsList = new List<PrescriptionDto>();
             PrescriptionDto prescriptionDto = new PrescriptionDto();
             foreach (var item in prescriptions)
@@ -133,11 +89,11 @@ namespace DCRM.Service.Service
             return prescriptionsList;
         }
 
-        public List<PrescriptionDto> GetPrescriptions(long patientId)
+        public List<PrescriptionDto> GetPatientPrescriptions(long patientId)
         {
             var prescriptions = _prescriptionRepository.GetAll().Where(x => x.Patient_Id == patientId);
             var drugs = _drugRepository.GetAllAsync().Result;
-            var patients = _patientRepository.GetAllAsync().Result;
+            var patients = _patientRepository.GetAll();
             List<PrescriptionDto> prescriptionsList = new List<PrescriptionDto>();
             PrescriptionDto prescriptionDto = new PrescriptionDto();
             foreach (var item in prescriptions)

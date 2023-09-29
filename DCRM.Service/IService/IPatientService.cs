@@ -16,13 +16,12 @@ namespace DCRM.Service.IService
     public interface IPatientService
     {
         Task<AuthenticateResponse> AuthenticateAsync(AuthenticateRequest authenticateRequest);
-        Task<List<PatientseDto>> GetAllAsync();
-        Task<PatientseDto> GetByIdAsync(int id);
-        List<PatientseDto> GetByUserIdAsync(int userId);
-        void CreateAsync(PatientRequest request);
+        List<PatientseDto> GetAll(long userId);
+        PatientseDto Get(long id);
+        void Create(PatientRequest request);
         void Update(PatientRequest request);
-        void Delete(int id);
-        Task ChangePasswordAsync(ChangePasswordRequest changePasswordModel);
+        void Delete(long id);
+        void ChangePassword(ChangePasswordRequest changePasswordModel);
         List<Patient_Scans> GetPatientScan(int patientId);
 
         List<LabDataDto> GetPatientLabData(int patientId);
@@ -33,8 +32,8 @@ namespace DCRM.Service.IService
 
         List<PaymentHistoryDto> GetPatientpaymentList(int patientId);
 
-        void CreatedWorkDone(Workdone_New workdone);
-
         List<DropdownDataDto> NameList(long userId);
+
+        ReferBy GetReferBy(long patientId);
     }
 }

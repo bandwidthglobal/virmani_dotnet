@@ -15,12 +15,8 @@ namespace DCRM.Repository.IRepository
     {
         Task<Patientse> AuthenticateAsync(AuthenticateRequest authenticateRequest);
 
-        Task<IEnumerable<Patientse>> GetAllAsync();
-
-        Task<Patientse> GetByIdAsync(int id);
-
-        Patientse Get(int id);
-        List<Patientse> GetByUserId(int userId);
+        IEnumerable<Patientse> GetAll();
+        Patientse Get(long id);
 
         List<PatientsContact> GetPatientsContacteDetailList(int patientId);
 
@@ -30,13 +26,13 @@ namespace DCRM.Repository.IRepository
 
         List<Patient_Scans> GetPatientScanList(int patientId);
 
-        void CreateAsync(PatientRequest request);
+        void Create(PatientRequest request);
 
         void Update(PatientRequest request);
 
-        void Delete(int id);
+        void Delete(long id);
 
-        Task ChangePatientPasswordAsync(ChangePasswordRequest changePasswordModel);
+        void ChangePatientPassword(ChangePasswordRequest changePasswordModel);
 
 
         List<Patient_Scans> GetPatientScanList();
@@ -44,5 +40,7 @@ namespace DCRM.Repository.IRepository
         List<Lab_Data> GetPatientLabList();
 
         List<DropdownDataDto> NameList(long userId);
+
+        ReferBy GetReferBy(long patientId);
     } 
 }

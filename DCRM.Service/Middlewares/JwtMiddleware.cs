@@ -39,7 +39,7 @@ public class JwtMiddleware
             }
             else if (user.Role.ToLower() == "patient")
             {
-                context.Items["Patient"] = patientService.GetByIdAsync(user.Id).Result;
+                context.Items["Patient"] = patientService.Get(user.Id);
             }
             
         }

@@ -10,6 +10,7 @@ using DCRM.Repository.IRepository;
 using DCRM.Repository.Repository;
 using DCRM.Service.IService;
 using Demo_Api.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
 
@@ -76,10 +77,10 @@ namespace DCRM.Service.Service
         /// ftech all user active user
         /// </summary>
         /// <returns></returns>
-        public async Task<List<PatientseDto>> GetAllAsync()
+        public List<PatientseDto> GetAll(long userId)
         {
 
-            var patients = await _patientRepository.GetAllAsync();
+            var patients = _patientRepository.GetAll().Where(x=>x.User_Id== userId);
             PatientseDto patientseDto = new PatientseDto();
             List<PatientseDto> patientList = new List<PatientseDto>();
             foreach (var patient in patients.ToList())
@@ -136,9 +137,9 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<PatientseDto> GetByIdAsync(int id)
+        public PatientseDto Get(long id)
         {
-            var patient = await _patientRepository.GetByIdAsync(id);
+            var patient =  _patientRepository.Get(id);
             PatientseDto patientdto = new PatientseDto();
             patientdto.Id = patient.Id;
             patientdto.Chamber_Id = patient.Chamber_Id;
@@ -157,7 +158,26 @@ namespace DCRM.Service.Service
             patientdto.Present_Address = patient.Present_Address;
             patientdto.Permanent_Address = patient.Permanent_Address;
             patientdto.Created_At = System.DateTime.UtcNow;
-           
+            var payment = _paymentHistoryRepository.GetAll().Where(x => x.Patient_Id == patient.Id);
+            double addvancePayment = 0;
+            double duePayment = 0;
+            double totalCreditAmount = 0;
+            double totalDebitAmount = 0;
+            foreach (var item in payment)
+            {
+                totalCreditAmount = totalCreditAmount + item.Credit_Amount;
+                totalDebitAmount = totalDebitAmount + item.Debit_Amount;
+            }
+            if (totalDebitAmount > totalCreditAmount)
+            {
+                addvancePayment = totalCreditAmount - totalDebitAmount;
+            }
+            if (totalCreditAmount > totalDebitAmount)
+            {
+                duePayment = totalCreditAmount - totalDebitAmount;
+            }
+            patientdto.AddvancePayment = addvancePayment;
+            patientdto.DuePayment = duePayment;
             patientdto.PatientInsuranceLoans = _patientRepository.GetPatientsInsuranceLoanDetailList(patient.Id);
             patientdto.PatientTests = _patientRepository.GetPatientTestList(patient.Id);
             patientdto.PatientContacts = _patientRepository.GetPatientsContacteDetailList(patient.Id);
@@ -171,49 +191,49 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public List<PatientseDto> GetByUserIdAsync(int userid)
-        {
-            var patients = _patientRepository.GetByUserId(userid);
-            PatientseDto patientseDto = new PatientseDto();
-            List<PatientseDto> patientList = new List<PatientseDto>();
-            foreach (var patient in patients)
-            {
-                patientseDto = new PatientseDto();
-                patientseDto.Id = patient.Id;
-                patientseDto.Chamber_Id = patient.Chamber_Id;
-                patientseDto.User_name = patient.UserName;
-                patientseDto.Mr_Number = patient.Mr_Number;
-                patientseDto.Name = patient.Name;
-                patientseDto.User_name = patient.UserName;
-                patientseDto.Slug = patient.Slug;
-                patientseDto.Thumb = patient.Thumb;
-                patientseDto.Email = patient.Email;
-                patientseDto.Age = patient.Age;
-                patientseDto.Weight = patient.Weight;
-                patientseDto.Sex = patient.Sex;
-                patientseDto.Mobile = patient.Mobile;
-                patientseDto.Title = patient.Title; 
-                patientseDto.Guardian = patient.Guardian;
-                patientseDto.Present_Address = patient.Present_Address;
-                patientseDto.Permanent_Address = patient.Permanent_Address;
-                patientseDto.Created_At = System.DateTime.UtcNow;
-                patientseDto.PatientInsuranceLoans = _patientRepository.GetPatientsInsuranceLoanDetailList(patient.Id);
-                patientseDto.PatientTests = _patientRepository.GetPatientTestList(patient.Id);
-                patientseDto.PatientContacts = _patientRepository.GetPatientsContacteDetailList(patient.Id);
-                patientseDto.PatientScans = _patientRepository.GetPatientScanList(patient.Id);
-                patientList.Add(patientseDto);
-            }
-            return patientList;
-        }
+        //public List<PatientseDto> GetByUserIdAsync(int userid)
+        //{
+        //    var patients = _patientRepository.GetByUserId(userid);
+        //    PatientseDto patientseDto = new PatientseDto();
+        //    List<PatientseDto> patientList = new List<PatientseDto>();
+        //    foreach (var patient in patients)
+        //    {
+        //        patientseDto = new PatientseDto();
+        //        patientseDto.Id = patient.Id;
+        //        patientseDto.Chamber_Id = patient.Chamber_Id;
+        //        patientseDto.User_name = patient.UserName;
+        //        patientseDto.Mr_Number = patient.Mr_Number;
+        //        patientseDto.Name = patient.Name;
+        //        patientseDto.User_name = patient.UserName;
+        //        patientseDto.Slug = patient.Slug;
+        //        patientseDto.Thumb = patient.Thumb;
+        //        patientseDto.Email = patient.Email;
+        //        patientseDto.Age = patient.Age;
+        //        patientseDto.Weight = patient.Weight;
+        //        patientseDto.Sex = patient.Sex;
+        //        patientseDto.Mobile = patient.Mobile;
+        //        patientseDto.Title = patient.Title; 
+        //        patientseDto.Guardian = patient.Guardian;
+        //        patientseDto.Present_Address = patient.Present_Address;
+        //        patientseDto.Permanent_Address = patient.Permanent_Address;
+        //        patientseDto.Created_At = System.DateTime.UtcNow;
+        //        patientseDto.PatientInsuranceLoans = _patientRepository.GetPatientsInsuranceLoanDetailList(patient.Id);
+        //        patientseDto.PatientTests = _patientRepository.GetPatientTestList(patient.Id);
+        //        patientseDto.PatientContacts = _patientRepository.GetPatientsContacteDetailList(patient.Id);
+        //        patientseDto.PatientScans = _patientRepository.GetPatientScanList(patient.Id);
+        //        patientList.Add(patientseDto);
+        //    }
+        //    return patientList;
+        //}
 
         /// <summary>
         /// create patient
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public void CreateAsync(PatientRequest request)
+        public void Create(PatientRequest request)
         {
-             _patientRepository.CreateAsync(request);
+             _patientRepository.Create(request);
         }
         /// <summary>;
         /// 
@@ -231,7 +251,7 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public void Delete(int id)
+        public void Delete(long id)
         {
             _patientRepository.Delete(id);
         }
@@ -241,9 +261,9 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="changePasswordModel"></param>
         /// <returns></returns>
-        public async Task ChangePasswordAsync(ChangePasswordRequest changePasswordModel)
+        public void ChangePassword(ChangePasswordRequest changePasswordModel)
         {
-            await _patientRepository.ChangePatientPasswordAsync(changePasswordModel);
+            _patientRepository.ChangePatientPassword(changePasswordModel);
         }
 
         /// <summary>
@@ -466,6 +486,12 @@ namespace DCRM.Service.Service
         public List<DropdownDataDto> NameList(long userId)
         {
             return _patientRepository.NameList(userId);
+        }
+
+        public ReferBy GetReferBy(long patientId)
+        {
+            ReferBy referBy= _patientRepository.GetReferBy(patientId);
+            return referBy;
         }
     }
 }

@@ -14,21 +14,11 @@ namespace DCRM.Repository.IRepository
     public interface IAppointmentRepository
     {
        
-        Task<IEnumerable<Appointment>> GetAllAsync();
-
-        Task<Appointment> GetByIdAsync(int id);
-
-        Task<IEnumerable<Appointment>> GetByUserId(int userId);
-
-        List<Appointment> GetByUser(int userId);
-
-        List<Appointment> GetByPatientId(int patientId);
-
-        Task CreateAsync(Appointment request);
-
+        IEnumerable<Appointment> GetAll();
+        Appointment Get(long id);
+        void Create(Appointment request);
         void Update(Appointment request);
-
-        Task DeleteAsync(int id);
+        void Delete(long id);
 
     } 
 }

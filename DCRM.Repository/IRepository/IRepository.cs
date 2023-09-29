@@ -15,5 +15,6 @@ namespace DCRM.Repository.IRepository
         void Update(T entity);
         void Delete(T entity);
         void Remove(T entity);
+        public long Create(T entity);
     }
 }

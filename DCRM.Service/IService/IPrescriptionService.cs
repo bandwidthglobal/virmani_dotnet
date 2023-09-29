@@ -14,15 +14,15 @@ namespace DCRM.Service.IService
 {
     public interface IPrescriptionService
     {
-        Task<Prescription> GetByIdAsync(int id);
+        Prescription Get(long id);
 
-        List<PrescriptionDto> GetByUserId(int userId);
+        List<PrescriptionDto> GetAll(long userId);
 
-        Task CreateAsync(Prescription request);
+        void Create(Prescription request);
 
-        Task DeleteAsync(int id);
+        void Delete(long id);
 
-        List<PrescriptionDto> GetPrescriptions(long patientId);
+        List<PrescriptionDto> GetPatientPrescriptions(long patientId);
 
     }
 }

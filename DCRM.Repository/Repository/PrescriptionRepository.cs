@@ -23,33 +23,27 @@ namespace DCRM.Repository.Repository
 
         }
 
-        public async Task CreateAsync(Prescription prescription)
+        public void Create(Prescription prescription)
         {
-            await _contex.Prescription.AddAsync(prescription);
+            _contex.Prescription.Add(prescription);
             _contex.SaveChanges();
         }
 
-        public async Task DeleteAsync(int id)
+        public void Delete(long id)
         {
-            var prescription = await _contex.Prescription.FirstOrDefaultAsync(x => x.Id == id);
+            var prescription =  _contex.Prescription.FirstOrDefault(x => x.Id == id);
             if (prescription != null)
             {
                 _contex.Prescription.Remove(prescription);
-                await _contex.SaveChangesAsync();
+                _contex.SaveChanges();
             }
         }
-        public async Task<Prescription> GetByIdAsync(int id)
+        public Prescription Get(long id)
         {
-            var prescription = await _contex.Prescription.FirstOrDefaultAsync(x => x.Id == id );
+            var prescription = _contex.Prescription.FirstOrDefault(x => x.Id == id );
             return prescription;
         }
-
-        public async Task<IEnumerable<Prescription>> GetByUserId(int userId)
-        {
-            var prescriptions = _contex.Prescription.Where(x => x.User_Id == userId );
-            return prescriptions;
-        }
-
+               
         public List<Prescription> GetAll()
         {
             var prescriptions = _contex.Prescription.ToList();

@@ -1,7 +1,9 @@
-﻿using DCRM.Common.Entities;
+﻿using DCRM.Common.Dto;
+using DCRM.Common.Entities;
 using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
 using Demo_Api.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,11 +56,39 @@ namespace DCRM.Service.Service
             throw new NotImplementedException();
         }
 
-        public void  CreatePaymentHistory(Payment_History paymentHistory)
+        public void  Create(Payment_History paymentHistory)
         {
             _paymentHistoryRepository.Insert(paymentHistory);
         }
 
-        
+        public void Update(Payment_History paymentHistory)
+        {
+            _paymentHistoryRepository.Update(paymentHistory);
+        }
+        public void Delete(long id)
+        {
+            var payment= _paymentHistoryRepository.Get(id);
+            _paymentHistoryRepository.Delete(payment);
+        }
+        public List<Payment_History> GetAll(long patientId)
+        {
+           return _paymentHistoryRepository.GetAll().Where(x=>x.Patient_Id== patientId).ToList();
+        }
+        public Payment_History Get(long id)
+        {
+          return  _paymentHistoryRepository.Get(id);
+        }
+
+        public void CreateReceivePayment(Payment_Details_List payment_Details_List)
+        {
+            _paymentDetailsListRepository.Insert(payment_Details_List);
+        }
+        public List<Payment_Details_List> GetReceivedPayment(long paymentId)
+        {
+            List<Payment_Details_List> receivedList=new List<Payment_Details_List>();
+            receivedList= _paymentDetailsListRepository.GetAll().Where(x=>x.Payment_History_Id== paymentId).ToList();
+            return receivedList;
+        }
+
     }
 }

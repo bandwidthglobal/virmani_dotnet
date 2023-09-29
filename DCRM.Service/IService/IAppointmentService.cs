@@ -15,21 +15,19 @@ namespace DCRM.Service.IService
 {
     public interface IAppointmentService
     {
-        Task<IEnumerable<Appointment>> GetAllAsync();
+        IEnumerable<Appointment> GetAll(long userId,string role);
 
-        Task<Appointment> GetByIdAsync(int id);
-
-        Task<IEnumerable<Appointment>> GetByUserId(int userId);
+        Appointment Get(long id);
 
         List<AppointmentDto> GetByPatientId(int patientId);
 
-        Task CreateAsync(Appointment request);
+        void Create(Appointment request);
 
         void Update(Appointment request);
 
-        Task DeleteAsync(int id);
+        void Delete(long id);
 
-        List<AppointmentDto> GetAppointMentWithPatientByUserId(int userId);
+        List<AppointmentDto> GetAppointmentWithPatient(long userId);
 
     }
 }

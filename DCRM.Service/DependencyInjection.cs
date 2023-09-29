@@ -80,7 +80,7 @@ namespace DCRM.Service
             services.AddScoped<IDigitalDataService, DigitalDataService>();
 
             services.AddScoped<IChairService, ChairService>();
-
+            services.AddScoped<IWorkDoneService, WorkDoneService>();
             #endregion
             return services;
         }

@@ -13,43 +13,39 @@ namespace DCRM.Api.Controllers
     [ApiController]
     public class PrescriptionController : ControllerBase
     {
-        public readonly IPrescriptionService _prescriptionfService;
-        public PrescriptionController(IPrescriptionService prescriptionfService)
+        public readonly IPrescriptionService _prescriptionService;
+        public PrescriptionController(IPrescriptionService prescriptionService)
         {
-            _prescriptionfService = prescriptionfService;
+            _prescriptionService = prescriptionService;
         }
 
         [HttpGet("Get/{id}")]
-        public async Task<Prescription> Get(int id)
+        public Prescription Get(long id)
         {
-            return await _prescriptionfService.GetByIdAsync(id);
+            return _prescriptionService.Get(id);
         }
 
 
         [HttpGet("GetAll")]
-        public  List<PrescriptionDto> Prescriptions(int userId)
+        public  List<PrescriptionDto> Prescriptions()
         {
             var user = Request.HttpContext.Items["User"] as User;
-            return  _prescriptionfService.GetByUserId(user.Id);
+            return _prescriptionService.GetAll(user.Id);
         }
 
-        [HttpGet("Get/Patient/{patientId}")]
-        public List<PrescriptionDto> Prescriptions(long patientId)
-        {
-            return _prescriptionfService.GetPrescriptions(patientId);
-        }
+        
 
         [HttpPost("Create")]
-        public async Task<IActionResult> Create(Prescription prescription)
+        public IActionResult Create(Prescription prescription)
         {
-            await _prescriptionfService.CreateAsync(prescription);
+            _prescriptionService.Create(prescription);
             return Ok(prescription);
         }
 
         [HttpDelete("Delete/{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(long id)
         {
-            await _prescriptionfService.DeleteAsync(id);
+            _prescriptionService.Delete(id);
             return Ok(id);
         }
 

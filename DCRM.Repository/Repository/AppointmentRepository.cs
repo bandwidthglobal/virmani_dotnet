@@ -22,58 +22,41 @@ namespace DCRM.Repository.Repository
             _contex = contex;
 
         }
-        public async Task CreateAsync(Appointment appointment)
-        {
-            await _contex.Appointments.AddAsync(appointment);
-            _contex.SaveChanges();
-        }
-
-        public async Task DeleteAsync(int id)
-        {
-            var appointment = await _contex.Appointments.FirstOrDefaultAsync(x => x.Id == id);
-            if (appointment != null)
-            {
-                appointment.Is_Delete = 1;
-                _contex.Appointments.Update(appointment);
-                await _contex.SaveChangesAsync();
-            }
-        }
-
-        public List<Appointment> GetByPatientId(int patientId)
-        {
-            var appointments = _contex.Appointments.Where(x => x.Is_Delete == 0 && x.Patient_Id== patientId).
-                OrderByDescending(x=>x.Id).ToList();
-            return appointments;
-        }
-
-        public async Task<IEnumerable<Appointment>> GetAllAsync()
+        public IEnumerable<Appointment> GetAll()
         {
             var appointments = _contex.Appointments.Where(x => x.Is_Delete == 0);
             return appointments;
         }
 
-        public async Task<Appointment> GetByIdAsync(int id)
+        public Appointment Get(long id)
         {
-            var appointment = await _contex.Appointments.FirstOrDefaultAsync(x => x.Id == id && x.Is_Delete == 0);
+            Appointment appointment = _contex.Appointments.FirstOrDefault(x => x.Id == id && x.Is_Delete == 0);
             return appointment;
         }
-
-        public async Task<IEnumerable<Appointment>> GetByUserId(int userId)
+        public void Create(Appointment appointment)
         {
-            var appointment = _contex.Appointments.Where(x => x.User_Id == userId && x.Is_Delete == 0);
-            return appointment;
+             _contex.Appointments.Add(appointment);
+            _contex.SaveChanges();
         }
 
+       
+       
         public void Update(Appointment request)
         {
             _contex.Update(request);
             _contex.SaveChanges();
             
         }
-       public List<Appointment> GetByUser(int userId)
+
+        public void Delete(long id)
         {
-            var appointment = _contex.Appointments.Where(x => x.User_Id == userId && x.Is_Delete == 0).ToList();
-            return appointment;
+            var appointment = _contex.Appointments.FirstOrDefault(x => x.Id == id);
+            if (appointment != null)
+            {
+                appointment.Is_Delete = 1;
+                _contex.Appointments.Update(appointment);
+                _contex.SaveChanges();
+            }
         }
     }
 }

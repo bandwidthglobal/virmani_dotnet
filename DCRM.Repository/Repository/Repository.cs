@@ -54,7 +54,16 @@ namespace DCRM.Repository.Repository
             entities.Add(entity);
             _contex.SaveChanges();
         }
-
+        public long Create(T entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+            entities.Add(entity);
+            _contex.SaveChanges();
+            return entity.Id;
+        }
         public void Remove(T entity)
         {
             if (entity == null)

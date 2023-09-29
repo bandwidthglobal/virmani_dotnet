@@ -6,11 +6,11 @@ namespace DCRM.Common.Entity;
 
 public  class PatientRequest
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
 
     public string? Chamber_Id { get; set; } 
 
-    public int? User_Id { get; set; }
+    public long User_Id { get; set; }
 
     public string? Mr_Number { get; set; }
 

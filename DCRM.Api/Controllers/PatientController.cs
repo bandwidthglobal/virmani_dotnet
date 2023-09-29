@@ -34,17 +34,17 @@ namespace DCRM.Api.Controllers
 
         
         [HttpGet("GetAll")]
-        public async Task<List<PatientseDto>> GetAllAsync()
+        public async Task<List<PatientseDto>> GetAll()
         {
             var user = Request.HttpContext.Items["User"] as User;
-            List<PatientseDto> patientList = _patientService.GetByUserIdAsync(Convert.ToInt32(user.Id));
+            List<PatientseDto> patientList = _patientService.GetAll(user.Id);
             return patientList;
         }
 
         [HttpGet("Get/{id}")]
-        public async Task<PatientseDto> GetAsync(int id)
+        public async Task<PatientseDto> GetAsync(long id)
         {
-            PatientseDto patient = await _patientService.GetByIdAsync(id);
+            PatientseDto patient =  _patientService.Get(id);
             return patient;
         }
 
@@ -54,7 +54,7 @@ namespace DCRM.Api.Controllers
         {
             var user = Request.HttpContext.Items["User"] as User;
             request.User_Id = user.Id;
-            _patientService.CreateAsync(request);
+            _patientService.Create(request);
             return Ok("Created");
         }
 
@@ -67,7 +67,7 @@ namespace DCRM.Api.Controllers
         }
 
         [HttpDelete("Delete/{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(long id)
         {
              _patientService.Delete(id);
             return Ok(id);
@@ -79,15 +79,30 @@ namespace DCRM.Api.Controllers
             var user = Request.HttpContext.Items["User"] as User;
             return _patientService.NameList(user.Id);
         }
-
-        [HttpGet("Treatmentplans/{patientId}")]
+        [HttpGet("Get/Appointments/{patientId}")]
+        public List<AppointmentDto> GetPatientAppointment(int patientId)
+        {
+            try
+            {
+                return _appointmentService.GetByPatientId(patientId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        [HttpGet("Get/Treatmentplans/{patientId}")]
         public List<TreatmentplanDto> Treatmentplans(int patientId)
         {
             List<TreatmentplanDto> treatmentplanList = _patientService.GetPatientTreatmentplanList(patientId);
             return treatmentplanList;
         }
-
-        [HttpGet("Payments/{patientId}")]
+        [HttpGet("Get/Prescriptions/{patientId}")]
+        public List<PrescriptionDto> Prescriptions(long patientId)
+        {
+            return _prescriptionService.GetPatientPrescriptions(patientId);
+        }
+        [HttpGet("Get/Payments/{patientId}")]
         public List<PaymentHistoryDto> Payments(int patientId)
         {
             List<PaymentHistoryDto> paymentList = _patientService.GetPatientpaymentList(patientId);
@@ -99,6 +114,19 @@ namespace DCRM.Api.Controllers
         {
             _treatmentplanService.Create(treatmentplans);
             return Ok("created");
+        }
+
+        [HttpGet("Get/WorkDones/{patientId}")]
+        public List<WorkDoneDto> WorkDones(int patientId)
+        {
+            List<WorkDoneDto> workdoneList = _patientService.GetPatientWorkDoneList(patientId);
+            return workdoneList;
+        }
+
+        [HttpGet("Get/ReferBy/{patientId}")]
+        public ReferBy ReferBy(long patientId)
+        {
+            return _patientService.GetReferBy(patientId);
         }
     }
 }

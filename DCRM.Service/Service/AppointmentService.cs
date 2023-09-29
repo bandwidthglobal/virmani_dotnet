@@ -27,27 +27,22 @@ namespace DCRM.Service.Service
             _chairRepository = chairRepository;
         }
 
-        public async Task CreateAsync(Appointment request)
+        public IEnumerable<Appointment> GetAll(long userId,string role)
         {
-            await _appointmentRepository.CreateAsync(request);
-        }
-
-        public async Task DeleteAsync(int id)
-        {
-            await _appointmentRepository.DeleteAsync(id);
-        }
-
-        public async Task<IEnumerable<Appointment>> GetAllAsync()
-        {
-            var appointments = await _appointmentRepository.GetAllAsync();
+            var appointments =  _appointmentRepository.GetAll().Where(x=>x.User_Id== userId);
             return appointments;
         }
 
+        public Appointment Get(long id)
+        {
+            var appointment = _appointmentRepository.Get(id);
+            return appointment;
+        }
         public List<AppointmentDto> GetByPatientId(int patientId)
         {
             List<AppointmentDto> appointmentList = new List<AppointmentDto>();
             AppointmentDto appointment = null;
-            var appointments = _appointmentRepository.GetByPatientId(patientId).OrderByDescending(x => x.Id).ToList();
+            var appointments = _appointmentRepository.GetAll().Where(x=>x.Patient_Id== patientId).OrderByDescending(x => x.Id).ToList();
             foreach (var item in appointments)
             {
                 appointment = new AppointmentDto();
@@ -68,20 +63,9 @@ namespace DCRM.Service.Service
             }
             return appointmentList;
         }
-        public async Task<Appointment> GetByIdAsync(int id)
+        public List<AppointmentDto> GetAppointmentWithPatient(long userId)
         {
-            var appointment = await _appointmentRepository.GetByIdAsync(id);
-            return appointment;
-        }
-
-        public Task<IEnumerable<Appointment>> GetByUserId(int userId)
-        {
-            var appointments = _appointmentRepository.GetByUserId(userId);
-            return appointments;
-        }
-        public List<AppointmentDto> GetAppointMentWithPatientByUserId(int userId)
-        {
-            var appointments = _appointmentRepository.GetByUser(userId);
+            var appointments = _appointmentRepository.GetAll().Where(x=>x.User_Id==userId);
             List<AppointmentDto> appointmentList = new List<AppointmentDto>();
             foreach (var appointment in appointments)
             {
@@ -101,9 +85,17 @@ namespace DCRM.Service.Service
             }
             return appointmentList;
         }
+        public void Create(Appointment request)
+        {
+            _appointmentRepository.Create(request);
+        }
         public void Update(Appointment request)
         {
             _appointmentRepository.Update(request);
+        }
+        public void Delete(long id)
+        {
+            _appointmentRepository.Delete(id);
         }
     }
 }

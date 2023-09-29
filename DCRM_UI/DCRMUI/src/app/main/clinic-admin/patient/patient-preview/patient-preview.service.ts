@@ -94,7 +94,7 @@ export class PatientPreviewService implements Resolve<any> {
             'Authorization': `Bearer ${this.currentUser.jwtToken}`
         });
         const requestOptions = { headers: headers };
-        const url = `${environment.apiUrl}/Appointment/Get/Patient/${id}`;
+        const url = `${environment.apiUrl}/Patient/Get/Appointments/${id}`;
         this.id = id;
         return new Promise((resolve, reject) => {
             this._httpClient.get(url, requestOptions).subscribe((response: any) => {
@@ -110,7 +110,7 @@ export class PatientPreviewService implements Resolve<any> {
             'Authorization': `Bearer ${this.currentUser.jwtToken}`
         });
         const requestOptions = { headers: headers };
-        const url = `${environment.apiUrl}/Patient/Treatmentplans/${id}`;
+        const url = `${environment.apiUrl}/Patient/Get/Treatmentplans/${id}`;
         this.id = id;
         return new Promise((resolve, reject) => {
             this._httpClient.get(url, requestOptions).subscribe((response: any) => {
@@ -126,7 +126,7 @@ export class PatientPreviewService implements Resolve<any> {
             'Authorization': `Bearer ${this.currentUser.jwtToken}`
         });
         const requestOptions = { headers: headers };
-        const url = `${environment.apiUrl}/WorkDone/GetWorkDonesByPatient/${id}`;
+        const url = `${environment.apiUrl}/Patient/Get/WorkDones/${id}`;
         this.id = id;
         return new Promise((resolve, reject) => {
             this._httpClient.get(url, requestOptions).subscribe((response: any) => {
@@ -142,7 +142,7 @@ export class PatientPreviewService implements Resolve<any> {
             'Authorization': `Bearer ${this.currentUser.jwtToken}`
         });
         const requestOptions = { headers: headers };
-        const url = `${environment.apiUrl}/Patient/Payments/${id}`;
+        const url = `${environment.apiUrl}/Patient/Get/Payments/${id}`;
         this.id = id;
         return new Promise((resolve, reject) => {
             this._httpClient.get(url, requestOptions).subscribe((response: any) => {
@@ -190,7 +190,7 @@ export class PatientPreviewService implements Resolve<any> {
             'Authorization': `Bearer ${this.currentUser.jwtToken}`
         });
         const requestOptions = { headers: headers };
-        const url = `${environment.apiUrl}/Prescription/Get/Patient/${id}`;
+        const url = `${environment.apiUrl}/Patient/Get/Prescriptions/${id}`;
         this.id = id;
         return new Promise((resolve, reject) => {
             this._httpClient.get(url, requestOptions).subscribe((response: any) => {
