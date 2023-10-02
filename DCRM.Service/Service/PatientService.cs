@@ -163,14 +163,16 @@ namespace DCRM.Service.Service
             double duePayment = 0;
             double totalCreditAmount = 0;
             double totalDebitAmount = 0;
+            double totalBalence = 0;
             foreach (var item in payment)
             {
                 totalCreditAmount = totalCreditAmount + item.Credit_Amount;
                 totalDebitAmount = totalDebitAmount + item.Debit_Amount;
+                totalBalence = totalBalence + item.Balance;
             }
             if (totalDebitAmount > totalCreditAmount)
             {
-                addvancePayment = totalCreditAmount - totalDebitAmount;
+                addvancePayment = totalCreditAmount- totalDebitAmount ;
             }
             if (totalCreditAmount > totalDebitAmount)
             {
@@ -178,6 +180,7 @@ namespace DCRM.Service.Service
             }
             patientdto.AddvancePayment = addvancePayment;
             patientdto.DuePayment = duePayment;
+            patientdto.TotalBalence = totalBalence;
             patientdto.PatientInsuranceLoans = _patientRepository.GetPatientsInsuranceLoanDetailList(patient.Id);
             patientdto.PatientTests = _patientRepository.GetPatientTestList(patient.Id);
             patientdto.PatientContacts = _patientRepository.GetPatientsContacteDetailList(patient.Id);

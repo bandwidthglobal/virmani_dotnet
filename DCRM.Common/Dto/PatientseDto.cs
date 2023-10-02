@@ -56,4 +56,5 @@ public partial class PatientseDto
     public List<PatientTest>? PatientTests { get; set; }
     public double AddvancePayment { get; set; }
     public double DuePayment { get; set; }
+    public double TotalBalence { get; set; }
 }

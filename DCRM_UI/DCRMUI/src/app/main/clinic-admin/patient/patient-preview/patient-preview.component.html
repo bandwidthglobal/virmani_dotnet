@@ -16,14 +16,15 @@
                                 Medical History & Allergies: <strong *ngIf="apiData.patientContacts.length>0">{{apiData.patientContacts[0].medical_History_Allergies}}</strong>
                             </div>
                             <div class="col-xl-4 col-lg-12 font-weight-bold"></div>
-                            <div class="col-xl-3 col-lg-12 font-weight-bold">Advanced Payment: <strong *ngIf="apiData.patientContacts.length>0">{{apiData.addvancePayment}}</strong></div>
+                            <div class="col-xl-3 col-lg-12 font-weight-bold" *ngIf="apiData.totalBalence<0">Advanced Payment: <strong>{{apiData.addvancePayment}}</strong></div>
+                            <div class="col-xl-3 col-lg-12 font-weight-bold" *ngIf="apiData.totalBalence>0">Total Balance: <strong>{{apiData.totalBalence}}</strong></div>
                         </div>
                         <div class="row">
                             <div class="col-xl-5 col-lg-12 font-weight-bold">
                                 Special Note:  <strong *ngIf="apiData.patientContacts.length>0">{{apiData.patientContacts[0].special_Notes}}</strong>
                             </div>
                             <div class="col-xl-4 col-lg-12 font-weight-bold"></div>
-                            <div class="col-xl-3 col-lg-12 font-weight-bold">Due Payment: <strong *ngIf="apiData.patientContacts.length>0">{{apiData.duePayment}}</strong></div>
+                            <div class="col-xl-3 col-lg-12 font-weight-bold">Due Payment: <strong>{{apiData.duePayment}}</strong></div>
                         </div>
                         <div class="row">
                             <div class="col-xl-5 col-lg-12 font-weight-bold">

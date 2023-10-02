@@ -4,6 +4,7 @@ using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
 using Demo_Api.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,7 +82,16 @@ namespace DCRM.Service.Service
 
         public void CreateReceivePayment(Payment_Details_List payment_Details_List)
         {
-            _paymentDetailsListRepository.Insert(payment_Details_List);
+            var paymentHistory = _paymentHistoryRepository.Get(payment_Details_List.Payment_History_Id);
+            if (paymentHistory != null )
+            {
+                _paymentDetailsListRepository.Insert(payment_Details_List);
+                 paymentHistory.Balance = paymentHistory.Balance - payment_Details_List.Price;
+                 paymentHistory.Credit_Amount = paymentHistory.Credit_Amount + payment_Details_List.Price;
+                _paymentHistoryRepository.Update(paymentHistory);
+            }
+          
+            
         }
         public List<Payment_Details_List> GetReceivedPayment(long paymentId)
         {
