@@ -1,0 +1,99 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+      <section class="appoitment-chair-view" id="appoitment-chair-view">
+        <div class="row match-height">
+            <div class="card-body col-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Chair View</h3>
+                        <div class="pull-right">
+                            <a class="btn btn-primary active" [routerLink]="'/appointment-chair'" title="Chair View">Chair View</a>
+                            <a class="btn btn-primary" href="/appointment/calendar" title="Calendar View">Calendar View</a>
+                            <a class="btn btn-primary" href="/appointment/waiting-room" title="Waiting Room">Waiting Room</a>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="app_filtersblock">
+                            <div class="row">
+                                <div class="col-md-10 calender_filter">
+                                    <form id="submit_form" action="" method="get">
+                                    <div class="col-md-3 d-inline-block">
+                                        <input type="hidden" name="casd" value="">
+                                        <label>Date</label>
+                                        <input type="date" style="height: auto;" name="sdate" class="form-control" id="sdate" required="" [(ngModel)]="selectedDate" autocomplete="off">
+                                    </div>
+                                    <div class="col-md-4 d-inline-block">
+                                        <label style="width: 100%;">Doctor</label>
+                                        <span class="multiselect-native-select">
+                                        <select name="doctor_id[]" id="doctor_id_top" class="select select-initialized form-control" multiple="multiple" tabindex="-1" [(ngModel)]="selectedDoctors">
+                                            <option *ngFor="let doctor of doctors" [value]="doctor.id">{{ doctor.name }}</option>
+                                        </select>
+                                        <div class="btn-group">
+                                            <button type="button" class="multiselect dropdown-toggle custom-select text-center" data-toggle="dropdown" title="None selected">
+                                            <span class="multiselect-selected-text">None selected</span>
+                                            </button>
+                                            <div class="multiselect-container dropdown-menu">
+                                            <button type="button" class="multiselect-option dropdown-item" title="{{ doctor.name }}" *ngFor="let doctor of doctors">
+                                                <span class="form-check">
+                                                <input class="form-check-input" type="checkbox" [value]="doctor.id" [(ngModel)]="selectedDoctors">
+                                                <label class="form-check-label">{{ doctor.name }}</label>
+                                                </span>
+                                            </button>
+                                            </div>
+                                        </div>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-3 d-inline-block">
+                                        <label>Chairs</label>
+                                        <span class="multiselect-native-select">
+                                        <select name="chair_id[]" id="chair_id_top" class="form-control" multiple="multiple" tabindex="-1" [(ngModel)]="selectedChairs">
+                                            <option *ngFor="let chair of chairs" [value]="chair.id">{{ chair.name }}</option>
+                                        </select>
+                                        <div class="btn-group">
+                                            <button type="button" class="multiselect dropdown-toggle custom-select text-center" data-toggle="dropdown" title="None selected">
+                                            <span class="multiselect-selected-text">None selected</span>
+                                            </button>
+                                            <div class="multiselect-container dropdown-menu">
+                                            <button type="button" class="multiselect-option dropdown-item" title="{{ chair.name }}" *ngFor="let chair of chairs">
+                                                <span class="form-check">
+                                                <input class="form-check-input" type="checkbox" [value]="chair.id" [(ngModel)]="selectedChairs">
+                                                <label class="form-check-label">{{ chair.name }}</label>
+                                                </span>
+                                            </button>
+                                            </div>
+                                        </div>
+                                        </span>
+                                    </div>
+                                    <button type="button" class="btn btn-primary px-40 mt-0" (click)="applyFilters()">Filter</button>
+                                    </form>
+                                </div>
+                                <div class="col-md-2 text-right">
+                                    <a href="javascript://" (click)="printPage()" class="btn btn-dark"><i class="fa fa-print"></i> Print</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="pptm_chview" id="pptm_chview_block">
+                                <table class="table table-striped_ table-bordered table-hover" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="success table-info">
+                                            <th width="16%">Slot Time</th>
+                                            <th width="16%">Green</th>
+                                            <th width="16%">Pink</th>
+                                            <th width="16%">Orange</th>
+                                            <th width="16%">Surgical</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <!-- Table rows with slot time and chair allotment -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+    </section>
+</div>
+  
