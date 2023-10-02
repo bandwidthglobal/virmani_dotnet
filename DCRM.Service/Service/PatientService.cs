@@ -170,14 +170,14 @@ namespace DCRM.Service.Service
                 totalDebitAmount = totalDebitAmount + item.Debit_Amount;
                 totalBalence = totalBalence + item.Balance;
             }
-            if (totalDebitAmount > totalCreditAmount)
+            if (totalDebitAmount < totalCreditAmount)
             {
                 addvancePayment = totalCreditAmount- totalDebitAmount ;
             }
-            if (totalCreditAmount > totalDebitAmount)
-            {
-                duePayment = totalCreditAmount - totalDebitAmount;
-            }
+            //if (totalCreditAmount > totalDebitAmount)
+            //{
+            //    duePayment = totalCreditAmount - totalDebitAmount;
+            //}
             patientdto.AddvancePayment = addvancePayment;
             patientdto.DuePayment = duePayment;
             patientdto.TotalBalence = totalBalence;
