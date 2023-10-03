@@ -7,6 +7,7 @@ using DCRM.Repository.IRepository;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.Utilities.Encoders;
 using System.Collections.Generic;
@@ -50,7 +51,7 @@ namespace DCRM.Repository.Repository
         {
             if (changePasswordModel.Type.ToLower() == "patient")
             {
-                var patient =  _contex.Patientses.FirstOrDefault(x => x.Id == changePasswordModel.Id && x.Is_Delete == 0);
+                var patient = _contex.Patientses.FirstOrDefault(x => x.Id == changePasswordModel.Id && x.Is_Delete == 0);
                 if (patient != null)
                 {
                     patient.Password = changePasswordModel.NewPassword;
@@ -163,18 +164,19 @@ namespace DCRM.Repository.Repository
             try
             {
                 Patientse patient = new Patientse();
-                string phone = request.PatientContacts[0].Phone1.ToString();
-                var patientDetails = _contex.Patientses.FirstOrDefault(x => x.Mobile == phone);
-                if (patientDetails == null)
+                long phone = Convert.ToInt64(request.PatientContacts[0].Phone1);
+                var contactDetails = _contex.Patients_Contact.FirstOrDefault(x => x.Phone1 == phone);
+                if (contactDetails == null)
                 {
-                    patient.Chamber_Id = request.Chamber_Id==null?"123456": request.Chamber_Id;
+                    _contex.Database.BeginTransaction();
+                    patient.Chamber_Id = request.Chamber_Id == null ? "123456" : request.Chamber_Id;
                     patient.Mr_Number = request.Mr_Number == null ? "123456" : request.Mr_Number;
                     patient.Name = request.Name;
                     patient.User_Id = request.User_Id;
                     patient.Slug = request.Slug;
                     patient.Thumb = request.Thumb;
-                    patient.Email = request.Email == null ? phone+"@virmani.com" : request.Email;
-                    patient.Mobile = phone;
+                    patient.Email = request.Email == null ? phone + "@virmani.com" : request.Email;
+                    patient.Mobile = phone.ToString();
                     patient.Age = request.Age;
                     patient.Weight = request.Weight;
                     patient.Sex = request.Sex;
@@ -194,7 +196,7 @@ namespace DCRM.Repository.Repository
                             var contact = _contex.Patients_Contact.FirstOrDefault(x => x.Id == item.Id);
                             if (contact == null)
                             {
-                                item.Created_At =System.DateTime.Now;
+                                item.Created_At = System.DateTime.Now;
                                 item.Updated_At
                                     = System.DateTime.Now;
                                 item.Patient_Id = patient.Id;
@@ -253,15 +255,18 @@ namespace DCRM.Repository.Repository
                             _contex.SaveChanges();
                         }
                     }
+                    _contex.Database.CommitTransaction();
                     return patient.Id;
                 }
                 else
                 {
+                    _contex.Database.RollbackTransaction();
                     throw new SqlAlreadyFilledException("phone is already exist");
                 }
             }
             catch (Exception ex)
             {
+                _contex.Database.RollbackTransaction();
                 throw new Exception(ex.Message);
             }
         }
@@ -464,8 +469,8 @@ namespace DCRM.Repository.Repository
         public ReferBy GetReferBy(long patientId)
         {
             ReferBy referBy = new ReferBy();
-            var contact=_contex.Patients_Contact.FirstOrDefault(x=>x.Patient_Id == patientId);
-            if (contact!=null)
+            var contact = _contex.Patients_Contact.FirstOrDefault(x => x.Patient_Id == patientId);
+            if (contact != null)
             {
                 referBy.RefferedBy = contact.Reffered_By;
                 referBy.Name = contact.Doctor_Name;
