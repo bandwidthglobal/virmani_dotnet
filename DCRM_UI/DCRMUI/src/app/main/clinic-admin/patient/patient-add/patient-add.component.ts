@@ -1,147 +1,186 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
-import { repeaterAnimation } from 'app/main/clinic-admin/patient/patient.animation';
+import { HttpClient } from '@angular/common/http';
 import { PatientAddService } from 'app/main/clinic-admin/patient/patient-add/patient-add.service';
-
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { PatientAddModel } from './patient-add.model';
 
+
 @Component({
-    selector: 'app-patient-add',
-    templateUrl: './patient-add.component.html',
-    styleUrls: ['./patient-add.component.scss'],
-    animations: [repeaterAnimation],
-    encapsulation: ViewEncapsulation.None
+  selector: 'app-patient-add',
+  templateUrl: './patient-add.component.html',
+  styleUrls: ['./patient-add.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PatientAddComponent implements OnInit, OnDestroy {
-    // Public
-    public url = this.router.url;
-    public urlLastValue;
-    public apiData;
-    public sidebarToggleRef = false;
-    public paymentSidebarToggle = false;
-    public items = [{ itemId: '', itemName: '', itemQuantity: '', itemCost: '' }];
-    public invoiceSelect;
-    public invoiceSelected;
-    public addDrugForm: UntypedFormGroup;
-    public loading = false;
-    public submitted = false;
-    public returnUrl: string;
-    public error = '';
-    medicinBrands: any;
-    medicinCategories: any;
-    public drug: PatientAddModel = {
-        medicine_Category: "",
-        medicine_Company: "",
-        brandname: "",
-        basic_Salt: "",
-        form: "",
-        dosage: "",
-        dose_No: "",
-        details: "",
-        description: "",
-        safety_Alerts: "",
-        bactrology: "",
-        note: "",
-        medicine_Type: "",
-        medicine_Category_Id: "",
-        medicine_Brand_Id: "",
-    }
-    // Private
-    private _unsubscribeAll: Subject<any>;
-    //private _formBuilder: any;
+  public addPatientForm: FormGroup;
+  public error: string = '';
+  public insuranceLoanItems: any[] = [];
 
-    /**
-     * Constructor
-     *
-     * @param {Router} router
-     * @param {InvoiceEditService} _invoiceEditService
-     * @param {CoreSidebarService} _coreSidebarService
-     */
-    constructor(
-        private router: Router,
-        private _addService: PatientAddService, private _formBuilder: UntypedFormBuilder, private _route: ActivatedRoute, private _toastrService: ToastrService) {
-        this._unsubscribeAll = new Subject();
+  private _unsubscribeAll: Subject<any>;
+  public patient: PatientAddModel = {
+    title: '',
+    name: '',
+    guardian: '',
+    sex: '',
+    dob: null,
+    age: null,
+    weight: null,
+    present_address: '',
+    permanent_address: '',
+    phone1: null,
+    phone2: null,
+    phone3: null,
+    phone4: null,
+    email: '',
+    email2: '',
+    address_R: '',
+    city_R: '',
+    zip_R: '',
+    country_R: '',
+    address_O: '',
+    city_O: '',
+    zip_O: '',
+    country_O: '',
+    address_Other: '',
+    city_Other: '',
+    zip_Other: '',
+    country_Other: '',
+    physician: '',
+    referred_by: '',
+    doctor_name: '',
+    phone_doctor: 123,
+    relationship_type: '',
+    history_allergies: '',
+    special_notes: '',
+    // insurance_loan: ,
+  }
+
+  base64Image: string = "";
+
+  // Define the convertToBase64 method
+  convertToBase64(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.base64Image = e.target.result;
+      };
+      reader.readAsDataURL(file);
     }
-    addItem() {
-        this.items.push({
-            itemId: '',
-            itemName: '',
-            itemQuantity: '',
-            itemCost: ''
-        });
-    }
-    deleteItem(id) {
-        for (let i = 0; i < this.items.length; i++) {
-            if (this.items.indexOf(this.items[i]) === id) {
-                this.items.splice(i, 1);
-                break;
+  }
+
+  formData: any = {};
+
+  getBalanceAmount: any = {};
+
+  constructor(
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private httpClient: HttpClient,
+    private patientAddService: PatientAddService
+  ) {
+    this._unsubscribeAll = new Subject();
+  }
+
+  ngOnInit(): void {
+    this.initForm();
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribeAll.next();
+    this._unsubscribeAll.complete();
+  }
+
+  onSubmit(): void {
+    // Handle form submission here
+  }
+
+  items: any[] = [];
+
+  addNewItem() {
+    this.items.push({
+      type: '',
+      name: '',
+      amount: null,
+      balance_spent: null,
+      balance_amount: null
+    });
+  }
+
+  removeItem(index: number) {
+    this.items.splice(index, 1);
+  }
+
+  private initForm(): void {
+    this.addPatientForm = this.formBuilder.group({
+      title: ['select'],
+      name: ['', Validators.required],
+      guardian: [''],
+      sex: [''],
+      dob: [null],
+      age: [null],
+      weight: [null],
+      // Add more form controls as needed
+    });
+  }
+
+
+  saveData() {
+    // Define the data you want to save (replace with your actual data)
+    const dataToSave = {
+        'id': 0,
+        'name': 'Test1236',
+        'Chamber_Id': '',
+        'Mr_Number': '',
+        'email': 'abc@abc.com',
+        'patientContacts': [
+            {
+                'id': 0,
+                'patient_Id': 0,
+                "phone1": 8565432126,
+                'Address_O': '',
+                'Address_Other': '',
+                'Address_R': '',
+                'City_O': '',
+                'City_Other': '',
+                'City_R': '',
+                'Country_O': '',
+                'Country_Other': '',
+                'Country_R': '',
+                'Doctor_Name': '',
+                'Email': '',
+                'Email2': '',
+                'Medical_History_Allergies': '',
+                'Phone': '',
+                'Physician': '',
+                'Reffered_By': '',
+                'Relationship_Type': '',
+                'Special_Notes': '',
+                'Zip_O': '',
+                'Zip_R': '',
             }
-        }
-    }
+            
+        ]
+      // Define your data properties here
+    };
 
-    /**
-     * On init
-     */
-    ngOnInit(): void {
-
-        this._addService.onMedicinBrandChanged.subscribe(res => (this.medicinBrands = res));
-        this._addService.onMedicinCategoriesChanged.subscribe(res => (this.medicinCategories = res));
-        this.addDrugForm = this._formBuilder.group({
-            medicinecompany: ['', Validators.required],
-            medicinetype: ['', Validators.required],
-            basicsalt: ['', Validators.required],
-            form: ['', Validators.required],
-            dosage: ['', Validators.required],
-            doseno: ['', Validators.required],
-            details: ['', Validators.required],
-            category: ['', Validators.required],
-            brand: ['', Validators.required],
-        });
-    }
-    get f() {
-        return this.addDrugForm.controls;
-    }
-    onCategorySelected(ob) {
-
-    }
-    onBrandSelected(ob) {
-
-    }
-    cancel() {
-        this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/drug/list';
-        this.router.navigateByUrl(this.returnUrl);
-    }
-    onSubmit() {
-        this.submitted = true;
-
-        if (this.addDrugForm.invalid) {
-            return;
-        }
-
-        this.loading = true;
-        this._addService
-            .update(this.drug)
-            .pipe()
-            .subscribe(
-                data => {
-                    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/drug/list';
-                    this.router.navigateByUrl(this.returnUrl);
-                },
-                error => {
-                    this.error = error;
-                    this.loading = false;
-                }
-            );
-    }
-    ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next();
-        this._unsubscribeAll.complete();
-    }
+    // Make an HTTP POST request to save the data
+    const apiUrl = '${environment.apiUrl}/Patient/Create'; 
+    this.patientAddService.savePatient(dataToSave).subscribe(
+      (response) => {
+        // Handle a successful response from the server
+        console.log('Data saved successfully:', response);
+        // You can perform additional actions here if needed
+      },
+      (error) => {
+        // Handle any errors that occur during the HTTP request
+        console.error('Error saving data:', error);
+        // You can display an error message to the user or perform error handling
+      }
+    );
+  }
 }
