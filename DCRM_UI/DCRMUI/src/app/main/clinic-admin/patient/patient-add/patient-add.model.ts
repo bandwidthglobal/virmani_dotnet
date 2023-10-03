@@ -18,6 +18,7 @@ export class PatientEditModel {
 
 export class PatientAddModel {
     title: string;
+    photo: File;
     name: string;
     guardian: string;;
     sex: string;
