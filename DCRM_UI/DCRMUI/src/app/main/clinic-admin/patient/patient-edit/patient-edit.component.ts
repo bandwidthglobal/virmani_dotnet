@@ -6,7 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 
 import { repeaterAnimation } from 'app/main/clinic-admin/patient/patient.animation';
 import { PatientEditService } from 'app/main/clinic-admin/patient/patient-edit/patient-edit.service';
-import { PatientAddModel } from '../patient-add/patient-add.model';
+import { PatientEditModel } from '../patient-add/patient-add.model';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
@@ -34,7 +34,7 @@ export class PatientEditComponent implements OnInit, OnDestroy {
     public error = '';
     medicinBrands: any;
     medicinCategories: any;
-    public drug: PatientAddModel = {
+    public drug: PatientEditModel = {
         medicine_Category:  "",
         medicine_Company: "",
         brandname: "",

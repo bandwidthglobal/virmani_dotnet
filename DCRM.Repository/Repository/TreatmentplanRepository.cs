@@ -52,13 +52,13 @@ namespace DCRM.Repository.Repository
             _contex.Teethinfo.Add(teethinfo);
             _contex.SaveChanges();
         }
-        public void UpdateDealer(Treatmentplans treatmentplan)
+        public void UpdateTreatmentplan(Treatmentplans treatmentplan)
         {
             _contex.Treatmentplans.Update(treatmentplan);
             _contex.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void Delete(long id)
         {
             var treatmentplan = _contex.Treatmentplans.Where(x => x.Id == id).FirstOrDefault();
             if (treatmentplan != null)

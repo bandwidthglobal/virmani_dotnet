@@ -6,7 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 
 import { repeaterAnimation } from 'app/main/clinic-admin/patient/patient.animation';
 import { PatientPreviewService } from 'app/main/clinic-admin/patient/patient-preview/patient-preview.service';
-import { PatientAddModel } from '../patient-add/patient-add.model';
+import { PatientEditModel } from '../patient-add/patient-add.model';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
@@ -36,7 +36,7 @@ export class PatientPreviewComponent implements OnInit, OnDestroy {
     medicinCategories: any;
     public brandName: string = "";
     public category: string = "";
-    public drug: PatientAddModel = {
+    public drug: PatientEditModel = {
         medicine_Category: "",
         medicine_Company: "",
         brandname: "",

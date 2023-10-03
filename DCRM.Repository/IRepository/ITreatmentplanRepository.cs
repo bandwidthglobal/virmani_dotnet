@@ -16,9 +16,9 @@ namespace DCRM.Repository.IRepository
 
         int Create(Treatmentplans treatmentplan);
 
-        void UpdateDealer(Treatmentplans treatmentplan);
+        void UpdateTreatmentplan(Treatmentplans treatmentplan);
 
-        void Delete(int id);
+        void Delete(long id);
 
         List<Treatmentplans> GetAll();
 
