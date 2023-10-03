@@ -1,149 +1,86 @@
-﻿import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-
-import { repeaterAnimation } from 'app/main/clinic-admin/patient/patient.animation';
-import { PatientEditService } from 'app/main/clinic-admin/patient/patient-edit/patient-edit.service';
-import { PatientAddModel } from '../patient-add/patient-add.model';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+﻿// edit-patient.component.ts
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { PatientEditService } from './patient-edit.service';
 
 @Component({
-    selector: 'app-patient-edit',
-    templateUrl: './patient-edit.component.html',
-    styleUrls: ['./patient-edit.component.scss'],
-    animations: [repeaterAnimation],
-    encapsulation: ViewEncapsulation.None
+  selector: 'app-edit-patient',
+  templateUrl: './patient-edit.component.html',
+  styleUrls: ['./patient-edit.component.scss'],
 })
-export class PatientEditComponent implements OnInit, OnDestroy {
-    // Public
-    public url = this.router.url;
-    public urlLastValue;
-    public apiData;
-    public sidebarToggleRef = false;
-    public paymentSidebarToggle = false;
-    public items = [{ itemId: '', itemName: '', itemQuantity: '', itemCost: '' }];
-    public invoiceSelect;
-    public invoiceSelected;
-    public addDrugForm: UntypedFormGroup;
-    public loading = false;
-    public submitted = false;
-    public returnUrl: string;
-    public error = '';
-    medicinBrands: any;
-    medicinCategories: any;
-    public drug: PatientAddModel = {
-        medicine_Category:  "",
-        medicine_Company: "",
-        brandname: "",
-        basic_Salt: "",
-        form:  "",
-        dosage:  "",
-        dose_No:  "",
-        details:  "",
-        description:  "",
-        safety_Alerts:  "",
-        bactrology:  "",
-        note:  "",
-        medicine_Type:  "",
-        medicine_Category_Id:  "",
-        medicine_Brand_Id:  "",
-    }
-    // Private
-    private _unsubscribeAll: Subject<any>;
-    //private _formBuilder: any;
+export class PatientEditComponent implements OnInit {
+  patientId: number;
+  patientData: any;
+  editPatientForm: FormGroup;
 
-    /**
-     * Constructor
-     *
-     * @param {Router} router
-     * @param {InvoiceEditService} _invoiceEditService
-     * @param {CoreSidebarService} _coreSidebarService
-     */
-    constructor(
-        private router: Router,
-        private _patientEditService: PatientEditService, private _formBuilder: UntypedFormBuilder, private _route: ActivatedRoute, private _toastrService: ToastrService) {
-        this._unsubscribeAll = new Subject();
-    }
-    addItem() {
-        this.items.push({
-            itemId: '',
-            itemName: '',
-            itemQuantity: '',
-            itemCost: ''
-        });
-    }
-    deleteItem(id) {
-        for (let i = 0; i < this.items.length; i++) {
-            if (this.items.indexOf(this.items[i]) === id) {
-                this.items.splice(i, 1);
-                break;
-            }
-        }
-    }
+  constructor(
+    private route: ActivatedRoute,
+    private patientEditService: PatientEditService,
+    private fb: FormBuilder
+  ) {}
 
-    /**
-     * On init
-     */
-    ngOnInit(): void {
+  imagePreviewUrl: string = ''; 
 
-        this._patientEditService.onMedicinBrandChanged.subscribe(res => (this.medicinBrands = res));
-        this._patientEditService.onMedicinCategoriesChanged.subscribe(res => (this.medicinCategories = res));
-        this.addDrugForm = this._formBuilder.group({
-            medicinecompany: ['', Validators.required],
-            medicinetype: ['', Validators.required],
-            basicsalt: ['', Validators.required],
-            form: ['', Validators.required],
-            dosage: ['', Validators.required],
-            doseno: ['', Validators.required],
-            details: ['', Validators.required],
-            category: ['', Validators.required],
-            brand: ['', Validators.required],
-        });
-        this._patientEditService.onDrugEditChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-            this.drug = response;
-        });
-    }
-    get f() {
-        return this.addDrugForm.controls;
-    }
-    onCategorySelected(ob) {
+  // Define the convertToBase64 method
+  convertToBase64(event: any) {
+    // Logic for converting the selected image to base64 goes here
+  }
 
-    }
-    onBrandSelected(ob) {
+  // Define your form group and other properties here
+  base64Image: string = ''; 
 
-    }
-    cancel() {
-        this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/drug/list';
-        this.router.navigateByUrl(this.returnUrl);
-    }
-    onSubmit() {
-        this.submitted = true;
-       
-        if (this.addDrugForm.invalid) {
-            return;
-        }
-       
-        this.loading = true;
-        this._patientEditService
-            .update(this.drug)
-            .pipe()
-            .subscribe(
-                data => {
-                    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/drug/list';
-                    this.router.navigateByUrl(this.returnUrl);
-                },
-                error => {
-                    this.error = error;
-                    this.loading = false;
-                }
-            );
-    }
-    ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next();
-        this._unsubscribeAll.complete();
-    }
+  items: any[] = []; 
+
+  // Define the error property
+  error: string | null = null;
+
+  // Define the addNewItem method
+  addNewItem() {
+    this.items.push({
+        type: '',
+        name: '',
+        amount: null,
+        balance_spent: null,
+        balance_amount: null
+    });
+  }
+
+  removeItem(index: number) {
+    this.items.splice(index, 1);
+  }
+
+  // Define the saveData method
+  saveData() {
+    // Logic for saving data goes here
+  }
+
+  ngOnInit(): void {
+    this.patientId = +this.route.snapshot.paramMap.get('id');
+    this.loadPatientData();
+    this.createForm();
+  }
+
+  loadPatientData(): void {
+    this.patientEditService.getPatient(this.patientId).subscribe((data) => {
+      this.patientData = data;
+      this.editPatientForm.patchValue(this.patientData); // Populate the form with patient data
+    });
+  }
+
+  createForm(): void {
+    this.editPatientForm = this.fb.group({
+      // Define form controls corresponding to patient data fields
+      // For example: name, gender, date of birth, etc.
+    });
+  }
+
+  onSubmit(): void {
+    const updatedPatientData = this.editPatientForm.value;
+    this.patientEditService
+      .updatePatient(this.patientId, updatedPatientData)
+      .subscribe((response) => {
+        // Handle the response as needed
+      });
+  }
 }
