@@ -18,10 +18,13 @@ export class PatientAddComponent implements OnInit, OnDestroy {
   public addPatientForm: FormGroup;
   public error: string = '';
   public insuranceLoanItems: any[] = [];
+  selectedImage: File | null = null;
+  imagePreviewUrl: string | ArrayBuffer | null = null;
 
   private _unsubscribeAll: Subject<any>;
   public patient: PatientAddModel = {
     title: '',
+    photo: null,
     name: '',
     guardian: '',
     sex: '',
@@ -68,7 +71,11 @@ export class PatientAddComponent implements OnInit, OnDestroy {
       reader.onload = (e: any) => {
         this.base64Image = e.target.result;
       };
+      reader.onload = (e: any) => {
+        this.imagePreviewUrl = e.target.result;
+      };
       reader.readAsDataURL(file);
+      reader.readAsDataURL(this.selectedImage);
     }
   }
 

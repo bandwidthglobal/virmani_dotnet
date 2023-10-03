@@ -26,9 +26,11 @@
                         <input type="file" name="photo" id="imageUpload" accept=".png, .jpg, .jpeg" (change)="convertToBase64($event)">
                         <label for="imageUpload"></label>
                       </div>
-                      <div class="avatar-preview">
-                        <div id="imagePreview" [style.background-image]="'url(https://virmani.robotone.in/);'"
-                        [src]="base64Image" *ngIf="base64Image" alt="Selected Image"></div>
+                      <div class="avatar-preview" id="imagePreview" *ngIf="imagePreviewUrl">
+                        <img [src]="imagePreviewUrl" alt="Selected Image" width="200">
+                      </div>
+                      <div class="avatar-preview" id="imagePreview" [style.background-image]="'url(' + base64Image + ')'" *ngIf="base64Image">
+                        <img [src]="base64Image" alt="Selected Image">
                       </div>
                     </div>
                   </div>
@@ -37,7 +39,8 @@
                   <div class="row">
                     <div class="col-md-4">
                       <div class="form-group validate">
-                        <label>Title* </label>
+                        <label>Title</label>
+                        <span class="text-danger" id="title_error_message"></span>
                         <select id="title" name="title" placeholder="" type="text" class="form-control" autocomplete="off" aria-invalid="false">
                           <option value="select">Select</option>
                           <option value="Mr">Mr</option>
@@ -353,14 +356,16 @@
                       <input type="number" min="0" name="insurance_loan[balance_spent]" class="form-control" [(ngModel)]="item.balance_spent">
                     </div>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-2">
                     <div class="form-group">
                       <label>Balance Amount</label>
                       <input type="number" min="0" name="insurance_loan[balance_amount]" class="form-control" [(ngModel)]="item.balance_amount">
                     </div>
                   </div>
                   <div class="col-md-1">
-                    <button class="btn btn-danger" (click)="removeItem(i)">Remove</button>
+                    <button class="btn" (click)="removeItem(i)">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    </button>
                   </div>
                 </div>
                 <span class="btn btn-primary add-more-insurance-loan" (click)="addNewItem()">
