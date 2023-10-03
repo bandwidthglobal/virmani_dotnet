@@ -1,4 +1,5 @@
 ﻿using DCRM.Common;
+using DCRM.Service.IService;
 using Org.BouncyCastle.Utilities;
 using System.Drawing;
 
@@ -6,17 +7,20 @@ namespace DCRM.Api
 {
     public class FileUtils
     {
-        string _rootDirectory = string.Empty;
+        public  static  string _rootDirectory = string.Empty;
+      
         public FileUtils(IWebHostEnvironment env)
         {
             _rootDirectory = env.ContentRootPath;
+          
         }
-        public string SaveFile(long id, string type, string imagestr)
+        public static string SaveFile(long id, string type, string imagestr)
         {
+            string filePath = string.Empty;
             try
             {
-                string filePath=string.Empty;
-                string directoryPath = _rootDirectory + "type/" + id;
+               
+                string directoryPath = _rootDirectory + type + "/" + id;
                 if (Directory.Exists(directoryPath))
                 {
                     Directory.CreateDirectory(directoryPath);
@@ -28,11 +32,12 @@ namespace DCRM.Api
                     pic.Save(directoryPath);
                     filePath = directoryPath + "/" + pic;
                 }
+               
                 return filePath;
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                return filePath;
             }
         }
     }

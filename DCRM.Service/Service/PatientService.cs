@@ -234,9 +234,10 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public void Create(PatientRequest request)
+        public long Create(PatientRequest request)
         {
-             _patientRepository.Create(request);
+           var patientId=  _patientRepository.Create(request);
+            return patientId;
         }
         /// <summary>;
         /// 

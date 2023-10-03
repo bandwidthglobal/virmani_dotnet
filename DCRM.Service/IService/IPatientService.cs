@@ -18,7 +18,7 @@ namespace DCRM.Service.IService
         Task<AuthenticateResponse> AuthenticateAsync(AuthenticateRequest authenticateRequest);
         List<PatientseDto> GetAll(long userId);
         PatientseDto Get(long id);
-        void Create(PatientRequest request);
+        long Create(PatientRequest request);
         void Update(PatientRequest request);
         void Delete(long id);
         void ChangePassword(ChangePasswordRequest changePasswordModel);

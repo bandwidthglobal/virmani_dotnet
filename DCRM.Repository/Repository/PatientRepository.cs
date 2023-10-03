@@ -158,16 +158,15 @@ namespace DCRM.Repository.Repository
         /// <param name="request"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public void Create(PatientRequest request)
+        public long Create(PatientRequest request)
         {
             try
             {
+                Patientse patient = new Patientse();
                 string phone = request.PatientContacts[0].Phone1.ToString();
                 var patientDetails = _contex.Patientses.FirstOrDefault(x => x.Mobile == phone);
                 if (patientDetails == null)
                 {
-
-                    Patientse patient = new Patientse();
                     patient.Chamber_Id = request.Chamber_Id==null?"123456": request.Chamber_Id;
                     patient.Mr_Number = request.Mr_Number == null ? "123456" : request.Mr_Number;
                     patient.Name = request.Name;
@@ -254,6 +253,7 @@ namespace DCRM.Repository.Repository
                             _contex.SaveChanges();
                         }
                     }
+                    return patient.Id;
                 }
                 else
                 {
