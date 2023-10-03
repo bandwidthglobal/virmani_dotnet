@@ -1,19 +1,17 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { environment } from 'environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'environments/environment';
 import { User } from '../../../../auth/models';
 
 @Injectable()
 export class PatientAddService implements Resolve<any> {
     apiData: any;
-    onDrugEditChanged: BehaviorSubject<any>;
-    medicinBrands: any;
-    medicinCategories: any;
-    onMedicinBrandChanged: BehaviorSubject<any>;
-    onMedicinCategoriesChanged: BehaviorSubject<any>;
-    id;
+    onPatientEditChanged: BehaviorSubject<any>;
+    insuranceLoanItems: any[]; // You may need to initialize this with appropriate data if it's related to patient details.
+    onInsuranceLoanItemsChanged: BehaviorSubject<any[]>;
+
     currentUser: any;
 
     /**
@@ -24,10 +22,11 @@ export class PatientAddService implements Resolve<any> {
     constructor(private _httpClient: HttpClient) {
         // Set the defaults
         this.currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
-        this.onDrugEditChanged = new BehaviorSubject({});
-        this.onMedicinBrandChanged = new BehaviorSubject({});
-        this.onMedicinCategoriesChanged = new BehaviorSubject({});
+        this.onPatientEditChanged = new BehaviorSubject({});
+        this.onInsuranceLoanItemsChanged = new BehaviorSubject([]);
 
+        // Initialize insuranceLoanItems with initial data if needed.
+        this.insuranceLoanItems = [];
     }
 
     /**
@@ -40,41 +39,33 @@ export class PatientAddService implements Resolve<any> {
      */
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-        return new Promise<void>((resolve, reject) => {
-            Promise.all([this.getCategoryList(), this.getBrandlist()]).then(() => {
-                resolve();
-            }, reject);
-        });
+        // You can add data fetching logic here if needed.
+        return null;
     }
-    getBrandlist(): Promise<any[]> {
-        const url = `${environment.apiUrl}/Drug/GetMedicineBrands`;
-        return new Promise((resolve, reject) => {
-            this._httpClient.get(url).subscribe((response: any) => {
-                this.medicinBrands = response;
-                this.onMedicinBrandChanged.next(this.medicinBrands);
-                resolve(this.medicinBrands);
-            }, reject);
-        });
-    }
-    getCategoryList(): Promise<any[]> {
-        const url = `${environment.apiUrl}/Drug/GetMedicineCategoris`;
-        return new Promise((resolve, reject) => {
-            this._httpClient.get(url).subscribe((response: any) => {
-                this.medicinCategories = response;
-                this.onMedicinCategoriesChanged.next(this.medicinCategories);
-                resolve(this.medicinCategories);
-            }, reject);
-        });
-    }
-    update(drug: any) {
+
+    // You can add methods to fetch patient data or perform patient-related operations here.
+
+    // Example method to update patient data:
+    savePatient(patient: any): Observable<any> {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${this.currentUser.jwtToken}`
         });
         const requestOptions = { headers: headers };
-        debugger;
-        return this._httpClient.post<any>(`${environment.apiUrl}/Drug/Create`, drug, requestOptions);
+        
+        // You may need to adjust the API endpoint and request type based on your backend.
+        return this._httpClient.post<any>(`${environment.apiUrl}/Patient/Create`, patient, requestOptions);
     }
 
+    // Example method to add insurance or loan details for a patient:
+    addInsuranceLoanItem(item: any): void {
+        this.insuranceLoanItems.push(item);
+        this.onInsuranceLoanItemsChanged.next(this.insuranceLoanItems);
+    }
 
+    // Example method to remove insurance or loan details for a patient:
+    removeInsuranceLoanItem(index: number): void {
+        this.insuranceLoanItems.splice(index, 1);
+        this.onInsuranceLoanItemsChanged.next(this.insuranceLoanItems);
+    }
 }

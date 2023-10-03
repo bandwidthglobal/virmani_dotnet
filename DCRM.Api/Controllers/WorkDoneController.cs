@@ -27,6 +27,7 @@ namespace DCRM.Api.Controllers
 
         }
 
+
         [HttpPost("Create/{treatmentId}")]
         public IActionResult Create(Workdone workdone,long treatmentId)
         {
@@ -76,7 +77,5 @@ namespace DCRM.Api.Controllers
             }
 
         }
-      
-        
     }
 }

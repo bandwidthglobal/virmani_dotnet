@@ -81,6 +81,8 @@ namespace DCRM.Service
 
             services.AddScoped<IChairService, ChairService>();
             services.AddScoped<IWorkDoneService, WorkDoneService>();
+            services.AddScoped<IFileRepository, FileRepository>();
+            services.AddScoped<IFileService, FileService>();
             #endregion
             return services;
         }

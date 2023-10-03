@@ -26,7 +26,7 @@ namespace DCRM.Repository.IRepository
 
         List<Patient_Scans> GetPatientScanList(int patientId);
 
-        void Create(PatientRequest request);
+        long Create(PatientRequest request);
 
         void Update(PatientRequest request);
 

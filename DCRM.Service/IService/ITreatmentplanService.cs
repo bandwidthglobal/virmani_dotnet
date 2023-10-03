@@ -16,8 +16,10 @@ namespace DCRM.Service.IService
 
         void Create(TreatmentplanRequest request);
 
-        void UpdateDealer(TreatmentplanRequest request);
+        void Update(TreatmentplanRequest request);
 
-        void Delete(int id);
+        void Delete(long id);
+
+        void CreateWorkDone(Workdone_New workdone);
     }
 }

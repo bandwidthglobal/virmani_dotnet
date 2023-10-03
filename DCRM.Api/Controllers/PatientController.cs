@@ -21,15 +21,16 @@ namespace DCRM.Api.Controllers
         public readonly IAppointmentService _appointmentService;
         public readonly IPrescriptionService _prescriptionService;
         public readonly ITreatmentplanService _treatmentplanService;
-
+        private readonly IFileService _fileService;
         public PatientController(IPatientService patientService, IAppointmentService appointmentService, IPrescriptionService prescriptionService
-            , ITreatmentplanService treatmentplanService)
+            , ITreatmentplanService treatmentplanService, IFileService fileService)
         {
 
             _patientService = patientService;
             _appointmentService = appointmentService;
             _prescriptionService = prescriptionService;
             _treatmentplanService = treatmentplanService;
+            _fileService = fileService;
         }
 
         
@@ -54,7 +55,12 @@ namespace DCRM.Api.Controllers
         {
             var user = Request.HttpContext.Items["User"] as User;
             request.User_Id = user.Id;
-            _patientService.Create(request);
+            var patientId= _patientService.Create(request);
+            if (patientId>0)
+            {
+              var filePath= FileUtils.SaveFile(patientId, "patient", request.Thumb);
+                _fileService.UpdateFileUrl(patientId, filePath, "patient");
+            }
             return Ok("Created");
         }
 
