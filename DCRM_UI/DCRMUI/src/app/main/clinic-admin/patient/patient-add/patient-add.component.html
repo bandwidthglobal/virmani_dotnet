@@ -1,384 +1,408 @@
 ﻿
 <div class="content-wrapper container-xxl p-0">
-  <div class="content-body">
-    <section id="multiple-column-form">
-      <div class="row match-height">
-        <div class="col-12">
-          <div class="card-body">
-            <div class="patient-header with-border">
-              <h3 class="card-title">Create New</h3>
-              <div class="patient-tools pull-right">
-                <a href="#" class="btn btn-light-secondary btn-sm">
-                  <i class="fa fa-bars"></i> All Patients
-                </a>
-              </div>
+    <div class="content-body">
+        <section id="multiple-column-form">
+            <div class="row match-height">
+                <div class="col-12">
+                    <div class="card-body">
+                        <div class="patient-header with-border">
+                            <h3 class="card-title">Create New</h3>
+                            <div class="patient-tools pull-right">
+                                <a href="#" class="btn btn-light-secondary btn-sm">
+                                    <i class="fa fa-bars"></i> All Patients
+                                </a>
+                            </div>
+                        </div>
+                        <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+                            <div class="alert-body">
+                                <p>{{ error }}</p>
+                            </div>
+                        </ngb-alert>
+
+                        <form class="form" [formGroup]="addPatientForm" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="avatar-upload text-center">
+                                            <div class="avatar-edit">
+                                                <input type="file" name="photo" id="imageUpload" accept=".png, .jpg, .jpeg" (change)="convertToBase64($event)">
+                                                <label for="imageUpload"></label>
+                                            </div>
+                                            <div class="avatar-preview" id="imagePreview" *ngIf="imagePreviewUrl">
+                                                <img [src]="imagePreviewUrl" alt="Selected Image" width="200">
+                                            </div>
+                                            <div class="avatar-preview" id="imagePreview" [style.background-image]="'url(' + base64Image + ')'" *ngIf="base64Image">
+                                                <img [src]="base64Image" alt="Selected Image">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Title</label>
+                                                <select class="form-control">
+                                                    <option value="select">Select</option>
+                                                    <option value="Mr">Mr</option>
+                                                    <option value="Mrs">Mrs</option>
+                                                    <option value="Miss">Miss</option>
+                                                    <option value="Ms">Ms</option>
+                                                    <option value="Mx">Mx</option>
+                                                    <option value="Sir">Sir</option>
+                                                    <option value="Dr">Dr</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Name <span class="text-danger">*</span></label>
+                                                <input type="text"
+                                                       [(ngModel)]="patient.name"
+                                                       formControlName="name"
+                                                       class="form-control"
+                                                       placeholder="Name"
+                                                       aria-describedby="name"
+                                                       tabindex="5"
+                                                       autofocus
+                                                       [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                                                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.name.errors.required">Name is required</div>
+                                                </div>
+                                                <!--<input type="text" class="form-control">-->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Guardian Person </label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group validate">
+                                                <label>Gender </label>
+                                                <select class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.sex" aria-invalid="false">
+                                                    <option>Select</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Date of Birth</label>
+                                                <input type="date" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.dob" id="date">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Age</label>
+                                                <input type="number" class="form-control" id="age" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.age" min="0" max="100"
+                                                       oninput="this.value = !!this.value && Math.abs(this.value)>= 0 ? Math.abs(this.value) : null">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Weight </label>
+                                                <input type="number" min="0" [ngModelOptions]="{ standalone: true }" class="form-control" [(ngModel)]="patient.weight" aria-invalid="false">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Present Address</label>
+                                                <textarea class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.present_address"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Permanent Address</label>
+                                                <textarea class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.permanent_address"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="">
+                                <h3 class="border-bottom pb-20">Contact Information</h3>
+
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Phone 1 <span class="text-danger">*</span></label>
+                                            <input type="text"
+                                                   [(ngModel)]="patient.patientContacts[0].phone1"
+                                                   formControlName="phone1"
+                                                   class="form-control"
+                                                   placeholder="phone1"
+                                                   aria-describedby="phone1"
+                                                   min="0" maxlength="10"
+                                                   autofocus
+                                                   [ngClass]="{ 'is-invalid': submitted && f.phone1.errors }" />
+                                            <div *ngIf="submitted && f.phone1.errors" class="invalid-feedback">
+                                                <div *ngIf="f.phone1.errors.required">Phone1 is required</div>
+                                            </div>
+                                            <!--<input type="number" class="form-control" [ngModelOptions]="{ standalone: true }" required [(ngModel)]="patient.patientContacts[0].phone1" id="phone1" min="0" maxlength="10">-->
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Phone 2 </label>
+                                            <input type="number" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].phone2" min="0" maxlength="10" id="phone2">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Phone 3 </label>
+                                            <input type="number" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].phone3" min="0" maxlength="10" id="phone3">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Phone 4 </label>
+                                            <input type="number" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].phone4" min="0" maxlength="10" id="phone4">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Email </label>
+                                            <input type="email" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].email" id="email1">
+                                            <span class="text-danger my-5" id="email_exist_error_message"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Email 2 </label>
+                                            <input type="email" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].email2" id="email2">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Address (R)</label>
+                                            <input type="text" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].address_R" id="address_R">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>City</label>
+                                            <input type="text" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].city_R" id="city_R">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Zip</label>
+                                            <input type="text" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].zip_R" id="zip_R">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Country</label>
+                                            <input type="text" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].country_R" id="country_R">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Address (0)</label>
+                                            <input type="text" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].address_O" id="address_O">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>City</label>
+                                            <input type="text" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].city_O" id="city_O">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Zip</label>
+                                            <input type="text" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].zip_O" id="zip_O">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Country</label>
+                                            <input type="text" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].country_O" id="country_O">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Address (Other if living away from City)</label>
+                                            <input type="text" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].address_Other" id="address_Other">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>City</label>
+                                            <input type="text" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].city_Other" id="city_Other">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Zip</label>
+                                            <input type="text" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].zip_Other" id="zip_Other">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Country</label>
+                                            <input type="text" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].country_Other" id="country_Other">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Physician</label>
+                                            <input type="text" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].physician" id="physician">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Referred By</label>
+                                            <select [ngModelOptions]="{ standalone: true }" id="reffered_By" class="form-control" [(ngModel)]="patient.patientContacts[0].reffered_By">
+                                                <option value="">Select</option>
+                                                <option value="Doctor">Doctor</option>
+                                                <option value="Patient">Patient</option>
+                                                <option value="Staff">Staff</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label id="referred_change">Enter Name</label>
+                                            <input type="text" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].doctor_Name" id="doctor_Name">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Phone</label>
+                                            <input type="number" class="form-control" required [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].phone" id="phone" maxlength="10">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Relationship Type</label>
+                                            <input type="text" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].relationship_Type" id="relationship_Type">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Medical History and Allergies</label>
+                                            <textarea class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].history_Allergies" id="history_Allergies"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Special Notes</label>
+                                            <textarea class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="patient.patientContacts[0].special_Notes" id="special_Notes"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="insurance-loan-container">
+                                <h3 class="border-bottom pb-20">Insurance/Loan Information</h3>
+                                <div class="row" *ngFor="let item of items; let i = index">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Select Type</label>
+                                            <select [ngModelOptions]="{ standalone: true }" class="form-control" [(ngModel)]="item.type">
+                                                <option value="">Select Type</option>
+                                                <option value="Insurance">Insurance</option>
+                                                <option value="Loan">Loan</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" [ngModelOptions]="{ standalone: true }" class="form-control" [(ngModel)]="item.name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Amount</label>
+                                            <input type="number" min="0" [ngModelOptions]="{ standalone: true }" class="form-control" [(ngModel)]="item.amount">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Amount Spent</label>
+                                            <input type="number" min="0" [ngModelOptions]="{ standalone: true }" class="form-control" [(ngModel)]="item.balance_spent">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Balance Amount</label>
+                                            <input type="number" min="0" [ngModelOptions]="{ standalone: true }" class="form-control" [(ngModel)]="item.balance_amount">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button class="btn" (click)="removeItem(i)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <span class="btn btn-primary add-more-insurance-loan" (click)="addNewItem()">
+                                    <i aria-hidden="true" class="fa fa-plus"></i> Add More
+                                </span>
+                            </div>
+
+                            <div class="text-center mt-2">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
-              <div class="alert-body">
-                <p>{{ error }}</p>
-              </div>
-            </ngb-alert>
-            <form class="form" [formGroup]="addPatientForm" (ngSubmit)="onSubmit()">
-              <div class="row">
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <div class="avatar-upload text-center">
-                      <div class="avatar-edit">
-                        <input type="file" name="photo" id="imageUpload" accept=".png, .jpg, .jpeg" (change)="convertToBase64($event)">
-                        <label for="imageUpload"></label>
-                      </div>
-                      <div class="avatar-preview" id="imagePreview" *ngIf="imagePreviewUrl">
-                        <img [src]="imagePreviewUrl" alt="Selected Image" width="200">
-                      </div>
-                      <div class="avatar-preview" id="imagePreview" [style.background-image]="'url(' + base64Image + ')'" *ngIf="base64Image">
-                        <img [src]="base64Image" alt="Selected Image">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-9">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group validate">
-                        <label>Title</label>
-                        <select formControlName="title" [(ngModel)]="patient.title" class="form-control">
-                          <option value="select">Select</option>
-                          <option value="Mr">Mr</option>
-                          <option value="Mrs">Mrs</option>
-                          <option value="Miss">Miss</option>
-                          <option value="Ms">Ms</option>
-                          <option value="Mx">Mx</option>
-                          <option value="Sir">Sir</option>
-                          <option value="Dr">Dr</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label>Name <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" formControlName="name" [(ngModel)]="patient.name" required>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label>Guardian Person </label>
-                        <input type="text" class="form-control" [(ngModel)]="patient.guardian" formControlName="guardian">
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group validate">
-                        <label>Gender </label>
-                        <select class="form-control" formControlName="sex" [(ngModel)]="patient.sex" aria-invalid="false">
-                          <option>Select</option>
-                          <option value="male">Male</option>
-                          <option value="female">Female</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label>Date of Birth</label>
-                        <input type="date" class="form-control" formControlName="dob" [(ngModel)]="patient.dob" id="date">
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label>Age</label>
-                        <input type="number" class="form-control" id="age" formControlName="age" [(ngModel)]="patient.age" min="0" max="100"
-                        oninput="this.value = !!this.value && Math.abs(this.value)>= 0 ? Math.abs(this.value) : null">
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label>Weight </label>
-                        <input type="number" min="0" class="form-control" formControlName="weight" [(ngModel)]="patient.weight" aria-invalid="false">
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label>Present Address</label>
-                        <textarea class="form-control" formControlName="present_address" [(ngModel)]="patient.present_address"></textarea> 
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label>Permanent Address</label>
-                        <textarea class="form-control" formControlName="permanent_address" [(ngModel)]="patient.permanent_address"></textarea>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="">
-                <h3 class="border-bottom pb-20">Contact Information</h3>
-
-                <!-- Phone -->
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label>Phone 1 <span class="text-danger">*</span></label>
-                      <input type="number" class="form-control" required [(ngModel)]="patient.patientContacts[0].phone1" id="phone1" min="0" maxlength="10">
-                      <span class="text-danger" id="number_error_message"></span>
-                    </div>
-                  </div>
-
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label>Phone 2 </label>
-                      <input type="number" class="form-control" formControlName="phone2" [(ngModel)]="patient.patientContacts[0].phone2" min="0" maxlength="10" id="phone2">
-                    </div>
-                  </div>
-
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label>Phone 3 </label>
-                      <input type="number" class="form-control" formControlName="phone3" [(ngModel)]="patient.patientContacts[0].phone3" min="0" maxlength="10" id="phone3">
-                    </div>
-                  </div>
-
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label>Phone 4 </label>
-                      <input type="number" class="form-control" formControlName="phone4" [(ngModel)]="patient.patientContacts[0].phone4" min="0" maxlength="10" id="phone4">
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Email -->
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label>Email </label>
-                      <input type="email" class="form-control" formControlName="email" [(ngModel)]="patient.patientContacts[0].email" id="email1">
-                      <span class="text-danger my-5" id="email_exist_error_message"></span>
-                    </div>
-                  </div>
-
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label>Email 2 </label>
-                      <input type="email" class="form-control" formControlName="email2" [(ngModel)]="patient.patientContacts[0].email2" id="email2">
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Address (Residential) -->
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Address (R)</label>
-                      <input type="text" class="form-control" formControlName="address_R" [(ngModel)]="patient.patientContacts[0].address_R" id="address_R">
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>City</label>
-                      <input type="text" class="form-control" formControlName="city_R" [(ngModel)]="patient.patientContacts[0].city_R" id="city_R">
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>Zip</label>
-                      <input type="text" class="form-control" formControlName="zip_R" [(ngModel)]="patient.patientContacts[0].zip_R" id="zip_R">
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>Country</label>
-                      <input type="text" class="form-control" formControlName="country_R" [(ngModel)]="patient.patientContacts[0].country_R" id="country_R">
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Address (Other) -->
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Address (0)</label>
-                      <input type="text" class="form-control" formControlName="address_O" [(ngModel)]="patient.patientContacts[0].address_O" id="address_O">
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>City</label>
-                      <input type="text" class="form-control" formControlName="city_O" [(ngModel)]="patient.patientContacts[0].city_O" id="city_O">
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>Zip</label>
-                      <input type="text" class="form-control" formControlName="zip_O" [(ngModel)]="patient.patientContacts[0].zip_O" id="zip_O">
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>Country</label>
-                      <input type="text" class="form-control" formControlName="country_O" [(ngModel)]="patient.patientContacts[0].country_O" id="country_O">
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Address (Other if living away from City) -->
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Address (Other if living away from City)</label>
-                      <input type="text" class="form-control" formControlName="address_Other" [(ngModel)]="patient.patientContacts[0].address_Other" id="address_Other">
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>City</label>
-                      <input type="text" class="form-control" formControlName="city_Other" [(ngModel)]="patient.patientContacts[0].city_Other" id="city_Other">
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>Zip</label>
-                      <input type="text" class="form-control" formControlName="zip_Other" [(ngModel)]="patient.patientContacts[0].zip_Other" id="zip_Other">
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>Country</label>
-                      <input type="text" class="form-control" formControlName="country_Other" [(ngModel)]="patient.patientContacts[0].country_Other" id="country_Other">
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Physician -->
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label>Physician</label>
-                      <input type="text" class="form-control" formControlName="physician" [(ngModel)]="patient.patientContacts[0].physician" id="physician">
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>Referred By</label>
-                      <select formControlName="referred_By" id="reffered_By" class="form-control" [(ngModel)]="patient.patientContacts[0].reffered_By">
-                        <option value="">Select</option>
-                        <option value="Doctor">Doctor</option>
-                        <option value="Patient">Patient</option>
-                        <option value="Staff">Staff</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label id="referred_change">Enter Name</label>
-                      <input type="text" class="form-control" formControlName="doctor_Name" [(ngModel)]="patient.patientContacts[0].doctor_Name" id="doctor_Name">
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>Phone</label>
-                      <input type="number" class="form-control" required formControlName="phone" [(ngModel)]="patient.patientContacts[0].phone" id="phone" maxlength="10">
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>Relationship Type</label>
-                      <input type="text" class="form-control" formControlName="relationship_Type" [(ngModel)]="patient.patientContacts[0].relationship_Type" id="relationship_Type">
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Medical History -->
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Medical History and Allergies</label>
-                      <textarea class="form-control" formControlName="history_Allergies" [(ngModel)]="patient.patientContacts[0].history_Allergies" id="history_Allergies"></textarea>
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Special Notes</label>
-                      <textarea class="form-control" formControlName="special_Notes" [(ngModel)]="patient.patientContacts[0].special_Notes" id="special_Notes"></textarea>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="insurance-loan-container">
-                <h3 class="border-bottom pb-20">Insurance/Loan Information</h3>
-                <div class="row" *ngFor="let item of items; let i = index">
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>Select Type</label>
-                      <select formControlName="insurance_loan[type]" class="form-control" [(ngModel)]="item.type">
-                        <option value="">Select Type</option>
-                        <option value="Insurance">Insurance</option>
-                        <option value="Loan">Loan</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label>Name</label>
-                      <input type="text" formControlName="insurance_loan[name]" class="form-control" [(ngModel)]="item.name">
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>Amount</label>
-                      <input type="number" min="0" formControlName="insurance_loan[amount]" class="form-control" [(ngModel)]="item.amount">
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>Amount Spent</label>
-                      <input type="number" min="0" formControlName="insurance_loan[balance_Spent]" class="form-control" [(ngModel)]="item.balance_spent">
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>Balance Amount</label>
-                      <input type="number" min="0" formControlName="insurance_loan[balance_Amount]" class="form-control" [(ngModel)]="item.balance_amount">
-                    </div>
-                  </div>
-                  <div class="col-md-1">
-                    <button class="btn" (click)="removeItem(i)">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                    </button>
-                  </div>
-                </div>
-                <span class="btn btn-primary add-more-insurance-loan" (click)="addNewItem()">
-                  <i aria-hidden="true" class="fa fa-plus"></i> Add More
-                </span>
-              </div>
-              
-              <div class="text-center mt-2">
-                <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+        </section>
+    </div>
 </div>

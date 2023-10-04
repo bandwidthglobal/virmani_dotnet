@@ -17,7 +17,7 @@ import { Observable } from 'rxjs';
   encapsulation: ViewEncapsulation.None
 })
 export class PatientAddComponent implements OnInit, OnDestroy {
-  public addPatientForm: FormGroup;
+  public addPatientForm: UntypedFormGroup;
   public error: string = '';
   public insuranceLoanItems: any[] = [];
   public loading = false;
@@ -28,7 +28,7 @@ export class PatientAddComponent implements OnInit, OnDestroy {
 
   private _unsubscribeAll: Subject<any>;
   public patient: PatientAddModel = {
-    title: '',
+    title: 'a',
     photo: null,
     name: '',
     guardian: '',
@@ -40,10 +40,10 @@ export class PatientAddComponent implements OnInit, OnDestroy {
     present_address: '',
     permanent_address: '',
     patientContacts: [{
-      phone1: null,
-      phone2: null,
-      phone3: null,
-      phone4: null,
+      phone1: 0,
+      phone2: 0,
+      phone3: 0,
+      phone4: 0,
       email: '',
       email2: '',
       address_R: '',
@@ -56,12 +56,12 @@ export class PatientAddComponent implements OnInit, OnDestroy {
       country_O: '',
       address_Other: '',
       city_Other: '',
-      zip_Other: null,
+      zip_Other: 0,
       country_Other: '',
       physician: '',
       reffered_By: '',
       doctor_Name: '',
-      phone: null,
+      phone: '',
       relationship_Type: '',
       history_Allergies: '',
       special_Notes: '',  
@@ -93,7 +93,6 @@ export class PatientAddComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private httpClient: HttpClient,
     private http: HttpClient,
@@ -101,47 +100,52 @@ export class PatientAddComponent implements OnInit, OnDestroy {
     this._unsubscribeAll = new Subject();
   }
 
-  ngOnInit(): void {
-    this.addPatientForm = this.formBuilder.group({
-      title: ['select'],
-      name: ['', Validators.required],
-      guardian: [''],
-      sex: [''],
-      dob: [null],
-      age: [null],
-      weight: [null],
-      mobile: [null],
-      present_address: [''],
-      permanent_address: [''],
-      patientContacts: {
-        phone1: [null, Validators.required],
-        phone2: [null],
-        phone3: [null],
-        phone4: [null],
-        email: [''],
-        email2: [''],
-        address_R: [''],
-        city_R: [''],
-        zip_R: [''],
-        country_R: [''],
-        address_O: [''],
-        city_O: [''],
-        zip_O: [''],
-        country_O: [''],
-        address_Other: [''],
-        city_Other: [''],
-        zip_Other: [''],
-        country_Other: [''],
-        physician: [''],
-        referred_by: [''],
-        doctor_name: [''],
-        phone_doctor: [null],
-        relationship_type: [''],
-        history_allergies: [''],
-        special_Notes: [''],
-      }
+    ngOnInit(): void {
+        this.addPatientForm = this._formBuilder.group({
+            name: ['', Validators.required],
+            phone1: ['', Validators.required]
+        });
+
+    //  this.addPatientForm = this._formBuilder.group({
+    //  title: ['select'],
+    //  name: ['', Validators.required],
+    //  guardian: [''],
+    //  sex: [''],
+    //  dob: [null],
+    //  age: [null],
+    //  weight: [null],
+    //  mobile: [null],
+    //  present_address: [''],
+    //  permanent_address: [''],
+    //  patientContacts: {
+    //    phone1: [null, Validators.required],
+    //    phone2: [null],
+    //    phone3: [null],
+    //    phone4: [null],
+    //    email: [''],
+    //    email2: [''],
+    //    address_R: [''],
+    //    city_R: [''],
+    //    zip_R: [''],
+    //    country_R: [''],
+    //    address_O: [''],
+    //    city_O: [''],
+    //    zip_O: [''],
+    //    country_O: [''],
+    //    address_Other: [''],
+    //    city_Other: [''],
+    //    zip_Other: [''],
+    //    country_Other: [''],
+    //    physician: [''],
+    //    referred_by: [''],
+    //    doctor_name: [''],
+    //    phone_doctor: [null],
+    //    relationship_type: [''],
+    //    history_allergies: [''],
+    //    special_Notes: [''],
+    //  }
       
-    });
+    //});
   }
 
   get f() {
@@ -155,52 +159,54 @@ export class PatientAddComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.submitted = true;
-    debugger;
-    const patientData = {
-      name: this.addPatientForm.get('name').value,
-      patientContacts: [{
-        phone1: this.addPatientForm.get('patientContacts').value.phone1,
-        // phone1: 6755463,
-      }]
-    }
+   
+    //const patientData = {
+    //  name: this.addPatientForm.get('name').value,
+    //  patientContacts: [{
+    //    phone1: this.addPatientForm.get('patientContacts').value.phone1,
+    //    // phone1: 6755463,
+    //  }]
+    //}
     
-    console.log(patientData);
+    //console.log(patientData);
 
 
         if (this.addPatientForm.invalid) {
             return;
-        }
- 
-        this.loading = true;
-        this.patientAddService
-          .update(patientData)
-          .pipe()
-          // .subscribe(
-          //     data => {
-          //         this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/patient/list';
-          //         this.router.navigateByUrl(this.returnUrl);
-          //     },
-          //     error => {
-          //         this.error = error;
-          //         this.loading = false;
-          //     }
-          // );
+      }
+      var abc = this.patient;
+      debugger;
 
-          this.patientAddService.update(patientData).subscribe(
-            (response) => {
-              // Handle the response here
-              console.log('Patient data updated:', response);
-              // Redirect or perform other actions as needed
-              this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/patient/list';
-              this.router.navigateByUrl(this.returnUrl);
-            },
-            (error) => {
-              // Handle errors here
-              console.error('Error updating patient data:', error);
-              this.error = error;
-              this.loading = false;
-            }
-          ); 
+        this.loading = true;
+      this.patientAddService
+          .update(this.patient)
+          .pipe()
+          .subscribe(
+              data => {
+                  this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/patient/list';
+                  this.router.navigateByUrl(this.returnUrl);
+              },
+              error => {
+                  this.error = error;
+                  this.loading = false;
+              }
+          );
+
+          //this.patientAddService.update(patientData).subscribe(
+          //  (response) => {
+          //    // Handle the response here
+          //    console.log('Patient data updated:', response);
+          //    // Redirect or perform other actions as needed
+          //    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/patient/list';
+          //    this.router.navigateByUrl(this.returnUrl);
+          //  },
+          //  (error) => {
+          //    // Handle errors here
+          //    console.error('Error updating patient data:', error);
+          //    this.error = error;
+          //    this.loading = false;
+          //  }
+          //); 
             
   }
 
