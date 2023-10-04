@@ -16,30 +16,34 @@ public  class TreatmentplanRequest
 
     public int JobId { get; set; }
 
+    public string? Type { get; set; }
+
     public int Status { get; set; }
 
     public int PatientId { get; set; }
 
     public float Amount { get; set; }
 
-    public string Courtesy { get; set; } = null!;
+    public string? Courtesy { get; set; }
 
-    public int WorkdoneId { get; set; }
+    public float Estimated_Amount { get; set; }
 
-    public string PrintToothName { get; set; } = null!;
+    public string? PrintToothName { get; set; } 
 
-    public string IndividualToothWrk { get; set; } = null!;
+    public string? IndividualToothWrk { get; set; }
 
-    public string CompletedDate { get; set; } = null!;
+    public string? CompletedDate { get; set; } 
 
     public int SittingStatus { get; set; }
 
     public sbyte TreatmentStatus { get; set; }
 
+    public int Teeth_id { get; set; }
+
+    public string? Teeth_Number_Note { get; set; }
+    public string? Toth_Note { get; set; }
     public DateTime CreatedAt { get; set; }
 
     public DateTime UpdatedAt { get; set; }
 
-    public Teethinfo Teethinfo { get; set; }
-    
 }

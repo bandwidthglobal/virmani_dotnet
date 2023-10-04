@@ -22,15 +22,17 @@ public  class Treatmentplans:BaseEntity
 
     public float Amount { get; set; }
 
-    public string Courtesy { get; set; } = null!;
+    public string? Courtesy { get; set; }
 
-    public int Workdone_Id { get; set; }
+    public float Estimated_Amount { get; set; }
 
-    public string Print_Tooth_Name { get; set; } = null!;
+   
 
-    public string Individual_Tooth_Wrk { get; set; } = null!;
+    public string? Print_Tooth_Name { get; set; } 
 
-    public string Completed_Date { get; set; } = null!;
+    public string? Individual_Tooth_Wrk { get; set; } 
+
+    public string? Completed_Date { get; set; } 
 
     public int Sitting_Status { get; set; }
 

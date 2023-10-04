@@ -39,6 +39,10 @@ namespace DCRM.Api.Controllers
         {
             var user = Request.HttpContext.Items["User"] as User;
             List<PatientseDto> patientList = _patientService.GetAll(user.Id);
+            if (patientList.Count>0)
+            {
+                patientList = patientList.OrderByDescending(x => x.Id).ToList();
+            }
             return patientList;
         }
 

@@ -161,14 +161,16 @@ namespace DCRM.Repository.Repository
         /// <exception cref="NotImplementedException"></exception>
         public long Create(PatientRequest request)
         {
-            try
+
+
+            Patientse patient = new Patientse();
+            long phone = Convert.ToInt64(request.PatientContacts[0].Phone1);
+            var contactDetails = _contex.Patients_Contact.FirstOrDefault(x => x.Phone1 == phone);
+            if (contactDetails == null)
             {
-                Patientse patient = new Patientse();
-                long phone = Convert.ToInt64(request.PatientContacts[0].Phone1);
-                var contactDetails = _contex.Patients_Contact.FirstOrDefault(x => x.Phone1 == phone);
-                if (contactDetails == null)
+                _contex.Database.BeginTransaction();
+                try
                 {
-                    _contex.Database.BeginTransaction();
                     patient.Chamber_Id = request.Chamber_Id == null ? "123456" : request.Chamber_Id;
                     patient.Mr_Number = request.Mr_Number == null ? "123456" : request.Mr_Number;
                     patient.Name = request.Name;
@@ -221,54 +223,52 @@ namespace DCRM.Repository.Repository
                             _contex.SaveChanges();
                         }
                     }
-                    if (request.PatientScans != null && request.PatientScans.Count > 0)
-                    {
-                        foreach (var item in request.PatientScans)
-                        {
-                            var patientScan = _contex.Patient_Scans.FirstOrDefault(x => x.Id == item.Id);
-                            if (patientScan == null)
-                            {
-                                item.Patient_Id = patient.Id;
-                                item.Created_At = System.DateTime.Now;
-                                item.Updated_At
-                                    = System.DateTime.Now;
-                                _contex.Patient_Scans.Add(item);
-                            }
-                            _contex.SaveChanges();
-                        }
-                    }
-
-
-                    if (request.PatientTests != null && request.PatientTests.Count > 0)
-                    {
-                        foreach (var item in request.PatientTests)
-                        {
-                            var patientTest = _contex.Patient_Tests.FirstOrDefault(x => x.Id == item.Id);
-                            if (patientTest == null)
-                            {
-                                item.Patient_Id = patient.Id;
-                                item.Created_At = System.DateTime.Now;
-                                item.Updated_At
-                                    = System.DateTime.Now;
-                                _contex.Patient_Tests.Add(item);
-                            }
-                            _contex.SaveChanges();
-                        }
-                    }
+                    //if (request.PatientScans != null && request.PatientScans.Count > 0)
+                    //{
+                    //    foreach (var item in request.PatientScans)
+                    //    {
+                    //        var patientScan = _contex.Patient_Scans.FirstOrDefault(x => x.Id == item.Id);
+                    //        if (patientScan == null)
+                    //        {
+                    //            item.Patient_Id = patient.Id;
+                    //            item.Created_At = System.DateTime.Now;
+                    //            item.Updated_At
+                    //                = System.DateTime.Now;
+                    //            _contex.Patient_Scans.Add(item);
+                    //        }
+                    //        _contex.SaveChanges();
+                    //    }
+                    //}
+                    //if (request.PatientTests != null && request.PatientTests.Count > 0)
+                    //{
+                    //    foreach (var item in request.PatientTests)
+                    //    {
+                    //        var patientTest = _contex.Patient_Tests.FirstOrDefault(x => x.Id == item.Id);
+                    //        if (patientTest == null)
+                    //        {
+                    //            item.Patient_Id = patient.Id;
+                    //            item.Created_At = System.DateTime.Now;
+                    //            item.Updated_At
+                    //                = System.DateTime.Now;
+                    //            _contex.Patient_Tests.Add(item);
+                    //        }
+                    //        _contex.SaveChanges();
+                    //    }
+                    //}
                     _contex.Database.CommitTransaction();
                     return patient.Id;
                 }
-                else
+                catch (Exception ex)
                 {
                     _contex.Database.RollbackTransaction();
-                    throw new SqlAlreadyFilledException("phone is already exist");
+                    throw new Exception(ex.Message);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                _contex.Database.RollbackTransaction();
-                throw new Exception(ex.Message);
+                throw new SqlAlreadyFilledException("phone is already exist");
             }
+
         }
 
         /// <summary>
@@ -367,55 +367,53 @@ namespace DCRM.Repository.Repository
                         _contex.SaveChanges();
                     }
                 }
-                if (request.PatientScans != null && request.PatientScans.Count > 0)
-                {
-                    foreach (var item in request.PatientScans)
-                    {
-                        var patientScan = _contex.Patient_Scans.FirstOrDefault(x => x.Id == item.Id);
-                        if (patientScan == null)
-                        {
-                            item.Patient_Id = patient.Id;
-                            _contex.Patient_Scans.Add(item);
-                        }
-                        else
-                        {
-                            patientScan.Status = item.Status;
-                            patientScan.Report = item.Report;
-                            patientScan.Report_File = item.Report_File;
-                            patientScan.Scan_Name = item.Scan_Name;
-                            patientScan.Type = item.Type;
-                            patientScan.Updated_At = System.DateTime.UtcNow;
-                            _contex.Patient_Scans.Update(patientScan);
-                        }
-                        _contex.SaveChanges();
-                    }
-                }
-
-
-                if (request.PatientTests != null && request.PatientTests.Count > 0)
-                {
-                    foreach (var item in request.PatientTests)
-                    {
-                        var patientTest = _contex.Patient_Tests.FirstOrDefault(x => x.Id == item.Id);
-                        if (patientTest == null)
-                        {
-                            item.Patient_Id = patient.Id;
-                            _contex.Patient_Tests.Add(item);
-                        }
-                        else
-                        {
-                            patientTest.Status = item.Status;
-                            patientTest.Report = item.Report;
-                            patientTest.Report_File = item.Report_File;
-                            patientTest.Report_Date = item.Report_Date;
-                            patientTest.Test_Name = item.Test_Name;
-                            patientTest.Test_Price = item.Test_Price;
-                            patientTest.Updated_At = System.DateTime.UtcNow;
-                            _contex.Patient_Tests.Update(patientTest);
-                        }
-                        _contex.SaveChanges();
-                    }
-                }
+                //if (request.PatientScans != null && request.PatientScans.Count > 0)
+                //{
+                //    foreach (var item in request.PatientScans)
+                //    {
+                //        var patientScan = _contex.Patient_Scans.FirstOrDefault(x => x.Id == item.Id);
+                //        if (patientScan == null)
+                //        {
+                //            item.Patient_Id = patient.Id;
+                //            _contex.Patient_Scans.Add(item);
+                //        }
+                //        else
+                //        {
+                //            patientScan.Status = item.Status;
+                //            patientScan.Report = item.Report;
+                //            patientScan.Report_File = item.Report_File;
+                //            patientScan.Scan_Name = item.Scan_Name;
+                //            patientScan.Type = item.Type;
+                //            patientScan.Updated_At = System.DateTime.UtcNow;
+                //            _contex.Patient_Scans.Update(patientScan);
+                //        }
+                //        _contex.SaveChanges();
+                //    }
+                //}
+                //if (request.PatientTests != null && request.PatientTests.Count > 0)
+                //{
+                //    foreach (var item in request.PatientTests)
+                //    {
+                //        var patientTest = _contex.Patient_Tests.FirstOrDefault(x => x.Id == item.Id);
+                //        if (patientTest == null)
+                //        {
+                //            item.Patient_Id = patient.Id;
+                //            _contex.Patient_Tests.Add(item);
+                //        }
+                //        else
+                //        {
+                //            patientTest.Status = item.Status;
+                //            patientTest.Report = item.Report;
+                //            patientTest.Report_File = item.Report_File;
+                //            patientTest.Report_Date = item.Report_Date;
+                //            patientTest.Test_Name = item.Test_Name;
+                //            patientTest.Test_Price = item.Test_Price;
+                //            patientTest.Updated_At = System.DateTime.UtcNow;
+                //            _contex.Patient_Tests.Update(patientTest);
+                //        }
+                //        _contex.SaveChanges();
+                //    }
+                //}
             }
             else
             {

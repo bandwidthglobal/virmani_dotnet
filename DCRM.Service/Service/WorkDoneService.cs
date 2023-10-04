@@ -50,7 +50,7 @@ namespace DCRM.Service.Service
                 var treatment = _treatmentRepository.Get(treatmentId);
                 if (treatment!=null)
                 {
-                    treatment.Workdone_Id = Convert.ToInt32(id);
+                    //treatment.Workdone_Id = Convert.ToInt32(id);
                     _treatmentRepository.Update(treatment);
                 }
             }
