@@ -19,7 +19,7 @@ export class PatientAddService implements Resolve<any> {
      *
      * @param {HttpClient} _httpClient
      */
-    constructor(private _httpClient: HttpClient) {
+    constructor(private _httpClient: HttpClient, private http: HttpClient) {
         // Set the defaults
         this.currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
         this.onPatientEditChanged = new BehaviorSubject({});
@@ -46,7 +46,7 @@ export class PatientAddService implements Resolve<any> {
     // You can add methods to fetch patient data or perform patient-related operations here.
 
     // Example method to update patient data:
-    savePatient(patient: any): Observable<any> {
+    update(patientData: any): Observable<any> {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${this.currentUser.jwtToken}`
@@ -54,7 +54,7 @@ export class PatientAddService implements Resolve<any> {
         const requestOptions = { headers: headers };
         
         // You may need to adjust the API endpoint and request type based on your backend.
-        return this._httpClient.post<any>(`${environment.apiUrl}/Patient/Create`, patient, requestOptions);
+        return this._httpClient.post<any>(`${environment.apiUrl}/Patient/Create`, patientData, requestOptions);
     }
 
     // Example method to add insurance or loan details for a patient:
