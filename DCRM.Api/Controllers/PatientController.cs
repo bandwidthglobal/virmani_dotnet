@@ -65,7 +65,7 @@ namespace DCRM.Api.Controllers
               var filePath= FileUtils.SaveFile(patientId, "patient", request.Thumb);
                 _fileService.UpdateFileUrl(patientId, filePath, "patient");
             }
-            return Ok("Created");
+            return Ok();
         }
 
 
@@ -73,7 +73,7 @@ namespace DCRM.Api.Controllers
         public async Task<IActionResult> Update(PatientRequest request)
         {
             _patientService.Update(request);
-            return Ok("Updated");
+            return Ok();
         }
 
         [HttpDelete("Delete/{id}")]
