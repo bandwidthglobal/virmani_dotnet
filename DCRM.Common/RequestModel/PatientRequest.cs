@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -41,7 +42,6 @@ public  class PatientRequest
 
     public string? Guardian { get; set; }
 
-    
     public string? Role { get; set; }
 
     public string? Verify_Code { get; set; }

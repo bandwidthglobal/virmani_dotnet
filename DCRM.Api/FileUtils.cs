@@ -2,6 +2,7 @@
 using DCRM.Service.IService;
 using Org.BouncyCastle.Utilities;
 using System.Drawing;
+using System.IO;
 
 namespace DCRM.Api
 {
@@ -20,19 +21,16 @@ namespace DCRM.Api
             try
             {
                
-                string directoryPath = _rootDirectory + type + "/" + id;
-                if (Directory.Exists(directoryPath))
+                string directoryPath = _rootDirectory+ "/UploadImages" + type + "/" + id;
+                if (!Directory.Exists(directoryPath))
                 {
                     Directory.CreateDirectory(directoryPath);
                 }
-                byte[] bytes = Convert.FromBase64String(imagestr);
-                using (MemoryStream ms = new MemoryStream(bytes))
-                {
-                    Image pic = Image.FromStream(ms);
-                    pic.Save(directoryPath);
-                    filePath = directoryPath + "/" + pic;
-                }
-               
+                string imageName = "profile" + ".jpg";
+                string imgPath = Path.Combine(directoryPath, imageName);
+                byte[] imageBytes = Convert.FromBase64String(imagestr);
+                File.WriteAllBytes(imgPath, imageBytes);
+                filePath = directoryPath + "/" + imageName;
                 return filePath;
             }
             catch (Exception ex)

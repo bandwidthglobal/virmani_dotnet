@@ -23,6 +23,7 @@ namespace DCRM.Repository.Repository
                 if (patient != null)
                 {
                     _contex.Patientses.Update(patient);
+                    _contex.SaveChanges();
                 }
             }
         }

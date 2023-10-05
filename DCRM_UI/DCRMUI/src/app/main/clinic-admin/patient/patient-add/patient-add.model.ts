@@ -19,6 +19,7 @@ export class PatientEditModel {
 export class PatientAddModel {
     title: string = "";
     photo: File;
+    thumb: string;
     name: string = "";
     guardian: string = "";
     sex: string = "";
