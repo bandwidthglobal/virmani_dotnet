@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Api\\DCRM.Api.csproj": {}
+    "D:\\ez-technologies\\virmani_dotnet\\DCRM.Api\\DCRM.Api.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Api\\DCRM.Api.csproj": {
+    "D:\\ez-technologies\\virmani_dotnet\\DCRM.Api\\DCRM.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Api\\DCRM.Api.csproj",
+        "projectUniqueName": "D:\\ez-technologies\\virmani_dotnet\\DCRM.Api\\DCRM.Api.csproj",
         "projectName": "DCRM.Api",
-        "projectPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Api\\DCRM.Api.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Api\\obj\\",
+        "projectPath": "D:\\ez-technologies\\virmani_dotnet\\DCRM.Api\\DCRM.Api.csproj",
+        "packagesPath": "C:\\Users\\91812\\.nuget\\packages\\",
+        "outputPath": "D:\\ez-technologies\\virmani_dotnet\\DCRM.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\91812\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,11 +28,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj": {
-                "projectPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj"
+              "D:\\ez-technologies\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj": {
+                "projectPath": "D:\\ez-technologies\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj"
               },
-              "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Service\\DCRM.Service.csproj": {
-                "projectPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Service\\DCRM.Service.csproj"
+              "D:\\ez-technologies\\virmani_dotnet\\DCRM.Service\\DCRM.Service.csproj": {
+                "projectPath": "D:\\ez-technologies\\virmani_dotnet\\DCRM.Service\\DCRM.Service.csproj"
               }
             }
           }
@@ -99,21 +99,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj": {
+    "D:\\ez-technologies\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj",
+        "projectUniqueName": "D:\\ez-technologies\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj",
         "projectName": "DCRM.Common",
-        "projectPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\obj\\",
+        "projectPath": "D:\\ez-technologies\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj",
+        "packagesPath": "C:\\Users\\91812\\.nuget\\packages\\",
+        "outputPath": "D:\\ez-technologies\\virmani_dotnet\\DCRM.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\91812\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -172,21 +172,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Repository\\DCRM.Repository.csproj": {
+    "D:\\ez-technologies\\virmani_dotnet\\DCRM.Repository\\DCRM.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Repository\\DCRM.Repository.csproj",
+        "projectUniqueName": "D:\\ez-technologies\\virmani_dotnet\\DCRM.Repository\\DCRM.Repository.csproj",
         "projectName": "DCRM.Repository",
-        "projectPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Repository\\DCRM.Repository.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Repository\\obj\\",
+        "projectPath": "D:\\ez-technologies\\virmani_dotnet\\DCRM.Repository\\DCRM.Repository.csproj",
+        "packagesPath": "C:\\Users\\91812\\.nuget\\packages\\",
+        "outputPath": "D:\\ez-technologies\\virmani_dotnet\\DCRM.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\91812\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -200,8 +200,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj": {
-                "projectPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj"
+              "D:\\ez-technologies\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj": {
+                "projectPath": "D:\\ez-technologies\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj"
               }
             }
           }
@@ -216,6 +216,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.10, )"
@@ -251,21 +255,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Service\\DCRM.Service.csproj": {
+    "D:\\ez-technologies\\virmani_dotnet\\DCRM.Service\\DCRM.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Service\\DCRM.Service.csproj",
+        "projectUniqueName": "D:\\ez-technologies\\virmani_dotnet\\DCRM.Service\\DCRM.Service.csproj",
         "projectName": "DCRM.Service",
-        "projectPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Service\\DCRM.Service.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Service\\obj\\",
+        "projectPath": "D:\\ez-technologies\\virmani_dotnet\\DCRM.Service\\DCRM.Service.csproj",
+        "packagesPath": "C:\\Users\\91812\\.nuget\\packages\\",
+        "outputPath": "D:\\ez-technologies\\virmani_dotnet\\DCRM.Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\91812\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -279,11 +283,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj": {
-                "projectPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj"
+              "D:\\ez-technologies\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj": {
+                "projectPath": "D:\\ez-technologies\\virmani_dotnet\\DCRM.Common\\DCRM.Common.csproj"
               },
-              "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Repository\\DCRM.Repository.csproj": {
-                "projectPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM.Repository\\DCRM.Repository.csproj"
+              "D:\\ez-technologies\\virmani_dotnet\\DCRM.Repository\\DCRM.Repository.csproj": {
+                "projectPath": "D:\\ez-technologies\\virmani_dotnet\\DCRM.Repository\\DCRM.Repository.csproj"
               }
             }
           }
@@ -335,7 +339,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
