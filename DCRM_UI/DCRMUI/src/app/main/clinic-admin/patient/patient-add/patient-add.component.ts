@@ -105,7 +105,7 @@ export class PatientAddComponent implements OnInit, OnDestroy {
 
         this.addPatientForm = this._formBuilder.group({
             name: ['', Validators.required],
-            phone1: ['', Validators.required]
+            phone1: ['0', Validators.required]
         });
 
 

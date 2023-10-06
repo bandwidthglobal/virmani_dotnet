@@ -22,8 +22,10 @@ namespace DCRM.Api.Controllers
         public readonly IPrescriptionService _prescriptionService;
         public readonly ITreatmentplanService _treatmentplanService;
         private readonly IFileService _fileService;
+        IWebHostEnvironment _env;
+        string rootDirectory = string.Empty;
         public PatientController(IPatientService patientService, IAppointmentService appointmentService, IPrescriptionService prescriptionService
-            , ITreatmentplanService treatmentplanService, IFileService fileService)
+            , ITreatmentplanService treatmentplanService, IFileService fileService, IWebHostEnvironment env)
         {
 
             _patientService = patientService;
@@ -31,6 +33,7 @@ namespace DCRM.Api.Controllers
             _prescriptionService = prescriptionService;
             _treatmentplanService = treatmentplanService;
             _fileService = fileService;
+            _env= env;
         }
 
         
@@ -62,7 +65,8 @@ namespace DCRM.Api.Controllers
             var patientId= _patientService.Create(request);
             if (patientId>0)
             {
-              var filePath= FileUtils.SaveFile(patientId, "patient", request.Thumb);
+                rootDirectory = _env.ContentRootPath;
+              var filePath= FileUtils.SaveFile(patientId, "patient", request.Thumb, rootDirectory);
                 _fileService.UpdateFileUrl(patientId, filePath, "patient");
             }
             return Ok();
@@ -73,6 +77,12 @@ namespace DCRM.Api.Controllers
         public async Task<IActionResult> Update(PatientRequest request)
         {
             _patientService.Update(request);
+            if (request.Id > 0)
+            {
+                rootDirectory = _env.ContentRootPath;
+                var filePath = FileUtils.SaveFile(request.Id, "patient", request.Thumb, rootDirectory);
+                _fileService.UpdateFileUrl(request.Id, filePath, "patient");
+            }
             return Ok();
         }
 

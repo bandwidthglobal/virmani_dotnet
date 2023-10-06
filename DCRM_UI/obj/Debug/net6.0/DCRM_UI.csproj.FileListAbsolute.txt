@@ -1,5 +1,15 @@
 D:\Projects\GitHubProjects\virmani_dotnet\DCRM_UI\bin\Debug\net6.0\appsettings.Development.json
 D:\Projects\GitHubProjects\virmani_dotnet\DCRM_UI\bin\Debug\net6.0\appsettings.json
+D:\Projects\GitHubProjects\virmani_dotnet\DCRM_UI\bin\Debug\net6.0\DCRMUI\angular.json
+D:\Projects\GitHubProjects\virmani_dotnet\DCRM_UI\bin\Debug\net6.0\DCRMUI\e2e\tsconfig.e2e.json
+D:\Projects\GitHubProjects\virmani_dotnet\DCRM_UI\bin\Debug\net6.0\DCRMUI\package-lock.json
+D:\Projects\GitHubProjects\virmani_dotnet\DCRM_UI\bin\Debug\net6.0\DCRMUI\package.json
+D:\Projects\GitHubProjects\virmani_dotnet\DCRM_UI\bin\Debug\net6.0\DCRMUI\src\proxy.conf.json
+D:\Projects\GitHubProjects\virmani_dotnet\DCRM_UI\bin\Debug\net6.0\DCRMUI\src\tsconfig.app.json
+D:\Projects\GitHubProjects\virmani_dotnet\DCRM_UI\bin\Debug\net6.0\DCRMUI\src\tsconfig.spec.json
+D:\Projects\GitHubProjects\virmani_dotnet\DCRM_UI\bin\Debug\net6.0\DCRMUI\src\tslint.json
+D:\Projects\GitHubProjects\virmani_dotnet\DCRM_UI\bin\Debug\net6.0\DCRMUI\tsconfig.json
+D:\Projects\GitHubProjects\virmani_dotnet\DCRM_UI\bin\Debug\net6.0\DCRMUI\tslint.json
 D:\Projects\GitHubProjects\virmani_dotnet\DCRM_UI\bin\Debug\net6.0\DCRM_UI.staticwebassets.runtime.json
 D:\Projects\GitHubProjects\virmani_dotnet\DCRM_UI\bin\Debug\net6.0\DCRM_UI.exe
 D:\Projects\GitHubProjects\virmani_dotnet\DCRM_UI\bin\Debug\net6.0\DCRM_UI.deps.json

@@ -31,7 +31,7 @@ namespace DCRM.Repository.Repository
         public async Task<IEnumerable<Dealer>> GetDealersAsync(long userId)
         {
             IEnumerable<Dealer> dealers;
-             dealers = _contex.Dealers.Where(x => x.Is_Deleted == 0 && x.User_Id == userId);
+            dealers = _contex.Dealers.Where(x => x.Is_Deleted == 0 && x.User_Id == userId);
             if (dealers != null)
             {
                 return dealers;
@@ -45,9 +45,9 @@ namespace DCRM.Repository.Repository
         /// <returns></returns>
         /// <exception cref="KeyNotFoundException"></exception>
 
-        public async Task<Dealer> GetDealerByIdAsync(long userId,int id)
+        public async Task<Dealer> GetDealerByIdAsync(long userId, int id)
         {
-            Dealer dealer = await _contex.Dealers.FirstOrDefaultAsync(x => x.Id == id && x.Is_Deleted == 0 && x.User_Id==userId);
+            Dealer dealer = await _contex.Dealers.FirstOrDefaultAsync(x => x.Id == id && x.Is_Deleted == 0 && x.User_Id == userId);
             if (dealer != null)
             {
                 return dealer;
@@ -107,17 +107,17 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public async Task CreateDealerAsync(DealerRequest request)
+        public long Create(DealerRequest request)
         {
+            long id = 0;
 
-            try
+            var dealerDetails = _contex.Dealers.FirstOrDefault(x => x.Company_Name == request.Company_Name);
+            if (dealerDetails == null)
             {
-                var dealerDetails = _contex.Dealers.FirstOrDefault(x => x.Company_Name == request.Company_Name);
-                if (dealerDetails == null)
+                try
                 {
 
-
+                    _contex.Database.BeginTransaction();
                     Dealer dealer = new Dealer();
                     dealer.User_Id = request.User_Id;
                     dealer.Company_Name = request.Company_Name;
@@ -147,20 +147,20 @@ namespace DCRM.Repository.Repository
                     dealer.Staff_Phone2 = request.StaffPhone_2;
                     dealer.Staff_Phone3 = request.StaffPhone_3;
                     dealer.Staff_Phone4 = request.StaffPhone_4;
-                    dealer.Image = request.Image;
+                    dealer.Image = request.Thumb;
                     dealer.Gst_Number = request.Gst_Number;
                     dealer.Pan_Number = request.Pan_Number;
                     dealer.Updated_At = System.DateTime.UtcNow;
                     dealer.Created_At = System.DateTime.UtcNow;
-                    await _contex.Dealers.AddAsync(dealer);
+                    _contex.Dealers.Add(dealer);
                     _contex.SaveChanges();
-                   
+
                     if (request.DealerBankDetailList != null && request.DealerBankDetailList.Count > 0)
                     {
                         foreach (var item in request.DealerBankDetailList)
                         {
                             item.Dealer_Id = dealer.Id;
-                             _contex.Dealer_Bank_Details.Add(item);
+                            _contex.Dealer_Bank_Details.Add(item);
                             _contex.SaveChanges();
                         }
                     }
@@ -169,22 +169,24 @@ namespace DCRM.Repository.Repository
                         foreach (var item in request.DealerMaterialList)
                         {
                             item.Dealer_Id = dealer.Id;
-                             _contex.Dealer_Material.Add(item);
+                            _contex.Dealer_Material.Add(item);
                             _contex.SaveChanges();
                         }
                     }
-
+                    _contex.Database.CommitTransaction();
+                    return dealer.Id;
 
                 }
-                else
+                catch (Exception ex)
                 {
-                    throw new SqlAlreadyFilledException("companyname already exist");
+                    _contex.Database.RollbackTransaction();
+                    throw new Exception(ex.Message);
                 }
-
             }
-            catch (Exception ex)
+            else
             {
-                throw new Exception(ex.Message);
+                _contex.Database.RollbackTransaction();
+                throw new SqlAlreadyFilledException("companyname already exist");
             }
         }
 
@@ -196,8 +198,8 @@ namespace DCRM.Repository.Repository
         /// <exception cref="NotImplementedException"></exception>
         public async Task DeleteDealerAsync(long userId, int id)
         {
-            var dealerDetails =await _contex.Dealers.FirstOrDefaultAsync(x => x.Id == id && x.User_Id == userId);
-            if (dealerDetails!=null)
+            var dealerDetails = await _contex.Dealers.FirstOrDefaultAsync(x => x.Id == id && x.User_Id == userId);
+            if (dealerDetails != null)
             {
                 dealerDetails.Is_Deleted = 1;
                 _contex.Dealers.Update(dealerDetails);
@@ -248,7 +250,7 @@ namespace DCRM.Repository.Repository
                     dealer.Staff_Phone2 = request.StaffPhone_2;
                     dealer.Staff_Phone3 = request.StaffPhone_3;
                     dealer.Staff_Phone4 = request.StaffPhone_4;
-                    dealer.Image = request.Image;
+                    dealer.Image = request.Thumb;
                     dealer.Gst_Number = request.Gst_Number;
                     dealer.Pan_Number = request.Pan_Number;
                     dealer.Updated_At = System.DateTime.UtcNow;
@@ -258,16 +260,16 @@ namespace DCRM.Repository.Repository
 
                     if (request.DealerBankDetailList != null && request.DealerBankDetailList.Count > 0)
                     {
-                        
-                       
+
+
                         foreach (var item in request.DealerBankDetailList)
                         {
                             var bankDetails = _contex.Dealer_Bank_Details.FirstOrDefault(x => x.Id == item.Id);
-                            if (bankDetails==null)
+                            if (bankDetails == null)
                             {
                                 item.Dealer_Id = dealer.Id;
                                 _contex.Dealer_Bank_Details.Add(item);
-                              
+
                             }
                             else
                             {
@@ -280,7 +282,7 @@ namespace DCRM.Repository.Repository
                             }
                             _contex.SaveChanges();
                         }
-                       
+
 
                     }
                     if (request.DealerMaterialList != null && request.DealerMaterialList.Count > 0)

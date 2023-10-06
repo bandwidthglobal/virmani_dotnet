@@ -24,7 +24,7 @@ namespace DCRM.Repository.IRepository
 
         List<DealerMaterial> GetDealerMaterialDetailList(int dealerId);
 
-        Task CreateDealerAsync(DealerRequest request);
+        long Create(DealerRequest request);
 
         void UpdateDealer(DealerRequest request);
 
