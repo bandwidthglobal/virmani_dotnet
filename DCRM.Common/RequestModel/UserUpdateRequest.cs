@@ -10,9 +10,11 @@ namespace DCRM.Api.Models
         [Required]
         public string Name { get; set; }
 
+        [Required]
+        public string Email { get; set; }
 
         [DataType(DataType.PhoneNumber)]
-        [StringLength(10, MinimumLength = 10,ErrorMessage = "Password should be minimum 8 characters and a maximum of 10 characters")]
+        [StringLength(10, MinimumLength = 10,ErrorMessage = "phone number should be 10 characters")]
         [Phone]
         public string PhoneNumber { get; set; }
         

@@ -29,5 +29,7 @@ namespace DCRM.Service.IService
 
         List<AppointmentDto> GetAppointmentWithPatient(long userId);
 
+        List<AppointmentChairViewDto> AppointmentChairViewList(long userId);
+
     }
 }

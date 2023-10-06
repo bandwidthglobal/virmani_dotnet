@@ -38,7 +38,7 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <returns></returns>
 
-        public async Task<IEnumerable<User>> GetUsersAsync()
+        public IEnumerable<User> GetAll()
         {
             IEnumerable<User> users = _contex.Users.Where(x => x.Status == 1);
             return users;
@@ -49,9 +49,9 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<User> GetUserByIdAsync(int id)
+        public User Get(long id)
         {
-            User user = await _contex.Users.FirstOrDefaultAsync(x => x.Id == id);
+            User? user = _contex.Users.FirstOrDefault(x => x.Id == id);
             return user;
         }
 
@@ -60,27 +60,19 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public async Task SaveUserAsync(User user)
+        public long Create(User user)
         {
-            try
+            var userDetails = _contex.Users.FirstOrDefault(x => x.Email == user.Email);
+            if (userDetails == null)
             {
-                var userDetails= _contex.Users.FirstOrDefault(x=>x.Email== user.Email);
-                if (userDetails==null)
-                {
-                    await _contex.Users.AddAsync(user);
-                    _contex.SaveChanges();
-                }
-                else
-                {
-                    throw new SqlAlreadyFilledException("user already exist");
-                }
-                
+                _contex.Users.Add(user);
+                _contex.SaveChanges();
+                return user.Id;
             }
-            catch (Exception ex)
+            else
             {
-                throw new Exception(ex.Message);
+                throw new SqlAlreadyFilledException("user already exist");
             }
-            
         }
 
         /// <summary>
@@ -88,10 +80,10 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public async Task UpdateUserAsync( User user)
+        public void Update(User user)
         {
             _contex.Users.Update(user);
-            await _contex.SaveChangesAsync();
+            _contex.SaveChanges();
         }
 
         /// <summary>
@@ -99,16 +91,16 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task DeleteUserAsync(int id)
+        public void Delete(long id)
         {
-            User user = await _contex.Users.FirstOrDefaultAsync(x => x.Id == id);
-            if (user!=null)
+            User? user = _contex.Users.FirstOrDefault(x => x.Id == id);
+            if (user != null)
             {
                 user.Status = 0;
                 _contex.Update(user);
-                await _contex.SaveChangesAsync();
+                _contex.SaveChanges();
             }
-           
+
         }
 
         /// <summary>
@@ -118,8 +110,8 @@ namespace DCRM.Repository.Repository
         /// <returns></returns>
         public async Task ChangeUserPasswordAsync(ChangePasswordRequest changePasswordModel)
         {
-            
-            if (changePasswordModel.Type.ToLower()=="user")
+
+            if (changePasswordModel.Type.ToLower() == "user")
             {
                 var user = await _contex.Users.FirstOrDefaultAsync(x => x.Id == changePasswordModel.Id);
                 if (user != null)
@@ -130,7 +122,7 @@ namespace DCRM.Repository.Repository
                 }
                 else { throw new KeyNotFoundException("user is not found"); }
             }
-            
+
         }
     }
 }

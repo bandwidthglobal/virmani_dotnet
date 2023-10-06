@@ -83,7 +83,7 @@ public partial class DealerRequest
 
     public string Pan_Number { get; set; } = null!;
 
-    public string? Image { get; set; }
+    public string? Thumb { get; set; }
 
     public sbyte Is_Deleted { get; set; }
 

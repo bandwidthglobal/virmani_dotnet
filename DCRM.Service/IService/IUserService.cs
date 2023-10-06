@@ -15,11 +15,11 @@ namespace DCRM.Service.IService
     public interface IUserService
     {
         Task<AuthenticateResponse> AuthenticateAsync(AuthenticateRequest authenticateRequest);
-        Task<IEnumerable<User>> GetUsersAsync();
-         Task<User> GetUserByIdAsync(int id);
-        Task SaveUserAsync(UserRequest userRequest);
-        Task UpdateUserAsync(UserUpdateRequest user);
-        Task DeleteUserAsync(int id);
+        IEnumerable<User> GetAll();
+         User Get(long id);
+        long Create(UserRequest userRequest);
+        void Update(UserUpdateRequest user);
+        void Delete(long id);
         Task ChangeUserPasswordAsync(ChangePasswordRequest changePasswordModel);
 
     }

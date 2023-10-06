@@ -2,6 +2,7 @@ using DCRM.Api;
 //using DCRM.Api.Middlewares;
 using DCRM.Api.Models;
 using DCRM.Common;
+using DCRM.Common.RequestLoggingMiddleware;
 using DCRM.Service;
 using DCRM.Service.IService;
 using DCRM.Service.Service;
@@ -72,30 +73,31 @@ builder.Logging.AddSerilog(logger);
 
 
 var app = builder.Build();
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-            app.UseCors(builder =>
-            {
-                builder
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader();
-            });
-            app.UseHttpsRedirection();
-            app.UseAuthorization();
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+app.UseCors(builder =>
+{
+    builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+});
+app.UseHttpsRedirection();
+app.UseAuthorization();
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "DCRM API");
-            });
-            app.UseMiddleware<ErrorHandlerMiddleware>();
-            app.UseMiddleware<JwtMiddleware>();
-            app.MapControllers();
-            
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "DCRM API");
+});
+app.UseMiddleware<ErrorHandlerMiddleware>();
+app.UseMiddleware<JwtMiddleware>();
+//app.UseMiddleware<RequestLoggingMiddleware>();
+app.MapControllers();
+
 app.Run();
-            #endregion
+#endregion

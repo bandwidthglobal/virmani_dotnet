@@ -23,35 +23,28 @@ namespace DCRM.Api.Controllers
     public class UserController : ControllerBase
     {
         public readonly IUserService _userService;
-        private readonly IMapper _mapper;
-
-        
-        public UserController(IUserService userService, IMapper mapper, IConfiguration configuration, 
-            IStaffService staffService, IDoctorService doctorService, IPatientService patientService, 
-            IAppointmentService appointmentService, IPrescriptionService prescriptionService, ITreatmentplanService treatmentplanService)
+        private readonly IFileService _fileService;
+        private readonly IExperienceService _experienceService;
+        IWebHostEnvironment _env;
+        string rootDirectory = string.Empty;
+        public UserController(IUserService userService, IFileService fileService, IWebHostEnvironment env, IExperienceService experienceService)
         {
 
             _userService = userService;
-            _mapper = mapper;
+            _fileService = fileService;
+            _env = env;
+            _experienceService = experienceService;
         }
 
-        [HttpGet("GetAll")]
-        public async Task<IEnumerable<UserDto>> GetUsersAsync()
-        {
-           
-            List<UserDto> userList = _mapper.Map<List<UserDto>>(await _userService.GetUsersAsync());
-            return userList;
-        }
 
         [HttpGet("Get/{id}")]
-        public async Task<IActionResult> GetUserByIdAsync(int id)
+        public User GetUserByIdAsync(long id)
         {
-            var user = await _userService.GetUserByIdAsync(id);
+            var user =  _userService.Get(id);
          
             if (user!=null)
             {
-                UserDto userDetails = _mapper.Map<UserDto>(user);
-                return Ok(userDetails);
+                return user;
             }
             else
             {
@@ -61,26 +54,26 @@ namespace DCRM.Api.Controllers
 
         [AllowAnonymous]
         [HttpPost("Create")]
-        public async Task<IActionResult> Create(UserRequest userRequestModel)
+        public IActionResult Create(UserRequest userRequestModel)
         {
-            await _userService.SaveUserAsync(userRequestModel);
-            return  Ok(userRequestModel);
+            _userService.Create(userRequestModel);
+            return  Ok();
         }
        
-        [HttpPut("Update")]
-        public async Task<IActionResult> Update([FromBody] UserUpdateRequest userUpdateRequestModel)
+        [HttpPost("Update")]
+        public IActionResult Update(UserUpdateRequest userUpdateRequestModel)
         {
             
-                await _userService.UpdateUserAsync(userUpdateRequestModel);
-                return Ok(userUpdateRequestModel);
+                 _userService.Update(userUpdateRequestModel);
+                return Ok();
                
         }
 
         [HttpDelete("Delete/{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(long id)
         {
-            await _userService.DeleteUserAsync(id);
-            return Ok(id);
+            _userService.Delete(id);
+            return Ok();
         }
 
         [HttpPost("ChangePassword")]
@@ -88,6 +81,67 @@ namespace DCRM.Api.Controllers
         {
             await _userService.ChangeUserPasswordAsync(model);
             return Ok(model);
+        }
+
+        [HttpPost("Update/Image/{id}")]
+        public string UpdateImage([FromBody] string thumb,long id)
+        {
+            string filePath=string.Empty;
+            if (id > 0)
+            {
+                rootDirectory = _env.ContentRootPath;
+                filePath = FileUtils.SaveFile(id, "user", thumb, rootDirectory);
+                _fileService.UpdateFileUrl(id, filePath, "user");
+            }
+            return filePath;
+        }
+
+        [HttpGet("Experience/GetAll/{userId}")]
+        public IEnumerable<Experience> GetAllExperience(long userId)
+        {
+            var experiences = _experienceService.GetAll(userId);
+            if (experiences != null)
+            {
+                return experiences;
+            }
+            else
+            {
+                throw new KeyNotFoundException("No record found");
+            }
+        }
+        [HttpGet("Experience/Get/{id}")]
+        public Experience GetExperience(long id)
+        {
+            var experience = _experienceService.Get(id);
+            if (experience != null)
+            {
+                return experience;
+            }
+            else
+            {
+                throw new KeyNotFoundException("No record found");
+            }
+        }
+        [HttpPost("Experience/Create")]
+        public IActionResult ExperienceCreate(Experience experience)
+        {
+            _experienceService.Create(experience);
+            return Ok();
+        }
+
+        [HttpPost("Experience/Update")]
+        public IActionResult ExperienceUpdate(Experience experience)
+        {
+            _experienceService.Update(experience);
+            return Ok();
+
+        }
+
+        [HttpDelete("Experience/Delete/{id}")]
+        public IActionResult ExperienceDelete(long id)
+        {
+            _experienceService.Delete(id);
+            return Ok();
         }
     }
 }

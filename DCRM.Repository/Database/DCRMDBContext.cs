@@ -94,6 +94,8 @@ namespace DCRM.Repository.Database
 
         public virtual DbSet<MedicineCategory> Medicine_Category { get; set; }
 
+        public virtual DbSet<Experience> Experiences { get; set; }
+
 
     }
 }

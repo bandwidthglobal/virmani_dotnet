@@ -31,6 +31,13 @@ namespace DCRM.Api.Controllers
             return  _appointmentService.Get(id);
         }
 
+        [HttpGet("ChairViews")]
+        public List<AppointmentChairViewDto> ChairViews()
+        {
+            var user = Request.HttpContext.Items["User"] as User;
+            return _appointmentService.AppointmentChairViewList(user.Id);
+        }
+
         [HttpPost("Create")]
         public async Task<IActionResult> Create(Appointment appointment)
         {

@@ -13,15 +13,15 @@ namespace DCRM.Repository.IRepository
     {
         Task<User> AuthenticateAsync(AuthenticateRequest authenticateRequest);
 
-        Task<IEnumerable<User>> GetUsersAsync();
+        IEnumerable<User> GetAll();
 
-        Task<User> GetUserByIdAsync(int id);
+        User Get(long id);
 
-        Task SaveUserAsync(User user);
+        long Create(User user);
 
-        Task UpdateUserAsync(User user);
+        void Update(User user);
 
-        Task DeleteUserAsync(int id);
+        void Delete(long id);
 
         Task ChangeUserPasswordAsync(ChangePasswordRequest changePasswordModel);
 

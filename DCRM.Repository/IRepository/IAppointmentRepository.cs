@@ -20,5 +20,7 @@ namespace DCRM.Repository.IRepository
         void Update(Appointment request);
         void Delete(long id);
 
+
+
     } 
 }
