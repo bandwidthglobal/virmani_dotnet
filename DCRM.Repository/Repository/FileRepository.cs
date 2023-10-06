@@ -26,6 +26,16 @@ namespace DCRM.Repository.Repository
                     _contex.SaveChanges();
                 }
             }
+            else if (type == "dealer")
+            {
+                var dealer = _contex.Dealers.Where(x => x.Id == id).FirstOrDefault();
+                dealer.Image = url;
+                if (dealer != null)
+                {
+                    _contex.Dealers.Update(dealer);
+                    _contex.SaveChanges();
+                }
+            }
         }
     }
 }

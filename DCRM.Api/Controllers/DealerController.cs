@@ -17,11 +17,14 @@ namespace DCRM.Api.Controllers
     {
         public readonly IDealerService _dealerService;
         long userId = 0;
-
-        public DealerController(IDealerService dealerService)
+        IWebHostEnvironment _env;
+        string rootDirectory = string.Empty;
+        private readonly IFileService _fileService;
+        public DealerController(IDealerService dealerService, IWebHostEnvironment env, IFileService fileService)
         {
-
             _dealerService = dealerService;
+            _env= env;
+            _fileService = fileService;
         }
 
         [HttpGet("GetAll")]
@@ -50,17 +53,30 @@ namespace DCRM.Api.Controllers
 
 
         [HttpPost("Create")]
-        public async Task<IActionResult> Create(DealerRequest request)
+        public IActionResult Create(DealerRequest request)
         {
-            await _dealerService.CreateAsync(request);
-            return Ok("Created");
+            ;
+            var id = _dealerService.Create(request);
+            if (id > 0)
+            {
+                rootDirectory = _env.ContentRootPath;
+                var filePath = FileUtils.SaveFile(id, "dealer", request.Thumb, rootDirectory);
+                _fileService.UpdateFileUrl(id, filePath, "dealer");
+            }
+            return Ok();
         }
 
         [HttpPost("Update")]
         public async Task<IActionResult> Update(DealerRequest request)
         {
             _dealerService.Update(request);
-            return Ok("Updated");
+            if (request.Id > 0)
+            {
+                rootDirectory = _env.ContentRootPath;
+                var filePath = FileUtils.SaveFile(request.Id, "dealer", request.Thumb, rootDirectory);
+                _fileService.UpdateFileUrl(request.Id, filePath, "dealer");
+            }
+            return Ok();
         }
 
         [HttpDelete("Delete/{id}")]

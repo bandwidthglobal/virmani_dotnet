@@ -131,9 +131,10 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task CreateAsync(DealerRequest request)
+        public long Create(DealerRequest request)
         {
-            await _dealerRepository.CreateDealerAsync(request);
+            long id= _dealerRepository.Create(request);
+            return id;
         }
         /// <summary>
         /// 

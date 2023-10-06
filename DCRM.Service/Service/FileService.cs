@@ -18,7 +18,7 @@ namespace DCRM.Service.Service
         }
         public void UpdateFileUrl(long id, string url, string type)
         { 
-          if (type == "patient") {
+          if (!string.IsNullOrEmpty(type)) {
                 _fileRepository.UpdateFileUrl(id, url, type);
             }
         }
