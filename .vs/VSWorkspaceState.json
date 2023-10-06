@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\DCRM.Api"
   ],
-  "SelectedNode": "\\DCRM.Api.sln",
+  "SelectedNode": "\\DCRM.Api\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }
