@@ -19,28 +19,32 @@ namespace DCRM.Api.Controllers
         public readonly IStaffService _staffService;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
-
-        public StaffController(IStaffService staffService, IMapper mapper, IConfiguration configuration)
+        IWebHostEnvironment _env;
+        string rootDirectory = string.Empty;
+        private readonly IFileService _fileService;
+        public StaffController(IStaffService staffService, IMapper mapper, IConfiguration configuration, IWebHostEnvironment env, IFileService fileService)
         {
 
             _staffService = staffService;
             _mapper = mapper;
             _configuration = configuration;
+            _env = env;
+            _fileService = fileService;
         }
 
-        
+
 
         [HttpGet("GetAll")]
-        public async Task<IEnumerable<Staff>> GetStaffListAsync()
+        public IEnumerable<Staff> GetAll()
         {
             var user = Request.HttpContext.Items["User"] as User;
-            IEnumerable<Staff> staffList =  _staffService.GetStaffsAsync().Result.Where(x => x.User_Id == user.Id);
+            IEnumerable<Staff> staffList = _staffService.GetAll().Where(x => x.User_Id == user.Id);
             return staffList;
         }
         [HttpGet("Get/{id}")]
-        public async Task<StaffDto> GetStaffAsync(int id)
+        public StaffDto Get(int id)
         {
-            StaffDto staff = await _staffService.GetStaffByIdAsync(id);
+            StaffDto staff = _staffService.Get(id);
             return staff;
         }
 
@@ -50,21 +54,33 @@ namespace DCRM.Api.Controllers
             var user = (Request.HttpContext.Items["User"] as User);
             staffRequest.Role = "Staff";
             staffRequest.User_Id = user.Id;
-            _staffService.CreateStaffByUserAsync(staffRequest);
-            return Ok("Created");
+            long id = _staffService.Create(staffRequest);
+            if (id > 0)
+            {
+                rootDirectory = _env.ContentRootPath;
+                var filePath = FileUtils.SaveFile(id, "staff", staffRequest.Thumb, rootDirectory);
+                _fileService.UpdateFileUrl(id, filePath, "staff");
+            }
+            return Ok();
         }
 
         [HttpPost("Update")]
-        public async Task<IActionResult> Update(StaffRequest staffRequest)
+        public IActionResult Update(StaffRequest staffRequest)
         {
             _staffService.UpdateStaff(staffRequest);
-            return Ok("Updated");
+            if (staffRequest.Id > 0)
+            {
+                rootDirectory = _env.ContentRootPath;
+                var filePath = FileUtils.SaveFile(staffRequest.Id, "staff", staffRequest.Thumb, rootDirectory);
+                _fileService.UpdateFileUrl(staffRequest.Id, filePath, "staff");
+            }
+            return Ok();
         }
 
         [HttpDelete("Delete/{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(int id)
         {
-            await _staffService.DeleteStaffAsync(id);
+            _staffService.Delete(id);
             return Ok(id);
         }
     }

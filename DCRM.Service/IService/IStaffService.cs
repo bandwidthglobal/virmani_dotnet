@@ -15,14 +15,11 @@ namespace DCRM.Service.IService
     public interface IStaffService
     {
         Task<AuthenticateResponse> AuthenticateAsync(AuthenticateRequest authenticateRequest);
-        Task<IEnumerable<Staff>> GetStaffsAsync();
-         Task<StaffDto> GetStaffByIdAsync(int id);
-        Task SaveStaffAsync(StaffRequest staff);
-
-        Task CreateStaffByUserAsync(StaffRequest staff);
-
+        IEnumerable<Staff> GetAll();
+         StaffDto Get(int id);
+        long Create(StaffRequest staff);
         void UpdateStaff(StaffRequest user);
-        Task DeleteStaffAsync(int id);
+        void Delete(int id);
         Task ChangeStaffPasswordAsync(ChangePasswordRequest changePasswordModel);
 
         List<StaffDto> GetStaffsByUserId(int userId);

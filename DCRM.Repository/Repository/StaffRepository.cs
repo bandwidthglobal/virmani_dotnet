@@ -40,9 +40,9 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <returns></returns>
 
-        public async Task<IEnumerable<Staff>> GetStaffsAsync()
+        public IEnumerable<Staff> GetAll()
         {
-           
+
             IEnumerable<Staff> staffs = _contex.Staffs.Where(x => x.Status == 1);
             return staffs;
         }
@@ -52,39 +52,12 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<Staff> GetStaffByIdAsync(int id)
+        public Staff Get(int id)
         {
-            Staff staff = await _contex.Staffs.FirstOrDefaultAsync(x => x.Id == id);
+            Staff staff = _contex.Staffs.FirstOrDefault(x => x.Id == id);
             return staff;
         }
 
-        /// <summary>
-        /// save staff in staffs table
-        /// </summary>
-        /// <param name="staff"></param>
-        /// <returns></returns>
-        public async Task SaveStaffAsync(Staff staff)
-        {
-            try
-            {
-                var staffDetails = _contex.Staffs.FirstOrDefault(x => x.Email == staff.Email);
-                if (staffDetails == null)
-                {
-                    await _contex.Staffs.AddAsync(staff);
-                    _contex.SaveChanges();
-                }
-                else
-                {
-                    throw new SqlAlreadyFilledException("staff already exist");
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("some technical problem. Please contact to admin");
-            }
-
-        }
         /// <summary>
         /// create staff by logged user
         /// </summary>
@@ -92,7 +65,7 @@ namespace DCRM.Repository.Repository
         /// <returns></returns>
         /// <exception cref="SqlAlreadyFilledException"></exception>
         /// <exception cref="Exception"></exception>
-        public async Task CreateStaffByUserAsync(StaffRequest staffRequest)
+        public long Create(StaffRequest staffRequest)
         {
 
             try
@@ -100,60 +73,69 @@ namespace DCRM.Repository.Repository
                 var staffDetails = _contex.Staffs.FirstOrDefault(x => x.Phone == staffRequest.Phone);
                 if (staffDetails == null)
                 {
-                    Staff staff = new Staff();
-                    staff.User_Id = staffRequest.User_Id;
-                    staff.Name = staffRequest.Name;
-                    staff.Email = staffRequest.Email;
-                    staff.Father = staffRequest.Father;
-                    staff.Department = staffRequest.Department;
-                    staff.Designation = staffRequest.Designation;
-                    staff.Mother = staffRequest.Mother;
-                    staff.Gender = staffRequest.Gender;
-                    staff.Blood_Group = staffRequest.Blood_Group;
-                    staff.Marital_Status = staffRequest.Marital_Status;
-                    staff.Date_Of_Joining = staffRequest.Date_Of_Joining;
-                    staff.Dob = staffRequest.Dob;
-                    staff.Phone = staffRequest.Phone;
-                    staff.Gst = staffRequest.Gst;
-                    staff.Pan = staffRequest.Pan;
-                    staff.Qualification = staffRequest.Qualification;
-                    staff.Work_Experience = staffRequest.Work_Experience;
-                    staff.Specialization = staffRequest.Specialization;
-                    staff.Note = staffRequest.Note;
-                    staff.Permanent_Address = staffRequest.Permanent_Address;
-                    staff.Current_Address = staffRequest.Current_Address;
-                    staff.Created_At = System.DateTime.UtcNow;
-                    await _contex.Staffs.AddAsync(staff);
-                    _contex.SaveChanges();
-                    if (staffRequest.StaffInsuranceDetail != null && staffRequest.StaffInsuranceDetail.Count > 0)
+                    try
                     {
-                        foreach (var item in staffRequest.StaffInsuranceDetail)
+                        _contex.Database.BeginTransaction();
+                        Staff staff = new Staff();
+                        staff.User_Id = staffRequest.User_Id;
+                        staff.Name = staffRequest.Name;
+                        staff.Email = staffRequest.Email;
+                        staff.Father = staffRequest.Father;
+                        staff.Department = staffRequest.Department;
+                        staff.Designation = staffRequest.Designation;
+                        staff.Mother = staffRequest.Mother;
+                        staff.Gender = staffRequest.Gender;
+                        staff.Blood_Group = staffRequest.Blood_Group;
+                        staff.Marital_Status = staffRequest.Marital_Status;
+                        staff.Date_Of_Joining = staffRequest.Date_Of_Joining;
+                        staff.Dob = staffRequest.Dob;
+                        staff.Phone = staffRequest.Phone;
+                        staff.Gst = staffRequest.Gst;
+                        staff.Pan = staffRequest.Pan;
+                        staff.Qualification = staffRequest.Qualification;
+                        staff.Work_Experience = staffRequest.Work_Experience;
+                        staff.Specialization = staffRequest.Specialization;
+                        staff.Note = staffRequest.Note;
+                        staff.Permanent_Address = staffRequest.Permanent_Address;
+                        staff.Current_Address = staffRequest.Current_Address;
+                        staff.Created_At = System.DateTime.UtcNow;
+                        _contex.Staffs.Add(staff);
+                        _contex.SaveChanges();
+                        if (staffRequest.StaffInsuranceDetail != null && staffRequest.StaffInsuranceDetail.Count > 0)
                         {
-                            item.Staff_Id = staff.Id;
-                            await _contex.Staff_Insurance_Details.AddAsync(item);
-                            _contex.SaveChanges();
+                            foreach (var item in staffRequest.StaffInsuranceDetail)
+                            {
+                                item.Staff_Id = staff.Id;
+                                _contex.Staff_Insurance_Details.Add(item);
+                                _contex.SaveChanges();
+                            }
                         }
+                        if (staffRequest.StaffBankDetail != null && staffRequest.StaffBankDetail.Count > 0)
+                        {
+                            foreach (var item in staffRequest.StaffBankDetail)
+                            {
+                                item.Staff_Id = staff.Id;
+                                _contex.Staff_Bank_Details.Add(item);
+                                _contex.SaveChanges();
+                            }
+                        }
+                        if (staffRequest.StaffVaccination != null && staffRequest.StaffVaccination.Count > 0)
+                        {
+                            foreach (var item in staffRequest.StaffVaccination)
+                            {
+                                item.Staff_Id = staff.Id;
+                                _contex.Staff_Vaccination.Add(item);
+                                _contex.SaveChanges();
+                            }
+                        }
+                        _contex.Database.CommitTransaction();
+                        return staff.Id;
                     }
-                    if (staffRequest.StaffBankDetail != null && staffRequest.StaffBankDetail.Count > 0)
+                    catch (Exception ex)
                     {
-                        foreach (var item in staffRequest.StaffBankDetail)
-                        {
-                            item.Staff_Id = staff.Id;
-                            await _contex.Staff_Bank_Details.AddAsync(item);
-                            _contex.SaveChanges();
-                        }
+                        _contex.Database.RollbackTransaction();
+                        throw new Exception(ex.Message);
                     }
-                    if (staffRequest.StaffVaccination != null && staffRequest.StaffVaccination.Count > 0)
-                    {
-                        foreach (var item in staffRequest.StaffVaccination)
-                        {
-                            item.Staff_Id = staff.Id;
-                            await _contex.Staff_Vaccination.AddAsync(item);
-                            _contex.SaveChanges();
-                        }
-                    }
-
-
                 }
                 else
                 {
@@ -173,7 +155,7 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <param name="staff"></param>
         /// <returns></returns>
-        public void UpdateStaff(StaffRequest staffRequest)
+        public void Update(StaffRequest staffRequest)
         {
             try
             {
@@ -211,10 +193,10 @@ namespace DCRM.Repository.Repository
                         foreach (var item in staffRequest.StaffInsuranceDetail)
                         {
                             var insurance = _contex.Staff_Insurance_Details.FirstOrDefault(x => x.Id == item.Id);
-                            if (insurance!=null)
+                            if (insurance != null)
                             {
                                 item.Staff_Id = staff.Id;
-                                 _contex.Staff_Insurance_Details.Add(item);
+                                _contex.Staff_Insurance_Details.Add(item);
                             }
                             else
                             {
@@ -236,10 +218,10 @@ namespace DCRM.Repository.Repository
                         foreach (var item in staffRequest.StaffBankDetail)
                         {
                             var bankDetails = _contex.Staff_Bank_Details.FirstOrDefault(x => x.Id == item.Id);
-                            if (bankDetails==null)
+                            if (bankDetails == null)
                             {
                                 item.Staff_Id = staff.Id;
-                                 _contex.Staff_Bank_Details.Add(item);
+                                _contex.Staff_Bank_Details.Add(item);
                             }
                             else
                             {
@@ -251,7 +233,7 @@ namespace DCRM.Repository.Repository
                                 bankDetails.Updated_At = System.DateTime.UtcNow;
                                 _contex.Staff_Bank_Details.Update(item);
                             }
-                            
+
                             _contex.SaveChanges();
                         }
                     }
@@ -282,7 +264,7 @@ namespace DCRM.Repository.Repository
                 else
                 {
                     throw new SqlAlreadyFilledException("no data found");
-                    
+
                 }
 
             }
@@ -297,16 +279,16 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task DeleteStaffAsync(int id)
+        public  void Delete(int id)
         {
-            Staff staff = await _contex.Staffs.Where(x => x.Id == id).FirstOrDefaultAsync();
-            if (staff!=null)
+            Staff staff = _contex.Staffs.Where(x => x.Id == id).FirstOrDefault();
+            if (staff != null)
             {
                 staff.Is_Deleted = 1;
                 _contex.Update(staff);
-                await _contex.SaveChangesAsync();
+                _contex.SaveChanges();
             }
-           
+
         }
 
         /// <summary>
@@ -350,7 +332,7 @@ namespace DCRM.Repository.Repository
         /// <returns></returns>
         public List<StaffInsuranceDetail> GetStaffInsuranceDetailList(int staffId)
         {
-            List <StaffInsuranceDetail> insuranceList = _contex.Staff_Insurance_Details.Where(x => x.Staff_Id == staffId).ToList();
+            List<StaffInsuranceDetail> insuranceList = _contex.Staff_Insurance_Details.Where(x => x.Staff_Id == staffId).ToList();
             return insuranceList;
         }
 

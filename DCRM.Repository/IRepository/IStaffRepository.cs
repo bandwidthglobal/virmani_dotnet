@@ -14,17 +14,17 @@ namespace DCRM.Repository.IRepository
     {
         Task<Staff> AuthenticateAsync(AuthenticateRequest authenticateRequest);
 
-        Task<IEnumerable<Staff>> GetStaffsAsync();
+        IEnumerable<Staff> GetAll();
 
-        Task<Staff> GetStaffByIdAsync(int id);
+        Staff Get(int id);
 
-        Task SaveStaffAsync(Staff staff);
+        //Task SaveStaffAsync(Staff staff);
 
-        Task  CreateStaffByUserAsync(StaffRequest staffRequest);
+        long Create(StaffRequest staffRequest);
 
-        void UpdateStaff(StaffRequest staff);
+        void Update(StaffRequest staff);
 
-        Task DeleteStaffAsync(int id);
+        void Delete(int id);
 
         Task ChangeStaffPasswordAsync(ChangePasswordRequest changePasswordModel);
 

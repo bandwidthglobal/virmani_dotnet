@@ -45,9 +45,9 @@ namespace DCRM.Service.Service
         /// ftech all user active user
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<Staff>> GetStaffsAsync()
+        public IEnumerable<Staff> GetAll()
         {
-            return await _staffRepository.GetStaffsAsync();
+            return  _staffRepository.GetAll();
         }
 
         /// <summary>
@@ -55,10 +55,10 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<StaffDto> GetStaffByIdAsync(int id)
+        public StaffDto Get(int id)
         {
             StaffDto staffDto = new StaffDto();
-            var staff = await _staffRepository.GetStaffByIdAsync(id);
+            var staff =  _staffRepository.Get(id);
             if (staff != null)
             {
                 staffDto.Id = staff.Id;
@@ -92,24 +92,11 @@ namespace DCRM.Service.Service
             // return await _staffRepository.GetStaffByIdAsync(id); ;
         }
 
-        /// <summary>
-        /// save user in users table
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        public async Task SaveStaffAsync(StaffRequest staffRequest)
-        {
-            Staff staff = new Staff();
-            staff.Name = staffRequest.Name;
-            staff.Email = staffRequest.Email;
-            staff.Password = EncryptionDecryptionUsingSymmetricKey.EncryptString(_configuration.GetSection("PasswordHasKey").Value, staffRequest.Password);
-            staff.Role = staffRequest.Role;
-            await _staffRepository.SaveStaffAsync(staff);
-        }
 
-        public async Task CreateStaffByUserAsync(StaffRequest staffRequest)
+        public long Create(StaffRequest staffRequest)
         {
-            await _staffRepository.CreateStaffByUserAsync(staffRequest);
+            long id= _staffRepository.Create(staffRequest);
+            return id;
         }
         /// <summary>;
         /// 
@@ -120,16 +107,16 @@ namespace DCRM.Service.Service
         /// <exception cref="KeyNotFoundException"></exception>
         public void UpdateStaff(StaffRequest staffRequest)
         {
-            _staffRepository.UpdateStaff(staffRequest);
+            _staffRepository.Update(staffRequest);
         }
         /// <summary>
         /// remove user by user id from users table
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task DeleteStaffAsync(int id)
+        public void Delete(int id)
         {
-            await _staffRepository.DeleteStaffAsync(id);
+            _staffRepository.Delete(id);
         }
 
         /// <summary>
