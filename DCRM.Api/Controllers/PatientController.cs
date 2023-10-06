@@ -77,6 +77,12 @@ namespace DCRM.Api.Controllers
         public async Task<IActionResult> Update(PatientRequest request)
         {
             _patientService.Update(request);
+            if (request.Id > 0)
+            {
+                rootDirectory = _env.ContentRootPath;
+                var filePath = FileUtils.SaveFile(request.Id, "patient", request.Thumb, rootDirectory);
+                _fileService.UpdateFileUrl(request.Id, filePath, "patient");
+            }
             return Ok();
         }
 

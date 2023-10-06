@@ -16,9 +16,13 @@ namespace DCRM.Api
         public static string SaveFile(long id, string type, string imagestr,string rootDirectory)
         {
             string filePath = string.Empty;
+            if (string.IsNullOrEmpty(imagestr))
+            {
+                return filePath;
+            }
             try
             {
-               
+                
                 string directoryPath = rootDirectory + "/UploadImages/" + type + "/" + id;
                 if (!Directory.Exists(directoryPath))
                 {
