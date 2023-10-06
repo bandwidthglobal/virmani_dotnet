@@ -38,7 +38,7 @@ namespace DCRM.Api.Controllers
 
 
         [HttpGet("Get/{id}")]
-        public User GetUserByIdAsync(long id)
+        public User Get(long id)
         {
             var user =  _userService.Get(id);
          
