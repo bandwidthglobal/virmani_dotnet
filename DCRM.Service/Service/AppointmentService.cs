@@ -85,6 +85,30 @@ namespace DCRM.Service.Service
             }
             return appointmentList;
         }
+
+       public List<AppointmentChairViewDto> AppointmentChairViewList(long userId)
+        {
+            List<AppointmentChairViewDto> appointmentChairViews = new List<AppointmentChairViewDto>();
+
+            var appointments = _appointmentRepository.GetAll().Where(x => x.User_Id == userId).OrderByDescending(x => x.Id).ToList();
+            foreach (var item in appointments)
+            {
+                AppointmentChairViewDto appointment = new AppointmentChairViewDto();
+                appointment.Id = item.Id;
+                appointment.DoctorId = item.Doctor_Id;
+                if (item.Doctor_Id > 0)
+                {
+                    appointment.DoctorName = _repository.Get(item.Doctor_Id).Name;
+                }
+                appointment.SlotTime = item.Slot_Time;
+                if (!string.IsNullOrEmpty(item.Chair))
+                {
+                    appointment.Chair = _chairRepository.Get(Convert.ToInt64(item.Chair));
+                }
+                appointmentChairViews.Add(appointment);
+            }
+            return appointmentChairViews;
+        }
         public void Create(Appointment request)
         {
             _appointmentRepository.Create(request);

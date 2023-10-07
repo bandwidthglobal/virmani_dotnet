@@ -27,7 +27,7 @@ public class JwtMiddleware
             // attach user to context on successful jwt validation
             if (user.Role.ToLower()=="user" || user.Role.ToLower() == "admin")
             {
-                context.Items["User"] = userService.GetUserByIdAsync(user.Id).Result;
+                context.Items["User"] = userService.Get(user.Id);
             }
             else if (user.Role.ToLower() == "doctor")
             {

@@ -16,11 +16,13 @@ namespace DCRM.Service.Service
         public readonly IUserRepository _userRepository;
         public readonly IJwtUtils _jwtUtils;
         public readonly IConfiguration _configuration;
-        public UserService(IUserRepository userRepository, IJwtUtils jwtUtils, IConfiguration configuration)
+        public readonly IRepository<Experience> _experienceRepository;
+        public UserService(IUserRepository userRepository, IJwtUtils jwtUtils, IConfiguration configuration, IRepository<Experience> experienceRepository)
         {
             _userRepository = userRepository;
             _jwtUtils = jwtUtils;
             _configuration = configuration;
+            _experienceRepository = experienceRepository;
         }
 
         /// <summary>
@@ -45,9 +47,9 @@ namespace DCRM.Service.Service
         /// ftech all user active user
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<User>> GetUsersAsync()
+        public IEnumerable<User> GetAll()
         {
-            return await _userRepository.GetUsersAsync();
+            return  _userRepository.GetAll();
         }
 
         /// <summary>
@@ -55,9 +57,9 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<User> GetUserByIdAsync(int id)
+        public User Get(long id)
         {
-            return await _userRepository.GetUserByIdAsync(id); ;
+            return  _userRepository.Get(id); ;
         }
 
         /// <summary>
@@ -65,14 +67,15 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public async Task SaveUserAsync(UserRequest userRequest)
+        public long Create(UserRequest userRequest)
         {
             User user = new User();
             user.Name = userRequest.Name;
             user.Email = userRequest.Email;
             user.Password = EncryptionDecryptionUsingSymmetricKey.EncryptString(_configuration.GetSection("PasswordHasKey").Value, userRequest.Password);
             user.Role = userRequest.Role;
-            await _userRepository.SaveUserAsync(user);
+            long id= _userRepository.Create(user);
+            return id;
         }
         /// <summary>
         /// update user 
@@ -80,9 +83,9 @@ namespace DCRM.Service.Service
         /// <param name="userUpdateRequestModel"></param>
         /// <returns></returns>
         /// <exception cref="KeyNotFoundException"></exception>
-        public async Task UpdateUserAsync(UserUpdateRequest userUpdateRequestModel)
+        public void Update(UserUpdateRequest userUpdateRequestModel)
         {
-            var user = await _userRepository.GetUserByIdAsync(userUpdateRequestModel.Id);
+            var user =  _userRepository.Get(userUpdateRequestModel.Id);
             if (user != null)
             {
                 user.About_Me = userUpdateRequestModel.AboutMe;
@@ -91,7 +94,7 @@ namespace DCRM.Service.Service
                 user.Degree = userUpdateRequestModel.Degree;
                 user.Specialist = userUpdateRequestModel.Specialist;
                 user.Exp_Years = userUpdateRequestModel.ExperienceYears;
-                await _userRepository.UpdateUserAsync(user);
+                _userRepository.Update(user);
             }
             else
             {
@@ -105,9 +108,9 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task DeleteUserAsync(int id)
+        public void Delete(long id)
         {
-            await _userRepository.DeleteUserAsync(id);
+             _userRepository.Delete(id);
         }
 
         /// <summary>
