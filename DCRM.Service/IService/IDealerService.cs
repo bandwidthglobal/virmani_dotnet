@@ -18,7 +18,7 @@ namespace DCRM.Service.IService
          Task<DealerDto> GetByIdAsync(long userId, int id);
         long Create(DealerRequest request);
         void Update(DealerRequest request);
-        Task DeleteAsync(long userId, int id);
+        void Delete(long id);
         Task<List<DealerDto>> GetByUserId(int userId);
         DealerRequest Get(long userId, int id);
     }

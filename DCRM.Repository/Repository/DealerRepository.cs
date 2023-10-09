@@ -203,10 +203,9 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public async Task DeleteDealerAsync(long userId, int id)
+        public void Delete(long id)
         {
-            var dealerDetails = await _contex.Dealers.FirstOrDefaultAsync(x => x.Id == id && x.User_Id == userId);
+            var dealerDetails = _contex.Dealers.FirstOrDefault(x => x.Id == id);
             if (dealerDetails != null)
             {
                 dealerDetails.Is_Deleted = 1;

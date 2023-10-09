@@ -194,9 +194,9 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task DeleteAsync(long userId, int id)
+        public void Delete(long id)
         {
-            await _dealerRepository.DeleteDealerAsync(userId, id);
+             _dealerRepository.Delete(id);
         }
 
         /// <summary>

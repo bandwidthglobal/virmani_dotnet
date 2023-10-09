@@ -7,6 +7,7 @@ using DCRM.Common.Request;
 using DCRM.Common.RequestModel;
 using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
+using Demo_Api.Models;
 using Microsoft.Extensions.Configuration;
 using System.Numerics;
 
@@ -18,13 +19,17 @@ namespace DCRM.Service.Service
         public readonly IPatientRepository _patientRepository;
         public readonly IRepository<Doctor> _repository;
         public readonly IRepository<Chair> _chairRepository;
+        public readonly IRepository<Assaign_Day> _dayrepository;
+        public readonly IRepository<Assign_Time> _timeRepository;
         public AppointmentService(IAppointmentRepository appointmentRepository, IPatientRepository patientRepository
-            , IRepository<Doctor> repository,IRepository<Chair> chairRepository)
+            , IRepository<Doctor> repository,IRepository<Chair> chairRepository, IRepository<Assaign_Day> dayrepository, IRepository<Assign_Time> timeRepository)
         {
             _appointmentRepository = appointmentRepository;
             _patientRepository = patientRepository;
             _repository= repository;
             _chairRepository = chairRepository;
+            _dayrepository= dayrepository;
+            _timeRepository= timeRepository;
         }
 
         public IEnumerable<Appointment> GetAll(long userId,string role)
@@ -108,6 +113,31 @@ namespace DCRM.Service.Service
                 appointmentChairViews.Add(appointment);
             }
             return appointmentChairViews;
+        }
+
+        public List<Assaign_Day> GetDays(long userId)
+        {
+            List<Assaign_Day> assaignDays = new List<Assaign_Day>();
+            assaignDays = _dayrepository.GetAll().Where(x => x.User_Id == userId).ToList();
+            return assaignDays;
+        }
+        public List<Assign_Time> GetTimes(long userId)
+        {
+            List<Assign_Time> assaignTimes = new List<Assign_Time>();
+            assaignTimes= _timeRepository.GetAll().Where(x => x.User_Id == userId).ToList();
+            return assaignTimes;
+        }
+        public void CreateDays(Assaign_Day assignDay)
+        {
+           _dayrepository.Insert(assignDay);
+        }
+        public void CreateTime(Assign_Time assignTime)
+        {
+           _timeRepository.Insert(assignTime);
+        }
+        public void UpdateTime(Assign_Time assignTime)
+        {
+            _timeRepository.Update(assignTime);
         }
         public void Create(Appointment request)
         {

@@ -96,6 +96,11 @@ namespace DCRM.Repository.Database
 
         public virtual DbSet<Experience> Experiences { get; set; }
 
+        public virtual DbSet<Assaign_Day> Assaign_Days { get; set; }
+
+        public virtual DbSet<Assign_Time> Assign_Time { get; set; }
+
+
 
     }
 }

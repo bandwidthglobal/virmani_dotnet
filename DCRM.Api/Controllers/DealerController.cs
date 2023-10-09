@@ -80,10 +80,10 @@ namespace DCRM.Api.Controllers
         }
 
         [HttpDelete("Delete/{id}")]
-        public async Task<IActionResult> Delete(long userId, int id)
+        public IActionResult Delete(int id)
         {
-            await _dealerService.DeleteAsync(userId, id);
-            return Ok(id);
+            _dealerService.Delete(id);
+            return Ok();
         }
     }
 }

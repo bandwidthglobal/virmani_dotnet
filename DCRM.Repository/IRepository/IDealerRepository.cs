@@ -29,7 +29,7 @@ namespace DCRM.Repository.IRepository
 
         void UpdateDealer(DealerRequest request);
 
-        Task DeleteDealerAsync(long userId, int id);
+        void Delete(long id);
 
 
 
