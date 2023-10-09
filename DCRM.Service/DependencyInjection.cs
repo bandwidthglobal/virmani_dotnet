@@ -83,6 +83,7 @@ namespace DCRM.Service
             services.AddScoped<IWorkDoneService, WorkDoneService>();
             services.AddScoped<IFileRepository, FileRepository>();
             services.AddScoped<IFileService, FileService>();
+            services.AddScoped<IExperienceService, ExperienceService>();
             #endregion
             return services;
         }
