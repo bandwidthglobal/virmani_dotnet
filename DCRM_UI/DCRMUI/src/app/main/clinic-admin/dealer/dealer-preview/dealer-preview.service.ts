@@ -51,7 +51,7 @@ export class DealerPreviewService implements Resolve<any> {
         return new Promise((resolve, reject) => {
             this._httpClient.get(url, requestOptions).subscribe((response: any) => {
                 this.apiData = response;
-                debugger;
+                // debugger;
                 this.onDealerPreviewChanged.next(this.apiData);
                 resolve(this.apiData);
             }, reject);

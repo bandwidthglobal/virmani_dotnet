@@ -23,6 +23,9 @@ import { DealerEditComponent } from 'app/main/clinic-admin/dealer/dealer-edit/de
 import { DealerEditService } from 'app/main/clinic-admin/dealer/dealer-edit/dealer-edit.service';
 import { DealerPreviewComponent } from 'app/main/clinic-admin/dealer/dealer-preview/dealer-preview.component';
 import { DealerPreviewService } from 'app/main/clinic-admin/dealer/dealer-preview/dealer-preview.service';
+import { SharedCommonModule } from 'app/shared-common/shared-ui.module';
+import { MaskModule } from 'app/shared-common/directives/mask/mask.module';
+import { DealerFormComponent } from './dealer-form/dealer-form.component';
 
 
 // routing
@@ -75,6 +78,7 @@ const routes: Routes = [
         DealerListComponent,
         DealerPreviewComponent,
         DealerEditComponent,
+        DealerFormComponent
     ],
     imports: [
         CommonModule,
@@ -87,7 +91,9 @@ const routes: Routes = [
         CorePipesModule,
         NgbModule,
         NgSelectModule,
-        CoreSidebarModule
+        CoreSidebarModule,
+        SharedCommonModule,
+        MaskModule
     ],
     providers: [DealerListService, DealerPreviewService, DealerEditService, DealerAddService],
     exports: [DealerListComponent]
