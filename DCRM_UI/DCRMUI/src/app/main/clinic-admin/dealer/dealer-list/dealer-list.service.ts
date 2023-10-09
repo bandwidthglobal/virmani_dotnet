@@ -20,7 +20,7 @@ export class DealerListService implements Resolve<any> {
         this.currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
         this.onDealerListChanged = new BehaviorSubject({});
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-        debugger;
+        // debugger;
     }
 
     /**
@@ -50,7 +50,7 @@ export class DealerListService implements Resolve<any> {
             const requestOptions = { headers: headers };
             this._httpClient.get(`${environment.apiUrl}/Dealer/GetAll`, requestOptions).subscribe((response: any) => {
                 this.rows = response;
-                debugger;
+                // debugger;
                 this.onDealerListChanged.next(this.rows);
                 resolve(this.rows);
             }, reject);

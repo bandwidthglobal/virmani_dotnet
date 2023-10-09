@@ -1,17 +1,10 @@
 import { Component, OnInit, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
-
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
-
 import { CoreConfigService } from '@core/services/config.service';
-
-import { ActivatedRoute, Router } from '@angular/router';
-import { BeforeOpenEvent } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
-
 import * as snippet from 'app/main/extensions/sweet-alerts/sweet-alerts.snippetcode';
-
 import { DealerListService } from 'app/main/clinic-admin/dealer/dealer-list/dealer-list.service';
 
 @Component({
@@ -20,24 +13,25 @@ import { DealerListService } from 'app/main/clinic-admin/dealer/dealer-list/deal
   styleUrls: ['./dealer-list.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
+
 export class DealerListComponent implements OnInit, OnDestroy {
-    public data: any;
-    public selectedOption = 10;
-    public ColumnMode = ColumnMode;
-    public selectedStatus = [];
-    public searchValue = '';
-    // decorator
-    @ViewChild(DatatableComponent) table: DatatableComponent;
-    public returnUrl: string;
-    public loading = false;
-    public error = '';
-    // private
-    private tempData = [];
-    private _unsubscribeAll: Subject<any>;
-    public rows;
-    public tempFilterData;
-    public previousStatusFilter = '';
-    public _snippetCodeConfirmText = snippet.snippetCodeConfirmText;
+  public data: any;
+  public selectedOption = 10;
+  public ColumnMode = ColumnMode;
+  public selectedStatus = [];
+  public searchValue = '';
+  // decorator
+  @ViewChild(DatatableComponent) table: DatatableComponent;
+  public returnUrl: string;
+  public loading = false;
+  public error = '';
+  // private
+  private tempData = [];
+  private _unsubscribeAll: Subject<any>;
+  public rows;
+  public tempFilterData;
+  public previousStatusFilter = '';
+  public _snippetCodeConfirmText = snippet.snippetCodeConfirmText;
 
   /**
    * Constructor
@@ -46,7 +40,10 @@ export class DealerListComponent implements OnInit, OnDestroy {
    * @param {CalendarService} _calendarService
    * @param {InvoiceListService} _staffListService
    */
-    constructor(private _dealerListService: DealerListService, private _coreConfigService: CoreConfigService) {
+  constructor(
+    private _dealerListService: DealerListService,
+    private _coreConfigService: CoreConfigService
+  ) {
     this._unsubscribeAll = new Subject();
   }
 
@@ -60,9 +57,7 @@ export class DealerListComponent implements OnInit, OnDestroy {
    */
   filterUpdate(event) {
     // Reset ng-select on search
-
     const val = event.target.value.toLowerCase();
-
     // filter our data
     const temp = this.tempData.filter(function (d) {
       return d.client.name.toLowerCase().indexOf(val) !== -1 || !val;
@@ -94,9 +89,7 @@ export class DealerListComponent implements OnInit, OnDestroy {
   filterRows(statusFilter): any[] {
     // Reset search on select change
     this.searchValue = '';
-
     statusFilter = statusFilter.toLowerCase();
-
     return this.tempData.filter(row => {
       const isPartialNameMatch = row.invoiceStatus.toLowerCase().indexOf(statusFilter) !== -1 || !statusFilter;
       return isPartialNameMatch;
@@ -114,7 +107,7 @@ export class DealerListComponent implements OnInit, OnDestroy {
       // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)
       if (config.layout.animation === 'zoomIn') {
         setTimeout(() => {
-            this._dealerListService.onDealerListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+          this._dealerListService.onDealerListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
             this.data = response;
             this.rows = this.data;
             this.tempData = this.rows;
@@ -122,7 +115,7 @@ export class DealerListComponent implements OnInit, OnDestroy {
           });
         }, 450);
       } else {
-          this._dealerListService.onDealerListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+        this._dealerListService.onDealerListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
           this.data = response;
           this.rows = this.data;
           this.tempData = this.rows;
@@ -131,43 +124,42 @@ export class DealerListComponent implements OnInit, OnDestroy {
       }
     });
   }
-    delete(id) {
-        let rowIndex = -1;
-        this.tempData.forEach((currentValue, index) => {
-            if (currentValue.id == id) {
-                rowIndex = index
+  delete(id) {
+    let rowIndex = -1;
+    this.tempData.forEach((currentValue, index) => {
+      if (currentValue.id == id) {
+        rowIndex = index
+      }
+    });
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._dealerListService
+          .delete(id)
+          .pipe()
+          .subscribe(
+            data => {
+              delete this.tempData[rowIndex];
+              var temp = [];
+              this.tempData.forEach((currentValue, index) => {
+                temp.push(currentValue);
+              });
+              this.rows = temp;
+            },
+            error => {
+              this.error = error;
             }
-        });
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                this._dealerListService
-                    .delete(id)
-                    .pipe()
-                    .subscribe(
-                        data => {
-                            delete this.tempData[rowIndex];
-                            var temp = [];
-                            this.tempData.forEach((currentValue, index) => {
-                                temp.push(currentValue);
-                            });
-                            this.rows = temp;
-                        },
-                        error => {
-                            this.error = error;
-                        }
-                    );
-            }
-        })
-
-    }
+          );
+      }
+    })
+  }
   /**
    * On destroy
    */

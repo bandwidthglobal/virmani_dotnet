@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\DELL\\.nuget\\packages\\": {}
+    "C:\\Users\\91812\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM_UI\\DCRM_UI.csproj",
+      "projectUniqueName": "D:\\ez-technologies\\virmani_dotnet\\DCRM_UI\\DCRM_UI.csproj",
       "projectName": "DCRM_UI",
-      "projectPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM_UI\\DCRM_UI.csproj",
-      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM_UI\\obj\\",
+      "projectPath": "D:\\ez-technologies\\virmani_dotnet\\DCRM_UI\\DCRM_UI.csproj",
+      "packagesPath": "C:\\Users\\91812\\.nuget\\packages\\",
+      "outputPath": "D:\\ez-technologies\\virmani_dotnet\\DCRM_UI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\91812\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -64,7 +64,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

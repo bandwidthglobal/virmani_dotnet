@@ -34,3 +34,15 @@ D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Common\obj\Debug\net6.0\DCRM.Comm
 D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Common\obj\Debug\net6.0\refint\DCRM.Common.dll
 D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Common\obj\Debug\net6.0\DCRM.Common.pdb
 D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Common\obj\Debug\net6.0\ref\DCRM.Common.dll
+D:\ez-technologies\virmani_dotnet\DCRM.Common\bin\Debug\net6.0\DCRM.Common.deps.json
+D:\ez-technologies\virmani_dotnet\DCRM.Common\bin\Debug\net6.0\DCRM.Common.dll
+D:\ez-technologies\virmani_dotnet\DCRM.Common\bin\Debug\net6.0\DCRM.Common.pdb
+D:\ez-technologies\virmani_dotnet\DCRM.Common\obj\Debug\net6.0\DCRM.Common.csproj.AssemblyReference.cache
+D:\ez-technologies\virmani_dotnet\DCRM.Common\obj\Debug\net6.0\DCRM.Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\ez-technologies\virmani_dotnet\DCRM.Common\obj\Debug\net6.0\DCRM.Common.AssemblyInfoInputs.cache
+D:\ez-technologies\virmani_dotnet\DCRM.Common\obj\Debug\net6.0\DCRM.Common.AssemblyInfo.cs
+D:\ez-technologies\virmani_dotnet\DCRM.Common\obj\Debug\net6.0\DCRM.Common.csproj.CoreCompileInputs.cache
+D:\ez-technologies\virmani_dotnet\DCRM.Common\obj\Debug\net6.0\DCRM.Common.dll
+D:\ez-technologies\virmani_dotnet\DCRM.Common\obj\Debug\net6.0\refint\DCRM.Common.dll
+D:\ez-technologies\virmani_dotnet\DCRM.Common\obj\Debug\net6.0\DCRM.Common.pdb
+D:\ez-technologies\virmani_dotnet\DCRM.Common\obj\Debug\net6.0\ref\DCRM.Common.dll
