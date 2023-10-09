@@ -40,40 +40,40 @@ public partial class DealerDto
 
     public string Country_O { get; set; } = null!;
 
-    public string? Staff_Name1 { get; set; }
+    public string Staff_Name1 { get; set; }
 
-    public long? Staff_Phone1 { get; set; }
+    public long Staff_Phone1 { get; set; }
 
-    public string? Staff_Email1 { get; set; }
+    public string Staff_Email1 { get; set; }
 
-    public string? Staff_Name2 { get; set; }
+    public string Staff_Name2 { get; set; }
 
-    public long? Staff_Phone2 { get; set; }
+    public long Staff_Phone2 { get; set; }
 
-    public string? Staff_Email2 { get; set; }
+    public string Staff_Email2 { get; set; }
 
-    public string? Staff_Name3 { get; set; }
+    public string Staff_Name3 { get; set; }
 
-    public long? Staff_Phone3 { get; set; }
+    public long Staff_Phone3 { get; set; }
 
-    public string? Staff_Email3 { get; set; }
+    public string Staff_Email3 { get; set; }
 
-    public string? Staff_Name4 { get; set; }
+    public string Staff_Name4 { get; set; }
 
-    public long? Staff_Phone4 { get; set; }
+    public long Staff_Phone4 { get; set; }
 
-    public string? Staff_Email4 { get; set; }
+    public string Staff_Email4 { get; set; }
 
     public string Gst_Number { get; set; } = null!;
 
     public string Pan_Number { get; set; } = null!;
 
-    public string? Image { get; set; }
+    public string Image { get; set; }
 
     public sbyte Is_Deleted { get; set; }
-    public List<DealerMaterial>? DealerMaterialList { get; set; }
+    public List<DealerMaterial> DealerMaterialList { get; set; }
 
-    public List<DealerBankDetail>? DealerBankDetailList { get; set; }
+    public List<DealerBankDetail> DealerBankDetailList { get; set; }
     public DateTime Created_At { get; set; }
 
     public DateTime Updated_At { get; set; }

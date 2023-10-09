@@ -143,10 +143,10 @@ namespace DCRM.Repository.Repository
                     dealer.Staff_Email2 = request.StaffEmail_2;
                     dealer.Staff_Email3 = request.StaffEmail_3;
                     dealer.Staff_Email4 = request.StaffEmail_4;
-                    dealer.Staff_Phone1 = request.StaffPhone_1;
-                    dealer.Staff_Phone2 = request.StaffPhone_2;
-                    dealer.Staff_Phone3 = request.StaffPhone_3;
-                    dealer.Staff_Phone4 = request.StaffPhone_4;
+                    dealer.Staff_Phone1 = Convert.ToInt64(request.StaffPhone_1);
+                    dealer.Staff_Phone2 = Convert.ToInt64(request.StaffPhone_2);
+                    dealer.Staff_Phone3 = Convert.ToInt64(request.StaffPhone_3);
+                    dealer.Staff_Phone4 = Convert.ToInt64(request.StaffPhone_4);
                     dealer.Image = request.Thumb;
                     dealer.Gst_Number = request.Gst_Number;
                     dealer.Pan_Number = request.Pan_Number;
@@ -185,7 +185,6 @@ namespace DCRM.Repository.Repository
             }
             else
             {
-                _contex.Database.RollbackTransaction();
                 throw new SqlAlreadyFilledException("companyname already exist");
             }
         }
@@ -238,18 +237,18 @@ namespace DCRM.Repository.Repository
                     dealer.Zip_O = request.Zip_O;
                     dealer.Country_O = request.Country_O;
                     dealer.Country_R = request.Country_R;
-                    dealer.Staff_Name1 = request.StaffName_1;
-                    dealer.Staff_Name2 = request.StaffName_2;
-                    dealer.Staff_Name3 = request.StaffName_3;
-                    dealer.Staff_Name4 = request.StaffName_4;
-                    dealer.Staff_Email1 = request.StaffEmail_1;
-                    dealer.Staff_Email2 = request.StaffEmail_2;
-                    dealer.Staff_Email3 = request.StaffEmail_3;
-                    dealer.Staff_Email4 = request.StaffEmail_4;
-                    dealer.Staff_Phone1 = request.StaffPhone_1;
-                    dealer.Staff_Phone2 = request.StaffPhone_2;
-                    dealer.Staff_Phone3 = request.StaffPhone_3;
-                    dealer.Staff_Phone4 = request.StaffPhone_4;
+                    dealer.Staff_Name1 = dealer.Staff_Name1 == null ? "" : dealer.Staff_Name1;
+                    dealer.Staff_Name2 = dealer.Staff_Name2 == null ? "" : dealer.Staff_Name2;
+                    dealer.Staff_Name3 = dealer.Staff_Name3 == null ? "" : dealer.Staff_Name3;
+                    dealer.Staff_Name4 = dealer.Staff_Name4 == null ? "" : dealer.Staff_Name4;
+                    dealer.Staff_Email1 = dealer.Staff_Email1 == null ? "" : dealer.Staff_Email1;
+                    dealer.Staff_Email2 = dealer.Staff_Email2 == null ? "" : dealer.Staff_Email2;
+                    dealer.Staff_Email3 = dealer.Staff_Email3 == null ? "" : dealer.Staff_Email3;
+                    dealer.Staff_Email4 = dealer.Staff_Email4 == null ? "" : dealer.Staff_Email4;
+                    dealer.Staff_Phone1 = Convert.ToInt64(request.StaffPhone_1);
+                    dealer.Staff_Phone2 = Convert.ToInt64(request.StaffPhone_2);
+                    dealer.Staff_Phone3 = Convert.ToInt64(request.StaffPhone_3);
+                    dealer.Staff_Phone4 = Convert.ToInt64(request.StaffPhone_4);
                     dealer.Image = request.Thumb;
                     dealer.Gst_Number = request.Gst_Number;
                     dealer.Pan_Number = request.Pan_Number;
