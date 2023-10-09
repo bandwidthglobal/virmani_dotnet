@@ -20,6 +20,6 @@ namespace DCRM.Service.IService
         void Update(DealerRequest request);
         Task DeleteAsync(long userId, int id);
         Task<List<DealerDto>> GetByUserId(int userId);
-       
+        DealerRequest Get(long userId, int id);
     }
 }

@@ -54,6 +54,15 @@ namespace DCRM.Repository.Repository
             }
             else { throw new KeyNotFoundException("no record found"); }
         }
+        public Dealer  Get(long userId, int id)
+        {
+            Dealer dealer = _contex.Dealers.FirstOrDefault(x => x.Id == id && x.Is_Deleted == 0 && x.User_Id == userId);
+            if (dealer != null)
+            {
+                return dealer;
+            }
+            else { throw new KeyNotFoundException("no record found"); }
+        }
         /// <summary>
         /// 
         /// </summary>

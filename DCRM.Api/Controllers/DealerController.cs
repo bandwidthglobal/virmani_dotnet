@@ -40,14 +40,14 @@ namespace DCRM.Api.Controllers
         }
 
         [HttpGet("Get/{id}")]
-        public async Task<DealerDto> GetAsync(int id)
+        public DealerRequest Get(int id)
         {
             var user = Request.HttpContext.Items["User"] as User;
             if (user != null)
             {
                 userId = user.Id;
             }
-            DealerDto dealer = await _dealerService.GetByIdAsync(userId, id);
+            DealerRequest dealer = _dealerService.Get(userId, id);
             return dealer;
         }
 

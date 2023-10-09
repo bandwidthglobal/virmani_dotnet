@@ -16,6 +16,7 @@ namespace DCRM.Repository.IRepository
        
         Task<IEnumerable<Dealer>> GetDealersAsync(long userId);
 
+        Dealer Get(long userId, int id);
         Task<Dealer> GetDealerByIdAsync(long userId,int id);
 
         List<Dealer> GetDealerByUserId(int userId);
@@ -29,6 +30,8 @@ namespace DCRM.Repository.IRepository
         void UpdateDealer(DealerRequest request);
 
         Task DeleteDealerAsync(long userId, int id);
+
+
 
     } 
 }

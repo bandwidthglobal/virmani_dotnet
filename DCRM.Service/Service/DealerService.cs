@@ -126,6 +126,51 @@ namespace DCRM.Service.Service
 
         }
 
+        public DealerRequest Get(long userId, int id)
+        {
+            Dealer dealer =  _dealerRepository.Get(userId, id);
+            DealerRequest dealerDto = new DealerRequest();
+            if (dealer != null)
+            {
+                dealerDto.Id = dealer.Id;
+                dealerDto.User_Id = dealer.User_Id;
+                dealerDto.Company_Name = dealer.Company_Name;
+                dealerDto.OwnName_1 = dealer.Own_Name_1;
+                dealerDto.OwnName_2 = dealer.Own_Name_2;
+                dealerDto.Phone1 = dealer.Phone1;
+                dealerDto.Phone2 = dealer.Phone2;
+                dealerDto.Email1 = dealer.Email1;
+                dealerDto.Email2 = dealer.Email2;
+                dealerDto.Address_R = dealer.Address_R;
+                dealerDto.Address_O = dealer.Address_O;
+                dealerDto.City_R = dealer.City_R;
+                dealerDto.City_O = dealer.City_O;
+                dealerDto.Zip_R = dealer.Zip_R;
+                dealerDto.Zip_O = dealer.Zip_O;
+                dealerDto.Country_O = dealer.Country_O;
+                dealerDto.Country_R = dealer.Country_R;
+                dealerDto.StaffName_1 = dealer.Staff_Name1 == null ? "" : dealer.Staff_Name1;
+                dealerDto.StaffName_2 = dealer.Staff_Name2 == null ? "" : dealer.Staff_Name2;
+                dealerDto.StaffName_3 = dealer.Staff_Name3 == null ? "" : dealer.Staff_Name3;
+                dealerDto.StaffName_4 = dealer.Staff_Name4 == null ? "" : dealer.Staff_Name4;
+                dealerDto.StaffEmail_1 = dealer.Staff_Email1 == null ? "" : dealer.Staff_Email1;
+                dealerDto.StaffEmail_2 = dealer.Staff_Email2 == null ? "" : dealer.Staff_Email2;
+                dealerDto.StaffEmail_3 = dealer.Staff_Email3 == null ? "" : dealer.Staff_Email3;
+                dealerDto.StaffEmail_4 = dealer.Staff_Email4 == null ? "" : dealer.Staff_Email4;
+                dealerDto.StaffPhone_1 = Convert.ToInt64(dealer.Staff_Phone1);
+                dealerDto.StaffPhone_2 = Convert.ToInt64(dealer.Staff_Phone2);
+                dealerDto.StaffPhone_3 = Convert.ToInt64(dealer.Staff_Phone3);
+                dealerDto.StaffPhone_4 = Convert.ToInt64(dealer.Staff_Phone4);
+                dealerDto.Thumb = dealer.Image == null ? "" : dealer.Image;
+                dealerDto.Gst_Number = dealer.Gst_Number;
+                dealerDto.Pan_Number = dealer.Pan_Number;
+                dealerDto.Updated_At = dealer.Created_At;
+                dealerDto.Created_At = dealer.Updated_At;
+                dealerDto.DealerBankDetailList = _dealerRepository.GetDealerBankDetailDetailList(dealer.Id);
+                dealerDto.DealerMaterialList = _dealerRepository.GetDealerMaterialDetailList(dealer.Id);
+            }
+            return dealerDto;
+        }
         /// <summary>
         /// 
         /// </summary>
