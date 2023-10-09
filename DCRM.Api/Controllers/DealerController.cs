@@ -67,7 +67,7 @@ namespace DCRM.Api.Controllers
         }
 
         [HttpPost("Update")]
-        public async Task<IActionResult> Update(DealerRequest request)
+        public IActionResult Update(DealerRequest request)
         {
             _dealerService.Update(request);
             if (request.Id > 0)

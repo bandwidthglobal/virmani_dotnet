@@ -127,18 +127,7 @@ namespace DCRM.Service.Service
             assaignTimes= _timeRepository.GetAll().Where(x => x.User_Id == userId).ToList();
             return assaignTimes;
         }
-        public void CreateDays(Assaign_Day assignDay)
-        {
-           _dayrepository.Insert(assignDay);
-        }
-        public void CreateTime(Assign_Time assignTime)
-        {
-           _timeRepository.Insert(assignTime);
-        }
-        public void UpdateTime(Assign_Time assignTime)
-        {
-            _timeRepository.Update(assignTime);
-        }
+       
         public void Create(Appointment request)
         {
             _appointmentRepository.Create(request);
@@ -150,6 +139,47 @@ namespace DCRM.Service.Service
         public void Delete(long id)
         {
             _appointmentRepository.Delete(id);
+        }
+
+        public void CreateDays(Assaign_Day assignDay)
+        {
+            _dayrepository.Insert(assignDay);
+        }
+        public void CreateTime(Assign_Time assignTime)
+        {
+            _timeRepository.Insert(assignTime);
+        }
+        public void UpdateTimes(long userId,List<Assign_Time> assignTimes)
+        {
+            foreach (var item in assignTimes)
+            {
+                if (item.Id==0)
+                {
+                    Assign_Time time = new Assign_Time();
+                    time.User_Id = item.User_Id;
+                    time.Day_Id = item.Day_Id;
+                    time.Start = item.Start;
+                    time.Time = item.Time;
+                    time.End = item.End;
+                    _timeRepository.Create(time);
+                }
+                else
+                {
+                    var time = _timeRepository.Get(item.Id);
+                    time.User_Id = item.User_Id;
+                    time.Day_Id = item.Day_Id;
+                    time.Start = item.Start;
+                    time.Time = item.Time;
+                    time.End = item.End;
+                    _timeRepository.Update(time);
+                }
+               
+            }
+        }
+        public void DeleteTime(int id)
+        {
+            var assaignTimes = _timeRepository.Get(id);
+            _timeRepository.Delete(assaignTimes);
         }
     }
 }

@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Demo_Api.Models;
+namespace DCRM.Common.Entity;
 
 public  class Assign_Time : BaseEntity
 {

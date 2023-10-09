@@ -83,5 +83,23 @@ namespace DCRM.Api.Controllers
             }
             
         }
+
+
+        [HttpGet("GetTimes")]
+        public List<Assign_Time> GetAllTime()
+        {
+            var user = Request.HttpContext.Items["User"] as User;
+            List<Assign_Time> times= new List<Assign_Time>();
+            times = _appointmentService.GetTimes(user.Id);
+            return times;
+        }
+
+        [HttpGet("UpdateTimes")]
+        public IActionResult UpdateTimes(List<Assign_Time> assignTimes)
+        {
+            var user = Request.HttpContext.Items["User"] as User;
+            _appointmentService.UpdateTimes(user.Id,assignTimes);
+            return Ok();
+        }
     }
 }

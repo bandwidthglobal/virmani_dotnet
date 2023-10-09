@@ -34,6 +34,7 @@ namespace DCRM.Service.IService
 
         List<Assaign_Day> GetDays(long userId);
         List<Assign_Time> GetTimes(long userId);
+        void UpdateTimes(long userId, List<Assign_Time> assignTimes);
 
     }
 }
