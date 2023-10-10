@@ -1,6 +1,4 @@
-﻿
-
-<div class="content-wrapper container-xxl p-0">
+﻿<div class="content-wrapper container-xxl p-0">
     <div class="content-body">
         <section class="drug-list-wrapper">
             <div class="card">
@@ -17,7 +15,8 @@
                                         <option value="100">100</option>
                                     </select>
                                 </label>
-                                <button class="btn btn-primary ml-2" routerLink="/admin/drug/add" rippleEffect>Add Patient</button>
+                                <button class="btn btn-primary ml-2" routerLink="/admin/patient/add" rippleEffect>Add
+                                    Patient</button>
                             </div>
                         </div>
                     </div>
@@ -32,13 +31,9 @@
 
                             <div class="col-10 col-md-12 mt-2 ml-1 ml-md-0 mt-md-0">
                                 <label class="d-flex align-items-center mb-0 ml-1 ml-md-0">
-                                    <input [(ngModel)]="searchValue"
-                                           name="searchValue"
-                                           type="search"
-                                           class="form-control"
-                                           placeholder="Search..."
-                                           (keyup)="filterUpdate($event)"
-                                           (search)="filterUpdate($event)" />
+                                    <input [(ngModel)]="searchValue" name="searchValue" type="search"
+                                        class="form-control" placeholder="Search..." (keyup)="filterUpdate($event)"
+                                        (search)="filterUpdate($event)" />
                                 </label>
                             </div>
                         </div>
@@ -46,14 +41,8 @@
                 </div>
 
                 <!-- Invoice List Table -->
-                <ngx-datatable [rows]="rows"
-                               [rowHeight]="50"
-                               class="bootstrap core-bootstrap"
-                               [limit]="selectedOption"
-                               [columnMode]="ColumnMode.force"
-                               [headerHeight]="50"
-                               [footerHeight]="50"
-                               [scrollbarH]="true">
+                <ngx-datatable [rows]="rows" [rowHeight]="50" class="bootstrap core-bootstrap" [limit]="selectedOption"
+                    [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50" [scrollbarH]="true">
                     <ngx-datatable-column name="#" prop="id" [width]="50">
                         <ng-template let-id="value" ngx-datatable-cell-template>
                             {{ id }}
@@ -64,15 +53,13 @@
                     <ngx-datatable-column name="Name" prop="name" [width]="150"></ngx-datatable-column>
                     <ngx-datatable-column name="Age" prop="age" [width]="50"></ngx-datatable-column>
                     <ngx-datatable-column name="Phone" prop="mobile" [width]="50"></ngx-datatable-column>
-                    <ngx-datatable-column name="Address" class="" prop="present_Address" [width]="150"> </ngx-datatable-column>
+                    <ngx-datatable-column name="Address" class="" prop="present_Address" [width]="150">
+                    </ngx-datatable-column>
                     <!--<ngx-datatable-column name="Prescriptions" prop="dose_No" [width]="100"> </ngx-datatable-column>-->
                     <ngx-datatable-column name="Prescriptions" [width]="100">
                         <ng-template ngx-datatable-cell-template let-row="row">
-                            <a class="mr-1"
-                               routerLink="/admin/drug/preview/{{ row.id }}"
-                               container="body"
-                               placement="top"
-                               ngbTooltip="View Prescriptions">
+                            <a class="mr-1" routerLink="/admin/drug/preview/{{ row.id }}" container="body"
+                                placement="top" ngbTooltip="View Prescriptions">
                                 <i size="18" data-feather="eye"></i>
                             </a>
                         </ng-template>
@@ -81,26 +68,16 @@
                     <ngx-datatable-column name="Actions" [width]="100" [sortable]="false">
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <div class="d-flex align-items-center col-actions">
-                                <a class="mr-1"
-                                   routerLink="/admin/patient/preview/{{ row.id }}"
-                                   container="body"
-                                   placement="top"
-                                   ngbTooltip="View Patient">
+                                <a class="mr-1" routerLink="/admin/patient/preview/{{ row.id }}" container="body"
+                                    placement="top" ngbTooltip="View Patient">
                                     <i size="18" data-feather="eye"></i>
                                 </a>
-                                <a class="mr-1"
-                                   routerLink="/admin/patient/edit/{{ row.id }}"
-                                   container="body"
-                                   placement="top"
-                                   ngbTooltip="Edit Patient">
+                                <a class="mr-1" routerLink="/admin/patient/edit/{{ row.id }}" container="body"
+                                    placement="top" ngbTooltip="Edit Patient">
                                     <i size="18" data-feather="edit"></i>
                                 </a>
-                                <a class="mr-1"
-                                   href="javascript:void(0)"
-                                   (click)="delete(row.id)"
-                                   container="body"
-                                   placement="top"
-                                   ngbTooltip="Delete Patient">
+                                <a class="mr-1" href="javascript:void(0)" (click)="delete(row.id)" container="body"
+                                    placement="top" ngbTooltip="Delete Patient">
                                     <i size="18" data-feather="trash"></i>
                                 </a>
                             </div>
