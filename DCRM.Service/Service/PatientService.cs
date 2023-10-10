@@ -375,7 +375,7 @@ namespace DCRM.Service.Service
         public List<WorkDoneDto> GetPatientWorkDoneList(int patientId)
         {
             List<WorkDoneDto> workdoneList = new List<WorkDoneDto>();
-            var treatments = _treatmentplansRepository.GetAll().Where(x => x.Patient_Id == patientId);
+            var treatments = _treatmentplansRepository.GetAll().Where(x => x.Patient_Id == patientId).ToList();
             var workdones = _workdoneNewRepository.GetAll().ToList();
             var lnQuery = from t in treatments join w in workdones on t.Id equals w.Treatment_Id select w;
 

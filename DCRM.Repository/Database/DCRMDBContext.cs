@@ -100,7 +100,7 @@ namespace DCRM.Repository.Database
 
         public virtual DbSet<Assign_Time> Assign_Time { get; set; }
 
-
+        public virtual DbSet<Userotp> Userotp { get; set; }
 
     }
 }

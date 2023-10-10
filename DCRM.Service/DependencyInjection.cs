@@ -67,23 +67,19 @@ namespace DCRM.Service
 
             services.AddScoped<IDashboardRepository, DashboardRepository>();
             services.AddScoped<IDashboardService, DashboardService>();
-
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
             services.AddScoped<INotificationService, NotificationService>();
-
             services.AddScoped<IWorkDoneNewService, WorkDoneNewService>();
-
             services.AddScoped<IPaymentService, PaymentService>();
-
             services.AddScoped<ILabService, LabService>();
             services.AddScoped<IDigitalDataService, DigitalDataService>();
-
             services.AddScoped<IChairService, ChairService>();
             services.AddScoped<IWorkDoneService, WorkDoneService>();
             services.AddScoped<IFileRepository, FileRepository>();
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<IExperienceService, ExperienceService>();
+            services.AddScoped<IForgotPasswordService, ForgotPasswordService>();
+            
             #endregion
             return services;
         }

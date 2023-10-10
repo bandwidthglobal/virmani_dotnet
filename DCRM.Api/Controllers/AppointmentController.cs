@@ -101,5 +101,13 @@ namespace DCRM.Api.Controllers
             _appointmentService.UpdateTimes(user.Id,assignTimes);
             return Ok();
         }
+
+        [HttpDelete("DeleteTime/{id}")]
+        public IActionResult DeleteTimes(int id)
+        {
+            var user = Request.HttpContext.Items["User"] as User;
+            _appointmentService.DeleteTime(id);
+            return Ok();
+        }
     }
 }

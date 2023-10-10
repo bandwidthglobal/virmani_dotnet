@@ -1,10 +1,11 @@
-﻿using System;
+﻿using DCRM.Common.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DCRM.Common.Entity;
 
-public  class Staff
+public  class Staff:BaseEntity
 {
     public int Id { get; set; }
 

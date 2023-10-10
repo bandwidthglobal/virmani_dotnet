@@ -5,19 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DCRM.Common.Request
+namespace DCRM.Common.Entities
 {
-    public class ChangePasswordRequest
+    public class ForgotPassword
     {
-        public int Id { get; set; }
         [Required]
-        [DataType(DataType.Password)]
-        public string OldPassword { get; set; } = string.Empty;
+        public long EntityId { get; set; }
+
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "phone number should be 10 digit")]
+        public string PhoneNumber { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [StringLength(20, MinimumLength = 8, ErrorMessage = "Password should be minimum 8 characters and a maximum of 20 characters")]
-        public string NewPassword { get; set; } = string.Empty;
+        public string NewPassword { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
