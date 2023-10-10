@@ -50,13 +50,10 @@
                     </ngx-datatable-column>>
                     <ngx-datatable-column name="Thumb" prop="thumb" [width]="100">
                         <ng-template ngx-datatable-cell-template let-row="row">
-                            <div class="ng-star-inserted" *ngIf="row.image">
-                                <img height="35" width="35" alt="datatable-avatar" class="rounded-circle mr-1"
-                                    [src]="row.image">
-                            </div>
-                            <div class="ng-star-inserted" *ngIf="row.image==null">
-                                <img height="35" width="35" alt="datatable-avatar" class="rounded-circle mr-1"
-                                    src="assets/front/img/avatar.png">
+                            <div class="ng-star-inserted">
+                                <img *ngIf="row.image" height="35" width="35" alt="datatable-avatar"
+                                    class="rounded-circle mr-1"
+                                    [src]="row.image ? row.image : 'assets/front/img/avatar.png'">
                             </div>
                         </ng-template>
                     </ngx-datatable-column>

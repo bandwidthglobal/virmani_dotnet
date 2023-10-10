@@ -24,7 +24,6 @@ export class DealerFormComponent implements OnInit, OnDestroy {
 
   loading: boolean = false;
   submitted: boolean = false;
-  returnUrl: string;
   error: any = '';
   messages = validationMessages;
   formData?: DealerForm;
@@ -35,7 +34,7 @@ export class DealerFormComponent implements OnInit, OnDestroy {
     created_At: new Date(),
     updated_At: new Date(),
   };
-  @Input() FormType?: 'add' | 'edit' = 'add';
+  @Input() FormAction?: 'add' | 'edit' = 'add';
   @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
@@ -46,14 +45,15 @@ export class DealerFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.base64Image = this.FormInput.image;
-    this.FormInput.dealerMaterialList.map(e => {
-      e.material_Date = this._commonValidationService.dateFormat_Y_M_D(e.material_Date);
-    });
     this.formData = new DealerForm(this.FormInput);
-    if (this.FormType === 'add') {
+    if (this.FormAction === 'add') {
       this.addBankDetails();
       this.addMaterialList();
+    } else {
+      this.base64Image = this.FormInput.thumb;
+      this.FormInput?.dealerMaterialList.map(e => {
+        e.material_Date = this._commonValidationService.dateFormat_Y_M_D(e.material_Date);
+      });
     }
   }
 
@@ -126,20 +126,20 @@ export class DealerFormComponent implements OnInit, OnDestroy {
       return;
     } else {
       const payload: any = this.formData.getRawValue();
-        payload.thumb = this.base64Image;
+      payload.thumb = this.base64Image;
       payload.dealerMaterialList.map(e => {
         e.material_Date = this._commonValidationService.dateFormat_Y_M_D(e.material_Date);
       });
       // console.log('> saveForm ---> ', payload);
       this.loading = true;
-      this._dealerFormService.save(payload, this.FormType).pipe(catchError((error) => {
+      this._dealerFormService.save(payload, this.FormAction).pipe(catchError((error) => {
         // console.log('> error ---> ', error);
         this.loading = false;
         this.error = error;
         this.callBackEvent.emit({
           status: 'failure',
           data: error,
-          page: this.FormType,
+          page: this.FormAction,
         });
         return '';
       })).subscribe((response) => {
@@ -148,7 +148,7 @@ export class DealerFormComponent implements OnInit, OnDestroy {
         this.callBackEvent.emit({
           status: 'failure',
           data: response,
-          page: this.FormType,
+          page: this.FormAction,
         });
       });
     }

@@ -34,6 +34,9 @@ import { PriscriptionsComponent } from 'app/main/clinic-admin/patient/patient-pr
 import { PaymentsComponent } from 'app/main/clinic-admin/patient/patient-preview/payments/payments.component';
 import { TreatmentPalnComponent } from 'app/main/clinic-admin/patient/patient-preview/treatment-paln/treatment-paln.component';
 import { WorkdoneHistoryComponent } from 'app/main/clinic-admin/patient/patient-preview/workdonehistory/workdonehistory.component';
+import { PatientFormComponent } from './patient-form/patient-form.component';
+import { SharedCommonModule } from 'app/shared-common/shared-ui.module';
+import { MaskModule } from 'app/shared-common/directives/mask/mask.module';
 // routing
 const routes: Routes = [
     {
@@ -80,6 +83,7 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [
+        PatientFormComponent,
         PatientAddComponent,
         PatientListComponent,
         PatientPreviewComponent,
@@ -104,7 +108,10 @@ const routes: Routes = [
         CorePipesModule,
         NgbModule,
         NgSelectModule,
-        CoreSidebarModule
+        CoreSidebarModule,
+
+        SharedCommonModule,
+        MaskModule
     ],
     providers: [PatientListService, PatientPreviewService, PatientEditService, PatientAddService, PatientinAppointmentsService],
     exports: [PatientListComponent]

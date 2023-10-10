@@ -1,86 +1,47 @@
-﻿// edit-patient.component.ts
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+﻿import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { repeaterAnimation } from '../patient.animation';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PatientEditService } from './patient-edit.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-patient',
   templateUrl: './patient-edit.component.html',
   styleUrls: ['./patient-edit.component.scss'],
+  animations: [repeaterAnimation],
+  encapsulation: ViewEncapsulation.None
 })
-export class PatientEditComponent implements OnInit {
-  patientId: number;
-  patientData: any;
-  editPatientForm: FormGroup;
+
+export class PatientEditComponent implements OnInit, OnDestroy {
+
+  private _unsubscribeAll: Subject<any>;
+  FormInput: any;
+  returnUrl: string;
 
   constructor(
-    private route: ActivatedRoute,
+    private router: Router,
+    private _route: ActivatedRoute,
     private patientEditService: PatientEditService,
-    private fb: FormBuilder
-  ) {}
-
-  imagePreviewUrl: string = ''; 
-
-  // Define the convertToBase64 method
-  convertToBase64(event: any) {
-    // Logic for converting the selected image to base64 goes here
-  }
-
-  // Define your form group and other properties here
-  base64Image: string = ''; 
-
-  items: any[] = []; 
-
-  // Define the error property
-  error: string | null = null;
-
-  // Define the addNewItem method
-  addNewItem() {
-    this.items.push({
-        type: '',
-        name: '',
-        amount: null,
-        balance_spent: null,
-        balance_amount: null
-    });
-  }
-
-  removeItem(index: number) {
-    this.items.splice(index, 1);
-  }
-
-  // Define the saveData method
-  saveData() {
-    // Logic for saving data goes here
+  ) {
+    this._unsubscribeAll = new Subject();
   }
 
   ngOnInit(): void {
-    this.patientId = +this.route.snapshot.paramMap.get('id');
-    this.loadPatientData();
-    this.createForm();
-  }
-
-  loadPatientData(): void {
-    this.patientEditService.getPatient(this.patientId).subscribe((data) => {
-      this.patientData = data;
-      this.editPatientForm.patchValue(this.patientData); // Populate the form with patient data
+    this.patientEditService.onEditChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+      // console.log('> onEditChanged ---> ', response);
+      this.FormInput = response;
     });
   }
 
-  createForm(): void {
-    this.editPatientForm = this.fb.group({
-      // Define form controls corresponding to patient data fields
-      // For example: name, gender, date of birth, etc.
-    });
+  ngOnDestroy(): void {
+    this._unsubscribeAll.next();
+    this._unsubscribeAll.complete();
   }
 
-  onSubmit(): void {
-    const updatedPatientData = this.editPatientForm.value;
-    this.patientEditService
-      .updatePatient(this.patientId, updatedPatientData)
-      .subscribe((response) => {
-        // Handle the response as needed
-      });
+  redirect(event) {
+    console.log('> redirect ---> ', event);
+    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/patient/list';
+    this.router.navigateByUrl(this.returnUrl);
   }
 }

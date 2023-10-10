@@ -36,7 +36,7 @@ export interface DealerFormModel {
   staffEmail_4?: any;
   gst_Number?: any;
   pan_Number?: any;
-  image?: any;
+  thumb?: any;
   is_Deleted?: any;
   created_At?: any;
   updated_At?: any;
@@ -76,7 +76,7 @@ export class DealerForm extends FormGroup {
   readonly staffEmail_4 = this.get('staffEmail_4') as FormControl;
   readonly gst_Number = this.get('gst_Number') as FormControl;
   readonly pan_Number = this.get('pan_Number') as FormControl;
-  readonly image = this.get('image') as FormControl;
+  readonly thumb = this.get('thumb') as FormControl;
   readonly is_Deleted = this.get('is_Deleted') as FormControl;
   readonly created_At = this.get('created_At') as FormControl;
   readonly updated_At = this.get('updated_At') as FormControl;
@@ -123,7 +123,7 @@ export class DealerForm extends FormGroup {
           staffEmail_4: [model?.staffEmail_4, Validators.email],
           gst_Number: [model?.gst_Number, Validators.required],
           pan_Number: [model?.pan_Number, Validators.required],
-          image: [model?.image],
+          thumb: [model?.thumb],
           is_Deleted: [model?.is_Deleted],
           created_At: [model?.created_At],
           updated_At: [model?.updated_At],
@@ -136,19 +136,19 @@ export class DealerForm extends FormGroup {
     );
 
     model?.dealerMaterialList?.map((attr) => {
-      this.wizardExcelDetails.push(new MaterialListForm(attr));
+      this._dealerMaterialList.push(new MaterialListForm(attr));
     });
 
     model?.dealerBankDetailList?.map((attr) => {
-      this.wizardPdfDetails.push(new BankDetailsForm(attr));
+      this._dealerBankDetailList.push(new BankDetailsForm(attr));
     });
   }
 
-  get wizardExcelDetails(): any {
+  get _dealerMaterialList(): any {
     return (this.controls.dealerMaterialList as FormArray);
   }
 
-  get wizardPdfDetails(): any {
+  get _dealerBankDetailList(): any {
     return (this.controls.dealerBankDetailList as FormArray);
   }
 }
