@@ -92,6 +92,7 @@ namespace DCRM.Repository.Repository
                         staff.Phone = staffRequest.Phone;
                         staff.Gst = staffRequest.Gst;
                         staff.Pan = staffRequest.Pan;
+                        staff.Thumb = staffRequest.Thumb;
                         staff.Qualification = staffRequest.Qualification;
                         staff.Work_Experience = staffRequest.Work_Experience;
                         staff.Specialization = staffRequest.Specialization;
@@ -179,6 +180,7 @@ namespace DCRM.Repository.Repository
                     staff.Phone = staffRequest.Phone;
                     staff.Gst = staffRequest.Gst;
                     staff.Pan = staffRequest.Pan;
+                    staff.Thumb = staffRequest.Thumb;
                     staff.Qualification = staffRequest.Qualification;
                     staff.Work_Experience = staffRequest.Work_Experience;
                     staff.Specialization = staffRequest.Specialization;

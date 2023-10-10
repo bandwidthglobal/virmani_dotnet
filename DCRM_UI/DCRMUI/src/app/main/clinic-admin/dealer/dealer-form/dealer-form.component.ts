@@ -126,7 +126,7 @@ export class DealerFormComponent implements OnInit, OnDestroy {
       return;
     } else {
       const payload: any = this.formData.getRawValue();
-      payload.image = this.base64Image;
+        payload.thumb = this.base64Image;
       payload.dealerMaterialList.map(e => {
         e.material_Date = this._commonValidationService.dateFormat_Y_M_D(e.material_Date);
       });

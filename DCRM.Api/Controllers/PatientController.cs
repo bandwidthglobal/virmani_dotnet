@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DCRM.Api.Models;
 using DCRM.Common;
 using DCRM.Common.Authorization;
 using DCRM.Common.Dto;
@@ -22,10 +23,11 @@ namespace DCRM.Api.Controllers
         public readonly IPrescriptionService _prescriptionService;
         public readonly ITreatmentplanService _treatmentplanService;
         private readonly IFileService _fileService;
+        public readonly IConfiguration _configuration;
         IWebHostEnvironment _env;
         string rootDirectory = string.Empty;
         public PatientController(IPatientService patientService, IAppointmentService appointmentService, IPrescriptionService prescriptionService
-            , ITreatmentplanService treatmentplanService, IFileService fileService, IWebHostEnvironment env)
+            , ITreatmentplanService treatmentplanService, IFileService fileService, IWebHostEnvironment env, IConfiguration configuration)
         {
 
             _patientService = patientService;
@@ -33,16 +35,17 @@ namespace DCRM.Api.Controllers
             _prescriptionService = prescriptionService;
             _treatmentplanService = treatmentplanService;
             _fileService = fileService;
-            _env= env;
+            _env = env;
+            _configuration = configuration;
         }
 
-        
+
         [HttpGet("GetAll")]
         public async Task<List<PatientseDto>> GetAll()
         {
             var user = Request.HttpContext.Items["User"] as User;
             List<PatientseDto> patientList = _patientService.GetAll(user.Id);
-            if (patientList.Count>0)
+            if (patientList.Count > 0)
             {
                 patientList = patientList.OrderByDescending(x => x.Id).ToList();
             }
@@ -52,7 +55,7 @@ namespace DCRM.Api.Controllers
         [HttpGet("Get/{id}")]
         public async Task<PatientseDto> GetAsync(long id)
         {
-            PatientseDto patient =  _patientService.Get(id);
+            PatientseDto patient = _patientService.Get(id);
             return patient;
         }
 
@@ -62,13 +65,7 @@ namespace DCRM.Api.Controllers
         {
             var user = Request.HttpContext.Items["User"] as User;
             request.User_Id = user.Id;
-            var patientId= _patientService.Create(request);
-            if (patientId>0)
-            {
-                rootDirectory = _env.ContentRootPath;
-              var filePath= FileUtils.SaveFile(patientId, "patient", request.Thumb, rootDirectory);
-                _fileService.UpdateFileUrl(patientId, filePath, "patient");
-            }
+            var patientId = _patientService.Create(request);
             return Ok();
         }
 
@@ -77,19 +74,13 @@ namespace DCRM.Api.Controllers
         public async Task<IActionResult> Update(PatientRequest request)
         {
             _patientService.Update(request);
-            if (request.Id > 0)
-            {
-                rootDirectory = _env.ContentRootPath;
-                var filePath = FileUtils.SaveFile(request.Id, "patient", request.Thumb, rootDirectory);
-                _fileService.UpdateFileUrl(request.Id, filePath, "patient");
-            }
             return Ok();
         }
 
         [HttpDelete("Delete/{id}")]
         public IActionResult Delete(long id)
         {
-             _patientService.Delete(id);
+            _patientService.Delete(id);
             return Ok(id);
         }
 

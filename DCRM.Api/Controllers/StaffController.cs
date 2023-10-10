@@ -55,12 +55,6 @@ namespace DCRM.Api.Controllers
             staffRequest.Role = "Staff";
             staffRequest.User_Id = user.Id;
             long id = _staffService.Create(staffRequest);
-            if (id > 0)
-            {
-                rootDirectory = _env.ContentRootPath;
-                var filePath = FileUtils.SaveFile(id, "staff", staffRequest.Thumb, rootDirectory);
-                _fileService.UpdateFileUrl(id, filePath, "staff");
-            }
             return Ok();
         }
 
@@ -68,12 +62,6 @@ namespace DCRM.Api.Controllers
         public IActionResult Update(StaffRequest staffRequest)
         {
             _staffService.UpdateStaff(staffRequest);
-            if (staffRequest.Id > 0)
-            {
-                rootDirectory = _env.ContentRootPath;
-                var filePath = FileUtils.SaveFile(staffRequest.Id, "staff", staffRequest.Thumb, rootDirectory);
-                _fileService.UpdateFileUrl(staffRequest.Id, filePath, "staff");
-            }
             return Ok();
         }
 

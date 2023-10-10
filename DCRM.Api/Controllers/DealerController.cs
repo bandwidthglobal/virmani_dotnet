@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DCRM.Service.Service;
 using DCRM.Common.Authorization;
+using DCRM.Api.Models;
 
 namespace DCRM.Api.Controllers
 {
@@ -20,11 +21,13 @@ namespace DCRM.Api.Controllers
         IWebHostEnvironment _env;
         string rootDirectory = string.Empty;
         private readonly IFileService _fileService;
-        public DealerController(IDealerService dealerService, IWebHostEnvironment env, IFileService fileService)
+        public readonly IConfiguration _configuration;
+        public DealerController(IDealerService dealerService, IWebHostEnvironment env, IFileService fileService, IConfiguration configuration)
         {
             _dealerService = dealerService;
-            _env= env;
+            _env = env;
             _fileService = fileService;
+            _configuration = configuration;
         }
 
         [HttpGet("GetAll")]
@@ -57,24 +60,16 @@ namespace DCRM.Api.Controllers
         {
             
             var id = _dealerService.Create(request);
-            if (id > 0)
-            {
-                rootDirectory = _env.ContentRootPath;
-                var filePath = FileUtils.SaveFile(id, "dealer", request.Thumb, rootDirectory);
-                _fileService.UpdateFileUrl(id, filePath, "dealer");
-            }
             return Ok();
         }
 
         [HttpPost("Update")]
         public IActionResult Update(DealerRequest request)
         {
-            _dealerService.Update(request);
+           
             if (request.Id > 0)
             {
-                rootDirectory = _env.ContentRootPath;
-                var filePath = FileUtils.SaveFile(request.Id, "dealer", request.Thumb, rootDirectory);
-                _fileService.UpdateFileUrl(request.Id, filePath, "dealer");
+                _dealerService.Update(request);
             }
             return Ok();
         }

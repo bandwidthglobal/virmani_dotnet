@@ -89,9 +89,7 @@ namespace DCRM.Api.Controllers
             string filePath=string.Empty;
             if (id > 0)
             {
-                rootDirectory = _env.ContentRootPath;
-                filePath = FileUtils.SaveFile(id, "user", thumb, rootDirectory);
-                _fileService.UpdateFileUrl(id, filePath, "user");
+                _fileService.UpdateFileUrl(id, thumb, "user");
             }
             return filePath;
         }
