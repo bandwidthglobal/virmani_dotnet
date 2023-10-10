@@ -74,7 +74,7 @@ namespace DCRM.Service.Service
                 otp = result;
                 //string textMsg = @"" + result + @" is your mobile number verification code 
                 //                    for Visitor Registration at Ebadge.in by SDPrmo";
-                //string strUrl = @"http://nimbusit.net/api/pushsms?user=sdpromonet&authkey=92ozfk83YmFcs&sender=SDPRMO&mobile=" + phoneMumber + "&text= " + textMsg + "&entityid=1101602090000022718&templateid=1707169051335279971&rpt=1";
+                //string strUrl = @"http://nimbusit.net/api/pushsms?user=sdpromonet&authkey=xxxxxx&senderxxxxx&mobile=" + phoneMumber + "&text= " + textMsg + "&entityid=xxxxx&templateid=xxxxx&rpt=1";
                 //WebRequest request = HttpWebRequest.Create(strUrl);
                 //HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 //Stream s = (Stream)response.GetResponseStream();
