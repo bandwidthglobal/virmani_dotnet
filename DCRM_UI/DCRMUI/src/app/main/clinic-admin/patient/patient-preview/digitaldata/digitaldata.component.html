@@ -209,26 +209,20 @@
                             </div>
                         </div>
                         <div class="form-group my-1">
-                            <button type="submit" (click)="saveForm();"
-                                    class="btn btn-primary add-todo-item mr-1"
-                                    rippleEffect>
-                                Add
-                            </button>
-                            <button class="btn btn-outline-secondary add-todo-item"
-                                    type="button"
-                                    (click)="close()"
-                                    data-dismiss="modal"
-                                    rippleEffect>
-                                Close
-                            </button>
+                            <div class="modal-footer">
+                                <button type="submit" (click)="saveForm();"
+                                        class="btn btn-primary add-todo-item mr-1"
+                                        rippleEffect>
+                                    Add
+                                </button>
+                                <button type="button" class="btn btn-secondary" (click)="close()">
+                                    Close
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" (click)="close()">
-                        Close
-                    </button>
-                </div>
+              
             </div>
         </div>
     </div>

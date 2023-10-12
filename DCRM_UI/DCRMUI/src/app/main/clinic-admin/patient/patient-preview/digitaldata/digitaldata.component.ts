@@ -228,6 +228,9 @@ export class DigitaldataComponent implements OnInit, OnDestroy {
         setTimeout(() => {
             this.elm.style.width = '0';
         }, 75);
+        setTimeout(() => {
+            this.elm1.style.width = '0';
+        }, 75);
     }
     saveForm(): void {
         this.submitted = true;
