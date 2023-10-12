@@ -4,6 +4,14 @@
             <div class="card">
                 <div class="row">
                     <div class="col-md-6 col-12">
+                        <button class="btn btn-primary" (click)="toggleSidebar('digitaldata-add-sidebar')">
+                            <i size="18" class="fa fa-plus"></i>
+                            Add Digital Data
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-12">
                         <div class="d-flex justify-content-between align-items-center m-1">
                             <div class="d-flex align-items-center">
                                 <label class="d-flex align-items-center">
@@ -63,24 +71,27 @@
                     <ngx-datatable-column name="Type" prop="type"></ngx-datatable-column>
                     <ngx-datatable-column name="Report" [sortable]="false">
                         <ng-template let-row="row" ngx-datatable-cell-template>
-                            <div class="d-flex col-actions">
-                                <a class="mb-1 btn btn-primary ml-2 waves-effect waves-float waves-light"
+                            <div class="d-flex col-actions text_align_center">
+                                <a class="mb-1"
                                    container="body"
                                    placement="top"
-                                   ngbTooltip="Edit">
-                                   Vew Report
+                                   (click)="preview(row.id)"
+                                   ngbTooltip="View Report">
+                                    <i size="18" data-feather="eye"></i>
                                 </a>
                             </div>
                         </ng-template>
                     </ngx-datatable-column>
                     <ngx-datatable-column name="Actions" [sortable]="false">
                         <ng-template ngx-datatable-cell-template let-row="row">
-                            <div class="d-flex align-items-center col-actions">
-                                <a class="mr-1"
+                            <div class="d-flex text_align_center pl-20">
+                                <a class="mr-1 bg-light-danger m-0"
                                    container="body"
                                    placement="top"
-                                   ngbTooltip="Edit">
-                                    <i size="18" data-feather="trash"></i>
+                                   href="javascript:void(0)" (click)="delete(row.id)"
+                                   ngbTooltip="Delete">
+                                    <i size="18" class="fa fa-close"></i>
+                                    <!--<i size="18" data-feather="trash"></i>-->
                                 </a>
                             </div>
                         </ng-template>
@@ -89,4 +100,52 @@
             </div>
         </section>
     </div>
+    <core-sidebar class="modal modal-slide-in sidebar-todo-modal fade"
+                  name="digitaldata-add-sidebar"
+                  overlayClass="modal-backdrop">
+        <app-digitaldata-add></app-digitaldata-add>
+    </core-sidebar>
+
+    <ng-template #modalBasic let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel1">Basic Modal</h4>
+            <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body" tabindex="0" ngbAutofocus>
+            <h5>Check First Paragraph</h5>
+            <p>
+                Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie. Brownie
+                carrot cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake cookie
+                chocolate cake liquorice.
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="modal.close('Accept click')" rippleEffect>
+                Accept
+            </button>
+        </div>
+    </ng-template>
+    <div class="modal fade my-modal" tabindex="-1" role="dialog" #myModal>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Report File</h5>
+                    <button type="button" class="close" (click)="close()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="overflow:auto">
+                    <img [src]="base64ImagePreview" style="max-height:400px" alt="report">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="close()">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+  
 </div>

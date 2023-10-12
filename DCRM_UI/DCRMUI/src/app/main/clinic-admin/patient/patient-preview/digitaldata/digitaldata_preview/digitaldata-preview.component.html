@@ -1,0 +1,40 @@
+<!-- Right Sidebar -->
+<div class="modal-dialog sidebar-lg" style="display:block">
+    <div class="modal-content p-0">
+        <form id="form-modal-todo"
+              class="todo-modal needs-validation"
+              (ngSubmit)="(todoForm.form.valid)"
+              #todoForm="ngForm">
+            <div class="modal-header align-items-center mb-1">
+                               <div class="todo-item-action d-flex align-items-center justify-content-between ml-auto">
+                    <button (click)="closePreviewSidebar()"
+                            type="button"
+                            class="close font-large-1 font-weight-normal py-0"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                        ×
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body flex-grow-1 pb-sm-0 pb-3">
+                <div class="action-tags">
+                    <div class="form-group">
+                        <div class="avatar-upload text-center ">
+                            <img [src]="" alt="Selected Image">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group my-1">
+                    <button class="btn btn-outline-secondary add-todo-item"
+                            type="button"
+                            (click)="closePreviewSidebar()"
+                            data-dismiss="modal"
+                            rippleEffect>
+                        Close
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--/ Right Sidebar -->

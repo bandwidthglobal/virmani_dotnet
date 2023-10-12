@@ -37,6 +37,8 @@ import { WorkdoneHistoryComponent } from 'app/main/clinic-admin/patient/patient-
 import { PatientFormComponent } from './patient-form/patient-form.component';
 import { SharedCommonModule } from 'app/shared-common/shared-ui.module';
 import { MaskModule } from 'app/shared-common/directives/mask/mask.module';
+import { DigitaldataPreviewComponent } from 'app/main/clinic-admin/patient/patient-preview/digitaldata/digitaldata_preview/digitaldata-preview.component';
+import { DigitaldataAddComponent } from 'app/main/clinic-admin/patient/patient-preview/digitaldata/digitaldata-add/digitaldata-add.component';
 // routing
 const routes: Routes = [
     {
@@ -95,7 +97,9 @@ const routes: Routes = [
         PriscriptionsComponent,
         TreatmentPalnComponent,
         PaymentsComponent,
-        WorkdoneHistoryComponent
+        WorkdoneHistoryComponent,
+        DigitaldataAddComponent,
+        DigitaldataPreviewComponent
     ],
     imports: [
         CommonModule,

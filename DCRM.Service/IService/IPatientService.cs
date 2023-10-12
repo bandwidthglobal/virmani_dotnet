@@ -35,5 +35,6 @@ namespace DCRM.Service.IService
         List<DropdownDataDto> NameList(long userId);
 
         ReferBy GetReferBy(long patientId);
+
     }
 }

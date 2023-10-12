@@ -23,6 +23,7 @@ export class PatientPreviewService implements Resolve<any> {
     onLabChanged: BehaviorSubject<any>;
     onScansChanged: BehaviorSubject<any>;
     onPrescriptionChanged: BehaviorSubject<any>;
+    onDigitalDataChanged: BehaviorSubject<any>;
     id;
     currentUser: any;
 
@@ -41,7 +42,8 @@ export class PatientPreviewService implements Resolve<any> {
         this.onPaymentChanged = new BehaviorSubject({});
         this.onLabChanged = new BehaviorSubject({});
         this.onScansChanged = new BehaviorSubject({});
-        this.onPrescriptionChanged= new BehaviorSubject({});
+        this.onPrescriptionChanged = new BehaviorSubject({});
+        this.onDigitalDataChanged = new BehaviorSubject({});
 
     }
 

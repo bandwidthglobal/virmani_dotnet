@@ -21,10 +21,30 @@ namespace DCRM.Api.Controllers
         }
 
         [HttpGet("Get/Patient/{id}")]
-        public List<Patient_Scans> Get(long id)
+        public List<Patient_Scans> GetAll(long id)
         {
             List<Patient_Scans> scanDataList = _patientScansService.GetPatientScans(id);
             return scanDataList;
+        }
+
+        [HttpGet("Get/{id}")]
+        public Patient_Scans Get(long id)
+        {
+            Patient_Scans scanData = _patientScansService.Get(id);
+            return scanData;
+        }
+
+        [HttpPost("Create")]
+        public IActionResult Create(Patient_Scans patientScans)
+        {
+            Patient_Scans scanData = _patientScansService.Create(patientScans);
+            return Ok(scanData);
+        }
+        [HttpDelete("Delete/{id}")]
+        public IActionResult Delete(long id)
+        {
+            _patientScansService.Delete(id);
+            return Ok(id);
         }
     }
 }
