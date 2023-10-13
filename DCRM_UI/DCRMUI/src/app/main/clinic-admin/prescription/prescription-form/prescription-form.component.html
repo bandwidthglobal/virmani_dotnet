@@ -1,0 +1,258 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <section class="invoice-add-wrapper">
+            <div class="row invoice-add">
+                <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+                    <div class="alert-body">
+                        <p>{{ error }}</p>
+                    </div>
+                </ngb-alert>
+                <div class="col-xl-12 col-md-12 col-12">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h4 class="card-title">Details</h4>
+                        </div>
+                        <div class="col-md-9">
+                            <h4 class="card-title">Address Information</h4>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="basic-medicinetype"> Next Follow Up</label>
+                                        <div class="d_flex">
+                                            <select name="next_duration" class="form-control">
+                                                <option value="">Select days</option>
+                                                <option value="1">1 </option>
+                                                <option value="2">2 </option>
+                                                <option value="3">3 </option>
+                                                <option value="4">4 </option>
+                                                <option value="5">5 </option>
+                                                <option value="6">6 </option>
+                                                <option value="7">7 </option>
+                                                <option value="8">8 </option>
+                                                <option value="9">9 </option>
+                                                <option value="10">10 </option>
+                                                <option value="11">11 </option>
+                                                <option value="12">12 </option>
+                                                <option value="13">13 </option>
+                                                <option value="14">14 </option>
+                                                <option value="15">15 </option>
+                                                <option value="16">16 </option>
+                                                <option value="17">17 </option>
+                                                <option value="18">18 </option>
+                                                <option value="19">19 </option>
+                                                <option value="20">20 </option>
+                                                <option value="21">21 </option>
+                                                <option value="22">22 </option>
+                                                <option value="23">23 </option>
+                                                <option value="24">24 </option>
+                                                <option value="25">25 </option>
+                                                <option value="26">26 </option>
+                                                <option value="27">27 </option>
+                                                <option value="28">28 </option>
+                                                <option value="29">29 </option>
+                                                <option value="30">30 </option>
+                                                <option value="31">31 </option>
+                                            </select>
+                                            <select name="next_time" class="form-control" id="">
+                                                <option value="">Select time </option>
+                                                <option value="days">Days </option>
+                                                <option value="months">Months</option>
+                                                <option value="years">Years </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Patient</label>
+                                                <select class="form-control select2 select2-hidden-accessible" name="patient_id" data-select2-id="1" tabindex="-1" aria-hidden="true" aria-invalid="false">
+                                                    <option value="" data-select2-id="3">Select Patient</option>
+                                                    <option value="397" data-select2-id="313"></option>
+                                                    <option value="396" data-select2-id="314"></option>
+                                                    <option value="395" data-select2-id="315">AA</option>
+                                                    <option value="394" data-select2-id="316">Arvind J</option>
+                                                    <option value="393" data-select2-id="317"></option>
+                                                    <option value="392" data-select2-id="318"></option>
+                                                    <option value="391" data-select2-id="319">Arvind</option>
+                                                    <option value="390" data-select2-id="320">Rakesh Virmani</option>
+                                                    <option value="389" data-select2-id="321">Rakesh Virmani</option>
+                                                    <option value="261" data-select2-id="322">R.M.l.Jaiin</option>
+                                                    <option value="232" data-select2-id="323">Roopa Saroha</option>
+                                                    <option value="231" data-select2-id="324">Sanjana Mishra</option>
+                                                    <option value="208" data-select2-id="325">Sangeeta Swami</option>
+                                                    <option value="207" data-select2-id="326">Y C Chawla</option>
+                                                    <option value="199" data-select2-id="327">Shiv Shankar Gupta</option>
+                                                    <option value="181" data-select2-id="328">rakesh sehgal</option>
+                                                    <option value="178" data-select2-id="329">Vinita Khanna</option>
+                                                    <option value="167" data-select2-id="330">Brij Kumar Kehar</option>
+                                                    <option value="165" data-select2-id="331">V.P.Gupta</option>
+                                                    <option value="164" data-select2-id="332">vanita Sharma</option>
+                                                    <option value="163" data-select2-id="333">Kiran Suri</option>
+                                                    <option value="160" data-select2-id="334">Anuj Gupta</option>
+                                                    <option value="145" data-select2-id="335">Pranjit Gohain</option>
+                                                    <option value="143" data-select2-id="336">Kamlesh Gupta </option>
+                                                    <option value="131" data-select2-id="337">Prashant Gupta</option>
+                                                    <option value="110" data-select2-id="338">sushil mehta</option>
+                                                    <option value="84" data-select2-id="339">Nirmla Devi</option>
+                                                    <option value="82" data-select2-id="340">Rani Sharma</option>
+                                                    <option value="81" data-select2-id="341">Ashok Goel</option>
+                                                    <option value="80" data-select2-id="342">Anil Mahajan</option>
+                                                    <option value="70" data-select2-id="343">SANDEEP PRUTHI</option>
+                                                    <option value="69" data-select2-id="344">DINESH KIRAN</option>
+                                                    <option value="68" data-select2-id="345">AKHIL MANGLA</option>
+                                                    <option value="67" data-select2-id="346">MEGHA MINOCHA</option>
+                                                    <option value="66" data-select2-id="347">GURCHARAN SINGH</option>
+                                                    <option value="65" data-select2-id="348">R.K.Arora</option>
+                                                    <option value="64" data-select2-id="349">VAJEER SINGH</option>
+                                                    <option value="63" data-select2-id="350">Mokshana Khanna</option>
+                                                    <option value="62" data-select2-id="351">ANJU SEKHRI</option>
+                                                    <option value="61" data-select2-id="352">DEEKSHA SHARMA</option>
+                                                    <option value="60" data-select2-id="353">Ginni Gosain</option>
+                                                    <option value="59" data-select2-id="354">SACHIN NAYYAR</option>
+                                                    <option value="58" data-select2-id="355">NISHA GUPTA</option>
+                                                    <option value="57" data-select2-id="356">SATISH TANWAR</option>
+                                                    <option value="56" data-select2-id="357">ARUSHI GARG</option>
+                                                    <option value="55" data-select2-id="358">SURINDER DHAWAN</option>
+                                                    <option value="54" data-select2-id="359">NEHA ARORA</option>
+                                                    <option value="53" data-select2-id="360">DEEPAK CHAUHAN</option>
+                                                    <option value="52" data-select2-id="361">Lalita Mathur</option>
+                                                    <option value="51" data-select2-id="362">V.P MURGAI</option>
+                                                    <option value="50" data-select2-id="363">VARINDER ARORA</option>
+                                                    <option value="49" data-select2-id="364">Pradeep Arun</option>
+                                                    <option value="48" data-select2-id="365">S.K SOBTI</option>
+                                                    <option value="47" data-select2-id="366">SHIV KUMAR</option>
+                                                    <option value="46" data-select2-id="367">RENU SHARMA</option>
+                                                    <option value="45" data-select2-id="368">SURINDER ARORA</option>
+                                                    <option value="44" data-select2-id="369">SUMAN KHANNA</option>
+                                                    <option value="43" data-select2-id="370">B.P.Singh</option>
+                                                    <option value="42" data-select2-id="371">KANCHAN BAWA</option>
+                                                    <option value="41" data-select2-id="372">Parul Gupta</option>
+                                                    <option value="40" data-select2-id="373">MANISHA VERMA</option>
+                                                    <option value="38" data-select2-id="374">MANJU KHARBANDA</option>
+                                                    <option value="37" data-select2-id="375">AMITA PRUTHI</option>
+                                                    <option value="36" data-select2-id="376">AMITA PRUTHI</option>
+                                                    <option value="35" data-select2-id="377">REKHA SAPRA</option>
+                                                    <option value="34" data-select2-id="378">SIMARAN SODHI</option>
+                                                    <option value="33" data-select2-id="379">Kamal Vasudeva</option>
+                                                    <option value="32" data-select2-id="380">Dharam Pal</option>
+                                                    <option value="31" data-select2-id="381">Meena Singh </option>
+                                                    <option value="30" data-select2-id="382">Kinjal Rana</option>
+                                                    <option value="29" data-select2-id="383">Saurabh Kapoor</option>
+                                                    <option value="28" data-select2-id="384">I. GANDHI</option>
+                                                    <option value="27" data-select2-id="385">BAWA SINGH</option>
+                                                    <option value="26" data-select2-id="386">PREKSHA</option>
+                                                    <option value="25" data-select2-id="387">SUNIL TALWAR</option>
+                                                    <option value="24" data-select2-id="388">P.K.jain</option>
+                                                    <option value="23" data-select2-id="389">Seema Jain</option>
+                                                    <option value="22" data-select2-id="390">Rajeshwar Gupta</option>
+                                                    <option value="21" data-select2-id="391">MAMTA</option>
+                                                    <option value="20" data-select2-id="392">B.P.Singh</option>
+                                                    <option value="19" data-select2-id="393">Amit Garg</option>
+                                                    <option value="18" data-select2-id="394">Anil Khanna</option>
+                                                    <option value="17" data-select2-id="395">Sukrit Goyal</option>
+                                                    <option value="16" data-select2-id="396">Rahul Gupta</option>
+                                                    <option value="15" data-select2-id="397">Prateek Babbar</option>
+                                                    <option value="14" data-select2-id="398">Pushpa Kumari</option>
+                                                    <option value="13" data-select2-id="399">Archna Dabas</option>
+                                                    <option value="12" data-select2-id="400">Sonia Jain</option>
+                                                    <option value="11" data-select2-id="401">Sameer</option>
+                                                    <option value="10" data-select2-id="402">Rajiv Dewan</option>
+                                                    <option value="9" data-select2-id="403">ARvind </option>
+                                                    <option value="8" data-select2-id="404">Babita Ohlan</option>
+                                                    <option value="7" data-select2-id="405">Vandana</option>
+                                                    <option value="6" data-select2-id="406">SUN</option>
+                                                    <option value="5" data-select2-id="407">MT</option>
+                                                    <option value="4" data-select2-id="408">Sushma Sehgal</option>
+                                                    <option value="2" data-select2-id="409">Suraj Kumar Verma</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- {{ formData.value | json }} -->
+                            </div>
+                        </div>
+                        </div>
+
+                        <h4 class="card-title">Drugs *</h4>
+                        <!--<ng-container *ngFor="let materialDetail of formData.drugList.controls; let idx = index">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="basic-medicinetype"
+                                               [class.invalid-class]="submitted && materialDetail.material_Name.errors">Materials Name</label>
+                                        <input type="text" [formControl]="materialDetail.material_Name" class="form-control" placeholder=""
+                                               aria-describedby="materialDetail.material_Name" tabindex="5"
+                                               [ngClass]="{ 'is-invalid': submitted && materialDetail.material_Name.errors }" />
+                                        <ng-container *ngFor="let error of materialDetail.material_Name.errors | errorKeys">
+                                            <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                        </ng-container>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="basic-medicinetype"
+                                               [class.invalid-class]="submitted && materialDetail.material_Cost.errors">Cost</label>
+                                        <input type="text" [mask]="'numeric'" [formControl]="materialDetail.material_Cost"
+                                               class="form-control" placeholder="" aria-describedby="materialDetail.material_Cost" tabindex="5"
+                                               [ngClass]="{ 'is-invalid': submitted && materialDetail.material_Cost.errors }" />
+                                        <ng-container *ngFor="let error of materialDetail.material_Cost.errors | errorKeys">
+                                            <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                        </ng-container>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="basic-medicinetype"
+                                               [class.invalid-class]="submitted && materialDetail.material_Date.errors">Date</label>
+                                        <input type="date" [formControl]="materialDetail.material_Date" class="form-control" placeholder="">
+                                        <ng-container *ngFor="let error of materialDetail.material_Date.errors | errorKeys">
+                                            <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                        </ng-container>-->
+                                        <!-- <span>{{ materialDetail.material_Date.value }}</span> -->
+                                    <!--</div>
+                                </div>
+
+                                <div *ngIf="formData.drugList.controls.length > 1" class="col-md-3">
+                                    <div class="float-right">
+                                        <button type="button" (click)="removeDrugList(idx);" rippleEffect
+                                                class="btn btn-danger mr-1 mt-2">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>-->
+
+                        <div class="col-md-12">
+                            <div class="float-right">
+                                <button type="button" (click)="addDrugList();" rippleEffect class="btn btn-primary">Add More</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12 mt-3">
+                        <div class="float-right">
+                            <a href="/admin/dealer/list" class="btn btn-outline-secondary mr-1">Cancel</a>
+                            <button type="button" (click)="saveForm();" rippleEffect class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </div>
+</div>
