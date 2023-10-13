@@ -106,6 +106,12 @@ namespace DCRM.Common.Dto
         public string? Specialist { get; set; }
 
         public DateTime? Created_At { get; set; }
+
+        public string? ChamberName { get; set; }
+
+        public string? ChamberTitle { get; set; }
+
+        public string? Chamber_Id { get; set; }
     }
 }
 

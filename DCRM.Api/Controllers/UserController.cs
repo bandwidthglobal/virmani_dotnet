@@ -51,6 +51,20 @@ namespace DCRM.Api.Controllers
                 throw new KeyNotFoundException("No record found");
             }
         }
+        [HttpGet("GetUserChamber/{id}")]
+        public UserDto GetUserChamber(long id)
+        {
+            var user = _userService.GetUserChamber(id);
+
+            if (user != null)
+            {
+                return user;
+            }
+            else
+            {
+                throw new KeyNotFoundException("No record found");
+            }
+        }
 
         [AllowAnonymous]
         [HttpPost("Create")]

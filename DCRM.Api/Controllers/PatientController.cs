@@ -85,7 +85,7 @@ namespace DCRM.Api.Controllers
         }
 
         [HttpGet("Get/Names")]
-        public List<DropdownDataDto> DoctorNameList()
+        public List<DropdownDataDto> PatientNameList()
         {
             var user = Request.HttpContext.Items["User"] as User;
             return _patientService.NameList(user.Id);

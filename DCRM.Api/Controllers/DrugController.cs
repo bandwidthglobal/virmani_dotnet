@@ -45,11 +45,11 @@ namespace DCRM.Api.Controllers
             return _drugfService.GetMedicineCategoris();
         }
         [HttpPost("Create")]
-        public async Task<IActionResult>Create(Drug drug)
+        public IActionResult Create(Drug drug)
         {
             var user = Request.HttpContext.Items["User"] as User;
             drug.User_Id = user.Id;
-            await _drugfService.CreateAsync(drug);
+             _drugfService.CreateAsync(drug);
             return Ok(drug);
         }
 

@@ -17,6 +17,7 @@ namespace DCRM.Service.IService
         Task<AuthenticateResponse> AuthenticateAsync(AuthenticateRequest authenticateRequest);
         IEnumerable<User> GetAll();
          User Get(long id);
+        UserDto GetUserChamber(long id);
         long Create(UserRequest userRequest);
         void Update(UserUpdateRequest user);
         void Delete(long id);

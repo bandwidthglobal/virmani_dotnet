@@ -16,6 +16,9 @@ public partial class PatientseDto
 
     public string? Name { get; set; }
 
+    public string? ChamberName { get; set; }
+
+    public string? ChamberTitle { get; set; }
     public string? User_name { get; set; }
 
     public string? Slug { get; set; }

@@ -47,7 +47,7 @@ public  class Drug
 
     public string? Note { get; set; }
 
-    public string Form { get; set; } = null!;
+    public string Form { get; set; } 
 
     public string Description { get; set; } 
 

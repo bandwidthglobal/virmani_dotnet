@@ -14,15 +14,18 @@ namespace DCRM.Service.Service
     public class UserService : IUserService
     {
         public readonly IUserRepository _userRepository;
+
         public readonly IJwtUtils _jwtUtils;
         public readonly IConfiguration _configuration;
         public readonly IRepository<Experience> _experienceRepository;
-        public UserService(IUserRepository userRepository, IJwtUtils jwtUtils, IConfiguration configuration, IRepository<Experience> experienceRepository)
+        public readonly IRepository<Chamber> _chamberRepository;
+        public UserService(IUserRepository userRepository, IJwtUtils jwtUtils, IConfiguration configuration, IRepository<Experience> experienceRepository, IRepository<Chamber> chamberRepository)
         {
             _userRepository = userRepository;
             _jwtUtils = jwtUtils;
             _configuration = configuration;
             _experienceRepository = experienceRepository;
+            _chamberRepository  = chamberRepository;
         }
 
         /// <summary>
@@ -59,9 +62,24 @@ namespace DCRM.Service.Service
         /// <returns></returns>
         public User Get(long id)
         {
-            return  _userRepository.Get(id); ;
+            return  _userRepository.Get(id); 
         }
 
+        public UserDto GetUserChamber(long id)
+        {
+            var chamber= _chamberRepository.GetAll().Where(x=>x.User_Id==2).FirstOrDefault();
+            var user = _userRepository.Get(id);
+            UserDto userDto = new UserDto();
+            if (chamber != null)
+            {
+                userDto.Name = user.Name;
+                userDto.Email = user.Email;
+                userDto.ChamberName = chamber.Name;
+                userDto.ChamberTitle = chamber.Title;
+                userDto.Chamber_Id = chamber.Id.ToString();
+            }
+            return userDto;
+        }
         /// <summary>
         /// save user in users table
         /// </summary>

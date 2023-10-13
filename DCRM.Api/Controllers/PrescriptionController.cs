@@ -38,6 +38,8 @@ namespace DCRM.Api.Controllers
         [HttpPost("Create")]
         public IActionResult Create(Prescription prescription)
         {
+            var user = Request.HttpContext.Items["User"] as User;
+            prescription.User_Id = user.Id;
             _prescriptionService.Create(prescription);
             return Ok(prescription);
         }

@@ -9,8 +9,9 @@ public  class Prescription
     public int Id { get; set; }
 
     public long Chamber_Id { get; set; }
-    [Required]
+   
     public long User_Id { get; set; }
+
     [Required]
     public long Patient_Id { get; set; }
     [Required]
