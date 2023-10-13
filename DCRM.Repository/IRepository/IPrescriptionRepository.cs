@@ -15,6 +15,7 @@ namespace DCRM.Repository.IRepository
     {
         List<Prescription> GetAll();
         Prescription Get(long id);
+        
         void Create(Prescription prescription);
         void Delete(long id);
 

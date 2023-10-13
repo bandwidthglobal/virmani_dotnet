@@ -83,7 +83,7 @@ namespace DCRM.Api.Controllers
             try
             {
                 _paymentService.CreateReceivePayment(payment_Details_List);
-                return Ok("created");
+                return Ok();
             }
             catch (Exception ex)
             {

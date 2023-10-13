@@ -85,6 +85,8 @@ namespace DCRM.Service.Service
             var paymentHistory = _paymentHistoryRepository.Get(payment_Details_List.Payment_History_Id);
             if (paymentHistory != null )
             {
+                payment_Details_List.Created_At= DateTime.Now;
+                payment_Details_List.Updated_At = DateTime.Now;
                 _paymentDetailsListRepository.Insert(payment_Details_List);
                  paymentHistory.Balance = paymentHistory.Balance - payment_Details_List.Price;
                  paymentHistory.Credit_Amount = paymentHistory.Credit_Amount + payment_Details_List.Price;

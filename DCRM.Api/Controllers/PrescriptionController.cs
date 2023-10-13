@@ -20,9 +20,9 @@ namespace DCRM.Api.Controllers
         }
 
         [HttpGet("Get/{id}")]
-        public Prescription Get(long id)
+        public PrescriptionDto Get(long id)
         {
-            return _prescriptionService.Get(id);
+            return _prescriptionService.PrescriptionPreview(id);
         }
 
 

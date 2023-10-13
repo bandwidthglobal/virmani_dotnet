@@ -72,7 +72,7 @@ export class PatientPreviewComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this._patientPreviewService.onPatientChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
             this.apiData = response;
-            debugger;
+           
         });
     }
     onTabChange(obj) {

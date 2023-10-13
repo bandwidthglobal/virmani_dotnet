@@ -24,5 +24,7 @@ namespace DCRM.Service.IService
 
         List<PrescriptionDto> GetPatientPrescriptions(long patientId);
 
+        PrescriptionDto PrescriptionPreview(long id);
+
     }
 }

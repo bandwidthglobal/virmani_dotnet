@@ -1,9 +1,10 @@
-﻿using System;
+﻿using DCRM.Common.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace DCRM.Common.Entity;
 
-public partial class MedicineBrand
+public partial class MedicineBrand:BaseEntity
 {
     public int Id { get; set; }
 

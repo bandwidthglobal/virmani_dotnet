@@ -40,9 +40,10 @@ namespace DCRM.Common.Dto
 
         public string? Name { get; set; }
         public DateTime Created_At { get; set; }
-
+        public List<DrugDto> DrugDtoList { get; set; }
         public List<Drug> Drugs { get; set; }
 
         public Chamber Chamber { get; set; }
+        public string? Weight { get; set; }
     }
 }
