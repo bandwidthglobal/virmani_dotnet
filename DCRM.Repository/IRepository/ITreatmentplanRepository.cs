@@ -14,7 +14,7 @@ namespace DCRM.Repository.IRepository
 
         Treatmentplans GetById(long id);
 
-        int Create(Treatmentplans treatmentplan);
+        int Create(TreatmentplanRequest request);
 
         void UpdateTreatmentplan(Treatmentplans treatmentplan);
 

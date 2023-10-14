@@ -22,8 +22,8 @@ namespace DCRM.Api.Controllers
         [HttpPost("Create")]
         public IActionResult Create(TreatmentplanRequest request)
         {
-            _treatmentplanService.Create(request);
-            return Ok();
+          long id=  _treatmentplanService.Create(request);
+            return Ok(id);
         }
         [HttpPost("Update")]
         public IActionResult Update(TreatmentplanRequest request) {

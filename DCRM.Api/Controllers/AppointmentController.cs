@@ -44,7 +44,7 @@ namespace DCRM.Api.Controllers
             try
             {
                 _appointmentService.Create(appointment);
-                return Ok(appointment);
+                return Ok();
             }
             catch (Exception ex)
             {

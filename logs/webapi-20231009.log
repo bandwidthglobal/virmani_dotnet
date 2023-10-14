@@ -1729,3 +1729,1258 @@ WHERE `d`.`Dealer_Id` = @__p_0
 2023-10-09 09:54:27.930 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.DealerController.GetAllAsync (DCRM.Api)'
 2023-10-09 09:54:27.930 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Dealer/GetAll application/json - - 200 - application/json;+charset=utf-8 14.9710ms
 >>>>>>> 2b130d7e599e094edfc5957739c23a6cbc514958
+2023-10-09 11:46:56.883 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+
+2023-10-09 11:46:57.581 +05:30  INF  Now listening on: https://localhost:7069
+
+2023-10-09 11:46:57.581 +05:30  INF  Now listening on: http://localhost:5069
+
+2023-10-09 11:46:57.585 +05:30  INF  Application started. Press Ctrl+C to shut down.
+
+2023-10-09 11:46:57.586 +05:30  INF  Hosting environment: Development
+
+2023-10-09 11:46:57.586 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+
+2023-10-09 11:46:59.425 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+
+2023-10-09 11:46:59.895 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 475.8898ms
+
+2023-10-09 11:46:59.900 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+
+2023-10-09 11:47:00.483 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 583.1513ms
+
+2023-10-09 11:47:00.491 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+
+2023-10-09 11:47:00.491 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+
+2023-10-09 11:47:00.492 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+
+2023-10-09 11:47:00.492 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+
+2023-10-09 11:47:00.492 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+
+2023-10-09 11:47:00.505 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 13.7743ms
+
+2023-10-09 11:47:00.531 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+
+2023-10-09 11:47:00.541 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 49.6060ms
+
+2023-10-09 11:47:00.550 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+
+2023-10-09 11:47:00.551 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 60.4239ms
+
+2023-10-09 11:47:00.561 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+
+2023-10-09 11:47:00.561 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 69.8058ms
+
+2023-10-09 11:47:00.590 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 98.4116ms
+
+2023-10-09 11:47:00.742 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+
+2023-10-09 11:47:00.767 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/favicon-32x32.png - -
+
+2023-10-09 11:47:00.768 +05:30  INF  Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+
+2023-10-09 11:47:00.768 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/favicon-32x32.png - - - 200 628 image/png 1.0619ms
+
+2023-10-09 11:47:00.964 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 221.6319ms
+
+2023-10-09 11:47:41.001 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Dashboard/Get - -
+
+2023-10-09 11:47:41.027 +05:30  INF  CORS policy execution successful.
+
+2023-10-09 11:47:41.031 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Dashboard/Get - - - 204 - - 30.6308ms
+
+2023-10-09 11:47:41.033 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Dashboard/Get application/json -
+
+2023-10-09 11:47:41.034 +05:30  INF  CORS policy execution successful.
+
+2023-10-09 11:47:43.750 +05:30  ERR  An error occurred using the connection to database 'dcrmdb' on server 'localhost'.
+
+2023-10-09 11:47:43.765 +05:30  ERR  An exception occurred while iterating over the results of a query for context type 'DCRM.Repository.Database.DCRMDBContext'.
+MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host 'localhost' for user 'root' using method 'caching_sha2_password' failed with message: Access denied for user 'root'@'localhost' (using password: NO)
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Access denied for user 'root'@'localhost' (using password: NO)
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacketAsync(Boolean execAsync)
+   at MySql.Data.MySqlClient.NativeDriver.ReadPacketAsync(Boolean execAsync)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacketAsync(Boolean execAsync)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticationFailed(MySqlException ex)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacketAsync(Boolean execAsync)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticateAsync(Boolean reset, Boolean execAsync)
+   at MySql.Data.MySqlClient.NativeDriver.AuthenticateAsync(String authMethod, Boolean reset, Boolean execAsync)
+   at MySql.Data.MySqlClient.NativeDriver.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.NativeDriver.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.Driver.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.Driver.CreateAsync(MySqlConnectionStringBuilder settings, Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.Driver.CreateAsync(MySqlConnectionStringBuilder settings, Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnectionAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.GetPooledConnectionAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.TryToGetDriverAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.GetConnectionAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlConnection.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternal(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at MySql.EntityFrameworkCore.Storage.Internal.MySQLExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host 'localhost' for user 'root' using method 'caching_sha2_password' failed with message: Access denied for user 'root'@'localhost' (using password: NO)
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Access denied for user 'root'@'localhost' (using password: NO)
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacketAsync(Boolean execAsync)
+   at MySql.Data.MySqlClient.NativeDriver.ReadPacketAsync(Boolean execAsync)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacketAsync(Boolean execAsync)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticationFailed(MySqlException ex)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacketAsync(Boolean execAsync)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticateAsync(Boolean reset, Boolean execAsync)
+   at MySql.Data.MySqlClient.NativeDriver.AuthenticateAsync(String authMethod, Boolean reset, Boolean execAsync)
+   at MySql.Data.MySqlClient.NativeDriver.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.NativeDriver.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.Driver.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.Driver.CreateAsync(MySqlConnectionStringBuilder settings, Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.Driver.CreateAsync(MySqlConnectionStringBuilder settings, Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnectionAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.GetPooledConnectionAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.TryToGetDriverAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.GetConnectionAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlConnection.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternal(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at MySql.EntityFrameworkCore.Storage.Internal.MySQLExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+
+
+2023-10-09 11:47:43.972 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Dashboard/Get application/json - - 500 - application/json 2938.9572ms
+
+2023-10-09 11:51:33.370 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Dashboard/Get - -
+
+2023-10-09 11:51:33.397 +05:30  INF  CORS policy execution successful.
+
+2023-10-09 11:51:33.400 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Dashboard/Get - - - 204 - - 32.6479ms
+
+2023-10-09 11:51:33.401 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Dashboard/Get application/json -
+
+2023-10-09 11:51:33.406 +05:30  INF  CORS policy execution successful.
+
+2023-10-09 11:51:33.608 +05:30  ERR  An error occurred using the connection to database 'dcrmdb' on server 'localhost'.
+
+2023-10-09 11:51:33.610 +05:30  ERR  An exception occurred while iterating over the results of a query for context type 'DCRM.Repository.Database.DCRMDBContext'.
+MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host 'localhost' for user 'root' using method 'caching_sha2_password' failed with message: Access denied for user 'root'@'localhost' (using password: NO)
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Access denied for user 'root'@'localhost' (using password: NO)
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacketAsync(Boolean execAsync)
+   at MySql.Data.MySqlClient.NativeDriver.ReadPacketAsync(Boolean execAsync)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacketAsync(Boolean execAsync)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticationFailed(MySqlException ex)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacketAsync(Boolean execAsync)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticateAsync(Boolean reset, Boolean execAsync)
+   at MySql.Data.MySqlClient.NativeDriver.AuthenticateAsync(String authMethod, Boolean reset, Boolean execAsync)
+   at MySql.Data.MySqlClient.NativeDriver.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.NativeDriver.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.Driver.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.Driver.CreateAsync(MySqlConnectionStringBuilder settings, Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.Driver.CreateAsync(MySqlConnectionStringBuilder settings, Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnectionAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.GetPooledConnectionAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.TryToGetDriverAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.GetConnectionAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlConnection.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternal(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at MySql.EntityFrameworkCore.Storage.Internal.MySQLExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host 'localhost' for user 'root' using method 'caching_sha2_password' failed with message: Access denied for user 'root'@'localhost' (using password: NO)
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Access denied for user 'root'@'localhost' (using password: NO)
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacketAsync(Boolean execAsync)
+   at MySql.Data.MySqlClient.NativeDriver.ReadPacketAsync(Boolean execAsync)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacketAsync(Boolean execAsync)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticationFailed(MySqlException ex)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacketAsync(Boolean execAsync)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticateAsync(Boolean reset, Boolean execAsync)
+   at MySql.Data.MySqlClient.NativeDriver.AuthenticateAsync(String authMethod, Boolean reset, Boolean execAsync)
+   at MySql.Data.MySqlClient.NativeDriver.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.NativeDriver.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.Driver.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.Driver.CreateAsync(MySqlConnectionStringBuilder settings, Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.Driver.CreateAsync(MySqlConnectionStringBuilder settings, Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnectionAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.GetPooledConnectionAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.TryToGetDriverAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.GetConnectionAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlConnection.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternal(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at MySql.EntityFrameworkCore.Storage.Internal.MySQLExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+
+
+2023-10-09 11:51:33.719 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Dashboard/Get application/json - - 500 - application/json 317.7649ms
+
+2023-10-09 11:52:12.554 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Dashboard/Get - -
+
+2023-10-09 11:52:12.620 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.DashboardController.Get (DCRM.Api)'
+
+2023-10-09 11:52:12.774 +05:30  INF  Route matched with {action = "Get", controller = "Dashboard"}. Executing controller action with signature DCRM.Common.Dto.DashboardDto Get() on controller DCRM.Api.Controllers.DashboardController (DCRM.Api).
+
+2023-10-09 11:52:12.798 +05:30  INF  Authorization failed for the request at filter 'DCRM.Common.Authorization.AuthorizeAttribute'.
+
+2023-10-09 11:52:12.804 +05:30  INF  Executing JsonResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+
+2023-10-09 11:52:12.856 +05:30  INF  Executed action DCRM.Api.Controllers.DashboardController.Get (DCRM.Api) in 70.1408ms
+
+2023-10-09 11:52:12.866 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.DashboardController.Get (DCRM.Api)'
+
+2023-10-09 11:52:12.866 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Dashboard/Get - - - 401 - application/json;+charset=utf-8 311.5677ms
+
+2023-10-09 11:52:12.905 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/favicon.ico - -
+
+2023-10-09 11:52:12.912 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/favicon.ico - - - 404 0 - 6.9892ms
+
+2023-10-09 11:53:14.533 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+
+2023-10-09 11:53:14.949 +05:30  INF  Now listening on: https://localhost:7069
+
+2023-10-09 11:53:14.949 +05:30  INF  Now listening on: http://localhost:5069
+
+2023-10-09 11:53:14.953 +05:30  INF  Application started. Press Ctrl+C to shut down.
+
+2023-10-09 11:53:14.959 +05:30  INF  Hosting environment: Development
+
+2023-10-09 11:53:14.959 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+
+2023-10-09 11:53:16.086 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+
+2023-10-09 11:53:16.298 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 219.1167ms
+
+2023-10-09 11:53:16.299 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+
+2023-10-09 11:53:16.791 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 491.9930ms
+
+2023-10-09 11:53:16.862 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+
+2023-10-09 11:53:16.863 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+
+2023-10-09 11:53:16.863 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+
+2023-10-09 11:53:16.864 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+
+2023-10-09 11:53:16.863 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+
+2023-10-09 11:53:16.889 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 26.6233ms
+
+2023-10-09 11:53:16.945 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 81.7407ms
+
+2023-10-09 11:53:16.959 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+
+2023-10-09 11:53:16.959 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+
+2023-10-09 11:53:16.959 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 97.0274ms
+
+2023-10-09 11:53:16.959 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 95.6196ms
+
+2023-10-09 11:53:16.984 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+
+2023-10-09 11:53:16.985 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 121.3872ms
+
+2023-10-09 11:53:17.174 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+
+2023-10-09 11:53:17.431 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 257.0949ms
+
+2023-10-09 11:53:26.693 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Dashboard/Get - -
+
+2023-10-09 11:53:26.703 +05:30  INF  CORS policy execution successful.
+
+2023-10-09 11:53:26.705 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Dashboard/Get - - - 204 - - 12.1683ms
+
+2023-10-09 11:53:26.706 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Dashboard/Get application/json -
+
+2023-10-09 11:53:26.707 +05:30  INF  CORS policy execution successful.
+
+2023-10-09 11:53:30.188 +05:30  INF  Executed DbCommand (33ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2023-10-09 11:53:30.374 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.DashboardController.Get (DCRM.Api)'
+
+2023-10-09 11:53:30.406 +05:30  INF  Route matched with {action = "Get", controller = "Dashboard"}. Executing controller action with signature DCRM.Common.Dto.DashboardDto Get() on controller DCRM.Api.Controllers.DashboardController (DCRM.Api).
+
+2023-10-09 11:53:30.476 +05:30  INF  Executed DbCommand (37ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Age`, `p`.`Chamber_Id`, `p`.`Created_At`, `p`.`Email`, `p`.`Guardian`, `p`.`Is_Delete`, `p`.`Mobile`, `p`.`Mr_Number`, `p`.`Name`, `p`.`Password`, `p`.`Permanent_Address`, `p`.`Present_Address`, `p`.`Role`, `p`.`Sex`, `p`.`Slug`, `p`.`Thumb`, `p`.`Title`, `p`.`UserName`, `p`.`User_Id`, `p`.`Verify_Code`, `p`.`Weight`
+FROM `Patientses` AS `p`
+WHERE (`p`.`User_Id` = @__p_0) AND (`p`.`Is_Delete` = 0)
+
+2023-10-09 11:53:30.541 +05:30  INF  Executed DbCommand (14ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`Blood_Group`, `s`.`Chamber_Id`, `s`.`Created_At`, `s`.`Current_Address`, `s`.`Date_Of_Joining`, `s`.`Department`, `s`.`Designation`, `s`.`Dob`, `s`.`Email`, `s`.`Father`, `s`.`Gender`, `s`.`Gst`, `s`.`Is_Deleted`, `s`.`Marital_Status`, `s`.`Mother`, `s`.`Name`, `s`.`Note`, `s`.`Pan`, `s`.`Password`, `s`.`Permanent_Address`, `s`.`Phone`, `s`.`Qualification`, `s`.`Role`, `s`.`Slug`, `s`.`Specialization`, `s`.`Status`, `s`.`Thumb`, `s`.`User_Id`, `s`.`User_Name`, `s`.`Work_Experience`
+FROM `Staffs` AS `s`
+WHERE (`s`.`User_Id` = @__userId_0) AND (`s`.`Is_Deleted` = 0)
+
+2023-10-09 11:53:30.607 +05:30  INF  Executed DbCommand (9ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`Appointment_Status`, `a`.`Cause`, `a`.`Chair`, `a`.`Chamber_Id`, `a`.`Created_At`, `a`.`Date`, `a`.`Doctor_Id`, `a`.`Doctor_Name`, `a`.`End_Time`, `a`.`Extra_Notes`, `a`.`Files`, `a`.`Is_Delete`, `a`.`Is_Start`, `a`.`Meeting_Notes`, `a`.`Number_Of_Slot`, `a`.`Patient_Id`, `a`.`Prescription_Id`, `a`.`Serial_Id`, `a`.`Slot_Time`, `a`.`Start_Time`, `a`.`Status`, `a`.`Type`, `a`.`User_Id`
+FROM `Appointments` AS `a`
+WHERE (`a`.`User_Id` = @__userId_0) AND (`a`.`Is_Delete` = 0)
+
+2023-10-09 11:53:30.667 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`Appointment_Status`, `a`.`Cause`, `a`.`Chair`, `a`.`Chamber_Id`, `a`.`Created_At`, `a`.`Date`, `a`.`Doctor_Id`, `a`.`Doctor_Name`, `a`.`End_Time`, `a`.`Extra_Notes`, `a`.`Files`, `a`.`Is_Delete`, `a`.`Is_Start`, `a`.`Meeting_Notes`, `a`.`Number_Of_Slot`, `a`.`Patient_Id`, `a`.`Prescription_Id`, `a`.`Serial_Id`, `a`.`Slot_Time`, `a`.`Start_Time`, `a`.`Status`, `a`.`Type`, `a`.`User_Id`
+FROM `Appointments` AS `a`
+WHERE ((`a`.`User_Id` = @__userId_0) AND (`a`.`Is_Delete` = 0)) AND (`a`.`Date` = CURDATE())
+
+2023-10-09 11:53:30.673 +05:30  INF  Executing ObjectResult, writing value of type 'DCRM.Common.Dto.DashboardDto'.
+
+2023-10-09 11:53:30.693 +05:30  INF  Executed action DCRM.Api.Controllers.DashboardController.Get (DCRM.Api) in 281.0388ms
+
+2023-10-09 11:53:30.694 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.DashboardController.Get (DCRM.Api)'
+
+2023-10-09 11:53:30.713 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Dashboard/Get application/json - - 200 - application/json;+charset=utf-8 4006.9762ms
+
+2023-10-09 11:53:33.621 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Dashboard/Get - -
+
+2023-10-09 11:53:33.626 +05:30  INF  CORS policy execution successful.
+
+2023-10-09 11:53:33.626 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Dashboard/Get - - - 204 - - 5.7954ms
+
+2023-10-09 11:53:33.628 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Dashboard/Get application/json -
+
+2023-10-09 11:53:33.628 +05:30  INF  CORS policy execution successful.
+
+2023-10-09 11:53:33.683 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2023-10-09 11:53:33.683 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.DashboardController.Get (DCRM.Api)'
+
+2023-10-09 11:53:33.683 +05:30  INF  Route matched with {action = "Get", controller = "Dashboard"}. Executing controller action with signature DCRM.Common.Dto.DashboardDto Get() on controller DCRM.Api.Controllers.DashboardController (DCRM.Api).
+
+2023-10-09 11:53:33.687 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Age`, `p`.`Chamber_Id`, `p`.`Created_At`, `p`.`Email`, `p`.`Guardian`, `p`.`Is_Delete`, `p`.`Mobile`, `p`.`Mr_Number`, `p`.`Name`, `p`.`Password`, `p`.`Permanent_Address`, `p`.`Present_Address`, `p`.`Role`, `p`.`Sex`, `p`.`Slug`, `p`.`Thumb`, `p`.`Title`, `p`.`UserName`, `p`.`User_Id`, `p`.`Verify_Code`, `p`.`Weight`
+FROM `Patientses` AS `p`
+WHERE (`p`.`User_Id` = @__p_0) AND (`p`.`Is_Delete` = 0)
+
+2023-10-09 11:53:33.690 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`Blood_Group`, `s`.`Chamber_Id`, `s`.`Created_At`, `s`.`Current_Address`, `s`.`Date_Of_Joining`, `s`.`Department`, `s`.`Designation`, `s`.`Dob`, `s`.`Email`, `s`.`Father`, `s`.`Gender`, `s`.`Gst`, `s`.`Is_Deleted`, `s`.`Marital_Status`, `s`.`Mother`, `s`.`Name`, `s`.`Note`, `s`.`Pan`, `s`.`Password`, `s`.`Permanent_Address`, `s`.`Phone`, `s`.`Qualification`, `s`.`Role`, `s`.`Slug`, `s`.`Specialization`, `s`.`Status`, `s`.`Thumb`, `s`.`User_Id`, `s`.`User_Name`, `s`.`Work_Experience`
+FROM `Staffs` AS `s`
+WHERE (`s`.`User_Id` = @__userId_0) AND (`s`.`Is_Deleted` = 0)
+
+2023-10-09 11:53:33.691 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`Appointment_Status`, `a`.`Cause`, `a`.`Chair`, `a`.`Chamber_Id`, `a`.`Created_At`, `a`.`Date`, `a`.`Doctor_Id`, `a`.`Doctor_Name`, `a`.`End_Time`, `a`.`Extra_Notes`, `a`.`Files`, `a`.`Is_Delete`, `a`.`Is_Start`, `a`.`Meeting_Notes`, `a`.`Number_Of_Slot`, `a`.`Patient_Id`, `a`.`Prescription_Id`, `a`.`Serial_Id`, `a`.`Slot_Time`, `a`.`Start_Time`, `a`.`Status`, `a`.`Type`, `a`.`User_Id`
+FROM `Appointments` AS `a`
+WHERE (`a`.`User_Id` = @__userId_0) AND (`a`.`Is_Delete` = 0)
+
+2023-10-09 11:53:33.694 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`Appointment_Status`, `a`.`Cause`, `a`.`Chair`, `a`.`Chamber_Id`, `a`.`Created_At`, `a`.`Date`, `a`.`Doctor_Id`, `a`.`Doctor_Name`, `a`.`End_Time`, `a`.`Extra_Notes`, `a`.`Files`, `a`.`Is_Delete`, `a`.`Is_Start`, `a`.`Meeting_Notes`, `a`.`Number_Of_Slot`, `a`.`Patient_Id`, `a`.`Prescription_Id`, `a`.`Serial_Id`, `a`.`Slot_Time`, `a`.`Start_Time`, `a`.`Status`, `a`.`Type`, `a`.`User_Id`
+FROM `Appointments` AS `a`
+WHERE ((`a`.`User_Id` = @__userId_0) AND (`a`.`Is_Delete` = 0)) AND (`a`.`Date` = CURDATE())
+
+2023-10-09 11:53:33.694 +05:30  INF  Executing ObjectResult, writing value of type 'DCRM.Common.Dto.DashboardDto'.
+
+2023-10-09 11:53:33.695 +05:30  INF  Executed action DCRM.Api.Controllers.DashboardController.Get (DCRM.Api) in 11.0862ms
+
+2023-10-09 11:53:33.695 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.DashboardController.Get (DCRM.Api)'
+
+2023-10-09 11:53:33.695 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Dashboard/Get application/json - - 200 - application/json;+charset=utf-8 66.8680ms
+
+2023-10-09 11:58:27.367 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 57
+
+2023-10-09 11:58:27.368 +05:30  INF  CORS policy execution successful.
+
+2023-10-09 11:58:27.387 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api)'
+
+2023-10-09 11:58:27.402 +05:30  INF  Route matched with {action = "Post", controller = "Authenticate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Post(System.String, DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.AuthenticateController (DCRM.Api).
+
+2023-10-09 11:58:27.562 +05:30  INF  Executed DbCommand (15ms) [Parameters=[@__authenticateRequest_Email_0='?' (Size = 4000), @__authenticateRequest_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE ((`u`.`Status` = 1) AND (`u`.`Email` = @__authenticateRequest_Email_0)) AND (`u`.`Password` = @__authenticateRequest_Password_1)
+LIMIT 2
+
+2023-10-09 11:58:27.585 +05:30  INF  Executing OkObjectResult, writing value of type 'DCRM.Common.AuthenticateResponse'.
+
+2023-10-09 11:58:27.593 +05:30  INF  Executed action DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api) in 190.1978ms
+
+2023-10-09 11:58:27.593 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api)'
+
+2023-10-09 11:58:27.593 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 57 - 200 - application/json;+charset=utf-8 225.4455ms
+
+2023-10-09 11:58:54.188 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Dealer/Get/22 - -
+
+2023-10-09 11:58:54.192 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2023-10-09 11:58:54.192 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.DealerController.GetAsync (DCRM.Api)'
+
+2023-10-09 11:58:54.198 +05:30  INF  Route matched with {action = "Get", controller = "Dealer"}. Executing controller action with signature System.Threading.Tasks.Task`1[DCRM.Common.Dto.DealerDto] GetAsync(Int32) on controller DCRM.Api.Controllers.DealerController (DCRM.Api).
+
+2023-10-09 11:58:54.279 +05:30  INF  Executed DbCommand (20ms) [Parameters=[@__id_0='?' (DbType = Int32), @__userId_1='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address_O`, `d`.`Address_R`, `d`.`City_O`, `d`.`City_R`, `d`.`Company_Name`, `d`.`Country_O`, `d`.`Country_R`, `d`.`Created_At`, `d`.`Email1`, `d`.`Email2`, `d`.`Gst_Number`, `d`.`Image`, `d`.`Is_Deleted`, `d`.`Own_Name_1`, `d`.`Own_Name_2`, `d`.`Pan_Number`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Staff_Email1`, `d`.`Staff_Email2`, `d`.`Staff_Email3`, `d`.`Staff_Email4`, `d`.`Staff_Name1`, `d`.`Staff_Name2`, `d`.`Staff_Name3`, `d`.`Staff_Name4`, `d`.`Staff_Phone1`, `d`.`Staff_Phone2`, `d`.`Staff_Phone3`, `d`.`Staff_Phone4`, `d`.`Updated_At`, `d`.`User_Id`, `d`.`Zip_O`, `d`.`Zip_R`
+FROM `Dealers` AS `d`
+WHERE ((`d`.`Id` = @__id_0) AND (`d`.`Is_Deleted` = 0)) AND (`d`.`User_Id` = @__userId_1)
+LIMIT 1
+
+2023-10-09 11:58:54.361 +05:30  INF  Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 11:58:54.369 +05:30  INF  Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 11:58:54.374 +05:30  INF  Executing ObjectResult, writing value of type 'DCRM.Common.Dto.DealerDto'.
+
+2023-10-09 11:58:54.413 +05:30  INF  Executed action DCRM.Api.Controllers.DealerController.GetAsync (DCRM.Api) in 214.2255ms
+
+2023-10-09 11:58:54.413 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.DealerController.GetAsync (DCRM.Api)'
+
+2023-10-09 11:58:54.414 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Dealer/Get/22 - - - 200 - application/json;+charset=utf-8 226.4617ms
+
+2023-10-09 12:19:25.899 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+
+2023-10-09 12:19:26.398 +05:30  INF  Now listening on: https://localhost:7069
+
+2023-10-09 12:19:26.398 +05:30  INF  Now listening on: http://localhost:5069
+
+2023-10-09 12:19:26.403 +05:30  INF  Application started. Press Ctrl+C to shut down.
+
+2023-10-09 12:19:26.404 +05:30  INF  Hosting environment: Development
+
+2023-10-09 12:19:26.404 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+
+2023-10-09 12:19:27.719 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+
+2023-10-09 12:19:28.020 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 304.7024ms
+
+2023-10-09 12:19:28.022 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+
+2023-10-09 12:19:28.501 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 479.5996ms
+
+2023-10-09 12:19:28.508 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+
+2023-10-09 12:19:28.508 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+
+2023-10-09 12:19:28.508 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+
+2023-10-09 12:19:28.508 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+
+2023-10-09 12:19:28.508 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+
+2023-10-09 12:19:28.520 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 12.5400ms
+
+2023-10-09 12:19:28.541 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 33.0142ms
+
+2023-10-09 12:19:28.554 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+
+2023-10-09 12:19:28.563 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 54.6884ms
+
+2023-10-09 12:19:28.571 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+
+2023-10-09 12:19:28.571 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 63.5149ms
+
+2023-10-09 12:19:28.580 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+
+2023-10-09 12:19:28.580 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 72.1227ms
+
+2023-10-09 12:19:42.155 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+
+2023-10-09 12:19:42.415 +05:30  INF  Now listening on: https://localhost:7069
+
+2023-10-09 12:19:42.415 +05:30  INF  Now listening on: http://localhost:5069
+
+2023-10-09 12:19:42.418 +05:30  INF  Application started. Press Ctrl+C to shut down.
+
+2023-10-09 12:19:42.419 +05:30  INF  Hosting environment: Development
+
+2023-10-09 12:19:42.419 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+
+2023-10-09 12:19:42.984 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+
+2023-10-09 12:19:43.102 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 122.8719ms
+
+2023-10-09 12:19:43.103 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+
+2023-10-09 12:19:43.438 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+
+2023-10-09 12:19:43.438 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+
+2023-10-09 12:19:43.438 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+
+2023-10-09 12:19:43.438 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+
+2023-10-09 12:19:43.438 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+
+2023-10-09 12:19:43.439 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 335.4086ms
+
+2023-10-09 12:19:43.448 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 10.0655ms
+
+2023-10-09 12:19:43.487 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+
+2023-10-09 12:19:43.489 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 50.8654ms
+
+2023-10-09 12:19:43.493 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+
+2023-10-09 12:19:43.493 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 55.4223ms
+
+2023-10-09 12:19:43.500 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+
+2023-10-09 12:19:43.500 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 62.6079ms
+
+2023-10-09 12:19:43.503 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 65.6661ms
+
+2023-10-09 12:19:43.658 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+
+2023-10-09 12:19:43.855 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 196.6131ms
+
+2023-10-09 12:20:04.487 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 57
+
+2023-10-09 12:20:04.498 +05:30  INF  CORS policy execution successful.
+
+2023-10-09 12:20:05.813 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api)'
+
+2023-10-09 12:20:05.854 +05:30  INF  Route matched with {action = "Post", controller = "Authenticate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Post(System.String, DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.AuthenticateController (DCRM.Api).
+
+2023-10-09 12:20:07.101 +05:30  INF  Executed DbCommand (26ms) [Parameters=[@__authenticateRequest_Email_0='?' (Size = 4000), @__authenticateRequest_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE ((`u`.`Status` = 1) AND (`u`.`Email` = @__authenticateRequest_Email_0)) AND (`u`.`Password` = @__authenticateRequest_Password_1)
+LIMIT 2
+
+2023-10-09 12:20:07.471 +05:30  INF  Executing OkObjectResult, writing value of type 'DCRM.Common.AuthenticateResponse'.
+
+2023-10-09 12:20:07.495 +05:30  INF  Executed action DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api) in 1634.6065ms
+
+2023-10-09 12:20:07.496 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api)'
+
+2023-10-09 12:20:07.517 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 57 - 200 - application/json;+charset=utf-8 3029.3509ms
+
+2023-10-09 12:21:50.595 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Dealer/Get/22 - -
+
+2023-10-09 12:21:50.772 +05:30  INF  Executed DbCommand (5ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2023-10-09 12:21:50.772 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.DealerController.Get (DCRM.Api)'
+
+2023-10-09 12:21:50.773 +05:30  INF  Route matched with {action = "Get", controller = "Dealer"}. Executing controller action with signature DCRM.Common.Entity.DealerRequest Get(Int32) on controller DCRM.Api.Controllers.DealerController (DCRM.Api).
+
+2023-10-09 12:21:50.806 +05:30  INF  Executed DbCommand (16ms) [Parameters=[@__id_0='?' (DbType = Int32), @__userId_1='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address_O`, `d`.`Address_R`, `d`.`City_O`, `d`.`City_R`, `d`.`Company_Name`, `d`.`Country_O`, `d`.`Country_R`, `d`.`Created_At`, `d`.`Email1`, `d`.`Email2`, `d`.`Gst_Number`, `d`.`Image`, `d`.`Is_Deleted`, `d`.`Own_Name_1`, `d`.`Own_Name_2`, `d`.`Pan_Number`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Staff_Email1`, `d`.`Staff_Email2`, `d`.`Staff_Email3`, `d`.`Staff_Email4`, `d`.`Staff_Name1`, `d`.`Staff_Name2`, `d`.`Staff_Name3`, `d`.`Staff_Name4`, `d`.`Staff_Phone1`, `d`.`Staff_Phone2`, `d`.`Staff_Phone3`, `d`.`Staff_Phone4`, `d`.`Updated_At`, `d`.`User_Id`, `d`.`Zip_O`, `d`.`Zip_R`
+FROM `Dealers` AS `d`
+WHERE ((`d`.`Id` = @__id_0) AND (`d`.`Is_Deleted` = 0)) AND (`d`.`User_Id` = @__userId_1)
+LIMIT 1
+
+2023-10-09 12:21:50.895 +05:30  INF  Executed DbCommand (7ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 12:21:50.904 +05:30  INF  Executed DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 12:21:50.905 +05:30  INF  Executing ObjectResult, writing value of type 'DCRM.Common.Entity.DealerRequest'.
+
+2023-10-09 12:21:50.951 +05:30  INF  Executed action DCRM.Api.Controllers.DealerController.Get (DCRM.Api) in 177.2336ms
+
+2023-10-09 12:21:50.951 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.DealerController.Get (DCRM.Api)'
+
+2023-10-09 12:21:50.951 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Dealer/Get/22 - - - 200 - application/json;+charset=utf-8 355.8321ms
+
+2023-10-09 13:26:58.417 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+
+2023-10-09 13:26:58.970 +05:30  INF  Now listening on: https://localhost:7069
+
+2023-10-09 13:26:58.970 +05:30  INF  Now listening on: http://localhost:5069
+
+2023-10-09 13:26:58.973 +05:30  INF  Application started. Press Ctrl+C to shut down.
+
+2023-10-09 13:26:58.974 +05:30  INF  Hosting environment: Development
+
+2023-10-09 13:26:58.974 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+
+2023-10-09 13:27:00.129 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+
+2023-10-09 13:27:00.311 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 188.5239ms
+
+2023-10-09 13:27:00.312 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+
+2023-10-09 13:27:00.737 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+
+2023-10-09 13:27:00.738 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 425.7946ms
+
+2023-10-09 13:27:00.738 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+
+2023-10-09 13:27:00.738 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+
+2023-10-09 13:27:00.739 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+
+2023-10-09 13:27:00.739 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+
+2023-10-09 13:27:00.756 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 18.5003ms
+
+2023-10-09 13:27:00.783 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+
+2023-10-09 13:27:00.783 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 44.6080ms
+
+2023-10-09 13:27:00.808 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 69.1726ms
+
+2023-10-09 13:27:00.814 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+
+2023-10-09 13:27:00.815 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 76.5365ms
+
+2023-10-09 13:27:00.826 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+
+2023-10-09 13:27:00.826 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 88.9876ms
+
+2023-10-09 13:27:00.980 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+
+2023-10-09 13:27:01.186 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 205.1610ms
+
+2023-10-09 13:27:24.207 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 57
+
+2023-10-09 13:27:24.216 +05:30  INF  CORS policy execution successful.
+
+2023-10-09 13:27:25.527 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api)'
+
+2023-10-09 13:27:25.568 +05:30  INF  Route matched with {action = "Post", controller = "Authenticate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Post(System.String, DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.AuthenticateController (DCRM.Api).
+
+2023-10-09 13:27:27.012 +05:30  INF  Executed DbCommand (29ms) [Parameters=[@__authenticateRequest_Email_0='?' (Size = 4000), @__authenticateRequest_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE ((`u`.`Status` = 1) AND (`u`.`Email` = @__authenticateRequest_Email_0)) AND (`u`.`Password` = @__authenticateRequest_Password_1)
+LIMIT 2
+
+2023-10-09 13:27:27.394 +05:30  INF  Executing OkObjectResult, writing value of type 'DCRM.Common.AuthenticateResponse'.
+
+2023-10-09 13:27:27.419 +05:30  INF  Executed action DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api) in 1845.1246ms
+
+2023-10-09 13:27:27.420 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api)'
+
+2023-10-09 13:27:27.448 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 57 - 200 - application/json;+charset=utf-8 3241.1715ms
+
+2023-10-09 13:27:45.170 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Dealer/GetAll - -
+
+2023-10-09 13:27:45.337 +05:30  INF  Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2023-10-09 13:27:45.338 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.DealerController.GetAllAsync (DCRM.Api)'
+
+2023-10-09 13:27:45.343 +05:30  INF  Route matched with {action = "GetAll", controller = "Dealer"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Collections.Generic.IEnumerable`1[DCRM.Common.Dto.DealerDto]] GetAllAsync() on controller DCRM.Api.Controllers.DealerController (DCRM.Api).
+
+2023-10-09 13:27:45.383 +05:30  INF  Executed DbCommand (21ms) [Parameters=[@__userId_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address_O`, `d`.`Address_R`, `d`.`City_O`, `d`.`City_R`, `d`.`Company_Name`, `d`.`Country_O`, `d`.`Country_R`, `d`.`Created_At`, `d`.`Email1`, `d`.`Email2`, `d`.`Gst_Number`, `d`.`Image`, `d`.`Is_Deleted`, `d`.`Own_Name_1`, `d`.`Own_Name_2`, `d`.`Pan_Number`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Staff_Email1`, `d`.`Staff_Email2`, `d`.`Staff_Email3`, `d`.`Staff_Email4`, `d`.`Staff_Name1`, `d`.`Staff_Name2`, `d`.`Staff_Name3`, `d`.`Staff_Name4`, `d`.`Staff_Phone1`, `d`.`Staff_Phone2`, `d`.`Staff_Phone3`, `d`.`Staff_Phone4`, `d`.`Updated_At`, `d`.`User_Id`, `d`.`Zip_O`, `d`.`Zip_R`
+FROM `Dealers` AS `d`
+WHERE (`d`.`Is_Deleted` = 0) AND (`d`.`User_Id` = @__userId_0)
+
+2023-10-09 13:27:45.492 +05:30  INF  Executed DbCommand (10ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.503 +05:30  INF  Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.507 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.510 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.511 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.529 +05:30  INF  Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.544 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.545 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.547 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.548 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.549 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.553 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.554 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.555 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.556 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.558 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.560 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.561 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.562 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.564 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-09 13:27:45.565 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DCRM.Common.Dto.DealerDto, DCRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+
+2023-10-09 13:27:45.608 +05:30  INF  Executed action DCRM.Api.Controllers.DealerController.GetAllAsync (DCRM.Api) in 264.7927ms
+
+2023-10-09 13:27:45.608 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.DealerController.GetAllAsync (DCRM.Api)'
+
+2023-10-09 13:27:45.608 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Dealer/GetAll - - - 200 - application/json;+charset=utf-8 438.5256ms
+
+2023-10-09 13:28:07.359 +05:30  INF  Request starting HTTP/2 DELETE https://localhost:7069/api/Dealer/Delete/22 - -
+
+2023-10-09 13:28:07.361 +05:30  INF  CORS policy execution successful.
+
+2023-10-09 13:28:07.397 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2023-10-09 13:28:07.397 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.DealerController.Delete (DCRM.Api)'
+
+2023-10-09 13:28:07.398 +05:30  INF  Route matched with {action = "Delete", controller = "Dealer"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Delete(Int32) on controller DCRM.Api.Controllers.DealerController (DCRM.Api).
+
+2023-10-09 13:28:07.405 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address_O`, `d`.`Address_R`, `d`.`City_O`, `d`.`City_R`, `d`.`Company_Name`, `d`.`Country_O`, `d`.`Country_R`, `d`.`Created_At`, `d`.`Email1`, `d`.`Email2`, `d`.`Gst_Number`, `d`.`Image`, `d`.`Is_Deleted`, `d`.`Own_Name_1`, `d`.`Own_Name_2`, `d`.`Pan_Number`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Staff_Email1`, `d`.`Staff_Email2`, `d`.`Staff_Email3`, `d`.`Staff_Email4`, `d`.`Staff_Name1`, `d`.`Staff_Name2`, `d`.`Staff_Name3`, `d`.`Staff_Name4`, `d`.`Staff_Phone1`, `d`.`Staff_Phone2`, `d`.`Staff_Phone3`, `d`.`Staff_Phone4`, `d`.`Updated_At`, `d`.`User_Id`, `d`.`Zip_O`, `d`.`Zip_R`
+FROM `Dealers` AS `d`
+WHERE `d`.`Id` = @__id_0
+LIMIT 1
+
+2023-10-09 13:28:07.621 +05:30  INF  Executed DbCommand (89ms) [Parameters=[@p34='?' (DbType = Int32), @p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (DbType = DateTime), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (Size = 4000), @p12='?' (DbType = SByte), @p13='?' (Size = 4000), @p14='?' (Size = 4000), @p15='?' (Size = 4000), @p16='?' (Size = 4000), @p17='?' (Size = 4000), @p18='?' (Size = 4000), @p19='?' (Size = 4000), @p20='?' (Size = 4000), @p21='?' (Size = 4000), @p22='?' (Size = 4000), @p23='?' (Size = 4000), @p24='?' (Size = 4000), @p25='?' (Size = 4000), @p26='?' (DbType = Int64), @p27='?' (DbType = Int64), @p28='?' (DbType = Int64), @p29='?' (DbType = Int64), @p30='?' (DbType = DateTime), @p31='?' (DbType = Int64), @p32='?' (Size = 4000), @p33='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+UPDATE `Dealers` SET `Address_O` = @p0, `Address_R` = @p1, `City_O` = @p2, `City_R` = @p3, `Company_Name` = @p4, `Country_O` = @p5, `Country_R` = @p6, `Created_At` = @p7, `Email1` = @p8, `Email2` = @p9, `Gst_Number` = @p10, `Image` = @p11, `Is_Deleted` = @p12, `Own_Name_1` = @p13, `Own_Name_2` = @p14, `Pan_Number` = @p15, `Phone1` = @p16, `Phone2` = @p17, `Staff_Email1` = @p18, `Staff_Email2` = @p19, `Staff_Email3` = @p20, `Staff_Email4` = @p21, `Staff_Name1` = @p22, `Staff_Name2` = @p23, `Staff_Name3` = @p24, `Staff_Name4` = @p25, `Staff_Phone1` = @p26, `Staff_Phone2` = @p27, `Staff_Phone3` = @p28, `Staff_Phone4` = @p29, `Updated_At` = @p30, `User_Id` = @p31, `Zip_O` = @p32, `Zip_R` = @p33
+WHERE `Id` = @p34;
+
+2023-10-09 13:28:07.633 +05:30  INF  Executing OkObjectResult, writing value of type 'System.Int32'.
+
+2023-10-09 13:28:07.634 +05:30  INF  Executed action DCRM.Api.Controllers.DealerController.Delete (DCRM.Api) in 235.5539ms
+
+2023-10-09 13:28:07.634 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.DealerController.Delete (DCRM.Api)'
+
+2023-10-09 13:28:07.634 +05:30  INF  Request finished HTTP/2 DELETE https://localhost:7069/api/Dealer/Delete/22 - - - 200 - application/json;+charset=utf-8 274.9957ms
+
+2023-10-09 15:36:14.020 +05:30  INF  User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+
+2023-10-09 15:36:14.520 +05:30  INF  Now listening on: https://localhost:7069
+
+2023-10-09 15:36:14.520 +05:30  INF  Now listening on: http://localhost:5069
+
+2023-10-09 15:36:14.523 +05:30  INF  Application started. Press Ctrl+C to shut down.
+
+2023-10-09 15:36:14.524 +05:30  INF  Hosting environment: Development
+
+2023-10-09 15:36:14.524 +05:30  INF  Content root path: D:\Projects\GitHubProjects\virmani_dotnet\DCRM.Api\
+
+2023-10-09 15:36:15.777 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+
+2023-10-09 15:36:16.047 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 275.0581ms
+
+2023-10-09 15:36:16.048 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+
+2023-10-09 15:36:16.482 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 433.7256ms
+
+2023-10-09 15:36:16.488 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+
+2023-10-09 15:36:16.488 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+
+2023-10-09 15:36:16.488 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+
+2023-10-09 15:36:16.488 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+
+2023-10-09 15:36:16.488 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+
+2023-10-09 15:36:16.497 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 9.3182ms
+
+2023-10-09 15:36:16.536 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+
+2023-10-09 15:36:16.536 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 47.6625ms
+
+2023-10-09 15:36:16.546 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+
+2023-10-09 15:36:16.547 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 58.9714ms
+
+2023-10-09 15:36:16.551 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 63.2026ms
+
+2023-10-09 15:36:16.565 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+
+2023-10-09 15:36:16.565 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 76.7502ms
+
+2023-10-09 15:36:16.720 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+
+2023-10-09 15:36:16.905 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 185.0440ms
+
+2023-10-09 15:36:34.720 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 57
+
+2023-10-09 15:36:34.731 +05:30  INF  CORS policy execution successful.
+
+2023-10-09 15:36:36.023 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api)'
+
+2023-10-09 15:36:36.065 +05:30  INF  Route matched with {action = "Post", controller = "Authenticate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Post(System.String, DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.AuthenticateController (DCRM.Api).
+
+2023-10-09 15:36:37.474 +05:30  INF  Executed DbCommand (29ms) [Parameters=[@__authenticateRequest_Email_0='?' (Size = 4000), @__authenticateRequest_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE ((`u`.`Status` = 1) AND (`u`.`Email` = @__authenticateRequest_Email_0)) AND (`u`.`Password` = @__authenticateRequest_Password_1)
+LIMIT 2
+
+2023-10-09 15:36:37.878 +05:30  INF  Executing OkObjectResult, writing value of type 'DCRM.Common.AuthenticateResponse'.
+
+2023-10-09 15:36:37.902 +05:30  INF  Executed action DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api) in 1831.0477ms
+
+2023-10-09 15:36:37.903 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api)'
+
+2023-10-09 15:36:37.925 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 57 - 200 - application/json;+charset=utf-8 3204.5580ms
+
+2023-10-09 15:37:12.974 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Patient/Get/4 - -
+
+2023-10-09 15:37:13.141 +05:30  INF  Executed DbCommand (5ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2023-10-09 15:37:13.141 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.PatientController.GetAsync (DCRM.Api)'
+
+2023-10-09 15:37:13.147 +05:30  INF  Route matched with {action = "Get", controller = "Patient"}. Executing controller action with signature System.Threading.Tasks.Task`1[DCRM.Common.Dto.PatientseDto] GetAsync(Int64) on controller DCRM.Api.Controllers.PatientController (DCRM.Api).
+
+2023-10-09 15:37:13.177 +05:30  INF  Executed DbCommand (6ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Age`, `p`.`Chamber_Id`, `p`.`Created_At`, `p`.`Email`, `p`.`Guardian`, `p`.`Is_Delete`, `p`.`Mobile`, `p`.`Mr_Number`, `p`.`Name`, `p`.`Password`, `p`.`Permanent_Address`, `p`.`Present_Address`, `p`.`Role`, `p`.`Sex`, `p`.`Slug`, `p`.`Thumb`, `p`.`Title`, `p`.`UserName`, `p`.`User_Id`, `p`.`Verify_Code`, `p`.`Weight`
+FROM `Patientses` AS `p`
+WHERE (`p`.`Is_Delete` = 0) AND (`p`.`Id` = @__id_0)
+LIMIT 1
+
+2023-10-09 15:37:13.234 +05:30  INF  Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Amount_Type`, `p`.`Balance`, `p`.`Created_At`, `p`.`Credit_Amount`, `p`.`Debit_Amount`, `p`.`Description`, `p`.`Doctor_Id`, `p`.`Patient_Id`, `p`.`Payment_Mode`, `p`.`Updated_At`, `p`.`Workdone_Id`
+FROM `Payment_History` AS `p`
+
+2023-10-09 15:37:13.292 +05:30  INF  Executed DbCommand (9ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Amount`, `p`.`Balance_Amount`, `p`.`Balance_Spent`, `p`.`Created_At`, `p`.`Name`, `p`.`Patients_Id`, `p`.`Type`, `p`.`Updated_At`
+FROM `Patients_Insurance_Loan` AS `p`
+WHERE `p`.`Patients_Id` = @__p_0
+
+2023-10-09 15:37:13.314 +05:30  INF  Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Created_At`, `p`.`Patient_Id`, `p`.`Report`, `p`.`Report_Date`, `p`.`Report_File`, `p`.`Status`, `p`.`Test_Name`, `p`.`Test_Price`, `p`.`Updated_At`
+FROM `Patient_Tests` AS `p`
+WHERE `p`.`Patient_Id` = @__p_0
+
+2023-10-09 15:37:13.323 +05:30  INF  Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Address_O`, `p`.`Address_Other`, `p`.`Address_R`, `p`.`City_O`, `p`.`City_Other`, `p`.`City_R`, `p`.`Country_O`, `p`.`Country_Other`, `p`.`Country_R`, `p`.`Created_At`, `p`.`Doctor_Name`, `p`.`Email`, `p`.`Email2`, `p`.`Medical_History_Allergies`, `p`.`Patient_Id`, `p`.`Phone`, `p`.`Phone1`, `p`.`Phone2`, `p`.`Phone3`, `p`.`Phone4`, `p`.`Physician`, `p`.`Reffered_By`, `p`.`Relationship_Type`, `p`.`Special_Notes`, `p`.`Updated_At`, `p`.`Zip_O`, `p`.`Zip_Other`, `p`.`Zip_R`
+FROM `Patients_Contact` AS `p`
+WHERE `p`.`Patient_Id` = @__p_0
+
+2023-10-09 15:37:13.387 +05:30  INF  Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Created_At`, `p`.`Patient_Id`, `p`.`Report`, `p`.`Report_File`, `p`.`Scan_Name`, `p`.`Status`, `p`.`Type`, `p`.`Updated_At`
+FROM `Patient_Scans` AS `p`
+WHERE `p`.`Patient_Id` = @__p_0
+
+2023-10-09 15:37:13.399 +05:30  INF  Executing ObjectResult, writing value of type 'DCRM.Common.Dto.PatientseDto'.
+
+2023-10-09 15:37:13.468 +05:30  INF  Executed action DCRM.Api.Controllers.PatientController.GetAsync (DCRM.Api) in 320.6985ms
+
+2023-10-09 15:37:13.468 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.PatientController.GetAsync (DCRM.Api)'
+
+2023-10-09 15:37:13.468 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Patient/Get/4 - - - 200 - application/json;+charset=utf-8 494.2072ms
+
+2023-10-09 15:37:46.261 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Patient/Get/Treatmentplans/4 - -
+
+2023-10-09 15:37:46.288 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2023-10-09 15:37:46.288 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.PatientController.Treatmentplans (DCRM.Api)'
+
+2023-10-09 15:37:46.289 +05:30  INF  Route matched with {action = "Treatmentplans", controller = "Patient"}. Executing controller action with signature System.Collections.Generic.List`1[DCRM.Common.Dto.TreatmentplanDto] Treatmentplans(Int32) on controller DCRM.Api.Controllers.PatientController (DCRM.Api).
+
+2023-10-09 15:37:46.310 +05:30  INF  Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Amount`, `t`.`Completed_Date`, `t`.`Courtesy`, `t`.`Created_At`, `t`.`Date`, `t`.`Doctor`, `t`.`Estimated_Amount`, `t`.`Individual_Tooth_Wrk`, `t`.`Job`, `t`.`Job_Id`, `t`.`Patient_Id`, `t`.`Print_Tooth_Name`, `t`.`Sitting_Status`, `t`.`Status`, `t`.`Treatment_Status`, `t`.`Updated_At`
+FROM `Treatmentplans` AS `t`
+
+2023-10-09 15:37:46.385 +05:30  INF  Executed DbCommand (36ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Added_Date`, `t`.`Date`, `t`.`Doc_Id`, `t`.`Note_Status`, `t`.`Ord`, `t`.`Rmd`, `t`.`Sitting`, `t`.`Teeth_Id`, `t`.`Teeth_Number_Note`, `t`.`Tooth_Patient_Id`, `t`.`Toth_Note`, `t`.`Treatment_Notes`, `t`.`Treatmentplans_Id`, `t`.`Type`, `t`.`Workdone_Id`
+FROM `Teethinfo` AS `t`
+
+2023-10-09 15:37:46.430 +05:30  INF  Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+WHERE `d`.`Is_Delete` = 0
+ORDER BY `d`.`Id` DESC
+
+2023-10-09 15:37:46.469 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Added_Date`, `t`.`Date`, `t`.`Doc_Id`, `t`.`Note_Status`, `t`.`Ord`, `t`.`Rmd`, `t`.`Sitting`, `t`.`Teeth_Id`, `t`.`Teeth_Number_Note`, `t`.`Tooth_Patient_Id`, `t`.`Toth_Note`, `t`.`Treatment_Notes`, `t`.`Treatmentplans_Id`, `t`.`Type`, `t`.`Workdone_Id`
+FROM `Teethinfo` AS `t`
+
+2023-10-09 15:37:46.472 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+WHERE `d`.`Is_Delete` = 0
+ORDER BY `d`.`Id` DESC
+
+2023-10-09 15:37:46.474 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Added_Date`, `t`.`Date`, `t`.`Doc_Id`, `t`.`Note_Status`, `t`.`Ord`, `t`.`Rmd`, `t`.`Sitting`, `t`.`Teeth_Id`, `t`.`Teeth_Number_Note`, `t`.`Tooth_Patient_Id`, `t`.`Toth_Note`, `t`.`Treatment_Notes`, `t`.`Treatmentplans_Id`, `t`.`Type`, `t`.`Workdone_Id`
+FROM `Teethinfo` AS `t`
+
+2023-10-09 15:37:46.476 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+WHERE `d`.`Is_Delete` = 0
+ORDER BY `d`.`Id` DESC
+
+2023-10-09 15:37:46.477 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Added_Date`, `t`.`Date`, `t`.`Doc_Id`, `t`.`Note_Status`, `t`.`Ord`, `t`.`Rmd`, `t`.`Sitting`, `t`.`Teeth_Id`, `t`.`Teeth_Number_Note`, `t`.`Tooth_Patient_Id`, `t`.`Toth_Note`, `t`.`Treatment_Notes`, `t`.`Treatmentplans_Id`, `t`.`Type`, `t`.`Workdone_Id`
+FROM `Teethinfo` AS `t`
+
+2023-10-09 15:37:46.478 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+WHERE `d`.`Is_Delete` = 0
+ORDER BY `d`.`Id` DESC
+
+2023-10-09 15:37:46.480 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Added_Date`, `t`.`Date`, `t`.`Doc_Id`, `t`.`Note_Status`, `t`.`Ord`, `t`.`Rmd`, `t`.`Sitting`, `t`.`Teeth_Id`, `t`.`Teeth_Number_Note`, `t`.`Tooth_Patient_Id`, `t`.`Toth_Note`, `t`.`Treatment_Notes`, `t`.`Treatmentplans_Id`, `t`.`Type`, `t`.`Workdone_Id`
+FROM `Teethinfo` AS `t`
+
+2023-10-09 15:37:46.481 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+WHERE `d`.`Is_Delete` = 0
+ORDER BY `d`.`Id` DESC
+
+2023-10-09 15:37:46.482 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Added_Date`, `t`.`Date`, `t`.`Doc_Id`, `t`.`Note_Status`, `t`.`Ord`, `t`.`Rmd`, `t`.`Sitting`, `t`.`Teeth_Id`, `t`.`Teeth_Number_Note`, `t`.`Tooth_Patient_Id`, `t`.`Toth_Note`, `t`.`Treatment_Notes`, `t`.`Treatmentplans_Id`, `t`.`Type`, `t`.`Workdone_Id`
+FROM `Teethinfo` AS `t`
+
+2023-10-09 15:37:46.484 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+WHERE `d`.`Is_Delete` = 0
+ORDER BY `d`.`Id` DESC
+
+2023-10-09 15:37:46.485 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Added_Date`, `t`.`Date`, `t`.`Doc_Id`, `t`.`Note_Status`, `t`.`Ord`, `t`.`Rmd`, `t`.`Sitting`, `t`.`Teeth_Id`, `t`.`Teeth_Number_Note`, `t`.`Tooth_Patient_Id`, `t`.`Toth_Note`, `t`.`Treatment_Notes`, `t`.`Treatmentplans_Id`, `t`.`Type`, `t`.`Workdone_Id`
+FROM `Teethinfo` AS `t`
+
+2023-10-09 15:37:46.488 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+WHERE `d`.`Is_Delete` = 0
+ORDER BY `d`.`Id` DESC
+
+2023-10-09 15:37:46.490 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Added_Date`, `t`.`Date`, `t`.`Doc_Id`, `t`.`Note_Status`, `t`.`Ord`, `t`.`Rmd`, `t`.`Sitting`, `t`.`Teeth_Id`, `t`.`Teeth_Number_Note`, `t`.`Tooth_Patient_Id`, `t`.`Toth_Note`, `t`.`Treatment_Notes`, `t`.`Treatmentplans_Id`, `t`.`Type`, `t`.`Workdone_Id`
+FROM `Teethinfo` AS `t`
+
+2023-10-09 15:37:46.492 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+WHERE `d`.`Is_Delete` = 0
+ORDER BY `d`.`Id` DESC
+
+2023-10-09 15:37:46.493 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Added_Date`, `t`.`Date`, `t`.`Doc_Id`, `t`.`Note_Status`, `t`.`Ord`, `t`.`Rmd`, `t`.`Sitting`, `t`.`Teeth_Id`, `t`.`Teeth_Number_Note`, `t`.`Tooth_Patient_Id`, `t`.`Toth_Note`, `t`.`Treatment_Notes`, `t`.`Treatmentplans_Id`, `t`.`Type`, `t`.`Workdone_Id`
+FROM `Teethinfo` AS `t`
+
+2023-10-09 15:37:46.494 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+WHERE `d`.`Is_Delete` = 0
+ORDER BY `d`.`Id` DESC
+
+2023-10-09 15:37:46.496 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Added_Date`, `t`.`Date`, `t`.`Doc_Id`, `t`.`Note_Status`, `t`.`Ord`, `t`.`Rmd`, `t`.`Sitting`, `t`.`Teeth_Id`, `t`.`Teeth_Number_Note`, `t`.`Tooth_Patient_Id`, `t`.`Toth_Note`, `t`.`Treatment_Notes`, `t`.`Treatmentplans_Id`, `t`.`Type`, `t`.`Workdone_Id`
+FROM `Teethinfo` AS `t`
+
+2023-10-09 15:37:46.498 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+WHERE `d`.`Is_Delete` = 0
+ORDER BY `d`.`Id` DESC
+
+2023-10-09 15:37:46.499 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Added_Date`, `t`.`Date`, `t`.`Doc_Id`, `t`.`Note_Status`, `t`.`Ord`, `t`.`Rmd`, `t`.`Sitting`, `t`.`Teeth_Id`, `t`.`Teeth_Number_Note`, `t`.`Tooth_Patient_Id`, `t`.`Toth_Note`, `t`.`Treatment_Notes`, `t`.`Treatmentplans_Id`, `t`.`Type`, `t`.`Workdone_Id`
+FROM `Teethinfo` AS `t`
+
+2023-10-09 15:37:46.502 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+WHERE `d`.`Is_Delete` = 0
+ORDER BY `d`.`Id` DESC
+
+2023-10-09 15:37:46.505 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Added_Date`, `t`.`Date`, `t`.`Doc_Id`, `t`.`Note_Status`, `t`.`Ord`, `t`.`Rmd`, `t`.`Sitting`, `t`.`Teeth_Id`, `t`.`Teeth_Number_Note`, `t`.`Tooth_Patient_Id`, `t`.`Toth_Note`, `t`.`Treatment_Notes`, `t`.`Treatmentplans_Id`, `t`.`Type`, `t`.`Workdone_Id`
+FROM `Teethinfo` AS `t`
+
+2023-10-09 15:37:46.511 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+WHERE `d`.`Is_Delete` = 0
+ORDER BY `d`.`Id` DESC
+
+2023-10-09 15:37:46.512 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DCRM.Common.Dto.TreatmentplanDto, DCRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+
+2023-10-09 15:37:46.526 +05:30  INF  Executed action DCRM.Api.Controllers.PatientController.Treatmentplans (DCRM.Api) in 236.4216ms
+
+2023-10-09 15:37:46.526 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.PatientController.Treatmentplans (DCRM.Api)'
+
+2023-10-09 15:37:46.526 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Patient/Get/Treatmentplans/4 - - - 200 - application/json;+charset=utf-8 265.3855ms
+
+2023-10-09 15:38:36.014 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Patient/Get/WorkDones/4 - -
+
+2023-10-09 15:38:36.016 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2023-10-09 15:38:36.016 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.PatientController.WorkDones (DCRM.Api)'
+
+2023-10-09 15:38:36.017 +05:30  INF  Route matched with {action = "WorkDones", controller = "Patient"}. Executing controller action with signature System.Collections.Generic.List`1[DCRM.Common.Dto.WorkDoneDto] WorkDones(Int32) on controller DCRM.Api.Controllers.PatientController (DCRM.Api).
+
+2023-10-09 15:38:36.038 +05:30  INF  Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `w`.`Id`, `w`.`Created_At`, `w`.`Current_Work_Amt`, `w`.`Discount`, `w`.`Doctor_Id`, `w`.`Estimated_Amount`, `w`.`Total_Amt`, `w`.`Treatment_Id`, `w`.`Updated_At`, `w`.`Workdone_Status`
+FROM `Workdone_New` AS `w`
+
+2023-10-09 15:38:36.062 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Amount`, `t`.`Completed_Date`, `t`.`Courtesy`, `t`.`Created_At`, `t`.`Date`, `t`.`Doctor`, `t`.`Estimated_Amount`, `t`.`Individual_Tooth_Wrk`, `t`.`Job`, `t`.`Job_Id`, `t`.`Patient_Id`, `t`.`Print_Tooth_Name`, `t`.`Sitting_Status`, `t`.`Status`, `t`.`Treatment_Status`, `t`.`Updated_At`
+FROM `Treatmentplans` AS `t`
+
+2023-10-09 15:38:36.077 +05:30  ERR  Failed executing DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+WHERE `d`.`Is_Delete` = 0
+ORDER BY `d`.`Id` DESC
+
+2023-10-09 15:38:36.169 +05:30  ERR  An exception occurred while iterating over the results of a query for context type 'DCRM.Repository.Database.DCRMDBContext'.
+MySql.Data.MySqlClient.MySqlException (0x80004005): There is already an open DataReader associated with this Connection which must be closed first.
+   at MySql.Data.MySqlClient.Interceptors.ExceptionInterceptor.Throw(Exception exception)
+   at MySql.Data.MySqlClient.MySqlCommand.CheckState()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at MySql.EntityFrameworkCore.Storage.Internal.MySQLExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()MySql.Data.MySqlClient.MySqlException (0x80004005): There is already an open DataReader associated with this Connection which must be closed first.
+   at MySql.Data.MySqlClient.Interceptors.ExceptionInterceptor.Throw(Exception exception)
+   at MySql.Data.MySqlClient.MySqlCommand.CheckState()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at MySql.EntityFrameworkCore.Storage.Internal.MySQLExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+
+
+2023-10-09 15:38:59.207 +05:30  INF  Executed action DCRM.Api.Controllers.PatientController.WorkDones (DCRM.Api) in 23189.4336ms
+
+2023-10-09 15:38:59.209 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.PatientController.WorkDones (DCRM.Api)'
+
+2023-10-09 15:38:59.273 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Patient/Get/WorkDones/4 - - - 500 - application/json 23259.0464ms
+
+2023-10-09 15:39:05.124 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Patient/Get/WorkDones/4 - -
+
+2023-10-09 15:39:05.127 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2023-10-09 15:39:05.127 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.PatientController.WorkDones (DCRM.Api)'
+
+2023-10-09 15:39:05.127 +05:30  INF  Route matched with {action = "WorkDones", controller = "Patient"}. Executing controller action with signature System.Collections.Generic.List`1[DCRM.Common.Dto.WorkDoneDto] WorkDones(Int32) on controller DCRM.Api.Controllers.PatientController (DCRM.Api).
+
+2023-10-09 15:39:35.508 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Amount`, `t`.`Completed_Date`, `t`.`Courtesy`, `t`.`Created_At`, `t`.`Date`, `t`.`Doctor`, `t`.`Estimated_Amount`, `t`.`Individual_Tooth_Wrk`, `t`.`Job`, `t`.`Job_Id`, `t`.`Patient_Id`, `t`.`Print_Tooth_Name`, `t`.`Sitting_Status`, `t`.`Status`, `t`.`Treatment_Status`, `t`.`Updated_At`
+FROM `Treatmentplans` AS `t`
+
+2023-10-09 15:39:35.518 +05:30  INF  Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `w`.`Id`, `w`.`Created_At`, `w`.`Current_Work_Amt`, `w`.`Discount`, `w`.`Doctor_Id`, `w`.`Estimated_Amount`, `w`.`Total_Amt`, `w`.`Treatment_Id`, `w`.`Updated_At`, `w`.`Workdone_Status`
+FROM `Workdone_New` AS `w`
+
+2023-10-09 15:39:35.520 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+WHERE `d`.`Is_Delete` = 0
+ORDER BY `d`.`Id` DESC
+
+2023-10-09 15:39:35.522 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Added_Date`, `t`.`Date`, `t`.`Doc_Id`, `t`.`Note_Status`, `t`.`Ord`, `t`.`Rmd`, `t`.`Sitting`, `t`.`Teeth_Id`, `t`.`Teeth_Number_Note`, `t`.`Tooth_Patient_Id`, `t`.`Toth_Note`, `t`.`Treatment_Notes`, `t`.`Treatmentplans_Id`, `t`.`Type`, `t`.`Workdone_Id`
+FROM `Teethinfo` AS `t`
+
+2023-10-09 15:39:35.534 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__Id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Amount`, `t`.`Completed_Date`, `t`.`Courtesy`, `t`.`Created_At`, `t`.`Date`, `t`.`Doctor`, `t`.`Estimated_Amount`, `t`.`Individual_Tooth_Wrk`, `t`.`Job`, `t`.`Job_Id`, `t`.`Patient_Id`, `t`.`Print_Tooth_Name`, `t`.`Sitting_Status`, `t`.`Status`, `t`.`Treatment_Status`, `t`.`Updated_At`
+FROM `Treatmentplans` AS `t`
+WHERE `t`.`Id` = @__Id_0
+LIMIT 2
+
+2023-10-09 15:39:35.555 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DCRM.Common.Dto.WorkDoneDto, DCRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+
+2023-10-09 15:39:35.560 +05:30  INF  Executed action DCRM.Api.Controllers.PatientController.WorkDones (DCRM.Api) in 30433.3468ms
+
+2023-10-09 15:39:35.561 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.PatientController.WorkDones (DCRM.Api)'
+
+2023-10-09 15:39:35.561 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Patient/Get/WorkDones/4 - - - 200 - application/json;+charset=utf-8 30436.9046ms
+
+2023-10-09 15:39:36.548 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+
+2023-10-09 15:39:36.579 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 31.0900ms
+
+2023-10-09 15:39:37.041 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+
+2023-10-09 15:39:37.042 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+
+2023-10-09 15:39:37.042 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 1.1067ms
+
+2023-10-09 15:39:37.049 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+
+2023-10-09 15:39:37.050 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+
+2023-10-09 15:39:37.050 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 0.4064ms
+
+2023-10-09 15:39:37.054 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 4.8489ms
+
+2023-10-09 15:39:37.301 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+
+2023-10-09 15:39:37.318 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/favicon-32x32.png - -
+
+2023-10-09 15:39:37.318 +05:30  INF  Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+
+2023-10-09 15:39:37.318 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/favicon-32x32.png - - - 200 628 image/png 0.5385ms
+
+2023-10-09 15:39:37.365 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 63.5795ms
+
+2023-10-09 15:39:58.049 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 57
+
+2023-10-09 15:39:58.050 +05:30  INF  CORS policy execution successful.
+
+2023-10-09 15:39:58.051 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api)'
+
+2023-10-09 15:39:58.052 +05:30  INF  Route matched with {action = "Post", controller = "Authenticate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Post(System.String, DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.AuthenticateController (DCRM.Api).
+
+2023-10-09 15:39:58.063 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__authenticateRequest_Email_0='?' (Size = 4000), @__authenticateRequest_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE ((`u`.`Status` = 1) AND (`u`.`Email` = @__authenticateRequest_Email_0)) AND (`u`.`Password` = @__authenticateRequest_Password_1)
+LIMIT 2
+
+2023-10-09 15:39:58.063 +05:30  INF  Executing OkObjectResult, writing value of type 'DCRM.Common.AuthenticateResponse'.
+
+2023-10-09 15:39:58.064 +05:30  INF  Executed action DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api) in 11.6463ms
+
+2023-10-09 15:39:58.064 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api)'
+
+2023-10-09 15:39:58.064 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 57 - 200 - application/json;+charset=utf-8 15.2622ms
+
+2023-10-09 15:40:21.882 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Patient/Get/WorkDones/4 - -
+
+2023-10-09 15:40:21.898 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2023-10-09 15:40:21.898 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.PatientController.WorkDones (DCRM.Api)'
+
+2023-10-09 15:40:21.899 +05:30  INF  Route matched with {action = "WorkDones", controller = "Patient"}. Executing controller action with signature System.Collections.Generic.List`1[DCRM.Common.Dto.WorkDoneDto] WorkDones(Int32) on controller DCRM.Api.Controllers.PatientController (DCRM.Api).
+
+2023-10-09 15:40:25.236 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Amount`, `t`.`Completed_Date`, `t`.`Courtesy`, `t`.`Created_At`, `t`.`Date`, `t`.`Doctor`, `t`.`Estimated_Amount`, `t`.`Individual_Tooth_Wrk`, `t`.`Job`, `t`.`Job_Id`, `t`.`Patient_Id`, `t`.`Print_Tooth_Name`, `t`.`Sitting_Status`, `t`.`Status`, `t`.`Treatment_Status`, `t`.`Updated_At`
+FROM `Treatmentplans` AS `t`
+
+2023-10-09 15:40:25.247 +05:30  INF  Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `w`.`Id`, `w`.`Created_At`, `w`.`Current_Work_Amt`, `w`.`Discount`, `w`.`Doctor_Id`, `w`.`Estimated_Amount`, `w`.`Total_Amt`, `w`.`Treatment_Id`, `w`.`Updated_At`, `w`.`Workdone_Status`
+FROM `Workdone_New` AS `w`
+
+2023-10-09 15:40:25.252 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+WHERE `d`.`Is_Delete` = 0
+ORDER BY `d`.`Id` DESC
+
+2023-10-09 15:40:25.253 +05:30  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Added_Date`, `t`.`Date`, `t`.`Doc_Id`, `t`.`Note_Status`, `t`.`Ord`, `t`.`Rmd`, `t`.`Sitting`, `t`.`Teeth_Id`, `t`.`Teeth_Number_Note`, `t`.`Tooth_Patient_Id`, `t`.`Toth_Note`, `t`.`Treatment_Notes`, `t`.`Treatmentplans_Id`, `t`.`Type`, `t`.`Workdone_Id`
+FROM `Teethinfo` AS `t`
+
+2023-10-09 15:40:25.262 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__Id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `t`.`Id`, `t`.`Amount`, `t`.`Completed_Date`, `t`.`Courtesy`, `t`.`Created_At`, `t`.`Date`, `t`.`Doctor`, `t`.`Estimated_Amount`, `t`.`Individual_Tooth_Wrk`, `t`.`Job`, `t`.`Job_Id`, `t`.`Patient_Id`, `t`.`Print_Tooth_Name`, `t`.`Sitting_Status`, `t`.`Status`, `t`.`Treatment_Status`, `t`.`Updated_At`
+FROM `Treatmentplans` AS `t`
+WHERE `t`.`Id` = @__Id_0
+LIMIT 2
+
+2023-10-09 15:40:25.263 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DCRM.Common.Dto.WorkDoneDto, DCRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+
+2023-10-09 15:40:25.266 +05:30  INF  Executed action DCRM.Api.Controllers.PatientController.WorkDones (DCRM.Api) in 3366.4879ms
+
+2023-10-09 15:40:25.266 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.PatientController.WorkDones (DCRM.Api)'
+
+2023-10-09 15:40:25.266 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Patient/Get/WorkDones/4 - - - 200 - application/json;+charset=utf-8 3385.4633ms
+

@@ -14,7 +14,7 @@ namespace DCRM.Service.IService
 
         Treatmentplans GetById(int id);
 
-        void Create(TreatmentplanRequest request);
+        long Create(TreatmentplanRequest request);
 
         void Update(TreatmentplanRequest request);
 

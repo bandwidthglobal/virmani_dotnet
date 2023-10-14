@@ -48,48 +48,10 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="request"></param>
         /// <exception cref="Exception"></exception>
-        public void Create(TreatmentplanRequest request)
+        public long Create(TreatmentplanRequest request)
         {
-            try
-            {
-                int id = 0;
-                Treatmentplans treatmentplans = new Treatmentplans();
-                treatmentplans.Amount = request.Amount;
-                treatmentplans.Courtesy = request.Courtesy;
-                treatmentplans.Treatment_Status = request.TreatmentStatus;
-                treatmentplans.Sitting_Status = request.SittingStatus;
-                treatmentplans.Doctor = request.Doctor;
-                treatmentplans.Patient_Id = request.PatientId;
-                treatmentplans.Date = request.Date;
-                treatmentplans.Job_Id = request.JobId;
-                treatmentplans.Job = request.Job;
-                treatmentplans.Status = request.Status;
-                treatmentplans.Completed_Date = request.CompletedDate;
-                treatmentplans.Created_At = System.DateTime.UtcNow;
-                treatmentplans.Updated_At = System.DateTime.UtcNow;
-                treatmentplans.Individual_Tooth_Wrk = request.IndividualToothWrk;
-                treatmentplans.Print_Tooth_Name = request.PrintToothName;
-                id = _treatmentplanRepository.Create(treatmentplans);
-                Teethinfo teethinfo = new Teethinfo();
-                if (id > 0)
-                {
-                    teethinfo.Treatmentplans_Id = id;
-                    teethinfo.Doc_Id = request.Doctor;
-                    teethinfo.Tooth_Patient_Id = request.PatientId;
-                    teethinfo.Type = request.Type;
-                    teethinfo.Teeth_Id = request.Teeth_id;
-                    teethinfo.Teeth_Number_Note = request.Teeth_Number_Note;
-                    teethinfo.Toth_Note = request.Toth_Note;
-                    teethinfo.Date = System.DateTime.UtcNow;
-                    _teethInfoRepository.Create(teethinfo);
-
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-
+            int id = _treatmentplanRepository.Create(request);
+            return id;
         }
         /// <summary>
         /// update treatment
@@ -157,6 +119,6 @@ namespace DCRM.Service.Service
                 _treatmentplanRepository.UpdateTreatmentplan(treatment);
             }
         }
-    
+
     }
 }

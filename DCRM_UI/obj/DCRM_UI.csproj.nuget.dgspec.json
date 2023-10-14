@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ez-technologies\\virmani_dotnet\\DCRM_UI\\DCRM_UI.csproj": {}
+    "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM_UI\\DCRM_UI.csproj": {}
   },
   "projects": {
-    "D:\\ez-technologies\\virmani_dotnet\\DCRM_UI\\DCRM_UI.csproj": {
+    "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM_UI\\DCRM_UI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ez-technologies\\virmani_dotnet\\DCRM_UI\\DCRM_UI.csproj",
+        "projectUniqueName": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM_UI\\DCRM_UI.csproj",
         "projectName": "DCRM_UI",
-        "projectPath": "D:\\ez-technologies\\virmani_dotnet\\DCRM_UI\\DCRM_UI.csproj",
-        "packagesPath": "C:\\Users\\91812\\.nuget\\packages\\",
-        "outputPath": "D:\\ez-technologies\\virmani_dotnet\\DCRM_UI\\obj\\",
+        "projectPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM_UI\\DCRM_UI.csproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\GitHubProjects\\virmani_dotnet\\DCRM_UI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\91812\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

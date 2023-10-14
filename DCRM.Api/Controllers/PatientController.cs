@@ -123,8 +123,8 @@ namespace DCRM.Api.Controllers
         [HttpPost("Create/Treatmentplan")]
         public IActionResult CreateTreatmentplan(TreatmentplanRequest treatmentplans)
         {
-            _treatmentplanService.Create(treatmentplans);
-            return Ok("created");
+          long id=  _treatmentplanService.Create(treatmentplans);
+            return Ok(id);
         }
 
         [HttpGet("Get/WorkDones/{patientId}")]

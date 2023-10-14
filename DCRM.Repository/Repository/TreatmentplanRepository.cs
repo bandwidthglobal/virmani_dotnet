@@ -37,15 +37,54 @@ namespace DCRM.Repository.Repository
             return _contex.Treatmentplans.Where(x => x.Id == id).FirstOrDefault();
         }
 
-        public int Create(Treatmentplans treatmentplan)
+        public int Create(TreatmentplanRequest request)
         {
             int id = 0;
+            _contex.Database.BeginTransaction();
+            Treatmentplans treatmentplans = new Treatmentplans();
+            treatmentplans.Amount = request.Amount;
+            treatmentplans.Courtesy = request.Courtesy;
+            treatmentplans.Treatment_Status = request.TreatmentStatus;
+            treatmentplans.Sitting_Status = request.SittingStatus;
+            treatmentplans.Doctor = request.Doctor;
+            treatmentplans.Patient_Id = request.PatientId;
+            treatmentplans.Date = request.Date;
+            treatmentplans.Job_Id = request.JobId;
+            treatmentplans.Job = request.Job;
+            treatmentplans.Status = request.Status;
+            treatmentplans.Completed_Date = request.CompletedDate;
+            treatmentplans.Created_At = System.DateTime.UtcNow;
+            treatmentplans.Updated_At = System.DateTime.UtcNow;
+            treatmentplans.Individual_Tooth_Wrk = request.IndividualToothWrk;
+            treatmentplans.Print_Tooth_Name = request.PrintToothName;
+            _contex.Treatmentplans.Add(treatmentplans);
+            try
+            {
+                _contex.SaveChanges();
+                id = treatmentplans.Id;
+                Teethinfo teethinfo = new Teethinfo();
+                if (id > 0)
+                {
+                    teethinfo.Treatmentplans_Id = id;
+                    teethinfo.Doc_Id = request.Doctor;
+                    teethinfo.Tooth_Patient_Id = request.PatientId;
+                    teethinfo.Type = request.Type;
+                    teethinfo.Teeth_Id = request.Teeth_id;
+                    teethinfo.Teeth_Number_Note = request.Teeth_Number_Note;
+                    teethinfo.Toth_Note = request.Toth_Note;
+                    teethinfo.Date = System.DateTime.UtcNow;
+                    _contex.Teethinfo.Add(teethinfo);
+                    _contex.SaveChanges();
 
-            _contex.Treatmentplans.Add(treatmentplan);
-            _contex.SaveChanges();
-            return treatmentplan.Id;
-
-
+                }
+                _contex.Database.CommitTransaction();
+            }
+            catch (Exception)
+            {
+                _contex.Database.RollbackTransaction();
+                throw;
+            }
+            return id;
         }
         public void CreateTeethinfo(Teethinfo teethinfo)
         {
