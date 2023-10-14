@@ -45,5 +45,8 @@ public  class TreatmentplanRequest
     public DateTime CreatedAt { get; set; }
 
     public DateTime UpdatedAt { get; set; }
-
+    public string? Note_Status { get; set; }
+    public string Ord { get; set; }
+    public string Rmd { get; set; }
+    public string Treatment_Notes { get; set; }
 }
