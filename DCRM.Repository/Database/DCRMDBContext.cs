@@ -102,5 +102,9 @@ namespace DCRM.Repository.Database
 
         public virtual DbSet<Userotp> Userotp { get; set; }
 
+        public virtual DbSet<TeethCategory> Teeth_Category { get; set; }
+
+        public virtual DbSet<Teeth> Teeth { get; set; }
+
     }
 }

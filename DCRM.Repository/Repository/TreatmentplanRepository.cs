@@ -22,14 +22,14 @@ namespace DCRM.Repository.Repository
         public List<Treatmentplans> GetAll()
         {
             List<Treatmentplans> treatmentplans = new List<Treatmentplans>();
-            treatmentplans = _contex.Treatmentplans.ToList();
+            treatmentplans = _contex.Treatmentplans.Where(x=>x.Status==1).OrderByDescending(x => x.Id).ToList();
             return treatmentplans;
 
         }
 
         public List<Treatmentplans> GetAll(long patientId)
         {
-            return _contex.Treatmentplans.Where(x => x.Patient_Id == patientId && x.Status == 0).OrderByDescending(x => x.Id).ToList();
+            return _contex.Treatmentplans.Where(x => x.Patient_Id == patientId && x.Status == 1).OrderByDescending(x => x.Id).ToList();
         }
 
         public Treatmentplans GetById(long id)
@@ -51,7 +51,7 @@ namespace DCRM.Repository.Repository
             treatmentplans.Date = request.Date;
             treatmentplans.Job_Id = request.JobId;
             treatmentplans.Job = request.Job;
-            treatmentplans.Status = request.Status;
+            treatmentplans.Status = 1;
             treatmentplans.Completed_Date = request.CompletedDate;
             treatmentplans.Created_At = System.DateTime.UtcNow;
             treatmentplans.Updated_At = System.DateTime.UtcNow;
@@ -106,10 +106,12 @@ namespace DCRM.Repository.Repository
             var treatmentplan = _contex.Treatmentplans.Where(x => x.Id == id).FirstOrDefault();
             if (treatmentplan != null)
             {
-                treatmentplan.Status = 1;
+                treatmentplan.Status = 0;
                 _contex.Treatmentplans.Update(treatmentplan);
                 _contex.SaveChanges();
             }
         }
+
+      
     }
 }

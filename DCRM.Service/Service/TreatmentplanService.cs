@@ -15,14 +15,19 @@ namespace DCRM.Service.Service
         public readonly ITreatmentplanRepository _treatmentplanRepository;
         public readonly IRepository<Workdone_New> _workDoneRepository;
         public readonly IRepository<Teethinfo> _teethInfoRepository;
+        public readonly IRepository<Teeth> _teethRepository;
+        public readonly IRepository<TeethCategory> _teethCatRepository;
         public TreatmentplanService(ITreatmentplanRepository treatmentplanRepository
             , IRepository<Workdone_New> workDoneRepository,
-            IRepository<Teethinfo> teethInfoRepository)
+            IRepository<Teethinfo> teethInfoRepository, IRepository<Teeth> teethRepository, IRepository<TeethCategory> teethCatRepository)
         {
             _treatmentplanRepository = treatmentplanRepository;
             _workDoneRepository = workDoneRepository;
             _teethInfoRepository = teethInfoRepository;
+            _teethRepository = teethRepository;
+            _teethCatRepository= teethCatRepository;
         }
+        
 
         /// <summary>
         /// get all treatment by patient
@@ -120,5 +125,16 @@ namespace DCRM.Service.Service
             }
         }
 
+
+        public List<TeethCategory> GetTeethCategories()
+        {
+            var teethCategory = _teethCatRepository.GetAll().ToList();
+            return teethCategory;
+        }
+        public List<Teeth> GetTeeths()
+        {
+            var teeths = _teethRepository.GetAll().ToList();
+            return teeths;
+        }
     }
 }
