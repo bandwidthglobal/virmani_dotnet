@@ -1,8 +1,10 @@
 ﻿using DCRM.Common.Authorization;
+using DCRM.Common.Dto;
 using DCRM.Common.Entity;
 using DCRM.Common.RequestModel;
 using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
+using DCRM.Service.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +16,7 @@ namespace DCRM.Api.Controllers
     public class TreatmentplanController : ControllerBase
     {
         private readonly ITreatmentplanService _treatmentplanService;
-        public  TreatmentplanController(ITreatmentplanService treatmentplanService)
+        public TreatmentplanController(ITreatmentplanService treatmentplanService)
         {
             _treatmentplanService = treatmentplanService;
         }
@@ -22,11 +24,12 @@ namespace DCRM.Api.Controllers
         [HttpPost("Create")]
         public IActionResult Create(TreatmentplanRequest request)
         {
-          long id=  _treatmentplanService.Create(request);
+            long id = _treatmentplanService.Create(request);
             return Ok(id);
         }
         [HttpPost("Update")]
-        public IActionResult Update(TreatmentplanRequest request) {
+        public IActionResult Update(TreatmentplanRequest request)
+        {
             _treatmentplanService.Update(request);
             return Ok();
         }
@@ -46,5 +49,18 @@ namespace DCRM.Api.Controllers
             return Ok();
         }
 
+        [HttpGet("Get/Teeth")]
+        public List<Teeth> GetTeeths()
+        {
+            return _treatmentplanService.GetTeeths();
+        }
+
+        [HttpGet("Get/TeethCategories")]
+        public List<TeethCategory> GetTeethCategories()
+        {
+            return _treatmentplanService.GetTeethCategories();
+        }
     }
+
 }
+
