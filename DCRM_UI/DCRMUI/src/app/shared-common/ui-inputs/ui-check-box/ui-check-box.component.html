@@ -1,0 +1,7 @@
+<mat-checkbox [color]="'primary'" [formControl]="control"
+              [ngClass]="{'mat-form-field-modify': isModified}">
+  {{label}}
+</mat-checkbox>
+<mat-error *ngFor="let error of control.errors | errorKeys">
+  {{ messages[error] }}
+</mat-error>

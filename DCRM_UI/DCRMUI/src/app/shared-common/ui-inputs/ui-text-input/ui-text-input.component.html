@@ -1,0 +1,14 @@
+<div *ngIf="control" class="form-group">
+  <label *ngIf="label" [class.invalid-class]="submitted && control.errors">{{ label }}</label>
+  <ng-container *ngIf="isDisabled">
+    <input type="text" [formControl]="control" class="form-control" [placeholder]="placeholder" disabled
+      [ngClass]="{ 'is-invalid': submitted && control.errors }" />
+  </ng-container>
+  <ng-container *ngIf="!isDisabled">
+    <input type="text" [formControl]="control" class="form-control" [placeholder]="placeholder"
+      [ngClass]="{ 'is-invalid': submitted && control.errors }" />
+  </ng-container>
+  <ng-container *ngFor="let error of control.errors | errorKeys">
+    <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+  </ng-container>
+</div>

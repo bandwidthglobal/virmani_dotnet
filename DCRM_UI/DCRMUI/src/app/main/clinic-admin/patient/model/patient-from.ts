@@ -83,7 +83,7 @@ export class IPatientForm extends FormGroup {
           sex: [model?.sex],
           mobile: [model?.mobile, [Validators.minLength(10), Validators.maxLength(10)]],
           password: [model?.password],
-          title: [model?.title],
+          title: [model?.title, Validators.required],
           guardian: [model?.guardian],
           role: [model?.role],
           verify_Code: [model?.verify_Code],

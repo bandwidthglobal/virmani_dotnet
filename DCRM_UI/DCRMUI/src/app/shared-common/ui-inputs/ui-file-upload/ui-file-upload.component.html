@@ -1,0 +1,54 @@
+<mat-form-field class="w-full payrollService-mat-no-subscript" *ngIf="fileurl?.length<=0" [ngClass]="{invalid: filesizeIncrease}"
+  [style]="showButton ? 'padding-top: 10px;' : '' ">
+<!-- <pre>file length:{{fileurl.length}}</pre> -->
+  <input matInput class="hidden"/>
+  <div class="w-full text-left">
+    <div *ngIf="showButton" class="font-medium leading-5">
+      {{fileAttr}}
+    </div>
+    <div [style]="'font-size: 10px;'">
+      <mat-hint class="margin-auto">{{acceptFile[fileType].valid}} | {{fileSize}}{{unitType}} </mat-hint>
+    </div>
+  </div>
+  <button *ngIf="showButton" mat-flat-button class="shadow-none bg-gray-400 text-white px-4 text-md"
+    [class.cursor-pointer]="!isDisabled"
+    [class.cursor-default]="isDisabled"
+    (click)="isDisabled ? null : getPopupData()"
+    matSuffix>
+    Browse File
+  </button>
+
+  <button *ngIf="!showButton" mat-flat-button class="shadow-none rounded-md bg-gray-400 text-white 
+    px-1 min-w-11 text-md"
+    [class.cursor-pointer]="!isDisabled"
+    [class.cursor-default]="isDisabled"
+    (click)="isDisabled ? null : getPopupData()"
+    matSuffix>
+    ...
+  </button>
+
+  <input type="file" accept="{{acceptFile[fileType].format}}" #fileUpload id="uploadFile" name="uploadFile"
+    multiple="multiple" 
+    [disabled]="isDisabled" 
+    [class.cursor-pointer]="!isDisabled"
+    [class.cursor-default]="isDisabled"/>
+</mat-form-field>
+<mat-error class="text-left pl-2 font-semibold" *ngIf="filesizeIncrease">
+  File Should not Exceed {{ fileSize }} {{unitType}}.
+</mat-error>
+<mat-error class="text-left pl-2 font-semibold" *ngIf="fileTypeError">
+  {{fileTypeError}}
+</mat-error>
+<mat-form-field class="w-full payrollService-mat-no-subscript" *ngIf="fileurl?.length>0">
+  <input matInput class="font-medium leading-5" [value]="fileurl.substr(fileurl.lastIndexOf('/') + 1)" readonly />
+  <a *ngIf="fileurl?.length>0" mat-icon-button [matTooltip]="'Download File'" href="{{apiURL+fileurl}}"
+    target="_blank">
+    <mat-icon class="icon-size-5  text-primary" [svgIcon]="'heroicons_outline:eye'">
+    </mat-icon>
+  </a>
+  <button *ngIf="fileurl?.length>0" mat-icon-button [matTooltip]="'Delete File'" (click)="deleteData()"
+    [disabled]="isDisabled">
+    <mat-icon class="icon-size-5  text-red-500" [svgIcon]="'heroicons_outline:trash'">
+    </mat-icon>
+  </button>
+</mat-form-field>

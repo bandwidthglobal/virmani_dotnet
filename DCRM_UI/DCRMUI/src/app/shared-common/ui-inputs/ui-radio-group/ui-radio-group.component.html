@@ -1,0 +1,15 @@
+<span class="font-semibold px-2 border-gray-300" *ngIf="label"> {{label}} </span>
+<mat-radio-group [formControl]="control" [color]="'primary'"
+                 [ngClass]="{'text-red-700': control.touched && control.invalid,
+                             'mat-form-field-modify text-primary-600': isModified}">
+  <mat-radio-button *ngFor="let option of options"
+                    [value]="option[valueKey]"
+                    class="text-black mr-3">
+    {{option[displaykey]}}
+  </mat-radio-button>
+  <span *ngIf="control.touched && control.invalid">
+    <mat-error *ngFor="let error of control.errors | errorKeys">
+      {{ messages[error] }}
+    </mat-error>
+  </span>
+</mat-radio-group>

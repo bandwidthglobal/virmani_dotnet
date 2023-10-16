@@ -24,6 +24,9 @@ import { AppointmentEditService } from 'app/main/clinic-admin/appointment/appoin
 
 import { AppointmentPreviewComponent } from 'app/main/clinic-admin/appointment/appointment-preview/appointment-preview.component';
 import { AppointmentPreviewService } from 'app/main/clinic-admin/appointment/appointment-preview/appointment-preview.service';
+import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
+import { SharedCommonModule } from 'app/shared-common/shared-ui.module';
+import { MaskModule } from 'app/shared-common/directives/mask/mask.module';
 
 
 // routing
@@ -76,6 +79,7 @@ const routes: Routes = [
         AppointmentListComponent,
         AppointmentPreviewComponent,
         AppointmentEditComponent,
+        AppointmentFormComponent
     ],
     imports: [
         CommonModule,
@@ -88,7 +92,10 @@ const routes: Routes = [
         CorePipesModule,
         NgbModule,
         NgSelectModule,
-        CoreSidebarModule
+        CoreSidebarModule,
+
+        SharedCommonModule,
+        MaskModule
     ],
     providers: [AppointmentListService, AppointmentPreviewService, AppointmentEditService, AppointmentAddService],
     exports: [AppointmentListComponent]

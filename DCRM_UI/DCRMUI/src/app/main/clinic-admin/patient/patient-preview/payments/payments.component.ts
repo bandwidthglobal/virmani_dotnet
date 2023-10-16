@@ -1,22 +1,18 @@
-import { Component, OnInit, OnDestroy, ViewChild, ViewEncapsulation, ElementRef, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
-import { catchError, takeUntil } from 'rxjs/operators';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { takeUntil } from 'rxjs/operators';
 import { CoreConfigService } from '@core/services/config.service';
 import { PatientPreviewService } from 'app/main/clinic-admin/patient/patient-preview/patient-preview.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
-import { ReceiveForm, ReceiveFormModel } from './receive-from';
-import { CommonValidationService } from '../../../../../shared-common/services/common-validation.service';
 
 @Component({
     selector: 'app-payments',
     templateUrl: './payments.component.html',
-    styleUrls: ['./payments.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class PaymentsComponent implements OnInit {
-    submitted: boolean = false;
+    // Public
     public calendarRef = [];
     public tempRef = [];
     public checkAll = true;
@@ -30,36 +26,23 @@ export class PaymentsComponent implements OnInit {
     public returnUrl: string;
     public loading = false;
     public error = '';
-    public paymentId: any = '';
-    public patientId: any = '';
+    // private
     private tempData = [];
     private _unsubscribeAll: Subject<any>;
     public rows;
     public tempFilterData;
     public previousStatusFilter = '';
     isOpen: boolean = true;
-    @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
-    @ViewChild('receiveModal', { static: false }) receiveModal: ElementRef;//RECEIVE
-    receiveElm: HTMLElement;
-    receiveFormData?: ReceiveForm;
-    @Input() ReceiveFormInput?: ReceiveFormModel = {
-        id: 0,
-        payment_History_Id: 0,
-        payment_Type:''
-    };
     /**
      * Constructor
      *
      * @param {CoreSidebarService} _coreSidebarService
      * @param {CalendarService} _calendarService
      */
-    constructor(private router: Router, private _patientListService: PatientPreviewService,
-        private _coreConfigService: CoreConfigService, private _route: ActivatedRoute, private _commonValidationService: CommonValidationService) {
+    constructor(private router: Router, private _patientListService: PatientPreviewService, private _coreConfigService: CoreConfigService, private _route: ActivatedRoute) {
         this._unsubscribeAll = new Subject();
     }
-    ngAfterViewInit(): void {
-        this.receiveElm = this.receiveModal.nativeElement as HTMLElement;
-    }
+
     // Public Methods
     // -----------------------------------------------------------------------------------------------------
 
@@ -114,13 +97,11 @@ export class PaymentsComponent implements OnInit {
         });
     }
     ngOnInit(): void {
-       
         this.getData();
-        this.receiveFormData = new ReceiveForm(this.ReceiveFormInput);
     }
     getData() {
         this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
-           
+            // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)
             if (config.layout.animation === 'zoomIn') {
                 setTimeout(() => {
 
@@ -142,65 +123,8 @@ export class PaymentsComponent implements OnInit {
             }
         });
     }
-    addReceive(id, patientId) {
-        this.receiveFormData = new ReceiveForm(this.ReceiveFormInput);
-        this.paymentId = id;
-        this.patientId = patientId;
-        this.receiveElm.classList.add('show');
-        this.receiveElm.style.width = '100vw';
-    }
-    close(): void {
-        this.receiveElm.classList.remove('show');
-        this.receiveElm.classList.remove('show');
-        setTimeout(() => {
-            this.receiveElm.style.width = '0';
-        }, 75);
-    }
-    saveReceiveForm() {
-        this.submitted = true;
 
-        this._commonValidationService.validateAllFormFields(this.receiveFormData);
 
-        if (this.receiveFormData.invalid) {
-            return;
-        }
-        const payload: any = this.receiveFormData.getRawValue();
-        payload.payment_History_Id = this.paymentId;
-       
-        this.loading = true;
-        this._patientListService.savePayment(payload).pipe(catchError((error) => {
-            this.loading = false;
-            this.error = error;
-            this.callBackEvent.emit({
-                status: 'failure',
-                data: error,
-            });
-            return '';
-        })).subscribe((response) => {
-            this.getPayments();
-            this.receiveElm.classList.remove('show');
-            this.receiveElm.classList.remove('show');
-            setTimeout(() => {
-                this.receiveElm.style.width = '0';
-            }, 75);
-            this.loading = false;
-            this.callBackEvent.emit({
-                status: 'failure',
-                data: response,
-            });
-        });
-        this.loading = true;
-    }
-    getPayments() {
-        this._patientListService.getPayments(this.patientId).subscribe(resp => {
-           
-            this.data = resp;
-            this.rows = this.data;
-            this.tempData = this.rows;
-            this.tempFilterData = this.rows;
-            debugger;
-        });
-    }
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();

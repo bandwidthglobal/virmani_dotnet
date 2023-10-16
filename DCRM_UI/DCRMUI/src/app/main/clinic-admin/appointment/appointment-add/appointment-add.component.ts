@@ -1,14 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-
-import { repeaterAnimation } from 'app/main/clinic-admin/appointment/appointment.animation';
-import { AppointmentAddService } from 'app/main/clinic-admin/appointment/appointment-add/appointment-add.service';
-import { AppointmentAddModel } from '../appointment-add/appointment-add.model';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+import { repeaterAnimation } from 'app/main/forms/form-repeater/form-repeater.animation';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-appointment-add',
@@ -17,128 +10,28 @@ import { ToastrService } from 'ngx-toastr';
     animations: [repeaterAnimation],
     encapsulation: ViewEncapsulation.None
 })
-export class AppointmentAddComponent implements OnInit, OnDestroy {
-    // Public
-    public url = this.router.url;
-    public urlLastValue;
-    public apiData;
-    public sidebarToggleRef = false;
-    public paymentSidebarToggle = false;
-    public items = [{ itemId: '', itemName: '', itemQuantity: '', itemCost: '' }];
-    public invoiceSelect;
-    public invoiceSelected;
-    public addDrugForm: UntypedFormGroup;
-    public loading = false;
-    public submitted = false;
-    public returnUrl: string;
-    public error = '';
-    medicinBrands: any;
-    medicinCategories: any;
-    public drug: AppointmentAddModel = {
-        medicine_Category: "",
-        medicine_Company: "",
-        brandname: "",
-        basic_Salt: "",
-        form: "",
-        dosage: "",
-        dose_No: "",
-        details: "",
-        description: "",
-        safety_Alerts: "",
-        bactrology: "",
-        note: "",
-        medicine_Type: "",
-        medicine_Category_Id: "",
-        medicine_Brand_Id: "",
-    }
-    // Private
-    private _unsubscribeAll: Subject<any>;
-    //private _formBuilder: any;
 
-    /**
-     * Constructor
-     *
-     * @param {Router} router
-     * @param {InvoiceEditService} _invoiceEditService
-     * @param {CoreSidebarService} _coreSidebarService
-     */
+export class AppointmentAddComponent implements OnInit, OnDestroy {
+    private _unsubscribeAll: Subject<any>;
+  returnUrl: string;
+
     constructor(
         private router: Router,
-        private _appointmentAddService: AppointmentAddService, private _formBuilder: UntypedFormBuilder, private _route: ActivatedRoute, private _toastrService: ToastrService) {
+    private _route: ActivatedRoute){
         this._unsubscribeAll = new Subject();
     }
-    addItem() {
-        this.items.push({
-            itemId: '',
-            itemName: '',
-            itemQuantity: '',
-            itemCost: ''
-        });
-    }
-    deleteItem(id) {
-        for (let i = 0; i < this.items.length; i++) {
-            if (this.items.indexOf(this.items[i]) === id) {
-                this.items.splice(i, 1);
-                break;
-            }
-        }
-    }
+  
+    ngOnInit(): void { }
 
-    /**
-     * On init
-     */
-    ngOnInit(): void {
+  ngOnDestroy(): void {
+    this._unsubscribeAll.next();
+    this._unsubscribeAll.complete();
+  }
 
-        this.addDrugForm = this._formBuilder.group({
-            medicinecompany: ['', Validators.required],
-            medicinetype: ['', Validators.required],
-            basicsalt: ['', Validators.required],
-            form: ['', Validators.required],
-            dosage: ['', Validators.required],
-            doseno: ['', Validators.required],
-            details: ['', Validators.required],
-            category: ['', Validators.required],
-            brand: ['', Validators.required],
-        });
-    }
-    get f() {
-        return this.addDrugForm.controls;
-    }
-    onCategorySelected(ob) {
+  redirect(event) {
+    console.log('> redirect ---> ', event);
+    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/appointment/list';
+    this.router.navigateByUrl(this.returnUrl);
+  }
 
-    }
-    onBrandSelected(ob) {
-
-    }
-    cancel() {
-        this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/drug/list';
-        this.router.navigateByUrl(this.returnUrl);
-    }
-    onSubmit() {
-        this.submitted = true;
-
-        if (this.addDrugForm.invalid) {
-            return;
-        }
-
-        this.loading = true;
-        this._appointmentAddService
-            .update(this.drug)
-            .pipe()
-            .subscribe(
-                data => {
-                    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/drug/list';
-                    this.router.navigateByUrl(this.returnUrl);
-                },
-                error => {
-                    this.error = error;
-                    this.loading = false;
-                }
-            );
-    }
-    ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next();
-        this._unsubscribeAll.complete();
-    }
 }

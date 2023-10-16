@@ -1,0 +1,13 @@
+<div *ngIf="control" class="form-group">
+  <label *ngIf="label" [class.invalid-class]="submitted && control.errors">{{label}}</label>
+  <select class="form-control" [formControl]="control" [ngClass]="{ 'is-invalid': submitted && control.errors }">
+    <option *ngIf="control.value === null" disabled value="null">--select--</option>
+    <option *ngIf="control.value === ''" disabled value="">--select--</option>
+    <ng-container *ngFor="let d of options">
+      <option [value]="d[valueKey]">{{ d[displaykey] }}</option>
+    </ng-container>
+  </select>
+  <ng-container *ngFor="let error of control.errors | errorKeys">
+    <span *ngIf="submitted" class="invalid-class"> {{ messages[error]}}</span>
+  </ng-container>
+</div>

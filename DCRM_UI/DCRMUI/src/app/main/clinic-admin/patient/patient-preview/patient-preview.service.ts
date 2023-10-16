@@ -23,7 +23,6 @@ export class PatientPreviewService implements Resolve<any> {
     onLabChanged: BehaviorSubject<any>;
     onScansChanged: BehaviorSubject<any>;
     onPrescriptionChanged: BehaviorSubject<any>;
-    onDigitalDataChanged: BehaviorSubject<any>;
     id;
     currentUser: any;
 
@@ -42,8 +41,7 @@ export class PatientPreviewService implements Resolve<any> {
         this.onPaymentChanged = new BehaviorSubject({});
         this.onLabChanged = new BehaviorSubject({});
         this.onScansChanged = new BehaviorSubject({});
-        this.onPrescriptionChanged = new BehaviorSubject({});
-        this.onDigitalDataChanged = new BehaviorSubject({});
+        this.onPrescriptionChanged= new BehaviorSubject({});
 
     }
 
@@ -202,22 +200,5 @@ export class PatientPreviewService implements Resolve<any> {
                 resolve(this.prescriptionData);
             }, reject);
         });
-    }
-    getPayments(id:any): Observable<any> {
-        let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${currentUser.jwtToken}`
-        });
-        const requestOptions = { headers: headers };
-        return this._httpClient.get(`${environment.apiUrl}/Patient/Get/Payments/`+ id, requestOptions);
-    }
-    savePayment(payload: any): Observable<any> {
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.currentUser.jwtToken}`
-        });
-        const requestOptions = { headers: headers };
-        return this._httpClient.post(`${environment.apiUrl}/Payment/Create/Received`, payload, requestOptions);
     }
 }

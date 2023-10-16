@@ -1,0 +1,17 @@
+<!-- <div *ngIf="control" class="form-group">
+  <label *ngIf="label" [class.invalid-class]="submitted && control.errors">{{ label }}</label>
+  <input type="date" [formControl]="control" class="form-control" [placeholder]="placeholder"
+    [ngClass]="{ 'is-invalid': submitted && control.errors }" />
+  <ng-container *ngFor="let error of control.errors | errorKeys">
+    <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+  </ng-container>
+</div> -->
+
+<div *ngIf="control" class="form-group">
+  <label *ngIf="label" [class.invalid-class]="submitted && control.errors">{{ label }}</label>
+  <input type="date" [formControl]="control" class="form-control" [placeholder]="placeholder"
+    [ngClass]="{ 'is-invalid': submitted && control.errors }" />
+  <ng-container *ngFor="let error of control.errors | errorKeys">
+    <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+  </ng-container>
+</div>

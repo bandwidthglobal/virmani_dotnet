@@ -19,6 +19,8 @@ import { PrescriptionListService } from 'app/main/clinic-admin/prescription/pres
 import { PrescriptionAddComponent } from 'app/main/clinic-admin/prescription/prescription-add/prescription-add.component';
 import { PrescriptionAddService } from 'app/main/clinic-admin/prescription/prescription-add/prescription-add.service';
 
+import { PrescriptionEditComponent } from 'app/main/clinic-admin/prescription/prescription-edit/prescription-edit.component';
+import { PrescriptionEditService } from 'app/main/clinic-admin/prescription/prescription-edit/prescription-edit.service';
 
 import { PrescriptionPreviewComponent } from 'app/main/clinic-admin/prescription/prescription-preview/prescription-preview.component';
 import { PrescriptionPreviewService } from 'app/main/clinic-admin/prescription/prescription-preview/prescription-preview.service';
@@ -50,7 +52,14 @@ const routes: Routes = [
         },
         data: { path: 'user-view/:id', animation: 'PrescriptionPreviewComponent' }
     },
-    
+    {
+        path: 'edit/:id',
+        component: PrescriptionEditComponent,
+        resolve: {
+            Ses: PrescriptionEditService
+        },
+        data: { path: 'user-view/:id', animation: 'DrugEditComponent' }
+    },
     {
         path: 'preview',
         redirectTo: '/drug/preview/4989' // Redirection
@@ -66,6 +75,7 @@ const routes: Routes = [
         PrescriptionAddComponent,
         PrescriptionListComponent,
         PrescriptionPreviewComponent,
+        PrescriptionEditComponent,
     ],
     imports: [
         CommonModule,
@@ -80,7 +90,7 @@ const routes: Routes = [
         NgSelectModule,
         CoreSidebarModule
     ],
-    providers: [PrescriptionListService, PrescriptionPreviewService,  PrescriptionAddService],
+    providers: [PrescriptionListService, PrescriptionPreviewService, PrescriptionEditService, PrescriptionAddService],
     exports: [PrescriptionListComponent]
 })
 export class PrescriptionDataModule { }

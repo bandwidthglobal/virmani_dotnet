@@ -1,0 +1,168 @@
+﻿<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <section id="multiple-column-form">
+            <div class="row match-height">
+                <div class="col-12">
+                    <div class="card-body">
+                        <div class="patient-header with-border">
+                            <h3 class="card-title">{{ pageTitle }}</h3>
+                        </div>
+                        <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+                            <div class="alert-body">
+                                <p>{{ error }}</p>
+                            </div>
+                        </ngb-alert>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <shared-ui-select-input [label]="'Dentist/Doctor Name'" [control]="formData.doctor_Id"
+                                    [options]="IDoctors" [valueKey]="'id'" [displaykey]="'name'"
+                                    [submitted]="submitted"></shared-ui-select-input>
+                            </div>
+                            <div class="col-md-6">
+                                <shared-ui-date-input [label]="'Date'" [control]="formData.date"
+                                    [submitted]="submitted"></shared-ui-date-input>
+                            </div>
+
+                            <div class="col-md-6">
+                                <shared-ui-select-input [label]="'Start time'" [control]="formData.start_Time"
+                                    [options]="IStartTimes" [valueKey]="'id'" [displaykey]="'text'"
+                                    [submitted]="submitted"></shared-ui-select-input>
+                            </div>
+                            <div class="col-md-6">
+                                <shared-ui-select-input [label]="'Slot time'" [control]="formData.slot_Time"
+                                    [options]="ISlotTimes" [valueKey]="'id'" [displaykey]="'text'"
+                                    [submitted]="submitted"></shared-ui-select-input>
+                            </div>
+
+                            <div class="col-md-6">
+                                <shared-ui-text-input [label]="'End time'" [control]="formData.end_Time"
+                                    [submitted]="submitted" [isDisabled]="true"></shared-ui-text-input>
+                            </div>
+                            <div class="col-md-6">
+                                <shared-ui-text-input [label]="'No of slot'" [control]="formData.number_Of_Slot"
+                                    [submitted]="submitted" [isDisabled]="true"></shared-ui-text-input>
+                            </div>
+
+                            <div class="col-md-6">
+                                <shared-ui-text-input [label]="'Cause'" [control]="formData.cause"
+                                    [submitted]="submitted"></shared-ui-text-input>
+                            </div>
+                            <div class="col-md-6">
+                                <shared-ui-select-input [label]="'Choose Chair'" [control]="formData.chair"
+                                    [options]="IChairList" [valueKey]="'id'" [displaykey]="'name'"
+                                    [submitted]="submitted"></shared-ui-select-input>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-group plr-10">
+                                        <label>Appointment Type</label>
+                                        <div class="radio radio-info radio-inline mt-10">
+                                            <input name="type" [formControl]="formData.type"
+                                                type="radio" value="Online">
+                                            <label class="cs-lable">Online</label> 
+                                            <input name="type" [formControl]="formData.type"
+                                                type="radio" value="Offline">
+                                            <label class="cs-lable">Offline</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-group plr-10">
+                                        <div class="radio radio-info radio-inline mt-10">
+                                            <input name="p_type" [formControl]="formData.p_type" type="radio"
+                                                value="Old Patient">
+                                            <label class="cs-lable"> Old Patient</label> 
+                                            <input name="p_type" [formControl]="formData.p_type" type="radio"
+                                                value="New Patient">
+                                            <label class="cs-lable"> New Patient</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="formData.get('p_type').value === 'New Patient'" class="col-md-6">
+                                <shared-ui-text-input [label]="'Name'" [control]="formData.patient_name"
+                                    [submitted]="submitted"></shared-ui-text-input>
+                            </div>
+                            <div *ngIf="formData.get('p_type').value === 'Old Patient'" class="col-md-6">
+                                <shared-ui-select-input [label]="'Name'" [control]="formData.patient_Id"
+                                    [options]="IPatients" [valueKey]="'id'" [displaykey]="'name'"
+                                    [submitted]="submitted"></shared-ui-select-input>
+                            </div>
+                            <div *ngIf="formData.get('p_type').value === 'New Patient'" class="col-md-6">
+                                <div class="form-group">
+                                    <label [class.invalid-class]="submitted && formData.email.errors">Email</label>
+                                    <input type="email" class="form-control" [formControl]="formData.email"
+                                        [ngClass]="{ 'is-invalid': submitted && formData.email.errors }" />
+                                    <ng-container *ngFor="let error of formData.email.errors | errorKeys">
+                                        <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
+                                            }}</span>
+                                    </ng-container>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <shared-ui-text-input [label]="'Phone'" [control]="formData.phone" [mask]="'numeric'"
+                                    [submitted]="submitted"></shared-ui-text-input>
+                            </div>
+                            <div *ngIf="formData.get('p_type').value === 'New Patient'" class="col-md-6">
+                                <shared-ui-text-input [label]="'Age'" [control]="formData.age" [mask]="'numeric'"
+                                    [submitted]="submitted"></shared-ui-text-input>
+                            </div>
+
+                            <div *ngIf="formData.get('p_type').value === 'New Patient'" class="col-md-6">
+                                <shared-ui-text-input [label]="'Weight'" [control]="formData.weight" [mask]="'numeric'"
+                                    [submitted]="submitted"></shared-ui-text-input>
+                            </div>
+                            <div *ngIf="formData.get('p_type').value === 'New Patient'" class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-group plr-10">
+                                        <label
+                                            [class.invalid-class]="submitted && formData.gender.errors">Gender</label>
+                                        <div class="radio radio-info radio-inline mt-10">
+                                            <input name="gender" [formControl]="formData.gender" type="radio"
+                                                value="Male">
+                                            <label class="cs-lable">Male</label> 
+                                            <input name="gender" [formControl]="formData.gender" type="radio"
+                                                value="Female">
+                                            <label class="cs-lable">Female</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <h3>More Information</h3>
+                                <div class="form-group">
+                                    <label [class.invalid-class]="submitted && formData.meeting_Notes.errors">Extra
+                                        Notes</label>
+                                    <textarea class="form-control" [formControl]="formData.meeting_Notes"
+                                        [ngClass]="{ 'is-invalid': submitted && formData.meeting_Notes.errors }"></textarea>
+                                    <ng-container *ngFor="let error of formData.meeting_Notes.errors | errorKeys">
+                                        <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
+                                            }}</span>
+                                    </ng-container>
+                                </div>
+                            </div>
+
+                            <!-- <pre>{{ formData.value | json}}</pre> -->
+                        </div>
+
+                        <div class="col-md-12 mt-3">
+                            <div class="float-right">
+                                <a href="/admin/patient/list" class="btn btn-outline-secondary mr-1">Cancel</a>
+                                <button type="button" (click)="saveForm();" rippleEffect
+                                    class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
