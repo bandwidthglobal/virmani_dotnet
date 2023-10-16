@@ -2,6 +2,7 @@
 using DCRM.Api.Models;
 using DCRM.Common;
 using DCRM.Common.Dto;
+using DCRM.Common.Entities;
 using DCRM.Common.Entity;
 using DCRM.Common.Request;
 using DCRM.Common.RequestModel;
@@ -19,13 +20,16 @@ namespace DCRM.Service.Service
         public readonly IConfiguration _configuration;
         public readonly IRepository<Experience> _experienceRepository;
         public readonly IRepository<Chamber> _chamberRepository;
-        public UserService(IUserRepository userRepository, IJwtUtils jwtUtils, IConfiguration configuration, IRepository<Experience> experienceRepository, IRepository<Chamber> chamberRepository)
+        public readonly IRepository<Diagonosis> _diagonosisRepository;
+        public UserService(IUserRepository userRepository, IJwtUtils jwtUtils, IConfiguration configuration, 
+            IRepository<Experience> experienceRepository, IRepository<Chamber> chamberRepository, IRepository<Diagonosis> diagonosisRepository)
         {
             _userRepository = userRepository;
             _jwtUtils = jwtUtils;
             _configuration = configuration;
             _experienceRepository = experienceRepository;
-            _chamberRepository  = chamberRepository;
+            _chamberRepository = chamberRepository;
+            _diagonosisRepository = diagonosisRepository;
         }
 
         /// <summary>
@@ -42,8 +46,8 @@ namespace DCRM.Service.Service
             if (user == null)
                 throw new AppException("email or password is incorrect");
 
-            var jwtToken = _jwtUtils.GenerateJwtToken(user.Id, user?.Email,user?.Role,user?.User_Name);
-            return new AuthenticateResponse(user.Email,user.Id,user.Role, jwtToken, user.Name, user.Thumb);
+            var jwtToken = _jwtUtils.GenerateJwtToken(user.Id, user?.Email, user?.Role, user?.User_Name);
+            return new AuthenticateResponse(user.Email, user.Id, user.Role, jwtToken, user.Name, user.Thumb);
         }
 
         /// <summary>
@@ -52,7 +56,7 @@ namespace DCRM.Service.Service
         /// <returns></returns>
         public IEnumerable<User> GetAll()
         {
-            return  _userRepository.GetAll();
+            return _userRepository.GetAll();
         }
 
         /// <summary>
@@ -62,12 +66,12 @@ namespace DCRM.Service.Service
         /// <returns></returns>
         public User Get(long id)
         {
-            return  _userRepository.Get(id); 
+            return _userRepository.Get(id);
         }
 
         public UserDto GetUserChamber(long id)
         {
-            var chamber= _chamberRepository.GetAll().Where(x=>x.User_Id==2).FirstOrDefault();
+            var chamber = _chamberRepository.GetAll().Where(x => x.User_Id == 2).FirstOrDefault();
             var user = _userRepository.Get(id);
             UserDto userDto = new UserDto();
             if (chamber != null)
@@ -92,7 +96,7 @@ namespace DCRM.Service.Service
             user.Email = userRequest.Email;
             user.Password = EncryptionDecryptionUsingSymmetricKey.EncryptString(_configuration.GetSection("PasswordHasKey").Value, userRequest.Password);
             user.Role = userRequest.Role;
-            long id= _userRepository.Create(user);
+            long id = _userRepository.Create(user);
             return id;
         }
         /// <summary>
@@ -103,7 +107,7 @@ namespace DCRM.Service.Service
         /// <exception cref="KeyNotFoundException"></exception>
         public void Update(UserUpdateRequest userUpdateRequestModel)
         {
-            var user =  _userRepository.Get(userUpdateRequestModel.Id);
+            var user = _userRepository.Get(userUpdateRequestModel.Id);
             if (user != null)
             {
                 user.About_Me = userUpdateRequestModel.AboutMe;
@@ -119,7 +123,7 @@ namespace DCRM.Service.Service
                 throw new KeyNotFoundException("user is not found");
             }
 
-            
+
         }
         /// <summary>
         /// remove user by user id from users table
@@ -128,7 +132,7 @@ namespace DCRM.Service.Service
         /// <returns></returns>
         public void Delete(long id)
         {
-             _userRepository.Delete(id);
+            _userRepository.Delete(id);
         }
 
         /// <summary>
@@ -142,5 +146,18 @@ namespace DCRM.Service.Service
             await _userRepository.ChangeUserPasswordAsync(changePasswordModel);
         }
 
+        public void CreateDiagonosis(Diagonosis diagonosis)
+        {
+            _diagonosisRepository.Insert(diagonosis);
+        }
+        public void UpdateDiagonosis(Diagonosis diagonosis)
+        {
+            _diagonosisRepository.Update(diagonosis);
+        }
+        public void DeleteDiagonosis(long id)
+        {
+            var diagonosis= _diagonosisRepository.Get(id);
+            _diagonosisRepository.Delete(diagonosis);
+        }
     }
 }

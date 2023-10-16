@@ -12,6 +12,7 @@ using DCRM.Service;
 using DCRM.Common.Request;
 using Newtonsoft.Json.Linq;
 using DCRM.Common.RequestModel;
+using DCRM.Common.Entities;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -149,10 +150,24 @@ namespace DCRM.Api.Controllers
 
         }
 
-        [HttpDelete("Experience/Delete/{id}")]
-        public IActionResult ExperienceDelete(long id)
+        [HttpPost("Create/Diagonosis")]
+        public IActionResult CreateDiagonosis(Diagonosis diagonosis)
         {
-            _experienceService.Delete(id);
+            _userService.CreateDiagonosis(diagonosis);
+            return Ok();
+        }
+
+        [HttpPost("Update/Diagonosis")]
+        public IActionResult UpdateDiagonosis(Diagonosis  diagonosis)
+        {
+            _userService.UpdateDiagonosis(diagonosis);
+            return Ok();
+        }
+
+        [HttpDelete("Delete/Diagonosis/{id}")]
+        public IActionResult DiagonosisDelete(long id)
+        {
+            _userService.DeleteDiagonosis(id);
             return Ok();
         }
     }
