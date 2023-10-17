@@ -47,7 +47,7 @@ namespace DCRM.Service.Service
             {
                 smtpClient.Credentials = new NetworkCredential(userId, password);
                 smtpClient.Port = Convert.ToInt32(587);
-                smtpClient.UseDefaultCredentials = true;
+                smtpClient.UseDefaultCredentials = false;
                 smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtpClient.Timeout = 20000;
                 smtpClient.EnableSsl = true;

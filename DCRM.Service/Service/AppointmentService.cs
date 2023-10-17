@@ -62,7 +62,11 @@ namespace DCRM.Service.Service
                 appointment.Cause = item.Cause;
                 if (!string.IsNullOrEmpty(item.Chair))
                 {
-                    appointment.Chair = _chairRepository.Get(Convert.ToInt64(item.Chair)).Name;
+                    if (_chairRepository.Get(Convert.ToInt64(item.Chair))!=null)
+                    {
+                        appointment.Chair = _chairRepository.Get(Convert.ToInt64(item.Chair)).Name;
+                    }
+                    
                 }
                 appointmentList.Add(appointment);
             }
