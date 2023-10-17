@@ -4,17 +4,32 @@
 // Preview
 // Windows Print Dialogue
 @media print {
-  @page {
-    margin: 0;
-  }
-  .invoice-actions,
-  .main-menu,
-  .buy-now {
-    visibility: hidden;
-  }
+    @page {
+        margin: 0;
+    }
 
-  .printRef {
-    max-width: 100% !important;
-    flex: 0 0 100%;
-  }
+    .invoice-actions,
+    .main-menu,
+    .buy-now {
+        visibility: hidden;
+    }
+
+    .printRef {
+        max-width: 100% !important;
+        flex: 0 0 100%;
+    }
+}
+
+.card-body {
+    background: #fff;
+    -webkit-transition: .5s;
+    transition: .5s;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    border: 1px solid #f2f2f2;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 6px 24px #f1f1f1;
+    box-shadow: 0 6px 24px #f1f1f1;
 }

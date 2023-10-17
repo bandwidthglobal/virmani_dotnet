@@ -199,7 +199,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.PRESCRIPTION.CreateNew',
                         type: 'item',
                         icon: 'circle',
-                        url: 'apps/e-commerce/shop'
+                        url: 'admin/prescription/add'
                     },
                     {
                         id: 'prescriptions',
