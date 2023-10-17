@@ -1,4 +1,5 @@
-﻿using DCRM.Common.Entity;
+﻿using DCRM.Common.Entities;
+using DCRM.Common.Entity;
 using DCRM.Common.RequestModel;
 using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
@@ -14,11 +15,12 @@ namespace DCRM.Service.Service
     {
         public readonly ITreatmentplanRepository _treatmentplanRepository;
         public readonly IRepository<Workdone_New> _workDoneRepository;
+        public readonly IRepository<Payment_History> _paymentHistoryRepository;
         public readonly IRepository<Teethinfo> _teethInfoRepository;
         public readonly IRepository<Teeth> _teethRepository;
         public readonly IRepository<TeethCategory> _teethCatRepository;
         public TreatmentplanService(ITreatmentplanRepository treatmentplanRepository
-            , IRepository<Workdone_New> workDoneRepository,
+            , IRepository<Workdone_New> workDoneRepository, IRepository<Payment_History> paymentHistoryRepository,
             IRepository<Teethinfo> teethInfoRepository, IRepository<Teeth> teethRepository, IRepository<TeethCategory> teethCatRepository)
         {
             _treatmentplanRepository = treatmentplanRepository;
@@ -26,6 +28,8 @@ namespace DCRM.Service.Service
             _teethInfoRepository = teethInfoRepository;
             _teethRepository = teethRepository;
             _teethCatRepository= teethCatRepository;
+            _paymentHistoryRepository= paymentHistoryRepository;
+
         }
         
 
@@ -115,13 +119,30 @@ namespace DCRM.Service.Service
         /// <param name="workdone"></param>
         public void CreateWorkDone(Workdone_New workdone)
         {
-            _workDoneRepository.Insert(workdone);
+           long workdoneId=_workDoneRepository.Create(workdone);
             var treatment = _treatmentplanRepository.GetById(workdone.Treatment_Id);
-            if (treatment == null)
+            if (treatment != null && workdone.Id> 0)
             {
+                //Insert Data in payment as debit
+                Payment_History paymentHistory=new Payment_History();
+                paymentHistory.Workdone_Id = workdone.Id;
+                paymentHistory.Doctor_Id = treatment.Doctor;
+                paymentHistory.Patient_Id = treatment.Patient_Id;
+                paymentHistory.Debit_Amount = workdone.Total_Amt;
+                paymentHistory.Credit_Amount = 0;
+                paymentHistory.Balance = workdone.Total_Amt;
+                paymentHistory.Amount_Type = 1;
+                paymentHistory.Description = "patient bill";
+                paymentHistory.Payment_Mode = "";
+                paymentHistory.Created_At= DateTime.UtcNow;
+                paymentHistory.Updated_At= DateTime.UtcNow;
+                _paymentHistoryRepository.Insert(paymentHistory);
+
+                //Update Treatment Status
                 treatment.Status = workdone.Workdone_Status;
                 treatment.Updated_At = System.DateTime.UtcNow;
                 _treatmentplanRepository.UpdateTreatmentplan(treatment);
+
             }
         }
 

@@ -24,5 +24,9 @@ namespace DCRM.Service.IService
         void CreateReceivePayment(Payment_Details_List payment_Details_List);
 
         List<Payment_Details_List> GetReceivedPayment(long paymentId);
+
+        PaymentReportDto GetPaymentReport(long paymentId);
+
+        List<PaymentReportDto> GetPaymentReportList(long userId);
     }
 }
