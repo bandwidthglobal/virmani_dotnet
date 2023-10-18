@@ -283,7 +283,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.REPORT.Payments',
                         type: 'item',
                         icon: 'circle',
-                        url: 'apps/user/user-list'
+                        url: 'admin/reports'
                     }
                 ]
             },
