@@ -90,7 +90,7 @@ export class DrugEditService implements Resolve<any> {
             'Authorization': `Bearer ${this.currentUser.jwtToken}`
         });
         const requestOptions = { headers: headers };
-        debugger;
+        // debugger;
         return this._httpClient.post<any>(`${environment.apiUrl}/Drug/Update`, drug, requestOptions);
     }
 

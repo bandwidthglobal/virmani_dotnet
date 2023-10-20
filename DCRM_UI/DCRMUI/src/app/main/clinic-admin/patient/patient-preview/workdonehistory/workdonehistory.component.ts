@@ -11,10 +11,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
     selector: 'app-workdonehistory',
     templateUrl: './workdonehistory.component.html',
-  encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None
 })
 export class WorkdoneHistoryComponent implements OnInit {
-  // Public
+    // Public
     // public
     public data: any;
     public selectedOption = 10;
@@ -119,7 +119,7 @@ export class WorkdoneHistoryComponent implements OnInit {
                     this.rows = this.data;
                     this.tempData = this.rows;
                     this.tempFilterData = this.rows;
-                    debugger;
+                    // debugger;
                 });
             }
         });

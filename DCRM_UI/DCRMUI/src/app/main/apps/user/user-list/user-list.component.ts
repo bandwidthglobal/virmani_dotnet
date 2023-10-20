@@ -94,8 +94,8 @@ export class UserListComponent implements OnInit {
     const val = event.target.value.toLowerCase();
 
     // Filter Our Data
-      const temp = this.tempData.filter(function (d) {
-          debugger;
+    const temp = this.tempData.filter(function (d) {
+      // debugger;
       return d.fullName.toLowerCase().indexOf(val) !== -1 || !val;
     });
 

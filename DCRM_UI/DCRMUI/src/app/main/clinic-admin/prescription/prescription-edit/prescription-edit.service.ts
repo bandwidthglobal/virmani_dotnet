@@ -87,7 +87,7 @@ export class PrescriptionEditService implements Resolve<any> {
             'Authorization': `Bearer ${this.currentUser.jwtToken}`
         });
         const requestOptions = { headers: headers };
-        debugger;
+        // debugger;
         return this._httpClient.post<any>(`${environment.apiUrl}/Staff/Update`, staff, requestOptions);
     }
 

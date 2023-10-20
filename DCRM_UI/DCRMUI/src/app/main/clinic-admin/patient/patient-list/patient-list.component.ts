@@ -125,7 +125,7 @@ export class PatientListComponent implements OnInit, OnDestroy {
                     this.rows = this.data;
                     this.tempData = this.rows;
                     this.tempFilterData = this.rows;
-                    debugger;
+                    // debugger;
                 });
             }
         });

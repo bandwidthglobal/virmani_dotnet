@@ -18,7 +18,7 @@ export class DigitalDataService {
         this.onDigitalGetChanged = new BehaviorSubject({});
     }
 
-
+    
     save(payload: any, mode: string): Observable<any> {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',

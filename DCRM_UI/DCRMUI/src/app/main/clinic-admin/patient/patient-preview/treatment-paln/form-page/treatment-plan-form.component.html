@@ -1,0 +1,280 @@
+﻿<div class="col-md-12" id="disp_div">
+    <div class="col-md-12">
+        <h4 class="form_title">Treatment Plan</h4>
+        <div class="clear"></div>
+        <hr class="border_hr">
+    </div>
+    <!-- <pre>{{ formData.value | json }}</pre> -->
+
+    <div class="row">
+        <div class="col-md-5" id="loadteeeth">
+            <shared-ui-select-input [label]="'Tooth Notation'" [control]="formData.teeth_id" [options]="ITeethList"
+                [valueKey]="'id'" [displaykey]="'teeth'" [submitted]="submitted"></shared-ui-select-input>
+        </div>
+        <div class="col-md-6" style="padding:30px 0px;">
+            <shared-ui-check-box [label]="'Milk Teeth'" [control]="formData.teeth_id"
+                [submitted]="submitted"></shared-ui-check-box>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="container">
+                <ul id="continents1">
+                    <li class="teethord1">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('4', 'Right Upper Third Molar', '18.png')"
+                            data-original-title="Right Upper Third Molar"></a>
+                    </li>
+                    <li class="teethord2">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('5', 'Right Upper Second Molar', '17.png')"
+                            data-original-title="Right Upper Second Molar"></a>
+                    </li>
+                    <li class="teethord3">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('6', 'Right Upper First Molar', '16.png')"
+                            data-original-title="Right Upper First Molar"></a>
+                    </li>
+                    <li class="teethord4">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('7', 'Right Upper Second Premolar', '15.png')"
+                            data-original-title="Right Upper Second Premolar"></a>
+                    </li>
+                    <li class="teethord5">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('8', 'Right Upper First Premolar', '14.png')"
+                            data-original-title="Right Upper First Premolar"></a>
+                    </li>
+                    <li class="teethord6">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('9', 'Right Upper Canine', '13.png')"
+                            data-original-title="Right Upper Canine"></a>
+                    </li>
+                    <li class="teethord7">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('10', 'Right Upper Lateral Incisor', '12.png')"
+                            data-original-title="Right Upper Lateral Incisor"></a>
+                    </li>
+                    <li class="teethord8">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('11', 'Right Upper Central Incisor', '11.png')"
+                            data-original-title="Right Upper Central Incisor"></a>
+                    </li>
+                    <li class="teethord9">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('12', 'Left Upper Central Incisor', '21.png')"
+                            data-original-title="Left Upper Central Incisor"></a>
+                    </li>
+                    <li class="teethord10">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('13', 'Left Upper Lateral Incisor', '22.png')"
+                            data-original-title="Left Upper Lateral Incisor"></a>
+                    </li>
+                    <li class="teethord11">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('14', 'Left Upper Canine', '23.png')"
+                            data-original-title="Left Upper Canine"></a>
+                    </li>
+                    <li class="teethord12">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('15', 'Left Upper First Premolar', '24.png')"
+                            data-original-title="Left Upper First Premolar"></a>
+                    </li>
+                    <li class="teethord13">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('16', 'Left Upper Second Premolar', '25.png')"
+                            data-original-title="Left Upper Second Premolar"></a>
+                    </li>
+                    <li class="teethord14">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('17', 'Left Upper First Molar', '26.png')"
+                            data-original-title="Left Upper First Molar"></a>
+                    </li>
+                    <li class="teethord15">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('18', 'Left Upper Second Molar', '27.png')"
+                            data-original-title="Left Upper Second Molar"></a>
+                    </li>
+                    <li class="teethord16">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('19', 'Left Upper Third Molar', '28.png')"
+                            data-original-title="Left Upper Third Molar"></a>
+                    </li>
+                    <li class="teethord17">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('20', 'Right  Lower Third Molar', '48.png')"
+                            data-original-title="Right  Lower Third Molar"></a>
+                    </li>
+                    <li class="teethord18">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('21', 'Right  Lower Second Molar', '47.png')"
+                            data-original-title="Right  Lower Second Molar"></a>
+                    </li>
+                    <li class="teethord19">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('22', 'Right  Lower First Molar', '46.png')"
+                            data-original-title="Right  Lower First Molar"></a>
+                    </li>
+                    <li class="teethord20">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('23', 'Right  Lower Second Premolar', '45.png')"
+                            data-original-title="Right  Lower Second Premolar"></a>
+                    </li>
+                    <li class="teethord21">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('24', 'Right Lower First Premolar', '44.png')"
+                            data-original-title="Right Lower First Premolar"></a>
+                    </li>
+                    <li class="teethord22">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('25', 'Right  Lower Canine', '43.png')"
+                            data-original-title="Right  Lower Canine"></a>
+                    </li>
+                    <li class="teethord23">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('26', 'Right  Lower Lateral Incisor', '42.png')"
+                            data-original-title="Right  Lower Lateral Incisor"></a>
+                    </li>
+                    <li class="teethord24">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('27', 'Right  Lower Central Incisor', '41.png')"
+                            data-original-title="Right  Lower Central Incisor"></a>
+                    </li>
+                    <li class="teethord25">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('28', 'Left  Lower Central Incisor', '31.png')"
+                            data-original-title="Left  Lower Central Incisor"></a>
+                    </li>
+                    <li class="teethord26">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('29', 'Left  Lower Lateral Incisor', '32.png')"
+                            data-original-title="Left  Lower Lateral Incisor"></a>
+                    </li>
+                    <li class="teethord27">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('30', 'Left  Lower Canine', '33.png')"
+                            data-original-title="Left  Lower Canine"></a>
+                    </li>
+                    <li class="teethord28">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('31', 'Left  Lower First Premolar', '34.png')"
+                            data-original-title="Left  Lower First Premolar"></a>
+                    </li>
+                    <li class="teethord29">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('32', 'Left  Lower Second Premolar', '35.png')"
+                            data-original-title="Left  Lower Second Premolar"></a>
+                    </li>
+                    <li class="teethord30">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('33', 'Left  Lower First Molar', '36.png')"
+                            data-original-title="Left  Lower First Molar"></a>
+                    </li>
+                    <li class="teethord31">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('34', 'Left  Lower Second Molar', '37.png')"
+                            data-original-title="Left  Lower Second Molar"></a>
+                    </li>
+                    <li class="teethord32">
+                        <a href="javascript://" title=""
+                            onclick="getRecord_teechinfo('35', 'Left  Lower Third Molar', '38.png')"
+                            data-original-title="Left  Lower Third Molar"></a>
+                    </li>
+                </ul>
+                <div id="show_toothnumber" style="display: none"></div>
+            </div>
+        </div>
+
+        <div class="col-lg-12 mt-5">
+            <div id="shw_tooth_number">
+                <p class="texp">Tooth Number: <span class="tre-code">
+                        <a style="color:#398bf7;" href="javascript:void();" id="clear_teeth">Clear</a></span></p>
+                <span id="tooth_no_note_view"></span>
+            </div>
+
+            <div class="row_">
+                <div class="col-sm-7_">
+                    <shared-ui-textarea [label]="'Notes &amp; Diagnosis'" [control]="formData.treatment_Notes"
+                        [submitted]="submitted"></shared-ui-textarea>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <h4 class="form_title">Job For Patient</h4>
+                <div class="clear"></div>
+                <hr class="border_hr">
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <app-hot-code-menu></app-hot-code-menu>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label><strong>Patient Name:</strong> {{ apiData.name }} </label>
+                    </div>
+                    <shared-ui-select-input [label]="'Treatment Type'" [control]="formData.type"
+                        [options]="ITreatmentType" [valueKey]="'value'" [displaykey]="'text'"
+                        [submitted]="submitted"></shared-ui-select-input>
+
+                    <shared-ui-text-input [label]="'Job Name'" [control]="formData.job"
+                        [submitted]="submitted"></shared-ui-text-input>
+
+                    <shared-ui-select-input [label]="'Primary Doctor Name'" [control]="formData.doctor"
+                        [options]="IDoctors" [valueKey]="'id'" [displaykey]="'name'"
+                        [submitted]="submitted"></shared-ui-select-input>
+
+                    <div class="form-group">
+                        <div class="form-group plr-10">
+                            <label>Treatment</label>
+                            <div class="radio radio-info radio-inline mt-10">
+                                <input name="treatment" type="radio" value="Observation">
+                                <label class="cs-lable">Observation</label> 
+                                <input name="treatment" type="radio" value="Completed">
+                                <label class="cs-lable">Completed</label>
+                                <input name="treatment" type="radio" value="Incompleted">
+                                <label class="cs-lable">Incompleted</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <shared-ui-text-input [label]="'Estimated Amount'" [control]="formData.estimated_Amount"
+                                [mask]="'numeric'" [submitted]="submitted"></shared-ui-text-input>
+                        </div>
+
+                        <div class="col-md-6">
+                            <shared-ui-text-input [label]="'Courtesy (if any)'" [control]="formData.courtesy"
+                                [mask]="'numeric'" [submitted]="submitted"></shared-ui-text-input>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Estimated Total Amount</label>
+                                <input type="text" readonly="" class="form-control"
+                                    value="{{ formData.estimated_Amount.value }}" />
+                            </div>
+                            <!-- <shared-ui-text-input [label]="'Estimated Total Amount'"
+                                    [control]="formData.estimated_total" [mask]="'numeric'" [isDisabled]="true"
+                                    [submitted]="submitted"></shared-ui-text-input> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="col-sm-12"></div>
+                <div class="col-sm-12">
+                    <div class="box-footer">
+                        <div class="float-right" id="save_divs">
+                            <button (click)="saveForm()" type="button" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                    <div class="float-right" id="view_divs" style="display: none;">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="closeview();">Fill
+                            Later</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

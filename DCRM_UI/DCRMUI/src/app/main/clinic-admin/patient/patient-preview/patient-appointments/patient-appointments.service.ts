@@ -18,7 +18,7 @@ export class PatientinAppointmentsService implements Resolve<any> {
      */
     constructor(private _httpClient: HttpClient) {
         this.currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
-       
+
         this.onPatientListChanged = new BehaviorSubject({});
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     }
@@ -43,7 +43,7 @@ export class PatientinAppointmentsService implements Resolve<any> {
      * Get rows
      */
     getDataTableRows(id: number): Promise<any[]> {
-        debugger;
+        // debugger;
         let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
         return new Promise((resolve, reject) => {
             const headers = new HttpHeaders({
@@ -54,11 +54,11 @@ export class PatientinAppointmentsService implements Resolve<any> {
             const url = `${environment.apiUrl}/Appointment/Get/Patient/${id}`;
             this._httpClient.get(url, requestOptions).subscribe((response: any) => {
                 this.rows = response;
-                debugger;
+                // debugger;
                 this.onPatientListChanged.next(this.rows);
                 resolve(this.rows);
             }, reject);
         });
     }
-   
+
 }

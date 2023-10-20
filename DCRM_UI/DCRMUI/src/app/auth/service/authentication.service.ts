@@ -10,46 +10,46 @@ import { request } from 'https';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  //public
-  
-  public currentUser: Observable<User>;
+    //public
 
-  //private
-  private currentUserSubject: BehaviorSubject<User>;
+    public currentUser: Observable<User>;
 
-  /**
-   *
-   * @param {HttpClient} _http
-   * @param {ToastrService} _toastrService
-   */
-  constructor(private _http: HttpClient, private _toastrService: ToastrService) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
-  }
+    //private
+    private currentUserSubject: BehaviorSubject<User>;
 
-  // getter: currentUserValue
-  public get currentUserValue(): User {
-    return this.currentUserSubject.value;
-  }
+    /**
+     *
+     * @param {HttpClient} _http
+     * @param {ToastrService} _toastrService
+     */
+    constructor(private _http: HttpClient, private _toastrService: ToastrService) {
+        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUser = this.currentUserSubject.asObservable();
+    }
 
-  /**
-   *  Confirms if user is admin
-   */
-  get isAdmin() {
-    return this.currentUser && this.currentUserSubject.value.role === Role.Admin;
-  }
+    // getter: currentUserValue
+    public get currentUserValue(): User {
+        return this.currentUserSubject.value;
+    }
+
+    /**
+     *  Confirms if user is admin
+     */
+    get isAdmin() {
+        return this.currentUser && this.currentUserSubject.value.role === Role.Admin;
+    }
     /**
      *  Confirms if user is user
      */
     get isUser() {
         return this.currentUser && this.currentUserSubject.value.role === Role.User;
     }
-  /**
-   *  Confirms if user is staff
-   */
+    /**
+     *  Confirms if user is staff
+     */
     get isStaff() {
-    return this.currentUser && this.currentUserSubject.value.role === Role.Staff;
-  }
+        return this.currentUser && this.currentUserSubject.value.role === Role.Staff;
+    }
     /**
       *  Confirms if user is patient
       */
@@ -62,67 +62,34 @@ export class AuthenticationService {
     get isDoctor() {
         return this.currentUser && this.currentUserSubject.value.role === Role.Doctor;
     }
-  /**
-   * User login
-   *
-   * @param email
-   * @param password
-   * @returns user
-   */
+    /**
+     * User login
+     *
+     * @param email
+     * @param password
+     * @returns user
+     */
     login1(email: string, password: string) {
 
         var authenticateRequest;
         authenticateRequest.Email = email;
         authenticateRequest.Password = password;
-    return this._http
-        .post<any>(`${environment.apiUrl}/Authenticate/User/user`, { email, password })
-      .pipe(
-        map(user => {
-          // login successful if there's a jwt token in the response
-          if (user && user.token) {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify(user));
-              localStorage.setItem('token', user.token);
-            // Display welcome toast!
-            setTimeout(() => {
-              this._toastrService.success(
-                'You have successfully logged in as an ' +
-                  user.role +
-                  ' user to Vuexy. Now you can start to explore. Enjoy! 🎉',
-                '👋 Welcome, ' + user.firstName + '!',
-                { toastClass: 'toast ngx-toastr', closeButton: true }
-              );
-            }, 2500);
-
-            // notify
-            this.currentUserSubject.next(user);
-          }
-
-          return user;
-        })
-      );
-  }
-
-    login(email: string, password: string,type:string) {
-        var authenticateRequest = { email: email, password: password};
         return this._http
-            .post<any>(`${environment.apiUrl}/Authenticate/` + type, authenticateRequest)
+            .post<any>(`${environment.apiUrl}/Authenticate/User/user`, { email, password })
             .pipe(
                 map(user => {
                     // login successful if there's a jwt token in the response
-                    debugger;
-                    if (user!=null && user.token!='') {
+                    if (user && user.token) {
                         // store user details and jwt token in local storage to keep user logged in between page refreshes
                         localStorage.setItem('currentUser', JSON.stringify(user));
-                      
                         localStorage.setItem('token', user.token);
                         // Display welcome toast!
                         setTimeout(() => {
                             this._toastrService.success(
                                 'You have successfully logged in as an ' +
                                 user.role +
-                                ' to Virmani. Now you can start to explore. Enjoy! 🎉',
-                                '👋 Welcome, ' + user.name + '!',
+                                ' user to Vuexy. Now you can start to explore. Enjoy! 🎉',
+                                '👋 Welcome, ' + user.firstName + '!',
                                 { toastClass: 'toast ngx-toastr', closeButton: true }
                             );
                         }, 2500);
@@ -137,15 +104,48 @@ export class AuthenticationService {
     }
 
 
-  /**
-   * User logout
-   *
-   */
-  logout() {
-    // remove user from local storage to log user out
-      localStorage.removeItem('currentUser');
-      localStorage.removeItem('token');
-    // notify
-    this.currentUserSubject.next(null);
-  }
+    login(email: string, password: string, type: string) {
+        var authenticateRequest = { email: email, password: password };
+        return this._http
+            .post<any>(`${environment.apiUrl}/Authenticate/` + type, authenticateRequest)
+            .pipe(
+                map(user => {
+                    // login successful if there's a jwt token in the response
+                    debugger;
+                    if (user != null && user.token != '') {
+                        // store user details and jwt token in local storage to keep user logged in between page refreshes
+                        localStorage.setItem('currentUser', JSON.stringify(user));
+
+                        localStorage.setItem('token', user.token);
+                        // Display welcome toast!
+                        setTimeout(() => {
+                            this._toastrService.success(
+                                'You have successfully logged in as an ' +
+                                user.role +
+                                ' to Virmani. Now you can start to explore. Enjoy! 🎉',
+                                '👋 Welcome, ' + user.name + '!',
+                                { toastClass: 'toast ngx-toastr', closeButton: true }
+                            );
+                        }, 2500);
+                        // notify
+                        this.currentUserSubject.next(user);
+                    }
+
+                    return user;
+                })
+            );
+    }
+
+
+    /**
+     * User logout
+     *
+     */
+    logout() {
+        // remove user from local storage to log user out
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('token');
+        // notify
+        this.currentUserSubject.next(null);
+    }
 }
