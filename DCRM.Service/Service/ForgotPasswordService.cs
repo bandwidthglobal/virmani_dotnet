@@ -97,7 +97,7 @@ namespace DCRM.Service.Service
                     smtpClient.Port = Convert.ToInt32(port);
                     smtpClient.UseDefaultCredentials = false;
                     smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    
+
                     smtpClient.EnableSsl = true;
                     smtpClient.Send(message);
                 }
@@ -130,7 +130,7 @@ namespace DCRM.Service.Service
         public string SendOtp(string phoneMumber)
         {
             string otp = string.Empty;
-           long entityId= 0;
+            long entityId = 0;
             string type = string.Empty;
             var user = _userRepository.GetAll().FirstOrDefault(x => x.Phone == phoneMumber);
             if (user != null)
@@ -138,9 +138,10 @@ namespace DCRM.Service.Service
                 type = "user";
                 entityId = user.Id;
             }
-            else  {
+            else
+            {
                 var staff = _staffRepository.GetAll().FirstOrDefault(x => x.Phone == phoneMumber);
-                if (staff!=null)
+                if (staff != null)
                 {
                     type = "staff";
                     entityId = staff.Id;
@@ -148,7 +149,7 @@ namespace DCRM.Service.Service
                 else
                 {
                     var doctor = _doctorRepository.GetAll().FirstOrDefault(x => x.Phone1.ToString() == phoneMumber);
-                    if (doctor!=null)
+                    if (doctor != null)
                     {
                         type = "doctor";
                         entityId = doctor.Id;
@@ -204,7 +205,7 @@ namespace DCRM.Service.Service
         public Userotp GetOtp(Userotp userOtp)
         {
             string otp = string.Empty;
-            var user_Otp = _userOtpRepository.GetAll().FirstOrDefault(x => x.Email == userOtp.Email && x.Otp==userOtp.Otp);
+            var user_Otp = _userOtpRepository.GetAll().FirstOrDefault(x => x.Email == userOtp.Email && x.Otp == userOtp.Otp);
             if (user_Otp == null)
             {
                 userOtp.Otp = string.Empty;
@@ -215,8 +216,8 @@ namespace DCRM.Service.Service
                 return user_Otp;
 
             }
-            
-           
+
+
         }
 
         public long MatchOtp1(string phoneMumber, string type)
@@ -285,9 +286,61 @@ namespace DCRM.Service.Service
             {
                 var doctor = _doctorRepository.Get(forgotPassword.EntityId);
                 doctor.Password = forgotPassword.NewPassword;
-                doctor.Updated_At= DateTime.Now;
+                doctor.Updated_At = DateTime.Now;
                 _doctorRepository.Update(doctor);
             }
         }
+
+        public string ChangePassword(ChangePasswordRequest changePassword)
+        {
+            string message = string.Empty;
+            string oldPassword = EncryptionDecryptionUsingSymmetricKey.EncryptString(_configuration.GetSection("PasswordHasKey").Value, changePassword.OldPassword);
+            if (changePassword.Type.ToLower()=="staff")
+            {
+                
+                var staff = _staffRepository.GetAll().FirstOrDefault(x => x.Id == changePassword.Id && x.Password== oldPassword);
+                if (staff!=null)
+                {
+                    changePassword.NewPassword = EncryptionDecryptionUsingSymmetricKey.EncryptString(_configuration.GetSection("PasswordHasKey").Value, changePassword.NewPassword);
+                    staff.Password = changePassword.NewPassword;
+                    _staffRepository.Update(staff);
+                }
+                else
+                {
+                    message = "Old password doesnt match.";
+                }
+            }
+            else if(changePassword.Type.ToLower() == "doctor")
+            {
+                var doctor = _doctorRepository.GetAll().FirstOrDefault(x => x.Id == changePassword.Id && x.Password == oldPassword);
+                if (doctor!=null)
+                {
+                    changePassword.NewPassword = EncryptionDecryptionUsingSymmetricKey.EncryptString(_configuration.GetSection("PasswordHasKey").Value, changePassword.NewPassword);
+                    doctor.Password = changePassword.NewPassword;
+                    _doctorRepository.Update(doctor);
+                }
+                else
+                {
+                    message = "Old password doesnt match.";
+                }
+
+            }
+            else
+            {
+                var user = _userRepository.GetAll().FirstOrDefault(x => x.Id == changePassword.Id && x.Password == oldPassword);
+                if (user != null)
+                {
+                    changePassword.NewPassword = EncryptionDecryptionUsingSymmetricKey.EncryptString(_configuration.GetSection("PasswordHasKey").Value, changePassword.NewPassword);
+                    user.Password = changePassword.NewPassword;
+                    _userRepository.Update(user);
+                }
+                else
+                {
+                    message = "Old password doesnt match.";
+                }
+            }
+            return message;
+        }
     }
+    
 }

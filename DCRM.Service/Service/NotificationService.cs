@@ -43,6 +43,7 @@ namespace DCRM.Service.Service
             sb.Append("<br/>");
             sb.Append("<br/>");
             sb.Append("Regards");
+            sb.Append("<br/>");
             sb.Append("Admin Virmani");
             var message = new MailMessage
             {

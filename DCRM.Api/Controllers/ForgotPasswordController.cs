@@ -1,5 +1,7 @@
-﻿using DCRM.Common.Dto;
+﻿using DCRM.Common;
+using DCRM.Common.Dto;
 using DCRM.Common.Entities;
+using DCRM.Common.Request;
 using DCRM.Service.IService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -104,11 +106,30 @@ namespace DCRM.Api.Controllers
                 return BadRequest("otp is invalid");
             }
         }
-
+        //string password = EncryptionDecryptionUsingSymmetricKey.EncryptString(changePassword.NewPassword);
         [HttpPost("ResetPassword")]
         public IActionResult ResetPassword(ForgotPassword forgotPassword)
         {
              _forgotPasswordService.ResetPassword(forgotPassword);
+            return Ok();
+        }
+
+        [HttpPost("ChangePassword")]
+        public IActionResult ChangePassword(ChangePasswordRequest changePassword)
+        {
+            if (changePassword.NewPassword.Equals(changePassword.ConfirmPassword))
+            {
+                string msg = _forgotPasswordService.ChangePassword(changePassword);
+                if (!string.IsNullOrEmpty(msg))
+                {
+                    throw new Exception(msg);
+                }
+            }
+            else
+            {
+                throw new Exception("passwords did not match");
+            }
+           
             return Ok();
         }
     }
