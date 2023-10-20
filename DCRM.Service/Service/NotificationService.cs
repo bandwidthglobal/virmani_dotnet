@@ -25,20 +25,17 @@ namespace DCRM.Service.Service
 
         public void SendMail(NotificationRequest notification)
         {
-            var smtpSetting = _configuration.GetSection("SMTPSetting:Smtp").Value;
             string smtpServer = _configuration.GetSection("SMTPSetting:Smtp").Value;
-            string port = _configuration.GetSection("SMTPSetting:Port").Value; //Convert.ToString(smtpSetting.GetSection("Port"));
-            string userId = _configuration.GetSection("SMTPSetting:UserId").Value; //Convert.ToString(smtpSetting.GetSection("UserId"));
-            string password = _configuration.GetSection("SMTPSetting:Password").Value; //Convert.ToString(smtpSetting.GetSection("Password"));
+            string port = _configuration.GetSection("SMTPSetting:Port").Value; 
+            string userId = _configuration.GetSection("SMTPSetting:UserId").Value;
+            string password = _configuration.GetSection("SMTPSetting:Password").Value;
             string subject = _configuration.GetSection("SMTPSetting:Subject").Value;
-            //string toCC = "info@creditinsta.com";
             const string fromEmail = "akjs005@hotmail.com";
             var message = new MailMessage
             {
                 From = new MailAddress(fromEmail),
                 To = { notification.EmailAddress },
-                //CC = { toCC },
-                Subject = "",
+                Subject = subject,
                 Body = "this is test",
                 DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure
             };
@@ -46,8 +43,8 @@ namespace DCRM.Service.Service
             using (SmtpClient smtpClient = new SmtpClient(smtpServer))
             {
                 smtpClient.Credentials = new NetworkCredential(userId, password);
-                smtpClient.Port = Convert.ToInt32(587);
-                smtpClient.UseDefaultCredentials = true;
+                smtpClient.Port = Convert.ToInt32(port);
+                smtpClient.UseDefaultCredentials = false;
                 smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtpClient.Timeout = 20000;
                 smtpClient.EnableSsl = true;
@@ -64,31 +61,6 @@ namespace DCRM.Service.Service
                 from: new Twilio.Types.PhoneNumber("++12565988563"),
                 to: new Twilio.Types.PhoneNumber("+919312998984")
             );
-
-
-            //string result = string.Empty;
-            //string msg =  "123456 is the OTP to verify your mobile number on CreditInsta. Please dont share the OTP with anyone for security reasons.";
-            //string uri = "https://foxxsms.com/sms//submitsms.jsp?user=sparkdg&key=735e2837d8XX&mobile=+91" + notification.MobileNumber + "&message=" + msg + "&senderid=CRINST&accusage=1";
-
-            //string response = string.Empty;
-            //HttpWebRequest req = WebRequest.Create(new Uri(uri)) as HttpWebRequest;
-            //req.KeepAlive = false;
-            //req.Method = "GET";
-            //req.ContentType = "application/json";
-            //try
-            //{
-            //    HttpWebResponse resp = req.GetResponse() as HttpWebResponse;
-            //    using (StreamReader loResponseStream = new StreamReader(resp.GetResponseStream())) //, enc
-            //    {
-            //        response = loResponseStream.ReadToEnd();
-            //        loResponseStream.Close();
-            //        resp.Close();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception(ex.Message);
-            //}
         }
     }
 }

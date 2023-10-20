@@ -1,5 +1,7 @@
 ﻿using DCRM.Common.Authorization;
+using DCRM.Common.Dto;
 using DCRM.Common.Entities;
+using DCRM.Common.Entity;
 using DCRM.Service.IService;
 using Demo_Api.Models;
 using Microsoft.AspNetCore.Http;
@@ -96,6 +98,23 @@ namespace DCRM.Api.Controllers
         public List<Payment_Details_List> GetReceived(long paymentId)
         {
             return _paymentService.GetReceivedPayment(paymentId);
+        }
+
+        [HttpGet("Get/PaymentReport/{paymentId}")]
+        public PaymentReportDto PaymentReport(long paymentId)
+        {
+            PaymentReportDto paymentReportDto = new PaymentReportDto();
+            paymentReportDto= _paymentService.GetPaymentReport(paymentId);
+            return paymentReportDto;
+        }
+
+        [HttpGet("Get/PaymentReports")]
+        public List<PaymentReportDto> PaymentReportList()
+        {
+            List<PaymentReportDto> paymentReports=new List<PaymentReportDto>();
+            var user = (Request.HttpContext.Items["User"] as User);
+            paymentReports= _paymentService.GetPaymentReportList(user.Id);
+            return paymentReports;
         }
     }
 }

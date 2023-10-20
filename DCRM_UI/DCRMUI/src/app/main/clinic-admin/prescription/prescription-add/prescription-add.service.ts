@@ -8,10 +8,12 @@ import { User } from '../../../../auth/models';
 @Injectable()
 export class PrescriptionAddService implements Resolve<any> {
     apiData: any;
-    onPrescriptionEditChanged: BehaviorSubject<any>;
+    onDrugChanged: BehaviorSubject<any>;
+    onPatientChanged: BehaviorSubject<any>;
     id;
     currentUser: any;
-
+    drugList: any;
+    patientList: any;
     /**
      * Constructor
      *
@@ -20,7 +22,8 @@ export class PrescriptionAddService implements Resolve<any> {
     constructor(private _httpClient: HttpClient) {
         // Set the defaults
         this.currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
-        this.onPrescriptionEditChanged = new BehaviorSubject({});
+        this.onDrugChanged = new BehaviorSubject({});
+        this.onPatientChanged = new BehaviorSubject({});
     }
 
     /**
@@ -34,43 +37,81 @@ export class PrescriptionAddService implements Resolve<any> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
         return new Promise<void>((resolve, reject) => {
-            Promise.all([this.getStaff()]).then(() => {
+            Promise.all([]).then(() => {
                 resolve();
             }, reject);
         });
     }
-    getStaff() {
-
+    getDrug() {
+        const url = `${environment.apiUrl}/Drug/GetMedicineBrands`;
+        return new Promise((resolve, reject) => {
+            this._httpClient.get(url).subscribe((response: any) => {
+                this.drugList = response;
+                this.onDrugChanged.next(this.drugList);
+                resolve(this.drugList);
+            }, reject);
+        });
     }
-    //getBrandlist(): Promise<any[]> {
-    //    const url = `${environment.apiUrl}/Drug/GetMedicineBrands`;
-    //    return new Promise((resolve, reject) => {
-    //        this._httpClient.get(url).subscribe((response: any) => {
-    //            this.medicinBrands = response;
-    //            this.onMedicinBrandChanged.next(this.medicinBrands);
-    //            resolve(this.medicinBrands);
-    //        }, reject);
-    //    });
-    //}
-    //getCategoryList(): Promise<any[]> {
-    //    const url = `${environment.apiUrl}/Drug/GetMedicineCategoris`;
-    //    return new Promise((resolve, reject) => {
-    //        this._httpClient.get(url).subscribe((response: any) => {
-    //            this.medicinCategories = response;
-    //            this.onMedicinCategoriesChanged.next(this.medicinCategories);
-    //            resolve(this.medicinCategories);
-    //        }, reject);
-    //    });
-    //}
-    update(drug: any) {
+    getUserChamber(): Observable<any> {
+        let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.get(`${environment.apiUrl}/User/GetUserChamber/` + currentUser.id, requestOptions);
+    }
+
+    getPatients(): Observable<any> {
+        let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.get(`${environment.apiUrl}/Patient/Get/Names`, requestOptions);
+    }
+    getDrugs(): Observable<any> {
+        let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.get(`${environment.apiUrl}/Drug/GateAll`, requestOptions);
+    }
+    getDrugCategories(): Observable<any> {
+        let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.get(`${environment.apiUrl}/Drug/GetMedicineCategoris`, requestOptions);
+    }
+    save(payload: any): Observable<any> {
+        debugger;
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${this.currentUser.jwtToken}`
         });
         const requestOptions = { headers: headers };
-        debugger;
-        return this._httpClient.post<any>(`${environment.apiUrl}/Drug/Create`, drug, requestOptions);
+        return this._httpClient.post(`${environment.apiUrl}/Prescription/Create`, payload, requestOptions);
     }
-
-
+    savePatient(payload: any): Observable<any> {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.post(`${environment.apiUrl}/Patient/Create`, payload, requestOptions);
+    }
+    saveDrug(payload: any): Observable<any> {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.post(`${environment.apiUrl}/Drug/Create`, payload, requestOptions);
+    }
 }

@@ -42,6 +42,11 @@ const routes: Routes = [
          path: 'dealer',
          loadChildren: () => import('./dealer/dealerdata.module').then(m => m.DealerDataModule)
     }
+    ,
+    {
+        path: 'reports',
+        loadChildren: () => import('./report/reportdata.module').then(m => m.ReportDataModule)
+    }
 ];
 
 FullCalendarModule.registerPlugins([dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]);

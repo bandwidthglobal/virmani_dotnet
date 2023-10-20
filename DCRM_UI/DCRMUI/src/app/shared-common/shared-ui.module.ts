@@ -13,7 +13,7 @@ const components = [
   UiTextInputComponent,
   UiEmailInputComponent,
   UiDateInputComponent,
-  UiSelectInputComponent
+  UiSelectInputComponent,
 ];
 
 

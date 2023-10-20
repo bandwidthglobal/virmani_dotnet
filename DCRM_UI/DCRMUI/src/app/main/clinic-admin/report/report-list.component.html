@@ -1,0 +1,255 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <!-- User List -->
+        <section class="users-list-wrapper">
+            <!-- users filter start -->
+            <div class="card">
+                <h5 class="card-header">Search</h5>
+                <div class="card-body">
+                    <div class="users-list-filter">
+                        <div class="row">
+                            <!--<div class="col-3">
+                                <div class="form-group">
+                                    <label>Select Patient</label>
+                                    <select id="patient_id" name="patient_id" (change)="searchPatient($event)" class="form-control">
+                                        <option value="">--Select--</option>
+                                        <option *ngFor="let patient of patientList" value="patient.id">{{patient.name}}</option>
+                                    </select>
+                                </div>
+                            </div>-->
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label>Select Doctor</label>
+                                    <select (change)="searchDoctor($event)" class="form-control">
+                                        <option value="">--Select--</option>
+                                        <option *ngFor="let doc of doctorList" value="doc.id">{{doc.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label>Select Patient</label>
+                                    <select id="patient_id" name="patient_id" (change)="searchPatient($event)" class="form-control">
+                                        <option value="">--Select--</option>
+                                        <option *ngFor="let patient of patientList" value="patient.id">{{patient.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <label>Start Date</label>
+                                    <input type="date" name="start" id="start" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <label>End Date</label>
+                                    <input type="date" name="end" id="end" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <button class="btn btn-primary btn-lg mt-30" name="search" (click)="searchData()" value="search">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- users filter end -->
+
+            <div class="card pd-25">
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div class="d-flex justify-content-between align-items-center m-1">
+                            <label class="d-flex align-items-center">
+                                Show
+                                <select class="form-control mx-25" [(ngModel)]="selectedOption">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                                entries
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12 d-flex justify-content-start justify-content-md-end">
+                        <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pb-md-0">
+                            <label class="d-flex align-items-center ml-1 ml-md-0">
+                                Search:<input [(ngModel)]="searchValue"
+                                              name="searchValue"
+                                              type="search"
+                                              class="form-control ml-25"
+                                              (keyup)="filterUpdate($event)"
+                                              (search)="filterUpdate($event)" />
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+                <ngx-datatable [rows]="rows"
+                               [rowHeight]="50"
+                               class="bootstrap core-bootstrap"
+                               [limit]="selectedOption"
+                               [columnMode]="ColumnMode.force"
+                               [headerHeight]="50"
+                               [footerHeight]="50"
+                               [scrollbarH]="true">
+                    <ngx-datatable-column name="Date" prop="workDoneDate">
+                        <ng-template ngx-datatable-cell-template let-row="row">
+                            <div class="row">
+                                <div class="col-12">{{row.workDoneDate | date: 'dd/MM/yyyy'}}</div>
+                            </div>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Doctor Name" prop="doctorName" [width]="250"></ngx-datatable-column>
+                    <ngx-datatable-column name="Patient Name" prop="patientName" [width]="250"></ngx-datatable-column>
+                    <ngx-datatable-column name="Tooth Name" prop="toothName" [width]="250">
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Notes & Diagnosis" prop="noteDiagnosis" [width]="250">
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Paid Amount" prop="paidAmount" [width]="120">
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Work Done" [width]="100" [sortable]="false">
+                        <ng-template ngx-datatable-cell-template let-row="row">
+                            <a class="mr-1" style="font-size:18px" container="body"
+                               placement="top" ngbTooltip="View" (click)="workdoneView(row.id)">
+                                <i size="18" class="fa fa-eye"></i>
+                            </a>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Action" [width]="100" [sortable]="false">
+                        <ng-template ngx-datatable-cell-template let-row="row">
+                            <a class="mr-1" style="font-size:18px" container="body"
+                               placement="top" ngbTooltip="View">
+                                <i class="fa fa-print"></i>
+                            </a>
+                        </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+            </div>
+        </section>
+        <!--/ User List -->
+    </div>
+    <div class="modal fade my-modal" tabindex="-1" role="dialog" #workdoneModal style="display:none">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Work Done</h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <!--<center>-->
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th width="30%">Tooth Name</th>
+                                <th width="10%"> : </th>
+                                <td><span id="tooth_name">{{workDoneData.toothName}}</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <th width="30%">Work Done</th>
+                                <th width="10%"> : </th>
+                                <td><span id="work_done">{{workDoneData.workDoneDate| date: 'dd/MM/yyyy'}}</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <th width="30%">Treatement Code</th>
+                                <th width="10%"> : </th>
+                                <td><span id="treatment_code">{{workDoneData.treatementCode}}</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <th width="30%">Doctor </th>
+                                <th width="10%"> : </th>
+                                <td><span class="text-capitalize" id="doctor_name">{{workDoneData.doctorName}}</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th width="30%">Patient Name</th>
+                                <th width="10%"> : </th>
+                                <td><span class="text-capitalize" id="patient_name">{{workDoneData.patientName}}</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <th width="30%">Note &amp; Diagnosis</th>
+                                <th width="10%"> : </th>
+                                <td><span id="note_diagnosis">{{workDoneData.noteDiagnosis}} </span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th width="30%">Total Amount</th>
+                                <th width="10%"> : </th>
+                                <td><span id="total_amount">{{workDoneData.totalAmount}}</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th width="30%">Paid mount</th>
+                                <th width="10%"> : </th>
+                                <td><span id="paid_amount">{{workDoneData.paidAmount}}</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th width="30%">Balance mount</th>
+                                <th width="10%"> : </th>
+                                <td><span id="balance_amount">{{workDoneData.balance}}</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <h4 class="modal-title">RECEIVED PAYMENT DETAILS</h4>
+                    <table id="payment_detial" class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="success table-info">
+                                <th scope="col">#</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr *ngFor="let payment of paymentDetailsList let i=index">
+                                <td>{{i+1}}</td>
+                                <td>{{payment.created_At| date: 'dd/MM/yyyy'}}</td>
+                                <td>{{payment.description}}</td>
+                                <td>{{payment.price}}</td>
+                                <td>{{payment.payment_Type}}</td>
+                            </tr>
+                            <!--<tr *ngIf="isNoData==true"><td colspan="4">No Records</td></tr>-->
+
+                        </tbody>
+                    </table>
+                    <!--</center>-->
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <p type="button" class="pull-right btn btn-danger" (click)="close()" aria-label="Close">Close</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
-﻿using DCRM.Repository.Database;
+﻿using DCRM.Common.Entities;
+using DCRM.Repository.Database;
 using DCRM.Repository.IRepository;
 using DCRM.Repository.Repository;
 using DCRM.Service.IService;
@@ -79,7 +80,7 @@ namespace DCRM.Service
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<IExperienceService, ExperienceService>();
             services.AddScoped<IForgotPasswordService, ForgotPasswordService>();
-            
+            services.AddScoped<ISettingService, SettingService>();
             #endregion
             return services;
         }
