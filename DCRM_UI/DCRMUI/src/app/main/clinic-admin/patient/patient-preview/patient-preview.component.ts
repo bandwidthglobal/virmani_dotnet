@@ -69,15 +69,16 @@ export class PatientPreviewComponent implements OnInit, OnDestroy {
         private _patientPreviewService: PatientPreviewService, private _formBuilder: UntypedFormBuilder, private _route: ActivatedRoute, private _toastrService: ToastrService) {
         this._unsubscribeAll = new Subject();
     }
+
     ngOnInit(): void {
         this._patientPreviewService.onPatientChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
             this.apiData = response;
-            debugger;
+            // debugger;
         });
     }
-    onTabChange(obj) {
-       
-    }
+
+    onTabChange(obj) { }
+
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();

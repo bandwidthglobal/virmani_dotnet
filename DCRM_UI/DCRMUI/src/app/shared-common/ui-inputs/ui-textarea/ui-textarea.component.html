@@ -1,26 +1,8 @@
-<mat-form-field class="payrollService-mat-dense payrollService-mat-textarea w-full"
-                [ngClass]="{'mat-form-field-modify': isModified}"
-                subscriptSizing="fixed">
-  <mat-label *ngIf="label"> {{label}} </mat-label>
-  <mat-icon
-            matPrefix
-            class="hidden sm:flex icon-size-5"
-            [svgIcon]="'heroicons_solid:menu-alt-2'">
-  </mat-icon>
-
-  <textarea
-            matInput
-            autocomplete="off"
-            class="font-medium leading-5 my-1"
-            [formControl]="control"
-            [placeholder]="placeholder"
-            rows="3"
-            matTextareaAutosize>
-  </textarea>
-
-  <mat-error *ngFor="let error of control.errors | errorKeys">
-    {{ messages[error] }}
-    <span *ngIf="error === 'max'"> {{control.errors['max'].max |json }} </span>
-    <span *ngIf="error === 'min'"> {{control.errors['min'].min |json }} </span>
-  </mat-error>
-</mat-form-field>
+<div *ngIf="control" class="form-group">
+  <label *ngIf="label" [class.invalid-class]="submitted && control.errors">{{ label }}</label>
+  <textarea [formControl]="control" class="form-control" [placeholder]="placeholder"
+    [ngClass]="{ 'is-invalid': submitted && control.errors }" rows="8"></textarea>
+  <ng-container *ngFor="let error of control.errors | errorKeys">
+    <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+  </ng-container>
+</div>

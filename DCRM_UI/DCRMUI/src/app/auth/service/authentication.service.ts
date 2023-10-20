@@ -11,7 +11,7 @@ import { request } from 'https';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   //public
-  
+
   public currentUser: Observable<User>;
 
   //private
@@ -38,30 +38,30 @@ export class AuthenticationService {
   get isAdmin() {
     return this.currentUser && this.currentUserSubject.value.role === Role.Admin;
   }
-    /**
-     *  Confirms if user is user
-     */
-    get isUser() {
-        return this.currentUser && this.currentUserSubject.value.role === Role.User;
-    }
+  /**
+   *  Confirms if user is user
+   */
+  get isUser() {
+    return this.currentUser && this.currentUserSubject.value.role === Role.User;
+  }
   /**
    *  Confirms if user is staff
    */
-    get isStaff() {
+  get isStaff() {
     return this.currentUser && this.currentUserSubject.value.role === Role.Staff;
   }
-    /**
-      *  Confirms if user is patient
-      */
-    get isPatient() {
-        return this.currentUser && this.currentUserSubject.value.role === Role.Patient;
-    }
-    /**
-      *  Confirms if user is doctor
-      */
-    get isDoctor() {
-        return this.currentUser && this.currentUserSubject.value.role === Role.Doctor;
-    }
+  /**
+    *  Confirms if user is patient
+    */
+  get isPatient() {
+    return this.currentUser && this.currentUserSubject.value.role === Role.Patient;
+  }
+  /**
+    *  Confirms if user is doctor
+    */
+  get isDoctor() {
+    return this.currentUser && this.currentUserSubject.value.role === Role.Doctor;
+  }
   /**
    * User login
    *
@@ -69,26 +69,26 @@ export class AuthenticationService {
    * @param password
    * @returns user
    */
-    login1(email: string, password: string) {
+  login1(email: string, password: string) {
 
-        var authenticateRequest;
-        authenticateRequest.Email = email;
-        authenticateRequest.Password = password;
+    var authenticateRequest;
+    authenticateRequest.Email = email;
+    authenticateRequest.Password = password;
     return this._http
-        .post<any>(`${environment.apiUrl}/Authenticate/User/user`, { email, password })
+      .post<any>(`${environment.apiUrl}/Authenticate/User/user`, { email, password })
       .pipe(
         map(user => {
           // login successful if there's a jwt token in the response
           if (user && user.token) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(user));
-              localStorage.setItem('token', user.token);
+            localStorage.setItem('token', user.token);
             // Display welcome toast!
             setTimeout(() => {
               this._toastrService.success(
                 'You have successfully logged in as an ' +
-                  user.role +
-                  ' user to Vuexy. Now you can start to explore. Enjoy! 🎉',
+                user.role +
+                ' user to Vuexy. Now you can start to explore. Enjoy! 🎉',
                 '👋 Welcome, ' + user.firstName + '!',
                 { toastClass: 'toast ngx-toastr', closeButton: true }
               );
@@ -103,38 +103,38 @@ export class AuthenticationService {
       );
   }
 
-    login(email: string, password: string) {
-        var authenticateRequest = { email: email, password: password };
-        return this._http
-            .post<any>(`${environment.apiUrl}/Authenticate/user`, authenticateRequest)
-            .pipe(
-                map(user => {
-                    // login successful if there's a jwt token in the response
-                    debugger;
-                    if (user!=null && user.token!='') {
-                        // store user details and jwt token in local storage to keep user logged in between page refreshes
-                        localStorage.setItem('currentUser', JSON.stringify(user));
-                      
-                        localStorage.setItem('token', user.token);
-                        // Display welcome toast!
-                        setTimeout(() => {
-                            this._toastrService.success(
-                                'You have successfully logged in as an ' +
-                                user.role +
-                                ' to Virmani. Now you can start to explore. Enjoy! 🎉',
-                                '👋 Welcome, ' + user.name + '!',
-                                { toastClass: 'toast ngx-toastr', closeButton: true }
-                            );
-                        }, 2500);
+  login(email: string, password: string) {
+    var authenticateRequest = { email: email, password: password };
+    return this._http
+      .post<any>(`${environment.apiUrl}/Authenticate/user`, authenticateRequest)
+      .pipe(
+        map(user => {
+          // login successful if there's a jwt token in the response
+          // debugger;
+          if (user != null && user.token != '') {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('currentUser', JSON.stringify(user));
 
-                        // notify
-                        this.currentUserSubject.next(user);
-                    }
+            localStorage.setItem('token', user.token);
+            // Display welcome toast!
+            setTimeout(() => {
+              this._toastrService.success(
+                'You have successfully logged in as an ' +
+                user.role +
+                ' to Virmani. Now you can start to explore. Enjoy! 🎉',
+                '👋 Welcome, ' + user.name + '!',
+                { toastClass: 'toast ngx-toastr', closeButton: true }
+              );
+            }, 2500);
 
-                    return user;
-                })
-            );
-    }
+            // notify
+            this.currentUserSubject.next(user);
+          }
+
+          return user;
+        })
+      );
+  }
 
 
   /**
@@ -143,8 +143,8 @@ export class AuthenticationService {
    */
   logout() {
     // remove user from local storage to log user out
-      localStorage.removeItem('currentUser');
-      localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
     // notify
     this.currentUserSubject.next(null);
   }

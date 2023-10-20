@@ -6,9 +6,9 @@ import { PatientPreviewService } from 'app/main/clinic-admin/patient/patient-pre
 import { ActivatedRoute, Router } from '@angular/router';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 @Component({
-  selector: 'app-lab',
-  templateUrl: './lab.component.html',
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-lab',
+    templateUrl: './lab.component.html',
+    encapsulation: ViewEncapsulation.None
 })
 export class LabComponent implements OnInit {
     public calendarRef = [];
@@ -121,7 +121,7 @@ export class LabComponent implements OnInit {
                     this.rows = this.data;
                     this.tempData = this.rows;
                     this.tempFilterData = this.rows;
-                    debugger;
+                    // debugger;
                 });
             }
         });

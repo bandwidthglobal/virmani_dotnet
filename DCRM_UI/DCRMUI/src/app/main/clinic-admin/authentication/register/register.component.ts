@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { takeUntil,first } from 'rxjs/operators';
+import { takeUntil, first } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { RegisterService } from 'app/main/clinic-admin/authentication/register/register.service';
 import { CoreConfigService } from '@core/services/config.service';
@@ -22,8 +22,8 @@ export class RegisterComponent implements OnInit {
     public loading = false;
     public returnUrl: string;
     public error = '';
-    public register:Register = { id:0,name: "", email: "", password: "", IsTermsandConditions:true,role:Role.User}
-;
+    public register: Register = { id: 0, name: "", email: "", password: "", IsTermsandConditions: true, role: Role.User }
+        ;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -81,14 +81,14 @@ export class RegisterComponent implements OnInit {
         if (this.registerForm.invalid) {
             return;
         }
-        
+
         this.loading = true;
         this._registerService
             .register(this.register)
             .pipe()
             .subscribe(
                 data => {
-                    debugger;
+                    // debugger;
                     this._router.navigate(['/']);
                 },
                 error => {

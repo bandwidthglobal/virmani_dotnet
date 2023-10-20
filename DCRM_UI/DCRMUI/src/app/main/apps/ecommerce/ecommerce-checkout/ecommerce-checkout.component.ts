@@ -36,7 +36,7 @@ export class EcommerceCheckoutComponent implements OnInit {
    *
    * @param {EcommerceService} _ecommerceService
    */
-  constructor(private _ecommerceService: EcommerceService) {}
+  constructor(private _ecommerceService: EcommerceService) { }
 
   // Public Methods
   // -----------------------------------------------------------------------------------------------------
@@ -81,7 +81,7 @@ export class EcommerceCheckoutComponent implements OnInit {
 
     // Subscribe to Cartlist change
     this._ecommerceService.onCartListChange.subscribe(res => (this.cartLists = res));
-      debugger;
+    // debugger;
     // Subscribe to Wishlist change
     this._ecommerceService.onWishlistChange.subscribe(res => (this.wishlist = res));
 

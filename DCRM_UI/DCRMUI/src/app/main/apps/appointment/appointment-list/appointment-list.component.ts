@@ -9,9 +9,9 @@ import { CoreConfigService } from '@core/services/config.service';
 import { AppointmentListService } from 'app/main/apps/appointment/appointment-list/appointment-list.service';
 
 @Component({
-    selector: 'app-appointment-list',
-    templateUrl: './appointment-list.component.html',
-    styleUrls: ['./appointment-list.component.scss'],
+  selector: 'app-appointment-list',
+  templateUrl: './appointment-list.component.html',
+  styleUrls: ['./appointment-list.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class AppointmentListComponent implements OnInit, OnDestroy {
@@ -49,7 +49,7 @@ export class AppointmentListComponent implements OnInit, OnDestroy {
    * @param {CalendarService} _calendarService
    * @param {InvoiceListService} _staffListService
    */
-    constructor(private _staffListService: AppointmentListService, private _coreConfigService: CoreConfigService) {
+  constructor(private _staffListService: AppointmentListService, private _coreConfigService: CoreConfigService) {
     this._unsubscribeAll = new Subject();
   }
 
@@ -66,10 +66,10 @@ export class AppointmentListComponent implements OnInit, OnDestroy {
     this.selectedStatus = this.selectStatus[0];
 
     const val = event.target.value.toLowerCase();
-      debugger;
+    // debugger;
     // filter our data
-      const temp = this.tempData.filter(function (d) {
-          debugger;
+    const temp = this.tempData.filter(function (d) {
+      // debugger;
       return d.client.name.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
@@ -119,7 +119,7 @@ export class AppointmentListComponent implements OnInit, OnDestroy {
       // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)
       if (config.layout.animation === 'zoomIn') {
         setTimeout(() => {
-            this._staffListService.onInvoiceListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+          this._staffListService.onInvoiceListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
             this.data = response;
             this.rows = this.data;
             this.tempData = this.rows;
@@ -127,7 +127,7 @@ export class AppointmentListComponent implements OnInit, OnDestroy {
           });
         }, 450);
       } else {
-          this._staffListService.onInvoiceListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+        this._staffListService.onInvoiceListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
           this.data = response;
           this.rows = this.data;
           this.tempData = this.rows;

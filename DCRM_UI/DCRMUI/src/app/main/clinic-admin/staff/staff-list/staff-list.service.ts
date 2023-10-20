@@ -20,7 +20,7 @@ export class StaffListService implements Resolve<any> {
         this.currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
         this.onStaffListChanged = new BehaviorSubject({});
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-        debugger;
+        // debugger;
     }
 
     /**
@@ -48,9 +48,9 @@ export class StaffListService implements Resolve<any> {
                 'Authorization': `Bearer ${currentUser.jwtToken}`
             });
             const requestOptions = { headers: headers };
-            this._httpClient.get(`${environment.apiUrl}/Staff/GetAll`,requestOptions).subscribe((response: any) => {
+            this._httpClient.get(`${environment.apiUrl}/Staff/GetAll`, requestOptions).subscribe((response: any) => {
                 this.rows = response;
-                debugger;
+                // debugger;
                 this.onStaffListChanged.next(this.rows);
                 resolve(this.rows);
             }, reject);

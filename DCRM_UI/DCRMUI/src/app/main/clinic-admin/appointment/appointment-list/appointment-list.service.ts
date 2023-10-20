@@ -20,7 +20,7 @@ export class AppointmentListService implements Resolve<any> {
         this.currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
         this.onAppointmentListChanged = new BehaviorSubject({});
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-        debugger;
+        // debugger;
     }
 
     /**
@@ -48,9 +48,9 @@ export class AppointmentListService implements Resolve<any> {
                 'Authorization': `Bearer ${currentUser.jwtToken}`
             });
             const requestOptions = { headers: headers };
-            this._httpClient.get(`${environment.apiUrl}/Appointment/GetAll`,requestOptions).subscribe((response: any) => {
+            this._httpClient.get(`${environment.apiUrl}/Appointment/GetAll`, requestOptions).subscribe((response: any) => {
                 this.rows = response;
-                debugger;
+                // debugger;
                 this.onAppointmentListChanged.next(this.rows);
                 resolve(this.rows);
             }, reject);

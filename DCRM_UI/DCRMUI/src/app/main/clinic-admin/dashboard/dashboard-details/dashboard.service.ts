@@ -20,7 +20,7 @@ export class DashboardService implements Resolve<any> {
         this.currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
         this.onDoctorListChanged = new BehaviorSubject({});
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-       
+
     }
 
     /**
@@ -41,7 +41,7 @@ export class DashboardService implements Resolve<any> {
      * Get rows
      */
     getDataTableRows(): Promise<any[]> {
-      
+
         let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
         return new Promise((resolve, reject) => {
             const headers = new HttpHeaders({
@@ -51,7 +51,7 @@ export class DashboardService implements Resolve<any> {
             const requestOptions = { headers: headers };
             this._httpClient.get(`${environment.apiUrl}/Dashboard/Get`, requestOptions).subscribe((response: any) => {
                 this.rows = response;
-                debugger;
+                // debugger;
                 this.onDoctorListChanged.next(this.rows);
                 resolve(this.rows);
             }, reject);

@@ -1,7 +1,7 @@
-import { CommonModule } from '@angular/common';
+// import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
+// import { RouterModule, Routes } from '@angular/router';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -14,16 +14,16 @@ import { CorePipesModule } from '@core/pipes/pipes.module';
 import { CoreSidebarModule } from '@core/components';
 
 import { PatientListComponent } from 'app/main/clinic-admin/patient/patient-list/patient-list.component';
-import {  PatientListService } from 'app/main/clinic-admin/patient/patient-list/patient-list.service';
+import { PatientListService } from 'app/main/clinic-admin/patient/patient-list/patient-list.service';
 
-import {  PatientAddComponent } from 'app/main/clinic-admin/patient/patient-add/patient-add.component';
-import {  PatientAddService } from 'app/main/clinic-admin/patient/patient-add/patient-add.service';
+import { PatientAddComponent } from 'app/main/clinic-admin/patient/patient-add/patient-add.component';
+import { PatientAddService } from 'app/main/clinic-admin/patient/patient-add/patient-add.service';
 
 import { PatientEditComponent } from 'app/main/clinic-admin/patient/patient-edit/patient-edit.component';
-import {  PatientEditService } from 'app/main/clinic-admin/patient/patient-edit/patient-edit.service';
+import { PatientEditService } from 'app/main/clinic-admin/patient/patient-edit/patient-edit.service';
 
-import {  PatientPreviewComponent } from 'app/main/clinic-admin/patient/patient-preview/patient-preview.component';
-import {  PatientPreviewService } from 'app/main/clinic-admin/patient/patient-preview/patient-preview.service';
+import { PatientPreviewComponent } from 'app/main/clinic-admin/patient/patient-preview/patient-preview.component';
+import { PatientPreviewService } from 'app/main/clinic-admin/patient/patient-preview/patient-preview.service';
 
 import { PatientinfoComponent } from 'app/main/clinic-admin/patient/patient-preview/patientinfo/patientinfo.component';
 import { PatientAppointmentsComponent } from 'app/main/clinic-admin/patient/patient-preview/patient-appointments/patient-appointments.component';
@@ -37,8 +37,19 @@ import { WorkdoneHistoryComponent } from 'app/main/clinic-admin/patient/patient-
 import { PatientFormComponent } from './patient-form/patient-form.component';
 import { SharedCommonModule } from 'app/shared-common/shared-ui.module';
 import { MaskModule } from 'app/shared-common/directives/mask/mask.module';
+
+import { TreatmentPlanFormComponent } from './patient-preview/treatment-paln/form-page/treatment-plan-form.component';
+import { HotCodeMenuComponent } from './patient-preview/treatment-paln/form-page/hot-code-menu.component';
+
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+
 // routing
-const routes: Routes = [
+import { RouterModule, Routes } from '@angular/router';
+
+export const routes: Routes = [] = [
     {
         path: 'add',
         component: PatientAddComponent,
@@ -95,13 +106,15 @@ const routes: Routes = [
         PriscriptionsComponent,
         TreatmentPalnComponent,
         PaymentsComponent,
-        WorkdoneHistoryComponent
+        WorkdoneHistoryComponent,
+        TreatmentPlanFormComponent,
+        HotCodeMenuComponent
     ],
     imports: [
-        CommonModule,
+        // CommonModule,
         RouterModule.forChild(routes),
         CoreCommonModule,
-        CoreDirectivesModule,
+        // CoreDirectivesModule,
         Ng2FlatpickrModule,
         NgxDatatableModule,
         FormsModule,
@@ -111,7 +124,17 @@ const routes: Routes = [
         CoreSidebarModule,
 
         SharedCommonModule,
-        MaskModule
+        MaskModule,
+
+        
+        MatDialogModule,
+        // PlatformModule,
+        // NestedTreeControl,
+        // Component,
+        // MatTreeNestedDataSource,
+        MatTreeModule,
+        MatIconModule,
+        MatButtonModule,
     ],
     providers: [PatientListService, PatientPreviewService, PatientEditService, PatientAddService, PatientinAppointmentsService],
     exports: [PatientListComponent]

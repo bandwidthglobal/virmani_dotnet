@@ -38,7 +38,7 @@ export class StaffPreviewComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this._staffPreviewService.onStaffPreviewChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
             this.staffData = response;
-            debugger;
+            // debugger;
         });
     }
 

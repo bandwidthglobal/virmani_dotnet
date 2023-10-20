@@ -20,7 +20,7 @@ export class DrugListService implements Resolve<any> {
         this.currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
         this.onDrugListChanged = new BehaviorSubject({});
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-        debugger;
+        // debugger;
     }
 
     /**
@@ -48,7 +48,7 @@ export class DrugListService implements Resolve<any> {
                 'Authorization': `Bearer ${currentUser.jwtToken}`
             });
             const requestOptions = { headers: headers };
-            this._httpClient.get(`${environment.apiUrl}/Drug/GateAll`,requestOptions).subscribe((response: any) => {
+            this._httpClient.get(`${environment.apiUrl}/Drug/GateAll`, requestOptions).subscribe((response: any) => {
                 this.rows = response;
                 this.onDrugListChanged.next(this.rows);
                 resolve(this.rows);

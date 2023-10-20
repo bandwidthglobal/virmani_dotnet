@@ -125,13 +125,13 @@ export class PatientAppointmentsComponent implements OnInit, OnDestroy {
                     this.rows = this.data;
                     this.tempData = this.rows;
                     this.tempFilterData = this.rows;
-                    debugger;
+                    // debugger;
                 });
             }
         });
     }
-    
-   
+
+
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();

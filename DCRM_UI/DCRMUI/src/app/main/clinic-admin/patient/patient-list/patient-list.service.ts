@@ -40,7 +40,7 @@ export class PatientListService implements Resolve<any> {
      * Get rows
      */
     getDataTableRows(): Promise<any[]> {
-        debugger;
+        // debugger;
         let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
         return new Promise((resolve, reject) => {
             const headers = new HttpHeaders({
@@ -48,9 +48,9 @@ export class PatientListService implements Resolve<any> {
                 'Authorization': `Bearer ${currentUser.jwtToken}`
             });
             const requestOptions = { headers: headers };
-            this._httpClient.get(`${environment.apiUrl}/Patient/GetAll`,requestOptions).subscribe((response: any) => {
+            this._httpClient.get(`${environment.apiUrl}/Patient/GetAll`, requestOptions).subscribe((response: any) => {
                 this.rows = response;
-                debugger;
+                // debugger;
                 this.onPatientListChanged.next(this.rows);
                 resolve(this.rows);
             }, reject);
