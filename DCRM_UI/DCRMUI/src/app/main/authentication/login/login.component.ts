@@ -4,7 +4,7 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { takeUntil, first } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
-import { LoginService } from 'app/main/authentication/login/login.service';
+import { AuthenticationService } from 'app/auth/service';
 import { CoreConfigService } from '@core/services/config.service';
 
 @Component({
@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     public returnUrl: string;
     public error = '';
     public passwordTextType: boolean;
+    public type = 'user';
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -36,12 +37,13 @@ export class LoginComponent implements OnInit {
         private _formBuilder: UntypedFormBuilder,
         private _route: ActivatedRoute,
         private _router: Router,
-        private _authenticationService: LoginService
+        private _authenticationService: AuthenticationService
     ) {
         // redirect to home if already logged in
         if (this._authenticationService.currentUserValue) {
             this._router.navigate(['/admin/dashboard']);
         }
+
         this._unsubscribeAll = new Subject();
 
         // Configure the layout
@@ -73,10 +75,11 @@ export class LoginComponent implements OnInit {
     togglePasswordTextType() {
         this.passwordTextType = !this.passwordTextType;
     }
-
-    onSignIn() {
+    onTypeChange(vale) {
+        this.type = vale;
+    }
+    onSubmit() {
         this.submitted = true;
-
         // stop here if form is invalid
         if (this.loginForm.invalid) {
             return;
@@ -84,26 +87,11 @@ export class LoginComponent implements OnInit {
         // Login
         this.loading = true;
         this._authenticationService
-            .login(this.f.email.value, this.f.password.value)
+            .login(this.f.email.value, this.f.password.value, this.type)
             .pipe(first())
             .subscribe(
                 data => {
-                    this._coreConfigService.config = {
-                        layout: {
-                            navbar: {
-                                hidden: false
-                            },
-                            menu: {
-                                hidden: false
-                            },
-                            footer: {
-                                hidden: false
-                            },
-                            customizer: false,
-                            enableLocalStorage: false
-                        }
-                    };
-                    this._router.navigate([this.returnUrl]);
+                    this._router.navigate(['/admin/dashboard']);
                 },
                 error => {
                     this.error = error;
@@ -125,7 +113,7 @@ export class LoginComponent implements OnInit {
         });
 
         // get return url from route parameters or default to '/'
-        this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/dashboard';
+        this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
 
         // Subscribe to config changes
         this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
