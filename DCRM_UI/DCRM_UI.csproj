@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,10 +7,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DCRMUI\src\app\main\pages\dealer\**" />
+    <Compile Remove="DCRMUI\src\app\main\pages\doctor\**" />
+    <Compile Remove="DCRMUI\src\app\main\pages\drug\**" />
     <Compile Remove="DCRMUI\src\app\main\pages\miscellaneous\**" />
+    <Compile Remove="DCRMUI\src\app\main\pages\patient\**" />
+    <Compile Remove="DCRMUI\src\app\main\patient\**" />
+    <Content Remove="DCRMUI\src\app\main\pages\dealer\**" />
+    <Content Remove="DCRMUI\src\app\main\pages\doctor\**" />
+    <Content Remove="DCRMUI\src\app\main\pages\drug\**" />
     <Content Remove="DCRMUI\src\app\main\pages\miscellaneous\**" />
+    <Content Remove="DCRMUI\src\app\main\pages\patient\**" />
+    <Content Remove="DCRMUI\src\app\main\patient\**" />
+    <EmbeddedResource Remove="DCRMUI\src\app\main\pages\dealer\**" />
+    <EmbeddedResource Remove="DCRMUI\src\app\main\pages\doctor\**" />
+    <EmbeddedResource Remove="DCRMUI\src\app\main\pages\drug\**" />
     <EmbeddedResource Remove="DCRMUI\src\app\main\pages\miscellaneous\**" />
+    <EmbeddedResource Remove="DCRMUI\src\app\main\pages\patient\**" />
+    <EmbeddedResource Remove="DCRMUI\src\app\main\patient\**" />
+    <None Remove="DCRMUI\src\app\main\pages\dealer\**" />
+    <None Remove="DCRMUI\src\app\main\pages\doctor\**" />
+    <None Remove="DCRMUI\src\app\main\pages\drug\**" />
     <None Remove="DCRMUI\src\app\main\pages\miscellaneous\**" />
+    <None Remove="DCRMUI\src\app\main\pages\patient\**" />
+    <None Remove="DCRMUI\src\app\main\patient\**" />
   </ItemGroup>
 
 </Project>

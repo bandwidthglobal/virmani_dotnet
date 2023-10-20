@@ -76,26 +76,26 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submitted = true;
+    //this.submitted = true;
      
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-      return;
-    }
-    // Login
-    this.loading = true;
-    this._authenticationService
-      .login(this.f.email.value, this.f.password.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-              this._router.navigate(['/admin/dashboard']);
-        },
-        error => {
-          this.error = error;
-          this.loading = false;
-        }
-      );
+    //// stop here if form is invalid
+    //if (this.loginForm.invalid) {
+    //  return;
+    //}
+    //// Login
+    //this.loading = true;
+    //this._authenticationService
+    //  .login(this.f.email.value, this.f.password.value)
+    //  .pipe(first())
+    //  .subscribe(
+    //    data => {
+    //          this._router.navigate(['/admin/dashboard']);
+    //    },
+    //    error => {
+    //      this.error = error;
+    //      this.loading = false;
+    //    }
+    //  );
   }
 
   // Lifecycle Hooks

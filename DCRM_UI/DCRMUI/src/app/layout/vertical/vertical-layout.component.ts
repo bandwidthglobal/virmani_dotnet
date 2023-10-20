@@ -33,7 +33,7 @@ export class VerticalLayoutComponent implements OnInit, OnDestroy {
   /**
    * On init
    */
-  ngOnInit(): void {
+    ngOnInit(): void {
     // Subscribe to config changes
     this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
       this.coreConfig = config;

@@ -28,21 +28,6 @@
                 <img src="{{ coreConfig.app.appLogoImage }}" alt="brand-logo" height="28" />
             </div>
             <p class="card-text mb-2">Sign in to your <b> Virmani</b> account</p>
-            <!--<ngb-alert [type]="'primary'" [dismissible]="false">
-      <div class="alert-body font-small-2" style="display:none">
-        <p>
-          <small class="mr-50"><span class="font-weight-bold">Admin:</span> admin@demo.com | admin</small>
-        </p>
-        <p>
-          <small class="mr-50"><span class="font-weight-bold">Client:</span> client@demo.com | client</small>
-        </p>
-      </div>
-      <span
-        class="feather icon-help-circle auth-help-icon font-medium-3"
-        placement="left"
-        ngbTooltip="This is just for role based JWT authorization demo purpose"
-      ></span>
-    </ngb-alert>-->
 
             <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
                 <div class="alert-body">
@@ -51,6 +36,9 @@
             </ngb-alert>
 
             <form class="auth-login-form mt-2" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <input type="radio" (change)="onTypeChange($event.target.value)" checked="checked" name="type" value="user" class="mr-5px"/> Admin     <input name="type" (change)="onTypeChange($event.target.value)" type="radio" value="doctor" class="mr-5px ml-5px"/> Doctor    <input name="type" (change)="onTypeChange($event.target.value)" type="radio" value="staff" class="mr-5px ml-5px"/> Staff
+                </div>
                 <div class="form-group">
                     <label class="form-label" for="login-email">Email</label>
                     <input type="text"

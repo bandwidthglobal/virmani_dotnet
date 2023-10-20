@@ -6,7 +6,7 @@ import { RegisterService } from 'app/auth/service/register.service';
 import { CoreConfigService } from '@core/services/config.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Register } from 'app/auth/models/register';
-import { Role } from '../../../../auth/models';
+import { Role } from '../../../auth/models';
 @Component({
     selector: 'app-register',
     templateUrl: './register.component.html',

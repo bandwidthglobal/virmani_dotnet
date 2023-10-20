@@ -7,76 +7,39 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CoreCommonModule } from '@core/common.module';
 
-/*import { ForgotPasswordComponent } from 'app/main/authentication/forgotpassword/forgotpassword.component';*/
-import { LoginComponent } from 'app/authentication/login/login.component';
-import { LoginService } from 'app/authentication/login/login.service';
-//import { RegisterComponent } from 'app/main/authentication/register/register.component';
-//import { ForgotPasswordService } from 'app/main/authentication/forgotpassword/forgotpassword.component';
-//import { LoginComponent } from 'app/main/authentication/login/login.component';
-//import { RegisterComponent } from 'app/main/authentication/register/register.component';
+import { ForgotPasswordComponent } from 'app/main/authentication/forgotpassword/forgotpassword.component';
+import { LoginComponent } from 'app/main/authentication/login/login.component';
+import { LoginService } from 'app/main/authentication/login/login.service';
+import { RegisterComponent } from 'app/main/authentication/register/register.component';
 const routes: Routes = [
     {
-        path: 'logn',
+        path: 'login',
         component: LoginComponent,
-        resolve: {
-            Sas: LoginService
-        },
-        data: { animation: 'LoginComponent' }
     },
-    //{
-    //    path: 'list',
-    //    component: DealerListComponent,
-    //    resolve: {
-    //        uls: DealerListService
-    //    },
-    //    data: { animation: 'DealerListComponent' }
-    //},
-    //{
-    //    path: 'preview/:id',
-    //    component: DealerPreviewComponent,
-    //    resolve: {
-    //        Sds: DealerPreviewService
-    //    },
-    //    data: { path: 'dealer-view/:id', animation: 'DealerPreviewComponent' }
-    //},
-    //{
-    //    path: 'edit/:id',
-    //    component: DealerEditComponent,
-    //    resolve: {
-    //        Ses: DealerEditService
-    //    },
-    //    data: { path: 'dealer-view/:id', animation: 'DealerEditComponent' }
-    //},
-    //{
-    //    path: 'preview',
-    //    redirectTo: '/clinic-admin/dealer/preview/4989' // Redirection
-    //},
-    //{
-    //    path: 'edit',
-    //    redirectTo: '/clinic-admin/dealer/edit/4989' // Redirection
-    //}
+    {
+        path: 'forgotpassword',
+        component: ForgotPasswordComponent
+    },
+    {
+        path: 'register',
+        component: RegisterComponent
+    },
 ];
 @NgModule({
 
     declarations: [
-        /*RegisterComponent,*/
         LoginComponent,
-       /* ForgotPasswordComponent,*/
+        RegisterComponent,
+        ForgotPasswordComponent
     ],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
         CoreCommonModule,
-        //CoreDirectivesModule,
-        //Ng2FlatpickrModule,
-        //NgxDatatableModule,
         FormsModule,
-       /* CorePipesModule,*/
         NgbModule,
-        //NgSelectModule,
-        //CoreSidebarModule
     ],
     providers: [LoginService],
-    exports: [LoginComponent]
+    exports: [LoginComponent, ForgotPasswordComponent, RegisterComponent]
 })
 export class AuthenticationModule {}

@@ -67,6 +67,7 @@ export class ForgotPasswordComponent implements OnInit {
     }
   }
 
+
   // Lifecycle Hooks
   // -----------------------------------------------------------------------------------------------------
 

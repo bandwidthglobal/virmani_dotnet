@@ -48,7 +48,7 @@ export class AppointmentListService implements Resolve<any> {
                 'Authorization': `Bearer ${currentUser.jwtToken}`
             });
             const requestOptions = { headers: headers };
-            this._httpClient.get(`${environment.apiUrl}/Appointment/GetAll`,requestOptions).subscribe((response: any) => {
+            this._httpClient.get(`${environment.apiUrl}/Appointment/GetAppointmentWithPatient`,requestOptions).subscribe((response: any) => {
                 this.rows = response;
                 debugger;
                 this.onAppointmentListChanged.next(this.rows);

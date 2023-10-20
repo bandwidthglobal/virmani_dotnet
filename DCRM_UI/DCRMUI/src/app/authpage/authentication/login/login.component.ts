@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
   public submitted = false;
   public returnUrl: string;
   public error = '';
-  public passwordTextType: boolean;
+    public passwordTextType: boolean;
+    public type = 'user';
 
   // Private
   private _unsubscribeAll: Subject<any>;
@@ -74,10 +75,11 @@ export class LoginComponent implements OnInit {
   togglePasswordTextType() {
     this.passwordTextType = !this.passwordTextType;
   }
-
+    onTypeChange(vale) {
+        this.type = vale;
+    }
   onSubmit() {
     this.submitted = true;
-     
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
@@ -85,7 +87,7 @@ export class LoginComponent implements OnInit {
     // Login
     this.loading = true;
     this._authenticationService
-      .login(this.f.email.value, this.f.password.value)
+        .login(this.f.email.value, this.f.password.value, this.type)
       .pipe(first())
       .subscribe(
         data => {

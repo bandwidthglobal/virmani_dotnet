@@ -346,7 +346,7 @@ export const menu: CoreMenu[] = [
                 translate: 'MENU.APPS.Logout',
                 type: 'item',
                 icon: 'calendar',
-                url: 'apps/calendar1'
+                url: 'auth/login'
             },
 
 

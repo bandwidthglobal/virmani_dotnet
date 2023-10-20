@@ -11,7 +11,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 // routing
 const routes: Routes = [
     {
-        path: 'dashboard',
+        path: '',
         loadChildren: () => import('./dashboard/dashboard-details/dashboarddata.module').then(m => m.DashboardDataModule)
     },
     {

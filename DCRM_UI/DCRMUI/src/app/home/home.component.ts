@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
   ) {
     // redirect to home if already logged in
     if (this._authenticationService.currentUserValue) {
-      this._router.navigate(['/']);
+      this._router.navigate(['/admin/dashboard']);
     }
 
     this._unsubscribeAll = new Subject();
@@ -75,28 +75,7 @@ export class HomeComponent implements OnInit {
     this.passwordTextType = !this.passwordTextType;
   }
 
-  onSubmit() {
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-      return;
-    }
-    // Login
-    this.loading = true;
-    this._authenticationService
-      .login(this.f.email.value, this.f.password.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this._router.navigate([this.returnUrl]);
-        },
-        error => {
-          this.error = error;
-          this.loading = false;
-        }
-      );
-  }
+  
 
   // Lifecycle Hooks
   // -----------------------------------------------------------------------------------------------------
@@ -109,10 +88,6 @@ export class HomeComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
-
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/dashboard';
-
     // Subscribe to config changes
     this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
       this.coreConfig = config;

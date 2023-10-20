@@ -20,7 +20,7 @@ import { DashboardService } from 'app/main/clinic-admin/dashboard/dashboard-deta
 const routes: Routes = [
    
     {
-        path: '',
+        path: 'dashboard',
         component: DashboardComponent,
         resolve: {
             uls: DashboardService
