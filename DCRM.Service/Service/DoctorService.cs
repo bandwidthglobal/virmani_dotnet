@@ -6,6 +6,7 @@ using DCRM.Common.Entity;
 using DCRM.Common.Request;
 using DCRM.Common.RequestModel;
 using DCRM.Repository.IRepository;
+using DCRM.Repository.Repository;
 using DCRM.Service.IService;
 using Microsoft.Extensions.Configuration;
 using System.Numerics;
@@ -17,11 +18,13 @@ namespace DCRM.Service.Service
         public readonly IDoctorRepository _doctorRepository;
         public readonly IJwtUtils _jwtUtils;
         public readonly IConfiguration _configuration;
-        public DoctorService(IDoctorRepository doctorRepository, IJwtUtils jwtUtils, IConfiguration configuration)
+        public readonly INotificationService _notificationService;
+        public DoctorService(IDoctorRepository doctorRepository, IJwtUtils jwtUtils, IConfiguration configuration, INotificationService notificationService)
         {
             _doctorRepository = doctorRepository;
             _jwtUtils = jwtUtils;
             _configuration = configuration;
+            _notificationService = notificationService;
         }
 
         /// <summary>
@@ -46,11 +49,11 @@ namespace DCRM.Service.Service
         /// ftech all  active doctor
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<DoctorDto>> GetDoctorsAsync()
+        public IEnumerable<DoctorDto> GetAll()
         {
 
 
-            var list= await _doctorRepository.GetDoctorsAsync();
+            var list=  _doctorRepository.GetAll();
             DoctorDto doctorDto = new DoctorDto();
             List<DoctorDto> doctorLis=new List<DoctorDto>();
             foreach (var doctor in list.ToList())
@@ -90,10 +93,10 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<DoctorDto> GetDoctorByIdAsync(int id)
+        public DoctorDto Get(long id)
         {
 
-            var doctor = await _doctorRepository.GetDoctorByIdAsync(id);
+            var doctor =  _doctorRepository.Get(id);
             DoctorDto doctorDto = new DoctorDto();
             doctorDto.Id = doctor.Id;
             doctorDto.User_Id = doctor.User_Id;
@@ -129,9 +132,17 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public async Task CreateDoctorAsync(DoctorRequest request)
+        public void Create(DoctorRequest request)
         {
-            await _doctorRepository.CreateDoctorAsync(request);
+            string password = EncryptionDecryptionUsingSymmetricKey.GenerateRandamPassword();
+            request.Password = EncryptionDecryptionUsingSymmetricKey.EncryptString(_configuration.GetSection("PasswordHasKey").Value, password);
+            _doctorRepository.Create(request);
+            NotificationRequest notificationRequest = new NotificationRequest();
+            notificationRequest.EmailAddress = request.Email;
+            notificationRequest.UserName = request.Name;
+            notificationRequest.Password = password;
+           _notificationService.SendRegistrationMail(notificationRequest);
+            
         }
 
         /// <summary>;
@@ -140,18 +151,18 @@ namespace DCRM.Service.Service
         /// <param name="request"></param>
         /// <returns></returns>
         /// <exception cref="KeyNotFoundException"></exception>
-        public void UpdateDoctor(DoctorRequest request)
+        public void Update(DoctorRequest request)
         {
-            _doctorRepository.UpdateDoctor(request);
+            _doctorRepository.Update(request);
         }
         /// <summary>
         /// remove doctor by  id from doctors table
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public void DeleteDoctor(int id)
+        public void Delete(long id)
         {
-            _doctorRepository.DeleteDoctor(id);
+            _doctorRepository.Delete(id);
         }
 
         /// <summary>
@@ -159,9 +170,9 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="changePasswordModel"></param>
         /// <returns></returns>
-        public async Task ChangeDoctorPasswordAsync(ChangePasswordRequest changePasswordModel)
+        public void ChangePassword(ChangePasswordRequest changePasswordModel)
         {
-            await _doctorRepository.ChangeDoctorPasswordAsync(changePasswordModel);
+             _doctorRepository.ChangePassword(changePasswordModel);
         }
         /// <summary>
         /// get doctor by user

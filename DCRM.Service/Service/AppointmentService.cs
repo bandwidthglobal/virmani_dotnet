@@ -74,7 +74,7 @@ namespace DCRM.Service.Service
         }
         public List<AppointmentDto> GetAppointmentWithPatient(long userId)
         {
-            var appointments = _appointmentRepository.GetAll().Where(x=>x.User_Id==userId);
+            var appointments = _appointmentRepository.GetAll().Where(x=>x.User_Id==userId).ToList();
             List<AppointmentDto> appointmentList = new List<AppointmentDto>();
             foreach (var appointment in appointments)
             {

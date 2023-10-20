@@ -23,6 +23,48 @@ namespace DCRM.Service.Service
             _configuration = configuration;
         }
 
+        public void SendRegistrationMail(NotificationRequest notification)
+        {
+            string smtpServer = _configuration.GetSection("SMTPSetting:Smtp").Value;
+            string port = _configuration.GetSection("SMTPSetting:Port").Value;
+            string userId = _configuration.GetSection("SMTPSetting:UserId").Value;
+            string password = _configuration.GetSection("SMTPSetting:Password").Value;
+            string subject = "Virmani Account";//_configuration.GetSection("SMTPSetting:Subject").Value;
+            const string fromEmail = "no-reply@virmani.com";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Hi " + notification.UserName);
+            sb.Append("<br/>");
+            sb.Append("<br/>");
+            sb.Append("Your account has been created.");
+            sb.Append("<br/>");
+            sb.Append("UserName : " + notification.EmailAddress);
+            sb.Append("<br/>");
+            sb.Append("Password : " + notification.Password);
+            sb.Append("<br/>");
+            sb.Append("<br/>");
+            sb.Append("Regards");
+            sb.Append("Admin Virmani");
+            var message = new MailMessage
+            {
+                IsBodyHtml = true,
+                From = new MailAddress(fromEmail),
+                To = { notification.EmailAddress },
+                Subject = subject,
+                Body = sb.ToString(),
+                DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure,
+            };
+
+            using (SmtpClient smtpClient = new SmtpClient(smtpServer))
+            {
+                smtpClient.Credentials = new NetworkCredential(userId, password);
+
+                smtpClient.Port = Convert.ToInt32(port);
+                smtpClient.UseDefaultCredentials = false;
+                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtpClient.EnableSsl = true;
+                smtpClient.Send(message);
+            }
+        }
         public void SendMail(NotificationRequest notification)
         {
             string smtpServer = _configuration.GetSection("SMTPSetting:Smtp").Value;

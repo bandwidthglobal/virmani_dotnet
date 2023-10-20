@@ -12,9 +12,9 @@ namespace DCRM.Common.Entities
     {
         public int Id { get; set; }
 
-        public string PhoneNumber { get; set; } = null!;
+        public string? PhoneNumber { get; set; } 
 
-        public string Otp { get; set; } = null!;
+        public string? Otp { get; set; } 
 
         public DateTime CreatedDate { get; set; }
 
@@ -23,5 +23,7 @@ namespace DCRM.Common.Entities
         public long? EntityId { get; set; }
 
         public DateTime? UpdatedDate { get; set; }
+
+        public string? Email { get; set; } 
     }
 }

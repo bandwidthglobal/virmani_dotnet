@@ -96,6 +96,7 @@ namespace DCRM.Service.Service
             user.Email = userRequest.Email;
             user.Password = EncryptionDecryptionUsingSymmetricKey.EncryptString(_configuration.GetSection("PasswordHasKey").Value, userRequest.Password);
             user.Role = userRequest.Role;
+            user.Status =1;
             long id = _userRepository.Create(user);
             return id;
         }

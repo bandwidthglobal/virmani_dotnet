@@ -24,7 +24,7 @@ namespace DCRM.Api.Controllers
         
 
         [HttpGet("GetAll")]
-        public IEnumerable<DoctorDto> GetDoctorAsync()
+        public IEnumerable<DoctorDto> GetAll()
         {
             var user = Request.HttpContext.Items["User"] as User;
             var doctorList =  _doctorService.GetDoctorsByUserId(user.Id);
@@ -32,10 +32,10 @@ namespace DCRM.Api.Controllers
         }
 
         [HttpGet("Get/{id}")]
-        public DoctorDto GetDoctor(int id)
+        public DoctorDto Get(long id)
         {
            
-            DoctorDto doctor = _doctorService.GetDoctorByIdAsync(Convert.ToInt32(id)).Result;
+            DoctorDto doctor = _doctorService.Get(Convert.ToInt64(id));
             return doctor;
         }
 
@@ -52,21 +52,21 @@ namespace DCRM.Api.Controllers
             var user = Request.HttpContext.Items["User"] as User;
             request.User_Id = user.Id;
             request.Role = "Doctor";
-            _doctorService.CreateDoctorAsync(request);
+            _doctorService.Create(request);
             return Ok();
         }
 
         [HttpPost("Update")]
         public IActionResult Update(DoctorRequest request)
         {
-            _doctorService.UpdateDoctor(request);
+            _doctorService.Update(request);
             return Ok();
         }
 
         [HttpDelete("Delete/{id}")]
-        public  IActionResult Delete(int id)
+        public  IActionResult Delete(long id)
         {
-            _doctorService.DeleteDoctor(id);
+            _doctorService.Delete(id);
             return Ok(id.ToString());
         }
     }

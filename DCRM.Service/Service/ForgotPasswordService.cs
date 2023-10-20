@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,99 @@ namespace DCRM.Service.Service
             _staffRepository = staffRepository;
             _doctorRepository = doctorRepository;
         }
+
+        public string SendOtpByEmail(Userotp userotp)
+        {
+            string email = userotp.Email;
+            string otp = string.Empty;
+            long entityId = 0;
+            string type = string.Empty;
+            var user = _userRepository.GetAll().FirstOrDefault(x => x.Email == email);
+            if (user != null)
+            {
+                type = "user";
+                entityId = user.Id;
+            }
+            else
+            {
+                var staff = _staffRepository.GetAll().FirstOrDefault(x => x.Email == email);
+                if (staff != null)
+                {
+                    type = "staff";
+                    entityId = staff.Id;
+                }
+                else
+                {
+                    var doctor = _doctorRepository.GetAll().FirstOrDefault(x => x.Email.ToString() == email);
+                    if (doctor != null)
+                    {
+                        type = "doctor";
+                        entityId = doctor.Id;
+                    }
+                }
+
+            }
+            if (string.IsNullOrEmpty(type))
+            {
+                return string.Empty;
+            }
+            else
+            {
+                var chars = "0123456789";
+                var random = new Random();
+                otp = new string(Enumerable.Repeat(chars, 6).Select(s => s[random.Next(s.Length)]).ToArray());
+                string smtpServer = _configuration.GetSection("SMTPSetting:Smtp").Value;
+                string port = _configuration.GetSection("SMTPSetting:Port").Value;
+                string userId = _configuration.GetSection("SMTPSetting:UserId").Value;
+                string password = _configuration.GetSection("SMTPSetting:Password").Value;
+                string subject = _configuration.GetSection("SMTPSetting:Subject").Value;
+                const string fromEmail = "no-reply@virmani.com";
+                string body = @"This is your One Time Password: " + otp + @" for reset password to virmani. Otp is valid for 15 min ";
+                var message = new MailMessage
+                {
+                    From = new MailAddress(fromEmail),
+                    To = { email },
+                    Subject = subject,
+                    Body = body,
+                    DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure
+                };
+
+                using (SmtpClient smtpClient = new SmtpClient(smtpServer))
+                {
+                    smtpClient.Credentials = new NetworkCredential(userId, password);
+                    smtpClient.Port = Convert.ToInt32(port);
+                    smtpClient.UseDefaultCredentials = false;
+                    smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    
+                    smtpClient.EnableSsl = true;
+                    smtpClient.Send(message);
+                }
+                Userotp? userOtp = _userOtpRepository.GetAll().FirstOrDefault(x => x.Email == email);
+                if (userOtp != null)
+                {
+                    userOtp.Otp = otp;
+                    userOtp.EntityId = entityId;
+                    userOtp.UserType = type;
+                    userOtp.CreatedDate = DateTime.Now;
+                    userOtp.UpdatedDate = DateTime.Now;
+                    _userOtpRepository.Update(userOtp);
+                }
+                else
+                {
+                    Userotp userOtpNew = new Userotp();
+                    userOtpNew.PhoneNumber = "";
+                    userOtpNew.Email = email;
+                    userOtpNew.Otp = otp;
+                    userOtpNew.UserType = type;
+                    userOtpNew.EntityId = entityId;
+                    userOtpNew.CreatedDate = DateTime.Now;
+                    userOtpNew.UpdatedDate = DateTime.Now;
+                    _userOtpRepository.Create(userOtpNew);
+                }
+            }
+            return otp;
+        }
+
         public string SendOtp(string phoneMumber)
         {
             string otp = string.Empty;
@@ -110,20 +204,22 @@ namespace DCRM.Service.Service
         public Userotp GetOtp(Userotp userOtp)
         {
             string otp = string.Empty;
-            var user_Otp = _userOtpRepository.GetAll().FirstOrDefault(x => x.PhoneNumber == userOtp.PhoneNumber && x.Otp==userOtp.Otp);
-            if (user_Otp != null)
+            var user_Otp = _userOtpRepository.GetAll().FirstOrDefault(x => x.Email == userOtp.Email && x.Otp==userOtp.Otp);
+            if (user_Otp == null)
             {
-                userOtp.Otp = userOtp.Otp;
-                userOtp.UserType= userOtp.UserType;
+                userOtp.Otp = string.Empty;
+                return userOtp;
             }
             else
             {
-                userOtp.Otp= string.Empty;
-                userOtp.UserType = string.Empty;
+                return user_Otp;
+
             }
-            return userOtp;
+            
+           
         }
-        public long MatchOtp(string phoneMumber, string type)
+
+        public long MatchOtp1(string phoneMumber, string type)
         {
             var otp = string.Empty;
             long id = 0;
@@ -141,6 +237,28 @@ namespace DCRM.Service.Service
             if (type.ToLower() == "doctor")
             {
                 var doctor = _doctorRepository.GetAll().FirstOrDefault(x => x.Phone1.ToString() == phoneMumber);
+                id = doctor.Id;
+            }
+            return id;
+        }
+        public long MatchOtp(string email, string type)
+        {
+            var otp = string.Empty;
+            long id = 0;
+            var userOtp = _userOtpRepository.GetAll().FirstOrDefault(x => x.Email == email);
+            if (type.ToLower() == "user")
+            {
+                var user = _userRepository.GetAll().FirstOrDefault(x => x.Email == email);
+                id = user.Id;
+            }
+            else if (type.ToLower() == "staff")
+            {
+                var staff = _staffRepository.GetAll().FirstOrDefault(x => x.Email == email);
+                id = staff.Id;
+            }
+            if (type.ToLower() == "doctor")
+            {
+                var doctor = _doctorRepository.GetAll().FirstOrDefault(x => x.Email == email);
                 id = doctor.Id;
             }
             return id;

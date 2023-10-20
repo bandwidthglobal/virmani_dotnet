@@ -14,19 +14,19 @@ namespace DCRM.Repository.IRepository
     {
         Task<Doctor> AuthenticateAsync(AuthenticateRequest authenticateRequest);
 
-        Task<IEnumerable<Doctor>> GetDoctorsAsync();
+        IEnumerable<Doctor> GetAll();
 
-        Task<Doctor> GetDoctorByIdAsync(int id);
+        Doctor Get(long id);
 
         List<DropdownDataDto> NameList(long userId);
 
-        Task  CreateDoctorAsync(DoctorRequest request);
+        void  Create(DoctorRequest request);
 
-        void UpdateDoctor(DoctorRequest request);
+        void Update(DoctorRequest request);
 
-        void DeleteDoctor(int id);
+        void Delete(long id);
 
-        Task ChangeDoctorPasswordAsync(ChangePasswordRequest changePasswordModel);
+        void ChangePassword(ChangePasswordRequest changePasswordModel);
 
 
         List<Doctor> GetDoctorsByUserId(int userId);

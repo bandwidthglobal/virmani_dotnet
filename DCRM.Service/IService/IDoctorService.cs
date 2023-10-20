@@ -15,13 +15,12 @@ namespace DCRM.Service.IService
     public interface IDoctorService
     {
         Task<AuthenticateResponse> AuthenticateAsync(AuthenticateRequest authenticateRequest);
-        Task<IEnumerable<DoctorDto>> GetDoctorsAsync();
-         Task<DoctorDto> GetDoctorByIdAsync(int id);
-        //Task SaveDoctorAsync(DoctorRequest request);
-        Task CreateDoctorAsync(DoctorRequest request);
-        void UpdateDoctor(DoctorRequest request);
-        void DeleteDoctor(int id);
-        Task ChangeDoctorPasswordAsync(ChangePasswordRequest changePasswordModel);
+        IEnumerable<DoctorDto> GetAll();
+         DoctorDto Get(long id);
+        void Create(DoctorRequest request);
+        void Update(DoctorRequest request);
+        void Delete(long id);
+        void ChangePassword(ChangePasswordRequest changePasswordModel);
         List<DoctorDto> GetDoctorsByUserId(int userId);
         List<DropdownDataDto> NameList(long userId);
     }

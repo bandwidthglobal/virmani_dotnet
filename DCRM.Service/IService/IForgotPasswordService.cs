@@ -9,6 +9,7 @@ namespace DCRM.Service.IService
 {
     public interface IForgotPasswordService
     {
+        string SendOtpByEmail(Userotp userotp);
         string SendOtp(string phoneMumber);
 
         Userotp GetOtp(Userotp userOtp);

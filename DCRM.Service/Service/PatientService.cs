@@ -313,7 +313,7 @@ namespace DCRM.Service.Service
                 labData.Send_Date = item.Send_Date;
                 labData.Laboratory_Name = item.Laboratory_Name;
                 labData.Notes = item.Notes;
-                labData.DoctorName = _doctorRepository.GetDoctorByIdAsync(Convert.ToInt32(item.Doctor_Id)).Result.Name;
+                labData.DoctorName = _doctorRepository.Get(Convert.ToInt32(item.Doctor_Id)).Name;
                 labDatas.Add(labData);
             }
             return labDatas;
@@ -356,7 +356,7 @@ namespace DCRM.Service.Service
                     treatmentplanDto.TeethNumber = teethInfo.Teeth_Number_Note;
                     treatmentplanDto.TothNot = teethInfo.Toth_Note;
                 }
-                var doctor = _doctorRepository.GetDoctorsAsync().Result.ToList().Where(x => x.Id == treatment.Doctor).FirstOrDefault();
+                var doctor = _doctorRepository.Get(treatment.Doctor);
                 if (doctor != null)
                 {
                     treatmentplanDto.DoctorName = doctor.Name;
@@ -396,7 +396,7 @@ namespace DCRM.Service.Service
                 {
                     workDoneDto.WorkdoneStatus = "Incompleted";
                 }
-                var doctor = _doctorRepository.GetDoctorsAsync().Result.ToList().Where(x => x.Id == workdone.Doctor_Id).FirstOrDefault();
+                var doctor = _doctorRepository.Get(workdone.Doctor_Id);
                 if (doctor != null)
                 {
                     workDoneDto.DoctorName = doctor.Name;
@@ -443,7 +443,7 @@ namespace DCRM.Service.Service
                 paymentHistoryDto.WorkdoneId = item.Workdone_Id;
                 paymentHistoryDto.PatientId = item.Patient_Id;
                 paymentHistoryDto.DoctorId = item.Doctor_Id;
-                var doctor = _doctorRepository.GetDoctorsAsync().Result.ToList().Where(x => x.Id == item.Doctor_Id).FirstOrDefault();
+                var doctor = _doctorRepository.Get(item.Doctor_Id);
                 if (doctor != null)
                 {
                     paymentHistoryDto.DoctorName = doctor.Name;

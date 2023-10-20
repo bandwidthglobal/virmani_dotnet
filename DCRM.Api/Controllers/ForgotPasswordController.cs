@@ -20,6 +20,23 @@ namespace DCRM.Api.Controllers
             _configuration = configuration;
         }
 
+        [HttpPost("SendOtp")]
+        public IActionResult SendOtpByEmail(Userotp userotp)
+        {
+
+            string otp = _forgotPasswordService.SendOtpByEmail(userotp);
+
+            if (string.IsNullOrEmpty(otp))
+            {
+                return BadRequest("email is not registered");
+            }
+            else
+            {
+                return Ok(userotp);
+            }
+        }
+
+
         [HttpGet("SendOtp/{phoneNumber}")]
         public IActionResult SendOtp(string phoneNumber)
         {
@@ -36,8 +53,8 @@ namespace DCRM.Api.Controllers
             }
         }
 
-        [HttpPost("MatchOtp")]
-        public IActionResult MatchOtp(Userotp userOtp)
+        [HttpPost("ValidateOtp")]
+        public IActionResult ValidateOtp(Userotp userOtp)
         {
             var user_otp = _forgotPasswordService.GetOtp(userOtp);
             string? OtpExpiresTime = _configuration.GetSection("OtpExpires").Value;
@@ -49,6 +66,32 @@ namespace DCRM.Api.Controllers
             {
                 var expiresTime = user_otp.CreatedDate.AddMinutes(Convert.ToInt32(OtpExpiresTime));
                 if (expiresTime<System.DateTime.Now)
+                {
+                    throw new Exception("otp is expired");
+                }
+                id = _forgotPasswordService.MatchOtp(userOtp.Email, user_otp.UserType);
+                user_otp.EntityId = id;
+                return Ok(user_otp);
+            }
+            else
+            {
+                throw new Exception("otp is invalid");
+            }
+        }
+
+        [HttpPost("MatchOtp")]
+        public IActionResult MatchOtp(Userotp userOtp)
+        {
+            var user_otp = _forgotPasswordService.GetOtp(userOtp);
+            string? OtpExpiresTime = _configuration.GetSection("OtpExpires").Value;
+
+            long id = 0;
+
+
+            if (!string.IsNullOrEmpty(user_otp.Otp))
+            {
+                var expiresTime = user_otp.CreatedDate.AddMinutes(Convert.ToInt32(OtpExpiresTime));
+                if (expiresTime < System.DateTime.Now)
                 {
                     return BadRequest("otp is expired");
                 }

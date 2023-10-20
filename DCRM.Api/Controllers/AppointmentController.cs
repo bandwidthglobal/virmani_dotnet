@@ -24,6 +24,12 @@ namespace DCRM.Api.Controllers
             var user = Request.HttpContext.Items["User"] as User;
             return _appointmentService.GetAll(user.Id, user.Role);
         }
+        [HttpGet("GetAppointmentWithPatient")]
+        public List<AppointmentDto> GetAppointmentWithPatient() {
+            var user = Request.HttpContext.Items["User"] as User;
+           var appointments = _appointmentService.GetAppointmentWithPatient(user.Id).OrderByDescending(x=>x.Date).ToList();
+            return appointments;
+        }
 
         [HttpGet("Get/{id}")]
         public Appointment Get(int id)

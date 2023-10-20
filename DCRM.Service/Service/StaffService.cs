@@ -2,12 +2,14 @@
 using DCRM.Api.Models;
 using DCRM.Common;
 using DCRM.Common.Dto;
+using DCRM.Common.Entities;
 using DCRM.Common.Entity;
 using DCRM.Common.Request;
 using DCRM.Common.RequestModel;
 using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
 using Microsoft.Extensions.Configuration;
+using System.Text;
 
 namespace DCRM.Service.Service
 {
@@ -15,12 +17,14 @@ namespace DCRM.Service.Service
     {
         public readonly IStaffRepository _staffRepository;
         public readonly IJwtUtils _jwtUtils;
+        public readonly INotificationService _notificationService;
         public readonly IConfiguration _configuration;
-        public StaffService(IStaffRepository staffRepository, IJwtUtils jwtUtils, IConfiguration configuration)
+        public StaffService(IStaffRepository staffRepository, IJwtUtils jwtUtils, IConfiguration configuration, INotificationService notificationService)
         {
             _staffRepository = staffRepository;
             _jwtUtils = jwtUtils;
             _configuration = configuration;
+            _notificationService = notificationService; 
         }
 
         /// <summary>
@@ -95,7 +99,17 @@ namespace DCRM.Service.Service
 
         public long Create(StaffRequest staffRequest)
         {
+            string password= EncryptionDecryptionUsingSymmetricKey.GenerateRandamPassword();
+            staffRequest.Password = EncryptionDecryptionUsingSymmetricKey.EncryptString(_configuration.GetSection("PasswordHasKey").Value, password);
             long id= _staffRepository.Create(staffRequest);
+            if (id>0)
+            {
+                NotificationRequest notificationRequest = new NotificationRequest();
+                notificationRequest.EmailAddress = staffRequest.Email;
+                notificationRequest.UserName = staffRequest.Name;
+                notificationRequest.Password = password;
+                _notificationService.SendRegistrationMail(notificationRequest);
+            }
             return id;
         }
         /// <summary>;

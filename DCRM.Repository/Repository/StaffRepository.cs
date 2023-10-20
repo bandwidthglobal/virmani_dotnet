@@ -70,7 +70,7 @@ namespace DCRM.Repository.Repository
 
             try
             {
-                var staffDetails = _contex.Staffs.FirstOrDefault(x => x.Phone == staffRequest.Phone);
+                var staffDetails = _contex.Staffs.FirstOrDefault(x => x.Email == staffRequest.Email);
                 if (staffDetails == null)
                 {
                     try
@@ -93,12 +93,14 @@ namespace DCRM.Repository.Repository
                         staff.Gst = staffRequest.Gst;
                         staff.Pan = staffRequest.Pan;
                         staff.Thumb = staffRequest.Thumb;
+                        staff.Password = staffRequest.Password;
                         staff.Qualification = staffRequest.Qualification;
                         staff.Work_Experience = staffRequest.Work_Experience;
                         staff.Specialization = staffRequest.Specialization;
                         staff.Note = staffRequest.Note;
                         staff.Permanent_Address = staffRequest.Permanent_Address;
                         staff.Current_Address = staffRequest.Current_Address;
+                        staff.Is_Deleted = 0;
                         staff.Created_At = System.DateTime.UtcNow;
                         _contex.Staffs.Add(staff);
                         _contex.SaveChanges();
@@ -130,6 +132,7 @@ namespace DCRM.Repository.Repository
                             }
                         }
                         _contex.Database.CommitTransaction();
+
                         return staff.Id;
                     }
                     catch (Exception ex)

@@ -11,5 +11,6 @@ namespace DCRM.Service.IService
     {
         void SendSMS(NotificationRequest notification);
         void SendMail(NotificationRequest notification);
+        void SendRegistrationMail(NotificationRequest notification);
     }
 }

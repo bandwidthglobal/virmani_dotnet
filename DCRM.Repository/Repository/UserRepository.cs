@@ -96,7 +96,7 @@ namespace DCRM.Repository.Repository
             User? user = _contex.Users.FirstOrDefault(x => x.Id == id);
             if (user != null)
             {
-                user.Status = 0;
+                user.Status = 1;
                 _contex.Update(user);
                 _contex.SaveChanges();
             }
@@ -111,7 +111,7 @@ namespace DCRM.Repository.Repository
         public async Task ChangeUserPasswordAsync(ChangePasswordRequest changePasswordModel)
         {
 
-            if (changePasswordModel.Type.ToLower() == "user")
+            if (changePasswordModel.Type.ToLower() == "user" || changePasswordModel.Type.ToLower() == "admin")
             {
                 var user = await _contex.Users.FirstOrDefaultAsync(x => x.Id == changePasswordModel.Id);
                 if (user != null)

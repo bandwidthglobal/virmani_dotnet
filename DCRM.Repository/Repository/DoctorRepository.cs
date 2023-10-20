@@ -40,7 +40,7 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <returns></returns>
 
-        public async Task<IEnumerable<Doctor>> GetDoctorsAsync()
+        public IEnumerable<Doctor> GetAll()
         {
             IEnumerable<Doctor> doctors = _contex.Doctors.Where(x => x.Is_Delete == 0).OrderByDescending(x => x.Id);
             return doctors;
@@ -51,9 +51,9 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<Doctor> GetDoctorByIdAsync(int id)
+        public Doctor Get(long id)
         {
-            Doctor doctor = await _contex.Doctors.FirstOrDefaultAsync(x => x.Id == id);
+            Doctor? doctor = _contex.Doctors.FirstOrDefault(x => x.Id == id);
             return doctor;
         }
 
@@ -64,80 +64,93 @@ namespace DCRM.Repository.Repository
         /// <returns></returns>
         /// <exception cref="SqlAlreadyFilledException"></exception>
         /// <exception cref="Exception"></exception>
-        public async Task CreateDoctorAsync(DoctorRequest request)
+        public void Create(DoctorRequest request)
         {
 
             try
             {
-                var doctorDetails = _contex.Doctors.FirstOrDefault(x => x.Phone1 == request.Phone1);
+                var doctorDetails = _contex.Doctors.FirstOrDefault(x => x.Email == request.Email);
                 if (doctorDetails == null)
                 {
-                    Doctor doctor = new Doctor();
-                    doctor.User_Id = request.User_Id;
-                    doctor.Name = request.Name;
-                    doctor.Email = request.Email;
-                    doctor.Thumb = request.Thumb;
-                    doctor.Qualification = request.Qualification;
-                    doctor.Age = request.Age;
-                    doctor.Gender = request.Gender;
-                    doctor.Blood_Group = request.Gender;
-                    doctor.Marital_Status = request.Blood_Group;
-                    doctor.Marital_Status = request.Marital_Status;
-                    doctor.Dob = request.Dob;
-                    doctor.Phone1 = request.Phone1;
-                    doctor.Phone2 = request.Phone2;
-                    doctor.Phone3 = request.Phone3;
-                    doctor.Phone4 = request.Phone4;
-                    doctor.Pan_Number = request.Pan_Number;
-                    doctor.Gst_Number = request.Gst_Number;
-                    doctor.Speciality = request.Speciality;
-                    doctor.Role = request.Role;
-                    doctor.Created_At = System.DateTime.UtcNow;
-                    doctor.Updated_At = System.DateTime.UtcNow;
-                    await _contex.Doctors.AddAsync(doctor);
-                    _contex.SaveChanges();
-                    if (request.DoctorInsuranceDetailList != null && request.DoctorInsuranceDetailList.Count > 0)
+                    try
                     {
-                        foreach (var item in request.DoctorInsuranceDetailList)
+                        _contex.Database.BeginTransaction();
+                        Doctor doctor = new Doctor();
+                        doctor.User_Id = request.User_Id;
+                        doctor.Name = request.Name;
+                        doctor.Email = request.Email;
+                        doctor.Thumb = request.Thumb;
+                        doctor.Qualification = request.Qualification;
+                        doctor.Age = request.Age;
+                        doctor.Gender = request.Gender;
+                        doctor.Blood_Group = request.Gender;
+                        doctor.Marital_Status = request.Blood_Group;
+                        doctor.Marital_Status = request.Marital_Status;
+                        doctor.Dob = request.Dob;
+                        doctor.Phone1 = request.Phone1;
+                        doctor.Phone2 = request.Phone2;
+                        doctor.Phone3 = request.Phone3;
+                        doctor.Phone4 = request.Phone4;
+                        doctor.Pan_Number = request.Pan_Number;
+                        doctor.Password = request.Password;
+                        doctor.Gst_Number = request.Gst_Number;
+                        doctor.Speciality = request.Speciality;
+                        doctor.Role = request.Role;
+                        doctor.Is_Delete = 0;
+                        doctor.Created_At = System.DateTime.UtcNow;
+                        doctor.Updated_At = System.DateTime.UtcNow;
+                        _contex.Doctors.Add(doctor);
+                        _contex.SaveChanges();
+                        if (request.DoctorInsuranceDetailList != null && request.DoctorInsuranceDetailList.Count > 0)
                         {
-                            item.Doctor_Id = doctor.Id;
-                            await _contex.Doctor_Insurance_Details.AddAsync(item);
-                            _contex.SaveChanges();
+                            foreach (var item in request.DoctorInsuranceDetailList)
+                            {
+                                item.Doctor_Id = doctor.Id;
+                                _contex.Doctor_Insurance_Details.Add(item);
+                                _contex.SaveChanges();
+                            }
                         }
-                    }
-                    if (request.DoctorBankDetailList != null && request.DoctorBankDetailList.Count > 0)
-                    {
-                        foreach (var item in request.DoctorBankDetailList)
+                        if (request.DoctorBankDetailList != null && request.DoctorBankDetailList.Count > 0)
                         {
-                            item.Doctor_Id = doctor.Id;
-                            await _contex.Doctor_Bank_Details.AddAsync(item);
-                            _contex.SaveChanges();
+                            foreach (var item in request.DoctorBankDetailList)
+                            {
+                                item.Doctor_Id = doctor.Id;
+                                _contex.Doctor_Bank_Details.Add(item);
+                                _contex.SaveChanges();
+                            }
                         }
-                    }
-                    if (request.DoctorsVaccinationList != null && request.DoctorsVaccinationList.Count > 0)
-                    {
-                        foreach (var item in request.DoctorsVaccinationList)
+                        if (request.DoctorsVaccinationList != null && request.DoctorsVaccinationList.Count > 0)
                         {
-                            item.Doctor_Id = doctor.Id;
-                            await _contex.Doctors_Vaccination.AddAsync(item);
-                            _contex.SaveChanges();
+                            foreach (var item in request.DoctorsVaccinationList)
+                            {
+                                item.Doctor_Id = doctor.Id;
+                                _contex.Doctors_Vaccination.Add(item);
+                                _contex.SaveChanges();
+                            }
                         }
-                    }
 
-                    if (request.DoctorsAddressList != null && request.DoctorsAddressList.Count > 0)
-                    {
-                        foreach (var item in request.DoctorsAddressList)
+                        if (request.DoctorsAddressList != null && request.DoctorsAddressList.Count > 0)
                         {
-                            item.Doctor_Id = Convert.ToInt32(doctor.Id);
-                            await _contex.Doctors_Address.AddAsync(item);
-                            _contex.SaveChanges();
+                            foreach (var item in request.DoctorsAddressList)
+                            {
+                                item.Doctor_Id = Convert.ToInt32(doctor.Id);
+                                _contex.Doctors_Address.Add(item);
+                                _contex.SaveChanges();
+                            }
                         }
+                        _contex.Database.CommitTransaction();
+                    }
+                    catch (Exception ex)
+                    {
+                        _contex.Database.RollbackTransaction();
+                        throw new Exception(ex.Message);
                     }
                 }
                 else
                 {
-                    throw new SqlAlreadyFilledException("phone already exist");
+                    throw new SqlAlreadyFilledException("email is already exist");
                 }
+
 
             }
             catch (Exception ex)
@@ -152,7 +165,7 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <param name="staff"></param>
         /// <returns></returns>
-        public void UpdateDoctor(DoctorRequest request)
+        public void Update(DoctorRequest request)
         {
             try
             {
@@ -304,13 +317,13 @@ namespace DCRM.Repository.Repository
         /// <returns></returns>
         public List<DropdownDataDto> NameList(long userId)
         {
-           var doctors=_contex.Doctors.Where(x=>x.User_Id== userId).ToList();
+            var doctors = _contex.Doctors.Where(x => x.User_Id == userId).ToList();
             DropdownDataDto data = new DropdownDataDto();
-            List<DropdownDataDto> dataList= new List<DropdownDataDto>();
+            List<DropdownDataDto> dataList = new List<DropdownDataDto>();
             foreach (var doctor in doctors)
             {
                 data = new DropdownDataDto();
-                data.Id=doctor.Id; data.Name=doctor.Name; dataList.Add(data);
+                data.Id = doctor.Id; data.Name = doctor.Name; dataList.Add(data);
             }
             return dataList;
         }
@@ -319,7 +332,7 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public void DeleteDoctor(int id)
+        public void Delete(long id)
         {
             var doctor = _contex.Doctors.FirstOrDefault(x => x.Id == id);
             if (doctor != null)
@@ -336,15 +349,15 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <param name="changePasswordModel"></param>
         /// <returns></returns>
-        public async Task ChangeDoctorPasswordAsync(ChangePasswordRequest changePasswordModel)
+        public void ChangePassword(ChangePasswordRequest changePasswordModel)
         {
 
-            var doctor = await _contex.Doctors.FirstOrDefaultAsync(x => x.Id == changePasswordModel.Id);
+            var doctor = _contex.Doctors.FirstOrDefault(x => x.Id == changePasswordModel.Id);
             if (doctor != null)
             {
                 doctor.Password = changePasswordModel.NewPassword;
                 _contex.Update(doctor);
-                await _contex.SaveChangesAsync();
+                _contex.SaveChanges();
             }
             else { throw new KeyNotFoundException("staff is not found"); }
 

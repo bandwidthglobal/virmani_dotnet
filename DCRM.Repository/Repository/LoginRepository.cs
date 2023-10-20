@@ -34,7 +34,7 @@ namespace DCRM.Repository.Repository
         }
         public Staff StaffAuthenticate(AuthenticateRequest authenticateRequest)
         {
-            var patientse = _contex.Staffs.SingleOrDefault(x => x.Status == 1 && x.Email == authenticateRequest.Email && x.Password == authenticateRequest.Password);
+            var patientse = _contex.Staffs.SingleOrDefault(x => x.Status == 0 && x.Email == authenticateRequest.Email && x.Password == authenticateRequest.Password);
             return  patientse;
         }
         public Doctor DoctorAuthenticate(AuthenticateRequest authenticateRequest)
