@@ -101,9 +101,9 @@
                 </ng-container>
             </a>
             <div ngbDropdownMenu aria-labelledby="navbarUserDropdown" class="dropdown-menu dropdown-menu-right">
-                <a ngbDropdownItem [routerLink]="['/pages/profile']"><span [data-feather]="'user'" [class]="'mr-50'"></span> View Profile</a>
-                <a ngbDropdownItem [routerLink]="['/apps/email']"><span [data-feather]="'mail'" [class]="'mr-50'"></span> Update Profile</a>
-                <a ngbDropdownItem [routerLink]="['/apps/todo']"><span [data-feather]="'check-square'" [class]="'mr-50'"></span> Change Password</a>
+                <a ngbDropdownItem [routerLink]=""><span [data-feather]="'user'" [class]="'mr-50'"></span> View Profile</a>
+                <a ngbDropdownItem [routerLink]=""><span [data-feather]="'mail'" [class]="'mr-50'"></span> Update Profile</a>
+                <a ngbDropdownItem [routerLink]="['/admin/changepassword']"><span [data-feather]="'check-square'" ></span> Change Password</a>
                 <a ngbDropdownItem (click)="logout()"><span [data-feather]="'power'" [class]="'mr-50'"></span> Logout</a>
             </div>
         </li>

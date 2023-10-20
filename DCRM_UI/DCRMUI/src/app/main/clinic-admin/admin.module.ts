@@ -47,6 +47,11 @@ const routes: Routes = [
         path: 'reports',
         loadChildren: () => import('./report/reportdata.module').then(m => m.ReportDataModule)
     }
+    ,
+    {
+        path: 'changepassword',
+        loadChildren: () => import('./changepassword/changepassworddata.module').then(m => m.ChangePasswordDataModule)
+    }
 ];
 
 FullCalendarModule.registerPlugins([dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]);
