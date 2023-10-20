@@ -1,34 +1,7 @@
-.my-modal {
-    display: block;
-    background: rgba(0, 0, 0, 0.5);
-    height: 100vh;
-    width: 0;
-    overflow: scroll;
-}
+@import '@core/scss/base/pages/app-invoice.scss';
+@import '@core/scss/angular/libs/flatpickr.component.scss';
+@import '@core/scss/angular/libs/select.component.scss';
 
-.card-body {
-    background: #fff;
-    transition: 0.5s;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #f2f2f2;
-    border-radius: 8px;
-    box-shadow: 0 6px 24px #f1f1f1;
-}
-
-.mt-10p {
-    margin-top: 10px;
-}
-
-.mb-10p {
-    bottom: 10px;
-}
-
-.mb-30p {
-    margin-bottom: 30px !important;
-}
-
-.user-header {
-    font-weight: bold !important;
-    font-size: 19px !important;
+.more-options-dropdown {
+  white-space: normal;
 }
