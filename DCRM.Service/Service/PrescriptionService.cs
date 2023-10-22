@@ -93,7 +93,7 @@ namespace DCRM.Service.Service
                 prescriptionDto.Check_Report = item.Check_Report;
                 prescriptionsList.Add(prescriptionDto);
             }
-            return prescriptionsList;
+            return prescriptionsList.OrderByDescending(x=>x.Id).ToList();
         }
 
         public List<PrescriptionDto> GetPatientPrescriptions(long patientId)

@@ -97,9 +97,11 @@
                     <ngx-datatable-column name="Add payment" [sortable]="false">
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <div class="d-flex align-items-center col-actions">
-                                <a class="mr-2 btn btn-info waves-effect waves-float waves-light"
+                                <a class="btn btn-primary btn-sm btn-add-new ng-tns-c273-4 waves-effect waves-float waves-light"
                                    container="body"
+                                   (click)="addReceive(row.id,row.patientId)"
                                    placement="top"
+                                   style="margin-top:5px;"
                                    ngbTooltip="Receive">
                                     Receive
                                 </a>
@@ -112,14 +114,14 @@
                                 <a class="mr-1"
                                    container="body"
                                    placement="top"
-                                   ngbTooltip="Edit Drug">
-                                    <i size="18" data-feather="edit"></i>
+                                   ngbTooltip="view">
+                                    <i size="18" data-feather="eye"></i>
                                 </a>
                                 <a class="mr-1"
                                    href="javascript:void(0)"
                                    container="body"
                                    placement="top"
-                                   ngbTooltip="Delete Drug">
+                                   ngbTooltip="Delete">
                                     <i size="18" data-feather="trash"></i>
                                 </a>
                             </div>
@@ -129,4 +131,75 @@
             </div>
         </section>
     </div>
+
+    <div class="modal fade my-modal" tabindex="-1" role="dialog" #receiveModal>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Receive Payment</h5>
+                    <button type="button" class="close" (click)="close()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="overflow:auto">
+                    <form id="form-modal-todo"
+                          class="todo-modal needs-validation"
+                          (ngSubmit)="(todoForm.form.valid)"
+                          #todoForm="ngForm">
+                        <div class="action-tags">
+                            <div class="form-group">
+                                <label for="price">Price (Rs.) *</label>
+                                <input type="text" [mask]="'numeric'" [formControl]="receiveFormData.price" class="form-control"
+                                       aria-describedby="receiveFormData.price" tabindex="5" />
+                                <!--[ngClass]="{ 'is-invalid': submitted && receiveFormData.price.errors }" />
+                                    <ng-container *ngFor="let error of receiveFormData.price.errors">
+                                    <span *ngIf="submitted" class="invalid-class">
+                                        {{
+                                            messages[error]
+                                        }}
+                                    </span>
+                                </ng-container>-->
+                                <!--<ng-container *ngFor="let error of receiveFormData.price.errors ">
+                                    <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                </ng-container>-->
+
+                            </div>
+                            <div class="form-group">
+                                <label for="payment_Type">Payment type *</label>
+                                <select class="form-control" [formControl]="receiveFormData.payment_Type">
+                                    <option value="">Select Payment Type</option>
+                                    <option value="Cash">Cash</option>
+                                    <option value="Cheque">Cheque</option>
+                                    <option value="NEFT">NEFT</option>
+                                    <option value="POS">POS</option>
+                                </select>
+                                <!--<ng-container *ngFor="let error of receiveFormData.payment_Type.errors ">
+                                    <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                </ng-container>-->
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea class="form-control" [formControl]="receiveFormData.description"></textarea>
+
+                            </div>
+                        </div>
+                        <div class="form-group my-1">
+                            <div class="modal-footer">
+                                <button type="submit" (click)="saveReceiveForm()"
+                                        class="btn btn-primary add-todo-item mr-1"
+                                        rippleEffect>
+                                    Add
+                                </button>
+                                <button type="button" class="btn btn-secondary" (click)="close()">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </div>

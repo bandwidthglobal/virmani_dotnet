@@ -34,6 +34,7 @@ namespace DCRM.Service.Service
             patientScans.Created_At = System.DateTime.Now;
             patientScans.Updated_At = System.DateTime.Now;
             patientScans.Status=1;
+            patientScans.Patient_Id = patientScans.Patient_Id;
             _patientScansRepository.Insert(patientScans);
             return patientScans;
         }

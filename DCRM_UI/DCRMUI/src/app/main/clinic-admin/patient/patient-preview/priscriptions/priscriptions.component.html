@@ -71,13 +71,15 @@
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <div class="d-flex align-items-center col-actions">
                                 <a class="mr-1"
+                                   routerLink="/admin/prescription/preview/{{ row.id }}"
                                    container="body"
                                    placement="top"
-                                   ngbTooltip="Edit">
-                                    <i size="18" data-feather="edit"></i>
+                                   ngbTooltip="View">
+                                    <i size="18" data-feather="eye"></i>
                                 </a>
                                 <a class="mr-1"
                                    href="javascript:void(0)"
+                                   (click)="delete(row.id)"
                                    container="body"
                                    placement="top"
                                    ngbTooltip="Delete">

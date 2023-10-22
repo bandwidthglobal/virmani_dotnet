@@ -27,8 +27,8 @@
                                                 <p><b style="width: 55px;display: inline-block;">Date: </b> {{prescriptionData.created_At| date: 'dd/MM/yyyy'}}</p>
                                             </div>
                                             <div class="col-md-6 text-right">
-                                                <h4 class="mb-0">{{prescriptionData.chamber.name}}</h4>
-                                                <p class="mb-0">{{prescriptionData.chamber.title}}</p>
+                                                <h4 class="mb-0" *ngIf="prescriptionData.chamber!=null">{{prescriptionData.chamber.name}}</h4>
+                                                <p class="mb-0" *ngIf="prescriptionData.chamber!=null">{{prescriptionData.chamber.title}}</p>
                                                 <p class="mb-0"></p>
                                             </div>
                                         </div>

@@ -62,6 +62,6 @@ export class PrescriptionListService implements Resolve<any> {
             'Authorization': `Bearer ${this.currentUser.jwtToken}`
         });
         const requestOptions = { headers: headers };
-        return this._httpClient.delete<any>(`${environment.apiUrl}/Staff/Delete/` + id, requestOptions);
+        return this._httpClient.delete<any>(`${environment.apiUrl}/Prescription/Delete/` + id, requestOptions);
     }
 }

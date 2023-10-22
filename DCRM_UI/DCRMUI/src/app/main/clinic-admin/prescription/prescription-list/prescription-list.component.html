@@ -17,7 +17,7 @@
                                         <option value="100">100</option>
                                     </select>
                                 </label>
-                                <button class="btn btn-primary ml-2" routerLink="/admin/drug/add" rippleEffect>Add Prescription</button>
+                                <button class="btn btn-primary ml-2" routerLink="/admin/prescription/add" rippleEffect>Add Prescription</button>
                             </div>
                         </div>
                     </div>
@@ -67,25 +67,18 @@
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <div class="d-flex align-items-center col-actions">
                                 <a class="mr-1"
-                                   routerLink="/admin/staff/preview/{{ row.id }}"
+                                   routerLink="/admin/prescription/preview/{{ row.id }}"
                                    container="body"
                                    placement="top"
-                                   ngbTooltip="View Staff">
+                                   ngbTooltip="View">
                                     <i size="18" data-feather="eye"></i>
-                                </a>
-                                <a class="mr-1"
-                                   routerLink="/admin/staff/edit/{{ row.id }}"
-                                   container="body"
-                                   placement="top"
-                                   ngbTooltip="Edit Staff">
-                                    <i size="18" data-feather="edit"></i>
                                 </a>
                                 <a class="mr-1"
                                    href="javascript:void(0)"
                                    (click)="delete(row.id)"
                                    container="body"
                                    placement="top"
-                                   ngbTooltip="Delete Staff">
+                                   ngbTooltip="Delete">
                                     <i size="18" data-feather="trash"></i>
                                 </a>
                             </div>

@@ -219,4 +219,15 @@ export class PatientPreviewService implements Resolve<any> {
         const requestOptions = { headers: headers };
         return this._httpClient.post(`${environment.apiUrl}/Payment/Create/Received`, payload, requestOptions);
     }
+
+    getDigitalList(id: number) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        const url = `${environment.apiUrl}/DigitalData/Get/Patient/${id}`;
+        this.id = id;
+        return  this._httpClient.get(url, requestOptions)
+    }
 }

@@ -46,7 +46,7 @@ namespace DCRM.Repository.Repository
                
         public List<Prescription> GetAll()
         {
-            var prescriptions = _contex.Prescription.ToList();
+            var prescriptions = _contex.Prescription.OrderByDescending(x=>x.Id).ToList();
             return prescriptions;
         }
 

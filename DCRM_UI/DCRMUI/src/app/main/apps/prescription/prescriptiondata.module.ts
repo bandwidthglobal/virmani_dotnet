@@ -19,8 +19,8 @@ import { PrescriptionListService } from 'app/main/apps/prescription/prescription
 import { PrescriptionAddComponent } from 'app/main/apps/prescription/prescription-add/prescription-add.component';
 import { PrescriptionAddService } from 'app/main/apps/prescription/prescription-add/prescription-add.service';
 
-import { PrescriptionEditComponent } from 'app/main/apps/prescription/prescription-edit/prescription-edit.component';
-import { PrescriptionEditService } from 'app/main/apps/prescription/prescription-edit/prescription-edit.service';
+//import { PrescriptionEditComponent } from 'app/main/apps/prescription/prescription-edit/prescription-edit.component';
+//import { PrescriptionEditService } from 'app/main/apps/prescription/prescription-edit/prescription-edit.service';
 
 import { PrescriptionPreviewComponent } from 'app/main/apps/prescription/prescription-preview/prescription-preview.component';
 import { PrescriptionPreviewService } from 'app/main/apps/prescription/prescription-preview/prescription-preview.service';
@@ -53,14 +53,6 @@ const routes: Routes = [
         data: { path: 'prescription-view/:id', animation: 'PrescriptionPreviewComponent' }
     },
     {
-        path: 'edit/:id',
-        component: PrescriptionEditComponent,
-        resolve: {
-            Ses: PrescriptionEditService
-        },
-        data: { path: 'prescription-view/:id', animation: 'PrescriptionEditComponent' }
-    },
-    {
         path: 'preview',
         redirectTo: '/apps/prescription/preview/4989' // Redirection
     },
@@ -75,7 +67,6 @@ const routes: Routes = [
         PrescriptionAddComponent,
         PrescriptionListComponent,
         PrescriptionPreviewComponent,
-        PrescriptionEditComponent,
     ],
     imports: [
         CommonModule,
@@ -90,7 +81,7 @@ const routes: Routes = [
         NgSelectModule,
         CoreSidebarModule
     ],
-    providers: [PrescriptionListService, PrescriptionPreviewService, PrescriptionEditService, PrescriptionAddService],
+    providers: [PrescriptionListService, PrescriptionPreviewService,  PrescriptionAddService],
     exports: [PrescriptionListComponent]
 })
 export class PrescriptionDataModule { }
