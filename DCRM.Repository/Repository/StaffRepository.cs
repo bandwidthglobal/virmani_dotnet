@@ -101,6 +101,7 @@ namespace DCRM.Repository.Repository
                         staff.Permanent_Address = staffRequest.Permanent_Address;
                         staff.Current_Address = staffRequest.Current_Address;
                         staff.Is_Deleted = 0;
+                        staff.Status = 1;
                         staff.Created_At = System.DateTime.UtcNow;
                         _contex.Staffs.Add(staff);
                         _contex.SaveChanges();
@@ -286,7 +287,7 @@ namespace DCRM.Repository.Repository
         /// <returns></returns>
         public  void Delete(int id)
         {
-            Staff staff = _contex.Staffs.Where(x => x.Id == id).FirstOrDefault();
+            Staff? staff = _contex.Staffs.Where(x => x.Id == id).FirstOrDefault();
             if (staff != null)
             {
                 staff.Is_Deleted = 1;

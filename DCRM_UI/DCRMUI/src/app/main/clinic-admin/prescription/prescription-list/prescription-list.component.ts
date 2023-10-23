@@ -166,16 +166,6 @@ export class PrescriptionListComponent implements OnInit, OnDestroy {
         })
        
     }
-    addBadStock(id) {
-        //var modal = document.getElementById('basicModal');
-        this.display = "block";
-    }
-    addStock(id) {
-        this.display = "block";
-    }
-    /**
-     * On destroy
-     */
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();

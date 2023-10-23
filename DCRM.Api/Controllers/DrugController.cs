@@ -69,5 +69,30 @@ namespace DCRM.Api.Controllers
              return Ok(id.ToString());
         }
 
+        [HttpGet("Get/MedicineBadStocks/{id}")]
+        public List<MedicineBadStock> GetMedicineBadStocks(int id)
+        {
+            return _drugfService.GetMedicineBadStocks(id);
+        }
+
+        [HttpGet("Get/MedicineStocks/{id}")]
+        public List<MedicineBatchDetail> GetMedicineStocks(int id)
+        {
+            return _drugfService.GetMedicineStocks(id);
+        }
+
+        [HttpDelete("Delete/MedicineBadStock/{id}")]
+        public IActionResult DeleteMedicineBadStock(int id)
+        {
+            _drugfService.DeleteBadStock(id);
+            return Ok(id.ToString());
+        }
+
+        [HttpDelete("Delete/MedicineStock/{id}")]
+        public IActionResult DeleteMedicineStock(int id)
+        {
+            _drugfService.DeleteStock(id);
+            return Ok(id.ToString());
+        }
     }
 }

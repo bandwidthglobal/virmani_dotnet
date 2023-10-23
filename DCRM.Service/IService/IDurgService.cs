@@ -30,5 +30,10 @@ namespace DCRM.Service.IService
 
         List<MedicineCategory> GetMedicineCategoris();
 
+        List<MedicineBadStock> GetMedicineBadStocks(Int32 id);
+
+        List<MedicineBatchDetail> GetMedicineStocks(Int32 id);
+        void DeleteBadStock(Int32 id);
+        void DeleteStock(Int32 id);
     }
 }

@@ -8,116 +8,136 @@
                         <div class="col-md-10 col-12">
                             <h4 class="card-title">Medicine Details</h4>
                         </div>
-                        <div class="col-md-1 col-12" style="float:right">
-                            <a class="btn btn-primary ml-2 waves-effect waves-float waves-light" href="/admin/drug/list">Back</a>
-                        </div>
                     </div>
-                    <div class="card-body">
-
+                    <div class="card-body background-white">
                         <div class="row">
-                            <div class="col-md-4 col-12">
-                                <div class="form-group">
-                                    <label for="first-name-column">Upload Photo</label><br />
-                                    <img src="#" alt="Alternate Text" />
-                                </div>
+                            <div class="col-md-12 col-12 float-right mb-10px">
+                                <a class="btn btn-primary ml-2 waves-effect waves-float waves-light float-right" href="/admin/drug/list">Back</a>
                             </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group">
-                                    <label for="basic-medicinetype">Medicin Type</label>
-                                    <br />
-                                    <span class="font-weight-bold d-block text-nowrap font-medium-1">{{drug.medicine_Type}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group">
-                                    <label for="mc" class="form-label">Medicine Category</label>
-                                    <br />
-                                    <span class="font-weight-bold d-block text-nowrap font-medium-1">{{category}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group">
+                        </div>
+                        <div class="row">
 
-                                    <label for="brand-column">Brand Name</label>
-                                    <br />
-                                    <span class="font-weight-bold d-block text-nowrap font-medium-1">{{brandName}}</span>
-                                </div>
-                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 paddlr">
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-2 col-sm-4">
+                                        <img id="medicine_image" [src]="drug.medicine_Image ? drug.medicine_Image : 'assets/images/noimage.jpg'"  style="width:120px;height: 120px;border-radius: 5px;">
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-sm-8 table-responsive">
+                                        <table class="table mb0 table-striped table-bordered examples">
+                                            <tbody>
+                                                <tr>
 
-                            <div class="col-md-4 col-12">
-                                <div class="form-group">
-                                    <label for="country-floating">Medicine Company</label>
-                                    <br />
-                                    <span class="font-weight-bold d-block text-nowrap font-medium-1">{{drug.medicine_Company}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group">
-                                    <label for="basic-salt">Basic Salt</label>
-                                    <br />
-                                    <span class="font-weight-bold d-block text-nowrap font-medium-1">{{drug.basic_Salt}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group">
-                                    <label for="form">Form  </label>
-                                    <br />
-                                    <span class="font-weight-bold d-block text-nowrap font-medium-1">{{drug.form}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group">
-                                    <label for="dosageq">Dosage </label>
-                                    <br />
-                                    <span class="font-weight-bold d-block text-nowrap font-medium-1">{{drug.dosage}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group">
-                                    <label for="doseno">DoseNo </label>
-                                    <br />
-                                    <span class="font-weight-bold d-block text-nowrap font-medium-1">{{drug.dose_No}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group">
-                                    <label for="details">Details</label>
-                                    <br />
-                                    <span class="font-weight-bold d-block text-nowrap font-medium-1">{{drug.details}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group">
-                                    <label for="description">Description</label>
-                                    <br />
-                                    <span class="font-weight-bold d-block text-nowrap font-medium-1">{{drug.description}}</span>
-                                    <!--<textarea rows="5" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="drug.description" autofocus placeholder="description" tabindex="9" aria-describedby="description"></textarea>-->
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group">
-                                    <label for="email-id-column">Safety Alerts</label>
-                                    <br />
-                                    <span class="font-weight-bold d-block text-nowrap font-medium-1">{{drug.safety_Alerts}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group">
-                                    <label for="email-id-column">Bactrology</label>
-                                    <br />
-                                    <span class="font-weight-bold d-block text-nowrap font-medium-1">{{drug.bactrology}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group">
-                                    <label for="email-id-column">Note</label>
-                                    <br />
-                                    <span class="font-weight-bold d-block text-nowrap font-medium-1">{{drug.note}}</span>
+
+                                                    <th width="15%">Type</th>
+                                                    <td width="35%">{{drug.medicine_Type}}</td>
+                                                    <th width="15%">Category</th>
+                                                    <td width="35%">
+                                                        <span id="medicine_category_ids">{{category}}</span>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+
+
+                                                    <th width="15%">Brand Name</th>
+                                                    <td width="35%">{{brandName}}</td>
+                                                    <th width="15%">Basic Salt</th>
+                                                    <td width="35%">
+                                                        <span id="medicine_basic_salts">{{drug.basic_Salt}}</span>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+
+
+                                                    <th width="15%">Company</th>
+                                                    <td width="35%">{{drug.medicine_Company}}</td>
+                                                    <th width="15%">Form</th>
+                                                    <td width="35%">
+                                                        {{drug.form}}
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+
+
+                                                    <th width="15%">Dosage</th>
+                                                    <td width="35%">{{drug.dosage}}</td>
+                                                    <th width="15%">Details</th>
+                                                    <td width="35%">
+                                                        {{drug.details}}
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+
+
+                                                    <th width="15%">DoseNo</th>
+                                                    <td width="35%">{{drug.dose_No}}</td>
+                                                    <th width="15%"> </th>
+                                                    <td width="35%">
+                                                        <span id="reorder_levels"> </span>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+
+                                                    <th width="15%">Description</th>
+                                                    <td colspan="3">{{drug.description}}</td>
+
+                                                </tr>
+                                                <tr>
+
+                                                    <th width="15%">Safety Alerts</th>
+                                                    <td colspan="3">{{drug.safety_Alerts}}</td>
+
+                                                </tr>
+                                                <tr>
+
+                                                    <th width="15%">Bactrology</th>
+                                                    <td colspan="3">{{drug.bactrology}}</td>
+
+                                                </tr>
+                                                <tr>
+
+                                                    <th width="15%">Note</th>
+                                                    <td colspan="3">{{drug.note}}</td>
+
+                                                </tr>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
+                        <div class="row match-height mt-30 mb-2">
+                            <div class="col-xl-12 col-lg-12">
+                                <ul ngbNav #navFilled="ngbNav" class="nav-tabs nav-fill">
+                                    <li ngbNavItem>
+                                        <a ngbNavLink>Stock</a>
+                                        <ng-template ngbNavContent>
+                                            <p>
+                                               <app-stock-list></app-stock-list>
+                                            </p>
+                                        </ng-template>
+                                    </li>
+                                    <li ngbNavItem>
+                                        <a ngbNavLink>Bad Stock</a>
+                                        <ng-template ngbNavContent>
+                                            <p>
+                                                <app-bad-stock-list></app-bad-stock-list>
+                                            </p>
+                                        </ng-template>
+                                    </li>
+                                </ul>
+                                <div [ngbNavOutlet]="navFilled" class="mt-2"></div>
+                            </div>
+                        </div>
+                        
                     </div>
+                    
                 </div>
             </div>
         </section>
