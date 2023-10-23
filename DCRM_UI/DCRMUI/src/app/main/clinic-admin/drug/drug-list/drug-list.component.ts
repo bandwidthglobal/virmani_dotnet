@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -9,6 +9,7 @@ import { CoreConfigService } from '@core/services/config.service';
 import { DrugListService } from 'app/main/clinic-admin/drug/drug-list/drug-list.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BeforeOpenEvent } from '@sweetalert2/ngx-sweetalert2';
+import { BadStockAddComponent } from 'app/main/clinic-admin/drug/drug-list/bad-stock-add/bad-stock-add.component';
 import Swal from 'sweetalert2';
 
 import * as snippet from 'app/main/extensions/sweet-alerts/sweet-alerts.snippetcode';
@@ -25,6 +26,7 @@ export class DrugListComponent implements OnInit, OnDestroy {
     public ColumnMode = ColumnMode;
     public searchValue = '';
     // decorator
+    @ViewChild('myModal') modal: BadStockAddComponent;
     @ViewChild(DatatableComponent) table: DatatableComponent;
     public returnUrl: string;
     public loading = false;
@@ -37,7 +39,10 @@ export class DrugListComponent implements OnInit, OnDestroy {
     public previousStatusFilter = '';
     display: string = "none";
     public _snippetCodeConfirmText = snippet.snippetCodeConfirmText;
-    isOpen: boolean = true;
+    isBad: boolean = true;
+    @ViewChild('receiveModal', { static: false }) receiveModal: ElementRef;
+    @Output() someEvent = new EventEmitter<string>();
+    receiveElm: HTMLElement;
     /**
      * Constructor
      *
@@ -104,6 +109,7 @@ export class DrugListComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.getData();
     }
+    parentFun() { alert('parent component function.'); }
     getData() {
 
         this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
@@ -166,12 +172,22 @@ export class DrugListComponent implements OnInit, OnDestroy {
         })
        
     }
+    ngAfterViewInit(): void {
+        this.receiveElm = this.receiveModal.nativeElement as HTMLElement;
+    }
     addBadStock(id) {
-        //var modal = document.getElementById('basicModal');
-        this.display = "block";
+        this.isBad = true;
+        this.receiveElm.classList.add('show');
+        this.receiveElm.style.width = '100vw';
     }
     addStock(id) {
-        this.display = "block";
+        this.isBad = false;
+        this.receiveElm.classList.add('show');
+        this.receiveElm.style.width = '100vw';
+    }
+    close() {
+        this.receiveElm.classList.remove('show');
+        this.receiveElm.style.width = '0';
     }
     /**
      * On destroy

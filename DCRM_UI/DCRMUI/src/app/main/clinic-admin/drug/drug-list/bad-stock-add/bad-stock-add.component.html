@@ -1,0 +1,76 @@
+﻿
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Add Bad Stock</h5>
+            <button type="button" class="close" (click)="close()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+            <div class="col-12">
+                <form >
+                    <div class="row">
+
+
+                        <div class="col-lg-6">
+                            <div class="form-group validate">
+                                <label>Batch No</label>
+                                <small class="text-danger"> *</small>
+                                <select name="batch_no" onchange="getExpire(this.value)" id="batch_stock_no" class="form-control" autocomplete="off" aria-invalid="false"><option value="Select"> Select </option><option value="6"> 456 </option></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Expiry Date</label>
+                                <small class="text-danger"> *</small>
+                                <input type="date" id="batch_expire" name="expiry_date" class="form-control date">
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Outward Date</label>
+                                <small class="text-danger"> *</small>
+                                <input type="date" name="inward_date"  class="form-control date">
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Qty</label>
+                                <small class="text-danger"> *</small>
+                                <input type="text" name="packing_qty" class="form-control">
+                                <input type="hidden" name="pharmacy_id" id="pharmacy_stock_id" class="form-control" value="140">
+                                <input type="hidden" name="available_quantity" id="batch_available_qty" class="form-control">
+                                <input type="hidden" name="medicine_batch_id" id="medicine_batch_id" class="form-control">
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Note</label>
+                                <textarea name="note" class="form-control "></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button class="btn btn-primary btn-m" type="submit" name="add_bad_stock" value="Add_bad_stock">Save</button>
+                        <p type="button" class="btn btn-danger btn-m mt-25" (click)="close()">Close</p>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+        </div>
+
+    </div>
+    </div>
+
+
+

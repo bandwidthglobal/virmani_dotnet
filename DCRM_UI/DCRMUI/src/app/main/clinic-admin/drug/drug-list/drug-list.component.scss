@@ -1,16 +1,14 @@
-@import '@core/scss/base/pages/app-invoice.scss';
-@import '@core/scss/angular/libs/datatables.component.scss';
-@import '@core/scss/angular/libs/select.component.scss';
-
-@import '@core/scss/base/bootstrap-extended/_include'; // Components includes
-
-// invoice list
-.invoice-list-wrapper {
-  .col-actions {
-    a {
-      &:not(.dropdown-item) {
-        color: $body-color;
-      }
-    }
-  }
+.my-modal {
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 0;
+}
+a {
+    color: #7367f0;
+    text-decoration: none;
+    background-color: transparent;
+}
+.text-color {
+    color: #7367f0!important;
 }
