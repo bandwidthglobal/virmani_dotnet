@@ -106,5 +106,9 @@ namespace DCRM.Repository.Database
 
         public virtual DbSet<Teeth> Teeth { get; set; }
 
+        public virtual DbSet<MedicineBadStock> Medicine_Bad_Stock { get; set; }
+
+        public virtual DbSet<MedicineBatchDetail> Medicine_Batch_Details { get; set; }
+
     }
 }

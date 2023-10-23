@@ -15,7 +15,7 @@ export class DrugPreviewService implements Resolve<any> {
     onMedicinCategoriesChanged: BehaviorSubject<any>;
     id;
     currentUser: any;
-
+    drugId: any;
     /**
      * Constructor
      *
@@ -41,6 +41,7 @@ export class DrugPreviewService implements Resolve<any> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
         let currentId = Number(route.paramMap.get('id'));
+        this.drugId = currentId;
         return new Promise<void>((resolve, reject) => {
             Promise.all([this.getDrugData(currentId), this.getBrandlist(), this.getCategoryList()]).then(() => {
                 resolve();
@@ -52,6 +53,7 @@ export class DrugPreviewService implements Resolve<any> {
         return new Promise((resolve, reject) => {
             this._httpClient.get(url).subscribe((response: any) => {
                 this.medicinBrands = response;
+                debugger;
                 this.onMedicinBrandChanged.next(this.medicinBrands);
                 resolve(this.medicinBrands);
             }, reject);
@@ -82,5 +84,23 @@ export class DrugPreviewService implements Resolve<any> {
                 resolve(this.apiData);
             }, reject);
         });
+    }
+
+    getDrugBadStockList() {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.get(`${environment.apiUrl}/Drug/Get/MedicineBadStocks/` + this.drugId, requestOptions);
+    }
+  
+    getDrugStockList() {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.get(`${environment.apiUrl}/Drug/Get/MedicineStocks/` + this.drugId, requestOptions);
     }
 }

@@ -16,9 +16,13 @@ namespace DCRM.Service.Service
     public class DurgService : IDurgService
     {
         public readonly IDrugRepository _drugRepository;
-        public DurgService(IDrugRepository drugRepository)
+        public readonly IRepository<MedicineBadStock> _badStockRepository;
+        public readonly IRepository<MedicineBatchDetail> _stockRepository;
+        public DurgService(IDrugRepository drugRepository, IRepository<MedicineBadStock> badStockRepository, IRepository<MedicineBatchDetail> stockRepository)
         {
             _drugRepository = drugRepository;
+            _badStockRepository = badStockRepository;
+            _stockRepository = stockRepository;
         }
         /// <summary>
         /// create drug
@@ -82,6 +86,28 @@ namespace DCRM.Service.Service
 
         public List<MedicineCategory> GetMedicineCategoris() {
             return _drugRepository.GetMedicineCategoris();
+        }
+
+        public List<MedicineBadStock> GetMedicineBadStocks(Int32 drugId)
+        {
+            var medicineBadStockList = _badStockRepository.GetAll().Where(x => x.Pharmacy_Id == drugId && x.Is_Deleted==0).OrderByDescending(x=>x.Id).ToList();
+            return medicineBadStockList;
+        }
+
+        public List<MedicineBatchDetail> GetMedicineStocks(Int32 drugId )
+        {
+            var medicineStockList = _stockRepository.GetAll().Where(x => x.Medicine_Id == drugId && x.Is_Deleted == 0).OrderByDescending(x => x.Id).ToList();
+            return medicineStockList;
+        }
+
+        public void DeleteBadStock(Int32 drugId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteStock(Int32 drugId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -83,8 +83,7 @@ namespace DCRM.Repository.Repository
                         doctor.Qualification = request.Qualification;
                         doctor.Age = request.Age;
                         doctor.Gender = request.Gender;
-                        doctor.Blood_Group = request.Gender;
-                        doctor.Marital_Status = request.Blood_Group;
+                        doctor.Blood_Group = request.Blood_Group;
                         doctor.Marital_Status = request.Marital_Status;
                         doctor.Dob = request.Dob;
                         doctor.Phone1 = request.Phone1;
@@ -169,7 +168,7 @@ namespace DCRM.Repository.Repository
         {
             try
             {
-                var doctor = _contex.Doctors.FirstOrDefault(x => x.Phone1 == request.Phone1);
+                var doctor = _contex.Doctors.AsNoTracking().FirstOrDefault(x => x.Phone1 == request.Phone1);
                 if (doctor != null)
                 {
                     doctor.User_Id = request.User_Id;
@@ -179,8 +178,7 @@ namespace DCRM.Repository.Repository
                     doctor.Qualification = request.Qualification;
                     doctor.Age = request.Age;
                     doctor.Gender = request.Gender;
-                    doctor.Blood_Group = request.Gender;
-                    doctor.Marital_Status = request.Blood_Group;
+                    doctor.Blood_Group = request.Blood_Group;
                     doctor.Marital_Status = request.Marital_Status;
                     doctor.Dob = request.Dob;
                     doctor.Phone1 = request.Phone1;
@@ -193,84 +191,12 @@ namespace DCRM.Repository.Repository
                     doctor.Role = request.Role;
                     doctor.Updated_At = System.DateTime.UtcNow;
                     _contex.Doctors.Update(doctor);
-                    //_contex.SaveChanges();
-                    if (request.DoctorInsuranceDetailList != null && request.DoctorInsuranceDetailList.Count > 0)
-                    {
-                        foreach (var item in request.DoctorInsuranceDetailList)
-                        {
-                            var insurance = _contex.Doctor_Insurance_Details.FirstOrDefault(x => x.Id == item.Id);
-                            if (insurance == null)
-                            {
-                                item.Doctor_Id = doctor.Id;
-                                _contex.Doctor_Insurance_Details.Add(item);
-                            }
-                            else
-                            {
-                                insurance.Insurance_Date = item.Insurance_Date;
-                                insurance.Insurance = item.Insurance;
-                                insurance.Renewal_Date = item.Renewal_Date;
-                                insurance.Amount_Insured = item.Amount_Insured;
-                                insurance.Amount_Paid = item.Amount_Paid;
-                                insurance.Allow_Notifications = item.Allow_Notifications;
-                                insurance.Remarks = item.Remarks;
-                                insurance.Updated_At = System.DateTime.UtcNow;
-                                _contex.Doctor_Insurance_Details.Update(insurance);
-                            }
-                            _contex.SaveChanges();
-                        }
-                    }
-                    if (request.DoctorBankDetailList != null && request.DoctorBankDetailList.Count > 0)
-                    {
-                        foreach (var item in request.DoctorBankDetailList)
-                        {
-                            var bankDetails = _contex.Doctor_Bank_Details.FirstOrDefault(x => x.Id == item.Id);
-                            if (bankDetails == null)
-                            {
-                                item.Doctor_Id = doctor.Id;
-                                _contex.Doctor_Bank_Details.Add(item);
-                            }
-                            else
-                            {
-                                bankDetails.Remarks = item.Remarks;
-                                bankDetails.Bank_Account_Number = item.Bank_Account_Number;
-                                bankDetails.Bank_Name = item.Bank_Name;
-                                bankDetails.Ifsc_Code = item.Ifsc_Code;
-                                bankDetails.Remarks = item.Remarks;
-                                bankDetails.Updated_At = System.DateTime.UtcNow;
-                                _contex.Doctor_Bank_Details.Update(bankDetails);
-                            }
-
-                            _contex.SaveChanges();
-                        }
-                    }
-                    if (request.DoctorsVaccinationList != null && request.DoctorsVaccinationList.Count > 0)
-                    {
-                        foreach (var item in request.DoctorsVaccinationList)
-                        {
-                            var vaccinationDetails = _contex.Doctors_Vaccination.FirstOrDefault(x => x.Id == item.Id);
-                            if (vaccinationDetails == null)
-                            {
-                                item.Doctor_Id = doctor.Id;
-                                _contex.Doctors_Vaccination.Add(item);
-                            }
-                            else
-                            {
-                                vaccinationDetails.Remarks = item.Remarks;
-                                vaccinationDetails.Vaccination_Date = item.Vaccination_Date;
-                                vaccinationDetails.Reminder_Date_For_Next = item.Reminder_Date_For_Next;
-                                vaccinationDetails.Vaccination_Type = item.Vaccination_Type;
-                                vaccinationDetails.Medical_History = item.Medical_History;
-                                vaccinationDetails.Updated_At = System.DateTime.UtcNow;
-                                _contex.Doctors_Vaccination.Update(item);
-                            }
-                            _contex.SaveChanges();
-                        }
-                    }
+                    _contex.SaveChanges();
                     if (request.DoctorsAddressList != null && request.DoctorsAddressList.Count > 0)
                     {
                         foreach (var item in request.DoctorsAddressList)
                         {
-                            var addressDetails = _contex.Doctors_Address.FirstOrDefault(x => x.Id == item.Id);
+                            var addressDetails = _contex.Doctors_Address.AsNoTracking().FirstOrDefault(x => x.Id == item.Id);
                             if (addressDetails == null)
                             {
                                 item.Doctor_Id = Convert.ToInt32(doctor.Id);
@@ -296,6 +222,80 @@ namespace DCRM.Repository.Repository
                             _contex.SaveChanges();
                         }
                     }
+                    if (request.DoctorInsuranceDetailList != null && request.DoctorInsuranceDetailList.Count > 0)
+                    {
+                        foreach (var item in request.DoctorInsuranceDetailList)
+                        {
+                            var insurance = _contex.Doctor_Insurance_Details.AsNoTracking().FirstOrDefault(x => x.Id == item.Id);
+                            if (insurance == null)
+                            {
+                                item.Doctor_Id = doctor.Id;
+                                _contex.Doctor_Insurance_Details.Add(item);
+                            }
+                            else
+                            {
+                                insurance.Insurance_Date = item.Insurance_Date;
+                                insurance.Insurance = item.Insurance;
+                                insurance.Renewal_Date = item.Renewal_Date;
+                                insurance.Amount_Insured = item.Amount_Insured;
+                                insurance.Amount_Paid = item.Amount_Paid;
+                                insurance.Allow_Notifications = item.Allow_Notifications;
+                                insurance.Remarks = item.Remarks;
+                                insurance.Updated_At = System.DateTime.UtcNow;
+                                _contex.Doctor_Insurance_Details.Update(insurance);
+                            }
+                            _contex.SaveChanges();
+                        }
+                    }
+                    if (request.DoctorBankDetailList != null && request.DoctorBankDetailList.Count > 0)
+                    {
+                        foreach (var item in request.DoctorBankDetailList)
+                        {
+                            var bankDetails = _contex.Doctor_Bank_Details.AsNoTracking().FirstOrDefault(x => x.Id == item.Id);
+                            if (bankDetails == null)
+                            {
+                                item.Doctor_Id = doctor.Id;
+                                _contex.Doctor_Bank_Details.Add(item);
+                            }
+                            else
+                            {
+                                bankDetails.Remarks = item.Remarks;
+                                bankDetails.Bank_Account_Number = item.Bank_Account_Number;
+                                bankDetails.Bank_Name = item.Bank_Name;
+                                bankDetails.Ifsc_Code = item.Ifsc_Code;
+                                bankDetails.Remarks = item.Remarks;
+                                bankDetails.Updated_At = System.DateTime.UtcNow;
+                                _contex.Doctor_Bank_Details.Update(bankDetails);
+                            }
+                            _contex.SaveChanges();
+                        }
+                    }
+                    if (request.DoctorsVaccinationList != null && request.DoctorsVaccinationList.Count > 0)
+                    {
+                        foreach (var item in request.DoctorsVaccinationList)
+                        {
+                            var vaccinationDetails = _contex.Doctors_Vaccination.AsNoTracking().FirstOrDefault(x => x.Id == item.Id);
+                            if (vaccinationDetails == null)
+                            {
+                                item.Doctor_Id = doctor.Id;
+                                _contex.Doctors_Vaccination.Add(item);
+                                _contex.SaveChanges();
+                            }
+                            else
+                            {
+                                vaccinationDetails.Remarks = item.Remarks;
+                                vaccinationDetails.Vaccination_Date = item.Vaccination_Date;
+                                vaccinationDetails.Reminder_Date_For_Next = item.Reminder_Date_For_Next;
+                                vaccinationDetails.Vaccination_Type = item.Vaccination_Type;
+                                vaccinationDetails.Medical_History = item.Medical_History;
+                                vaccinationDetails.Updated_At = System.DateTime.UtcNow;
+                                _contex.Doctors_Vaccination.Update(item);
+                                _contex.SaveChanges();
+                            }
+
+                        }
+                    }
+
 
                 }
                 else

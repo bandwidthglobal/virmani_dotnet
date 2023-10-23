@@ -36,23 +36,24 @@ export class DrugPreviewComponent implements OnInit, OnDestroy {
     medicinCategories: any;
     public brandName: string = "";
     public category: string = "";
-    public drug: DrugAddModel = {
-        medicine_Category: "",
-        medicine_Company: "",
-        brandname: "",
-        basic_Salt: "",
-        form: "",
-        dosage: "",
-        dose_No: "",
-        details: "",
-        description: "",
-        safety_Alerts: "",
-        bactrology: "",
-        note: "",
-        medicine_Type: "",
-        medicine_Category_Id: "",
-        medicine_Brand_Id: "",
-    }
+   public drug: any;
+    //public drug: DrugAddModel = {
+    //    medicine_Category: "",
+    //    medicine_Company: "",
+    //    brandname: "",
+    //    basic_Salt: "",
+    //    form: "",
+    //    dosage: "",
+    //    dose_No: "",
+    //    details: "",
+    //    description: "",
+    //    safety_Alerts: "",
+    //    bactrology: "",
+    //    note: "",
+    //    medicine_Type: "",
+    //    medicine_Category_Id: "",
+    //    medicine_Brand_Id: "",
+    //}
     // Private
     private _unsubscribeAll: Subject<any>;
     //private _formBuilder: any;
@@ -74,6 +75,7 @@ export class DrugPreviewComponent implements OnInit, OnDestroy {
         this._drugPreviewService.onMedicinCategoriesChanged.subscribe(res => (this.medicinCategories = res));
         this._drugPreviewService.onDrugEditChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
             this.drug = response;
+            debugger;
             this.medicinBrands.forEach((currentValue, index) => {
                 if (currentValue.id == this.drug.medicine_Brand_Id) {
                     this.brandName = currentValue.medicine_Brand;
