@@ -1,0 +1,98 @@
+﻿
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Add Stock</h5>
+            <button type="button" class="close" (click)="close()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-12">
+                    <form>
+                        <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Batch No</label>
+                                            <span class="text-danger">*</span>
+                                            <input type="text" name="batch_no" required="" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Expiry Date</label>
+                                            <span class="text-danger">*</span>
+                                            <input type="month" id="expiry" required="" name="expiry_date" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Inward Date</label>
+                                            <span class="text-danger">*</span>
+                                            <input type="date" id="inward_date" required="" name="inward_date" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Packing Qty</label>
+                                            <span class="text-danger">*</span>
+                                            <input type="text" name="packing_qty" required="" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Purchase Rate (Rs.)</label>
+
+                                            <input type="text" name="purchase_rate_packing" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Quantity</label>
+                                            <span class="text-danger">*</span>
+                                            <input type="text" name="quantity" required="" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>MRP (Rs.)</label>
+                                            <span class="text-danger">*</span>
+                                            <input type="text" name="mrp" required="" class="form-control">
+                                            <span class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Sale Price (Rs.)</label>
+                                            <span class="text-danger">*</span>
+                                            <input name="sale_rate" type="text" required="" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Batch Amount (Rs.)</label>
+
+                                            <input type="text" name="amount" class="form-control">
+                                            <span class="text-danger"></span>
+                                        </div>
+                                    </div>
+                               
+                            </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button class="btn btn-primary btn-m" type="submit" name="add_bad_stock" value="Add_bad_stock">Save</button>
+                            <p type="button" class="btn btn-danger btn-m mt-25" (click)="close()">Close</p>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

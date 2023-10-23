@@ -26,6 +26,8 @@ import { DrugPreviewComponent } from 'app/main/clinic-admin/drug/drug-preview/dr
 import { DrugPreviewService } from 'app/main/clinic-admin/drug/drug-preview/drug-preview.service';
 import { StockListComponent } from 'app/main/clinic-admin/drug/drug-preview/stock/stock-list.component';
 import { BadStockListComponent } from 'app/main/clinic-admin/drug/drug-preview/bad-stock/bad-stock-list.component';
+import { BadStockAddComponent } from 'app/main/clinic-admin/drug/drug-list/bad-stock-add/bad-stock-add.component';
+import {StockAddComponent } from 'app/main/clinic-admin/drug/drug-list/stock-add/stock-add.component';
 
 // routing
 const routes: Routes = [
@@ -78,7 +80,9 @@ const routes: Routes = [
         DrugPreviewComponent,
         DrugEditComponent,
         StockListComponent,
-        BadStockListComponent
+        BadStockListComponent,
+        BadStockAddComponent,
+        StockAddComponent
     ],
     imports: [
         CommonModule,
