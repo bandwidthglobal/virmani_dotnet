@@ -39,10 +39,12 @@ export class DrugListComponent implements OnInit, OnDestroy {
     public previousStatusFilter = '';
     display: string = "none";
     public _snippetCodeConfirmText = snippet.snippetCodeConfirmText;
-    isBad: boolean = true;
+    isBad: boolean = false;
+    isStock: boolean = false;
     @ViewChild('receiveModal', { static: false }) receiveModal: ElementRef;
     @Output() someEvent = new EventEmitter<string>();
     receiveElm: HTMLElement;
+    drugId: any;
     /**
      * Constructor
      *
@@ -177,15 +179,21 @@ export class DrugListComponent implements OnInit, OnDestroy {
     }
     addBadStock(id) {
         this.isBad = true;
+        this.isStock = false;
+        this.drugId = id;
         this.receiveElm.classList.add('show');
         this.receiveElm.style.width = '100vw';
     }
     addStock(id) {
         this.isBad = false;
+        this.isStock = true;
+        this.drugId = id;
         this.receiveElm.classList.add('show');
         this.receiveElm.style.width = '100vw';
     }
     close() {
+        this.isBad = false;
+        this.isStock = false;
         this.receiveElm.classList.remove('show');
         this.receiveElm.style.width = '0';
     }

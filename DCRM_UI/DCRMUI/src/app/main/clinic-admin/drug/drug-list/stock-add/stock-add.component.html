@@ -10,83 +10,123 @@
         <div class="modal-body">
             <div class="row">
                 <div class="col-12">
-                    <form>
+                   
                         <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Batch No</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" name="batch_no" required="" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Expiry Date</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="month" id="expiry" required="" name="expiry_date" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Inward Date</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="date" id="inward_date" required="" name="inward_date" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Packing Qty</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" name="packing_qty" required="" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Purchase Rate (Rs.)</label>
-
-                                            <input type="text" name="purchase_rate_packing" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Quantity</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" name="quantity" required="" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>MRP (Rs.)</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" name="mrp" required="" class="form-control">
-                                            <span class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Sale Price (Rs.)</label>
-                                            <span class="text-danger">*</span>
-                                            <input name="sale_rate" type="text" required="" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Batch Amount (Rs.)</label>
-
-                                            <input type="text" name="amount" class="form-control">
-                                            <span class="text-danger"></span>
-                                        </div>
-                                    </div>
-                               
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="basic-medicinetype"
+                                           [class.invalid-class]="submitted && formData.expiry_Date.errors">Batch No <span class="text-danger">*</span></label>
+                                    <input type="text" [formControl]="formData.batch_No" class="form-control" placeholder=""
+                                           aria-describedby="formData.batch_No" tabindex="5"
+                                           [ngClass]="{ 'is-invalid': submitted && formData.batch_No.errors }" />
+                                    <ng-container *ngFor="let error of formData.batch_No.errors ">
+                                        <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                    </ng-container>
+                                </div>
                             </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="basic-medicinetype"
+                                           [class.invalid-class]="submitted && formData.expiry_Date.errors">Expiry Date <span class="text-danger">*</span></label>
+                                    <input type="date" [formControl]="formData.expiry_Date" class="form-control" placeholder=""
+                                           aria-describedby="formData.expiry_Date" tabindex="5"
+                                           [ngClass]="{ 'is-invalid': submitted && formData.expiry_Date.errors }" />
+                                    <ng-container *ngFor="let error of formData.expiry_Date.errors ">
+                                        <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                    </ng-container>
+                            </div>
+                            </div>
+                                <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="basic-medicinetype"
+                                           [class.invalid-class]="submitted && formData.inward_Date.errors">Inward Date <span class="text-danger">*</span></label>
+                                    <input type="date" [formControl]="formData.inward_Date" class="form-control" placeholder=""
+                                           aria-describedby="formData.inward_Date" tabindex="5"
+                                           [ngClass]="{ 'is-invalid': submitted && formData.inward_Date.errors }" />
+                                    <ng-container *ngFor="let error of formData.inward_Date.errors ">
+                                        <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                    </ng-container>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="basic-medicinetype"
+                                           [class.invalid-class]="submitted && formData.packing_Qty.errors">Packing Qty <span class="text-danger">*</span></label>
+                                    <input type="text" [formControl]="formData.packing_Qty" class="form-control" placeholder=""
+                                           aria-describedby="formData.packing_Qty" tabindex="5"
+                                           [ngClass]="{ 'is-invalid': submitted && formData.packing_Qty.errors }" />
+                                    <ng-container *ngFor="let error of formData.packing_Qty.errors ">
+                                        <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                    </ng-container>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="basic-medicinetype"
+                                           [class.invalid-class]="submitted && formData.purchase_Rate_Packing.errors">Purchase Rate (Rs.)</label>
+                                    <input type="text" [formControl]="formData.purchase_Rate_Packing" class="form-control" placeholder=""
+                                           aria-describedby="formData.purchase_Rate_Packing" tabindex="5"
+                                           [ngClass]="{ 'is-invalid': submitted && formData.purchase_Rate_Packing.errors }" />
+                                    <ng-container *ngFor="let error of formData.purchase_Rate_Packing.errors ">
+                                        <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                    </ng-container>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="basic-medicinetype"
+                                           [class.invalid-class]="submitted && formData.quantity.errors">Quantity <span class="text-danger">*</span></label>
+                                    <input type="text" [formControl]="formData.quantity" class="form-control" placeholder=""
+                                           aria-describedby="formData.quantity" tabindex="5"
+                                           [ngClass]="{ 'is-invalid': submitted && formData.quantity.errors }" />
+                                    <ng-container *ngFor="let error of formData.quantity.errors ">
+                                        <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                    </ng-container>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="basic-medicinetype"
+                                           [class.invalid-class]="submitted && formData.mrp.errors">MRP (Rs.) <span class="text-danger">*</span></label>
+                                    <input type="text" [formControl]="formData.mrp" class="form-control" placeholder=""
+                                           aria-describedby="formData.mrp" tabindex="5"
+                                           [ngClass]="{ 'is-invalid': submitted && formData.mrp.errors }" />
+                                    <ng-container *ngFor="let error of formData.mrp.errors ">
+                                        <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                    </ng-container>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label [class.invalid-class]="submitted && formData.sale_Rate.errors">Sale Price (Rs.) <span class="text-danger">*</span></label>
+                                    <input type="text" [formControl]="formData.sale_Rate" class="form-control" placeholder=""
+                                           aria-describedby="formData.sale_Rate" tabindex="5"
+                                           [ngClass]="{ 'is-invalid': submitted && formData.sale_Rate.errors }" />
+                                    <ng-container *ngFor="let error of formData.sale_Rate.errors ">
+                                        <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                    </ng-container>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="basic-medicinetype"
+                                           [class.invalid-class]="submitted && formData.amount.errors">Batch Amount (Rs.)</label>
+                                    <input type="text" [formControl]="formData.amount" class="form-control" placeholder=""
+                                           aria-describedby="formData.amount" tabindex="5"
+                                           [ngClass]="{ 'is-invalid': submitted && formData.amount.errors }" />
+                                    <ng-container *ngFor="let error of formData.amount.errors">
+                                        <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                    </ng-container>
+                                </div>
+                            </div>
+
+                        </div>
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button class="btn btn-primary btn-m" type="submit" name="add_bad_stock" value="Add_bad_stock">Save</button>
+                            <button class="btn btn-primary btn-m" (click)="saveForm()" type="submit" name="add_bad_stock" value="Add_bad_stock">Save</button>
                             <p type="button" class="btn btn-danger btn-m mt-25" (click)="close()">Close</p>
                         </div>
-
-                    </form>
-
+                   
                 </div>
             </div>
         </div>

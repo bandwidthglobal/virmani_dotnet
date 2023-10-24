@@ -81,6 +81,21 @@ namespace DCRM.Api.Controllers
             return _drugfService.GetMedicineStocks(id);
         }
 
+
+        [HttpPost("AddStock")]
+        public IActionResult AddStock(MedicineBatchDetail medicineBatchDetail)
+        {
+            _drugfService.AddStock(medicineBatchDetail);
+            return Ok();
+        }
+
+        [HttpPost("AddBadStock")]
+        public IActionResult AddBadStock(MedicineBadStock medicineBadStock)
+        {
+            _drugfService.AddBadStock(medicineBadStock);
+            return Ok();
+        }
+
         [HttpDelete("Delete/MedicineBadStock/{id}")]
         public IActionResult DeleteMedicineBadStock(int id)
         {
