@@ -10,42 +10,78 @@
         <div class="modal-body">
             <div class="row">
             <div class="col-12">
-                <form >
+                <!--<form>-->
                     <div class="row">
 
 
                         <div class="col-lg-6">
                             <div class="form-group validate">
-                                <label>Batch No</label>
-                                <small class="text-danger"> *</small>
-                                <select name="batch_no" onchange="getExpire(this.value)" id="batch_stock_no" class="form-control" autocomplete="off" aria-invalid="false"><option value="Select"> Select </option><option value="6"> 456 </option></select>
+                                <!--<label>Batch No</label>
+    <small class="text-danger"> *</small>
+    <select name="batch_no" onchange="getExpire(this.value)"  class="form-control" autocomplete="off">
+    <option value=""> Select </option>
+        <option *ngFor="let item of bachNoData"  value="item.id">{{item.batch_No}} </option>
+    </select>-->
+                                <label for="basic-medicinetype"
+                                       >Batch No <span class="text-danger">*</span></label>
+                                <select name="id" [formControl]="formData.id" (change)="getBatchId($event)" class="form-control" autocomplete="off">
+                                    <option value=""> Select </option>
+                                    <option *ngFor="let item of bachNoData" value="{{item.id}}">{{item.batch_No}} </option>
+                                </select>
+                                <!--<ng-container *ngFor="let error of formData.id.errors ">
+                                    <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                </ng-container>-->
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Expiry Date</label>
-                                <small class="text-danger"> *</small>
-                                <input type="date" id="batch_expire" name="expiry_date" class="form-control date">
-                                <span class="text-danger"></span>
+                                <label for="basic-medicinetype"
+                                       [class.invalid-class]="submitted && formData.expiry_Date.errors">Expiry Date <span class="text-danger">*</span></label>
+                                <input type="date" [formControl]="formData.expiry_Date" class="form-control" placeholder=""
+                                       aria-describedby="formData.expiry_Date" tabindex="5"
+                                       [ngClass]="{ 'is-invalid': submitted && formData.expiry_Date.errors }" />
+                                <ng-container *ngFor="let error of formData.expiry_Date.errors ">
+                                    <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                </ng-container>
+                                <!--<label>Expiry Date</label>
+    <small class="text-danger"> *</small>
+    <input type="date" id="batch_expire" name="expiry_date" class="form-control date">
+    <span class="text-danger"></span>-->
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Outward Date</label>
-                                <small class="text-danger"> *</small>
-                                <input type="date" name="inward_date"  class="form-control date">
-                                <span class="text-danger"></span>
+                                <!--<label>Outward Date</label>
+    <small class="text-danger"> *</small>
+    <input type="date" name="inward_date"  class="form-control date">
+    <span class="text-danger"></span>-->
+                                <label for="basic-medicinetype"
+                                       [class.invalid-class]="submitted && formData.outward_Date.errors">Outward Date <span class="text-danger">*</span></label>
+                                <input type="date" [formControl]="formData.outward_Date" class="form-control" placeholder=""
+                                       aria-describedby="formData.outward_Date" tabindex="5"
+                                       [ngClass]="{ 'is-invalid': submitted && formData.outward_Date.errors }" />
+                                <ng-container *ngFor="let error of formData.outward_Date.errors ">
+                                    <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                </ng-container>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Qty</label>
-                                <small class="text-danger"> *</small>
-                                <input type="text" name="packing_qty" class="form-control">
-                                <input type="hidden" name="pharmacy_id" id="pharmacy_stock_id" class="form-control" value="140">
-                                <input type="hidden" name="available_quantity" id="batch_available_qty" class="form-control">
-                                <input type="hidden" name="medicine_batch_id" id="medicine_batch_id" class="form-control">
-                                <span class="text-danger"></span>
+                                <label for="basic-medicinetype"
+                                       [class.invalid-class]="submitted && formData.quantity.errors">Qty <span class="text-danger">*</span></label>
+                                <input type="text" [formControl]="formData.quantity" class="form-control" placeholder=""
+                                       aria-describedby="formData.quantity" tabindex="5"
+                                       [ngClass]="{ 'is-invalid': submitted && formData.quantity.errors }" />
+                                <ng-container *ngFor="let error of formData.quantity.errors ">
+                                    <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                </ng-container>
+                                <!--<label>Qty</label>
+    <small class="text-danger"> *</small>
+    <input type="text" name="packing_qty" class="form-control">
+    <input type="hidden" name="pharmacy_id" id="pharmacy_stock_id" class="form-control" value="140">
+    <input type="hidden" name="available_quantity" id="batch_available_qty" class="form-control">
+    <input type="hidden" name="medicine_batch_id" id="medicine_batch_id" class="form-control">
+    <span class="text-danger"></span>-->
                             </div>
                         </div>
                         <div class="col-sm-12">
@@ -59,11 +95,11 @@
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button class="btn btn-primary btn-m" type="submit" name="add_bad_stock" value="Add_bad_stock">Save</button>
+                        <button class="btn btn-primary btn-m" (click)="saveForm()" type="submit" name="add_bad_stock" value="Add_bad_stock">Save</button>
                         <p type="button" class="btn btn-danger btn-m mt-25" (click)="close()">Close</p>
                     </div>
 
-                </form>
+                <!--</form>-->
 
             </div>
         </div>

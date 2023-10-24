@@ -1,13 +1,15 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { catchError, takeUntil } from 'rxjs/operators';
 
 import { repeaterAnimation } from 'app/main/apps/invoice/invoice.animation';
 import { DrugListService } from 'app/main/clinic-admin/drug/drug-list/drug-list.service';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+import { validationMessages } from 'app/shared-common/pipes/error-message';
+import { BadStockForm, BadStockFormModel } from './bad-stock-from-model';
+import { CommonValidationService } from '../../../../../shared-common/services/common-validation.service';
 
 @Component({
     selector: 'app-bad-stock-add',
@@ -25,20 +27,23 @@ export class BadStockAddComponent implements OnInit, OnDestroy {
     public apiData;
     public sidebarToggleRef = false;
     public paymentSidebarToggle = false;
-    public items = [{ itemId: '', itemName: '', itemQuantity: '', itemCost: '' }];
     public invoiceSelect;
     public invoiceSelected;
     public addDrugForm: UntypedFormGroup;
     public loading = false;
-    public submitted = false;
     public returnUrl: string;
+    submitted: boolean = false;
     public error = '';
-    medicinBrands: any;
-    medicinCategories: any;
+    bachNoData: any;
+    formData?: BadStockForm;
+    @Input() FormInput?: BadStockFormModel = {
+        id: 0,
+        is_Deleted: 0,
+    };
     @Output('parentModalClose') parentFun: EventEmitter<any> = new EventEmitter();
-    // Private
+    @Input() drugId; 
+    selectedBatchId = '';
     private _unsubscribeAll: Subject<any>;
-    //private _formBuilder: any;
 
     /**
      * Constructor
@@ -49,47 +54,50 @@ export class BadStockAddComponent implements OnInit, OnDestroy {
      */
     constructor(
         private router: Router,
-        private _drugAddService: DrugListService, private _formBuilder: UntypedFormBuilder, private _route: ActivatedRoute, private _toastrService: ToastrService) {
+        private _drugListService: DrugListService, private _commonValidationService: CommonValidationService,) {
         this._unsubscribeAll = new Subject();
     }
-    addItem() {
-        this.items.push({
-            itemId: '',
-            itemName: '',
-            itemQuantity: '',
-            itemCost: ''
-        });
-    }
-    deleteItem(id) {
-        for (let i = 0; i < this.items.length; i++) {
-            if (this.items.indexOf(this.items[i]) === id) {
-                this.items.splice(i, 1);
-                break;
-            }
-        }
-    }
-
-    /**
-     * On init
-     */
     ngOnInit(): void {
-
+        this.formData = new BadStockForm(this.FormInput);
+        this.getBatch();
+    }
+    getBatch() {
+        this._drugListService.getDrugStockList(this.drugId).subscribe(res => {
+            this.bachNoData = res;
+        })
     }
     close() {
         this.parentFun.emit();
     }
-    get f() {
-        return this.addDrugForm.controls;
-    }
-    onCategorySelected(ob) {
 
+    getBatchId(evt) {
+        this.selectedBatchId = evt.target.value;
     }
-    onBrandSelected(ob) {
-
-    }
-    cancel() {
-        this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/drug/list';
-        this.router.navigateByUrl(this.returnUrl);
+    saveForm(): void {
+        this.submitted = true;
+        this._commonValidationService.validateAllFormFields(this.formData);
+        if (this.formData.invalid) {
+            return;
+        } else {
+            let payload: any = this.formData.getRawValue();
+            this.bachNoData.forEach(function (value) {
+                if (payload.id == value.id) {
+                    payload.pharmacy_Id = value.medicine_Id;
+                }
+            });
+           
+            //payload.dealerMaterialList.map(e => {
+            //    e.material_Date = this._commonValidationService.dateFormat_Y_M_D(e.material_Date);
+            //});
+            this.loading = true;
+            this._drugListService.addBadStock(payload).pipe(catchError((error) => {
+                this.loading = false;
+                this.error = error;
+                return '';
+            })).subscribe((response) => {
+                this.loading = false;
+            });
+        }
     }
     
     ngOnDestroy(): void {

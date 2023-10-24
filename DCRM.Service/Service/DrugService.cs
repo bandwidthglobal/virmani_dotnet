@@ -99,7 +99,19 @@ namespace DCRM.Service.Service
             var medicineStockList = _stockRepository.GetAll().Where(x => x.Medicine_Id == drugId && x.Is_Deleted == 0).OrderByDescending(x => x.Id).ToList();
             return medicineStockList;
         }
+        public void AddStock(MedicineBatchDetail medicineBatchDetail)
+        {
+            medicineBatchDetail.Updated_At=System.DateTime.Now;
+            medicineBatchDetail.Is_Deleted = 0;
+            _stockRepository.Create(medicineBatchDetail);
 
+        }
+        public void AddBadStock(MedicineBadStock medicineBadStock)
+        {
+            medicineBadStock.Is_Deleted = 0;
+            _badStockRepository.Create(medicineBadStock);
+
+        }
         public void DeleteBadStock(int id)
         {
             var badStock= _badStockRepository.Get(id);
