@@ -12,13 +12,13 @@ public partial class MedicineBadStock:BaseEntity
 
     public DateTime Outward_Date { get; set; }
 
-    public string Expiry_Date { get; set; } = null!;
+    public string? Expiry_Date { get; set; }
 
-    public string Batch_No { get; set; } = null!;
+    public string? Batch_No { get; set; }
 
-    public string Quantity { get; set; } = null!;
+    public string? Quantity { get; set; } 
 
-    public string Note { get; set; } = null!;
+    public string? Note { get; set; } 
 
     /// <summary>
     /// 0=not delete,1=deleted

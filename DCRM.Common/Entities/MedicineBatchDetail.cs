@@ -14,13 +14,13 @@ public partial class MedicineBatchDetail:BaseEntity
 
     public string? Expiry_Date { get; set; }
 
-    public string Batch_No { get; set; } = null!;
+    public string Batch_No { get; set; } 
 
-    public string Packing_Qty { get; set; } = null!;
+    public string Packing_Qty { get; set; } 
 
-    public string Purchase_Rate_Packing { get; set; } = null!;
+    public string Purchase_Rate_Packing { get; set; } 
 
-    public string Quantity { get; set; } = null!;
+    public string Quantity { get; set; } 
 
     public string? Mrp { get; set; }
 
