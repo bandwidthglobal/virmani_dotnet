@@ -8,6 +8,7 @@ import { validationMessages } from 'app/shared-common/pipes/error-message';
 import { CommonValidationService } from 'app/shared-common/services/common-validation.service';
 import { StockForm, StockFormModel } from '../stock-add/stock-from-model';
 import { DrugListService } from '../drug-list.service';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-stock-add',
@@ -20,15 +21,16 @@ export class StockAddComponent implements OnInit, OnDestroy {
     // Public
 
     public url = this.router.url;
-
     loading: boolean = false;
     submitted: boolean = false;
     error: any = '';
     messages = validationMessages;
     formData?: StockForm;
+    public addStockForm: UntypedFormGroup;
     @Input() FormInput?: StockFormModel = {
         id: 0,
         is_Deleted: 0,
+        batch_No: '',
         created_At: new Date(),
         updated_At: new Date(),
     };
@@ -36,8 +38,26 @@ export class StockAddComponent implements OnInit, OnDestroy {
     // Private
     private _unsubscribeAll: Subject<any>;
     @Input() drugId; 
-    //private _formBuilder: any;
-
+    public stockModel: StockFormModel = {
+        id: 0,
+        medicine_Id: "",
+        inward_Date: "",
+        expiry_Date: "",
+        batch_No: "",
+        packing_Qty: "",
+        purchase_Rate_Packing: "",
+        quantity: "",
+        mrp: "",
+        sale_Rate: "",
+        available_Quantity: "",
+        amount: "",
+        is_Deleted: 0,
+        created_At: new Date(),
+        updated_At: new Date(),
+    }
+    get formControl() {
+        return this.addStockForm.controls;
+    }
     /**
      * Constructor
      *
@@ -47,36 +67,42 @@ export class StockAddComponent implements OnInit, OnDestroy {
      */
     constructor(
         private router: Router,
-        private _commonValidationService: CommonValidationService, private _drugListService: DrugListService) {
+        private _commonValidationService: CommonValidationService, private _drugListService: DrugListService, private _formBuilder: UntypedFormBuilder) {
         this._unsubscribeAll = new Subject();
     }
     ngOnInit(): void {
-        this.formData = new StockForm(this.FormInput);
+        this.addStockForm = this._formBuilder.group({
+            inward_Date: ['', Validators.required],
+            expiryDate: ['', Validators.required],
+            batchNo: ['', [Validators.required]],
+            packingQty: ['', [Validators.required]],
+            mrp: ['', [Validators.required]],
+            saleRate: ['', [Validators.required]],
+            quantity: ['', [Validators.required]],
+            amount: [''],
+            purchaseRatePacking: [''],
+        });
     }
     close() {
         this.parentFun.emit();
     }
    
     
-    saveForm(): void {
+    onSubmit(): void {
         this.submitted = true;
-        this._commonValidationService.validateAllFormFields(this.formData);
-        alert(this.drugId);
-        if (this.formData.invalid) {
-            // console.log('> invalidForm ---> ', this.formData);
+        if (this.addStockForm.invalid) {
             return;
-        } else {
-            let payload: any = this.formData.getRawValue();
-            payload.medicine_Id = this.drugId;
-            debugger;
-            this._drugListService.addStock(payload).pipe(catchError((error) => {
-                this.loading = false;
-                this.error = error;
-                return '';
-            })).subscribe((response) => {
-                this.loading = false;
-            });
         }
+       
+        this.stockModel.medicine_Id = this.drugId;
+        this._drugListService.addStock(this.stockModel).pipe(catchError((error) => {
+            this.loading = false;
+            this.error = error;
+            return '';
+        })).subscribe((response) => {
+            this.loading = false;
+            this.parentFun.emit();
+        });
     }
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions

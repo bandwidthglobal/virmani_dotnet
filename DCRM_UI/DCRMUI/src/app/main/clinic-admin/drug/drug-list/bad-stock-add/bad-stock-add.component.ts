@@ -39,6 +39,7 @@ export class BadStockAddComponent implements OnInit, OnDestroy {
     @Input() FormInput?: BadStockFormModel = {
         id: 0,
         is_Deleted: 0,
+        pharmacy_Id:0
     };
     @Output('parentModalClose') parentFun: EventEmitter<any> = new EventEmitter();
     @Input() drugId; 
@@ -64,6 +65,7 @@ export class BadStockAddComponent implements OnInit, OnDestroy {
     getBatch() {
         this._drugListService.getDrugStockList(this.drugId).subscribe(res => {
             this.bachNoData = res;
+            this.formData.batch_No.setValue('');
         })
     }
     close() {
@@ -71,7 +73,14 @@ export class BadStockAddComponent implements OnInit, OnDestroy {
     }
 
     getBatchId(evt) {
+        let expiry_Date = '';
         this.selectedBatchId = evt.target.value;
+        this.bachNoData.forEach(function (item) {
+            if (evt.target.value == item.id) {
+                expiry_Date = item.expiry_Date;
+            }
+        });
+        this.formData.expiry_Date.setValue(expiry_Date);
     }
     saveForm(): void {
         this.submitted = true;
@@ -80,15 +89,12 @@ export class BadStockAddComponent implements OnInit, OnDestroy {
             return;
         } else {
             let payload: any = this.formData.getRawValue();
+            let selectedBatchId = this.selectedBatchId;
             this.bachNoData.forEach(function (value) {
-                if (payload.id == value.id) {
+                if (selectedBatchId == value.id) {
                     payload.pharmacy_Id = value.medicine_Id;
                 }
             });
-           
-            //payload.dealerMaterialList.map(e => {
-            //    e.material_Date = this._commonValidationService.dateFormat_Y_M_D(e.material_Date);
-            //});
             this.loading = true;
             this._drugListService.addBadStock(payload).pipe(catchError((error) => {
                 this.loading = false;
@@ -96,6 +102,7 @@ export class BadStockAddComponent implements OnInit, OnDestroy {
                 return '';
             })).subscribe((response) => {
                 this.loading = false;
+                this.parentFun.emit();
             });
         }
     }
