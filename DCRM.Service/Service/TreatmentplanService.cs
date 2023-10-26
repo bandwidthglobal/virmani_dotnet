@@ -161,18 +161,64 @@ namespace DCRM.Service.Service
             return teeths;
         }
 
+
+
+        public List<DiagnosisDataDto> BuildTree(DiagnosisDataDto current, List<DiagnosisDataDto> allitems)
+        {
+            var diagnosisDataDtos = allitems.Where(c => c.Parent == current.Id).ToList();
+            List<DiagnosisDataDto> childs = new List<DiagnosisDataDto>();
+            foreach (var item in diagnosisDataDtos)
+            {
+                DiagnosisDataDto childData = new DiagnosisDataDto();
+                childData.Id = item.Id;
+                childData.Category = item.Category;
+                childData.Code = item.Code;
+                childData.Parent = item.Parent;
+                childs.Add(childData);
+            }
+
+            foreach (DiagnosisDataDto child in childs)
+            {
+                child.Children = BuildTree(child, allitems);
+            }
+            current.Children = childs;
+            return childs;
+        }
+
         public List<DiagnosisDataDto> GetDiagnosisData()
         {
-            var diagnosisDataList= _diagnosisDataRepository.GetAll().Where(x=>x.Parent==0).ToList();
-            List<DiagnosisDataDto> parentList = new List<DiagnosisDataDto>();
-            
+            var diagnosisDataList = _diagnosisDataRepository.GetAll().ToList();
+            List<DiagnosisDataDto> rootList = new List<DiagnosisDataDto>();
             foreach (var parent in diagnosisDataList)
             {
                 DiagnosisDataDto parentData = new DiagnosisDataDto();
                 parentData.Id = parent.Id;
-                parentData.Category= parent.Category;
-                parentData.Code= parent.Code;
-                parentData.Parent= parent.Parent;
+                parentData.Category = parent.Category;
+                parentData.Code = parent.Code;
+                parentData.Parent = parent.Parent;
+                rootList.Add(parentData);
+            }
+            List<DiagnosisDataDto> DiagnosisDataList = new List<DiagnosisDataDto>();
+            foreach (var item in rootList.Where(x => x.Parent == 0))
+            {
+                item.Children = BuildTree(item, rootList);
+                DiagnosisDataList.Add(item);
+            }
+            return DiagnosisDataList;
+        }
+
+        public List<DiagnosisDataDto> GetDiagnosisDataOld()
+        {
+            var diagnosisDataList = _diagnosisDataRepository.GetAll().Where(x => x.Parent == 0).ToList();
+            List<DiagnosisDataDto> parentList = new List<DiagnosisDataDto>();
+
+            foreach (var parent in diagnosisDataList)
+            {
+                DiagnosisDataDto parentData = new DiagnosisDataDto();
+                parentData.Id = parent.Id;
+                parentData.Category = parent.Category;
+                parentData.Code = parent.Code;
+                parentData.Parent = parent.Parent;
 
                 var children = _diagnosisDataRepository.GetAll().Where(x => x.Parent == parent.Id).ToList();
                 List<DiagnosisDataDto> childrenList = new List<DiagnosisDataDto>();
@@ -201,7 +247,7 @@ namespace DCRM.Service.Service
                             childData3.Category = child2.Category;
                             childData3.Code = child2.Code;
                             childData3.Parent = child2.Parent;
-                           
+
                             var children3 = _diagnosisDataRepository.GetAll().Where(x => x.Parent == child2.Id).ToList();
                             List<DiagnosisDataDto> childrenList4 = new List<DiagnosisDataDto>();
                             foreach (var child3 in children3)
