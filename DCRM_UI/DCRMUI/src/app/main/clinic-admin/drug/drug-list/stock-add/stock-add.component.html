@@ -1,0 +1,147 @@
+﻿
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Add Stock</h5>
+            <button type="button" class="close" (click)="close()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-12">
+                    <form class="form" [formGroup]="addStockForm" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+
+                                    <label for="country-floating">Batch No<span style="color:red">*</span></label>
+                                    <input type="text"
+                                           [(ngModel)]="stockModel.batch_No"
+                                           formControlName="batchNo"
+                                           class="form-control"
+                                           aria-describedby="batchNo"
+                                           tabindex="1"
+                                           autofocus
+                                           [ngClass]="{ 'is-invalid': submitted && formControl.batchNo.errors }" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="country-floating">Expiry Date<span style="color:red">*</span></label>
+                                    <input type="month"
+                                           [(ngModel)]="stockModel.expiry_Date"
+                                           formControlName="expiryDate"
+                                           class="form-control"
+                                           aria-describedby="expiryDate"
+                                           tabindex="2"
+                                           autofocus
+                                           [ngClass]="{ 'is-invalid': submitted && formControl.expiryDate.errors }" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="country-floating">Inward Date<span style="color:red">*</span></label>
+                                    <input type="date"
+                                           [(ngModel)]="stockModel.inward_Date"
+                                           formControlName="inward_Date"
+                                           class="form-control"
+                                           aria-describedby="inward_Date"
+                                           tabindex="3"
+                                           autofocus
+                                           [ngClass]="{ 'is-invalid': submitted && formControl.inward_Date.errors }" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="country-floating">Packing Qty<span style="color:red">*</span></label>
+                                    <input type="text"
+                                           [(ngModel)]="stockModel.packing_Qty"
+                                           formControlName="packingQty"
+                                           class="form-control"
+                                           aria-describedby="packingQty"
+                                           tabindex="4"
+                                           autofocus
+                                           [ngClass]="{ 'is-invalid': submitted && formControl.packingQty.errors }" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="country-floating">Purchase Rate (Rs.)</label>
+                                    <input type="text"
+                                           [(ngModel)]="stockModel.purchase_Rate_Packing"
+                                           formControlName="purchaseRatePacking"
+                                           class="form-control"
+                                           aria-describedby="purchaseRatePacking"
+                                           tabindex="5"
+                                           autofocus
+                                           />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="country-floating">Quantity<span style="color:red">*</span></label>
+                                    <input type="text"
+                                           [(ngModel)]="stockModel.quantity"
+                                           formControlName="quantity"
+                                           class="form-control"
+                                           aria-describedby="quantity"
+                                           tabindex="6"
+                                           autofocus
+                                           [ngClass]="{ 'is-invalid': submitted && formControl.quantity.errors }" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="country-floating">MRP (Rs.)<span style="color:red">*</span></label>
+                                    <input type="text"
+                                           [(ngModel)]="stockModel.mrp"
+                                           formControlName="mrp"
+                                           class="form-control"
+                                           aria-describedby="mrp"
+                                           tabindex="7"
+                                           autofocus
+                                           [ngClass]="{ 'is-invalid': submitted && formControl.mrp.errors }" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="country-floating">Sale Price (Rs.)<span style="color:red">*</span></label>
+                                    <input type="text"
+                                           [(ngModel)]="stockModel.sale_Rate"
+                                           formControlName="saleRate"
+                                           class="form-control"
+                                           aria-describedby="saleRate"
+                                           tabindex="8"
+                                           autofocus
+                                           [ngClass]="{ 'is-invalid': submitted && formControl.saleRate.errors }" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="country-floating">Batch Amount (Rs.)</label>
+                                    <input type="text"
+                                           [(ngModel)]="stockModel.amount"
+                                           formControlName="amount"
+                                           class="form-control"
+                                           aria-describedby="amount"
+                                           tabindex="9"
+                                           autofocus/>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary btn-m"  type="submit" name="add_bad_stock" value="Add_bad_stock">Save</button>
+                            <p type="button" class="btn btn-danger btn-m mt-25" (click)="close()">Close</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

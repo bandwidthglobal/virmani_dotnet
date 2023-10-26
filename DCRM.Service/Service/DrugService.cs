@@ -88,26 +88,43 @@ namespace DCRM.Service.Service
             return _drugRepository.GetMedicineCategoris();
         }
 
-        public List<MedicineBadStock> GetMedicineBadStocks(Int32 drugId)
+        public List<MedicineBadStock> GetMedicineBadStocks(int drugId)
         {
             var medicineBadStockList = _badStockRepository.GetAll().Where(x => x.Pharmacy_Id == drugId && x.Is_Deleted==0).OrderByDescending(x=>x.Id).ToList();
             return medicineBadStockList;
         }
 
-        public List<MedicineBatchDetail> GetMedicineStocks(Int32 drugId )
+        public List<MedicineBatchDetail> GetMedicineStocks(int drugId )
         {
             var medicineStockList = _stockRepository.GetAll().Where(x => x.Medicine_Id == drugId && x.Is_Deleted == 0).OrderByDescending(x => x.Id).ToList();
             return medicineStockList;
         }
-
-        public void DeleteBadStock(Int32 drugId)
+        public void AddStock(MedicineBatchDetail medicineBatchDetail)
         {
-            throw new NotImplementedException();
+            medicineBatchDetail.Updated_At=System.DateTime.Now;
+            medicineBatchDetail.Is_Deleted = 0;
+            _stockRepository.Create(medicineBatchDetail);
+
+        }
+        public void AddBadStock(MedicineBadStock medicineBadStock)
+        {
+            medicineBadStock.Is_Deleted = 0;
+            _badStockRepository.Create(medicineBadStock);
+
+        }
+        public void DeleteBadStock(int id)
+        {
+            var badStock= _badStockRepository.Get(id);
+            badStock.Is_Deleted = 1;
+            _badStockRepository.Update(badStock);
+
         }
 
-        public void DeleteStock(Int32 drugId)
+        public void DeleteStock(int id)
         {
-            throw new NotImplementedException();
+            var stock = _stockRepository.Get(id);
+            stock.Is_Deleted = 1;
+            _stockRepository.Update(stock);
         }
     }
 }

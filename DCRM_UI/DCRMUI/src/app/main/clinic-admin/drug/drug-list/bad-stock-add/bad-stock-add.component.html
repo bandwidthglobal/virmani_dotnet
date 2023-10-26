@@ -1,0 +1,89 @@
+﻿
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Add Bad Stock</h5>
+            <button type="button" class="close" (click)="close()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+            <div class="col-12">
+                <!--<form>-->
+                    <div class="row">
+
+
+                        <div class="col-lg-6">
+                            <div class="form-group validate">
+                                <label for="basic-medicinetype"
+                                       >Batch No <span class="text-danger">*</span></label>
+                                <select name="id" [formControl]="formData.batch_No" (change)="getBatchId($event)" class="form-control" 
+                                        autocomplete="off"  [ngClass]="{ 'is-invalid': submitted && formData.batch_No.errors }">
+                                    <option value="" selected> Select </option>
+                                    <option *ngFor="let item of bachNoData" value="{{item.id}}">{{item.batch_No}} </option>
+                                </select>
+                                <ng-container *ngFor="let error of formData.batch_No.errors ">
+                                    <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Expiry Date <span class="text-danger">*</span></label>
+                                <input type="month" [formControl]="formData.expiry_Date" id="expiryDate" class="form-control" placeholder=""
+                                       aria-describedby="formData.expiry_Date" tabindex="2"
+                                       [ngClass]="{ 'is-invalid': submitted && formData.expiry_Date.errors }" />
+                                <ng-container *ngFor="let error of formData.expiry_Date.errors ">
+                                    <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Outward Date <span class="text-danger">*</span></label>
+                                <input type="date" [formControl]="formData.outward_Date" class="form-control" placeholder=""
+                                       aria-describedby="formData.outward_Date" tabindex="3"
+                                       [ngClass]="{ 'is-invalid': submitted && formData.outward_Date.errors }" />
+                                <ng-container *ngFor="let error of formData.outward_Date.errors ">
+                                    <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Qty <span class="text-danger">*</span></label>
+                                <input type="text" [formControl]="formData.quantity" class="form-control" placeholder=""
+                                       aria-describedby="formData.quantity" tabindex="4"
+                                       [ngClass]="{ 'is-invalid': submitted && formData.quantity.errors }" />
+                                <ng-container *ngFor="let error of formData.quantity.errors ">
+                                    <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Note</label>
+                                <textarea name="note" class="form-control" [formControl]="formData.note"  aria-describedby="formData.note" tabindex="5"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button class="btn btn-primary btn-m" (click)="saveForm()" type="submit" name="add_bad_stock" value="Add_bad_stock">Save</button>
+                        <p type="button" class="btn btn-danger btn-m mt-25" (click)="close()">Close</p>
+                    </div>
+
+                <!--</form>-->
+
+            </div>
+        </div>
+        </div>
+
+    </div>
+    </div>
+
+
+

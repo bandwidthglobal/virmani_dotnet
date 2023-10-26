@@ -103,4 +103,22 @@ export class DrugPreviewService implements Resolve<any> {
         const requestOptions = { headers: headers };
         return this._httpClient.get(`${environment.apiUrl}/Drug/Get/MedicineStocks/` + this.drugId, requestOptions);
     }
+
+    deleteBadStock(id:any) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.delete(`${environment.apiUrl}/Drug/Delete/MedicineBadStock/` + id, requestOptions);
+    }
+
+    deleteStock(id: any) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.delete(`${environment.apiUrl}/Drug/Delete/MedicineStock/` + id, requestOptions);
+    }
 }

@@ -63,28 +63,28 @@
                     <ngx-datatable-column name="Dosage" prop="dosage" [width]="100"></ngx-datatable-column>
                     <ngx-datatable-column name="Details" prop="details" [width]="150"> </ngx-datatable-column>
                     <ngx-datatable-column name="DoseNo" prop="dose_No" [width]="100"> </ngx-datatable-column>
-                    <ngx-datatable-column name="Stock" [width]="100">
+                    <ngx-datatable-column name="Stock" [width]="100" [sortable]="false">
                         <ng-template ngx-datatable-cell-template let-row="row">
-                            <a class="btn btn-primary mr-1 waves-effect waves-light"
-                               container="body"
-                               placement="top"
-                               data-bs-toggle="modal" data-bs-target="#modalCenter"
-                               (click)="addStock(row.id)"
-                               ngbTooltip="Add Stock">
-                                Add
-                            </a>
+                            <div class="d-flex align-items-center col-actions">
+                                <a class="text-color"
+                                   container="body"
+                                   placement="top"
+                                   (click)="addStock(row.id)"
+                                   ngbTooltip="Add Stock">
+                                    <i size="18" data-feather="plus-circle"></i>
+                                </a>
+                                </div>
                         </ng-template>
 
                     </ngx-datatable-column>
-                    <ngx-datatable-column name="Bad Stock" [width]="100">
+                    <ngx-datatable-column name="Bad Stock" [width]="100" [sortable]="false">
                         <ng-template ngx-datatable-cell-template let-row="row">
-                            <a class="btn btn-primary mr-1 waves-effect waves-light"
+                            <a class="text-color"
                                container="body"
                                placement="top"
                                (click)="addBadStock(row.id)"
-                               ngbTooltip="Add Bad Stock"
-                               >
-                                Add
+                               ngbTooltip="Add Bad Stock">
+                                <i size="18" data-feather="plus-circle"></i>
                             </a>
                         </ng-template>
                     </ngx-datatable-column>
@@ -120,7 +120,7 @@
             </div>
         </section>
     </div>
-    <div class="modal fade" id="modalCenter" data-backdrop="static"  tabindex="-1" [ngStyle]="{'display':display}">
+    <div class="modal fade" id="modalCenter" data-backdrop="static" tabindex="-1" [ngStyle]="{'display':display}">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -154,4 +154,11 @@
             </div>
         </div>
     </div>
+    <div class="modal fade my-modal" tabindex="-1" role="dialog" #receiveModal>
+        <app-bad-stock-add *ngIf="isBad==true" [drugId]="drugId" (parentModalClose)="close()"></app-bad-stock-add>
+        <app-stock-add *ngIf="isStock==true" [drugId]="drugId" (parentModalClose)="close()"></app-stock-add>
+    </div>
+    <!--<div class="modal fade my-modal" tabindex="-1" role="dialog" #badStockModal>
+        
+    </div>-->
 </div>

@@ -4,6 +4,7 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { environment } from 'environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../../../../auth/models';
+import { debug } from 'console';
 
 @Injectable()
 export class DrugListService implements Resolve<any> {
@@ -62,5 +63,33 @@ export class DrugListService implements Resolve<any> {
         });
         const requestOptions = { headers: headers };
         return this._httpClient.delete<any>(`${environment.apiUrl}/Drug/Delete/` + id, requestOptions);
+    }
+
+    getDrugStockList(drugId:any) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.get(`${environment.apiUrl}/Drug/Get/MedicineStocks/` + drugId, requestOptions);
+    }
+
+    addStock(stock: any) {
+        debugger;
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.post(`${environment.apiUrl}/Drug/AddStock`, stock , requestOptions);
+    }
+    addBadStock(badstock: any) {
+        debugger;
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.post(`${environment.apiUrl}/Drug/AddBadStock`, badstock, requestOptions);
     }
 }

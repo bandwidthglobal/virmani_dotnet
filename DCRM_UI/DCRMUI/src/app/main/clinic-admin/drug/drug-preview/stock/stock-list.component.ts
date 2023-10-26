@@ -5,7 +5,7 @@ import { CoreConfigService } from '@core/services/config.service';
 import { DrugPreviewService } from 'app/main/clinic-admin/drug/drug-preview/drug-preview.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
-
+import Swal from 'sweetalert2';
 @Component({
     selector: 'app-stock-list',
     templateUrl: './stock-list.component.html',
@@ -97,8 +97,46 @@ export class StockListComponent implements OnInit {
             return isPartialNameMatch;
         });
     }
+
     ngOnInit(): void {
         this.getData();
+    }
+    delete(id) {
+        let rowIndex = -1;
+        this.tempData.forEach((currentValue, index) => {
+            if (currentValue.id == id) {
+                rowIndex = index
+            }
+        });
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this._drugPreviewService
+                    .deleteStock(id)
+                    .pipe()
+                    .subscribe(
+                        data => {
+                            delete this.tempData[rowIndex];
+                            var temp = [];
+                            this.tempData.forEach((currentValue, index) => {
+                                temp.push(currentValue);
+                            });
+                            this.rows = temp;
+                        },
+                        error => {
+                            this.error = error;
+
+                        }
+                    );
+            }
+        })
     }
     getData() {
       
