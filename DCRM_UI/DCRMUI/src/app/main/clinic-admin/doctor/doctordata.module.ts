@@ -23,6 +23,9 @@ import { DoctorEditComponent } from 'app/main/clinic-admin/doctor/doctor-edit/do
 import { DoctorEditService } from 'app/main/clinic-admin/doctor/doctor-edit/doctor-edit.service';
 import { DoctorPreviewComponent } from 'app/main/clinic-admin/doctor/doctor-preview/doctor-preview.component';
 import { DoctorPreviewService } from 'app/main/clinic-admin/doctor/doctor-preview/doctor-preview.service';
+import { SharedCommonModule } from 'app/shared-common/shared-ui.module';
+import { MaskModule } from 'app/shared-common/directives/mask/mask.module';
+import { DoctorFormComponent } from './doctor-form/doctor-form.component';
 
 
 // routing
@@ -75,6 +78,7 @@ const routes: Routes = [
         DoctorListComponent,
         DoctorPreviewComponent,
         DoctorEditComponent,
+        DoctorFormComponent
     ],
     imports: [
         CommonModule,
@@ -87,7 +91,9 @@ const routes: Routes = [
         CorePipesModule,
         NgbModule,
         NgSelectModule,
-        CoreSidebarModule
+        CoreSidebarModule,
+        SharedCommonModule,
+        MaskModule
     ],
     providers: [DoctorListService, DoctorPreviewService, DoctorEditService, DoctorAddService],
     exports: [DoctorListComponent]

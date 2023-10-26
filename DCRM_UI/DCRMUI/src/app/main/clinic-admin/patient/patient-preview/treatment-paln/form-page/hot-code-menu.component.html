@@ -2,18 +2,18 @@
     <!-- This is the tree node template for leaf nodes -->
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding [matTreeNodePaddingIndent]="10">
         <!-- use a disabled button to provide padding for tree leaf -->
-        <button class="toggle-btn" mat-icon-button disabled></button>
-        {{node.name}}
+        <button (click)="setJobNames(node.job_name);" class="toggle-btn" mat-icon-button disabled></button>
+        <span (click)="setJobNames(node.job_name);">{{node.name}}</span>
     </mat-tree-node>
     <!-- This is the tree node template for expandable nodes -->
     <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding [matTreeNodePaddingIndent]="10">
-        <button class="toggle-btn" mat-icon-button matTreeNodeToggle>
+        <button (click)="setJobNames(node.job_name);" class="toggle-btn" mat-icon-button matTreeNodeToggle>
             <!-- <mat-icon class="mat-icon-rtl-mirror"> -->
                 <!-- {{treeControl.isExpanded(node) ? 'expand_more' : '<i data-feather="chevron-down" size="18"></i>'}} -->
                 <i data-feather="chevron-right" size="15"></i>
                 <!-- <i data-feather="chevron-down" size="18"></i> -->
             <!-- </mat-icon> -->
         </button>
-        {{node.name}}
+        <span (click)="setJobNames(node.job_name);">{{node.name}}</span>
     </mat-tree-node>
 </mat-tree>

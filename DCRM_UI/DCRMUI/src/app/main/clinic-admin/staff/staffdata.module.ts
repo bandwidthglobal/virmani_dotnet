@@ -24,6 +24,9 @@ import { StaffEditService } from 'app/main/clinic-admin/staff/staff-edit/staff-e
 
 import { StaffPreviewComponent } from 'app/main/clinic-admin/staff/staff-preview/staff-preview.component';
 import { StaffPreviewService } from 'app/main/clinic-admin/staff/staff-preview/staff-preview.service';
+import { StaffFormComponent } from './staff-form/staff-form.component';
+import { SharedCommonModule } from 'app/shared-common/shared-ui.module';
+import { MaskModule } from 'app/shared-common/directives/mask/mask.module';
 
 
 // routing
@@ -76,6 +79,7 @@ const routes: Routes = [
         StaffListComponent,
         StaffPreviewComponent,
         StaffEditComponent,
+        StaffFormComponent
     ],
     imports: [
         CommonModule,
@@ -88,7 +92,9 @@ const routes: Routes = [
         CorePipesModule,
         NgbModule,
         NgSelectModule,
-        CoreSidebarModule
+        CoreSidebarModule,
+        SharedCommonModule,
+        MaskModule
     ],
     providers: [StaffListService, StaffPreviewService, StaffEditService, StaffAddService],
     exports: [StaffListComponent]
