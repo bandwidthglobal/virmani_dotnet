@@ -48,11 +48,19 @@ namespace DCRM.Service.Service
                 chair.Name = item.Name;
                 chair.Appoinment_Limit = Convert.ToString(item.Appoinment_Limit);
                 chair.Address = item.Address;
-                chair.Status = Convert.ToString(item.Status);
+                chair.Status = "Active";    
+                if (item.Status == 0)
+                {
+                    chair.Status = "Inactive";
+                }
                 var doctor= _doctorRepository.Get(item.Doctor_Id);
                 if (doctor!=null)
                 {
                     chair.DoctorName = doctor.Name;
+                }
+                else
+                {
+                    chair.DoctorName = "";
                 }
                 chairList.Add(chair);
             }

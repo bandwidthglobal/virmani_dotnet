@@ -45,19 +45,22 @@
                                [scrollbarH]="true">
                     <ngx-datatable-column name="Chair Name" prop="name">
                         <ng-template ngx-datatable-cell-template let-row="row">
-                            <h3>{{row.name}}</h3>
+                            <h4>{{row.name}}</h4>
                         </ng-template>
 
                     </ngx-datatable-column>
                     <ngx-datatable-column name="Doctor Name" prop="doctorName"></ngx-datatable-column>
                     <ngx-datatable-column name="Address" prop="address">
                     </ngx-datatable-column>
-                    <ngx-datatable-column name="Appoinment Limit" prop="appoinment_Limit">
+                    <ngx-datatable-column name="Appoinment Limit"  prop="appoinment_Limit">
+                        <ng-template ngx-datatable-cell-template let-row="row">
+                            <span class="text-center">{{row.appoinment_Limit}}</span>
+                        </ng-template>
                     </ngx-datatable-column>
                     <ngx-datatable-column name="Status" prop="status">
                         <ng-template ngx-datatable-cell-template let-row="row">
-                            <span class="badge brd-20 badge-success-soft" *ngIf="row.status==1" disabled="" data-toggle="tooltip"><i class="fa fa-check"></i> Active</span>
-                            <span class="badge brd-20 " style="color:black" *ngIf="row.status==0" disabled="" data-toggle="tooltip"><i class="fa fa-check"></i> Inactive</span>
+                            <span class="badge brd-20 badge-success-soft" *ngIf="row.status=='Active'" ngbTooltip="Set Status"><i class="fa fa-check"></i> Active</span>
+                            <span class="badge brd-20 " style="color:black" *ngIf="row.status=='Inactive'" ngbTooltip="Set Status"><i class="fa fa-check"></i> Inactive</span>
                         </ng-template>
                     </ngx-datatable-column>
                     <ngx-datatable-column name="Action" [width]="100" [sortable]="false">
