@@ -274,5 +274,11 @@ namespace DCRM.Service.Service
             }
             return parentList;
         }
+
+        public List<Teeth> GetTeethsByCategory(int categoryId)
+        {
+            var teeths = _teethRepository.GetAll().Where(x=>x.Teeth_Cat== categoryId).ToList();
+            return teeths;
+        }
     }
 }

@@ -61,7 +61,11 @@ namespace DCRM.Api.Controllers
             return _treatmentplanService.GetTeethCategories();
         }
 
-        [AllowAnonymous]
+        [HttpGet("Get/TeethByCategory/{id}")]
+        public List<Teeth> TeethByCategory(int id)
+        {
+            return _treatmentplanService.GetTeethsByCategory(id);
+        }
         [HttpGet("Get/DiagnosisData")]
         public List<DiagnosisDataDto> DiagnosisDataList()
         {

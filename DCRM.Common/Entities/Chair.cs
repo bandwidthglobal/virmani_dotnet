@@ -8,7 +8,7 @@ public partial class Chair : BaseEntity
 {
     public int Id { get; set; }
 
-    public string Uid { get; set; } = null!;
+    public string Uid { get; set; } 
 
     public int User_Id { get; set; }
 

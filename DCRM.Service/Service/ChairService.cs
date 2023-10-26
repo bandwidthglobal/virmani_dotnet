@@ -1,4 +1,5 @@
-﻿using DCRM.Common.Entity;
+﻿using DCRM.Common.Dto;
+using DCRM.Common.Entity;
 using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
 using System;
@@ -12,8 +13,10 @@ namespace DCRM.Service.Service
     public class ChairService : IChairService
     {
         private readonly IRepository<Chair> _repository;
-        public ChairService(IRepository<Chair> repository) {
+        private readonly IRepository<Doctor> _doctorRepository;
+        public ChairService(IRepository<Chair> repository, IRepository<Doctor> doctorRepository) {
         _repository = repository;
+            _doctorRepository= doctorRepository;
         }
         public void Create(Chair chare)
         {
@@ -34,11 +37,26 @@ namespace DCRM.Service.Service
             return chair;
         }
 
-        public List<Chair> GetAll()
+        public List<ChairDto> GetAll()
         {
-            List<Chair> chairs = new List<Chair>(); 
-            chairs=_repository.GetAll().ToList();
-            return chairs;
+            List<ChairDto> chairList = new List<ChairDto>(); 
+           var chairs=_repository.GetAll().OrderByDescending(x=>x.Id).ToList();
+            foreach (var item in chairs)
+            {
+                ChairDto chair = new ChairDto();
+                chair.Id = item.Id;
+                chair.Name = item.Name;
+                chair.Appoinment_Limit = Convert.ToString(item.Appoinment_Limit);
+                chair.Address = item.Address;
+                chair.Status = Convert.ToString(item.Status);
+                var doctor= _doctorRepository.Get(item.Doctor_Id);
+                if (doctor!=null)
+                {
+                    chair.DoctorName = doctor.Name;
+                }
+                chairList.Add(chair);
+            }
+            return chairList;
         }
 
         public void Update(Chair chare)

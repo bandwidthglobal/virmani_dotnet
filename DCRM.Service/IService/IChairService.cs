@@ -1,4 +1,5 @@
-﻿using DCRM.Common.Entity;
+﻿using DCRM.Common.Dto;
+using DCRM.Common.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace DCRM.Service.IService
 {
     public interface IChairService
     {
-        List<Chair> GetAll();
+        List<ChairDto> GetAll();
 
         Chair Get(int id);
 

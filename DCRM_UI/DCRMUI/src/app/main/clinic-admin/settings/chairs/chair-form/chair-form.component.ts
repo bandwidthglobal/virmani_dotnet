@@ -6,125 +6,127 @@ import { takeUntil } from 'rxjs/operators';
 import { CoreSidebarService } from '@core/components/core-sidebar/core-sidebar.service';
 
 import { repeaterAnimation } from 'app/main/forms/form-repeater/form-repeater.animation';
-import { ChairAddService } from 'app/main/clinic-admin/settings/chairs/chair-add/chair-add.service';
+import { ChairFormService } from 'app/main/clinic-admin/settings/chairs/chair-form/chair-form.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { ChairFormModel } from './chair-form.model';
 
 @Component({
-  selector: 'app-chair-add',
-  templateUrl: './chair-add.component.html',
-  styleUrls: ['./chair-add.component.scss'],
-  animations: [repeaterAnimation],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-chair-form',
+    templateUrl: './chair-form.component.html',
+    styleUrls: ['./chair-form.component.scss'],
+    animations: [repeaterAnimation],
+    encapsulation: ViewEncapsulation.None
 })
-export class ChairAddComponent implements OnInit, OnDestroy {
-  // public
-  public apiData;
-  public sidebarToggleRef = false;
-  public invoiceSelect;
-  public invoiceSelected;
-
-  public paymentDetails = {
-    totalDue: '$12,110.55',
-    bankName: 'American Bank',
-    country: 'United States',
-    iban: 'ETD95476213874685',
-    swiftCode: 'BR91905'
-  };
-
-  public items = [{ itemId: '', itemName: '', itemQuantity: '', itemCost: '' }];
-
-  public item = {
-    itemName: '',
-    itemQuantity: '',
-    itemCost: ''
-  };
-
-  // ng2-flatpickr options
-  public dateOptions = {
-    altInput: true,
-    mode: 'single',
-    altInputClass: 'form-control flat-picker flatpickr-input invoice-edit-input',
-    defaultDate: ['2020-05-01'],
-    altFormat: 'Y-n-j'
-  };
-  public dueDateOptions = {
-    altInput: true,
-    mode: 'single',
-    altInputClass: 'form-control flat-picker flatpickr-input invoice-edit-input',
-    defaultDate: ['2020-05-17'],
-    altFormat: 'Y-n-j'
-  };
-
-  // Private
-  private _unsubscribeAll: Subject<any>;
-
-  /**
-   * Constructor
-   *
-   * @param {InvoiceAddService} _invoiceAddService
-   * @param {CoreSidebarService} _coreSidebarService
-   */
-    constructor(private _invoiceAddService: ChairAddService, private _coreSidebarService: CoreSidebarService) {
-    this._unsubscribeAll = new Subject();
-  }
-
-  // Public Methods
-  // -----------------------------------------------------------------------------------------------------
-
-  /**
-   * Add Item
-   */
-  addItem() {
-    this.items.push({
-      itemId: '',
-      itemName: '',
-      itemQuantity: '',
-      itemCost: ''
-    });
-  }
-
-  /**
-   * DeleteItem
-   *
-   * @param id
-   */
-  deleteItem(id) {
-    for (let i = 0; i < this.items.length; i++) {
-      if (this.items.indexOf(this.items[i]) === id) {
-        this.items.splice(i, 1);
-        break;
-      }
+export class ChairFormComponent implements OnInit, OnDestroy {
+    // public
+    public apiData;
+    public sidebarToggleRef = false;
+    public invoiceSelect;
+    public invoiceSelected;
+    isEdit = false;
+    chairId = 0;
+    public loading = false;
+    public submitted = false;
+    public returnUrl: string;
+    public error = '';
+    doctorNameList: any;
+    public chairForm: UntypedFormGroup;
+    public chairModel: ChairFormModel = {
+        id: 0,
+        name: "",
+        appoinment_Limit: "",
+        doctor_Id: 0,
+        status: "",
+        address: "",
+        uid:''
     }
-  }
 
-  /**
-   * Toggle Sidebar
-   *
-   * @param name
-   */
-  toggleSidebar(name) {
-    this._coreSidebarService.getSidebarRegistry(name).toggleOpen();
-  }
+    // Private
+    private _unsubscribeAll: Subject<any>;
 
-  // Lifecycle Hooks
-  // -----------------------------------------------------------------------------------------------------
-  /**
-   * On init
-   */
-  ngOnInit(): void {
-    this._invoiceAddService.onInvoicAddChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-      let responseData = response;
-      this.apiData = responseData.slice(5, 10);
-    });
-    this.invoiceSelect = this.apiData;
-    this.invoiceSelected = this.invoiceSelect;
-  }
+    /**
+     * Constructor
+     *
+     * @param {InvoiceAddService} _invoiceAddService
+     * @param {CoreSidebarService} _coreSidebarService
+     */
+    constructor(private _chairFromService: ChairFormService, private _coreSidebarService: CoreSidebarService, private route: ActivatedRoute
+        , private _formBuilder: UntypedFormBuilder, private router: Router,) {
+        this._unsubscribeAll = new Subject();
+    }
 
-  /**
-   * On destroy
-   */
-  ngOnDestroy(): void {
-    // Unsubscribe from all subscriptions
-    this._unsubscribeAll.next();
-    this._unsubscribeAll.complete();
-  }
+
+    /**
+     * Toggle Sidebar
+     *
+     * @param name
+     */
+    toggleSidebar(name) {
+        this._coreSidebarService.getSidebarRegistry(name).toggleOpen();
+    }
+    ngOnInit(): void {
+        this.getDoctors();
+        this.chairForm = this._formBuilder.group({
+            name: ['', Validators.required],
+            doctor_Id: ['', Validators.required],
+            appoinment_Limit: ['', Validators.required],
+            status: ['', Validators.required],
+            address: [''],
+            
+        });
+        const id = this.route.snapshot.paramMap.get('id');
+        if (id != undefined && id != null) {
+            this.chairId = parseInt(id);
+        }
+        if (this.chairId > 0) {
+            this.isEdit = true;
+            this._chairFromService.getChair(this.chairId).subscribe(response => {
+                this.apiData = response;
+                this.chairModel.address = this.apiData.address;
+                this.chairModel.doctor_Id = this.apiData.doctor_Id;
+                this.chairModel.name = this.apiData.name;
+                this.chairModel.appoinment_Limit = this.apiData.appoinment_Limit;
+                this.chairModel.status = this.apiData.status;
+            })
+        }
+    }
+    getDoctors() {
+        this._chairFromService.getDoctors().subscribe(response => {
+            this.doctorNameList = response;
+        })
+    }
+    get f() {
+        return this.chairForm.controls;
+    }
+    onSubmit() {
+        this.submitted = true;
+
+        if (this.chairForm.invalid) {
+            return;
+        }
+        this.loading = true;
+        this.chairModel.id = this.chairId;
+        this._chairFromService
+            .getSaveChair(this.chairId,this.chairModel)
+            .pipe()
+            .subscribe(
+                data => {
+                    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/admin/settings/chair/list';
+                    this.router.navigateByUrl(this.returnUrl);
+                },
+                error => {
+                    this.error = error;
+                    this.loading = false;
+                }
+            );
+    }
+    /**
+     * On destroy
+     */
+    ngOnDestroy(): void {
+        // Unsubscribe from all subscriptions
+        this._unsubscribeAll.next();
+        this._unsubscribeAll.complete();
+    }
 }
