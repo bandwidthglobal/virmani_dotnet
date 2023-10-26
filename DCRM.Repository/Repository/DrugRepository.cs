@@ -23,13 +23,13 @@ namespace DCRM.Repository.Repository
 
         }
 
-        public async Task CreateAsync(Drug drug)
+        public void Create(Drug drug)
         {
             drug.Created_At = System.DateTime.UtcNow;
             drug.Updated_At= System.DateTime.UtcNow;
             drug.Status = 1;
             drug.Is_Delete = 0;
-            await _contex.Drugs.AddAsync(drug);
+             _contex.Drugs.Add(drug);
             _contex.SaveChanges();
 
         }
@@ -45,19 +45,19 @@ namespace DCRM.Repository.Repository
             }
         }
 
-        public async Task<IEnumerable<Drug>> GetAllAsync()
+        public IEnumerable<Drug> GetAll()
         {
             var drugs = _contex.Drugs.Where(x => x.Is_Delete == 0);
             return drugs;
         }
 
-        public async Task<Drug> GetByIdAsync(int id)
+        public Drug Get(int id)
         {
-            var drug = await _contex.Drugs.FirstOrDefaultAsync(x => x.Id == id);
+            var drug =  _contex.Drugs.FirstOrDefault(x => x.Id == id);
             return drug;
         }
 
-        public async Task<IEnumerable<Drug>> GetByUserId(int userId)
+        public IEnumerable<Drug> GetByUserId(int userId)
         {
             var drugs = _contex.Drugs.Where(x => x.User_Id == userId && x.Is_Delete == 0).OrderByDescending(x=>x.Id);
             return drugs;
@@ -72,38 +72,11 @@ namespace DCRM.Repository.Repository
             var medicineCategoris = _contex.Medicine_Category.ToList();
             return medicineCategoris;
         }
-        public void Update(Drug request)
+        public void Update(Drug drug)
         {
-            var drug = _contex.Drugs.FirstOrDefault(x => x.Id == request.Id && x.Is_Delete == 0);
-            if (drug != null)
-            {
-                drug.Reorder_Level = request.Reorder_Level;
-                drug.Supplier = request.Supplier;
-                drug.User_Id = request.User_Id;
-                drug.Status = request.Status;
-                drug.Vat = request.Vat;
-                drug.Details = request.Details;
-                drug.Bactrology = request.Bactrology;
-                drug.Basic_Salt = request.Basic_Salt;
-                drug.Description = request.Description;
-                drug.Dosage = request.Dosage;
-                drug.Dose_No = request.Dose_No;
-                drug.Form = request.Form;
-                drug.Vat_Ac = request.Vat_Ac;
-                drug.Medicine_Brand_Id = request.Medicine_Brand_Id;
-                drug.Medicine_Category_Id = request.Medicine_Category_Id;
-                drug.Medicine_Company = request.Medicine_Company;
-                drug.Medicine_Composition = request.Medicine_Composition;
-                drug.Medicine_Group = request.Medicine_Group;
-                drug.Medicine_Image = request.Medicine_Image;
-                drug.Medicine_Name = request.Medicine_Name;
-                drug.Medicine_Type = request.Medicine_Type;
-                drug.Updated_At = System.DateTime.Now;
-                drug.Created_At = System.DateTime.Now;
-                _contex.Update(drug);
-                _contex.SaveChanges();
-            }
-            else { throw new KeyNotFoundException("no record found"); }
+            drug.Updated_At=System.DateTime.Now;
+            _contex.Update(drug);
+            _contex.SaveChanges();
         }
     }
 }

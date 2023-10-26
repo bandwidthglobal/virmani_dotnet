@@ -29,9 +29,9 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="drug"></param>
         /// <returns></returns>
-        public async Task CreateAsync(Drug drug)
+        public void Create(Drug drug)
         {
-          await  _drugRepository.CreateAsync(drug);
+           _drugRepository.Create(drug);
         }
         /// <summary>
         /// delete drug 
@@ -46,9 +46,9 @@ namespace DCRM.Service.Service
         /// get all drugs
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<Drug>> GetAllAsync()
+        public IEnumerable<Drug> GetAll()
         {
-           IEnumerable <Drug> drugs= await _drugRepository.GetAllAsync();
+           IEnumerable <Drug> drugs=  _drugRepository.GetAll();
             return drugs;
         }
         /// <summary>
@@ -56,9 +56,9 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<Drug> GetByIdAsync(int id)
+        public Drug Get(int id)
         {
-            Drug drug = await _drugRepository.GetByIdAsync(id);
+            Drug drug =  _drugRepository.Get(id);
             return drug;
         }
         /// <summary>
@@ -66,7 +66,7 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public Task<IEnumerable<Drug>> GetByUserId(int userId)
+        public IEnumerable<Drug> GetByUserId(int userId)
         {
             var drugs = _drugRepository.GetByUserId(userId);
             return drugs;

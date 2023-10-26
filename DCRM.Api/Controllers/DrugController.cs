@@ -19,17 +19,17 @@ namespace DCRM.Api.Controllers
             
         }
         [HttpGet("GateAll")]
-        public async Task<IEnumerable<Drug>> GetAllAsync()
+        public IEnumerable<Drug> GetAll()
         {
             var user = Request.HttpContext.Items["User"] as User;
-            return await _drugfService.GetByUserId(user.Id);
+            return  _drugfService.GetByUserId(user.Id);
         }
 
        
         [HttpGet("Get/{id}")]
-        public async Task<Drug> Get(int id)
+        public Drug Get(int id)
         {
-            return await _drugfService.GetByIdAsync(id);
+            return  _drugfService.Get(id);
         }
 
         [AllowAnonymous]
@@ -49,12 +49,12 @@ namespace DCRM.Api.Controllers
         {
             var user = Request.HttpContext.Items["User"] as User;
             drug.User_Id = user.Id;
-             _drugfService.CreateAsync(drug);
+             _drugfService.Create(drug);
             return Ok(drug);
         }
 
         [HttpPost("Update")]
-        public async Task<IActionResult> Update(Drug drug)
+        public IActionResult Update(Drug drug)
         {
 
              _drugfService.Update(drug);
