@@ -2,7 +2,7 @@
     <div class="content-body">
         <!-- Invoice List -->
         <section class="invoice-list-wrapper">
-            <div class="card p-2" >
+            <div class="card p-2">
                 <!-- Invoice List Header -->
                 <div class="row">
                     <div class="col-md-6 col-12">
@@ -17,7 +17,7 @@
                                         <option value="100">100</option>
                                     </select>
                                 </label>
-                                <button class="btn btn-primary ml-2" routerLink="/admin/settings/chair/add" rippleEffect>Add Chair</button>
+                                <button class="btn btn-primary ml-2" routerLink="/admin/settings/chair/add" rippleEffect> <i class="fa fa-plus"></i> Add Chair</button>
                             </div>
                         </div>
                     </div>
@@ -35,14 +35,8 @@
                         </div>
                     </div>
                 </div>
-                <ngx-datatable [rows]="rows"
-                               [rowHeight]="50"
-                               class="bootstrap core-bootstrap"
-                               [limit]="selectedOption"
-                               [columnMode]="ColumnMode.force"
-                               [headerHeight]="50"
-                               [footerHeight]="50"
-                               [scrollbarH]="true">
+                <ngx-datatable [rows]="rows" [rowHeight]="50" class="bootstrap core-bootstrap" [limit]="selectedOption"
+                               [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50" [scrollbarH]="true">
                     <ngx-datatable-column name="Chair Name" prop="name">
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <h4>{{row.name}}</h4>
@@ -52,15 +46,15 @@
                     <ngx-datatable-column name="Doctor Name" prop="doctorName"></ngx-datatable-column>
                     <ngx-datatable-column name="Address" prop="address">
                     </ngx-datatable-column>
-                    <ngx-datatable-column name="Appoinment Limit"  prop="appoinment_Limit">
+                    <ngx-datatable-column name="Appoinment Limit" prop="appoinment_Limit">
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <span class="text-center">{{row.appoinment_Limit}}</span>
                         </ng-template>
                     </ngx-datatable-column>
                     <ngx-datatable-column name="Status" prop="status">
                         <ng-template ngx-datatable-cell-template let-row="row">
-                            <span class="badge brd-20 badge-success-soft" *ngIf="row.status=='Active'" ngbTooltip="Set Status"><i class="fa fa-check"></i> Active</span>
-                            <span class="badge brd-20 " style="color:black" *ngIf="row.status=='Inactive'" ngbTooltip="Set Status"><i class="fa fa-check"></i> Inactive</span>
+                            <span class="badge brd-20 badge-success-soft mt-4px" *ngIf="row.status=='Active'" ngbTooltip="Set Status"><i class="fa fa-check mt-4px"></i> Active</span>
+                            <span class="badge brd-20 " style="color:black" *ngIf="row.status=='Inactive'" ngbTooltip="Set Status"><i class="fa fa-check mt-4px"></i> Inactive</span>
                         </ng-template>
                     </ngx-datatable-column>
                     <ngx-datatable-column name="Action" [width]="100" [sortable]="false">
