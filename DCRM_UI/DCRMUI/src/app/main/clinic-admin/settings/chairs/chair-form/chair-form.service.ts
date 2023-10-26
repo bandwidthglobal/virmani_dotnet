@@ -1,14 +1,15 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-
+import { User } from '../../../../../auth/models';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from '../../../../../../environments/environment';
 
 @Injectable()
-export class ChairAddService implements Resolve<any> {
+export class ChairFormService implements Resolve<any> {
   public apiData: any;
-  public onInvoicAddChanged: BehaviorSubject<any>;
-
+  public onChairFormChanged: BehaviorSubject<any>;
+    rows: any;
   /**
    * Constructor
    *
@@ -16,7 +17,7 @@ export class ChairAddService implements Resolve<any> {
    */
   constructor(private _httpClient: HttpClient) {
     // Set the defaults
-    this.onInvoicAddChanged = new BehaviorSubject({});
+      this.onChairFormChanged = new BehaviorSubject({});
   }
 
   /**
@@ -28,24 +29,44 @@ export class ChairAddService implements Resolve<any> {
    */
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
     return new Promise<void>((resolve, reject) => {
-      Promise.all([this.getApiData()]).then(() => {
+        Promise.all([]).then(() => {
         resolve();
       }, reject);
     });
   }
 
-  /**
-   * Get API Data
-   */
-  getApiData(): Promise<any[]> {
-    const url = `api/invoice-data`;
+    getChair(id: any) {
+        let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
+            const headers = new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${currentUser.jwtToken}`
+            });
+            const requestOptions = { headers: headers };
+          return  this._httpClient.get(`${environment.apiUrl}/Chair/Get/` + id, requestOptions)
+    }
 
-    return new Promise((resolve, reject) => {
-      this._httpClient.get(url).subscribe((response: any) => {
-        this.apiData = response;
-        this.onInvoicAddChanged.next(this.apiData);
-        resolve(this.apiData);
-      }, reject);
-    });
-  }
+    getDoctors() {
+        let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.get(`${environment.apiUrl}/Doctor/Get/Names` , requestOptions)
+    }
+
+    getSaveChair(id: any, data: any) {
+        debugger;
+        let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${currentUser.jwtToken}`
+        });
+        let url = `${environment.apiUrl}/Chair/Create`;
+        if (id>0) {
+            url = `${environment.apiUrl}/Chair/Update`;
+        }
+        const requestOptions = { headers: headers };
+        return this._httpClient.post(url, data, requestOptions)
+    }
 }

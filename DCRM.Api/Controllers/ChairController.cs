@@ -1,4 +1,5 @@
 ﻿using DCRM.Common.Authorization;
+using DCRM.Common.Dto;
 using DCRM.Common.Entity;
 using DCRM.Service.IService;
 using Microsoft.AspNetCore.Http;
@@ -17,7 +18,7 @@ namespace DCRM.Api.Controllers
         }
 
         [HttpGet("GetAll")]
-        public List<Chair> GetAll()
+        public List<ChairDto> GetAll()
         {
             return _chairService.GetAll();
         }

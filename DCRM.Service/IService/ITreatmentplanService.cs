@@ -29,5 +29,7 @@ namespace DCRM.Service.IService
         List<Teeth> GetTeeths();
 
         List<DiagnosisDataDto> GetDiagnosisData();
+
+        List<Teeth> GetTeethsByCategory(int categoryId);
     }
 }

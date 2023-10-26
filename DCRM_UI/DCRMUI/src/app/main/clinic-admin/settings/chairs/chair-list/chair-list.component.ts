@@ -49,7 +49,7 @@ export class ChairListComponent implements OnInit, OnDestroy {
    * @param {CalendarService} _calendarService
    * @param {InvoiceListService} _invoiceListService
    */
-    constructor(private _invoiceListService: ChairListService, private _coreConfigService: CoreConfigService) {
+    constructor(private _chairListService: ChairListService, private _coreConfigService: CoreConfigService) {
     this._unsubscribeAll = new Subject();
   }
 
@@ -118,7 +118,7 @@ export class ChairListComponent implements OnInit, OnDestroy {
       // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)
       if (config.layout.animation === 'zoomIn') {
         setTimeout(() => {
-          this._invoiceListService.onInvoiceListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+            this._chairListService.onChairListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
             this.data = response;
             this.rows = this.data;
             this.tempData = this.rows;
@@ -126,10 +126,11 @@ export class ChairListComponent implements OnInit, OnDestroy {
           });
         }, 450);
       } else {
-        this._invoiceListService.onInvoiceListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+          this._chairListService.onChairListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
           this.data = response;
           this.rows = this.data;
-          this.tempData = this.rows;
+              this.tempData = this.rows;
+              debugger;
           this.tempFilterData = this.rows;
         });
       }

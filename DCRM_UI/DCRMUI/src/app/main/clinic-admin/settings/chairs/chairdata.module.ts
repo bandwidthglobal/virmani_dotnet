@@ -15,21 +15,17 @@ import { CoreSidebarModule } from '@core/components';
 
 import { ChairListComponent } from 'app/main/clinic-admin/settings/chairs/chair-list/chair-list.component';
 import { ChairListService } from 'app/main/clinic-admin/settings/chairs/chair-list/chair-list.service';
-
-import { ChairAddComponent } from 'app/main/clinic-admin/settings/chairs/chair-add/chair-add.component';
-import { ChairAddService } from 'app/main/clinic-admin/settings/chairs/chair-add/chair-add.service'
-
-import { ChairEditComponent } from 'app/main/clinic-admin/settings/chairs/chair-edit/chair-edit.component';
-import { ChairEditService } from 'app/main/clinic-admin/settings/chairs/chair-edit/chair-edit.service'
+import { ChairFormComponent } from 'app/main/clinic-admin/settings/chairs/chair-form/chair-form.component';
+import { ChairFormService } from 'app/main/clinic-admin/settings/chairs/chair-form/chair-form.service'
 
 
 // routing
 const routes: Routes = [
     {
         path: 'add',
-        component: ChairAddComponent,
+        component: ChairFormComponent,
         resolve: {
-            Sas: ChairAddService
+            Sas: ChairFormService
         },
     },
     {
@@ -41,18 +37,17 @@ const routes: Routes = [
     },
     {
         path: 'edit/:id',
-        component: ChairEditComponent,
+        component: ChairFormComponent,
         resolve: {
-            Sds: ChairEditService
+            Sds: ChairFormService
         },
     },
 ];
 
 @NgModule({
     declarations: [
-        ChairAddComponent,
+        ChairFormComponent,
         ChairListComponent,
-        ChairEditComponent,
     ],
     imports: [
         CommonModule,
@@ -67,7 +62,7 @@ const routes: Routes = [
         NgSelectModule,
         CoreSidebarModule
     ],
-    providers: [ChairAddService, ChairListService, ChairEditService],
+    providers: [ChairFormService, ChairListService],
     /*exports: [ChairListService]*/
 })
 export class ChairDataModule { }
