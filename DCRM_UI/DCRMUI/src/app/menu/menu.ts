@@ -180,7 +180,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.SETTINGS.Chairs',
                         type: 'item',
                         icon: 'circle',
-                        url: 'apps/invoice/add'
+                        url: 'admin/settings/chair/list'
                     }
                 ]
             },

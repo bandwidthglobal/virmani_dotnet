@@ -110,5 +110,7 @@ namespace DCRM.Repository.Database
 
         public virtual DbSet<MedicineBatchDetail> Medicine_Batch_Details { get; set; }
 
+        public virtual DbSet<DiagnosisData> Diagnosis_Data { get; set; }
+
     }
 }

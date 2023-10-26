@@ -38,6 +38,10 @@ const routes: Routes = [
         path: 'prescription',
         loadChildren: () => import('./prescription/prescriptiondata.module').then(m => m.PrescriptionDataModule)
     },
+    {
+        path: 'settings',
+        loadChildren: () => import('./settings/settingdata.module').then(m => m.SettingDataModule)
+    },
      {
          path: 'dealer',
          loadChildren: () => import('./dealer/dealerdata.module').then(m => m.DealerDataModule)

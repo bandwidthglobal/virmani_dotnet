@@ -60,6 +60,13 @@ namespace DCRM.Api.Controllers
         {
             return _treatmentplanService.GetTeethCategories();
         }
+
+        [AllowAnonymous]
+        [HttpGet("Get/DiagnosisData")]
+        public List<DiagnosisDataDto> DiagnosisDataList()
+        {
+            return _treatmentplanService.GetDiagnosisData();
+        }
     }
 
 }

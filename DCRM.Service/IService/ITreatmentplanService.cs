@@ -1,4 +1,5 @@
-﻿using DCRM.Common.Entity;
+﻿using DCRM.Common.Dto;
+using DCRM.Common.Entity;
 using DCRM.Common.RequestModel;
 using System;
 using System.Collections.Generic;
@@ -26,5 +27,7 @@ namespace DCRM.Service.IService
         List<TeethCategory> GetTeethCategories();
 
         List<Teeth> GetTeeths();
+
+        List<DiagnosisDataDto> GetDiagnosisData();
     }
 }
