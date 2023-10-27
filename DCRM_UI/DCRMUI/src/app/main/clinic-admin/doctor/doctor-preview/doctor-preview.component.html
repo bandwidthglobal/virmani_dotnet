@@ -25,7 +25,7 @@
                                             <div class="user-avatar-section">
                                                 <div class="d-flex justify-content-start">
                                                     <div class="ng-star-inserted">
-                                                        <img *ngIf="doctor.thumb!=null" height="104" width="104" alt="User avatar" class="img-fluid rounded" src="{{staffData.thumb}}">
+                                                        <img *ngIf="doctor.thumb!=null" height="104" width="104" alt="User avatar" class="img-fluid rounded" src="{{doctor.thumb}}">
                                                         <img *ngIf="doctor.thumb==null" height="104" width="104" alt="User avatar" class="img-fluid rounded" src="assets/front/img/avatar.png">
                                                     </div>
                                                 </div>
@@ -75,68 +75,118 @@
                                             <div class="form-group">
                                                 <label class="font-weight-bold font-medium-1">Phone </label>
                                                 <br />
-                                                <span class="d-block">{{doctor.phone}}</span>
+                                                <span class="d-block">{{doctor.phone1}}</span>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-12">
                                             <div class="form-group">
                                                 <label class="font-weight-bold font-medium-1">Speciality </label>
                                                 <br />
-                                                <span class="d-block">{{doctor.Speciality}}</span>
+                                                <span class="d-block">{{doctor.speciality}}</span>
                                             </div>
                                         </div>
-                                        <!--<div class="col-md-4 col-12">
+                                        <div class="col-md-4 col-12">
                                             <div class="form-group">
-                                                <label class="font-weight-bold font-medium-1">Designation </label>
+                                                <label class="font-weight-bold font-medium-1">Age </label>
                                                 <br />
-                                                <span class="d-block">{{staffData.designation}}</span>
+                                                <span class="d-block">{{doctor.age}}</span>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-12">
                                             <div class="form-group">
                                                 <label class="font-weight-bold font-medium-1">Blood Group </label>
                                                 <br />
-                                                <span class="d-block">{{staffData.blood_Group}}</span>
+                                                <span class="d-block">{{doctor.blood_Group}}</span>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-12">
-                                            <label class="font-weight-bold font-medium-1">Father </label>
+                                            <label class="font-weight-bold font-medium-1">Pan Number </label>
                                             <br />
-                                            <span class="d-block">{{staffData.father}}</span>
+                                            <span class="d-block">{{doctor.pan_Number}}</span>
                                         </div>
                                         <div class="col-md-4 col-12">
-                                            <label class="font-weight-bold font-medium-1">Mother </label>
+                                            <label class="font-weight-bold font-medium-1">Gst Number </label>
                                             <br />
-                                            <span class="d-block">{{staffData.mother}}</span>
+                                            <span class="d-block">{{doctor.gst_Number}}</span>
                                         </div>
-                                        <div class="col-md-4 col-12">
-                                            <label class="font-weight-bold font-medium-1">Work Experience </label>
-                                            <br />
-                                            <span class="d-block">{{staffData.work_Experience}}</span>
-                                        </div>
-                                        <div class="col-md-4 col-12">
-                                            <label class="font-weight-bold font-medium-1">Current Address </label>
-                                            <br />
-                                            <span class="d-block">
-                                                {{staffData.current_Address}}
-                                            </span>
-                                        </div>
-                                        <div class="col-md-4 col-12">
-                                            <label class="font-weight-bold font-medium-1">Permanent Address </label>
-                                            <br />
-                                            <span class="d-block">{{staffData.permanent_Address}}</span>
-                                        </div>
-                                        <div class="col-md-4 col-12">
-                                            <label class="font-weight-bold font-medium-1">Qualification </label>
-                                            <br />
-                                            <span class="d-block">{{staffData.qualification}}</span>
-                                        </div>
-                                        <div class="col-md-4 col-12">
-                                            <label class="font-weight-bold font-medium-1">Specialization </label>
-                                            <br />
-                                            <span class="d-block">{{staffData.specialization}}</span>
-                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="card mb-4">
+                                                <h5 class="card-header">Address List</h5>
+                                                <div class="table-responsive">
+                                                    <table class="table border-top">
+                                                        <thead>
+                                                            <tr>
 
+                                                                <th class="text-truncate">Address R</th>
+                                                                <th class="text-truncate">City R</th>
+                                                                <th class="text-truncate">Zip R</th>
+                                                                <th class="text-truncate">Country R</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let address of doctor.doctorsAddressList">
+                                                                <td class="text-truncate">
+                                                                    <i class="ti ti-brand-windows text-info ti-xs me-2"></i>
+                                                                    <span class="fw-medium"> {{address.address_R}}</span>
+                                                                </td>
+                                                                <td class="text-truncate">{{address.city_R}}</td>
+                                                                <td class="text-truncate">{{address.zip_R}}</td>
+                                                                <td class="text-truncate"> {{address.country_R}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="table-responsive">
+                                                    <table class="table border-top">
+                                                        <thead>
+                                                            <tr>
+
+                                                                <th class="text-truncate">Address O</th>
+                                                                <th class="text-truncate">City O</th>
+                                                                <th class="text-truncate">Zip O</th>
+                                                                <th class="text-truncate">Country O</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let address of doctor.doctorsAddressList">
+                                                                <td class="text-truncate">
+                                                                    <i class="ti ti-brand-windows text-info ti-xs me-2"></i>
+                                                                    <span class="fw-medium"> {{address.address_O}}</span>
+                                                                </td>
+                                                                <td class="text-truncate">{{address.city_O}}</td>
+                                                                <td class="text-truncate">{{address.zip_O}}</td>
+                                                                <td class="text-truncate"> {{address.country_O}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <div class="table-responsive">
+                                                    <table class="table border-top">
+                                                        <thead>
+                                                            <tr>
+
+                                                                <th class="text-truncate">Address Other</th>
+                                                                <th class="text-truncate">City Other</th>
+                                                                <th class="text-truncate">Zip Other</th>
+                                                                <th class="text-truncate">Country Other</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let address of doctor.doctorsAddressList">
+                                                                <td class="text-truncate">
+                                                                    <i class="ti ti-brand-windows text-info ti-xs me-2"></i>
+                                                                    <span class="fw-medium"> {{address.address_Other}}</span>
+                                                                </td>
+                                                                <td class="text-truncate">{{address.city_Other}}</td>
+                                                                <td class="text-truncate">{{address.zip_Other}}</td>
+                                                                <td class="text-truncate"> {{address.country_Other}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="col-md-12 col-12">
                                             <div class="card mb-4">
                                                 <h5 class="card-header">Bank List</h5>
@@ -151,7 +201,7 @@
                                                         </thead>
                                                         <tbody>
 
-                                                            <tr *ngFor="let bank of staffData.staffBankList">
+                                                            <tr *ngFor="let bank of doctor.doctorBankDetailList">
                                                                 <td class="text-truncate">
                                                                     <i class="ti ti-brand-windows text-info ti-xs me-2"></i>
                                                                     <span class="fw-medium"> {{bank.bank_Name}}</span>
@@ -178,7 +228,7 @@
                                                         </thead>
                                                         <tbody>
 
-                                                            <tr *ngFor="let bank of staffData.staffInsuranceList">
+                                                            <tr *ngFor="let bank of doctor.doctorInsuranceDetailList">
                                                                 <td class="text-truncate">
                                                                     <i class="ti ti-brand-windows text-info ti-xs me-2"></i>
                                                                     <span class="fw-medium">{{bank.insurance}}</span>
@@ -205,7 +255,7 @@
                                                         </thead>
                                                         <tbody>
 
-                                                            <tr *ngFor="let vac of staffData.staffVaccinationList">
+                                                            <tr *ngFor="let vac of doctor.doctorsVaccinationList">
                                                                 <td class="text-truncate">
                                                                     <i class="ti ti-brand-windows text-info ti-xs me-2"></i>
                                                                     <span class="fw-medium"> {{vac.vaccination_Type}}</span>
@@ -217,7 +267,7 @@
                                                     </table>
                                                 </div>
                                             </div>
-                                        </div>-->
+                                        </div>
                                     </div>
                                 </div>
                             </div>

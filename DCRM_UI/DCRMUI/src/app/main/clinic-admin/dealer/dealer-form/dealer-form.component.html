@@ -1,4 +1,314 @@
 <div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <section class="invoice-add-wrapper">
+            <div class="row invoice-add">
+                <!-- Invoice Add Left starts -->
+                <div class="col-xl-12 col-md-8 col-12">
+                    <div class="card invoice-preview-card">
+                        <!-- Header starts -->
+                        <div class="card-body invoice-padding pb-0">
+                            <div class="row">
+                                <div class="col-xl-9 col-md-8 col-12">
+                                    <div>
+                                        <h3 class="text-primary invoice-logo">Dealer Details</h3>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-8 col-12">
+                                    <a class="btn btn-primary btn-sm ml-2 flot-right" href="/admin/staff/list"><i class="fa fa-list"></i> All Staffs </a>
+                                </div>
+                            </div>
+                            <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+                                <div class="alert-body">
+                                    <p>{{ error }}</p>
+                                </div>
+                            </ngb-alert>
+                            <div class="box-body pt-1 pb-1">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-md-12 col-12">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                   
+                                                    <div class="form-group">
+                                                        <div class="avatar-upload text-center">
+                                                            <div class="avatar-edit">
+                                                                <input type="file" name="photo" id="imageUpload" accept=".png, .jpg, .jpeg"
+                                                                       (change)="convertToBase64($event)">
+                                                                <label for="imageUpload"></label>
+                                                            </div>
+                                                            <!-- <div *ngIf="imagePreviewUrl" class="avatar-preview" id="imagePreview">
+                              <img [src]="imagePreviewUrl" alt="Selected Image" width="200">
+                            </div> -->
+                                                            <div *ngIf="base64Image" class="avatar-preview" id="imagePreview"
+                                                                 [style.background-image]="'url(' + base64Image + ')'">
+                                                                <img [src]="base64Image" alt="Selected Image">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <h4 class="card-title">Address Information</h4>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <shared-ui-text-input [label]="'Company Name'" [control]="formData.company_Name"
+                                                                                  [submitted]="submitted" ></shared-ui-text-input>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <shared-ui-text-input [label]="'Address (R)'" [control]="formData.address_R"
+                                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <shared-ui-text-input [label]="'City'" [control]="formData.city_R"
+                                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <shared-ui-text-input [label]="'Zip'" [control]="formData.zip_R" [submitted]="submitted"
+                                                                                          [mask]="'numeric'"></shared-ui-text-input>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <shared-ui-text-input [label]="'Country'" [control]="formData.country_R"
+                                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <shared-ui-text-input [label]="'Owner
+            Name 1'" [control]="formData.ownName_1" [submitted]="submitted"></shared-ui-text-input>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <shared-ui-text-input [label]="'Address (O)'" [control]="formData.address_O"
+                                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <shared-ui-text-input [label]="'City'" [control]="formData.city_O"
+                                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <shared-ui-text-input [label]="'Zip'" [control]="formData.zip_O" [submitted]="submitted"
+                                                                                          [mask]="'numeric'"></shared-ui-text-input>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <shared-ui-text-input [label]="'Country'" [control]="formData.country_O"
+                                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <shared-ui-text-input [label]="'Owner Name 2'" [control]="formData.ownName_2"
+                                                                                  [submitted]="submitted"></shared-ui-text-input>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <h4 class="card-title">Contact Information</h4>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <shared-ui-text-input [label]="'Phone 1'" [control]="formData.phone1" [mask]="'numeric'"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <shared-ui-text-input [label]="'Phone 2'" [control]="formData.phone2" [mask]="'numeric'"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <shared-ui-email-input [label]="'Email 1'" [control]="formData.email1"
+                                                                           [submitted]="submitted"></shared-ui-email-input>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <shared-ui-email-input [label]="'Email 2'" [control]="formData.email2"
+                                                                           [submitted]="submitted"></shared-ui-email-input>
+                                                </div>
+                                            </div>
+
+                                            <h4 class="card-title">Other Information</h4>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <shared-ui-text-input [label]="'PAN Number'" [control]="formData.pan_Number"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <shared-ui-text-input [label]="'GST Number'" [control]="formData.gst_Number"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                            </div>
+
+                                            <h4 class="card-title">Bank Information</h4>
+                                            <ng-container *ngFor="let bankDetail of formData.dealerBankDetailList.controls; let idx = index">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <shared-ui-text-input [label]="'Bank Name'" [control]="bankDetail.bank_Name"
+                                                                              [submitted]="submitted"></shared-ui-text-input>
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        <shared-ui-text-input [label]="'Bank Account Number'" [mask]="'numeric'"
+                                                                              [control]="bankDetail.bank_Account_Number" [submitted]="submitted"></shared-ui-text-input>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <shared-ui-text-input [label]="'IFSC Code'" [control]="bankDetail.ifsc_Code"
+                                                                              [submitted]="submitted"></shared-ui-text-input>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <shared-ui-text-input [label]="'Remarks'" [control]="bankDetail.remarks"
+                                                                              [submitted]="submitted"></shared-ui-text-input>
+                                                    </div>
+
+                                                    <div *ngIf="formData.dealerBankDetailList.controls.length > 1" class="col-md-2">
+                                                        <div class="float-right">
+                                                            <button type="button" (click)="removeBankDetails(idx);" rippleEffect class="btn btn-danger mr-1 mt-2">
+                                                                Delete
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+
+                                            <div class="col-md-12">
+                                                <div class="float-right">
+                                                    <a (click)="addBankDetails();" ippleEffect class="btn btn-primary btn-sm">
+                                                        <i class="fa fa-plus"></i>   Add
+                                                        More
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <h4 class="card-title">Field Staff Information</h4>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <shared-ui-text-input [label]="'Field Staff Name 1'" [control]="formData.staffName_1"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_1" [mask]="'numeric'"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <shared-ui-email-input [label]="'Email'" [control]="formData.staffEmail_1"
+                                                                           [submitted]="submitted"></shared-ui-email-input>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <shared-ui-text-input [label]="'Field Staff Name 2'" [control]="formData.staffName_2"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_2" [mask]="'numeric'"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <shared-ui-email-input [label]="'Email'" [control]="formData.staffEmail_2"
+                                                                           [submitted]="submitted"></shared-ui-email-input>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <shared-ui-text-input [label]="'Field Staff Name 3'" [control]="formData.staffName_3"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_3" [mask]="'numeric'"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <shared-ui-email-input [label]="'Email'" [control]="formData.staffEmail_3"
+                                                                           [submitted]="submitted"></shared-ui-email-input>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <shared-ui-text-input [label]="'Field Staff Name 4'" [control]="formData.staffName_4"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_4" [mask]="'numeric'"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <shared-ui-email-input [label]="'Email'" [control]="formData.staffEmail_4"
+                                                                           [submitted]="submitted"></shared-ui-email-input>
+                                                </div>
+                                            </div>
+
+                                            <h4 class="card-title">Materials Information</h4>
+                                            <ng-container *ngFor="let materialDetail of formData.dealerMaterialList.controls; let idx = index">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <shared-ui-text-input [label]="'Materials Name'" [control]="materialDetail.material_Name"
+                                                                              [submitted]="submitted"></shared-ui-text-input>
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        <shared-ui-text-input [label]="'Cost'" [control]="materialDetail.material_Cost" [mask]="'numeric'"
+                                                                              [submitted]="submitted"></shared-ui-text-input>
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        <shared-ui-date-input [label]="'Date'" [control]="materialDetail.material_Date"
+                                                                              [submitted]="submitted"></shared-ui-date-input>
+                                                    </div>
+
+                                                    <div *ngIf="formData.dealerMaterialList.controls.length > 1" class="col-md-3">
+                                                        <div class="float-right">
+                                                            <button type="button" (click)="removeMaterialList(idx);" rippleEffect
+                                                                    class="btn btn-danger mr-1 mt-2">
+                                                                Delete
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+
+                                            <div class="col-md-12">
+                                                <div class="float-right">
+                                                    <a  (click)="addMaterialList();" rippleEffect class="btn btn-primary btn-sm">
+                                                        <i class="fa fa-plus"></i>   Add
+                                                        More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-12 mt-3">
+                                            <div class="text-center">
+                                                <a href="/admin/dealer/list" class="btn btn-outline-secondary mr-1">Cancel</a>
+                                                <button type="button" (click)="saveForm();" rippleEffect class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    <!--/  Add New Customer Sidebar -->
+</div>
+
+
+<div class="content-wrapper container-xxl p-0" style="display:none">
   <div class="content-body">
     <section class="invoice-add-wrapper">
       <div class="row invoice-add">
