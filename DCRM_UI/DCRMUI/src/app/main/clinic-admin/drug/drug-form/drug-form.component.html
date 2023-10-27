@@ -1,0 +1,229 @@
+﻿
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <section class="invoice-add-wrapper">
+            <div class="row invoice-add">
+                <!-- Invoice Add Left starts -->
+                <div class="col-xl-12 col-md-8 col-12">
+                    <div class="card invoice-preview-card">
+                        <!-- Header starts -->
+                        <div class="card-body invoice-padding pb-0">
+                            <div class="row">
+                                <div class="col-xl-9 col-md-8 col-12">
+                                    <div *ngIf="isEdit;else other_content">
+                                        <h3 class="text-primary invoice-logo">Update Medicine Details</h3>
+                                    </div>
+                                    <ng-template #other_content><h3 class="text-primary invoice-logo">Add Medicine Details</h3></ng-template>
+
+                                </div>
+                                <div class="col-xl-3 col-md-8 col-12">
+                                    <a class="btn btn-primary ml-2 fl-right" routerLink="/admin/drug/list" rippleEffect>
+                                        <i class="fa fa-list"></i> All Drugs
+                                    </a>
+                                </div>
+                            </div>
+                            <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+                                <div class="alert-body">
+                                    <p>{{ error }}</p>
+                                </div>
+                            </ngb-alert>
+                            <div class="box-body pt-1 pb-1">
+                                <form class="form" [formGroup]="drugForm" (ngSubmit)="onSubmit()">
+                                    <div class="row">
+                                        <div class="col-md-4 col-12">
+                                            <div class="avatar-upload text-center">
+                                                <div class="avatar-edit">
+                                                    <input type="file" name="photo" id="imageUpload" accept=".png, .jpg, .jpeg"
+                                                           (change)="convertToBase64($event)">
+                                                    <label for="imageUpload"></label>
+                                                </div>
+                                                <div class="avatar-preview" id="imagePreview" [style.background-image]="'url(' + base64Image + ')'"
+                                                     *ngIf="base64Image">
+                                                    <img [src]="base64Image" alt="Selected Image">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label for="basic-medicinetype">Medicin Type<span style="color:red">*</span></label>
+                                                <input type="text"
+                                                       [(ngModel)]="drug.medicine_Type"
+                                                       formControlName="medicinetype"
+                                                       class="form-control"
+                                                       placeholder="Medicine Type"
+                                                       aria-describedby="medicinetype"
+                                                       tabindex="5"
+                                                       autofocus
+                                                       [ngClass]="{ 'is-invalid': submitted && f.medicinetype.errors }" />
+                                                <div *ngIf="submitted && f.medicinetype.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.medicinetype.errors.required">Medicin Type is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label for="mc" class="form-label">Medicine Category<span style="color:red">*</span></label>
+                                                <select class="form-control" [(ngModel)]="drug.medicine_Category_Id" required formControlName="category" [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+                                                    <option class='option' *ngFor='let option of medicinCategories' [value]="option.id">{{option.medicine_Category}}</option>
+                                                </select>
+                                                <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.category.errors.required">Medicine Category is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+
+                                                <label for="brand-column">Brand Name<span style="color:red">*</span></label>
+                                                <select class="form-control" [(ngModel)]="drug.medicine_Brand_Id" required
+                                                        formControlName="brand" [ngClass]="{ 'is-invalid': submitted && f.brand.errors }">
+                                                    <option class='option' *ngFor='let md of medicinBrands' [value]="md.id">{{md.medicine_Brand}}</option>
+                                                </select>
+                                                <div *ngIf="submitted && f.brand.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.brand.errors.required">Brand Name is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label for="country-floating">Medicine Company<span style="color:red">*</span></label>
+                                                <input type="text"
+                                                       [(ngModel)]="drug.medicine_Company"
+                                                       formControlName="medicinecompany"
+                                                       class="form-control"
+                                                       placeholder="medicine company"
+                                                       aria-describedby="medicinecompany"
+                                                       tabindex="4"
+                                                       autofocus
+                                                       [ngClass]="{ 'is-invalid': submitted && f.medicinecompany.errors }" />
+                                                <div *ngIf="submitted && f.medicinecompany.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.medicinecompany.errors.required">Medicine Company is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label for="basic-salt">Basic Salt<span style="color:red">*</span></label>
+                                                <input type="text"
+                                                       [(ngModel)]="drug.basic_Salt"
+                                                       formControlName="basicsalt"
+                                                       class="form-control"
+                                                       placeholder="Basic Salt"
+                                                       aria-describedby="basicsalt"
+                                                       tabindex="5"
+                                                       autofocus
+                                                       [ngClass]="{ 'is-invalid': submitted && f.basicsalt.errors }" />
+                                                <div *ngIf="submitted && f.basicsalt.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.basicsalt.errors.required">Basic Salt is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label for="form">Form <span style="color:red">*</span> </label>
+                                                <input type="text"
+                                                       [(ngModel)]="drug.form"
+                                                       formControlName="form"
+                                                       class="form-control"
+                                                       placeholder="form"
+                                                       aria-describedby="form"
+                                                       tabindex="6"
+                                                       autofocus
+                                                       [ngClass]="{ 'is-invalid': submitted && f.form.errors }" />
+                                                <div *ngIf="submitted && f.form.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.form.errors.required">Form is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label for="dosageq">Dosage <span style="color:red">*</span></label>
+                                                <input type="text"
+                                                       [(ngModel)]="drug.dosage"
+                                                       formControlName="dosage"
+                                                       class="form-control"
+                                                       placeholder="dosage"
+                                                       aria-describedby="dosage"
+                                                       tabindex="7"
+                                                       autofocus
+                                                       [ngClass]="{ 'is-invalid': submitted && f.dosage.errors }" />
+                                                <div *ngIf="submitted && f.dosage.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.dosage.errors.required">Dosage is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label for="doseno">DoseNo <span style="color:red">*</span></label>
+                                                <input type="text"
+                                                       [(ngModel)]="drug.dose_No"
+                                                       formControlName="doseno"
+                                                       class="form-control"
+                                                       placeholder="dose no"
+                                                       aria-describedby="doseno"
+                                                       tabindex="8"
+                                                       autofocus
+                                                       [ngClass]="{ 'is-invalid': submitted && f.doseno.errors }" />
+                                                <div *ngIf="submitted && f.doseno.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.doseno.errors.required">Dosage No is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <label for="details">Details<span style="color:red">*</span></label>
+                                                <input type="text"
+                                                       [(ngModel)]="drug.details"
+                                                       formControlName="details"
+                                                       class="form-control"
+                                                       placeholder="details"
+                                                       aria-describedby="details"
+                                                       tabindex="9"
+                                                       autofocus
+                                                       [ngClass]="{ 'is-invalid': submitted && f.details.errors }" />
+                                                <div *ngIf="submitted && f.details.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.details.errors.required">Details is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="description">Description</label>
+                                                <textarea rows="5" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="drug.description" autofocus placeholder="description" tabindex="9" aria-describedby="description"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="email-id-column">Safety Alerts</label>
+                                                <textarea rows="5" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="drug.safety_Alerts" autofocus placeholder="Safety Alerts" tabindex="10" aria-describedby="safetyalerts"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="email-id-column">Bactrology</label>
+                                                <textarea rows="5" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="drug.bactrology" autofocus placeholder="bactrology" tabindex="9" aria-describedby="bactrology"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="email-id-column">Note</label>
+                                                <textarea rows="5" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="drug.note" autofocus placeholder="note" tabindex="9" aria-describedby="note"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12" style="text-align:center">
+                                            <button type="submit" rippleEffect class="btn btn-primary mr-1">Submit</button>
+                                            <a href="/admin/drug/list" class="btn btn-outline-secondary">Cancel</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    <!--/  Add New Customer Sidebar -->
+</div>

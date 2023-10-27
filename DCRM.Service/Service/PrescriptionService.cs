@@ -57,7 +57,7 @@ namespace DCRM.Service.Service
         public List<PrescriptionDto> GetAll(long userId)
         {
             var prescriptions = _prescriptionRepository.GetAll().Where(x => x.User_Id == userId);
-            var drugs = _drugRepository.GetAllAsync().Result;
+            var drugs = _drugRepository.GetAll();
             var patients = _patientRepository.GetAll();
             List<PrescriptionDto> prescriptionsList = new List<PrescriptionDto>();
             PrescriptionDto prescriptionDto = new PrescriptionDto();
@@ -99,7 +99,7 @@ namespace DCRM.Service.Service
         public List<PrescriptionDto> GetPatientPrescriptions(long patientId)
         {
             var prescriptions = _prescriptionRepository.GetAll().Where(x => x.Patient_Id == patientId);
-            var drugs = _drugRepository.GetAllAsync().Result;
+            var drugs = _drugRepository.GetAll();
             var patients = _patientRepository.GetAll();
             List<PrescriptionDto> prescriptionsList = new List<PrescriptionDto>();
             PrescriptionDto prescriptionDto = new PrescriptionDto();
@@ -126,7 +126,7 @@ namespace DCRM.Service.Service
         {
             PrescriptionDto prescriptionDto = new PrescriptionDto();
             var prescriptions = _prescriptionRepository.Get(id);
-            var drugs = _drugRepository.GetAllAsync().Result;
+            var drugs = _drugRepository.GetAll();
             var patients = _patientRepository.GetAll();
             List<PrescriptionDto> prescriptionsList = new List<PrescriptionDto>();
             if (prescriptions != null) 

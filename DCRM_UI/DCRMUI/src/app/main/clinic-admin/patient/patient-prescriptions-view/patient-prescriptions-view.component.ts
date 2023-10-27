@@ -1,55 +1,46 @@
 import { Component, OnInit, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
-
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { CoreConfigService } from '@core/services/config.service';
+import { PatientPreviewService } from 'app/main/clinic-admin/patient/patient-preview/patient-preview.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 
-import { CoreConfigService } from '@core/services/config.service';
-
-import { ChairListService } from 'app/main/clinic-admin/settings/chairs/chair-list/chair-list.service';
 
 @Component({
-    selector: 'app-chair-list',
-    templateUrl: './chair-list.component.html',
-    styleUrls: ['./chair-list.component.scss'],
+    selector: 'patient-prescriptions-view',
+    templateUrl: './patient-prescriptions-view.component.html',
     encapsulation: ViewEncapsulation.None
 })
-export class ChairListComponent implements OnInit, OnDestroy {
-    // public
+export class PatientPriscriptionsViewComponent implements OnInit {
+    // Public
+    public calendarRef = [];
+    public tempRef = [];
+    public checkAll = true;
     public data: any;
     public selectedOption = 10;
     public ColumnMode = ColumnMode;
-    public selectStatus: any = [
-        { name: 'All', value: '' },
-        { name: 'Downloaded', value: 'Downloaded' },
-        { name: 'Draft', value: 'Draft' },
-        { name: 'Paid', value: 'Paid' },
-        { name: 'Partial Payment', value: 'Partial Payment' },
-        { name: 'Past Due', value: 'Past Due' },
-        { name: 'Sent', value: 'Sent' }
-    ];
-
     public selectedStatus = [];
     public searchValue = '';
-
     // decorator
     @ViewChild(DatatableComponent) table: DatatableComponent;
-
+    public returnUrl: string;
+    public loading = false;
+    public error = '';
     // private
     private tempData = [];
     private _unsubscribeAll: Subject<any>;
     public rows;
     public tempFilterData;
     public previousStatusFilter = '';
-
+    isOpen: boolean = true;
     /**
      * Constructor
      *
-     * @param {CoreConfigService} _coreConfigService
+     * @param {CoreSidebarService} _coreSidebarService
      * @param {CalendarService} _calendarService
-     * @param {InvoiceListService} _invoiceListService
      */
-    constructor(private _chairListService: ChairListService, private _coreConfigService: CoreConfigService) {
+    constructor(private router: Router, private _patientListService: PatientPreviewService, private _coreConfigService: CoreConfigService, private _route: ActivatedRoute) {
         this._unsubscribeAll = new Subject();
     }
 
@@ -62,13 +53,17 @@ export class ChairListComponent implements OnInit, OnDestroy {
      * @param event
      */
     filterUpdate(event) {
-        this.selectedStatus = this.selectStatus[0];
+
         const val = event.target.value.toLowerCase();
+
+        // filter our data
         const temp = this.tempData.filter(function (d) {
-            return d.name.toLowerCase().indexOf(val) !== -1 ||
-                d.doctorName.toLowerCase().indexOf(val) !== -1 ||
-                d.status.toLowerCase().indexOf(val) !== -1 ||
-                !val;
+            return d.mr_Number.toLowerCase().indexOf(val) !== -1
+                || d.name.toLowerCase().indexOf(val) !== -1
+                || d.email.toLowerCase().indexOf(val) !== -1
+                || d.phone.toLowerCase().indexOf(val) !== -1
+                || d.created_At.toLowerCase().indexOf(val) !== -1
+                || !val;
         });
 
         // update the rows
@@ -105,19 +100,16 @@ export class ChairListComponent implements OnInit, OnDestroy {
             return isPartialNameMatch;
         });
     }
-
-    // Lifecycle Hooks
-    // -----------------------------------------------------------------------------------------------------
-    /**
-     * On init
-     */
     ngOnInit(): void {
-        // Subscribe config change
+        this.getData();
+    }
+    getData() {
         this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
             // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)
             if (config.layout.animation === 'zoomIn') {
                 setTimeout(() => {
-                    this._chairListService.onChairListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+
+                    this._patientListService.onPrescriptionChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
                         this.data = response;
                         this.rows = this.data;
                         this.tempData = this.rows;
@@ -125,23 +117,22 @@ export class ChairListComponent implements OnInit, OnDestroy {
                     });
                 }, 450);
             } else {
-                this._chairListService.onChairListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+                this._patientListService.onPrescriptionChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
                     this.data = response;
                     this.rows = this.data;
                     this.tempData = this.rows;
-                    debugger;
                     this.tempFilterData = this.rows;
+                    //   debugger;
                 });
             }
         });
     }
 
-    /**
-     * On destroy
-     */
+
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
     }
 }
+

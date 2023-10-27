@@ -14,13 +14,13 @@ namespace DCRM.Service.IService
 {
     public interface IDurgService
     {
-        Task<IEnumerable<Drug>> GetAllAsync();
+        IEnumerable<Drug> GetAll();
 
-        Task<Drug> GetByIdAsync(int id);
+        Drug Get(int id);
 
-        Task<IEnumerable<Drug>> GetByUserId(int userId);
+        IEnumerable<Drug> GetByUserId(int userId);
 
-        Task CreateAsync(Drug drug);
+        void Create(Drug drug);
 
         void Update(Drug drug);
 

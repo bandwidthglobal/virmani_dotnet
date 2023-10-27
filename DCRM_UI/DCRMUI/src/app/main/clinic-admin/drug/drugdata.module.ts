@@ -16,28 +16,29 @@ import { CoreSidebarModule } from '@core/components';
 import { DrugListComponent } from 'app/main/clinic-admin/drug/drug-list/drug-list.component';
 import { DrugListService } from 'app/main/clinic-admin/drug/drug-list/drug-list.service';
 
-import { DrugAddComponent } from 'app/main/clinic-admin/drug/drug-add/drug-add.component';
-import { DrugAddService } from 'app/main/clinic-admin/drug/drug-add/drug-add.service';
+//import { DrugAddComponent } from 'app/main/clinic-admin/drug/drug-add/drug-add.component';
+//import { DrugAddService } from 'app/main/clinic-admin/drug/drug-add/drug-add.service';
 
-import { DrugEditComponent } from 'app/main/clinic-admin/drug/drug-edit/drug-edit.component';
-import { DrugEditService } from 'app/main/clinic-admin/drug/drug-edit/drug-edit.service';
+//import { DrugEditComponent } from 'app/main/clinic-admin/drug/drug-edit/drug-edit.component';
+//import { DrugEditService } from 'app/main/clinic-admin/drug/drug-edit/drug-edit.service';
 
 import { DrugPreviewComponent } from 'app/main/clinic-admin/drug/drug-preview/drug-preview.component';
 import { DrugPreviewService } from 'app/main/clinic-admin/drug/drug-preview/drug-preview.service';
 import { StockListComponent } from 'app/main/clinic-admin/drug/drug-preview/stock/stock-list.component';
 import { BadStockListComponent } from 'app/main/clinic-admin/drug/drug-preview/bad-stock/bad-stock-list.component';
 import { BadStockAddComponent } from 'app/main/clinic-admin/drug/drug-list/bad-stock-add/bad-stock-add.component';
-import {StockAddComponent } from 'app/main/clinic-admin/drug/drug-list/stock-add/stock-add.component';
+import { StockAddComponent } from 'app/main/clinic-admin/drug/drug-list/stock-add/stock-add.component';
+import { DrugFormComponent } from 'app/main/clinic-admin/drug/drug-form/drug-form.component';
+import { DrugFormService } from 'app/main/clinic-admin/drug/drug-form/drug-form.service';
 
 // routing
 const routes: Routes = [
     {
         path: 'add',
-        component: DrugAddComponent,
+        component: DrugFormComponent,
         resolve: {
-            Sas: DrugAddService
+            Sas: DrugFormService
         },
-        data: { animation: 'DrugAddComponent' }
     },
     {
         path: 'list',
@@ -57,28 +58,18 @@ const routes: Routes = [
     },
     {
         path: 'edit/:id',
-        component: DrugEditComponent,
+        component: DrugFormComponent,
         resolve: {
-            Ses: DrugEditService
+            Ses: DrugFormService
         },
-        data: { path: 'user-view/:id', animation: 'DrugEditComponent' }
     },
-    {
-        path: 'preview',
-        redirectTo: '/drug/preview/4989' // Redirection
-    },
-    {
-        path: 'edit',
-        redirectTo: '/drug/edit/4989' // Redirection
-    }
 ];
 
 @NgModule({
     declarations: [
-        DrugAddComponent,
+        DrugFormComponent,
         DrugListComponent,
         DrugPreviewComponent,
-        DrugEditComponent,
         StockListComponent,
         BadStockListComponent,
         BadStockAddComponent,
@@ -97,7 +88,7 @@ const routes: Routes = [
         NgSelectModule,
         CoreSidebarModule
     ],
-    providers: [DrugListService, DrugPreviewService, DrugEditService, DrugAddService],
+    providers: [DrugListService, DrugPreviewService, DrugFormService],
     exports: [DrugListComponent]
 })
 export class DrugDataModule { }

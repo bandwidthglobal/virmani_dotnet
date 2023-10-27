@@ -53,45 +53,45 @@ export const menu: CoreMenu[] = [
                 icon: 'home',
                 url: 'admin/dashboard'
             },
-            {
-                id: 'subscription',
-                title: 'Subscription',
-                translate: 'MENU.APPS.Subscription',
-                type: 'item',
-                icon: 'message-square',
-                url: 'apps/chat'
-            },
-            {
-                id: 'registrations',
-                title: 'Registrations',
-                translate: 'MENU.APPS.Registrations',
-                type: 'item',
-                icon: 'check-square',
-                url: 'apps/todo'
-            },
-            {
-                id: 'qrcode',
-                title: 'qrcode',
-                translate: 'MENU.APPS.QRCode',
-                type: 'item',
-                icon: 'calendar',
-                url: 'apps/calendar'
-            },
-            {
-                id: 'ratingreviews',
-                title: 'Rating Reviews',
-                translate: 'MENU.APPS.RatingReviews',
-                type: 'item',
-                icon: 'calendar',
-                url: 'apps/calendar'
-            },
+            //{
+            //    id: 'subscription',
+            //    title: 'Subscription',
+            //    translate: 'MENU.APPS.Subscription',
+            //    type: 'item',
+            //    icon: 'message-square',
+            //    url: 'apps/chat'
+            //},
+            //{
+            //    id: 'registrations',
+            //    title: 'Registrations',
+            //    translate: 'MENU.APPS.Registrations',
+            //    type: 'item',
+            //    icon: 'check-square',
+            //    url: 'apps/todo'
+            //},
+            //{
+            //    id: 'qrcode',
+            //    title: 'qrcode',
+            //    translate: 'MENU.APPS.QRCode',
+            //    type: 'item',
+            //    icon: 'calendar',
+            //    url: 'apps/calendar'
+            //},
+            //{
+            //    id: 'ratingreviews',
+            //    title: 'Rating Reviews',
+            //    translate: 'MENU.APPS.RatingReviews',
+            //    type: 'item',
+            //    icon: 'calendar',
+            //    url: 'apps/calendar'
+            //},
             {
                 id: 'departments',
                 title: 'Departments',
                 translate: 'MENU.APPS.Departments',
                 type: 'item',
                 icon: 'calendar',
-                url: 'apps/calendar'
+                url: 'admin/dashboard'
             },
             {
                 id: 'consultationcettings',
@@ -99,7 +99,7 @@ export const menu: CoreMenu[] = [
                 translate: 'MENU.APPS.ConsultationSettings',
                 type: 'item',
                 icon: 'calendar',
-                url: 'apps/calendar'
+                url: 'admin/dashboard'
             },
             {
                 id: 'consultations',
@@ -107,7 +107,7 @@ export const menu: CoreMenu[] = [
                 translate: 'MENU.APPS.Consultations',
                 type: 'item',
                 icon: 'calendar',
-                url: 'apps/calendar'
+                url: 'admin/dashboard'
             },
             {
                 id: 'staffs',
@@ -147,7 +147,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.SETTINGS.ClinicalDiagnosis',
                         type: 'item',
                         icon: 'circle',
-                        url: 'apps/invoice/list'
+                        url: 'admin/dashboard'
                     },
                     {
                         id: 'advise',
@@ -155,15 +155,15 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.SETTINGS.Advise',
                         type: 'item',
                         icon: 'circle',
-                        url: 'apps/invoice/preview'
+                        url: 'admin/dashboard'
                     },
                     {
                         id: 'diagnosistests',
-                        title: 'Edit',
+                        title: 'Diagnosis Tests',
                         translate: 'MENU.APPS.SETTINGS.DiagnosisTests',
                         type: 'item',
                         icon: 'circle',
-                        url: 'apps/invoice/edit'
+                        url: 'admin/dashboard'
                     },
                     {
                         id: 'prosthesistype',
@@ -171,7 +171,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.SETTINGS.ProsthesisType',
                         type: 'item',
                         icon: 'circle',
-                        url: 'apps/invoice/add'
+                        url: 'admin/dashboard'
                     }
                     ,
                     {
@@ -241,7 +241,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.APPOINTMENTS.ChairView',
                         type: 'item',
                         icon: 'circle',
-                        url: 'apps/user/user-view'
+                        url: 'admin/dashboard'
                     },
                     {
                         id: 'callendarview',
@@ -249,7 +249,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.APPOINTMENTS.CallendarView',
                         type: 'item',
                         icon: 'circle',
-                        url: 'apps/user/user-edit'
+                        url: 'admin/dashboard'
                     },
                     {
                         id: 'setschedule',
@@ -257,7 +257,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.APPOINTMENTS.SetSchedule',
                         type: 'item',
                         icon: 'circle',
-                        url: 'apps/user/user-edit'
+                        url: 'admin/dashboard'
                     },
                     {
                         id: 'waitingroom',
@@ -265,7 +265,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.APPOINTMENTS.WaitingRoom',
                         type: 'item',
                         icon: 'circle',
-                        url: 'apps/user/user-edit'
+                        url: 'admin/dashboard'
                     }
                 ]
             },
@@ -310,7 +310,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.PROFILE.PersonalInfo',
                         type: 'item',
                         icon: 'circle',
-                        url: 'apps/user/user-list'
+                        url: 'admin/dashboard'
                     },
                     {
                         id: 'manageeducation',
@@ -318,7 +318,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.PROFILE.ManageEducation',
                         type: 'item',
                         icon: 'circle',
-                        url: 'apps/user/user-list'
+                        url: 'admin/dashboard'
                     },
                     {
                         id: 'manageexperiences',
@@ -326,7 +326,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.PROFILE.ManageExperiences',
                         type: 'item',
                         icon: 'circle',
-                        url: 'apps/user/user-list'
+                        url: 'admin/dashboard'
                     }
                 ]
             },
