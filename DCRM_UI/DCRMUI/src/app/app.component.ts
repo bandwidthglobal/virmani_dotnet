@@ -18,6 +18,7 @@ import { locale as menuEnglish } from 'app/menu/i18n/en';
 import { locale as menuFrench } from 'app/menu/i18n/fr';
 import { locale as menuGerman } from 'app/menu/i18n/de';
 import { locale as menuPortuguese } from 'app/menu/i18n/pt';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -47,6 +48,9 @@ export class AppComponent implements OnInit, OnDestroy {
    * @param {CoreTranslationService} _coreTranslationService
    * @param {TranslateService} _translateService
    */
+
+  loading = false;
+
   constructor(
     @Inject(DOCUMENT) private document: any,
     private _title: Title,
@@ -57,8 +61,17 @@ export class AppComponent implements OnInit, OnDestroy {
     private _coreLoadingScreenService: CoreLoadingScreenService,
     private _coreMenuService: CoreMenuService,
     private _coreTranslationService: CoreTranslationService,
-    private _translateService: TranslateService
+    private _translateService: TranslateService,
+    private _router: Router
   ) {
+    this._router.events.subscribe(evt => {
+      if (evt instanceof NavigationStart) {
+        this.loading = true;
+      } else if (evt instanceof NavigationEnd) {
+        this.loading = false;
+      }
+    });
+
     // Get the application main menu
     this.menu = menu;
 

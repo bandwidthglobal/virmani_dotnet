@@ -25,6 +25,7 @@ import { JwtInterceptor, ErrorInterceptor } from 'app/auth/helpers';
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { ContentHeaderModule } from 'app/layout/components/content-header/content-header.module';
+import { LoadingModule } from 'ngx-loading';
 
 const appRoutes: Routes = [
     
@@ -66,6 +67,7 @@ const appRoutes: Routes = [
         AppComponent,
     ],
     imports: [
+        LoadingModule,
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
