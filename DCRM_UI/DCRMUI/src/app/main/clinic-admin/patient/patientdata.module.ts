@@ -40,6 +40,7 @@ import { MaskModule } from 'app/shared-common/directives/mask/mask.module';
 
 import { TreatmentPlanFormComponent } from './patient-preview/treatment-paln/form-page/treatment-plan-form.component';
 import { HotCodeMenuComponent } from './patient-preview/treatment-paln/form-page/hot-code-menu.component';
+import { PatientPriscriptionsViewComponent } from './patient-prescriptions-view/patient-prescriptions-view.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTreeModule } from '@angular/material/tree';
@@ -83,12 +84,11 @@ export const routes: Routes = [] = [
         data: { path: 'patient-view/:id', animation: 'PatientEditComponent' }
     },
     {
-        path: 'preview',
-        redirectTo: '/patient/preview/4989' // Redirection
-    },
-    {
-        path: 'edit',
-        redirectTo: '/patient/edit/4989' // Redirection
+        path: 'patient/priscriptions/:id',
+        component: PatientPriscriptionsViewComponent,
+        resolve: {
+            Ses: PatientPreviewService
+        },
     }
 ];
 
@@ -108,7 +108,8 @@ export const routes: Routes = [] = [
         PaymentsComponent,
         WorkdoneHistoryComponent,
         TreatmentPlanFormComponent,
-        HotCodeMenuComponent
+        HotCodeMenuComponent,
+        PatientPriscriptionsViewComponent
     ],
     imports: [
         // CommonModule,
