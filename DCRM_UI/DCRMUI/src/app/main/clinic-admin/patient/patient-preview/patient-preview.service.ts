@@ -8,6 +8,7 @@ import { User } from '../../../../auth/models';
 @Injectable()
 export class PatientPreviewService implements Resolve<any> {
     patientData: any;
+    DiagnosisData: any;
     apiData: any;
     treatmentData: any;
     workdoneData: any;
@@ -16,6 +17,7 @@ export class PatientPreviewService implements Resolve<any> {
     digitalData: any;
     prescriptionData: any;
     onPatientChanged: BehaviorSubject<any>;
+    onDiagnosisData: BehaviorSubject<any>;
     onTreatmentChanged: BehaviorSubject<any>;
     onWorkedDoneChanged: BehaviorSubject<any>;
     onAppointmentChanged: BehaviorSubject<any>;
@@ -35,13 +37,14 @@ export class PatientPreviewService implements Resolve<any> {
         // Set the defaults
         this.currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
         this.onPatientChanged = new BehaviorSubject({});
+        this.onDiagnosisData = new BehaviorSubject({});
         this.onTreatmentChanged = new BehaviorSubject({});
         this.onWorkedDoneChanged = new BehaviorSubject({});
         this.onAppointmentChanged = new BehaviorSubject({});
         this.onPaymentChanged = new BehaviorSubject({});
         this.onLabChanged = new BehaviorSubject({});
         this.onScansChanged = new BehaviorSubject({});
-        this.onPrescriptionChanged= new BehaviorSubject({});
+        this.onPrescriptionChanged = new BehaviorSubject({});
 
     }
 
@@ -66,6 +69,7 @@ export class PatientPreviewService implements Resolve<any> {
                 , this.getPaymentList(currentId)
                 , this.getDigitalDataList(currentId)
                 , this.getPriscriptionsList(currentId)
+                , this.getIDiagnosisData()
             ]).then(() => {
                 resolve();
             }, reject);
@@ -228,6 +232,22 @@ export class PatientPreviewService implements Resolve<any> {
         const requestOptions = { headers: headers };
         const url = `${environment.apiUrl}/DigitalData/Get/Patient/${id}`;
         this.id = id;
-        return  this._httpClient.get(url, requestOptions)
+        return this._httpClient.get(url, requestOptions)
+    }
+
+    getIDiagnosisData(): Promise<any[]> {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        const url = `${environment.apiUrl}/Treatmentplan/Get/DiagnosisData`;
+        return new Promise((resolve, reject) => {
+            this._httpClient.get(url, requestOptions).subscribe((response: any) => {
+                this.DiagnosisData = response;
+                this.onDiagnosisData.next(this.DiagnosisData);
+                resolve(this.DiagnosisData);
+            }, reject);
+        });
     }
 }

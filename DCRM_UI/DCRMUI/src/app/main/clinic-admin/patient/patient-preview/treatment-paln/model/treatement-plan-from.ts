@@ -19,7 +19,8 @@ export class ITreatmentPlanFormModel {
   completedDate?: any = '';
   sittingStatus?: any = 0;
   treatmentStatus?: any = 0;
-  teeth_id?: any = 2;
+  teeth_id?: any = '';
+  milk_teeth?: any = false;
   teeth_Number_Note?: any = '';
   toth_Note?: any = '';
   createdAt?: any = new Date();
@@ -50,6 +51,7 @@ export class ITreatmentPlanForm extends FormGroup {
   readonly sittingStatus = this.get('sittingStatus') as FormControl;
   readonly treatmentStatus = this.get('treatmentStatus') as FormControl;
   readonly teeth_id = this.get('teeth_id') as FormControl;
+  readonly milk_teeth = this.get('milk_teeth') as FormControl;
   readonly teeth_Number_Note = this.get('teeth_Number_Note') as FormControl;
   readonly toth_Note = this.get('toth_Note') as FormControl;
   readonly createdAt = this.get('createdAt') as FormControl;
@@ -84,6 +86,7 @@ export class ITreatmentPlanForm extends FormGroup {
           sittingStatus: [model?.sittingStatus],
           treatmentStatus: [model?.treatmentStatus],
           teeth_id: [model?.teeth_id],
+          milk_teeth: [model?.milk_teeth],
           teeth_Number_Note: [model?.teeth_Number_Note],
           toth_Note: [model?.toth_Note],
           createdAt: [model?.createdAt],

@@ -8,7 +8,7 @@
                     </button>
                 </div>
                 <ng-container *ngIf="showTreatmentForm">
-                    <app-treatment-plan-form [FormAction]="'add'" [apiData]="apiData"
+                    <app-treatment-plan-form [FormAction]="'add'" [DiagnosisData]="DiagnosisData" [apiData]="apiData"
                         (callBackEvent)="returnPage();"></app-treatment-plan-form>
                 </ng-container>
                 <ng-container *ngIf="!showTreatmentForm">
