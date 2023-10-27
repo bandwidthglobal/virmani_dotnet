@@ -85,30 +85,30 @@ export const menu: CoreMenu[] = [
             //    icon: 'calendar',
             //    url: 'apps/calendar'
             //},
-            {
-                id: 'departments',
-                title: 'Departments',
-                translate: 'MENU.APPS.Departments',
-                type: 'item',
-                icon: 'calendar',
-                url: 'admin/dashboard'
-            },
-            {
-                id: 'consultationcettings',
-                title: 'ConsultationSettings',
-                translate: 'MENU.APPS.ConsultationSettings',
-                type: 'item',
-                icon: 'calendar',
-                url: 'admin/dashboard'
-            },
-            {
-                id: 'consultations',
-                title: 'Consultations',
-                translate: 'MENU.APPS.Consultations',
-                type: 'item',
-                icon: 'calendar',
-                url: 'admin/dashboard'
-            },
+            //{
+            //    id: 'departments',
+            //    title: 'Departments',
+            //    translate: 'MENU.APPS.Departments',
+            //    type: 'item',
+            //    icon: 'calendar',
+            //    url: 'admin/dashboard1'
+            //},
+            //{
+            //    id: 'consultationcettings',
+            //    title: 'ConsultationSettings',
+            //    translate: 'MENU.APPS.ConsultationSettings',
+            //    type: 'item',
+            //    icon: 'calendar',
+            //    url: 'admin/dashboard2'
+            //},
+            //{
+            //    id: 'consultations',
+            //    title: 'Consultations',
+            //    translate: 'MENU.APPS.Consultations',
+            //    type: 'item',
+            //    icon: 'calendar',
+            //    url: 'admin/dashboard3'
+            //},
             {
                 id: 'staffs',
                 title: 'Staffs',
@@ -147,7 +147,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.SETTINGS.ClinicalDiagnosis',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/dashboard'
+                        url: 'admin/dashboard4'
                     },
                     {
                         id: 'advise',
@@ -155,7 +155,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.SETTINGS.Advise',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/dashboard'
+                        url: 'admin/dashboard5'
                     },
                     {
                         id: 'diagnosistests',
@@ -163,7 +163,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.SETTINGS.DiagnosisTests',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/dashboard'
+                        url: 'admin/dashboard6'
                     },
                     {
                         id: 'prosthesistype',
@@ -171,7 +171,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.SETTINGS.ProsthesisType',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/dashboard'
+                        url: 'admin/dashboard7'
                     }
                     ,
                     {
@@ -241,7 +241,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.APPOINTMENTS.ChairView',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/dashboard'
+                        url: 'admin/dashboard10'
                     },
                     {
                         id: 'callendarview',
@@ -249,7 +249,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.APPOINTMENTS.CallendarView',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/dashboard'
+                        url: 'admin/dashboard11'
                     },
                     {
                         id: 'setschedule',
@@ -257,7 +257,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.APPOINTMENTS.SetSchedule',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/dashboard'
+                        url: 'admin/dashboard12'
                     },
                     {
                         id: 'waitingroom',
@@ -265,7 +265,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.APPOINTMENTS.WaitingRoom',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/dashboard'
+                        url: 'admin/dashboard13'
                     }
                 ]
             },
@@ -310,7 +310,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.PROFILE.PersonalInfo',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/dashboard'
+                        url: 'admin/dashboard14'
                     },
                     {
                         id: 'manageeducation',
@@ -318,7 +318,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.PROFILE.ManageEducation',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/dashboard'
+                        url: 'admin/dashboard15'
                     },
                     {
                         id: 'manageexperiences',
@@ -326,7 +326,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.PROFILE.ManageExperiences',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/dashboard'
+                        url: 'admin/dashboard16'
                     }
                 ]
             },
@@ -336,8 +336,8 @@ export const menu: CoreMenu[] = [
                 title: 'Change Password',
                 translate: 'MENU.APPS.ChangePassword',
                 type: 'item',
-                icon: 'calendar',
-                url: 'apps/calendar1'
+                icon: 'changepassword',
+                url: 'admin/changepassword'
             },
 
             {
@@ -345,7 +345,7 @@ export const menu: CoreMenu[] = [
                 title: 'Logout',
                 translate: 'MENU.APPS.Logout',
                 type: 'item',
-                icon: 'calendar',
+                icon: 'logout',
                 url: 'auth/login'
             },
 

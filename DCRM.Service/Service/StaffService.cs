@@ -51,7 +51,7 @@ namespace DCRM.Service.Service
         /// <returns></returns>
         public IEnumerable<Staff> GetAll()
         {
-            return  _staffRepository.GetAll();
+            return  _staffRepository.GetAll().OrderByDescending(x=>x.Id);
         }
 
         /// <summary>

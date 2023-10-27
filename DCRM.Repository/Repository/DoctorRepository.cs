@@ -166,9 +166,8 @@ namespace DCRM.Repository.Repository
         /// <returns></returns>
         public void Update(DoctorRequest request)
         {
-            try
-            {
-                var doctor = _contex.Doctors.AsNoTracking().FirstOrDefault(x => x.Phone1 == request.Phone1);
+           
+                var doctor = _contex.Doctors.AsNoTracking().FirstOrDefault(x => x.Id == request.Id);
                 if (doctor != null)
                 {
                     doctor.User_Id = request.User_Id;
@@ -304,11 +303,7 @@ namespace DCRM.Repository.Repository
 
                 }
 
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("some technical problem. Please contact to admin");
-            }
+           
         }
         /// <summary>
         /// get all doctor by userid

@@ -43,7 +43,7 @@ namespace DCRM.Repository.Repository
         public IEnumerable<Staff> GetAll()
         {
 
-            IEnumerable<Staff> staffs = _contex.Staffs.Where(x => x.Status == 1);
+            IEnumerable<Staff> staffs = _contex.Staffs.Where(x => x.Is_Deleted == 0);
             return staffs;
         }
 
@@ -67,9 +67,7 @@ namespace DCRM.Repository.Repository
         /// <exception cref="Exception"></exception>
         public long Create(StaffRequest staffRequest)
         {
-
-            try
-            {
+           
                 var staffDetails = _contex.Staffs.FirstOrDefault(x => x.Email == staffRequest.Email);
                 if (staffDetails == null)
                 {
@@ -147,11 +145,6 @@ namespace DCRM.Repository.Repository
                     throw new SqlAlreadyFilledException("staff already exist");
                 }
 
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
         }
 
 
@@ -162,10 +155,8 @@ namespace DCRM.Repository.Repository
         /// <returns></returns>
         public void Update(StaffRequest staffRequest)
         {
-            try
-            {
-
-                var staff = _contex.Staffs.FirstOrDefault(x => x.Phone == staffRequest.Phone);
+           
+                var staff = _contex.Staffs.AsNoTracking().FirstOrDefault(x => x.Id == staffRequest.Id);
                 if (staff != null)
                 {
                     staff.Id = staffRequest.Id;
@@ -198,8 +189,8 @@ namespace DCRM.Repository.Repository
                     {
                         foreach (var item in staffRequest.StaffInsuranceDetail)
                         {
-                            var insurance = _contex.Staff_Insurance_Details.FirstOrDefault(x => x.Id == item.Id);
-                            if (insurance != null)
+                            var insurance = _contex.Staff_Insurance_Details.AsNoTracking().FirstOrDefault(x => x.Id == item.Id);
+                            if (insurance == null)
                             {
                                 item.Staff_Id = staff.Id;
                                 _contex.Staff_Insurance_Details.Add(item);
@@ -223,7 +214,7 @@ namespace DCRM.Repository.Repository
                     {
                         foreach (var item in staffRequest.StaffBankDetail)
                         {
-                            var bankDetails = _contex.Staff_Bank_Details.FirstOrDefault(x => x.Id == item.Id);
+                            var bankDetails = _contex.Staff_Bank_Details.AsNoTracking().FirstOrDefault(x => x.Id == item.Id);
                             if (bankDetails == null)
                             {
                                 item.Staff_Id = staff.Id;
@@ -247,7 +238,7 @@ namespace DCRM.Repository.Repository
                     {
                         foreach (var item in staffRequest.StaffVaccination)
                         {
-                            var vaccinationDetails = _contex.Staff_Vaccination.FirstOrDefault(x => x.Id == item.Id);
+                            var vaccinationDetails = _contex.Staff_Vaccination.AsNoTracking().FirstOrDefault(x => x.Id == item.Id);
                             if (vaccinationDetails == null)
                             {
                                 item.Staff_Id = staff.Id;
@@ -272,12 +263,6 @@ namespace DCRM.Repository.Repository
                     throw new SqlAlreadyFilledException("no data found");
 
                 }
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("some technical problem. Please contact to admin");
-            }
         }
 
         /// <summary>
