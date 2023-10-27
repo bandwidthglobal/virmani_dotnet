@@ -39,6 +39,8 @@ export class TreatmentPalnComponent implements OnInit {
     public previousStatusFilter = '';
     isOpen: boolean = true;
     @Input() apiData?: any = '';
+    @Input() DiagnosisData?: any = '';
+
 
     constructor(
         private router: Router,

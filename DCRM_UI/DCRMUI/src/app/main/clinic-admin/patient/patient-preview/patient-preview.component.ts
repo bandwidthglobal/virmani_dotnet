@@ -70,9 +70,14 @@ export class PatientPreviewComponent implements OnInit, OnDestroy {
         this._unsubscribeAll = new Subject();
     }
 
+    public DiagnosisData;
     ngOnInit(): void {
         this._patientPreviewService.onPatientChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
             this.apiData = response;
+            // debugger;
+        });
+        this._patientPreviewService.onDiagnosisData.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+            this.DiagnosisData = response;
             // debugger;
         });
     }

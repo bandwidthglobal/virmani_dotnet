@@ -8,6 +8,8 @@ import { ITreatmentPlanForm, ITreatmentPlanFormModel } from "../model/treatement
 import { TreatmentPalnFormService } from "./treatment-plan-form.service";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
+import { DomSanitizer } from '@angular/platform-browser';
+
 @Component({
     selector: 'app-treatment-plan-form',
     templateUrl: './treatment-plan-form.component.html',
@@ -29,6 +31,8 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
     @Input() FormAction?: 'add' | 'edit' = 'add';
     @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
     @Input() apiData?: any = '';
+    @Input() DiagnosisData?: any = '';
+
 
     ITeethList: Array<any> = [
         {
@@ -60,10 +64,13 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
         },
     ];
     IDoctors: Array<any> = [];
+    Teeth: Array<any> = [];
+    TeethCategory: Array<any> = [];
     constructor(
         private _toastrService: ToastrService,
         private _treatmentPalnFormService: TreatmentPalnFormService,
         private _commonValidationService: CommonValidationService,
+        private doms: DomSanitizer
         // @Inject(MAT_DIALOG_DATA) public data: any,
         // public matDialogRef: MatDialogRef<TreatmentPlanFormComponent>
     ) {
@@ -81,11 +88,81 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
         this._treatmentPalnFormService.getIDoctors().pipe().subscribe((response) => {
             this.IDoctors = response;
         });
+        this._treatmentPalnFormService.getTeethCategory().pipe().subscribe((response) => {
+            this.TeethCategory = response;
+            this.setTeethCategories();
+        });
+        this._treatmentPalnFormService.getTeeth(this.formData.teeth_id.value).pipe().subscribe((response) => {
+            this.Teeth = response;
+        });
+
+        this.formData.get('teeth_id').valueChanges.subscribe((teeth_id) => {
+            // alert(teeth_id);
+            this._treatmentPalnFormService.getTeeth(teeth_id).pipe().subscribe((response) => {
+                this.Teeth = response;
+            });
+            if (teeth_id == 3) {
+                this.categoryID = 'continents2';
+            } else if (teeth_id == 4) {
+                this.categoryID = 'continents1';
+            } else if (teeth_id == 5) {
+                this.categoryID = 'continents3';
+            } else if (teeth_id == 7) {
+                this.categoryID = 'continents1_teeth';
+            } else if (teeth_id == 8) {
+                this.categoryID = 'continents2_teeth';
+            } else if (teeth_id == 9) {
+                this.categoryID = 'continents3_teeth';
+            }
+        });
+
+        this.formData.get('milk_teeth').valueChanges.subscribe((milk_teeth) => {
+            this.setTeethCategories();
+            if (milk_teeth) {
+                this.formData.patchValue({ teeth_id: 7 });
+            }
+            let teeth_id = this.formData.get('teeth_id').value;
+            if (teeth_id == 3) {
+                this.categoryID = 'continents2';
+            } else if (teeth_id == 4) {
+                this.categoryID = 'continents1';
+            } else if (teeth_id == 5) {
+                this.categoryID = 'continents3';
+            } else if (teeth_id == 7) {
+                this.categoryID = 'continents1_teeth';
+            } else if (teeth_id == 8) {
+                this.categoryID = 'continents2_teeth';
+            } else if (teeth_id == 9) {
+                this.categoryID = 'continents3_teeth';
+            }
+        });
+    }
+    categoryID: string = 'continents1';
+    ITeethCategory: Array<any> = [];
+    setTeethCategories() {
+        let milk_teeth: any = this.formData.get('milk_teeth').value;
+        if (milk_teeth) {
+            this.ITeethCategory = this.TeethCategory.filter(f => f.teeth_Category_Name.includes('Milk'));
+            console.log('> setTeethCategories if ---> ', this.ITeethCategory);
+        } else {
+            this.ITeethCategory = this.TeethCategory.filter(f => !f.teeth_Category_Name.includes('Milk'));
+            console.log('> setTeethCategories else ---> ', this.ITeethCategory);
+        }
+    }
+
+    removeQoutes(background) {
+        background.replaceAll('"', '');
+        background.toString();
+        return background;
     }
 
     ngOnDestroy(): void {
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
+    }
+
+    setJobName(event) {
+        this.formData.patchValue({ job: event.job_name });
     }
 
     saveForm(): void {
@@ -121,5 +198,25 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
                 });
             });
         }
+    }
+
+    getRecord_teechinfo(id, teeth_note, image) {
+        // console.log('> id ---> ', id);
+        // console.log('> teeth_note ---> ', teeth_note);
+        // console.log('> image ---> ', image);
+        let img = image.split('.');
+        let str = '(' + img[0] + ') ' + teeth_note;
+        console.log('> str ---> ', str);
+        this.setToothNumber(str);
+    }
+
+    toothNumber: any = [];
+    setToothNumber(str) {
+        this.toothNumber.push(str);
+        console.log('> toothNumber ---> ', this.toothNumber);
+    }
+
+    removeToothNumber(idx) {
+        this.toothNumber.splice(idx, 1);
     }
 };

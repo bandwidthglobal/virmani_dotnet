@@ -14,6 +14,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { UiTextareaComponent } from './ui-inputs/ui-textarea/ui-textarea.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 const components = [
   ErrorMessagesPipe,
   UiTextInputComponent,
@@ -33,10 +36,18 @@ const components = [
     FormsModule,
     ReactiveFormsModule,
 
-    // MatFormFieldModule,
-    // MatInputModule,
-    // MatCheckboxModule,
-    // MatRadioModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    // MatSelectModule,
+    // MatAutocompleteModule,
+    // MatChipsModule,
+    // MatTableModule,
   ],
 })
 

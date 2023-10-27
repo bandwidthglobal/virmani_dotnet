@@ -35,4 +35,26 @@ export class TreatmentPalnFormService {
         const requestOptions = { headers: headers };
         return this._httpClient.get(`${environment.apiUrl}/Doctor/Get/Names`, requestOptions);
     }
+
+    getTeeth(catID: any = ''): Observable<any> {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        if (catID) {
+            return this._httpClient.get(`${environment.apiUrl}/Treatmentplan/Get/TeethByCategory/${catID}`, requestOptions);
+        } else {
+            return this._httpClient.get(`${environment.apiUrl}/Treatmentplan/Get/Teeth`, requestOptions);
+        }
+    }
+
+    getTeethCategory(): Observable<any> {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.get(`${environment.apiUrl}/Treatmentplan/Get/TeethCategories`, requestOptions);
+    }
 }
