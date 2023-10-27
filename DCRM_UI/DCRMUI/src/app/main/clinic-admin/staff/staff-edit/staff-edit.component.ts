@@ -34,6 +34,7 @@ export class StaffEditComponent implements OnInit, OnDestroy {
             response.staffInsuranceDetail = response.staffInsuranceList;
             response.staffVaccination = response.staffVaccinationList;
             this.FormInput = response;
+            debugger;
         });
     }
 

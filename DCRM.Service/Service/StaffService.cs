@@ -78,9 +78,11 @@ namespace DCRM.Service.Service
                 staffDto.Marital_Status = staff.Marital_Status;
                 staffDto.Date_Of_Joining = staff.Date_Of_Joining;
                 staffDto.Dob = staff.Dob;
+                staffDto.Current_Address = staff.Current_Address;
                 staffDto.Phone = staff.Phone;
                 staffDto.Gst = staff.Gst;
                 staffDto.Pan = staff.Pan;
+                staffDto.Thumb = staff.Thumb;
                 staffDto.Qualification = staff.Qualification;
                 staffDto.Work_Experience = staff.Work_Experience;
                 staffDto.Specialization = staff.Specialization;

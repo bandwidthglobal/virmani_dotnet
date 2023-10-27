@@ -65,7 +65,9 @@ export class DoctorListComponent implements OnInit, OnDestroy {
 
         // filter our data
         const temp = this.tempData.filter(function (d) {
-            return d.client.name.toLowerCase().indexOf(val) !== -1 || !val;
+            return d.name.toLowerCase().indexOf(val) !== -1 || 
+                d.speciality.toLowerCase().indexOf(val) !== -1 || 
+                !val;
         });
 
         // update the rows
