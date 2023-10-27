@@ -1,298 +1,630 @@
 <div class="content-wrapper container-xxl p-0">
-  <div class="content-body">
-    <section id="multiple-column-form">
-      <div class="row match-height">
-        <div class="col-12">
-          <div class="card-body">
-            <div class="patient-header with-border">
-              <h3 class="card-title">{{ pageTitle }}</h3>
+    <div class="content-body">
+        <section class="invoice-add-wrapper">
+            <div class="row invoice-add">
+                <!-- Invoice Add Left starts -->
+                <div class="col-xl-12 col-md-8 col-12">
+                    <div class="card invoice-preview-card">
+                        <!-- Header starts -->
+                        <div class="card-body invoice-padding pb-0">
+                            <div class="row">
+                                <div class="col-xl-9 col-md-8 col-12">
+                                    <div>
+                                        <h3 class="text-primary invoice-logo">{{ pageTitle }}</h3>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-8 col-12">
+                                    <a class="btn btn-primary btn-sm ml-2 flot-right" href="/admin/staff/list"><i class="fa fa-list"></i> All Staffs </a>
+                                </div>
+                            </div>
+                            <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+                                <div class="alert-body">
+                                    <p>{{ error }}</p>
+                                </div>
+                            </ngb-alert>
+                            <div class="box-body pt-1 pb-1">
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="avatar-upload text-center">
+                                                    <div class="avatar-edit">
+                                                        <input type="file" name="photo" id="imageUpload" accept=".png, .jpg, .jpeg"
+                                                               (change)="convertToBase64($event)">
+                                                        <label for="imageUpload"></label>
+                                                    </div>
+                                                    <div class="avatar-preview" id="imagePreview" [style.background-image]="'url(' + base64Image + ')'"
+                                                         *ngIf="base64Image">
+                                                        <img [src]="base64Image" alt="Selected Image">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-9">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <shared-ui-select-input [label]="'Title'" [control]="formData.slug" [options]="ITitlte"
+                                                                            [valueKey]="'id'" [displaykey]="'name'" [submitted]="submitted"></shared-ui-select-input>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <shared-ui-select-input [label]="'Designation'" [control]="formData.designation"
+                                                                            [options]="IDesignation" [valueKey]="'id'" [displaykey]="'name'"
+                                                                            [submitted]="submitted"></shared-ui-select-input>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <shared-ui-text-input [label]="'Name'" [control]="formData.name"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <shared-ui-text-input [label]="'Father Name'" [control]="formData.father"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <shared-ui-text-input [label]="'Mother Name'" [control]="formData.mother"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <shared-ui-select-input [label]="'Gender'" [control]="formData.gender" [options]="IGender"
+                                                                            [valueKey]="'id'" [displaykey]="'name'" [submitted]="submitted"></shared-ui-select-input>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <shared-ui-select-input [label]="'Marital Status'" [control]="formData.marital_Status"
+                                                                            [options]="IMStatus" [valueKey]="'id'" [displaykey]="'name'"
+                                                                            [submitted]="submitted"></shared-ui-select-input>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <shared-ui-select-input [label]="'Blood Group'" [control]="formData.blood_Group"
+                                                                            [options]="IBloodGroup" [valueKey]="'id'" [displaykey]="'name'"
+                                                                            [submitted]="submitted"></shared-ui-select-input>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <shared-ui-date-input [label]="'Date of Birth'" [control]="formData.dob"
+                                                                          [submitted]="submitted"></shared-ui-date-input>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <shared-ui-date-input [label]="'Date of Joining'" [control]="formData.date_Of_Joining"
+                                                                          [submitted]="submitted"></shared-ui-date-input>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.phone" [submitted]="submitted"
+                                                                          [mask]="'numeric'"></shared-ui-text-input>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <shared-ui-email-input [label]="'Email'" [control]="formData.email"
+                                                                           [submitted]="submitted"></shared-ui-email-input>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <shared-ui-text-input [label]="'Qualification'" [control]="formData.qualification"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <shared-ui-textarea [label]="'Work Experience'" [control]="formData.work_Experience"
+                                                                        [submitted]="submitted"></shared-ui-textarea>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <shared-ui-textarea [label]="'Specialization'" [control]="formData.specialization"
+                                                                        [submitted]="submitted"></shared-ui-textarea>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <shared-ui-textarea [label]="'Note'" [control]="formData.note"
+                                                                        [submitted]="submitted"></shared-ui-textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="md-12">
+                                            <h3 class="card-title">Address Information</h3>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <shared-ui-textarea [label]="'Current Address'" [control]="formData.current_Address"
+                                                                        [submitted]="submitted"></shared-ui-textarea>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <shared-ui-textarea [label]="'Permanent Address'" [control]="formData.permanent_Address"
+                                                                        [submitted]="submitted"></shared-ui-textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="md-12">
+                                            <h3 class="card-title">Vaccination Information</h3>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <ng-container *ngFor="let vaccination of formData.staffVaccination.controls; let idx = index">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <shared-ui-text-input [label]="'Vaccination Type'" [control]="vaccination.vaccination_Type"
+                                                                              [submitted]="submitted"></shared-ui-text-input>
+                                                    </div>
+                                                    <div class="col">
+                                                        <shared-ui-date-input [label]="'Vaccination Date'" [control]="vaccination.vaccination_Date"
+                                                                              [submitted]="submitted"></shared-ui-date-input>
+                                                    </div>
+                                                    <div class="col">
+                                                        <shared-ui-date-input [label]="'Reminder Date for Next'"
+                                                                              [control]="vaccination.reminder_Date_For_Next" [submitted]="submitted"></shared-ui-date-input>
+                                                    </div>
+                                                    <div class="col">
+                                                        <shared-ui-text-input [label]="'Remarks'" [control]="vaccination.remarks"
+                                                                              [submitted]="submitted"></shared-ui-text-input>
+                                                    </div>
+                                                    <div class="col">
+                                                        <shared-ui-text-input [label]="'Medical History'" [control]="vaccination.medical_History"
+                                                                              [submitted]="submitted"></shared-ui-text-input>
+                                                    </div>
+                                                    <div *ngIf="formData.staffVaccination.controls.length > 1" class="col">
+                                                        <div class="float-right">
+                                                            <button type="button" (click)="removeVaccinationDetails(idx);" rippleEffect
+                                                                    class="btn btn-danger mr-1 mt-2">
+                                                                Delete
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="float-right">
+                                                <a (click)="addVaccinationDetails();" rippleEffect class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-plus"></i>Add
+                                                    More
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="md-12">
+                                            <h3 class="card-title">Others Information</h3>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <shared-ui-text-input [label]="'PAN Number'" [control]="formData.pan"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                                <div class="col">
+                                                    <shared-ui-text-input [label]="'GST Number'" [control]="formData.gst"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="md-12">
+                                            <h3 class="card-title">Bank Information</h3>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <ng-container *ngFor="let bank of formData.staffBankDetail.controls; let idx = index">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <shared-ui-text-input [label]="'Bank Name'" [control]="bank.bank_Name"
+                                                                              [submitted]="submitted"></shared-ui-text-input>
+                                                    </div>
+                                                    <div class="col">
+                                                        <shared-ui-text-input [label]="'Bank Account Number'" [control]="bank.bank_Account_Number"
+                                                                              [submitted]="submitted" [mask]="'numeric'"></shared-ui-text-input>
+                                                    </div>
+                                                    <div class="col">
+                                                        <shared-ui-text-input [label]="'IFSC Code'" [control]="bank.ifsc_Code"
+                                                                              [submitted]="submitted"></shared-ui-text-input>
+                                                    </div>
+                                                    <div class="col">
+                                                        <shared-ui-text-input [label]="'Remarks'" [control]="bank.remarks"
+                                                                              [submitted]="submitted"></shared-ui-text-input>
+                                                    </div>
+                                                    <div *ngIf="formData.staffBankDetail.controls.length > 1" class="col">
+                                                        <div class="float-right">
+                                                            <button type="button" (click)="removeBankDetails(idx);" rippleEffect
+                                                                    class="btn btn-danger mr-1 mt-2">
+                                                                Delete
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="float-right">
+                                                <button type="button" (click)="addBankDetails();" rippleEffect class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-plus"></i>Add
+                                                    More
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="md-12">
+                                        <h3 class="card-title">Insurance Information</h3>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <ng-container *ngFor="let insurance of formData.staffInsuranceDetail.controls; let idx = index">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <shared-ui-text-input [label]="'Insurance'" [control]="insurance.insurance"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                                <div class="col">
+                                                    <shared-ui-date-input [label]="'Insurance Date'" [control]="insurance.insurance_Date"
+                                                                          [submitted]="submitted"></shared-ui-date-input>
+                                                </div>
+                                                <div class="col">
+                                                    <shared-ui-date-input [label]="'Renewal Date'" [control]="insurance.renewal_Date"
+                                                                          [submitted]="submitted"></shared-ui-date-input>
+                                                </div>
+                                                <div class="col">
+                                                    <shared-ui-text-input [label]="'Amount Insured'" [control]="insurance.amount_Insured"
+                                                                          [submitted]="submitted" [mask]="'numeric'"></shared-ui-text-input>
+                                                </div>
+                                                <div class="col">
+                                                    <shared-ui-text-input [label]="'Amount Paid'" [control]="insurance.amount_Paid"
+                                                                          [submitted]="submitted" [mask]="'numeric'"></shared-ui-text-input>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <shared-ui-text-input [label]="'Allow Notifications'" [control]="insurance.allow_Notifications"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                                <div class="col">
+                                                    <shared-ui-text-input [label]="'Remarks'" [control]="insurance.remarks"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                                <div *ngIf="formData.staffInsuranceDetail.controls.length > 1" class="col">
+                                                    <div class="float-right">
+                                                        <button type="button" (click)="removeInsuranceDetails(idx);" rippleEffect
+                                                                class="btn btn-danger mr-1 mt-2">
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="float-right">
+                                            <button type="button" (click)="addInsuranceDetails();" rippleEffect class="btn btn-primary btn-sm">
+                                                <i class="fa fa-plus"></i> Add
+                                                More
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mt-3">
+                                        <div class="float-right1 text-center">
+                                            <a href="/admin/staff/list" class="btn btn-outline-secondary mr-1">Cancel</a>
+                                            <button type="button" (click)="saveForm();" rippleEffect class="btn btn-primary ">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
-              <div class="alert-body">
-                <p>{{ error }}</p>
-              </div>
-            </ngb-alert>
+        </section>
+    </div>
+    <!--/  Add New Customer Sidebar -->
+</div>
 
-            <div class="row">
-              <div class="col-md-3">
-                <div class="form-group">
-                  <div class="avatar-upload text-center">
-                    <div class="avatar-edit">
-                      <input type="file" name="photo" id="imageUpload" accept=".png, .jpg, .jpeg"
-                        (change)="convertToBase64($event)">
-                      <label for="imageUpload"></label>
-                    </div>
-                    <div class="avatar-preview" id="imagePreview" [style.background-image]="'url(' + base64Image + ')'"
-                      *ngIf="base64Image">
-                      <img [src]="base64Image" alt="Selected Image">
-                    </div>
-                  </div>
-                </div>
-              </div>
 
-              <div class="col-md-9">
-                <div class="row">
-                  <div class="col-md-4">
-                    <shared-ui-select-input [label]="'Title'" [control]="formData.slug" [options]="ITitlte"
-                      [valueKey]="'id'" [displaykey]="'name'" [submitted]="submitted"></shared-ui-select-input>
-                  </div>
-                  <div class="col-md-4">
-                    <shared-ui-select-input [label]="'Designation'" [control]="formData.designation"
-                      [options]="IDesignation" [valueKey]="'id'" [displaykey]="'name'"
-                      [submitted]="submitted"></shared-ui-select-input>
-                  </div>
-                  <div class="col-md-4">
-                    <shared-ui-text-input [label]="'Name'" [control]="formData.name"
-                      [submitted]="submitted"></shared-ui-text-input>
-                  </div>
-                </div>
 
-                <div class="row">
-                  <div class="col-md-4">
-                    <shared-ui-text-input [label]="'Father Name'" [control]="formData.father"
-                      [submitted]="submitted"></shared-ui-text-input>
-                  </div>
-                  <div class="col-md-4">
-                    <shared-ui-text-input [label]="'Mother Name'" [control]="formData.mother"
-                      [submitted]="submitted"></shared-ui-text-input>
-                  </div>
-                  <div class="col-md-4">
-                    <shared-ui-select-input [label]="'Gender'" [control]="formData.gender" [options]="IGender"
-                      [valueKey]="'id'" [displaykey]="'name'" [submitted]="submitted"></shared-ui-select-input>
-                  </div>
-                </div>
 
-                <div class="row">
-                  <div class="col-md-4">
-                    <shared-ui-select-input [label]="'Marital Status'" [control]="formData.marital_Status"
-                      [options]="IMStatus" [valueKey]="'id'" [displaykey]="'name'"
-                      [submitted]="submitted"></shared-ui-select-input>
-                  </div>
-                  <div class="col-md-4">
-                    <shared-ui-select-input [label]="'Blood Group'" [control]="formData.blood_Group"
-                      [options]="IBloodGroup" [valueKey]="'id'" [displaykey]="'name'"
-                      [submitted]="submitted"></shared-ui-select-input>
-                  </div>
-                  <div class="col-md-4">
-                    <shared-ui-date-input [label]="'Date of Birth'" [control]="formData.dob"
-                      [submitted]="submitted"></shared-ui-date-input>
-                  </div>
-                </div>
-              </div>
 
-              <div class="col-md-12">
-                <div class="row">
-                  <div class="col-md-3">
-                    <shared-ui-date-input [label]="'Date of Joining'" [control]="formData.date_Of_Joining"
-                      [submitted]="submitted"></shared-ui-date-input>
-                  </div>
-                  <div class="col-md-3">
-                    <shared-ui-text-input [label]="'Phone'" [control]="formData.phone" [submitted]="submitted"
-                      [mask]="'numeric'"></shared-ui-text-input>
-                  </div>
-                  <div class="col-md-3">
-                    <shared-ui-email-input [label]="'Email'" [control]="formData.email"
-                      [submitted]="submitted"></shared-ui-email-input>
-                  </div>
-                  <div class="col-md-3">
-                    <shared-ui-text-input [label]="'Qualification'" [control]="formData.qualification"
-                      [submitted]="submitted"></shared-ui-text-input>
-                  </div>
+<div class="content-wrapper container-xxl p-0" style="display:none">
+    <div class="content-body">
+        <section id="multiple-column-form">
+            <div class="row match-height">
+                <div class="col-12">
+                    <div class="card-body">
+                        <div class="patient-header with-border">
+                            <h3 class="card-title">{{ pageTitle }}</h3>
+                        </div>
+                        <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+                            <div class="alert-body">
+                                <p>{{ error }}</p>
+                            </div>
+                        </ngb-alert>
 
-                  <div class="col-md-4">
-                    <shared-ui-textarea [label]="'Work Experience'" [control]="formData.work_Experience"
-                      [submitted]="submitted"></shared-ui-textarea>
-                  </div>
-                  <div class="col-md-4">
-                    <shared-ui-textarea [label]="'Specialization'" [control]="formData.specialization"
-                      [submitted]="submitted"></shared-ui-textarea>
-                  </div>
-                  <div class="col-md-4">
-                    <shared-ui-textarea [label]="'Note'" [control]="formData.note"
-                      [submitted]="submitted"></shared-ui-textarea>
-                  </div>
-                </div>
-              </div>
-              <div class="md-12">
-                <h3 class="card-title">Address Information</h3>
-              </div>
-              <div class="col-md-12">
-                <div class="row">
-                  <div class="col-md-6">
-                    <shared-ui-textarea [label]="'Current Address'" [control]="formData.current_Address"
-                      [submitted]="submitted"></shared-ui-textarea>
-                  </div>
-                  <div class="col-md-6">
-                    <shared-ui-textarea [label]="'Permanent Address'" [control]="formData.permanent_Address"
-                      [submitted]="submitted"></shared-ui-textarea>
-                  </div>
-                </div>
-              </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="avatar-upload text-center">
+                                        <div class="avatar-edit">
+                                            <input type="file" name="photo" id="imageUpload" accept=".png, .jpg, .jpeg"
+                                                   (change)="convertToBase64($event)">
+                                            <label for="imageUpload"></label>
+                                        </div>
+                                        <div class="avatar-preview" id="imagePreview" [style.background-image]="'url(' + base64Image + ')'"
+                                             *ngIf="base64Image">
+                                            <img [src]="base64Image" alt="Selected Image">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-              <div class="md-12">
-                <h3 class="card-title">Vaccination Information</h3>
-              </div>
-              <div class="col-md-12">
-                <ng-container *ngFor="let vaccination of formData.staffVaccination.controls; let idx = index">
-                  <div class="row">
-                    <div class="col">
-                      <shared-ui-text-input [label]="'Vaccination Type'" [control]="vaccination.vaccination_Type"
-                        [submitted]="submitted"></shared-ui-text-input>
-                    </div>
-                    <div class="col">
-                      <shared-ui-date-input [label]="'Vaccination Date'" [control]="vaccination.vaccination_Date"
-                        [submitted]="submitted"></shared-ui-date-input>
-                    </div>
-                    <div class="col">
-                      <shared-ui-date-input [label]="'Reminder Date for Next'"
-                        [control]="vaccination.reminder_Date_For_Next" [submitted]="submitted"></shared-ui-date-input>
-                    </div>
-                    <div class="col">
-                      <shared-ui-text-input [label]="'Remarks'" [control]="vaccination.remarks"
-                        [submitted]="submitted"></shared-ui-text-input>
-                    </div>
-                    <div class="col">
-                      <shared-ui-text-input [label]="'Medical History'" [control]="vaccination.medical_History"
-                        [submitted]="submitted"></shared-ui-text-input>
-                    </div>
-                    <div *ngIf="formData.staffVaccination.controls.length > 1" class="col">
-                      <div class="float-right">
-                        <button type="button" (click)="removeVaccinationDetails(idx);" rippleEffect
-                          class="btn btn-danger mr-1 mt-2">
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </ng-container>
-              </div>
-              <div class="col-md-12">
-                <div class="float-right">
-                  <button type="button" (click)="addVaccinationDetails();" rippleEffect class="btn btn-primary">Add
-                    More</button>
-                </div>
-              </div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <shared-ui-select-input [label]="'Title'" [control]="formData.slug" [options]="ITitlte"
+                                                                [valueKey]="'id'" [displaykey]="'name'" [submitted]="submitted"></shared-ui-select-input>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <shared-ui-select-input [label]="'Designation'" [control]="formData.designation"
+                                                                [options]="IDesignation" [valueKey]="'id'" [displaykey]="'name'"
+                                                                [submitted]="submitted"></shared-ui-select-input>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <shared-ui-text-input [label]="'Name'" [control]="formData.name"
+                                                              [submitted]="submitted"></shared-ui-text-input>
+                                    </div>
+                                </div>
 
-              <div class="md-12">
-                <h3 class="card-title">Others Information</h3>
-              </div>
-              <div class="col-md-12">
-                <div class="row">
-                  <div class="col">
-                    <shared-ui-text-input [label]="'PAN Number'" [control]="formData.pan"
-                      [submitted]="submitted"></shared-ui-text-input>
-                  </div>
-                  <div class="col">
-                    <shared-ui-text-input [label]="'GST Number'" [control]="formData.gst"
-                      [submitted]="submitted"></shared-ui-text-input>
-                  </div>
-                </div>
-              </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <shared-ui-text-input [label]="'Father Name'" [control]="formData.father"
+                                                              [submitted]="submitted"></shared-ui-text-input>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <shared-ui-text-input [label]="'Mother Name'" [control]="formData.mother"
+                                                              [submitted]="submitted"></shared-ui-text-input>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <shared-ui-select-input [label]="'Gender'" [control]="formData.gender" [options]="IGender"
+                                                                [valueKey]="'id'" [displaykey]="'name'" [submitted]="submitted"></shared-ui-select-input>
+                                    </div>
+                                </div>
 
-              <div class="md-12">
-                <h3 class="card-title">Bank Information</h3>
-              </div>
-              <div class="col-md-12">
-                <ng-container *ngFor="let bank of formData.staffBankDetail.controls; let idx = index">
-                  <div class="row">
-                    <div class="col">
-                      <shared-ui-text-input [label]="'Bank Name'" [control]="bank.bank_Name"
-                        [submitted]="submitted"></shared-ui-text-input>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <shared-ui-select-input [label]="'Marital Status'" [control]="formData.marital_Status"
+                                                                [options]="IMStatus" [valueKey]="'id'" [displaykey]="'name'"
+                                                                [submitted]="submitted"></shared-ui-select-input>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <shared-ui-select-input [label]="'Blood Group'" [control]="formData.blood_Group"
+                                                                [options]="IBloodGroup" [valueKey]="'id'" [displaykey]="'name'"
+                                                                [submitted]="submitted"></shared-ui-select-input>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <shared-ui-date-input [label]="'Date of Birth'" [control]="formData.dob"
+                                                              [submitted]="submitted"></shared-ui-date-input>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <shared-ui-date-input [label]="'Date of Joining'" [control]="formData.date_Of_Joining"
+                                                              [submitted]="submitted"></shared-ui-date-input>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <shared-ui-text-input [label]="'Phone'" [control]="formData.phone" [submitted]="submitted"
+                                                              [mask]="'numeric'"></shared-ui-text-input>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <shared-ui-email-input [label]="'Email'" [control]="formData.email"
+                                                               [submitted]="submitted"></shared-ui-email-input>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <shared-ui-text-input [label]="'Qualification'" [control]="formData.qualification"
+                                                              [submitted]="submitted"></shared-ui-text-input>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <shared-ui-textarea [label]="'Work Experience'" [control]="formData.work_Experience"
+                                                            [submitted]="submitted"></shared-ui-textarea>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <shared-ui-textarea [label]="'Specialization'" [control]="formData.specialization"
+                                                            [submitted]="submitted"></shared-ui-textarea>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <shared-ui-textarea [label]="'Note'" [control]="formData.note"
+                                                            [submitted]="submitted"></shared-ui-textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md-12">
+                                <h3 class="card-title">Address Information</h3>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <shared-ui-textarea [label]="'Current Address'" [control]="formData.current_Address"
+                                                            [submitted]="submitted"></shared-ui-textarea>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <shared-ui-textarea [label]="'Permanent Address'" [control]="formData.permanent_Address"
+                                                            [submitted]="submitted"></shared-ui-textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="md-12">
+                                <h3 class="card-title">Vaccination Information</h3>
+                            </div>
+                            <div class="col-md-12">
+                                <ng-container *ngFor="let vaccination of formData.staffVaccination.controls; let idx = index">
+                                    <div class="row">
+                                        <div class="col">
+                                            <shared-ui-text-input [label]="'Vaccination Type'" [control]="vaccination.vaccination_Type"
+                                                                  [submitted]="submitted"></shared-ui-text-input>
+                                        </div>
+                                        <div class="col">
+                                            <shared-ui-date-input [label]="'Vaccination Date'" [control]="vaccination.vaccination_Date"
+                                                                  [submitted]="submitted"></shared-ui-date-input>
+                                        </div>
+                                        <div class="col">
+                                            <shared-ui-date-input [label]="'Reminder Date for Next'"
+                                                                  [control]="vaccination.reminder_Date_For_Next" [submitted]="submitted"></shared-ui-date-input>
+                                        </div>
+                                        <div class="col">
+                                            <shared-ui-text-input [label]="'Remarks'" [control]="vaccination.remarks"
+                                                                  [submitted]="submitted"></shared-ui-text-input>
+                                        </div>
+                                        <div class="col">
+                                            <shared-ui-text-input [label]="'Medical History'" [control]="vaccination.medical_History"
+                                                                  [submitted]="submitted"></shared-ui-text-input>
+                                        </div>
+                                        <div *ngIf="formData.staffVaccination.controls.length > 1" class="col">
+                                            <div class="float-right">
+                                                <button type="button" (click)="removeVaccinationDetails(idx);" rippleEffect
+                                                        class="btn btn-danger mr-1 mt-2">
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="float-right">
+                                    <a (click)="addVaccinationDetails();" rippleEffect class="btn btn-primary btn-sm">
+                                        <i class="fa fa-plus"></i>Add
+                                        More
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="md-12">
+                                <h3 class="card-title">Others Information</h3>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col">
+                                        <shared-ui-text-input [label]="'PAN Number'" [control]="formData.pan"
+                                                              [submitted]="submitted"></shared-ui-text-input>
+                                    </div>
+                                    <div class="col">
+                                        <shared-ui-text-input [label]="'GST Number'" [control]="formData.gst"
+                                                              [submitted]="submitted"></shared-ui-text-input>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="md-12">
+                                <h3 class="card-title">Bank Information</h3>
+                            </div>
+                            <div class="col-md-12">
+                                <ng-container *ngFor="let bank of formData.staffBankDetail.controls; let idx = index">
+                                    <div class="row">
+                                        <div class="col">
+                                            <shared-ui-text-input [label]="'Bank Name'" [control]="bank.bank_Name"
+                                                                  [submitted]="submitted"></shared-ui-text-input>
+                                        </div>
+                                        <div class="col">
+                                            <shared-ui-text-input [label]="'Bank Account Number'" [control]="bank.bank_Account_Number"
+                                                                  [submitted]="submitted" [mask]="'numeric'"></shared-ui-text-input>
+                                        </div>
+                                        <div class="col">
+                                            <shared-ui-text-input [label]="'IFSC Code'" [control]="bank.ifsc_Code"
+                                                                  [submitted]="submitted"></shared-ui-text-input>
+                                        </div>
+                                        <div class="col">
+                                            <shared-ui-text-input [label]="'Remarks'" [control]="bank.remarks"
+                                                                  [submitted]="submitted"></shared-ui-text-input>
+                                        </div>
+                                        <div *ngIf="formData.staffBankDetail.controls.length > 1" class="col">
+                                            <div class="float-right">
+                                                <button type="button" (click)="removeBankDetails(idx);" rippleEffect
+                                                        class="btn btn-danger mr-1 mt-2">
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="float-right">
+                                    <button type="button" (click)="addBankDetails();" rippleEffect class="btn btn-primary btn-sm">
+                                        <i class="fa fa-plus"></i>Add
+                                        More
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="md-12">
+                            <h3 class="card-title">Insurance Information</h3>
+                        </div>
+                        <div class="col-md-12">
+                            <ng-container *ngFor="let insurance of formData.staffInsuranceDetail.controls; let idx = index">
+                                <div class="row">
+                                    <div class="col">
+                                        <shared-ui-text-input [label]="'Insurance'" [control]="insurance.insurance"
+                                                              [submitted]="submitted"></shared-ui-text-input>
+                                    </div>
+                                    <div class="col">
+                                        <shared-ui-date-input [label]="'Insurance Date'" [control]="insurance.insurance_Date"
+                                                              [submitted]="submitted"></shared-ui-date-input>
+                                    </div>
+                                    <div class="col">
+                                        <shared-ui-date-input [label]="'Renewal Date'" [control]="insurance.renewal_Date"
+                                                              [submitted]="submitted"></shared-ui-date-input>
+                                    </div>
+                                    <div class="col">
+                                        <shared-ui-text-input [label]="'Amount Insured'" [control]="insurance.amount_Insured"
+                                                              [submitted]="submitted" [mask]="'numeric'"></shared-ui-text-input>
+                                    </div>
+                                    <div class="col">
+                                        <shared-ui-text-input [label]="'Amount Paid'" [control]="insurance.amount_Paid"
+                                                              [submitted]="submitted" [mask]="'numeric'"></shared-ui-text-input>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <shared-ui-text-input [label]="'Allow Notifications'" [control]="insurance.allow_Notifications"
+                                                              [submitted]="submitted"></shared-ui-text-input>
+                                    </div>
+                                    <div class="col">
+                                        <shared-ui-text-input [label]="'Remarks'" [control]="insurance.remarks"
+                                                              [submitted]="submitted"></shared-ui-text-input>
+                                    </div>
+                                    <div *ngIf="formData.staffInsuranceDetail.controls.length > 1" class="col">
+                                        <div class="float-right">
+                                            <button type="button" (click)="removeInsuranceDetails(idx);" rippleEffect
+                                                    class="btn btn-danger mr-1 mt-2">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="float-right">
+                                <button type="button" (click)="addInsuranceDetails();" rippleEffect class="btn btn-primary btn-sm">
+                                    <i class="fa fa-plus"></i> Add
+                                    More
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mt-3">
+                            <div class="float-right">
+                                <a href="/admin/staff/list" class="btn btn-outline-secondary mr-1">Cancel</a>
+                                <button type="button" (click)="saveForm();" rippleEffect class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col">
-                      <shared-ui-text-input [label]="'Bank Account Number'" [control]="bank.bank_Account_Number"
-                        [submitted]="submitted" [mask]="'numeric'"></shared-ui-text-input>
-                    </div>
-                    <div class="col">
-                      <shared-ui-text-input [label]="'IFSC Code'" [control]="bank.ifsc_Code"
-                        [submitted]="submitted"></shared-ui-text-input>
-                    </div>
-                    <div class="col">
-                      <shared-ui-text-input [label]="'Remarks'" [control]="bank.remarks"
-                        [submitted]="submitted"></shared-ui-text-input>
-                    </div>
-                    <div *ngIf="formData.staffBankDetail.controls.length > 1" class="col">
-                      <div class="float-right">
-                        <button type="button" (click)="removeBankDetails(idx);" rippleEffect
-                          class="btn btn-danger mr-1 mt-2">
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </ng-container>
-              </div>
-              <div class="col-md-12">
-                <div class="float-right">
-                  <button type="button" (click)="addBankDetails();" rippleEffect class="btn btn-primary">Add
-                    More</button>
                 </div>
-              </div>
             </div>
-
-            <div class="md-12">
-              <h3 class="card-title">Insurance Information</h3>
-            </div>
-            <div class="col-md-12">
-              <ng-container *ngFor="let insurance of formData.staffInsuranceDetail.controls; let idx = index">
-                <div class="row">
-                  <div class="col">
-                    <shared-ui-text-input [label]="'Insurance'" [control]="insurance.insurance"
-                      [submitted]="submitted"></shared-ui-text-input>
-                  </div>
-                  <div class="col">
-                    <shared-ui-date-input [label]="'Insurance Date'" [control]="insurance.insurance_Date"
-                      [submitted]="submitted"></shared-ui-date-input>
-                  </div>
-                  <div class="col">
-                    <shared-ui-date-input [label]="'Renewal Date'" [control]="insurance.renewal_Date"
-                      [submitted]="submitted"></shared-ui-date-input>
-                  </div>
-                  <div class="col">
-                    <shared-ui-text-input [label]="'Amount Insured'" [control]="insurance.amount_Insured"
-                      [submitted]="submitted" [mask]="'numeric'"></shared-ui-text-input>
-                  </div>
-                  <div class="col">
-                    <shared-ui-text-input [label]="'Amount Paid'" [control]="insurance.amount_Paid"
-                      [submitted]="submitted" [mask]="'numeric'"></shared-ui-text-input>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <shared-ui-text-input [label]="'Allow Notifications'" [control]="insurance.allow_Notifications"
-                      [submitted]="submitted"></shared-ui-text-input>
-                  </div>
-                  <div class="col">
-                    <shared-ui-text-input [label]="'Remarks'" [control]="insurance.remarks"
-                      [submitted]="submitted"></shared-ui-text-input>
-                  </div>
-                  <div *ngIf="formData.staffInsuranceDetail.controls.length > 1" class="col">
-                    <div class="float-right">
-                      <button type="button" (click)="removeInsuranceDetails(idx);" rippleEffect
-                        class="btn btn-danger mr-1 mt-2">
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </ng-container>
-            </div>
-            <div class="col-md-12">
-              <div class="float-right">
-                <button type="button" (click)="addInsuranceDetails();" rippleEffect class="btn btn-primary">Add
-                  More</button>
-              </div>
-            </div>
-
-            <div class="col-md-12 mt-3">
-              <div class="float-right">
-                <a href="/admin/staff/list" class="btn btn-outline-secondary mr-1">Cancel</a>
-                <button type="button" (click)="saveForm();" rippleEffect class="btn btn-primary">Submit</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+        </section>
+    </div>
 </div>

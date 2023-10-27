@@ -17,7 +17,9 @@
                                         <option value="100">100</option>
                                     </select>
                                 </label>
-                                <button class="btn btn-primary ml-2" routerLink="/admin/staff/add" rippleEffect>Add Staff</button>
+                                <a class="btn btn-primary ml-2" routerLink="/admin/staff/add" rippleEffect>
+                                    <i class="fa fa-plus"></i>
+                                Add Staff</a>
                             </div>
                         </div>
                     </div>
@@ -65,7 +67,7 @@
                                 <img height="35" width="35"
                                      alt="datatable-avatar"
                                      class="rounded-circle mr-1"
-                                     src="{{thumb}}">
+                                     src="{{row.thumb}}">
                             </div>
                             <div class="ng-star-inserted" *ngIf="row.thumb==null">
                                 <img height="35" width="35"

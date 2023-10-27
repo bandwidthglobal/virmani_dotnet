@@ -30,6 +30,7 @@ export class DoctorPreviewComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this._drugPreviewService.onDoctorPreviewChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
             this.doctor = response;
+            debugger;
         });
     }
 

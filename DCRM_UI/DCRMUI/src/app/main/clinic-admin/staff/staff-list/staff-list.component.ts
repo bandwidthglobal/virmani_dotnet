@@ -61,9 +61,9 @@ export class StaffListComponent implements OnInit, OnDestroy {
         const val = event.target.value.toLowerCase();
         // filter our data
         const temp = this.tempData.filter(function (d) {
-            return d.medicine_Type.toLowerCase().indexOf(val) !== -1
-                || d.medicine_Company.toLowerCase().indexOf(val) !== -1
-                || d.form.toLowerCase().indexOf(val) !== -1
+            return d.designation.toLowerCase().indexOf(val) !== -1
+                || d.name.toLowerCase().indexOf(val) !== -1
+                || d.email.toLowerCase().indexOf(val) !== -1
                 || !val;
         });
 
