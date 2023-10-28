@@ -126,6 +126,8 @@ export class PatientFormComponent implements OnInit, OnDestroy {
             payload.thumb = this.base64Image;
             // console.log('> saveForm ---> ', payload);
             this.loading = true;
+            debugger;
+
             this._patientFormService.save(payload, this.FormAction).pipe(catchError((error) => {
                 // console.log('> error ---> ', error);
                 this.loading = false;

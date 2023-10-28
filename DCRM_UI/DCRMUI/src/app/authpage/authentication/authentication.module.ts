@@ -10,6 +10,8 @@ import { CoreCommonModule } from '@core/common.module';
 import { ForgotPasswordComponent } from 'app/authpage/authentication/forgotpassword/forgotpassword.component';
 import { LoginComponent } from 'app/authpage/authentication/login/login.component';
 import { RegisterComponent } from 'app/authpage/authentication/register/register.component';
+import { LoginOutComponent } from 'app/authpage/authentication/logout/loginout.component';
+
 
 // routing
 const routes: Routes = [
@@ -24,7 +26,11 @@ const routes: Routes = [
   {
       path: 'register',
       component: RegisterComponent
-  },
+    },
+    {
+        path: 'logout',
+        component: LoginOutComponent
+    }
 ];
 
 @NgModule({

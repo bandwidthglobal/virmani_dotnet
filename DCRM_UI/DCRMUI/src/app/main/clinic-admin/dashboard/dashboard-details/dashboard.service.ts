@@ -43,15 +43,15 @@ export class DashboardService implements Resolve<any> {
     getDataTableRows(): Promise<any[]> {
 
         let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
+        let type = currentUser.role == "Admin" ? "User" : currentUser.role;
         return new Promise((resolve, reject) => {
             const headers = new HttpHeaders({
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${currentUser.jwtToken}`
             });
             const requestOptions = { headers: headers };
-            this._httpClient.get(`${environment.apiUrl}/Dashboard/Get`, requestOptions).subscribe((response: any) => {
+            this._httpClient.get(`${environment.apiUrl}/Dashboard/Get` + type +`Dashboard`, requestOptions).subscribe((response: any) => {
                 this.rows = response;
-                // debugger;
                 this.onDoctorListChanged.next(this.rows);
                 resolve(this.rows);
             }, reject);

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DCRM.Api.Controllers
 {
-    [Authorize("User")]
+   
     [Route("api/[controller]")]
     [ApiController]
     public class DashboardController : ControllerBase
@@ -19,7 +19,9 @@ namespace DCRM.Api.Controllers
             _dashboardService = dashboardService;
         }
 
-        [HttpGet("Get")]
+       
+        [HttpGet("GetUserDashboard")]
+        [Authorize("GetUserDashboard")]
         public DashboardDto Get()
         {
             DashboardDto dashboardDto = new DashboardDto();
@@ -27,6 +29,31 @@ namespace DCRM.Api.Controllers
             if (user!=null)
             {
                 dashboardDto =  _dashboardService.Get(user.Id);
+            }
+            return dashboardDto;
+        }
+
+        [HttpGet("GetStaffDashboard")]
+        [Authorize("Staff")]
+        public DashboardDto GetStaffDashboard()
+        {
+            DashboardDto dashboardDto = new DashboardDto();
+            var user = Request.HttpContext.Items["User"] as User;
+            if (user != null)
+            {
+                dashboardDto = _dashboardService.Get(user.Id);
+            }
+            return dashboardDto;
+        }
+        [HttpGet("GetDoctorDashboard")]
+        [Authorize("Doctor")]
+        public DashboardDto GetDoctorDashboard()
+        {
+            DashboardDto dashboardDto = new DashboardDto();
+            var user = Request.HttpContext.Items["User"] as User;
+            if (user != null)
+            {
+                dashboardDto = _dashboardService.Get(user.Id);
             }
             return dashboardDto;
         }
