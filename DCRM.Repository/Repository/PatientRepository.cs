@@ -176,7 +176,7 @@ namespace DCRM.Repository.Repository
                     patient.Name = request.Name;
                     patient.User_Id = request.User_Id;
                     patient.Slug = request.Slug;
-                    patient.Thumb = "";
+                    patient.Thumb = request.Thumb;
                     patient.Email = request.Email == null ? phone + "@virmani.com" : request.Email;
                     patient.Mobile = phone.ToString();
                     patient.Age = request.Age;
@@ -202,6 +202,10 @@ namespace DCRM.Repository.Repository
                                 item.Updated_At
                                     = System.DateTime.Now;
                                 item.Patient_Id = patient.Id;
+                                if (string.IsNullOrEmpty(item.Address_O))
+                                {
+                                    item.Address_O = string.Empty;
+                                }
                                 _contex.Patients_Contact.Add(item);
                             }
                             _contex.SaveChanges();

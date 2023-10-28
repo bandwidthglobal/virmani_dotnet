@@ -3,41 +3,7 @@ import { CoreMenu } from '@core/types';
 //? DOC: http://localhost:7777/demo/vuexy-angular-admin-dashboard-template/documentation/guide/development/navigation-menus.html#interface
 
 export const menu: CoreMenu[] = [
-    // Dashboard
-    //{
-    //  id: 'dashboard',
-    //  title: 'Dashboard',
-    //  translate: 'MENU.DASHBOARD.COLLAPSIBLE',
-    //  type: 'collapsible',
-    //  // role: ['Admin'], //? To hide collapsible based on user role
-    //  icon: 'home',
-    //  badge: {
-    //    title: '2',
-    //    translate: 'MENU.DASHBOARD.BADGE',
-    //    classes: 'badge-light-warning badge-pill'
-    //  },
-    //  children: [
-    //    {
-    //      id: 'analytics',
-    //      title: 'Analytics',
-    //      translate: 'MENU.DASHBOARD.ANALYTICS',
-    //      type: 'item',
-    //      role: ['Admin'], //? To set multiple role: ['Admin', 'Client']
-    //      icon: 'circle',
-    //      url: 'dashboard/analytics'
-    //    },
-    //    {
-    //      // If role is not assigned will be display to all
-    //      id: 'ecommerce',
-    //      title: 'eCommerce',
-    //      translate: 'MENU.DASHBOARD.ECOMMERCE',
-    //      type: 'item',
-    //      icon: 'circle',
-    //      url: 'dashboard/ecommerce'
-    //    }
-    //  ]
-    //},
-    // Apps & Pages
+
     {
         id: 'apps',
         type: 'section',
@@ -270,7 +236,7 @@ export const menu: CoreMenu[] = [
                 ]
             },
 
-             {
+            {
                 id: 'report',
                 title: 'Report',
                 translate: 'MENU.APPS.REPORT.COLLAPSIBLE',
@@ -293,7 +259,7 @@ export const menu: CoreMenu[] = [
                 title: 'Drugs',
                 translate: 'MENU.APPS.Drugs',
                 type: 'item',
-                icon: 'calendar',
+                icon: 'medicin',
                 url: 'admin/drug/list'
             },
 
@@ -336,7 +302,7 @@ export const menu: CoreMenu[] = [
                 title: 'Change Password',
                 translate: 'MENU.APPS.ChangePassword',
                 type: 'item',
-                icon: 'changepassword',
+                icon: 'key',
                 url: 'admin/changepassword'
             },
 
@@ -345,13 +311,14 @@ export const menu: CoreMenu[] = [
                 title: 'Logout',
                 translate: 'MENU.APPS.Logout',
                 type: 'item',
-                icon: 'logout',
-                url: 'auth/login'
+                icon: 'unlock',
+                url: 'auth/logout'
             },
 
 
         ]
     },
 
-    
+
 ];
+

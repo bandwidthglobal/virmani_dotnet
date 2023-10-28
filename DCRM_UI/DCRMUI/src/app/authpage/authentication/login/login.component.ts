@@ -90,7 +90,7 @@ export class LoginComponent implements OnInit {
         .login(this.f.email.value, this.f.password.value, this.type)
       .pipe(first())
       .subscribe(
-        data => {
+          data => {
               this._router.navigate(['/admin/dashboard']);
         },
         error => {
