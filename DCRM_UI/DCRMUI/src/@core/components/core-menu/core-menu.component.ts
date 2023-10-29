@@ -35,7 +35,7 @@ export class CoreMenuComponent implements OnInit {
    */
   constructor(private _changeDetectorRef: ChangeDetectorRef, private _coreMenuService: CoreMenuService) {
     // Set the private defaults
-     
+
       //let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
       //if (currentUser != null) {
       //    if (currentUser.role.toLowerCase() == "staff") {
@@ -45,6 +45,8 @@ export class CoreMenuComponent implements OnInit {
       //        this.menu= menuDoctor;
       //    }
       //}
+
+
     this._unsubscribeAll = new Subject();
   }
 
