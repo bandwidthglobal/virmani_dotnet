@@ -59,14 +59,13 @@ namespace DCRM.Api.Controllers
             return patient;
         }
 
-        [AllowAnonymous]
         [HttpPost("Create")]
         public IActionResult Create(PatientRequest request)
         {
             var user = Request.HttpContext.Items["User"] as User;
             request.User_Id = user.Id;
             var patientId = _patientService.Create(request);
-            return Ok();
+            return Ok(patientId);
         }
 
 

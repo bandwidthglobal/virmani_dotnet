@@ -58,7 +58,7 @@
         <app-navbar-notification></app-navbar-notification>-->
         <!--Notification-->
         <!-- User Dropdown -->
-        <li ngbDropdown class="nav-item dropdown-user">
+        <li ngbDropdown class="nav-item dropdown-user" *ngIf="isAdmin==true">
             <a class="nav-link dropdown-toggle dropdown-user-link"
                id="navbarUserDropdown"
                ngbDropdownToggle

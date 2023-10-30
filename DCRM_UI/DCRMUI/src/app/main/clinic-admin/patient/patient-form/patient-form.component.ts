@@ -158,6 +158,8 @@ export class PatientFormComponent implements OnInit, OnDestroy {
                 e.balance_Amount = e.balance_Amount.toString();
             });
             this.loading = true;
+            debugger;
+
             this._patientFormService.save(payload, this.FormAction).pipe(catchError((error) => {
                 // console.log('> error ---> ', error);
                 this.loading = false;
