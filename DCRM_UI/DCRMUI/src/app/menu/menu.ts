@@ -19,62 +19,62 @@ export const menu: CoreMenu[] = [
                 icon: 'home',
                 url: 'admin/dashboard'
             },
-            //{
-            //    id: 'subscription',
-            //    title: 'Subscription',
-            //    translate: 'MENU.APPS.Subscription',
-            //    type: 'item',
-            //    icon: 'message-square',
-            //    url: 'apps/chat'
-            //},
-            //{
-            //    id: 'registrations',
-            //    title: 'Registrations',
-            //    translate: 'MENU.APPS.Registrations',
-            //    type: 'item',
-            //    icon: 'check-square',
-            //    url: 'apps/todo'
-            //},
-            //{
-            //    id: 'qrcode',
-            //    title: 'qrcode',
-            //    translate: 'MENU.APPS.QRCode',
-            //    type: 'item',
-            //    icon: 'calendar',
-            //    url: 'apps/calendar'
-            //},
-            //{
-            //    id: 'ratingreviews',
-            //    title: 'Rating Reviews',
-            //    translate: 'MENU.APPS.RatingReviews',
-            //    type: 'item',
-            //    icon: 'calendar',
-            //    url: 'apps/calendar'
-            //},
-            //{
-            //    id: 'departments',
-            //    title: 'Departments',
-            //    translate: 'MENU.APPS.Departments',
-            //    type: 'item',
-            //    icon: 'calendar',
-            //    url: 'admin/dashboard1'
-            //},
-            //{
-            //    id: 'consultationcettings',
-            //    title: 'ConsultationSettings',
-            //    translate: 'MENU.APPS.ConsultationSettings',
-            //    type: 'item',
-            //    icon: 'calendar',
-            //    url: 'admin/dashboard2'
-            //},
-            //{
-            //    id: 'consultations',
-            //    title: 'Consultations',
-            //    translate: 'MENU.APPS.Consultations',
-            //    type: 'item',
-            //    icon: 'calendar',
-            //    url: 'admin/dashboard3'
-            //},
+            {
+                id: 'subscription',
+                title: 'Subscription',
+                translate: 'MENU.APPS.Subscription',
+                type: 'item',
+                icon: 'message-square',
+                url: 'apps/subscription'
+            },
+            {
+                id: 'registrations',
+                title: 'Registrations',
+                translate: 'MENU.APPS.Registrations',
+                type: 'item',
+                icon: 'check-square',
+                url: 'apps/registrations'
+            },
+            {
+                id: 'qrcode',
+                title: 'qrcode',
+                translate: 'MENU.APPS.QRCode',
+                type: 'item',
+                icon: 'calendar',
+                url: 'apps/qrcode'
+            },
+            {
+                id: 'ratingreviews',
+                title: 'Rating Reviews',
+                translate: 'MENU.APPS.RatingReviews',
+                type: 'item',
+                icon: 'calendar',
+                url: 'apps/ratingreviews'
+            },
+            {
+                id: 'departments',
+                title: 'Departments',
+                translate: 'MENU.APPS.Departments',
+                type: 'item',
+                icon: 'calendar',
+                url: 'admin/departments'
+            },
+            {
+                id: 'consultationcettings',
+                title: 'ConsultationSettings',
+                translate: 'MENU.APPS.ConsultationSettings',
+                type: 'item',
+                icon: 'calendar',
+                url: 'admin/consultationcettings'
+            },
+            {
+                id: 'consultations',
+                title: 'Consultations',
+                translate: 'MENU.APPS.Consultations',
+                type: 'item',
+                icon: 'calendar',
+                url: 'admin/consultations'
+            },
             {
                 id: 'staffs',
                 title: 'Staffs',
