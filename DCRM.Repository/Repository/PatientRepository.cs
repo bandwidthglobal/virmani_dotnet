@@ -202,6 +202,7 @@ namespace DCRM.Repository.Repository
                                 item.Updated_At
                                     = System.DateTime.Now;
                                 item.Patient_Id = patient.Id;
+                                item.Relationship_Type = item.Relationship_Type==null? "Relationship" : item.Relationship_Type;
                                 if (string.IsNullOrEmpty(item.Address_O))
                                 {
                                     item.Address_O = string.Empty;

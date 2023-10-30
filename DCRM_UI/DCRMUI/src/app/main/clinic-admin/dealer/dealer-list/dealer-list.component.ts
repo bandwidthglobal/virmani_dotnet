@@ -60,7 +60,10 @@ export class DealerListComponent implements OnInit, OnDestroy {
     const val = event.target.value.toLowerCase();
     // filter our data
     const temp = this.tempData.filter(function (d) {
-      return d.client.name.toLowerCase().indexOf(val) !== -1 || !val;
+        return d.company_Name.toLowerCase().indexOf(val) !== -1 ||
+            d.email1.toLowerCase().indexOf(val) !== -1 ||
+            d.phone1.toLowerCase().indexOf(val) !== -1 ||
+            !val;
     });
 
     // update the rows
