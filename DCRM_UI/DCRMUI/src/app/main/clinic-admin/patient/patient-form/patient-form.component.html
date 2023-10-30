@@ -1,656 +1,335 @@
 ﻿<div class="content-wrapper container-xxl p-0">
     <div class="content-body">
-        <section id="multiple-column-form">
-            <div class="row match-height">
-                <div class="col-12">
-                    <div class="card-body">
-                        <div class="patient-header with-border">
-                            <h3 class="card-title">{{ pageTitle }}</h3>
-                            <div class="patient-tools pull-right">
-                                <a href="#" class="btn btn-light-secondary btn-sm">
-                                    <i class="fa fa-bars"></i> All Patients
-                                </a>
-                            </div>
-                        </div>
-                        <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
-                            <div class="alert-body">
-                                <p>{{ error }}</p>
-                            </div>
-                        </ngb-alert>
-
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <div class="avatar-upload text-center">
-                                        <div class="avatar-edit">
-                                            <input type="file" name="photo" id="imageUpload" accept=".png, .jpg, .jpeg"
-                                                (change)="convertToBase64($event)">
-                                            <label for="imageUpload"></label>
-                                        </div>
-                                        <!-- <div class="avatar-preview" id="imagePreview" *ngIf="base64Image">
-                                            <img [src]="base64Image" alt="Selected Image" width="200">
-                                        </div> -->
-                                        <div class="avatar-preview" id="imagePreview"
-                                            [style.background-image]="'url(' + base64Image + ')'" *ngIf="base64Image">
-                                            <img [src]="base64Image" alt="Selected Image">
-                                        </div>
+        <section class="invoice-add-wrapper">
+            <div class="row invoice-add">
+                <!-- Invoice Add Left starts -->
+                <div class="col-xl-12 col-md-8 col-12">
+                    <div class="card invoice-preview-card">
+                        <!-- Header starts -->
+                        <div class="card-body invoice-padding pb-0">
+                            <div class="row">
+                                <div class="col-xl-9 col-md-8 col-12">
+                                    <div>
+                                        <h3 class="text-primary invoice-logo">{{ pageTitle }}</h3>
                                     </div>
+                                </div>
+                                <div class="col-xl-3 col-md-8 col-12">
+                                    <a class="btn btn-primary btn-sm ml-2 flot-right" href="/admin/patient/list"><i
+                                            class="fa fa-list"></i> All Patients </a>
                                 </div>
                             </div>
-                            <div class="col-md-9">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && formData.title.errors">Title</label>
-                                            <select class="form-control" [formControl]="formData.title"
-                                                [ngClass]="{ 'is-invalid': submitted && formData.title.errors }">
-                                                <option value="select">Select</option>
-                                                <option value="Mr">Mr</option>
-                                                <option value="Mrs">Mrs</option>
-                                                <option value="Miss">Miss</option>
-                                                <option value="Ms">Ms</option>
-                                                <option value="Mx">Mx</option>
-                                                <option value="Sir">Sir</option>
-                                                <option value="Dr">Dr</option>
-                                            </select>
-                                            <ng-container *ngFor="let error of formData.title.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
+                            <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+                                <div class="alert-body">
+                                    <p>{{ error }}</p>
+                                </div>
+                            </ngb-alert>
+                            <div class="box-body pt-1 pb-1">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="avatar-upload text-center">
+                                                    <div class="avatar-edit">
+                                                        <input type="file" name="photo" id="imageUpload"
+                                                            accept=".png, .jpg, .jpeg"
+                                                            (change)="convertToBase64($event)">
+                                                        <label for="imageUpload"></label>
+                                                    </div>
+                                                    <div class="avatar-preview" id="imagePreview"
+                                                        [style.background-image]="'url(' + base64Image + ')'"
+                                                        *ngIf="base64Image">
+                                                        <img [src]="base64Image" alt="Selected Image">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <shared-ui-select-input [label]="'Title'" [control]="formData.title"
+                                                        [options]="ITitleList" [valueKey]="'id'" [displaykey]="'text'"
+                                                        [submitted]="submitted"></shared-ui-select-input>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <shared-ui-text-input [label]="'Name'" [control]="formData.name"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <shared-ui-text-input [label]="'Guardian Person'"
+                                                        [control]="formData.guardian"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <shared-ui-select-input [label]="'Gender'" [control]="formData.sex"
+                                                        [options]="IGender" [valueKey]="'id'" [displaykey]="'text'"
+                                                        [submitted]="submitted"></shared-ui-select-input>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <shared-ui-date-input [label]="'Date of Birth'"
+                                                        [control]="formData.dob"
+                                                        [submitted]="submitted"></shared-ui-date-input>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <shared-ui-text-input [label]="'Age'" [control]="formData.age"
+                                                        [mask]="'numeric'"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <shared-ui-text-input [label]="'Weight'" [control]="formData.weight"
+                                                        [mask]="'numeric'"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <shared-ui-textarea [label]="'Present Address'"
+                                                        [control]="formData.present_Address"
+                                                        [submitted]="submitted"></shared-ui-textarea>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <shared-ui-textarea [label]="'Permanent Address'"
+                                                        [control]="formData.permanent_Address"
+                                                        [submitted]="submitted"></shared-ui-textarea>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label [class.invalid-class]="submitted && formData.name.errors">Name
-                                                <span class="text-danger">*</span></label>
-                                            <input type="text" [formControl]="formData.name" class="form-control"
-                                                placeholder="Name" aria-describedby="name" tabindex="5"
-                                                [ngClass]="{ 'is-invalid': submitted && formData.name.errors }" />
-                                            <ng-container *ngFor="let error of formData.name.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
+
+                                    <div class="">
+                                        <h3 class="border-bottom pb-20">Contact Information</h3>
+                                        <ng-container
+                                            *ngFor="let contacts of formData.patientContacts.controls; let idx = index">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <shared-ui-text-input [label]="'Phone 1'"
+                                                        [control]="contacts.phone1" [mask]="'numeric'"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <shared-ui-text-input [label]="'Phone 2'"
+                                                        [control]="contacts.phone2" [mask]="'numeric'"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <shared-ui-text-input [label]="'Phone 3'"
+                                                        [control]="contacts.phone3" [mask]="'numeric'"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <<shared-ui-text-input [label]="'Phone 4'"
+                                                        [control]="contacts.phone4" [mask]="'numeric'"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <shared-ui-email-input [label]="'Email'" [control]="contacts.email"
+                                                        [submitted]="submitted"></shared-ui-email-input>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <shared-ui-email-input [label]="'Email 2'"
+                                                        [control]="contacts.email2"
+                                                        [submitted]="submitted"></shared-ui-email-input>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <shared-ui-text-input [label]="'Address (R)'"
+                                                        [control]="contacts.address_R"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <shared-ui-text-input [label]="'City'" [control]="contacts.city_R"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <shared-ui-text-input [label]="'Zip'" [control]="contacts.zip_R"
+                                                        [mask]="'numeric'"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <shared-ui-text-input [label]="'Country'"
+                                                        [control]="contacts.country_R"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <shared-ui-text-input [label]="'Address (0)'"
+                                                        [control]="contacts.address_O"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <shared-ui-text-input [label]="'City'" [control]="contacts.city_O"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <shared-ui-text-input [label]="'Zip'" [control]="contacts.zip_O"
+                                                        [mask]="'numeric'"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <shared-ui-text-input [label]="'Country'"
+                                                        [control]="contacts.country_O"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <shared-ui-text-input
+                                                        [label]="'Address (Other if living away from City)'"
+                                                        [control]="contacts.address_Other"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <shared-ui-text-input [label]="'City'"
+                                                        [control]="contacts.city_Other"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <shared-ui-text-input [label]="'Zip'" [control]="contacts.zip_Other"
+                                                        [mask]="'numeric'"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <shared-ui-text-input [label]="'Country'"
+                                                        [control]="contacts.country_Other"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <shared-ui-text-input [label]="'Physician'"
+                                                        [control]="contacts.physician"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <shared-ui-select-input [label]="'Referred By'"
+                                                        [control]="contacts.reffered_By" [options]="IReferList"
+                                                        [valueKey]="'id'" [displaykey]="'text'"
+                                                        [submitted]="submitted"></shared-ui-select-input>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <shared-ui-text-input [label]="'Doctor Name'"
+                                                        [control]="contacts.doctor_Name"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <shared-ui-text-input [label]="'Phone'" [control]="contacts.phone"
+                                                        [mask]="'numeric'"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <shared-ui-text-input [label]="'Relationship Type'"
+                                                        [control]="formData.name"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <shared-ui-textarea [label]="'Medical History and Allergies'"
+                                                        [control]="contacts.medical_History_Allergies"
+                                                        [submitted]="submitted"></shared-ui-textarea>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <shared-ui-textarea [label]="'Special Notes'"
+                                                        [control]="contacts.special_Notes"
+                                                        [submitted]="submitted"></shared-ui-textarea>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+
+                                    <div class="insurance-loan-container">
+                                        <h3 class="border-bottom pb-20">Insurance/Loan Information</h3>
+                                        <ng-container
+                                            *ngFor="let insuranceLoan of formData.patientInsuranceLoans.controls; let idx = index">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <shared-ui-select-input [label]="'Select Type'"
+                                                        [control]="insuranceLoan.type" [options]="IInsureType"
+                                                        [valueKey]="'id'" [displaykey]="'text'"
+                                                        [submitted]="submitted"></shared-ui-select-input>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <shared-ui-text-input [label]="'Name'"
+                                                        [control]="insuranceLoan.name"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <shared-ui-text-input [label]="'Amount'"
+                                                        [control]="insuranceLoan.amount" [mask]="'numeric'"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <shared-ui-text-input [label]="'Amount Spent'"
+                                                        [control]="insuranceLoan.balance_Spent" [mask]="'numeric'"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <shared-ui-text-input [label]="'Balance Amount'"
+                                                        [control]="insuranceLoan.balance_Amount" [mask]="'numeric'"
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <ng-container
+                                                        *ngIf="formData.patientInsuranceLoans.controls.length > 1;">
+                                                        <div class="float-right">
+                                                            <button type="button" (click)="removeInsuranceLoan(idx);"
+                                                                rippleEffect class="btn btn-danger btn-sm mr-1 mt-2">
+                                                                Delete
+                                                            </button>
+                                                        </div>
+                                                    </ng-container>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                        <div class="col-md-12">
+                                            <div class="float-right">
+                                                <button type="button" (click)="addInsuranceLoan();" rippleEffect
+                                                    class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-plus"></i> Add More
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && formData.guardian.errors">Guardian
-                                                Person </label>
-                                            <input type="text" class="form-control" [formControl]="formData.guardian"
-                                                [ngClass]="{ 'is-invalid': submitted && formData.guardian.errors }" />
-                                            <ng-container *ngFor="let error of formData.guardian.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
+                                    <div class="col-md-12 mt-3">
+                                        <div class="float-right1 text-center">
+                                            <a href="/admin/patient/list"
+                                                class="btn btn-outline-secondary mr-1">Cancel</a>
+                                            <button type="button" (click)="saveForm();" rippleEffect
+                                                class="btn btn-primary ">Submit</button>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group validate">
-                                            <label [class.invalid-class]="submitted && formData.sex.errors">Gender
-                                            </label>
-                                            <select class="form-control" [formControl]="formData.sex"
-                                                aria-invalid="false"
-                                                [ngClass]="{ 'is-invalid': submitted && formData.sex.errors }">
-                                                <option>Select</option>
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
-                                            </select>
-                                            <ng-container *ngFor="let error of formData.sex.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Date of Birth</label>
-                                            <input type="date" class="form-control" id="date">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label [class.invalid-class]="submitted && formData.age.errors">Age</label>
-                                            <!-- <input type="number" class="form-control" id="age"
-                                                    [formControl]="formData.age" min="0" max="100"
-                                                    oninput="this.value = !!this.value && Math.abs(this.value)>= 0 ? Math.abs(this.value) : null"> -->
-                                            <input type="text" class="form-control" [formControl]="formData.age"
-                                                [mask]="'numeric'"
-                                                [ngClass]="{ 'is-invalid': submitted && formData.age.errors }" />
-                                            <ng-container *ngFor="let error of formData.age.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label [class.invalid-class]="submitted && formData.weight.errors">Weight
-                                            </label>
-                                            <input type="text" class="form-control" [formControl]="formData.weight"
-                                                [mask]="'numeric'" aria-invalid="false"
-                                                [ngClass]="{ 'is-invalid': submitted && formData.weight.errors }" />
-                                            <ng-container *ngFor="let error of formData.weight.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && formData.present_Address.errors">Present
-                                                Address</label>
-                                            <textarea class="form-control" [formControl]="formData.present_Address"
-                                                [ngClass]="{ 'is-invalid': submitted && formData.present_Address.errors }"></textarea>
-                                            <ng-container
-                                                *ngFor="let error of formData.present_Address.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && formData.permanent_Address.errors">Permanent
-                                                Address</label>
-                                            <textarea class="form-control" [formControl]="formData.permanent_Address"
-                                                [ngClass]="{ 'is-invalid': submitted && formData.permanent_Address.errors }"></textarea>
-                                            <ng-container
-                                                *ngFor="let error of formData.permanent_Address.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="">
-                            <h3 class="border-bottom pb-20">Contact Information</h3>
-                            <ng-container *ngFor="let contacts of formData.patientContacts.controls; let idx = index">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label [class.invalid-class]="submitted && contacts.phone1.errors">Phone
-                                                1 <span class="text-danger">*</span></label>
-                                            <input type="text" [formControl]="contacts.phone1" [mask]="'numeric'"
-                                                class="form-control" placeholder="phone1"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.phone1.errors }" />
-                                            <ng-container *ngFor="let error of contacts.phone1.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label [class.invalid-class]="submitted && contacts.phone2.errors">Phone
-                                                2 </label>
-                                            <input type="text" class="form-control" [formControl]="contacts.phone2"
-                                                [mask]="'numeric'"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.phone2.errors }" />
-                                            <ng-container *ngFor="let error of contacts.phone2.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label [class.invalid-class]="submitted && contacts.phone3.errors">Phone
-                                                3 </label>
-                                            <input type="text" class="form-control" [formControl]="contacts.phone3"
-                                                [mask]="'numeric'"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.phone3.errors }" />
-                                            <ng-container *ngFor="let error of contacts.phone3.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label [class.invalid-class]="submitted && contacts.phone4.errors">Phone
-                                                4 </label>
-                                            <input type="text" class="form-control" [formControl]="contacts.phone4"
-                                                [mask]="'numeric'"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.phone4.errors }" />
-                                            <ng-container *ngFor="let error of contacts.phone4.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label [class.invalid-class]="submitted && contacts.email.errors">Email
-                                            </label>
-                                            <input type="email" class="form-control" [formControl]="contacts.email"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.email.errors }" />
-                                            <ng-container *ngFor="let error of contacts.email.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label [class.invalid-class]="submitted && contacts.email2.errors">Email
-                                                2 </label>
-                                            <input type="email" class="form-control" [formControl]="contacts.email2"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.email2.errors }" />
-                                            <ng-container *ngFor="let error of contacts.email2.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && contacts.address_R.errors">Address
-                                                (R)</label>
-                                            <input type="text" class="form-control" [formControl]="contacts.address_R"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.address_R.errors }" />
-                                            <ng-container *ngFor="let error of contacts.address_R.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && contacts.city_R.errors">City</label>
-                                            <input type="text" class="form-control" [formControl]="contacts.city_R"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.city_R.errors }" />
-                                            <ng-container *ngFor="let error of contacts.city_R.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && contacts.zip_R.errors">Zip</label>
-                                            <input type="text" class="form-control" [formControl]="contacts.zip_R"
-                                                [mask]="'numeric'"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.zip_R.errors }" />
-                                            <ng-container *ngFor="let error of contacts.zip_R.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && contacts.country_R.errors">Country</label>
-                                            <input type="text" class="form-control" [formControl]="contacts.country_R"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.country_R.errors }" />
-                                            <ng-container *ngFor="let error of contacts.country_R.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && contacts.address_O.errors">Address
-                                                (0)</label>
-                                            <input type="text" class="form-control" [formControl]="contacts.address_O"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.address_O.errors }" />
-                                            <ng-container *ngFor="let error of contacts.address_O.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && contacts.city_O.errors">City</label>
-                                            <input type="text" class="form-control" [formControl]="contacts.city_O"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.city_O.errors }" />
-                                            <ng-container *ngFor="let error of contacts.city_O.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && contacts.zip_O.errors">Zip</label>
-                                            <input type="text" class="form-control" [formControl]="contacts.zip_O"
-                                                [mask]="'numeric'"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.zip_O.errors }" />
-                                            <ng-container *ngFor="let error of contacts.zip_O.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && contacts.country_O.errors">Country</label>
-                                            <input type="text" class="form-control" [formControl]="contacts.country_O"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.country_O.errors }" />
-                                            <ng-container *ngFor="let error of contacts.country_O.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && contacts.address_Other.errors">Address
-                                                (Other if living away from City)</label>
-                                            <input type="text" class="form-control"
-                                                [formControl]="contacts.address_Other"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.address_Other.errors }" />
-                                            <ng-container
-                                                *ngFor="let error of contacts.address_Other.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && contacts.city_Other.errors">City</label>
-                                            <input type="text" class="form-control" [formControl]="contacts.city_Other"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.city_Other.errors }" />
-                                            <ng-container *ngFor="let error of contacts.city_Other.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && contacts.zip_Other.errors">Zip</label>
-                                            <input type="text" class="form-control" [formControl]="contacts.zip_Other"
-                                                [mask]="'numeric'"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.zip_Other.errors }" />
-                                            <ng-container *ngFor="let error of contacts.zip_Other.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && contacts.country_Other.errors">Country</label>
-                                            <input type="text" class="form-control"
-                                                [formControl]="contacts.country_Other"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.country_Other.errors }" />
-                                            <ng-container
-                                                *ngFor="let error of contacts.country_Other.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && contacts.physician.errors">Physician</label>
-                                            <input type="text" class="form-control" [formControl]="contacts.physician"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.physician.errors }" />
-                                            <ng-container *ngFor="let error of contacts.physician.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && contacts.reffered_By.errors">Referred
-                                                By</label>
-                                            <select class="form-control" [formControl]="contacts.reffered_By"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.reffered_By.errors }">
-                                                <option value="">Select</option>
-                                                <option value="Doctor">Doctor</option>
-                                                <option value="Patient">Patient</option>
-                                                <option value="Staff">Staff</option>
-                                                <option value="Other">Other</option>
-                                            </select>
-                                            <ng-container *ngFor="let error of contacts.reffered_By.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && contacts.doctor_Name.errors">Doctor
-                                                Name</label>
-                                            <input type="text" class="form-control" [formControl]="contacts.doctor_Name"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.doctor_Name.errors }" />
-                                            <ng-container *ngFor="let error of contacts.doctor_Name.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && contacts.phone.errors">Phone</label>
-                                            <input type="text" class="form-control" [formControl]="contacts.phone"
-                                                [mask]="'numeric'"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.phone.errors }" />
-                                            <ng-container *ngFor="let error of contacts.phone.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && contacts.relationship_Type.errors">Relationship
-                                                Type</label>
-                                            <input type="text" class="form-control"
-                                                [formControl]="contacts.relationship_Type"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.relationship_Type.errors }" />
-                                            <ng-container
-                                                *ngFor="let error of contacts.relationship_Type.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && contacts.medical_History_Allergies.errors">Medical
-                                                History and Allergies</label>
-                                            <textarea class="form-control"
-                                                [formControl]="contacts.medical_History_Allergies"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.medical_History_Allergies.errors }"></textarea>
-                                            <ng-container
-                                                *ngFor="let error of contacts.medical_History_Allergies.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && contacts.special_Notes.errors">Special
-                                                Notes</label>
-                                            <textarea class="form-control" [formControl]="contacts.special_Notes"
-                                                [ngClass]="{ 'is-invalid': submitted && contacts.special_Notes.errors }"></textarea>
-                                            <ng-container
-                                                *ngFor="let error of contacts.special_Notes.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ng-container>
-                        </div>
-
-                        <div class="insurance-loan-container">
-                            <h3 class="border-bottom pb-20">Insurance/Loan Information</h3>
-                            <ng-container
-                                *ngFor="let insuranceLoan of formData.patientInsuranceLoans.controls; let idx = index">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label [class.invalid-class]="submitted && insuranceLoan.type.errors">Select
-                                                Type</label>
-                                            <select class="form-control" [formControl]="insuranceLoan.type"
-                                                [ngClass]="{ 'is-invalid': submitted && insuranceLoan.type.errors }">
-                                                <option value="">Select Type</option>
-                                                <option value="Insurance">Insurance</option>
-                                                <option value="Loan">Loan</option>
-                                            </select>
-                                            <ng-container *ngFor="let error of insuranceLoan.type.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && insuranceLoan.name.errors">Name</label>
-                                            <input type="text" class="form-control" [formControl]="insuranceLoan.name"
-                                                [ngClass]="{ 'is-invalid': submitted && insuranceLoan.name.errors }" />
-                                            <ng-container *ngFor="let error of insuranceLoan.name.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && insuranceLoan.amount.errors">Amount</label>
-                                            <input type="text" class="form-control" [formControl]="insuranceLoan.amount"
-                                                [mask]="'numeric'"
-                                                [ngClass]="{ 'is-invalid': submitted && insuranceLoan.amount.errors }" />
-                                            <ng-container *ngFor="let error of insuranceLoan.amount.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && insuranceLoan.balance_Spent.errors">Amount
-                                                Spent</label>
-                                            <input type="text" class="form-control" [mask]="'numeric'"
-                                                [formControl]="insuranceLoan.balance_Spent"
-                                                [ngClass]="{ 'is-invalid': submitted && insuranceLoan.balance_Spent.errors }" />
-                                            <ng-container
-                                                *ngFor="let error of insuranceLoan.balance_Spent.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label
-                                                [class.invalid-class]="submitted && insuranceLoan.balance_Amount.errors">Balance
-                                                Amount</label>
-                                            <input type="text" class="form-control"
-                                                [formControl]="insuranceLoan.balance_Amount" [mask]="'numeric'"
-                                                [ngClass]="{ 'is-invalid': submitted && insuranceLoan.balance_Amount.errors }" />
-                                            <ng-container
-                                                *ngFor="let error of insuranceLoan.balance_Amount.errors | errorKeys">
-                                                <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                                    }}</span>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <button class="btn" (click)="removeInsuranceLoan(idx)">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-trash mr-50">
-                                                <polyline points="3 6 5 6 21 6"></polyline>
-                                                <path
-                                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                </path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </ng-container>
-                            <span class="btn btn-primary add-more-insurance-loan" (click)="addInsuranceLoan()">
-                                <i aria-hidden="true" class="fa fa-plus"></i> Add More
-                            </span>
-                        </div>
-
-                        <div class="col-md-12 mt-3">
-                            <div class="float-right">
-                                <a href="/admin/patient/list" class="btn btn-outline-secondary mr-1">Cancel</a>
-                                <button type="button" (click)="saveForm();" rippleEffect
-                                    class="btn btn-primary">Submit</button>
                             </div>
                         </div>
                     </div>

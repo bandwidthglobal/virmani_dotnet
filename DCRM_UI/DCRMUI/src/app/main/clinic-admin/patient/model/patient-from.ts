@@ -15,6 +15,7 @@ export interface IPatientFormModel {
   thumb?: any;
   email?: any;
   age?: any;
+  dob?: any;
   weight?: any;
   sex?: any;
   mobile?: any;
@@ -44,6 +45,7 @@ export class IPatientForm extends FormGroup {
   readonly thumb = this.get('thumb') as FormControl;
   readonly email = this.get('email') as FormControl;
   readonly age = this.get('age') as FormControl;
+  readonly dob = this.get('age') as FormControl;
   readonly weight = this.get('weight') as FormControl;
   readonly sex = this.get('sex') as FormControl;
   readonly mobile = this.get('mobile') as FormControl;
@@ -79,6 +81,7 @@ export class IPatientForm extends FormGroup {
           thumb: [model?.thumb],
           email: [model?.email, Validators.email],
           age: [model?.age],
+          dob: [model?.dob],
           weight: [model?.weight],
           sex: [model?.sex],
           mobile: [model?.mobile, [Validators.minLength(10), Validators.maxLength(10)]],
