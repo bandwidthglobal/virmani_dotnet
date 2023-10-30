@@ -45,8 +45,8 @@ export class DealerFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.formData = new DealerForm(this.FormInput);
     if (this.FormAction === 'add') {
+      this.formData = new DealerForm(this.FormInput);
       this.addBankDetails();
       this.addMaterialList();
     } else {
@@ -54,6 +54,7 @@ export class DealerFormComponent implements OnInit, OnDestroy {
       this.FormInput?.dealerMaterialList.map(e => {
         e.material_Date = this._commonValidationService.dateFormat_Y_M_D(e.material_Date);
       });
+      this.formData = new DealerForm(this.FormInput);
     }
   }
 

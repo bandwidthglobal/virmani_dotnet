@@ -35,6 +35,33 @@ export class PatientFormComponent implements OnInit, OnDestroy {
     @Input() FormAction?: 'add' | 'edit' = 'add';
     @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
 
+    ITitleList: Array<any> = [
+        { id: 'Mr', text: 'Mr' },
+        { id: 'Mrs', text: 'Mrs' },
+        { id: 'Miss', text: 'Miss' },
+        { id: 'Ms', text: 'Ms' },
+        { id: 'Mx', text: 'Mx' },
+        { id: 'Sir', text: 'Sir' },
+        { id: 'Dr', text: 'Dr' },
+    ];
+
+    IGender: Array<any> = [
+        { id: 'Male', text: 'Male' },
+        { id: 'Female', text: 'Female' },
+    ];
+
+    IReferList: Array<any> = [
+        { id: 'Doctor', text: 'Doctor' },
+        { id: 'Patient', text: 'Patient' },
+        { id: 'Staff', text: 'Staff' },
+        { id: 'Other', text: 'Other' },
+    ];
+
+    IInsureType: Array<any> = [
+        { id: 'Insurance', text: 'Insurance' },
+        { id: 'Loan', text: 'Loan' },
+    ];
+
     constructor(
         private _toastrService: ToastrService,
         private _patientFormService: PatientFormService,
@@ -46,11 +73,11 @@ export class PatientFormComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.formData = new IPatientForm(this.FormInput);
         if (this.FormAction === 'add') {
-            this.pageTitle = 'Create New';
+            this.pageTitle = 'Add Patient';
             this.addContactDetails();
             this.addInsuranceLoan();
         } else {
-            this.pageTitle = 'Edit';
+            this.pageTitle = 'Edit Patient';
             this.base64Image = this.FormInput.thumb;
         }
     }
@@ -80,9 +107,9 @@ export class PatientFormComponent implements OnInit, OnDestroy {
         const obj: IInsuranceLoanFormModel = {
             id: 0,
             patients_Id: 0,
-            amount: 0,
-            balance_Spent: 0,
-            balance_Amount: 0,
+            amount: "0",
+            balance_Spent: "0",
+            balance_Amount: "0",
             created_At: new Date(),
             updated_At: new Date(),
         };
@@ -125,6 +152,11 @@ export class PatientFormComponent implements OnInit, OnDestroy {
             const payload: any = this.formData.getRawValue();
             payload.thumb = this.base64Image;
             // console.log('> saveForm ---> ', payload);
+            payload.patientInsuranceLoans.map(e => {
+                e.amount = e.amount.toString();
+                e.balance_Spent = e.balance_Spent.toString();
+                e.balance_Amount = e.balance_Amount.toString();
+            });
             this.loading = true;
             this._patientFormService.save(payload, this.FormAction).pipe(catchError((error) => {
                 // console.log('> error ---> ', error);
