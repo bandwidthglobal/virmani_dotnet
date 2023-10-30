@@ -8,11 +8,11 @@ import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 
 
 @Component({
-    selector: 'patient-prescriptions-view',
+    selector: 'app-patient-priscriptions-view',
     templateUrl: './patient-prescriptions-view.component.html',
     encapsulation: ViewEncapsulation.None
 })
-export class PatientPriscriptionsViewComponent implements OnInit {
+export class PatientPriscriptionsViewComponent implements OnInit, OnDestroy {
     // Public
     public calendarRef = [];
     public tempRef = [];
@@ -101,6 +101,7 @@ export class PatientPriscriptionsViewComponent implements OnInit {
         });
     }
     ngOnInit(): void {
+        alert('dfgfd');
         this.getData();
     }
     getData() {

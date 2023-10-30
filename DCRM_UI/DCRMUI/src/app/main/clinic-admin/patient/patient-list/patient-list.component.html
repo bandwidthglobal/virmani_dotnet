@@ -60,7 +60,7 @@
                    
                     <ngx-datatable-column name="Prescriptions" [width]="100">
                         <ng-template ngx-datatable-cell-template let-row="row">
-                            <a class="mr-1" routerLink="/admin/drug/preview/{{ row.id }}" container="body"
+                            <a class="mr-1" routerLink="/patient/priscriptions/view/{{ row.id }}" container="body"
                                placement="top" ngbTooltip="View Prescriptions">
                                 <i size="18" data-feather="eye"></i>
                             </a>

@@ -77,5 +77,22 @@ namespace DCRM.Api.Controllers
             }
 
         }
+
+        [HttpDelete("Delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                _workDoneService.delete(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex.Message);
+                throw;
+            }
+
+        }
+
     }
 }

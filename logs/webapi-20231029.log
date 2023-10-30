@@ -1930,3 +1930,746 @@ FROM `Chamber` AS `c`
 
 2023-10-29 15:09:09.326 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Prescription/GetAll application/json - - 200 - application/json;+charset=utf-8 287.4459ms
 
+2023-10-29 15:47:40.287 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Authenticate/user - -
+
+2023-10-29 15:47:40.340 +05:30  INF  CORS policy execution successful.
+
+2023-10-29 15:47:40.352 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Authenticate/user - - - 204 - - 79.2488ms
+
+2023-10-29 15:47:40.361 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 50
+
+2023-10-29 15:47:40.372 +05:30  INF  CORS policy execution successful.
+
+2023-10-29 15:47:40.463 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api)'
+
+2023-10-29 15:47:40.485 +05:30  INF  Route matched with {action = "Post", controller = "Authenticate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Post(System.String, DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.AuthenticateController (DCRM.Api).
+
+2023-10-29 15:47:41.340 +05:30  INF  Executed DbCommand (40ms) [Parameters=[@__authenticateRequest_Email_0='?' (Size = 4000), @__authenticateRequest_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE ((`u`.`Status` = 1) AND (`u`.`Email` = @__authenticateRequest_Email_0)) AND (`u`.`Password` = @__authenticateRequest_Password_1)
+LIMIT 2
+
+2023-10-29 15:47:41.365 +05:30  INF  Executing OkObjectResult, writing value of type 'DCRM.Common.AuthenticateResponse'.
+
+2023-10-29 15:47:41.373 +05:30  INF  Executed action DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api) in 887.313ms
+
+2023-10-29 15:47:41.373 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api)'
+
+2023-10-29 15:47:41.373 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 50 - 200 - application/json;+charset=utf-8 1013.1045ms
+
+2023-10-29 15:47:41.478 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Dashboard/GetUserDashboard - -
+
+2023-10-29 15:47:41.479 +05:30  INF  CORS policy execution successful.
+
+2023-10-29 15:47:41.479 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Dashboard/GetUserDashboard - - - 204 - - 0.8774ms
+
+2023-10-29 15:47:41.481 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Dashboard/GetUserDashboard application/json -
+
+2023-10-29 15:47:41.484 +05:30  INF  CORS policy execution successful.
+
+2023-10-29 15:47:41.499 +05:30  INF  Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2023-10-29 15:47:41.499 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.DashboardController.Get (DCRM.Api)'
+
+2023-10-29 15:47:41.500 +05:30  INF  Route matched with {action = "Get", controller = "Dashboard"}. Executing controller action with signature DCRM.Common.Dto.DashboardDto Get() on controller DCRM.Api.Controllers.DashboardController (DCRM.Api).
+
+2023-10-29 15:47:41.535 +05:30  INF  Executed DbCommand (25ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Age`, `p`.`Chamber_Id`, `p`.`Created_At`, `p`.`Email`, `p`.`Guardian`, `p`.`Is_Delete`, `p`.`Mobile`, `p`.`Mr_Number`, `p`.`Name`, `p`.`Password`, `p`.`Permanent_Address`, `p`.`Present_Address`, `p`.`Role`, `p`.`Sex`, `p`.`Slug`, `p`.`Thumb`, `p`.`Title`, `p`.`UserName`, `p`.`User_Id`, `p`.`Verify_Code`, `p`.`Weight`
+FROM `Patientses` AS `p`
+WHERE (`p`.`User_Id` = @__p_0) AND (`p`.`Is_Delete` = 0)
+
+2023-10-29 15:47:41.566 +05:30  INF  Executed DbCommand (20ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`Blood_Group`, `s`.`Chamber_Id`, `s`.`Created_At`, `s`.`Current_Address`, `s`.`Date_Of_Joining`, `s`.`Department`, `s`.`Designation`, `s`.`Dob`, `s`.`Email`, `s`.`Father`, `s`.`Gender`, `s`.`Gst`, `s`.`Is_Deleted`, `s`.`Marital_Status`, `s`.`Mother`, `s`.`Name`, `s`.`Note`, `s`.`Pan`, `s`.`Password`, `s`.`Permanent_Address`, `s`.`Phone`, `s`.`Qualification`, `s`.`Role`, `s`.`Slug`, `s`.`Specialization`, `s`.`Status`, `s`.`Thumb`, `s`.`User_Id`, `s`.`User_Name`, `s`.`Work_Experience`
+FROM `Staffs` AS `s`
+WHERE (`s`.`User_Id` = @__userId_0) AND (`s`.`Is_Deleted` = 0)
+
+2023-10-29 15:47:41.594 +05:30  INF  Executed DbCommand (13ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`Appointment_Status`, `a`.`Cause`, `a`.`Chair`, `a`.`Chamber_Id`, `a`.`Created_At`, `a`.`Date`, `a`.`Doctor_Id`, `a`.`Doctor_Name`, `a`.`End_Time`, `a`.`Extra_Notes`, `a`.`Files`, `a`.`Is_Delete`, `a`.`Is_Start`, `a`.`Meeting_Notes`, `a`.`Number_Of_Slot`, `a`.`Patient_Id`, `a`.`Prescription_Id`, `a`.`Serial_Id`, `a`.`Slot_Time`, `a`.`Start_Time`, `a`.`Status`, `a`.`Type`, `a`.`User_Id`
+FROM `Appointments` AS `a`
+WHERE (`a`.`User_Id` = @__userId_0) AND (`a`.`Is_Delete` = 0)
+
+2023-10-29 15:47:41.606 +05:30  INF  Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`Appointment_Status`, `a`.`Cause`, `a`.`Chair`, `a`.`Chamber_Id`, `a`.`Created_At`, `a`.`Date`, `a`.`Doctor_Id`, `a`.`Doctor_Name`, `a`.`End_Time`, `a`.`Extra_Notes`, `a`.`Files`, `a`.`Is_Delete`, `a`.`Is_Start`, `a`.`Meeting_Notes`, `a`.`Number_Of_Slot`, `a`.`Patient_Id`, `a`.`Prescription_Id`, `a`.`Serial_Id`, `a`.`Slot_Time`, `a`.`Start_Time`, `a`.`Status`, `a`.`Type`, `a`.`User_Id`
+FROM `Appointments` AS `a`
+WHERE ((`a`.`User_Id` = @__userId_0) AND (`a`.`Is_Delete` = 0)) AND (`a`.`Date` = CURDATE())
+
+2023-10-29 15:47:41.606 +05:30  INF  Executing ObjectResult, writing value of type 'DCRM.Common.Dto.DashboardDto'.
+
+2023-10-29 15:47:41.607 +05:30  INF  Executed action DCRM.Api.Controllers.DashboardController.Get (DCRM.Api) in 107.2875ms
+
+2023-10-29 15:47:41.608 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.DashboardController.Get (DCRM.Api)'
+
+2023-10-29 15:47:41.608 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Dashboard/GetUserDashboard application/json - - 200 - application/json;+charset=utf-8 126.3597ms
+
+2023-10-29 15:47:47.952 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Staff/GetAll - -
+
+2023-10-29 15:47:47.952 +05:30  INF  CORS policy execution successful.
+
+2023-10-29 15:47:47.952 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Staff/GetAll - - - 204 - - 0.4082ms
+
+2023-10-29 15:47:47.956 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Staff/GetAll application/json -
+
+2023-10-29 15:47:47.958 +05:30  INF  CORS policy execution successful.
+
+2023-10-29 15:47:47.960 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2023-10-29 15:47:47.960 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.StaffController.GetAll (DCRM.Api)'
+
+2023-10-29 15:47:47.962 +05:30  INF  Route matched with {action = "GetAll", controller = "Staff"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[DCRM.Common.Entity.Staff] GetAll() on controller DCRM.Api.Controllers.StaffController (DCRM.Api).
+
+2023-10-29 15:47:47.977 +05:30  INF  Executing ObjectResult, writing value of type 'System.Linq.Enumerable+WhereEnumerableIterator`1[[DCRM.Common.Entity.Staff, DCRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+
+2023-10-29 15:47:47.983 +05:30  INF  Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`Blood_Group`, `s`.`Chamber_Id`, `s`.`Created_At`, `s`.`Current_Address`, `s`.`Date_Of_Joining`, `s`.`Department`, `s`.`Designation`, `s`.`Dob`, `s`.`Email`, `s`.`Father`, `s`.`Gender`, `s`.`Gst`, `s`.`Is_Deleted`, `s`.`Marital_Status`, `s`.`Mother`, `s`.`Name`, `s`.`Note`, `s`.`Pan`, `s`.`Password`, `s`.`Permanent_Address`, `s`.`Phone`, `s`.`Qualification`, `s`.`Role`, `s`.`Slug`, `s`.`Specialization`, `s`.`Status`, `s`.`Thumb`, `s`.`User_Id`, `s`.`User_Name`, `s`.`Work_Experience`
+FROM `Staffs` AS `s`
+WHERE `s`.`Is_Deleted` = 0
+
+2023-10-29 15:47:47.992 +05:30  INF  Executed action DCRM.Api.Controllers.StaffController.GetAll (DCRM.Api) in 29.9175ms
+
+2023-10-29 15:47:47.992 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.StaffController.GetAll (DCRM.Api)'
+
+2023-10-29 15:47:47.992 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Staff/GetAll application/json - - 200 - application/json;+charset=utf-8 36.1872ms
+
+2023-10-29 15:47:49.112 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Dealer/GetAll - -
+
+2023-10-29 15:47:49.112 +05:30  INF  CORS policy execution successful.
+
+2023-10-29 15:47:49.113 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Dealer/GetAll - - - 204 - - 0.3776ms
+
+2023-10-29 15:47:49.116 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Dealer/GetAll application/json -
+
+2023-10-29 15:47:49.116 +05:30  INF  CORS policy execution successful.
+
+2023-10-29 15:47:49.119 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2023-10-29 15:47:49.119 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.DealerController.GetAllAsync (DCRM.Api)'
+
+2023-10-29 15:47:49.119 +05:30  INF  Route matched with {action = "GetAll", controller = "Dealer"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Collections.Generic.IEnumerable`1[DCRM.Common.Dto.DealerDto]] GetAllAsync() on controller DCRM.Api.Controllers.DealerController (DCRM.Api).
+
+2023-10-29 15:47:49.171 +05:30  INF  Executed DbCommand (42ms) [Parameters=[@__userId_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address_O`, `d`.`Address_R`, `d`.`City_O`, `d`.`City_R`, `d`.`Company_Name`, `d`.`Country_O`, `d`.`Country_R`, `d`.`Created_At`, `d`.`Email1`, `d`.`Email2`, `d`.`Gst_Number`, `d`.`Image`, `d`.`Is_Deleted`, `d`.`Own_Name_1`, `d`.`Own_Name_2`, `d`.`Pan_Number`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Staff_Email1`, `d`.`Staff_Email2`, `d`.`Staff_Email3`, `d`.`Staff_Email4`, `d`.`Staff_Name1`, `d`.`Staff_Name2`, `d`.`Staff_Name3`, `d`.`Staff_Name4`, `d`.`Staff_Phone1`, `d`.`Staff_Phone2`, `d`.`Staff_Phone3`, `d`.`Staff_Phone4`, `d`.`Updated_At`, `d`.`User_Id`, `d`.`Zip_O`, `d`.`Zip_R`
+FROM `Dealers` AS `d`
+WHERE (`d`.`Is_Deleted` = 0) AND (`d`.`User_Id` = @__userId_0)
+
+2023-10-29 15:47:49.349 +05:30  INF  Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.361 +05:30  INF  Executed DbCommand (7ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.365 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.368 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.370 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.373 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.374 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.375 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.377 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.379 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.381 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.383 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.385 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.386 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.387 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.388 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.389 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.391 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.392 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.393 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:49.394 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DCRM.Common.Dto.DealerDto, DCRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+
+2023-10-29 15:47:49.466 +05:30  INF  Executed action DCRM.Api.Controllers.DealerController.GetAllAsync (DCRM.Api) in 346.7849ms
+
+2023-10-29 15:47:49.466 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.DealerController.GetAllAsync (DCRM.Api)'
+
+2023-10-29 15:47:49.467 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Dealer/GetAll application/json - - 200 - application/json;+charset=utf-8 351.6037ms
+
+2023-10-29 15:47:50.775 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Doctor/GetAll - -
+
+2023-10-29 15:47:50.776 +05:30  INF  CORS policy execution successful.
+
+2023-10-29 15:47:50.777 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Doctor/GetAll - - - 204 - - 0.9970ms
+
+2023-10-29 15:47:50.779 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Doctor/GetAll application/json -
+
+2023-10-29 15:47:50.780 +05:30  INF  CORS policy execution successful.
+
+2023-10-29 15:47:50.783 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2023-10-29 15:47:50.783 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.DoctorController.GetAll (DCRM.Api)'
+
+2023-10-29 15:47:50.785 +05:30  INF  Route matched with {action = "GetAll", controller = "Doctor"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[DCRM.Common.Dto.DoctorDto] GetAll() on controller DCRM.Api.Controllers.DoctorController (DCRM.Api).
+
+2023-10-29 15:47:50.805 +05:30  INF  Executed DbCommand (13ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+WHERE (`d`.`User_Id` = @__p_0) AND (`d`.`Is_Delete` = 0)
+
+2023-10-29 15:47:50.843 +05:30  INF  Executed DbCommand (8ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Allow_Notifications`, `d`.`Amount_Insured`, `d`.`Amount_Paid`, `d`.`Doctor_Id`, `d`.`Insurance`, `d`.`Insurance_Date`, `d`.`Remarks`, `d`.`Renewal_Date`, `d`.`Updated_At`
+FROM `Doctor_Insurance_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.853 +05:30  INF  Executed DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Doctor_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Doctor_Bank_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.862 +05:30  INF  Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Doctor_Id`, `d`.`Medical_History`, `d`.`Remarks`, `d`.`Reminder_Date_For_Next`, `d`.`Updated_At`, `d`.`Vaccination_Date`, `d`.`Vaccination_Type`
+FROM `Doctors_Vaccination` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.871 +05:30  INF  Executed DbCommand (7ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address_O`, `d`.`Address_Other`, `d`.`Address_R`, `d`.`City_O`, `d`.`City_Other`, `d`.`City_R`, `d`.`Country_O`, `d`.`Country_Other`, `d`.`Country_R`, `d`.`Created_At`, `d`.`Doctor_Id`, `d`.`Updated_At`, `d`.`Zip_O`, `d`.`Zip_Other`, `d`.`Zip_R`
+FROM `Doctors_Address` AS `d`
+WHERE `d`.`Doctor_Id` = @__doctorId_0
+
+2023-10-29 15:47:50.873 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Allow_Notifications`, `d`.`Amount_Insured`, `d`.`Amount_Paid`, `d`.`Doctor_Id`, `d`.`Insurance`, `d`.`Insurance_Date`, `d`.`Remarks`, `d`.`Renewal_Date`, `d`.`Updated_At`
+FROM `Doctor_Insurance_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.875 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Doctor_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Doctor_Bank_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.877 +05:30  INF  Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Doctor_Id`, `d`.`Medical_History`, `d`.`Remarks`, `d`.`Reminder_Date_For_Next`, `d`.`Updated_At`, `d`.`Vaccination_Date`, `d`.`Vaccination_Type`
+FROM `Doctors_Vaccination` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.879 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address_O`, `d`.`Address_Other`, `d`.`Address_R`, `d`.`City_O`, `d`.`City_Other`, `d`.`City_R`, `d`.`Country_O`, `d`.`Country_Other`, `d`.`Country_R`, `d`.`Created_At`, `d`.`Doctor_Id`, `d`.`Updated_At`, `d`.`Zip_O`, `d`.`Zip_Other`, `d`.`Zip_R`
+FROM `Doctors_Address` AS `d`
+WHERE `d`.`Doctor_Id` = @__doctorId_0
+
+2023-10-29 15:47:50.880 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Allow_Notifications`, `d`.`Amount_Insured`, `d`.`Amount_Paid`, `d`.`Doctor_Id`, `d`.`Insurance`, `d`.`Insurance_Date`, `d`.`Remarks`, `d`.`Renewal_Date`, `d`.`Updated_At`
+FROM `Doctor_Insurance_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.881 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Doctor_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Doctor_Bank_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.882 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Doctor_Id`, `d`.`Medical_History`, `d`.`Remarks`, `d`.`Reminder_Date_For_Next`, `d`.`Updated_At`, `d`.`Vaccination_Date`, `d`.`Vaccination_Type`
+FROM `Doctors_Vaccination` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.884 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address_O`, `d`.`Address_Other`, `d`.`Address_R`, `d`.`City_O`, `d`.`City_Other`, `d`.`City_R`, `d`.`Country_O`, `d`.`Country_Other`, `d`.`Country_R`, `d`.`Created_At`, `d`.`Doctor_Id`, `d`.`Updated_At`, `d`.`Zip_O`, `d`.`Zip_Other`, `d`.`Zip_R`
+FROM `Doctors_Address` AS `d`
+WHERE `d`.`Doctor_Id` = @__doctorId_0
+
+2023-10-29 15:47:50.886 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Allow_Notifications`, `d`.`Amount_Insured`, `d`.`Amount_Paid`, `d`.`Doctor_Id`, `d`.`Insurance`, `d`.`Insurance_Date`, `d`.`Remarks`, `d`.`Renewal_Date`, `d`.`Updated_At`
+FROM `Doctor_Insurance_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.887 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Doctor_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Doctor_Bank_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.888 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Doctor_Id`, `d`.`Medical_History`, `d`.`Remarks`, `d`.`Reminder_Date_For_Next`, `d`.`Updated_At`, `d`.`Vaccination_Date`, `d`.`Vaccination_Type`
+FROM `Doctors_Vaccination` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.889 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address_O`, `d`.`Address_Other`, `d`.`Address_R`, `d`.`City_O`, `d`.`City_Other`, `d`.`City_R`, `d`.`Country_O`, `d`.`Country_Other`, `d`.`Country_R`, `d`.`Created_At`, `d`.`Doctor_Id`, `d`.`Updated_At`, `d`.`Zip_O`, `d`.`Zip_Other`, `d`.`Zip_R`
+FROM `Doctors_Address` AS `d`
+WHERE `d`.`Doctor_Id` = @__doctorId_0
+
+2023-10-29 15:47:50.891 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Allow_Notifications`, `d`.`Amount_Insured`, `d`.`Amount_Paid`, `d`.`Doctor_Id`, `d`.`Insurance`, `d`.`Insurance_Date`, `d`.`Remarks`, `d`.`Renewal_Date`, `d`.`Updated_At`
+FROM `Doctor_Insurance_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.892 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Doctor_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Doctor_Bank_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.894 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Doctor_Id`, `d`.`Medical_History`, `d`.`Remarks`, `d`.`Reminder_Date_For_Next`, `d`.`Updated_At`, `d`.`Vaccination_Date`, `d`.`Vaccination_Type`
+FROM `Doctors_Vaccination` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.896 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address_O`, `d`.`Address_Other`, `d`.`Address_R`, `d`.`City_O`, `d`.`City_Other`, `d`.`City_R`, `d`.`Country_O`, `d`.`Country_Other`, `d`.`Country_R`, `d`.`Created_At`, `d`.`Doctor_Id`, `d`.`Updated_At`, `d`.`Zip_O`, `d`.`Zip_Other`, `d`.`Zip_R`
+FROM `Doctors_Address` AS `d`
+WHERE `d`.`Doctor_Id` = @__doctorId_0
+
+2023-10-29 15:47:50.898 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Allow_Notifications`, `d`.`Amount_Insured`, `d`.`Amount_Paid`, `d`.`Doctor_Id`, `d`.`Insurance`, `d`.`Insurance_Date`, `d`.`Remarks`, `d`.`Renewal_Date`, `d`.`Updated_At`
+FROM `Doctor_Insurance_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.900 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Doctor_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Doctor_Bank_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.901 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Doctor_Id`, `d`.`Medical_History`, `d`.`Remarks`, `d`.`Reminder_Date_For_Next`, `d`.`Updated_At`, `d`.`Vaccination_Date`, `d`.`Vaccination_Type`
+FROM `Doctors_Vaccination` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.902 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address_O`, `d`.`Address_Other`, `d`.`Address_R`, `d`.`City_O`, `d`.`City_Other`, `d`.`City_R`, `d`.`Country_O`, `d`.`Country_Other`, `d`.`Country_R`, `d`.`Created_At`, `d`.`Doctor_Id`, `d`.`Updated_At`, `d`.`Zip_O`, `d`.`Zip_Other`, `d`.`Zip_R`
+FROM `Doctors_Address` AS `d`
+WHERE `d`.`Doctor_Id` = @__doctorId_0
+
+2023-10-29 15:47:50.903 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Allow_Notifications`, `d`.`Amount_Insured`, `d`.`Amount_Paid`, `d`.`Doctor_Id`, `d`.`Insurance`, `d`.`Insurance_Date`, `d`.`Remarks`, `d`.`Renewal_Date`, `d`.`Updated_At`
+FROM `Doctor_Insurance_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.906 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Doctor_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Doctor_Bank_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.907 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Doctor_Id`, `d`.`Medical_History`, `d`.`Remarks`, `d`.`Reminder_Date_For_Next`, `d`.`Updated_At`, `d`.`Vaccination_Date`, `d`.`Vaccination_Type`
+FROM `Doctors_Vaccination` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.909 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address_O`, `d`.`Address_Other`, `d`.`Address_R`, `d`.`City_O`, `d`.`City_Other`, `d`.`City_R`, `d`.`Country_O`, `d`.`Country_Other`, `d`.`Country_R`, `d`.`Created_At`, `d`.`Doctor_Id`, `d`.`Updated_At`, `d`.`Zip_O`, `d`.`Zip_Other`, `d`.`Zip_R`
+FROM `Doctors_Address` AS `d`
+WHERE `d`.`Doctor_Id` = @__doctorId_0
+
+2023-10-29 15:47:50.912 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Allow_Notifications`, `d`.`Amount_Insured`, `d`.`Amount_Paid`, `d`.`Doctor_Id`, `d`.`Insurance`, `d`.`Insurance_Date`, `d`.`Remarks`, `d`.`Renewal_Date`, `d`.`Updated_At`
+FROM `Doctor_Insurance_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.914 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Doctor_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Doctor_Bank_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.916 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Doctor_Id`, `d`.`Medical_History`, `d`.`Remarks`, `d`.`Reminder_Date_For_Next`, `d`.`Updated_At`, `d`.`Vaccination_Date`, `d`.`Vaccination_Type`
+FROM `Doctors_Vaccination` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.918 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address_O`, `d`.`Address_Other`, `d`.`Address_R`, `d`.`City_O`, `d`.`City_Other`, `d`.`City_R`, `d`.`Country_O`, `d`.`Country_Other`, `d`.`Country_R`, `d`.`Created_At`, `d`.`Doctor_Id`, `d`.`Updated_At`, `d`.`Zip_O`, `d`.`Zip_Other`, `d`.`Zip_R`
+FROM `Doctors_Address` AS `d`
+WHERE `d`.`Doctor_Id` = @__doctorId_0
+
+2023-10-29 15:47:50.920 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Allow_Notifications`, `d`.`Amount_Insured`, `d`.`Amount_Paid`, `d`.`Doctor_Id`, `d`.`Insurance`, `d`.`Insurance_Date`, `d`.`Remarks`, `d`.`Renewal_Date`, `d`.`Updated_At`
+FROM `Doctor_Insurance_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.921 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Doctor_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Doctor_Bank_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.922 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Doctor_Id`, `d`.`Medical_History`, `d`.`Remarks`, `d`.`Reminder_Date_For_Next`, `d`.`Updated_At`, `d`.`Vaccination_Date`, `d`.`Vaccination_Type`
+FROM `Doctors_Vaccination` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.924 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address_O`, `d`.`Address_Other`, `d`.`Address_R`, `d`.`City_O`, `d`.`City_Other`, `d`.`City_R`, `d`.`Country_O`, `d`.`Country_Other`, `d`.`Country_R`, `d`.`Created_At`, `d`.`Doctor_Id`, `d`.`Updated_At`, `d`.`Zip_O`, `d`.`Zip_Other`, `d`.`Zip_R`
+FROM `Doctors_Address` AS `d`
+WHERE `d`.`Doctor_Id` = @__doctorId_0
+
+2023-10-29 15:47:50.926 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Allow_Notifications`, `d`.`Amount_Insured`, `d`.`Amount_Paid`, `d`.`Doctor_Id`, `d`.`Insurance`, `d`.`Insurance_Date`, `d`.`Remarks`, `d`.`Renewal_Date`, `d`.`Updated_At`
+FROM `Doctor_Insurance_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.928 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Doctor_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Doctor_Bank_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.929 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Doctor_Id`, `d`.`Medical_History`, `d`.`Remarks`, `d`.`Reminder_Date_For_Next`, `d`.`Updated_At`, `d`.`Vaccination_Date`, `d`.`Vaccination_Type`
+FROM `Doctors_Vaccination` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.930 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address_O`, `d`.`Address_Other`, `d`.`Address_R`, `d`.`City_O`, `d`.`City_Other`, `d`.`City_R`, `d`.`Country_O`, `d`.`Country_Other`, `d`.`Country_R`, `d`.`Created_At`, `d`.`Doctor_Id`, `d`.`Updated_At`, `d`.`Zip_O`, `d`.`Zip_Other`, `d`.`Zip_R`
+FROM `Doctors_Address` AS `d`
+WHERE `d`.`Doctor_Id` = @__doctorId_0
+
+2023-10-29 15:47:50.931 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Allow_Notifications`, `d`.`Amount_Insured`, `d`.`Amount_Paid`, `d`.`Doctor_Id`, `d`.`Insurance`, `d`.`Insurance_Date`, `d`.`Remarks`, `d`.`Renewal_Date`, `d`.`Updated_At`
+FROM `Doctor_Insurance_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.933 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Doctor_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Doctor_Bank_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.934 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Doctor_Id`, `d`.`Medical_History`, `d`.`Remarks`, `d`.`Reminder_Date_For_Next`, `d`.`Updated_At`, `d`.`Vaccination_Date`, `d`.`Vaccination_Type`
+FROM `Doctors_Vaccination` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2023-10-29 15:47:50.935 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address_O`, `d`.`Address_Other`, `d`.`Address_R`, `d`.`City_O`, `d`.`City_Other`, `d`.`City_R`, `d`.`Country_O`, `d`.`Country_Other`, `d`.`Country_R`, `d`.`Created_At`, `d`.`Doctor_Id`, `d`.`Updated_At`, `d`.`Zip_O`, `d`.`Zip_Other`, `d`.`Zip_R`
+FROM `Doctors_Address` AS `d`
+WHERE `d`.`Doctor_Id` = @__doctorId_0
+
+2023-10-29 15:47:50.936 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DCRM.Common.Dto.DoctorDto, DCRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+
+2023-10-29 15:47:50.942 +05:30  INF  Executed action DCRM.Api.Controllers.DoctorController.GetAll (DCRM.Api) in 156.8073ms
+
+2023-10-29 15:47:50.942 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.DoctorController.GetAll (DCRM.Api)'
+
+2023-10-29 15:47:50.942 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Doctor/GetAll application/json - - 200 - application/json;+charset=utf-8 162.9867ms
+
+2023-10-29 15:47:57.499 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Dashboard/GetUserDashboard - -
+
+2023-10-29 15:47:57.499 +05:30  INF  CORS policy execution successful.
+
+2023-10-29 15:47:57.499 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Dashboard/GetUserDashboard - - - 204 - - 0.3757ms
+
+2023-10-29 15:47:57.500 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Dashboard/GetUserDashboard application/json -
+
+2023-10-29 15:47:57.501 +05:30  INF  CORS policy execution successful.
+
+2023-10-29 15:47:57.505 +05:30  INF  Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2023-10-29 15:47:57.505 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.DashboardController.Get (DCRM.Api)'
+
+2023-10-29 15:47:57.506 +05:30  INF  Route matched with {action = "Get", controller = "Dashboard"}. Executing controller action with signature DCRM.Common.Dto.DashboardDto Get() on controller DCRM.Api.Controllers.DashboardController (DCRM.Api).
+
+2023-10-29 15:47:57.512 +05:30  INF  Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Age`, `p`.`Chamber_Id`, `p`.`Created_At`, `p`.`Email`, `p`.`Guardian`, `p`.`Is_Delete`, `p`.`Mobile`, `p`.`Mr_Number`, `p`.`Name`, `p`.`Password`, `p`.`Permanent_Address`, `p`.`Present_Address`, `p`.`Role`, `p`.`Sex`, `p`.`Slug`, `p`.`Thumb`, `p`.`Title`, `p`.`UserName`, `p`.`User_Id`, `p`.`Verify_Code`, `p`.`Weight`
+FROM `Patientses` AS `p`
+WHERE (`p`.`User_Id` = @__p_0) AND (`p`.`Is_Delete` = 0)
+
+2023-10-29 15:47:57.521 +05:30  INF  Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`Blood_Group`, `s`.`Chamber_Id`, `s`.`Created_At`, `s`.`Current_Address`, `s`.`Date_Of_Joining`, `s`.`Department`, `s`.`Designation`, `s`.`Dob`, `s`.`Email`, `s`.`Father`, `s`.`Gender`, `s`.`Gst`, `s`.`Is_Deleted`, `s`.`Marital_Status`, `s`.`Mother`, `s`.`Name`, `s`.`Note`, `s`.`Pan`, `s`.`Password`, `s`.`Permanent_Address`, `s`.`Phone`, `s`.`Qualification`, `s`.`Role`, `s`.`Slug`, `s`.`Specialization`, `s`.`Status`, `s`.`Thumb`, `s`.`User_Id`, `s`.`User_Name`, `s`.`Work_Experience`
+FROM `Staffs` AS `s`
+WHERE (`s`.`User_Id` = @__userId_0) AND (`s`.`Is_Deleted` = 0)
+
+2023-10-29 15:47:57.526 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`Appointment_Status`, `a`.`Cause`, `a`.`Chair`, `a`.`Chamber_Id`, `a`.`Created_At`, `a`.`Date`, `a`.`Doctor_Id`, `a`.`Doctor_Name`, `a`.`End_Time`, `a`.`Extra_Notes`, `a`.`Files`, `a`.`Is_Delete`, `a`.`Is_Start`, `a`.`Meeting_Notes`, `a`.`Number_Of_Slot`, `a`.`Patient_Id`, `a`.`Prescription_Id`, `a`.`Serial_Id`, `a`.`Slot_Time`, `a`.`Start_Time`, `a`.`Status`, `a`.`Type`, `a`.`User_Id`
+FROM `Appointments` AS `a`
+WHERE (`a`.`User_Id` = @__userId_0) AND (`a`.`Is_Delete` = 0)
+
+2023-10-29 15:47:57.534 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`Appointment_Status`, `a`.`Cause`, `a`.`Chair`, `a`.`Chamber_Id`, `a`.`Created_At`, `a`.`Date`, `a`.`Doctor_Id`, `a`.`Doctor_Name`, `a`.`End_Time`, `a`.`Extra_Notes`, `a`.`Files`, `a`.`Is_Delete`, `a`.`Is_Start`, `a`.`Meeting_Notes`, `a`.`Number_Of_Slot`, `a`.`Patient_Id`, `a`.`Prescription_Id`, `a`.`Serial_Id`, `a`.`Slot_Time`, `a`.`Start_Time`, `a`.`Status`, `a`.`Type`, `a`.`User_Id`
+FROM `Appointments` AS `a`
+WHERE ((`a`.`User_Id` = @__userId_0) AND (`a`.`Is_Delete` = 0)) AND (`a`.`Date` = CURDATE())
+
+2023-10-29 15:47:57.535 +05:30  INF  Executing ObjectResult, writing value of type 'DCRM.Common.Dto.DashboardDto'.
+
+2023-10-29 15:47:57.535 +05:30  INF  Executed action DCRM.Api.Controllers.DashboardController.Get (DCRM.Api) in 29.1384ms
+
+2023-10-29 15:47:57.535 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.DashboardController.Get (DCRM.Api)'
+
+2023-10-29 15:47:57.535 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Dashboard/GetUserDashboard application/json - - 200 - application/json;+charset=utf-8 34.6103ms
+
+2023-10-29 15:47:58.441 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Staff/GetAll - -
+
+2023-10-29 15:47:58.441 +05:30  INF  CORS policy execution successful.
+
+2023-10-29 15:47:58.442 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Staff/GetAll - - - 204 - - 0.8083ms
+
+2023-10-29 15:47:58.444 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Staff/GetAll application/json -
+
+2023-10-29 15:47:58.444 +05:30  INF  CORS policy execution successful.
+
+2023-10-29 15:47:58.450 +05:30  INF  Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2023-10-29 15:47:58.450 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.StaffController.GetAll (DCRM.Api)'
+
+2023-10-29 15:47:58.450 +05:30  INF  Route matched with {action = "GetAll", controller = "Staff"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[DCRM.Common.Entity.Staff] GetAll() on controller DCRM.Api.Controllers.StaffController (DCRM.Api).
+
+2023-10-29 15:47:58.453 +05:30  INF  Executing ObjectResult, writing value of type 'System.Linq.Enumerable+WhereEnumerableIterator`1[[DCRM.Common.Entity.Staff, DCRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+
+2023-10-29 15:47:58.456 +05:30  INF  Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`Blood_Group`, `s`.`Chamber_Id`, `s`.`Created_At`, `s`.`Current_Address`, `s`.`Date_Of_Joining`, `s`.`Department`, `s`.`Designation`, `s`.`Dob`, `s`.`Email`, `s`.`Father`, `s`.`Gender`, `s`.`Gst`, `s`.`Is_Deleted`, `s`.`Marital_Status`, `s`.`Mother`, `s`.`Name`, `s`.`Note`, `s`.`Pan`, `s`.`Password`, `s`.`Permanent_Address`, `s`.`Phone`, `s`.`Qualification`, `s`.`Role`, `s`.`Slug`, `s`.`Specialization`, `s`.`Status`, `s`.`Thumb`, `s`.`User_Id`, `s`.`User_Name`, `s`.`Work_Experience`
+FROM `Staffs` AS `s`
+WHERE `s`.`Is_Deleted` = 0
+
+2023-10-29 15:47:58.463 +05:30  INF  Executed action DCRM.Api.Controllers.StaffController.GetAll (DCRM.Api) in 12.2114ms
+
+2023-10-29 15:47:58.463 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.StaffController.GetAll (DCRM.Api)'
+
+2023-10-29 15:47:58.463 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Staff/GetAll application/json - - 200 - application/json;+charset=utf-8 18.8376ms
+
+2023-10-29 15:47:59.356 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Dealer/GetAll - -
+
+2023-10-29 15:47:59.357 +05:30  INF  CORS policy execution successful.
+
+2023-10-29 15:47:59.357 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Dealer/GetAll - - - 204 - - 1.0041ms
+
+2023-10-29 15:47:59.358 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Dealer/GetAll application/json -
+
+2023-10-29 15:47:59.359 +05:30  INF  CORS policy execution successful.
+
+2023-10-29 15:47:59.364 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2023-10-29 15:47:59.364 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.DealerController.GetAllAsync (DCRM.Api)'
+
+2023-10-29 15:47:59.364 +05:30  INF  Route matched with {action = "GetAll", controller = "Dealer"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Collections.Generic.IEnumerable`1[DCRM.Common.Dto.DealerDto]] GetAllAsync() on controller DCRM.Api.Controllers.DealerController (DCRM.Api).
+
+2023-10-29 15:47:59.370 +05:30  INF  Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address_O`, `d`.`Address_R`, `d`.`City_O`, `d`.`City_R`, `d`.`Company_Name`, `d`.`Country_O`, `d`.`Country_R`, `d`.`Created_At`, `d`.`Email1`, `d`.`Email2`, `d`.`Gst_Number`, `d`.`Image`, `d`.`Is_Deleted`, `d`.`Own_Name_1`, `d`.`Own_Name_2`, `d`.`Pan_Number`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Staff_Email1`, `d`.`Staff_Email2`, `d`.`Staff_Email3`, `d`.`Staff_Email4`, `d`.`Staff_Name1`, `d`.`Staff_Name2`, `d`.`Staff_Name3`, `d`.`Staff_Name4`, `d`.`Staff_Phone1`, `d`.`Staff_Phone2`, `d`.`Staff_Phone3`, `d`.`Staff_Phone4`, `d`.`Updated_At`, `d`.`User_Id`, `d`.`Zip_O`, `d`.`Zip_R`
+FROM `Dealers` AS `d`
+WHERE (`d`.`Is_Deleted` = 0) AND (`d`.`User_Id` = @__userId_0)
+
+2023-10-29 15:47:59.380 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.381 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.383 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.384 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.387 +05:30  INF  Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.389 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.390 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.391 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.393 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.395 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.396 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.397 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.398 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.399 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.401 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.403 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.404 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.406 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.408 +05:30  INF  Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Dealer_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Dealer_Bank_Details` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.409 +05:30  INF  Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Dealer_Id`, `d`.`Material_Cost`, `d`.`Material_Date`, `d`.`Material_Name`
+FROM `Dealer_Material` AS `d`
+WHERE `d`.`Dealer_Id` = @__p_0
+
+2023-10-29 15:47:59.409 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DCRM.Common.Dto.DealerDto, DCRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+
+2023-10-29 15:47:59.445 +05:30  INF  Executed action DCRM.Api.Controllers.DealerController.GetAllAsync (DCRM.Api) in 80.905ms
+
+2023-10-29 15:47:59.445 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.DealerController.GetAllAsync (DCRM.Api)'
+
+2023-10-29 15:47:59.446 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Dealer/GetAll application/json - - 200 - application/json;+charset=utf-8 87.2975ms
+
+2023-10-29 15:49:05.067 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+
+2023-10-29 15:49:05.216 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 149.2389ms
+
+2023-10-29 15:49:05.223 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+
+2023-10-29 15:49:05.223 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+
+2023-10-29 15:49:05.250 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+
+2023-10-29 15:49:05.250 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+
+2023-10-29 15:49:05.255 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+
+2023-10-29 15:49:05.278 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 12348 application/javascript;+charset=utf-8 27.8204ms
+
+2023-10-29 15:49:05.323 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+
+2023-10-29 15:49:05.333 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 109.8411ms
+
+2023-10-29 15:49:05.344 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+
+2023-10-29 15:49:05.344 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 94.7334ms
+
+2023-10-29 15:49:05.378 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+
+2023-10-29 15:49:05.379 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 123.6196ms
+
+2023-10-29 15:49:05.380 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 156.6247ms
+
+2023-10-29 15:49:05.590 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+
+2023-10-29 15:49:05.849 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 259.8820ms
+

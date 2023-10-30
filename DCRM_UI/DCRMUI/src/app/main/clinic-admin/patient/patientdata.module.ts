@@ -81,10 +81,9 @@ export const routes: Routes = [] = [
         resolve: {
             Ses: PatientEditService
         },
-        data: { path: 'patient-view/:id', animation: 'PatientEditComponent' }
     },
     {
-        path: 'patient/priscriptions/:id',
+        path: 'patient/priscriptions/view/:id',
         component: PatientPriscriptionsViewComponent,
         resolve: {
             Ses: PatientPreviewService

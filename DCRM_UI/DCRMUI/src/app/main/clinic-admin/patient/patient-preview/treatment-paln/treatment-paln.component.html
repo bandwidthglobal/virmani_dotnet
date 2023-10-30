@@ -43,8 +43,8 @@
                     </div>
                     <!-- Invoice List Table -->
                     <ngx-datatable [rows]="rows" rowHeight="auto" class="bootstrap core-bootstrap"
-                        [limit]="selectedOption" [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50"
-                        [scrollbarH]="true">
+                                   [limit]="selectedOption" [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50"
+                                   [scrollbarH]="true">
                         <ngx-datatable-column name="" [width]="20">
                             <ng-template let-id="value" ngx-datatable-cell-template>
                                 <input type="checkbox" />
@@ -65,6 +65,26 @@
                         <ngx-datatable-column name="Treatment Code" prop="job"></ngx-datatable-column>
                         <ngx-datatable-column name="App Estimate" prop="amount"></ngx-datatable-column>
                         <ngx-datatable-column name="Status" prop="treatmentStatus"></ngx-datatable-column>
+                        <ngx-datatable-column name="Actions" [width]="200" [sortable]="false">
+                            <ng-template ngx-datatable-cell-template let-row="row">
+                                <div class="d-flex align-items-center col-actions">
+                                    <a class="mr-1 btn btn-primary btn-sm" style="width:150px;" routerLink="/admin/patient/edit/{{ row.id }}" container="body"
+                                       placement="top" ngbTooltip="Work Done">
+                                        Work Done
+                                    </a>
+                                    <br />
+                                    <a class="mr-1" routerLink="/admin/patient/edit/{{ row.id }}" container="body"
+                                       placement="top" ngbTooltip="Edit">
+                                        <i size="18" data-feather="edit"></i>
+                                    </a>
+                                    <a class="mr-1" href="javascript:void(0)" (click)="delete(row.id)" container="body"
+                                       placement="top" ngbTooltip="Delete">
+                                        <i size="18" data-feather="trash"></i>
+                                    </a>
+
+                                </div>
+                            </ng-template>
+                        </ngx-datatable-column>
                     </ngx-datatable>
                 </ng-container>
             </div>

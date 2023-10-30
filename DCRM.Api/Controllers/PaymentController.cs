@@ -56,7 +56,7 @@ namespace DCRM.Api.Controllers
 
         }
 
-        [HttpPost("Delete/{id}")]
+        [HttpDelete("Delete/{id}")]
         public IActionResult Delete(long id)
         {
 

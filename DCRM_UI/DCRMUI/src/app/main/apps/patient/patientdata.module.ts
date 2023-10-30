@@ -13,69 +13,69 @@ import { CoreDirectivesModule } from '@core/directives/directives';
 import { CorePipesModule } from '@core/pipes/pipes.module';
 import { CoreSidebarModule } from '@core/components';
 
-import { PatientListComponent } from 'app/main/apps/patient/patient-list/patient-list.component';
-import { PatientListService } from 'app/main/apps/patient/patient-list/patient-list.service';
+//import { PatientListComponent } from 'app/main/apps/patient/patient-list/patient-list.component';
+//import { PatientListService } from 'app/main/apps/patient/patient-list/patient-list.service';
 
-import { PatientAddComponent } from 'app/main/apps/patient/patient-add/patient-add.component';
-import { PatientAddService } from 'app/main/apps/patient/patient-add/patient-add.service';
+//import { PatientAddComponent } from 'app/main/apps/patient/patient-add/patient-add.component';
+//import { PatientAddService } from 'app/main/apps/patient/patient-add/patient-add.service';
 
-import { PatientEditComponent } from 'app/main/apps/patient/patient-edit/patient-edit.component';
-import { PatientEditService } from 'app/main/apps/patient/patient-edit/patient-edit.service';
+//import { PatientEditComponent } from 'app/main/apps/patient/patient-edit/patient-edit.component';
+//import { PatientEditService } from 'app/main/apps/patient/patient-edit/patient-edit.service';
 
-import { PatientPreviewComponent } from 'app/main/apps/patient/patient-preview/patient-preview.component';
-import { PatientPreviewService } from 'app/main/apps/patient/patient-preview/patient-preview.service';
+//import { PatientPreviewComponent } from 'app/main/apps/patient/patient-preview/patient-preview.component';
+//import { PatientPreviewService } from 'app/main/apps/patient/patient-preview/patient-preview.service';
 
 
 // routing
 const routes: Routes = [
-    {
-        path: 'add',
-        component: PatientAddComponent,
-        resolve: {
-            Sas: PatientAddService
-        },
-        data: { animation: 'PatientAddComponent' }
-    },
-    {
-        path: 'list',
-        component: PatientListComponent,
-        resolve: {
-            uls: PatientListService
-        },
-        data: { animation: 'PatientListComponent' }
-    },
-    {
-        path: 'preview/:id',
-        component: PatientPreviewComponent,
-        resolve: {
-            Sds: PatientPreviewService
-        },
-        data: { path: 'user-view/:id', animation: 'PatientPreviewComponent' }
-    },
-    {
-        path: 'edit/:id',
-        component: PatientEditComponent,
-        resolve: {
-            Ses: PatientEditService
-        },
-        data: { path: 'user-view/:id', animation: 'PatientEditComponent' }
-    },
-    {
-        path: 'preview',
-        redirectTo: '/apps/patient/preview/4989' // Redirection
-    },
-    {
-        path: 'edit',
-        redirectTo: '/apps/patient/edit/4989' // Redirection
-    }
+    //{
+    //    path: 'add',
+    //    component: PatientAddComponent,
+    //    resolve: {
+    //        Sas: PatientAddService
+    //    },
+    //    data: { animation: 'PatientAddComponent' }
+    //},
+    //{
+    //    path: 'list',
+    //    component: PatientListComponent,
+    //    resolve: {
+    //        uls: PatientListService
+    //    },
+    //    data: { animation: 'PatientListComponent' }
+    //},
+    //{
+    //    path: 'preview/:id',
+    //    component: PatientPreviewComponent,
+    //    resolve: {
+    //        Sds: PatientPreviewService
+    //    },
+    //    data: { path: 'user-view/:id', animation: 'PatientPreviewComponent' }
+    //},
+    //{
+    //    path: 'edit/:id',
+    //    component: PatientEditComponent,
+    //    resolve: {
+    //        Ses: PatientEditService
+    //    },
+    //    data: { path: 'user-view/:id', animation: 'PatientEditComponent' }
+    //},
+    //{
+    //    path: 'preview',
+    //    redirectTo: '/apps/patient/preview/4989' // Redirection
+    //},
+    //{
+    //    path: 'edit',
+    //    redirectTo: '/apps/patient/edit/4989' // Redirection
+    //}
 ];
 
 @NgModule({
     declarations: [
-        PatientAddComponent,
-        PatientListComponent,
-        PatientPreviewComponent,
-        PatientEditComponent,
+        //PatientAddComponent,
+        //PatientListComponent,
+        //PatientPreviewComponent,
+        //PatientEditComponent,
     ],
     imports: [
         CommonModule,
@@ -90,7 +90,7 @@ const routes: Routes = [
         NgSelectModule,
         CoreSidebarModule
     ],
-    providers: [PatientListService, PatientPreviewService, PatientEditService, PatientAddService],
-    exports: [PatientListComponent]
+    providers: [],
+    exports: []
 })
 export class PatientDataModule { }

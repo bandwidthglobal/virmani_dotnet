@@ -250,4 +250,23 @@ export class PatientPreviewService implements Resolve<any> {
             }, reject);
         });
     }
+    deleteWorkDone(id: any) {
+        debugger;
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.delete<any>(`${environment.apiUrl}/WorkDone/Delete/` + id, requestOptions);
+    }
+
+    deletePayment(id: any) {
+        debugger;
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.delete<any>(`${environment.apiUrl}/Payment/Delete/` + id, requestOptions);
+    }
 }

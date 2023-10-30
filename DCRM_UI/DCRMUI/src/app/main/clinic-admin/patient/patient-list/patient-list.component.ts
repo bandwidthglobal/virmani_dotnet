@@ -103,6 +103,7 @@ export class PatientListComponent implements OnInit, OnDestroy {
         });
     }
     ngOnInit(): void {
+       
         this.getData();
     }
     getData() {
