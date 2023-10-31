@@ -206,6 +206,7 @@ export class PatientPreviewService implements Resolve<any> {
         });
     }
 
+   
     getPayments(id: any): Observable<any> {
         let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
         const headers = new HttpHeaders({
@@ -215,6 +216,7 @@ export class PatientPreviewService implements Resolve<any> {
         const requestOptions = { headers: headers };
         return this._httpClient.get(`${environment.apiUrl}/Patient/Get/Payments/` + id, requestOptions);
     }
+
     savePayment(payload: any): Observable<any> {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -223,7 +225,15 @@ export class PatientPreviewService implements Resolve<any> {
         const requestOptions = { headers: headers };
         return this._httpClient.post(`${environment.apiUrl}/Payment/Create/Received`, payload, requestOptions);
     }
-
+    getPaymentReceives(id: any): Observable<any> {
+        let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.get(`${environment.apiUrl}/Payment/Get/Received/` + id, requestOptions);
+    }
     getDigitalList(id: number) {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -268,5 +278,14 @@ export class PatientPreviewService implements Resolve<any> {
         });
         const requestOptions = { headers: headers };
         return this._httpClient.delete<any>(`${environment.apiUrl}/Payment/Delete/` + id, requestOptions);
+    }
+
+    deletePriscription(id: any) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.delete<any>(`${environment.apiUrl}/Prescription/Delete/` + id, requestOptions);
     }
 }

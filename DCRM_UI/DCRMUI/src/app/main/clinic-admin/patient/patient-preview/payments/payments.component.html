@@ -114,6 +114,7 @@
                                 <a class="mr-1"
                                    container="body"
                                    placement="top"
+                                   (click)="getPaymentReceives(row.id)"
                                    ngbTooltip="view">
                                     <i size="18" data-feather="eye"></i>
                                 </a>
@@ -137,12 +138,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Receive Payment</h5>
+                    <h5 class="modal-title" *ngIf="isPaymentReceiveList==false">Receive Payment</h5>
+                    <h5 class="modal-title" *ngIf="isPaymentReceiveList==true">Receive Payment Details</h5>
                     <button type="button" class="close" (click)="close()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" style="overflow:auto">
+                <div class="modal-body" style="overflow:auto" *ngIf="isPaymentReceiveList==false">
                     <form id="form-modal-todo"
                           class="todo-modal needs-validation"
                           (ngSubmit)="(todoForm.form.valid)"
@@ -152,18 +154,6 @@
                                 <label for="price">Price (Rs.) *</label>
                                 <input type="text" [mask]="'numeric'" [formControl]="receiveFormData.price" class="form-control"
                                        aria-describedby="receiveFormData.price" tabindex="5" />
-                                <!--[ngClass]="{ 'is-invalid': submitted && receiveFormData.price.errors }" />
-                                    <ng-container *ngFor="let error of receiveFormData.price.errors">
-                                    <span *ngIf="submitted" class="invalid-class">
-                                        {{
-                                            messages[error]
-                                        }}
-                                    </span>
-                                </ng-container>-->
-                                <!--<ng-container *ngFor="let error of receiveFormData.price.errors ">
-                                    <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
-                                </ng-container>-->
-
                             </div>
                             <div class="form-group">
                                 <label for="payment_Type">Payment type *</label>
@@ -174,9 +164,6 @@
                                     <option value="NEFT">NEFT</option>
                                     <option value="POS">POS</option>
                                 </select>
-                                <!--<ng-container *ngFor="let error of receiveFormData.payment_Type.errors ">
-                                    <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
-                                </ng-container>-->
                             </div>
                             <div class="form-group">
                                 <label for="description">Description</label>
@@ -198,7 +185,31 @@
                         </div>
                     </form>
                 </div>
-
+                <div class="modal-body" style="overflow:auto" *ngIf="isPaymentReceiveList==true">
+                    <ngx-datatable [rows]="receiveRows"
+                                   rowHeight="auto"
+                                   class="bootstrap core-bootstrap"
+                                   [columnMode]="ColumnMode.force"
+                                   [headerHeight]="50"
+                                   [footerHeight]="50"
+                                   [scrollbarH]="true">
+                        <ngx-datatable-column name="#" prop="id" [width]="50">
+                            <ng-template let-id="value" ngx-datatable-cell-template>
+                                {{ id }}
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Date" prop="created_At">
+                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                <div class="row">
+                                    <div class="col-12">{{row.created_At | date: 'dd/MM/yyyy hh:mm:ss'}}</div>
+                                </div>
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Description" prop="description"></ngx-datatable-column>
+                        <ngx-datatable-column name="Amount" prop="price"></ngx-datatable-column>
+                        <ngx-datatable-column name="Type" prop="payment_Type"></ngx-datatable-column>
+                    </ngx-datatable>
+                </div>
             </div>
         </div>
     </div>

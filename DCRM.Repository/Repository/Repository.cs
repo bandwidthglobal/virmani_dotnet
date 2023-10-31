@@ -37,12 +37,12 @@ namespace DCRM.Repository.Repository
 
         public T Get(long Id)
         {
-            return entities.SingleOrDefault(c => c.Id == Id);
+            return entities.AsNoTracking().SingleOrDefault(c => c.Id == Id);
         }
 
         public IEnumerable<T> GetAll()
         {
-            return entities.AsEnumerable();
+            return entities.AsNoTracking().AsEnumerable();
         }
 
         public void Insert(T entity)

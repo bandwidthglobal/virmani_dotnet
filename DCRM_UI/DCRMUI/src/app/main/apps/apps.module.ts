@@ -46,22 +46,22 @@ const routes: Routes = [
     //    path: 'doctor',
     //    loadChildren: () => import('./doctor/doctordata.module').then(m => m.DoctorDataModule)
     //},
-    {
-        path: 'patient',
-        loadChildren: () => import('./patient/patientdata.module').then(m => m.PatientDataModule)
-    },
-    {
-        path: 'prescription',
-        loadChildren: () => import('./prescription/prescriptiondata.module').then(m => m.PrescriptionDataModule)
-    },
-    {
-        path: 'dealer',
-        loadChildren: () => import('./dealer/dealerdata.module').then(m => m.DealerDataModule)
-    },
-    {
-        path: 'appointment',
-        loadChildren: () => import('./appointment/appointmentdata.module').then(m => m.AppointmentDataModule)
-    },
+    //{
+    //    path: 'patient',
+    //    loadChildren: () => import('./patient/patientdata.module').then(m => m.PatientDataModule)
+    //},
+    //{
+    //    path: 'prescription',
+    //    loadChildren: () => import('./prescription/prescriptiondata.module').then(m => m.PrescriptionDataModule)
+    //},
+    //{
+    //    path: 'dealer',
+    //    loadChildren: () => import('./dealer/dealerdata.module').then(m => m.DealerDataModule)
+    //},
+    //{
+    //    path: 'appointment',
+    //    loadChildren: () => import('./appointment/appointmentdata.module').then(m => m.AppointmentDataModule)
+    //},
     //{
     //    path: 'drug',
     //    loadChildren: () => import('./drug/drugdata.module').then(m => m.DrugDataModule)

@@ -112,5 +112,7 @@ namespace DCRM.Repository.Database
 
         public virtual DbSet<DiagnosisData> Diagnosis_Data { get; set; }
 
+        public virtual DbSet<Diagonosis> Diagonosis { get; set; }
+
     }
 }

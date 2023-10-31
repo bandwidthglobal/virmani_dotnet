@@ -37,7 +37,9 @@ export class PaymentsComponent implements OnInit {
     public rows;
     public tempFilterData;
     public previousStatusFilter = '';
+    receiveRows: any;
     isOpen: boolean = true;
+    isPaymentReceiveList = false;
     @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
     @ViewChild('receiveModal', { static: false }) receiveModal: ElementRef;//RECEIVE
     receiveElm: HTMLElement;
@@ -143,6 +145,7 @@ export class PaymentsComponent implements OnInit {
         });
     }
     addReceive(id, patientId) {
+        this.isPaymentReceiveList = false;
         this.receiveFormData = new ReceiveForm(this.ReceiveFormInput);
         this.paymentId = id;
         this.patientId = patientId;
@@ -201,7 +204,14 @@ export class PaymentsComponent implements OnInit {
             debugger;
         });
     }
-
+    getPaymentReceives(id) {
+        this.isPaymentReceiveList = true;
+        this._patientListService.getPaymentReceives(id).subscribe(resp => {
+            this.receiveRows = resp;
+            this.receiveElm.classList.add('show');
+            this.receiveElm.style.width = '100vw';
+        });
+    }
     deletePayment(id) {
         let rowIndex = -1;
         this.tempData.forEach((currentValue, index) => {

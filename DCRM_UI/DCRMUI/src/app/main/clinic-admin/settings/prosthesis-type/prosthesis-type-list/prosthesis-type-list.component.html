@@ -1,0 +1,66 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <!-- Invoice List -->
+        <section class="invoice-list-wrapper">
+            <div class="card p-2">
+                <!-- Invoice List Header -->
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div class="d-flex justify-content-between align-items-center m-1">
+                            <div class="d-flex align-items-center">
+                                <label class="d-flex align-items-center">
+                                    Show
+                                    <select class="form-control mx-25" [(ngModel)]="selectedOption">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                </label>
+                                <button class="btn btn-primary ml-2" routerLink="/admin/settings/prosthesistype/add" rippleEffect> <i class="fa fa-plus"></i> Add Prosthesis Type</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12 d-flex justify-content-start justify-content-md-end">
+                        <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pb-md-0">
+                            <label class="d-flex align-items-center ml-1 ml-md-0">
+                                Search:<input [(ngModel)]="searchValue"
+                                              name="searchValue"
+                                              type="search"
+                                              class="form-control ml-25"
+                                              (keyup)="filterUpdate($event)"
+                                              (search)="filterUpdate($event)" />
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+                <ngx-datatable [rows]="rows" [rowHeight]="50" class="bootstrap core-bootstrap" [limit]="selectedOption"
+                               [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50">
+                    <ngx-datatable-column name="Name" prop="name">
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Action" [width]="100" [sortable]="false">
+                        <ng-template ngx-datatable-cell-template let-row="row">
+                            <a class="mr-1" routerLink="/admin/settings/prosthesistype/edit/{{ row.id }}" container="body"
+                               placement="top" ngbTooltip="Edit">
+                                <i size="18" data-feather="edit"></i>
+                            </a>
+                            <a class="mr-1"
+                               href="javascript:void(0)"
+                               (click)="delete(row.id)"
+                               container="body"
+                               placement="top"
+                               ngbTooltip="Delete">
+                                <i size="18" data-feather="trash"></i>
+                            </a>
+                        </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+            </div>
+        </section>
+        <!--/ Invoice List -->
+    </div>
+
+
+
+</div>

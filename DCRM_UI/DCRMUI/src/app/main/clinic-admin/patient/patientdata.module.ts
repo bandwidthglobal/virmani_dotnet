@@ -73,7 +73,6 @@ export const routes: Routes = [] = [
         resolve: {
             Sds: PatientPreviewService
         },
-        data: { path: 'patient-view/:id', animation: 'PatientPreviewComponent' }
     },
     {
         path: 'edit/:id',
@@ -83,7 +82,7 @@ export const routes: Routes = [] = [
         },
     },
     {
-        path: 'patient/priscriptions/view/:id',
+        path: 'priscriptions/:id',
         component: PatientPriscriptionsViewComponent,
         resolve: {
             Ses: PatientPreviewService

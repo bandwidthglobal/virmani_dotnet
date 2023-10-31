@@ -19,62 +19,63 @@ export const menu: CoreMenu[] = [
                 icon: 'home',
                 url: 'admin/dashboard'
             },
-            {
-                id: 'subscription',
-                title: 'Subscription',
-                translate: 'MENU.APPS.Subscription',
-                type: 'item',
-                icon: 'message-square',
-                url: 'apps/subscription'
-            },
-            {
-                id: 'registrations',
-                title: 'Registrations',
-                translate: 'MENU.APPS.Registrations',
-                type: 'item',
-                icon: 'check-square',
-                url: 'apps/registrations'
-            },
-            {
-                id: 'qrcode',
-                title: 'qrcode',
-                translate: 'MENU.APPS.QRCode',
-                type: 'item',
-                icon: 'calendar',
-                url: 'apps/qrcode'
-            },
-            {
-                id: 'ratingreviews',
-                title: 'Rating Reviews',
-                translate: 'MENU.APPS.RatingReviews',
-                type: 'item',
-                icon: 'calendar',
-                url: 'apps/ratingreviews'
-            },
-            {
-                id: 'departments',
-                title: 'Departments',
-                translate: 'MENU.APPS.Departments',
-                type: 'item',
-                icon: 'calendar',
-                url: 'admin/departments'
-            },
-            {
-                id: 'consultationcettings',
-                title: 'ConsultationSettings',
-                translate: 'MENU.APPS.ConsultationSettings',
-                type: 'item',
-                icon: 'calendar',
-                url: 'admin/consultationcettings'
-            },
-            {
-                id: 'consultations',
-                title: 'Consultations',
-                translate: 'MENU.APPS.Consultations',
-                type: 'item',
-                icon: 'calendar',
-                url: 'admin/consultations'
-            },
+            
+            //{
+            //    id: 'subscription',
+            //    title: 'Subscription',
+            //    translate: 'MENU.APPS.Subscription',
+            //    type: 'item',
+            //    icon: 'message-square',
+            //    url: 'apps/subscription'
+            //},
+            //{
+            //    id: 'registrations',
+            //    title: 'Registrations',
+            //    translate: 'MENU.APPS.Registrations',
+            //    type: 'item',
+            //    icon: 'check-square',
+            //    url: 'apps/registrations'
+            //},
+            //{
+            //    id: 'qrcode',
+            //    title: 'qrcode',
+            //    translate: 'MENU.APPS.QRCode',
+            //    type: 'item',
+            //    icon: 'calendar',
+            //    url: 'apps/qrcode'
+            //},
+            //{
+            //    id: 'ratingreviews',
+            //    title: 'Rating Reviews',
+            //    translate: 'MENU.APPS.RatingReviews',
+            //    type: 'item',
+            //    icon: 'calendar',
+            //    url: 'apps/ratingreviews'
+            //},
+            //{
+            //    id: 'departments',
+            //    title: 'Departments',
+            //    translate: 'MENU.APPS.Departments',
+            //    type: 'item',
+            //    icon: 'calendar',
+            //    url: 'admin/departments'
+            //},
+            //{
+            //    id: 'consultationcettings',
+            //    title: 'ConsultationSettings',
+            //    translate: 'MENU.APPS.ConsultationSettings',
+            //    type: 'item',
+            //    icon: 'calendar',
+            //    url: 'admin/consultationcettings'
+            //},
+            //{
+            //    id: 'consultations',
+            //    title: 'Consultations',
+            //    translate: 'MENU.APPS.Consultations',
+            //    type: 'item',
+            //    icon: 'calendar',
+            //    url: 'admin/consultations'
+            //},
             {
                 id: 'staffs',
                 title: 'Staffs',
@@ -107,29 +108,29 @@ export const menu: CoreMenu[] = [
                 type: 'collapsible',
                 icon: 'file-text',
                 children: [
-                    {
-                        id: 'clinicaldiagnosis',
-                        title: 'Clinical Diagnosis',
-                        translate: 'MENU.APPS.SETTINGS.ClinicalDiagnosis',
-                        type: 'item',
-                        icon: 'circle',
-                        url: 'admin/dashboard4'
-                    },
-                    {
-                        id: 'advise',
-                        title: 'Advise',
-                        translate: 'MENU.APPS.SETTINGS.Advise',
-                        type: 'item',
-                        icon: 'circle',
-                        url: 'admin/dashboard5'
-                    },
+                    //{
+                    //    id: 'clinicaldiagnosis',
+                    //    title: 'Clinical Diagnosis',
+                    //    translate: 'MENU.APPS.SETTINGS.ClinicalDiagnosis',
+                    //    type: 'item',
+                    //    icon: 'circle',
+                    //    url: 'admin/dashboard4'
+                    //},
+                    //{
+                    //    id: 'advise',
+                    //    title: 'Advise',
+                    //    translate: 'MENU.APPS.SETTINGS.Advise',
+                    //    type: 'item',
+                    //    icon: 'circle',
+                    //    url: 'admin/dashboard5'
+                    //},
                     {
                         id: 'diagnosistests',
                         title: 'Diagnosis Tests',
                         translate: 'MENU.APPS.SETTINGS.DiagnosisTests',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/dashboard6'
+                        url: 'admin/settings/diagnosistests/list'
                     },
                     {
                         id: 'prosthesistype',
@@ -137,7 +138,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.SETTINGS.ProsthesisType',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/dashboard7'
+                        url: 'admin/settings/prosthesistype/list'
                     }
                     ,
                     {

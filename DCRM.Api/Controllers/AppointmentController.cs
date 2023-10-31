@@ -37,6 +37,7 @@ namespace DCRM.Api.Controllers
             return  _appointmentService.Get(id);
         }
 
+     
         [HttpGet("ChairViews")]
         public List<AppointmentChairViewDto> ChairViews()
         {

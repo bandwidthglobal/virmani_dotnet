@@ -29,11 +29,11 @@ import { LoadingModule } from 'ngx-loading';
 
 const appRoutes: Routes = [
     
-    {
-        path: 'apps',
-        loadChildren: () => import('./main/apps/apps.module').then(m => m.AppsModule),
-        canActivate: [AuthGuard]
-    },
+    //{
+    //    path: 'apps',
+    //    loadChildren: () => import('./main/apps/apps.module').then(m => m.AppsModule),
+    //    canActivate: [AuthGuard]
+    //},
     {
         path: 'components',
         loadChildren: () => import('./main/components/components.module').then(m => m.ComponentsModule),
