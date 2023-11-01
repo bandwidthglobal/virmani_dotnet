@@ -20,7 +20,7 @@ import { formatDate } from '@angular/common';
 export class AppointmentChairViewComponent implements OnInit, OnDestroy {
     // Public
     public url = this.router.url;
-    public loading = false;
+    public loading = true;
     public submitted = false;
     public returnUrl: string;
     public error = '';
@@ -74,7 +74,7 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
      * On init
      */
     ngOnInit(): void {
-
+        this.loading = true;
         const id = this._route.snapshot.paramMap.get('id');
         var t = new Date().getDate();
         var m = new Date().getUTCMonth();
@@ -110,6 +110,7 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
         });
     }
     searchData() {
+        this.loading = true;
         var param = this.searchParam;
         this._chairViewService.getAppointmentChairViewSearchlist(this.searchParam).subscribe(response => {
             this.data = response;
@@ -123,6 +124,7 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
             }
             this.tempData = this.rows;
             this.tempFilterData = this.rows;
+            this.loading = false;
         });
     }
     appointmentView(appointmentId, slatTime) {

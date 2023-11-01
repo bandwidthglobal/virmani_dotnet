@@ -35,6 +35,9 @@ import { CalenderViewComponent } from './calendar-view/calendar-view.component';
 import { CalenderViewService } from './calendar-view/calendar-view.service';
 import { WaitingRoomComponent } from './waiting-room/waiting-room.component';
 import { WaitingRoomService } from './waiting-room/waiting-room.service';
+import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarService } from './calendar/calendar.service';
+import { FullCalendarModule } from '@fullcalendar/angular';
 // routing
 const routes: Routes = [
     {
@@ -95,9 +98,9 @@ const routes: Routes = [
     },
     {
         path: 'calendarview',
-        component: CalenderViewComponent,
+        component: CalendarComponent,
         resolve: {
-            Sds: CalenderViewService
+            Sds: CalendarService
         },
 
     },
@@ -121,7 +124,8 @@ const routes: Routes = [
         AppointmentChairViewComponent,
         SetSscheduleFormComponent,
         CalenderViewComponent,
-        WaitingRoomComponent
+        WaitingRoomComponent,
+        CalendarComponent
     ],
     imports: [
         CommonModule,
@@ -135,12 +139,12 @@ const routes: Routes = [
         NgbModule,
         NgSelectModule,
         CoreSidebarModule,
-
+        FullCalendarModule,
         SharedCommonModule,
         MaskModule
     ],
     providers: [AppointmentListService, AppointmentPreviewService, AppointmentEditService, AppointmentAddService,
-        AppointmentChairViewService, SetSscheduleFormService, CalenderViewService,WaitingRoomService
+        AppointmentChairViewService, SetSscheduleFormService, CalenderViewService, WaitingRoomService, CalendarService
     ],
     exports: [AppointmentListComponent]
 })
