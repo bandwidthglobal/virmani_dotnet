@@ -34,7 +34,7 @@ namespace DCRM.Api.Controllers
             return Ok();
         }
 
-        [HttpPost("Delete")]
+        [HttpDelete("Delete/{id}")]
         public IActionResult Delete(long id)
         {
             _treatmentplanService.Delete(id);

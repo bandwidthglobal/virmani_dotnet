@@ -40,7 +40,7 @@ export const locale = {
                     COLLAPSIBLE: 'Appointments',
                     Lists: 'Lists',
                     ChairView: 'Chair View',
-                    CallendarView: 'Callendar View',
+                    CalendarView: 'Calendar View',
                     SetSchedule: 'Set Schedule',
                     WaitingRoom: 'Waiting Room'
                 },

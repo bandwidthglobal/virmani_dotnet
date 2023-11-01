@@ -208,15 +208,15 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.APPOINTMENTS.ChairView',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/dashboard10'
+                        url: 'admin/appointment/chairview'
                     },
                     {
-                        id: 'callendarview',
-                        title: 'Callendar View',
-                        translate: 'MENU.APPS.APPOINTMENTS.CallendarView',
+                        id: 'calendarview',
+                        title: 'Calendar View',
+                        translate: 'MENU.APPS.APPOINTMENTS.CalendarView',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/dashboard11'
+                        url: 'admin/appointment/calendarview'
                     },
                     {
                         id: 'setschedule',
@@ -224,7 +224,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.APPOINTMENTS.SetSchedule',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/dashboard12'
+                        url: 'admin/appointment/assign'
                     },
                     {
                         id: 'waitingroom',
@@ -232,7 +232,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.APPOINTMENTS.WaitingRoom',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/dashboard13'
+                        url: 'admin/appointment/waitingroom'
                     }
                 ]
             },

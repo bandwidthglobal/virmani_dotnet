@@ -48,4 +48,13 @@ export class AppointmentEditService implements Resolve<any> {
         });
     }
 
+    getAppointmentData(id: number){
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        const url = `${environment.apiUrl}/Appointment/Get/${id}`;
+        return this._httpClient.get(url, requestOptions);
+    }
 }

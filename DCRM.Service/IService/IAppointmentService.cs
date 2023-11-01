@@ -30,12 +30,16 @@ namespace DCRM.Service.IService
 
         List<AppointmentDto> GetAppointmentWithPatient(long userId);
 
-        List<AppointmentChairViewDto> AppointmentChairViewList(long userId);
+        AppointmentChairViewDto AppointmentChairView(long userId);
+        //List<AppointmentScheduleTime> AppointScheduleList(long userId);
 
         List<Assaign_Day> GetDays(long userId);
         List<Assign_Time> GetTimes(long userId);
         void UpdateTimes(long userId, List<Assign_Time> assignTimes);
         void DeleteTime(int id);
 
+        AppointmentChairViewDto AppointmentChairViewSearch(AppointmentChairViewSearchParameters parameters);
+
+        List<AppointmentDto> GetWaitingRoom(long userId);
     }
 }

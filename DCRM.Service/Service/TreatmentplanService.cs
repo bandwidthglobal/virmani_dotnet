@@ -122,31 +122,10 @@ namespace DCRM.Service.Service
         /// <param name="workdone"></param>
         public void CreateWorkDone(Workdone_New workdone)
         {
-            long workdoneId = _workDoneRepository.Create(workdone);
-            var treatment = _treatmentplanRepository.GetById(workdone.Treatment_Id);
-            if (treatment != null && workdone.Id > 0)
-            {
-                //Insert Data in payment as debit
-                Payment_History paymentHistory = new Payment_History();
-                paymentHistory.Workdone_Id = workdone.Id;
-                paymentHistory.Doctor_Id = treatment.Doctor;
-                paymentHistory.Patient_Id = treatment.Patient_Id;
-                paymentHistory.Debit_Amount = workdone.Total_Amt;
-                paymentHistory.Credit_Amount = 0;
-                paymentHistory.Balance = workdone.Total_Amt;
-                paymentHistory.Amount_Type = 1;
-                paymentHistory.Description = "patient bill";
-                paymentHistory.Payment_Mode = "";
-                paymentHistory.Created_At = DateTime.UtcNow;
-                paymentHistory.Updated_At = DateTime.UtcNow;
-                _paymentHistoryRepository.Insert(paymentHistory);
 
-                //Update Treatment Status
-                treatment.Status = workdone.Workdone_Status;
-                treatment.Updated_At = System.DateTime.UtcNow;
-                _treatmentplanRepository.UpdateTreatmentplan(treatment);
-
-            }
+            workdone.Created_At=System.DateTime.UtcNow;
+            workdone.Updated_At = System.DateTime.UtcNow;
+            _workDoneRepository.Create(workdone);
         }
 
 

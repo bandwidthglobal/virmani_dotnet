@@ -27,8 +27,14 @@ import { AppointmentPreviewService } from 'app/main/clinic-admin/appointment/app
 import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
 import { SharedCommonModule } from 'app/shared-common/shared-ui.module';
 import { MaskModule } from 'app/shared-common/directives/mask/mask.module';
-
-
+import { AppointmentChairViewComponent } from './chair-view/chair-view.component';
+import { AppointmentChairViewService } from './chair-view/chair-view.service';
+import { SetSscheduleFormComponent } from './set-schedule/set-schedule-form.component';
+import { SetSscheduleFormService } from './set-schedule/set-schedule-form.service';
+import { CalenderViewComponent } from './calendar-view/calendar-view.component';
+import { CalenderViewService } from './calendar-view/calendar-view.service';
+import { WaitingRoomComponent } from './waiting-room/waiting-room.component';
+import { WaitingRoomService } from './waiting-room/waiting-room.service';
 // routing
 const routes: Routes = [
     {
@@ -70,6 +76,38 @@ const routes: Routes = [
     {
         path: 'edit',
         redirectTo: '/drug/edit/4989' // Redirection
+    },
+    {
+        path: 'chairview',
+        component: AppointmentChairViewComponent,
+        resolve: {
+            Sds: AppointmentChairViewService
+        },
+
+    },
+    {
+        path: 'assign',
+        component: SetSscheduleFormComponent,
+        resolve: {
+            Sds: SetSscheduleFormService
+        },
+
+    },
+    {
+        path: 'calendarview',
+        component: CalenderViewComponent,
+        resolve: {
+            Sds: CalenderViewService
+        },
+
+    },
+    {
+        path: 'waitingroom',
+        component: WaitingRoomComponent,
+        resolve: {
+            Sds: WaitingRoomService
+        },
+
     }
 ];
 
@@ -79,7 +117,11 @@ const routes: Routes = [
         AppointmentListComponent,
         AppointmentPreviewComponent,
         AppointmentEditComponent,
-        AppointmentFormComponent
+        AppointmentFormComponent,
+        AppointmentChairViewComponent,
+        SetSscheduleFormComponent,
+        CalenderViewComponent,
+        WaitingRoomComponent
     ],
     imports: [
         CommonModule,
@@ -97,7 +139,9 @@ const routes: Routes = [
         SharedCommonModule,
         MaskModule
     ],
-    providers: [AppointmentListService, AppointmentPreviewService, AppointmentEditService, AppointmentAddService],
+    providers: [AppointmentListService, AppointmentPreviewService, AppointmentEditService, AppointmentAddService,
+        AppointmentChairViewService, SetSscheduleFormService, CalenderViewService,WaitingRoomService
+    ],
     exports: [AppointmentListComponent]
 })
 export class AppointmentDataModule { }
