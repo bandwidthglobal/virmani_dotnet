@@ -1,0 +1,46 @@
+
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <section class="invoice-add-wrapper">
+            <div class="row invoice-add">
+                <!-- Invoice Add Left starts -->
+                <div class="col-xl-12 col-md-8 col-12">
+                    <div class="card invoice-preview-card">
+                        <!-- Header starts -->
+                        <div class="card-body invoice-padding pb-0">
+                            <div class="row">
+                                <div class="col-xl-5 col-md-8 col-12">
+                                    <h3 class="text-primary invoice-logo">Calendar View</h3>
+                                </div>
+                                <div class="col-xl-7 col-md-8 col-12 ">
+                                    <div class="row">
+                                        <div class="col-xl-1 col-md-8 col-12 text-right"> </div>
+                                        <div class="col-xl-11 col-md-8 col-12 text-right ">
+                                            <a class="btn btn-primary" href="/admin/appointment/chairview" title="">Chair View</a>
+                                            <a class="btn btn-light disabled m-lg-1 active checked" href="/admin/appointment/calendarview" title="">Calendar View</a>
+                                            <a class="btn btn-primary m-lg-1" href="/admin/appointment/waitingroom" title="">Waiting Room</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-body pt-1 pb-1">
+                                <div class="row">
+                                    <div class="col-md-12 calender_filter">
+                                        <div class="col position-relative p-2">
+                                            <div class="card shadow-none border-0 mb-0 rounded-0">
+                                                <div class="card-body pb-0">
+                                                    <full-calendar [options]="calendarOptions"></full-calendar>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</div>

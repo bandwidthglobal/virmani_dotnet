@@ -1,5 +1,9 @@
 ﻿
-
+<div *ngIf="loading==true" style="position: absolute; background-color: rgba(255, 255, 255, 0.6); width: 100%; height: 100%; z-index: 100000">
+    <div style="position: absolute; top: 20%; left: 50%; transform: translate(-50%, -50%);">
+        Loading...
+    </div>
+</div>
 <div class="content-wrapper container-xxl p-0">
     <div class="content-body">
         <section class="invoice-add-wrapper">
@@ -14,9 +18,14 @@
                                     <h3 class="text-primary invoice-logo">Chair View</h3>
                                 </div>
                                 <div class="col-xl-7 col-md-8 col-12 ">
-                                    <a class="btn btn-success active checked" href="/admin/appointment/chairview" title="">Chair View</a>
-                                    <a class="btn btn-primary m-lg-1" href="/admin/appointment/calendarview" title="">Calendar View</a>
-                                    <a class="btn btn-primary m-lg-1" href="/admin/appointment/waitingroom" title="">Waiting Room</a>
+                                    <div class="row">
+                                        <div class="col-xl-1 col-md-8 col-12 text-right"> </div>
+                                        <div class="col-xl-11 col-md-8 col-12 text-right ">
+                                            <a class="btn btn-light disabled" href="/admin/appointment/chairview" title="">Chair View</a>
+                                            <a class="btn btn-primary  m-lg-1" href="/admin/appointment/calendarview" title="">Calendar View</a>
+                                            <a class="btn btn-primary  m-lg-1" href="/admin/appointment/waitingroom" title="">Waiting Room</a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-xl-12 col-md-12 col-12">
                                     <div class="col-md-2 pull-right text-right">
@@ -37,13 +46,13 @@
                                                 <div class="col-md-3 d-inline-block">
                                                     <input type="hidden" name="casd" value="">
                                                     <label>Date</label>
-                                                    <input type="date" style="height: auto;" (change)="dateChange($event)"   tabindex="1" [(ngModel)]="searchParam.scheduleDate" 
-                                                           name="sdate" class="form-control"  id="sdate" required="required"  autocomplete="off">
+                                                    <input type="date" style="height: auto;" (change)="dateChange($event)" tabindex="1" [(ngModel)]="searchParam.scheduleDate"
+                                                           name="sdate" class="form-control" id="sdate" required="required" autocomplete="off">
                                                 </div>
                                                 <div class="col-md-3 d-inline-block">
                                                     <label style="width: 100%;">Doctor</label>
                                                     <span class="multiselect-native-select">
-                                                        <select name="doctor_id[]" id="doctor_id_top" tabindex="2" [(ngModel)]="searchParam.doctorIds" class="select select-initialized form-control" >
+                                                        <select name="doctor_id[]" id="doctor_id_top" tabindex="2" [(ngModel)]="searchParam.doctorIds" class="select select-initialized form-control">
                                                             <option value="">None Selected</option>
                                                             <option *ngFor="let doctor of rows.doctorList" value="{{doctor.id}}">{{doctor.name}}</option>
                                                         </select>
@@ -53,7 +62,7 @@
                                                 <div class="col-md-3 d-inline-block">
                                                     <label>Chairs </label>
                                                     <span class="multiselect-native-select">
-                                                        <select name="chair_id[]" id="chair_id_top"  class="form-control"  tabindex="3" [(ngModel)]="searchParam.chairIds">
+                                                        <select name="chair_id[]" id="chair_id_top" class="form-control" tabindex="3" [(ngModel)]="searchParam.chairIds">
                                                             <option value="">None Selected</option>
                                                             <option *ngFor="let chair of chairList" value="{{chair.id}}">{{chair.name}}</option>
                                                         </select>
@@ -68,6 +77,7 @@
                                 </div>
                                 <div class="row" id="printDiv">
                                     <div class="col-md-12 calender_filter p-2">
+                                        
                                         <table class="table1 table-bordered table-hover" cellspacing="0" style="overflow:scroll;max-width:1000px">
                                             <thead>
                                                 <tr class="success table-info">
@@ -78,12 +88,12 @@
                                             <tbody>
                                                 <tr *ngFor="let schedule of rows.appointmentScheduleTimes">
                                                     <td width="20%"><strong>{{schedule.slatTime}}</strong></td>
-                                                    <td width="20%"  *ngFor=" let chair of schedule.chairList">
+                                                    <td width="20%" *ngFor=" let chair of schedule.chairList">
                                                         <p *ngIf="chair.appointmentDetails==null" (click)="appointmentView(0,schedule.slatTime);">
-                                                            <a href="javascript://" >Allot</a>
+                                                            <a href="javascript://">Allot</a>
                                                         </p>
                                                         <p style="background-color: #0094ff;padding:5px;" *ngIf="chair.appointmentDetails!=null">
-                                                            <a href="javascript://" (click)="appointmentView(chair.appointmentDetails.id,schedule.slatTime);"  style="color: white;">
+                                                            <a href="javascript://" (click)="appointmentView(chair.appointmentDetails.id,schedule.slatTime);" style="color: white;">
                                                                 <p>{{chair.appointmentDetails.patient_Name}}</p>
                                                                 <!--<p>{{chair.appointmentDetails.patient.address}}</p>-->
                                                                 <p><strong>Doctor:</strong> {{chair.appointmentDetails.doctor_Name}}</p>
@@ -114,11 +124,11 @@
                     </button>
                 </div>
                 <div class="modal-body" *ngIf="isAppontmentClose==true">
-                   <div class="row">
-                       <div class="col-12">
-                           <h3>Appointment closed in this slot</h3>
-                       </div>
-                   </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h3>Appointment closed in this slot</h3>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-body" *ngIf="isAppontmentClose==false">
                     <app-appointment-form *ngIf="isEdit==true" [FormAction]="'edit'" [FormInput]="FormInput" (callBackEvent)="redirect($event);"></app-appointment-form>
