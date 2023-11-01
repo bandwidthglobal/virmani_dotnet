@@ -37,12 +37,19 @@ namespace DCRM.Api.Controllers
             return  _appointmentService.Get(id);
         }
 
-     
         [HttpGet("ChairViews")]
-        public List<AppointmentChairViewDto> ChairViews()
+        public AppointmentChairViewDto ChairViews()
         {
             var user = Request.HttpContext.Items["User"] as User;
-            return _appointmentService.AppointmentChairViewList(user.Id);
+            return _appointmentService.AppointmentChairView(user.Id);
+        }
+
+        [HttpPost("ChairViewsSearch")]
+        public AppointmentChairViewDto ChairViewsSearch(AppointmentChairViewSearchParameters parameters)
+        {
+            var user = Request.HttpContext.Items["User"] as User;
+            parameters.UserId = user.Id;
+            return _appointmentService.AppointmentChairViewSearch(parameters);
         }
 
         [HttpPost("Create")]
@@ -115,6 +122,13 @@ namespace DCRM.Api.Controllers
             var user = Request.HttpContext.Items["User"] as User;
             _appointmentService.DeleteTime(id);
             return Ok();
+        }
+
+        [HttpGet("GetWettingRoom")]
+        public List<AppointmentDto> GetWettingRoom()
+        {
+            var user = Request.HttpContext.Items["User"] as User;
+            return _appointmentService.GetWaitingRoom(user.Id);
         }
     }
 }

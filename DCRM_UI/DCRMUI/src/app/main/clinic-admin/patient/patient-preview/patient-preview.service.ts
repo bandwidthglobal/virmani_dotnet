@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+﻿import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { environment } from 'environments/environment';
@@ -119,6 +119,7 @@ export class PatientPreviewService implements Resolve<any> {
         return new Promise((resolve, reject) => {
             this._httpClient.get(url, requestOptions).subscribe((response: any) => {
                 this.treatmentData = response;
+                debugger;
                 this.onTreatmentChanged.next(this.treatmentData);
                 resolve(this.treatmentData);
             }, reject);
@@ -287,5 +288,39 @@ export class PatientPreviewService implements Resolve<any> {
         });
         const requestOptions = { headers: headers };
         return this._httpClient.delete<any>(`${environment.apiUrl}/Prescription/Delete/` + id, requestOptions);
+    }
+    deleteTreatment(id: any) {
+        debugger;
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.delete<any>(`${environment.apiUrl}/Treatmentplan​/Delete/` + id, requestOptions);
+    }
+    refreshTreatmentList(id: number) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const url = `${environment.apiUrl}/Patient/Get/Treatmentplans/${id}`;
+        const requestOptions = { headers: headers };
+       return this._httpClient.get(url, requestOptions);
+    }
+    saveWorkDone(payload: any): Observable<any> {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.post(`${environment.apiUrl}/Treatmentplan/WorkDone/Create`, payload, requestOptions);
+    }
+    getDoctors(): Observable<any> {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.get(`${environment.apiUrl}/Doctor/Get/Names`, requestOptions);
     }
 }

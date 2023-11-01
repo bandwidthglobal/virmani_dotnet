@@ -9,7 +9,7 @@
                 </div>
                 <ng-container *ngIf="showTreatmentForm">
                     <app-treatment-plan-form [FormAction]="'add'" [DiagnosisData]="DiagnosisData" [apiData]="apiData"
-                        (callBackEvent)="returnPage();"></app-treatment-plan-form>
+                                             (callBackEvent)="returnPage();"></app-treatment-plan-form>
                 </ng-container>
                 <ng-container *ngIf="!showTreatmentForm">
                     <div class="row">
@@ -28,14 +28,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div
-                            class="col-md-6 col-lg-4 col-12 d-flex justify-content-start justify-content-md-end align-items-center offset-lg-2">
+                        <div class="col-md-6 col-lg-4 col-12 d-flex justify-content-start justify-content-md-end align-items-center offset-lg-2">
                             <div class="row pr-1 pb-1 pb-md-0 align-items-center w-100">
                                 <div class="col-10 col-md-12 mt-2 ml-1 ml-md-0 mt-md-0">
                                     <label class="d-flex align-items-center mb-0 ml-1 ml-md-0">
                                         <input [(ngModel)]="searchValue" name="searchValue" type="search"
-                                            class="form-control" placeholder="Search..." (keyup)="filterUpdate($event)"
-                                            (search)="filterUpdate($event)" />
+                                               class="form-control" placeholder="Search..." (keyup)="filterUpdate($event)"
+                                               (search)="filterUpdate($event)" />
                                     </label>
                                 </div>
                             </div>
@@ -68,7 +67,7 @@
                         <ngx-datatable-column name="Actions" [width]="200" [sortable]="false">
                             <ng-template ngx-datatable-cell-template let-row="row">
                                 <div class="d-flex align-items-center col-actions">
-                                    <a class="mr-1 btn btn-primary btn-sm" style="width:150px;" routerLink="/admin/patient/edit/{{ row.id }}" container="body"
+                                    <a class="mr-1 btn btn-primary btn-sm" style="width:120px;" (click)="addWorkDone(row.id,row.amount)" href="javascript:void(0)" container="body"
                                        placement="top" ngbTooltip="Work Done">
                                         Work Done
                                     </a>
@@ -77,7 +76,7 @@
                                        placement="top" ngbTooltip="Edit">
                                         <i size="18" data-feather="edit"></i>
                                     </a>
-                                    <a class="mr-1" href="javascript:void(0)" (click)="delete(row.id)" container="body"
+                                    <a class="mr-1" href="javascript:void(0)" (click)="delete(row.id,row.patientId)" container="body"
                                        placement="top" ngbTooltip="Delete">
                                         <i size="18" data-feather="trash"></i>
                                     </a>
@@ -89,5 +88,119 @@
                 </ng-container>
             </div>
         </section>
+    </div>
+
+    <div class="modal fade my-modal" tabindex="-1" role="dialog"  #workdoneModal>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Workdone</h5>
+                    <button type="button" class="close" (click)="close()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="overflow:auto">
+                    <form id="form-modal-workdone"
+                          class="todo-modal needs-validation"
+                           (ngSubmit)="saveWorkDoneForm()"
+                         >
+                        <!-- Modal body -->
+                        <div class="modal-body">
+
+                            <div class="clear"></div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label><strong>By Doctor</strong></label>
+                                        <!-- <input type="text" name="supplier" class="form-control" required> -->
+                                        <select  class="form-control select2" [formControl]="workDoneFormData.doctor_Id" 
+                                                aria-describedby="workDoneFormData.doctor_Id">
+                                            <option value="">Select Doctor</option>
+                                            <option *ngFor="let item of doctors" value="{{item.id}}">{{item.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Estimated Amount</label>
+                                        <input type="text" [mask]="'numeric'" disabled="disabled" [formControl]="workDoneFormData.estimated_Amount" class="form-control"
+                                               aria-describedby="workDoneFormData.estimated_Amount" tabindex="2" value="5000"/>
+                                        <!--<input name="estimate_amt" id="estimate_amt" readonly="" placeholder="" type="number" class="form-control" required="" value="5000" >-->
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Amount Due for Todays's Work.</label>
+                                        <input type="text" [mask]="'numeric'" required [formControl]="workDoneFormData.current_Work_Amt" (change)="chngCurrentwork($event)" class="form-control"
+                                               aria-describedby="workDoneFormData.current_Work_Amt" tabindex="3"  />
+                                        <!--<input name="current_work" id="current_work" (change)="chngCurrentwork($event)" placeholder="" type="number" class="form-control" required="" value="">-->
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Discount.</label>
+                                        <input type="text" [mask]="'numeric'" [formControl]="workDoneFormData.discount" (change)="chngDiscount($event)" class="form-control"
+                                               aria-describedby="workDoneFormData.discount" tabindex="4" value="0"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Total Amount</label>
+                                        <input type="text" [mask]="'numeric'" disabled="disabled" [formControl]="workDoneFormData.total_Amt" class="form-control"
+                                               aria-describedby="workDoneFormData.discount" tabindex="5" value="0" />
+                                        
+                                    </div>
+                                </div>
+                                <div class="payment_bxblock pyatm col-md-6">
+                                    <h4><strong>Treatment</strong></h4>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="workdone_status" [formControl]="workDoneFormData.workdone_Status" required id="observation_new" value="0">
+                                                <label class="form-check-label" for="observation_new">
+                                                    Observation
+                                                </label>
+                                            </div>
+                                            <!--                    </div>
+                                                <div class="col-md-6">-->
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="workdone_status" [formControl]="workDoneFormData.workdone_Status" required="" id="completed_new" value="1">
+                                                <label class="form-check-label" for="completed_new">
+                                                    Completed
+                                                </label>
+                                            </div>
+                                            <!--                    </div>
+                                                <div class="col-md-6">-->
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="workdone_status" [formControl]="workDoneFormData.workdone_Status" required id="incompleted_new" value="2">
+                                                <label class="form-check-label" for="incompleted_new">
+                                                    Incompleted
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <input type="submit" name="update" value="Save" class="btn btn-primary">
+                                <button type="button" class="btn btn-danger" (click)="close()">Close</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                
+            </div>
+        </div>
     </div>
 </div>

@@ -50,7 +50,6 @@ export class PrescriptionPreviewComponent implements OnInit, OnDestroy {
         WindowPrt.document.close();
         WindowPrt.focus();
         WindowPrt.print();
-        //WindowPrt.close();
     }
     ngOnDestroy(): void {
         this._unsubscribeAll.next();

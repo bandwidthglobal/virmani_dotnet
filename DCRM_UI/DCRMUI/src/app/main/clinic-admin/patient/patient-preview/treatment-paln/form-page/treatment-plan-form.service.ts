@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { ElementRef, EventEmitter, Injectable, Output, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'environments/environment';
 import { User } from 'app/auth/models';
@@ -10,7 +10,7 @@ export class TreatmentPalnFormService {
 
     APIURL: string = `${environment.apiUrl}`;
     currentUser: any;
-
+    
     constructor(
         private _httpClient: HttpClient
     ) {
