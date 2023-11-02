@@ -44,8 +44,9 @@ export class DiagnosisTestFormService implements Resolve<any> {
             const requestOptions = { headers: headers };
         return this._httpClient.get(`${environment.apiUrl}/Settings/Get/Diagonosis/` + id, requestOptions)
     }
-   
+
     save(id: any, data: any) {
+        debugger;
         let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -58,5 +59,4 @@ export class DiagnosisTestFormService implements Resolve<any> {
         const requestOptions = { headers: headers };
         return this._httpClient.post(url, data, requestOptions)
     }
-   
 }

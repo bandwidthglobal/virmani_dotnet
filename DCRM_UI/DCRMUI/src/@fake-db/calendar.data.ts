@@ -13,7 +13,7 @@ export class CalendarFakeData {
     {
       id: 2,
       url: '',
-      title: 'Meeting With Client',
+      title: 'Meeting With Client doctor',
       start: new Date(new Date().getFullYear(), new Date().getMonth() + 1, -11),
       end: new Date(new Date().getFullYear(), new Date().getMonth() + 1, -10),
       allDay: true,

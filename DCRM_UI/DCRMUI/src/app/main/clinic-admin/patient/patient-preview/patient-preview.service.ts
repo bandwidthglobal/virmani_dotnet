@@ -289,8 +289,18 @@ export class PatientPreviewService implements Resolve<any> {
         const requestOptions = { headers: headers };
         return this._httpClient.delete<any>(`${environment.apiUrl}/Prescription/Delete/` + id, requestOptions);
     }
+
     deleteTreatment(id: any) {
         debugger;
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.delete<any>(`${environment.apiUrl}/Treatmentplan/Delete/` + id, requestOptions);
+    }
+
+    deleteTreatment1(id: any) {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${this.currentUser.jwtToken}`

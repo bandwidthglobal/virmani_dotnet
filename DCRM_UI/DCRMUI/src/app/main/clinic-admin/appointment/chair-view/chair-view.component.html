@@ -89,11 +89,19 @@
                                                 <tr *ngFor="let schedule of rows.appointmentScheduleTimes">
                                                     <td width="20%"><strong>{{schedule.slatTime}}</strong></td>
                                                     <td width="20%" *ngFor=" let chair of schedule.chairList">
-                                                        <p *ngIf="chair.appointmentDetails==null" (click)="appointmentView(0,schedule.slatTime);">
+                                                        <p *ngIf="chair.appointmentDetails==null" (click)="appointmentView(0,schedule.slatTime,chair.id);">
                                                             <a href="javascript://">Allot</a>
                                                         </p>
                                                         <p style="background-color: #0094ff;padding:5px;" *ngIf="chair.appointmentDetails!=null">
-                                                            <a href="javascript://" (click)="appointmentView(chair.appointmentDetails.id,schedule.slatTime);" style="color: white;">
+
+                                                            <input type="checkbox" name="name" checked="checked" (change)="changeAppointmentStatus($event,chair.appointmentDetails.id)" value="0" *ngIf="chair.appointmentDetails.appointment_Status==4;else loggedOut" />
+
+                                                            <ng-template #loggedOut>
+                                                                <input type="checkbox" name="name" value="4" (change)="changeAppointmentStatus($event,chair.appointmentDetails.id)" />
+                                                            </ng-template>
+
+                                                            
+                                                            <a href="javascript://" (click)="appointmentView(chair.appointmentDetails.id,schedule.slatTime,chair.id);" style="color: white;">
                                                                 <p>{{chair.appointmentDetails.patient_Name}}</p>
                                                                 <!--<p>{{chair.appointmentDetails.patient.address}}</p>-->
                                                                 <p><strong>Doctor:</strong> {{chair.appointmentDetails.doctor_Name}}</p>
@@ -118,7 +126,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Add Appointment</h4>
+                    
+                    <!--<h4 class="modal-title">Add Appointment</h4>-->
                     <button type="button" class="close" (click)="close()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -132,10 +141,7 @@
                 </div>
                 <div class="modal-body" *ngIf="isAppontmentClose==false">
                     <app-appointment-form *ngIf="isEdit==true" [FormAction]="'edit'" [FormInput]="FormInput" (callBackEvent)="redirect($event);"></app-appointment-form>
-                    <app-appointment-form *ngIf="isEdit==false" [FormAction]="'add'" (callBackEvent)="redirect($event);"></app-appointment-form>
-                </div>
-                <div class="modal-footer">
-                    <p type="button" class="pull-right btn btn-danger" (click)="close()" aria-label="Close">Close</p>
+                    <app-appointment-form *ngIf="isAdd==true"  [expectedProp] = "addParam" [FormAction]="'add'" (callBackEvent)="redirect($event);"></app-appointment-form>
                 </div>
             </div>
         </div>

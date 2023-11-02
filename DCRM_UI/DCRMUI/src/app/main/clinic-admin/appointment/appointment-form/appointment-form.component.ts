@@ -7,6 +7,8 @@ import { catchError } from 'rxjs/operators';
 import { IAppointmentForm, IAppointmentFormModel } from "../model/appointment-from";
 import { AppointmentFormService } from "./appointment-form.service";
 import { User } from "app/auth/models";
+import { WaitingRoomService } from "../waiting-room/waiting-room.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-appointment-form',
@@ -28,7 +30,7 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
     @Input() FormInput?: any = new IAppointmentFormModel();
     @Input() FormAction?: 'add' | 'edit' = 'add';
     @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
-
+    @Input() expectedProp: { start_Time: string, date: string, chair: string };
     IDoctors: Array<any> = [];
     IPatients: Array<any> = [];
     IStartTimes: Array<any> = this._appointmentFormService.getIStartTimes();
@@ -36,6 +38,8 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
     IChairList: Array<any> = [];
     constructor(
         private _toastrService: ToastrService,
+        private router: Router,
+        private _waitingRoomService: WaitingRoomService,
         private _appointmentFormService: AppointmentFormService,
         private _commonValidationService: CommonValidationService,
     ) {
@@ -43,8 +47,18 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        // this.formData.get('end_Time').disable({ emitEvent: false });
-        this.FormInput.date = this._commonValidationService.dateFormat_Y_M_D(this.FormInput.date);
+       
+        if (this.expectedProp != undefined) {
+            this.FormInput.date = this.expectedProp.date == '' ? this._commonValidationService.dateFormat_Y_M_D(this.FormInput.date) : this.expectedProp.date;
+            this.FormInput.start_Time = new Date("1901-01-01 " + this.expectedProp.start_Time).toTimeString().split(' ')[0];
+            var endTime = new Date("1901-01-01 " + this.expectedProp.start_Time);
+            this.FormInput.end_Time = endTime.getHours() + ":" + (endTime.getMinutes() + 15) + ":00";
+            this.FormInput.chair = this.expectedProp.chair;
+
+        }
+        else {
+            this.FormInput.date = this._commonValidationService.dateFormat_Y_M_D(this.FormInput.date);
+        }
         this.formData = new IAppointmentForm(this.FormInput);
         if (this.FormAction === 'add') {
             this.pageTitle = 'Add Appointment';
@@ -66,7 +80,12 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
     }
-
+    changeAppointmentStatus(status, id, sift) {
+      
+        this._waitingRoomService.ChangeAppointmentStatus(id.value, status).subscribe(res => {
+            this.router.navigate(["/admin/appointment/chairview"])
+        });
+    }
     saveForm(): void {
         this.submitted = true;
         this._commonValidationService.validateAllFormFields(this.formData);

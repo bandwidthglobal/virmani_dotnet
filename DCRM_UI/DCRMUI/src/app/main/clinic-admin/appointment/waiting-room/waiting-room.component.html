@@ -1,11 +1,11 @@
 ﻿
 <div class="content-wrapper container-xxl p-0">
     <div class="content-body">
-       
+
         <section class="drug-list-wrapper">
             <div class="card p-2">
                 <div class="row">
-                  
+
                     <div class="col-xl-5 col-md-8 col-12">
                         <h3 class="text-primary invoice-logo">Wating Room</h3>
                     </div>
@@ -54,46 +54,119 @@
                         </div>
                     </div>
                 </div>
-
+                <!--<table class="datatables-basic table dataTable no-footer dtr-column" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" style="width: 1046px;">
+                    <thead>
+                        <tr><th class="control sorting_disabled dtr-hidden" rowspan="1" colspan="1" style="width: 29px; display: none;" aria-label=""></th><th class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all" rowspan="1" colspan="1" style="width: 24px;" data-col="1" aria-label=""><input type="checkbox" class="form-check-input"></th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 96px;" aria-label="Name: activate to sort column ascending">Name</th><th class="sorting sorting_desc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 99px;" aria-label="Email: activate to sort column ascending" aria-sort="descending">Email</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 86px;" aria-label="Date: activate to sort column ascending">Date</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 119px;" aria-label="Salary: activate to sort column ascending">Salary</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 115px;" aria-label="Status: activate to sort column ascending">Status</th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 124px;" aria-label="Actions">Actions</th></tr>
+                    </thead>
+                    <tbody><tr class="odd"><td class="  control" tabindex="0" style="display: none;"></td><td class="  dt-checkboxes-cell"><input type="checkbox" class="dt-checkboxes form-check-input"></td><td class=""><div class="d-flex justify-content-start align-items-center user-name"><div class="avatar-wrapper"><div class="avatar me-2"><span class="avatar-initial rounded-circle bg-label-secondary">A</span></div></div><div class="d-flex flex-column"><span class="emp_name text-truncate">asdsa</span><small class="emp_post text-truncate text-muted">sdads</small></div></div></td><td class="sorting_1">asda@wda.com</td><td>11/28/2023</td><td>$2131</td><td><span class="badge  bg-label-info">Applied</span></td><td><div class="d-inline-block"><a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a><ul class="dropdown-menu dropdown-menu-end m-0"><li><a href="javascript:;" class="dropdown-item">Details</a></li><li><a href="javascript:;" class="dropdown-item">Archive</a></li><div class="dropdown-divider"></div><li><a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a></li></ul></div><a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="text-primary ti ti-pencil"></i></a></td></tr></tbody>
+                </table>
+                <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 1 of 1 entries</div></div><div class="col-sm-12 col-md-6"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a aria-controls="DataTables_Table_0" aria-disabled="true" aria-role="link" data-dt-idx="previous" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" aria-role="link" aria-current="page" data-dt-idx="0" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item next disabled" id="DataTables_Table_0_next"><a aria-controls="DataTables_Table_0" aria-disabled="true" aria-role="link" data-dt-idx="next" tabindex="0" class="page-link">Next</a></li></ul></div></div></div>-->
                 <!-- Invoice List Table -->
-                <ngx-datatable [rows]="rows"
-                               rowHeight="auto"
-                               class="bootstrap core-bootstrap"
-                               [limit]="selectedOption"
-                               [columnMode]="ColumnMode.force"
-                               [headerHeight]="50"
-                               [footerHeight]="50"
-                               [scrollbarH]="true">
-                    <ngx-datatable-column name="Serial No" prop="serial_Id" [width]="100"></ngx-datatable-column>
-                    <ngx-datatable-column name="Patient Name" prop="patient_Name">
-                    </ngx-datatable-column>
-                    <ngx-datatable-column name="Dentist" prop="doctor_Name">
-                    </ngx-datatable-column>
-                    <ngx-datatable-column name="Start Time" prop="start_Time">
-                    </ngx-datatable-column>
-                    <ngx-datatable-column name="End Time" prop="end_Time">
-                    </ngx-datatable-column>
-                    <ngx-datatable-column name="Cause/Treatment" class="" prop="cause">
-                    </ngx-datatable-column>
-                    <ngx-datatable-column name="Chair" class="" prop="chair">
-                    </ngx-datatable-column>
-                    <ngx-datatable-column name="Slot" class="" prop="slot_Time">
-                    </ngx-datatable-column>
-                    <ngx-datatable-column name="Actions" [sortable]="false">
-                        <ng-template ngx-datatable-cell-template let-row="row">
-                            <div class="d-flex align-items-center col-actions">
-                                <select>
-                                    <option value="1">InProgress</option>
-                                    <option value="2">Complete</option>
-                                </select>
-                            </div>
-                        </ng-template>
-                    </ngx-datatable-column>
-                </ngx-datatable>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Serial No</th>
+                                <th>Serial Id</th>
+                                <th>Patient Name</th>
+                                <th>Doctor Name</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                                <th>Cause/Treatment</th>
+                                <th>Chair</th>
+                                <th>Slot</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let x of rows let i=index">
+                                <tr *ngIf="x.appointment_Status==5" class="backgorundcolor">
+                                    <td style="width:5%">{{ i+1 }}</td>
+                                    <td style="width:5%">{{ x.serial_Id }}</td>
+                                    <td style="width:25%">
+                                        {{ x.patient_Name }}
+                                    </td>
+                                    <td style="width:25%">{{ x.doctor_Name }}</td>
+                                    <td style="width:5%"><label class="badge badge-primary-soft brd-20"><i style="margin-right: 2px" class="fa fa-clock-o mt-5px"></i>{{ x.start_Time }}</label></td>
+                                    <td style="width:5%"><label class="badge badge-primary-soft brd-20"><i style="margin-right: 2px " class="fa fa-clock-o mt-5px"></i>{{ x.end_Time }}</label></td>
+                                    <td style="width:5%">{{ x.cause }}</td>
+                                    <td style="width:5%">{{ x.chair }}</td>
+                                    <td style="width:5%">{{ x.slot_Time }}</td>
+                                    <td style="width:5%">{{ x.appointment_Status }}</td>
+                                    <td width="20%">
+                                        <select class="form-control" style="width:200px" name="appointment_status" id="appointment_status" (change)="changeAppointmentStatus($event,x.id)">
+                                            <option value="4">Waiting Status</option>
+                                            <option selected="" value="5">Processing</option>
+                                            <option value="2">Completed</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="x.appointment_Status!=5">
+                                    <td style="width:5%">{{ i+1 }}</td>
+                                    <td style="width:5%">{{ x.serial_Id }}</td>
+                                    <td style="width:25%">{{ x.patient_Name }}</td>
+                                    <td style="width:25%">{{ x.doctor_Name }}</td>
+                                    <td style="width:5%"><label class="badge badge-primary-soft brd-20"><i style=" margin-right: 2px" class="fa fa-clock-o mt-5px"></i>{{ x.start_Time }}</label></td>
+                                    <td style="width:5%"><label class="badge badge-primary-soft brd-20"><i style="margin-right: 2px " class="fa fa-clock-o mt-5px"></i>{{ x.end_Time }}</label></td>
+                                    <td style="width:5%">{{ x.cause }}</td>
+                                    <td style="width:5%">{{ x.chair }}</td>
+                                    <td style="width:5%">{{ x.slot_Time }}</td>
+                                    <td style="width:5%">{{ x.appointment_Status }}</td>
+                                    <td width="20%">
+                                        <select class="form-control" style="width:200px" name="appointment_status" id="appointment_status" (change)="changeAppointmentStatus($event,x.id)">
+                                            <option selected="" value="4">Waiting Status</option>
+                                            <option value="5">Processing</option>
+                                            <option value="2">Completed</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="display:none">
+                    <ngx-datatable [rows]="rows"
+                                   rowHeight="auto"
+                                   class="bootstrap core-bootstrap"
+                                   [limit]="selectedOption"
+                                   [columnMode]="ColumnMode.force"
+                                   [headerHeight]="50"
+                                   [footerHeight]="50"
+                                   [scrollbarH]="true">
+                        <ngx-datatable-column name="Serial No" prop="serial_Id" [width]="100"></ngx-datatable-column>
+                        <ngx-datatable-column name="Patient Name" prop="patient_Name">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Dentist" prop="doctor_Name">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Start Time" prop="start_Time">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="End Time" prop="end_Time">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Cause/Treatment" class="" prop="cause">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Chair" class="" prop="chair">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Slot" class="" prop="slot_Time">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Actions" [sortable]="false">
+                            <ng-template ngx-datatable-cell-template let-row="row">
+                                <div class="d-flex align-items-center col-actions">
+                                    <select class="form-control" name="appointment_status" id="appointment_status" (change)="changeAppointmentStatus($event,row.id)">
+                                        <option selected="" value="4">Waiting Status</option>
+                                        <option value="5">Processing</option>
+                                        <option value="2">Completed</option>
+                                    </select>
+                                </div>
+                            </ng-template>
+                        </ngx-datatable-column>
+                    </ngx-datatable>
+                </div>
             </div>
         </section>
     </div>
-   
+
 </div>
 
 

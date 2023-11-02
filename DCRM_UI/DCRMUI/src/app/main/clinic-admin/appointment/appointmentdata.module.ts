@@ -38,10 +38,19 @@ import { WaitingRoomService } from './waiting-room/waiting-room.service';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarService } from './calendar/calendar.service';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { AppointmentChairFormComponent } from 'app/main/clinic-admin/appointment/chair-view/appointment-form/appointment-chair-form.component';
 // routing
 const routes: Routes = [
     {
         path: 'add',
+        component: AppointmentAddComponent,
+        resolve: {
+            Sas: AppointmentAddService
+        },
+        data: { animation: 'AppointmentAddComponent' }
+    },
+    {
+        path: 'add/chairapointment',
         component: AppointmentAddComponent,
         resolve: {
             Sas: AppointmentAddService
@@ -72,6 +81,14 @@ const routes: Routes = [
         },
         data: { path: 'user-view/:id', animation: 'AppointmentEditComponent' }
     },
+    {
+        path: 'edit/chairapointment/:id',
+        component: AppointmentEditComponent,
+        resolve: {
+            Ses: AppointmentEditService
+        },
+    }
+    ,
     {
         path: 'preview',
         redirectTo: '/drug/preview/4989' // Redirection
@@ -125,7 +142,8 @@ const routes: Routes = [
         SetSscheduleFormComponent,
         CalenderViewComponent,
         WaitingRoomComponent,
-        CalendarComponent
+        CalendarComponent,
+        AppointmentChairFormComponent
     ],
     imports: [
         CommonModule,

@@ -64,6 +64,8 @@ export class DiagnosisTestFormComponent implements OnInit, OnDestroy {
     }
     ngOnInit(): void {
         this.diagnosisForm = this._formBuilder.group({
+            id: [0],
+            user_Id: [0],
             name: ['', Validators.required],
             details: [''],
         });
@@ -105,6 +107,7 @@ export class DiagnosisTestFormComponent implements OnInit, OnDestroy {
                     this.router.navigateByUrl(this.returnUrl);
                 },
                 error => {
+                    debugger;
                     this.error = error;
                     this.loading = false;
                 }

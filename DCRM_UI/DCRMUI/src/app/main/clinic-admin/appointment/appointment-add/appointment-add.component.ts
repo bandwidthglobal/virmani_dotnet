@@ -28,7 +28,8 @@ export class AppointmentAddComponent implements OnInit, OnDestroy {
     this._unsubscribeAll.complete();
   }
 
-  redirect(event) {
+    redirect(event) {
+        alert('sdcsd');
     console.log('> redirect ---> ', event);
     this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/appointment/list';
     this.router.navigateByUrl(this.returnUrl);

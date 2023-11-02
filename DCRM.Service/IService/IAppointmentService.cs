@@ -41,5 +41,7 @@ namespace DCRM.Service.IService
         AppointmentChairViewDto AppointmentChairViewSearch(AppointmentChairViewSearchParameters parameters);
 
         List<AppointmentDto> GetWaitingRoom(long userId);
+
+        void ChangeAppointmentStatus(long id, int status);
     }
 }

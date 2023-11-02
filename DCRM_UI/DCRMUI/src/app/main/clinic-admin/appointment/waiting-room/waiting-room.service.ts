@@ -32,7 +32,7 @@ export class WaitingRoomService implements Resolve<any> {
      */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
         return new Promise<void>((resolve, reject) => {
-            Promise.all([this.getWatingRoom()]).then(() => {
+            Promise.all([]).then(() => {
                 resolve();
             }, reject);
         });
@@ -40,7 +40,7 @@ export class WaitingRoomService implements Resolve<any> {
     /**
      * Get rows
      */
-    getWatingRoom(): Promise<any[]> {
+    getWatingRoom1(): Promise<any[]> {
         let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
         return new Promise((resolve, reject) => {
             const headers = new HttpHeaders({
@@ -55,13 +55,31 @@ export class WaitingRoomService implements Resolve<any> {
             }, reject);
         });
     }
-    delete(id: any) {
+    getWatingRoom() {
+        let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+       return this._httpClient.get(`${environment.apiUrl}/Appointment/GetWettingRoom`, requestOptions)
+    }
+    ChangeAppointmentStatus(id: any, status: any) {
+        debugger;
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${this.currentUser.jwtToken}`
         });
         const requestOptions = { headers: headers };
-        return this._httpClient.delete<any>(`${environment.apiUrl}/Appointment/Delete/` + id, requestOptions);
+        return this._httpClient.get<any>(`${environment.apiUrl}/Appointment/ChangeAppointmentStatus/` + id + `/` + status, requestOptions);
     }
+    //delete(id: any) {
+    //    const headers = new HttpHeaders({
+    //        'Content-Type': 'application/json',
+    //        'Authorization': `Bearer ${this.currentUser.jwtToken}`
+    //    });
+    //    const requestOptions = { headers: headers };
+    //    return this._httpClient.delete<any>(`${environment.apiUrl}/Appointment/Delete/` + id, requestOptions);
+    //}
 }
 

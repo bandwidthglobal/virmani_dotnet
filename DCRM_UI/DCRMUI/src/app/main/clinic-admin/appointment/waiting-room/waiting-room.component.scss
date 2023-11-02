@@ -69,3 +69,32 @@ label {
     // box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
+btn-light.disabled, .btn-light:disabled {
+    color: #2a2e30;
+    background-color: #c5b6b6!important;
+    border-color: #f6f6f6;
+}
+.backgorundcolor {
+    background-color: #ffb22b !important;
+}
+.badge-primary-soft {
+    background-color: rgba(40,110,251,.1);
+    color: #286efb;
+    width:100px;
+}
+.badge {
+    display: inline-block !important;
+    font-size: 13px;
+    padding: 4px 12px;
+    line-height: 1.6;
+}
+
+.badge {
+    font-weight: 500;
+}
+.brd-20 {
+    border-radius: 20px !important;
+}
+.mt-5px {
+    margin-top: 5px
+}

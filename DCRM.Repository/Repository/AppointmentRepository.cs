@@ -58,5 +58,16 @@ namespace DCRM.Repository.Repository
                 _contex.SaveChanges();
             }
         }
+
+        public void ChangeAppointmentStatus(long id,int status)
+        {
+            var appointment = _contex.Appointments.FirstOrDefault(x => x.Id == id);
+            if (appointment != null)
+            {
+                appointment.Appointment_Status = status;
+                _contex.Appointments.Update(appointment);
+                _contex.SaveChanges();
+            }
+        }
     }
 }

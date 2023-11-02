@@ -130,5 +130,12 @@ namespace DCRM.Api.Controllers
             var user = Request.HttpContext.Items["User"] as User;
             return _appointmentService.GetWaitingRoom(user.Id);
         }
+
+        [HttpGet("ChangeAppointmentStatus/{id}/{status}")]
+        public IActionResult ChangeAppointmentStatus(long id, int status)
+        {
+            _appointmentService.ChangeAppointmentStatus(id, status);
+            return Ok();
+        }
     }
 }

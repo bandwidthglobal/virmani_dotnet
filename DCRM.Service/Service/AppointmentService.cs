@@ -404,30 +404,34 @@ namespace DCRM.Service.Service
                     appointmentChair.Doctor_Id = chair.Doctor_Id;
                     var startTime = Convert.ToDateTime(time);
                     var timr = startTime.ToString().Split(" ")[1];
-                    Appointment? appointment = _appointmentRepository.GetAll().Where(x => x.Chair == chair.Id.ToString() && x.Start_Time.ToString() == timr).FirstOrDefault();
+                    TimeSpan duration = TimeSpan.Parse(timr);
+                    Appointment appointment = new Appointment();
+
+                   var appointmentList = _appointmentRepository.GetAll().Where(x => x.Chair == chair.Id.ToString() && x.Start_Time == duration).ToList();
 
                     if (appointment != null)
                     {
 
+                       
                         if (!string.IsNullOrEmpty(parameters.ScheduleDate))
                         {
-
                             var date = Convert.ToDateTime(parameters.ScheduleDate);
-                            appointment = _appointmentRepository.GetAll().Where(x => x.Chair == chair.Id.ToString() && x.Date == date && x.Start_Time.ToString() == timr).FirstOrDefault();
+                            appointment = appointmentList.Where(x => x.Date == date ).FirstOrDefault();
                         }
-                        if (!string.IsNullOrEmpty(parameters.DoctorIds) && !string.IsNullOrEmpty(parameters.ScheduleDate))
-                        {
-                            appointment = _appointmentRepository.GetAll().Where(x => x.Chair == chair.Id.ToString() && x.Date.ToString() == parameters.ScheduleDate && x.Start_Time.ToString() == timr && x.Doctor_Id.ToString() == parameters.DoctorIds).FirstOrDefault();
-                        }
-                        if (!string.IsNullOrEmpty(parameters.DoctorIds) && string.IsNullOrEmpty(parameters.ScheduleDate))
-                        {
-                            appointment = _appointmentRepository.GetAll().Where(x => x.Chair == chair.Id.ToString() && x.Start_Time.ToString() == timr && x.Doctor_Id.ToString() == parameters.DoctorIds).FirstOrDefault();
-                        }
+                        //if (!string.IsNullOrEmpty(parameters.DoctorIds) && !string.IsNullOrEmpty(parameters.ScheduleDate))
+                        //{
+                        //    appointment = appointmentList.Where(x => x.Date.ToString() == parameters.ScheduleDate  && x.Doctor_Id.ToString() == parameters.DoctorIds).FirstOrDefault();
+                        //}
+                        //if (!string.IsNullOrEmpty(parameters.DoctorIds) && string.IsNullOrEmpty(parameters.ScheduleDate))
+                        //{
+                        //    appointment = appointmentList.Where(x => x.Chair == chair.Id.ToString() && x.Doctor_Id.ToString() == parameters.DoctorIds).FirstOrDefault();
+                        //}
                     }
                     AppointmentDto appointmentDto = new AppointmentDto();
                     if (appointment != null)
                     {
                         appointmentDto.Id = appointment.Id;
+                        appointmentDto.Appointment_Status = appointment.Appointment_Status;
                         var doctor = _repository.Get(appointment.Doctor_Id);
                         if (doctor != null)
                         {
@@ -525,7 +529,7 @@ namespace DCRM.Service.Service
         {
             List<AppointmentDto> appointments=new List<AppointmentDto>();
             var todayDate = System.DateTime.Now.Date;
-            var apointmentList = _appointmentRepository.GetAll().Where(x => x.Appointment_Status<2 && x.User_Id== userId).ToList();
+            var apointmentList = _appointmentRepository.GetAll().Where(x => x.Appointment_Status==4 || x.Appointment_Status == 5 && x.User_Id== userId).ToList();
             foreach (var apointment in apointmentList)
             {
                 AppointmentDto appointmentDto = new AppointmentDto();
@@ -542,6 +546,7 @@ namespace DCRM.Service.Service
                     appointmentDto.Patient_Name = patient.Name;
                 }
                 appointmentDto.Date = apointment.Date;
+                appointmentDto.Appointment_Status = apointment.Appointment_Status;
                 appointmentDto.Slot_Time = apointment.Slot_Time;
                 appointmentDto.Start_Time = apointment.Start_Time;
                 appointmentDto.End_Time = apointment.End_Time;
@@ -550,9 +555,14 @@ namespace DCRM.Service.Service
                 appointmentDto.Serial_Id = apointment.Serial_Id;
                 appointments.Add(appointmentDto);
             }
-            appointments = appointments.Where(x => x.Date == todayDate && x.Start_Time> DateTime.Now.TimeOfDay).ToList();
+            //appointments = appointments.Where(x => x.Date == todayDate && x.Start_Time> DateTime.Now.TimeOfDay).ToList();
             //TimeSpan TodayTime = DateTime.Now.TimeOfDay.CompareTo();
             return appointments;
+        }
+
+        public void ChangeAppointmentStatus(long id,int status)
+        {
+            _appointmentRepository.ChangeAppointmentStatus(id, status);
         }
     }
 }

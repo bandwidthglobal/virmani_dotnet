@@ -13,3 +13,8 @@
 .pd-25 {
     padding: 25px !important;
 }
+btn-light.disabled, .btn-light:disabled {
+    color: #2a2e30;
+    background-color: #c5b6b6;
+    border-color: #f6f6f6;
+}

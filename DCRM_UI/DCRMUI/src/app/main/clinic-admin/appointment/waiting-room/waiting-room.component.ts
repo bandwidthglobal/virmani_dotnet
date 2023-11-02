@@ -37,6 +37,7 @@ export class WaitingRoomComponent implements OnInit, OnDestroy {
     public previousStatusFilter = '';
     display: string = "none";
     isOpen: boolean = true;
+    @ViewChild('myTable') table1;
     // Private
     //private _formBuilder: any;
 
@@ -78,6 +79,7 @@ export class WaitingRoomComponent implements OnInit, OnDestroy {
         this.rows = temp;
         // Whenever the filter changes, always go back to the first page
         this.table.offset = 0;
+        this.table1.offset = 0;
     }
 
     /**
@@ -113,26 +115,56 @@ export class WaitingRoomComponent implements OnInit, OnDestroy {
     }
     getData() {
 
-        this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
-            // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)
-            if (config.layout.animation === 'zoomIn') {
-                setTimeout(() => {
+        this._appointmentListService.getWatingRoom().subscribe(response => {
+            this.data = response;
+            this.rows = this.data;
+            this.tempData = this.rows;
+            this.tempFilterData = this.rows;
+            this.table.offset = 0;
+            debugger;
+        });
 
-                    this._appointmentListService.onAppointmentListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-                        this.data = response;
-                        this.rows = this.data;
-                        this.tempData = this.rows;
-                        this.tempFilterData = this.rows;
-                    });
-                }, 450);
-            } else {
-                this._appointmentListService.onAppointmentListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-                    this.data = response;
-                    this.rows = this.data;
-                    this.tempData = this.rows;
-                    this.tempFilterData = this.rows;
-                });
+        //this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
+        //    // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)
+        //    if (config.layout.animation === 'zoomIn') {
+        //        setTimeout(() => {
+
+        //            this._appointmentListService.onAppointmentListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+        //                this.data = response;
+        //                this.rows = this.data;
+        //                this.tempData = this.rows;
+        //                this.tempFilterData = this.rows;
+        //            });
+        //        }, 450);
+        //    } else {
+        //        this._appointmentListService.onAppointmentListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+        //            this.data = response;
+        //            this.rows = this.data;
+        //            this.tempData = this.rows;
+        //            this.tempFilterData = this.rows;
+        //        });
+        //    }
+        //});
+    }
+    ngAfterViewInit() {
+        this.table.bodyComponent.updatePage = function (direction: string): void {
+            debugger;
+            let offset = this.indexes.first / this.pageSize;
+
+            if (direction === 'up') {
+                offset = Math.ceil(offset);
+            } else if (direction === 'down') {
+                offset = Math.floor(offset);
             }
+
+            if (direction !== undefined && !isNaN(offset)) {
+                this.page.emit({ offset });
+            }
+        }
+    }
+    changeAppointmentStatus(evnt, id) {
+        this._appointmentListService.ChangeAppointmentStatus(id, evnt.target.value).subscribe(res => {
+            this.getData();
         });
     }
     ngOnDestroy(): void {
