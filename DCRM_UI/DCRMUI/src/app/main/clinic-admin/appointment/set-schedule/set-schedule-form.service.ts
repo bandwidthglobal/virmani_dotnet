@@ -48,16 +48,25 @@ export class  SetSscheduleFormService implements Resolve<any> {
             }, reject);
         });
     }
-    //getBrandlist(): Promise<any[]> {
-    //    const url = `${environment.apiUrl}/Drug/GetMedicineBrands`;
-    //    return new Promise((resolve, reject) => {
-    //        this._httpClient.get(url).subscribe((response: any) => {
-    //            this.medicinBrands = response;
-    //            this.onMedicinBrandChanged.next(this.medicinBrands);
-    //            resolve(this.medicinBrands);
-    //        }, reject);
-    //    });
-    //}
+    getSchedule() {
+        let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.get(`${environment.apiUrl}/Appointment/GetTimes`, requestOptions)
+    }
+    getBrandlist(): Promise<any[]> {
+        const url = `${environment.apiUrl}/Drug/GetMedicineBrands`;
+        return new Promise((resolve, reject) => {
+            this._httpClient.get(url).subscribe((response: any) => {
+                this.medicinBrands = response;
+                this.onMedicinBrandChanged.next(this.medicinBrands);
+                resolve(this.medicinBrands);
+            }, reject);
+        });
+    }
     //getCategoryList(): Promise<any[]> {
     //    const url = `${environment.apiUrl}/Drug/GetMedicineCategoris`;
     //    return new Promise((resolve, reject) => {

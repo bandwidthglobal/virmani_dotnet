@@ -43,7 +43,7 @@ public class Appointment
 
     public int Serial_Id { get; set; }
 
-    public int Status { get; set; }
+    public int Status { get; set; } 
 
 
     public int Appointment_Status { get; set; }

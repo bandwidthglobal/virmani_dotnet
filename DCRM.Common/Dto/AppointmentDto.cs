@@ -63,4 +63,19 @@ namespace DCRM.Common.Dto
 
 
     }
+
+    public class Calendar
+    {
+        public long id { get; set; }
+        public string title { get; set; }
+        public string start { get; set; }
+        public string end { get; set; }
+        //      id? = undefined;
+        //url: string;
+        //title: string = '';
+        //start: string;
+        //end: string;
+        //allDay = false;
+        //calendar: '';
+    }
 }

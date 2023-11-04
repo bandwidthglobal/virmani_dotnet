@@ -36,9 +36,14 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     selectMirror: true,
     dayMaxEvents: 2,
     navLinks: true,
-    eventClick: this.handleUpdateEventClick.bind(this),
-    eventClassNames: this.eventClass.bind(this),
-    select: this.handleDateSelect.bind(this)
+   dateClick: this.handleDateClick.bind(this),
+   eventClick: this.handleUpdateEventClick.bind(this),
+    //eventClassNames: this.eventClass.bind(this),
+    select: this.handleDateSelect.bind(this),
+      slotMinWidth: 1000,
+      //contentHeight: 1000,
+      //height: 1000,
+      
   };
 
   // Private
@@ -85,9 +90,13 @@ export class CalendarComponent implements OnInit, AfterViewInit {
    *
    * @param eventRef
    */
-  handleUpdateEventClick(eventRef: EventClickArg) {
-    this._coreSidebarService.getSidebarRegistry('calendar-event-sidebar').toggleOpen();
-    this._calendarService.updateCurrentEvent(eventRef);
+    handleUpdateEventClick(eventRef: EventClickArg) {
+        if (eventRef.event.id!=undefined) {
+            
+        }
+       
+    //this._coreSidebarService.getSidebarRegistry('calendar-event-sidebar').toggleOpen();
+    //this._calendarService.updateCurrentEvent(eventRef);
   }
 
   /**
@@ -106,11 +115,16 @@ export class CalendarComponent implements OnInit, AfterViewInit {
    */
   handleDateSelect(eventRef) {
     const newEvent = new EventRef();
-    newEvent.start = eventRef.start;
+      newEvent.start = eventRef.start;
+      newEvent.end = eventRef.end;
+      debugger;
     this._coreSidebarService.getSidebarRegistry('calendar-event-sidebar').toggleOpen();
     this._calendarService.onCurrentEventChange.next(newEvent);
   }
-
+    handleDateClick(eventRef) {
+        //alert(eventRef.start);
+        //debugger;
+    }
   // Lifecycle Hooks
   // -----------------------------------------------------------------------------------------------------
 

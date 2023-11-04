@@ -12,11 +12,13 @@ import { AppointmentEditService } from '../appointment-edit/appointment-edit.ser
 import { WaitingRoomService } from '../waiting-room/waiting-room.service';
 import { formatDate } from '@angular/common';
 import { IAppointmentFormModel } from '../model/appointment-from';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @Component({
     selector: 'app-chair-view',
     templateUrl: './chair-view.component.html',
     styleUrls: ['./chair-view.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    
 })
 export class AppointmentChairViewComponent implements OnInit, OnDestroy {
     // Public
@@ -39,8 +41,10 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
     public previousStatusFilter = '';
     selectedItems = [];
     dropdownSettings = {};
-    chairList: any;
-    dropdownList = []
+    chairList: [];
+    dropdownList = [];
+    appointmentScheduleTimes: any;
+    doctorList: [];
     FormInput: any;
     isAppontmentClose = false;
     addParam = { start_Time: '', date: '', chair:'' }
@@ -111,6 +115,7 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
                 obj.item_text = this.data.chairList[i].name;
                 this.dropdownList.push(obj)
             }
+            
             this.tempData = this.rows;
             this.tempFilterData = this.rows;
             debugger;
@@ -120,25 +125,33 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
     searchData() {
         this.loading = true;
         var param = this.searchParam;
+        debugger;
         this._chairViewService.getAppointmentChairViewSearchlist(this.searchParam).subscribe(response => {
             this.data = response;
             this.rows = this.data;
-            this.chairList = this.data.chairList;
+            if (this.chairList==undefined) {
+                this.chairList = this.data.chairList;
+            }
+            
             for (var i = 0; i < this.data.chairList.length; i++) {
                 let obj: any = {}
                 obj.item_id = this.data.chairList[i].id;
                 obj.item_text = this.data.chairList[i].name;
                 this.dropdownList.push(obj)
             }
+            if (this.doctorList==undefined) {
+                this.doctorList = this.data.doctorList;
+            }
+           
+            this.appointmentScheduleTimes = this.data.appointmentScheduleTimes
             this.tempData = this.rows;
+
             this.tempFilterData = this.rows;
-            debugger;
             this.loading = false;
         });
     }
     appointmentView(appointmentId, slatTime,chair,) {
         this.isAppontmentClose = false;
-        
         //if (this.searchParam.scheduleDate != '') {
         //    const appointmentDate = formatDate(this.searchParam.scheduleDate + " " + slatTime, 'yyyy-MM-dd hh:mm:ss', 'en-US');
         //    const todayDate = formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss', 'en-US');
@@ -180,8 +193,10 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
 
     }
     redirect(event) {
-        
-        window.location.reload()
+        this.close();
+        this.searchData();
+
+        //window.location.reload()
         //console.log('> redirect ---> ', event);
         //this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/appointment/add';
         //this.router.navigateByUrl(this.returnUrl);
@@ -202,23 +217,23 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
     }
     
     dateChange(evt) {
-        alert(evt.target.value);
         var date = evt.target.value;
         this.Date = date;
-        
         this.searchData()
     }
-    searchChair() {
-
+    searchAppointment() {
+        this.searchData();
     }
     close(): void {
-        window.location.reload();
-        //this.workdoneElm.classList.remove('show');
-        //this.workdoneElm.classList.remove('show');
-        //setTimeout(() => {
-        //    this.workdoneElm.style.width = '0';
-        //    this.workdoneElm.style.display = 'none';
-        //}, 75);
+        //window.location.reload();
+        this.workdoneElm.classList.remove('show');
+        this.workdoneElm.classList.remove('show');
+        this.isEdit = false;
+        this.isAdd = false;
+        setTimeout(() => {
+            this.workdoneElm.style.width = '0';
+            this.workdoneElm.style.display = 'none';
+        }, 75);
     }
     changeAppointmentStatus(evnt, id) {
         

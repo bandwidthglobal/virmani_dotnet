@@ -1,14 +1,12 @@
 ﻿
-<div *ngIf="loading==true" style="position: absolute; background-color: rgba(255, 255, 255, 0.6); width: 100%; height: 100%; z-index: 100000">
-    <div style="position: absolute; top: 20%; left: 50%; transform: translate(-50%, -50%);">
-        Loading...
-    </div>
-</div>
+
+
 <div class="content-wrapper container-xxl p-0">
     <div class="content-body">
         <section class="invoice-add-wrapper">
             <div class="row invoice-add">
                 <!-- Invoice Add Left starts -->
+              
                 <div class="col-xl-12 col-md-8 col-12">
                     <div class="card invoice-preview-card">
                         <!-- Header starts -->
@@ -54,7 +52,7 @@
                                                     <span class="multiselect-native-select">
                                                         <select name="doctor_id[]" id="doctor_id_top" tabindex="2" [(ngModel)]="searchParam.doctorIds" class="select select-initialized form-control">
                                                             <option value="">None Selected</option>
-                                                            <option *ngFor="let doctor of rows.doctorList" value="{{doctor.id}}">{{doctor.name}}</option>
+                                                            <option *ngFor="let doctor of doctorList" value="{{doctor.id}}">{{doctor.name}}</option>
                                                         </select>
 
                                                     </span>
@@ -69,7 +67,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="col-md-3 d-inline-block">
-                                                    <button type="submit" class="btn btn-primary px-40 mt-0" (click)="searchChair()">Filter</button>
+                                                    <button type="submit" class="btn btn-primary px-40 mt-0" (click)="searchAppointment()">Filter</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -77,22 +75,26 @@
                                 </div>
                                 <div class="row" id="printDiv">
                                     <div class="col-md-12 calender_filter p-2">
-                                        
-                                        <table class="table1 table-bordered table-hover" cellspacing="0" style="overflow:scroll;max-width:1000px">
+                                        <div *ngIf="loading==true" class="table-loading">
+                                            <div class="table-loading-text">
+                                                Loading...
+                                            </div>
+                                        </div>
+                                        <table class="table1 table-bordered table-hover" cellspacing="0" style="overflow:scroll;width:100%">
                                             <thead>
-                                                <tr class="success table-info">
-                                                    <th width="10%">Slot Time</th>
+                                                <tr class="table-header">
+                                                    <th width="10%" style="padding-left:5px;">Slot Time</th>
                                                     <th width="20%" *ngFor="let chair of chairList">{{chair.name}}</th>
-                                                </tr>
+                                                </tr> 
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let schedule of rows.appointmentScheduleTimes">
-                                                    <td width="20%"><strong>{{schedule.slatTime}}</strong></td>
+                                                <tr *ngFor="let schedule of appointmentScheduleTimes">
+                                                    <td width="20%" style="padding-left: 5px;"><strong>{{schedule.slatTime}}</strong></td>
                                                     <td width="20%" *ngFor=" let chair of schedule.chairList">
                                                         <p *ngIf="chair.appointmentDetails==null" (click)="appointmentView(0,schedule.slatTime,chair.id);">
                                                             <a href="javascript://">Allot</a>
                                                         </p>
-                                                        <p style="background-color: #0094ff;padding:5px;" *ngIf="chair.appointmentDetails!=null">
+                                                        <p class="appointment-background pd-5px"  *ngIf="chair.appointmentDetails!=null">
 
                                                             <input type="checkbox" name="name" checked="checked" (change)="changeAppointmentStatus($event,chair.appointmentDetails.id)" value="0" *ngIf="chair.appointmentDetails.appointment_Status==4;else loggedOut" />
 
@@ -100,8 +102,8 @@
                                                                 <input type="checkbox" name="name" value="4" (change)="changeAppointmentStatus($event,chair.appointmentDetails.id)" />
                                                             </ng-template>
 
-                                                            
-                                                            <a href="javascript://" (click)="appointmentView(chair.appointmentDetails.id,schedule.slatTime,chair.id);" style="color: white;">
+
+                                                            <a href="javascript://" (click)="appointmentView(chair.appointmentDetails.id,schedule.slatTime,chair.id);" class="text-white">
                                                                 <p>{{chair.appointmentDetails.patient_Name}}</p>
                                                                 <!--<p>{{chair.appointmentDetails.patient.address}}</p>-->
                                                                 <p><strong>Doctor:</strong> {{chair.appointmentDetails.doctor_Name}}</p>

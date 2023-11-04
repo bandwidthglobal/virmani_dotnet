@@ -18,3 +18,31 @@ btn-light.disabled, .btn-light:disabled {
     background-color: #c5b6b6;
     border-color: #f6f6f6;
 }
+.table-loading {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 100%;
+    height: 100%;
+    z-index: 100000
+}
+.table-loading-text {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.table-header {
+    background-color: #f3f2f7;
+    text-transform: uppercase;
+    height: 40px !important;
+    border-top: 1px solid #ebe9f1;
+}
+.text-white{
+    color:#ffffff;
+}
+.appointment-background {
+    background-color: green;
+}
+.pd-5px {
+    padding: 5px;
+}

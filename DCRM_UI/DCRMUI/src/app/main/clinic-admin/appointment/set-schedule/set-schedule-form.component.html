@@ -28,7 +28,7 @@
 
                                             <div class="form-group col-md-12 mb-0">
                                                 <div class="custom-control custom-switch mb-1 pt-10">
-                                                    <input type="checkbox" value="1" name="day_0" class="custom-control-input day_option" id="switch-1">
+                                                    <input type="checkbox" value="1" name="day_0" (change)="onChange($event)" class="custom-control-input day_option" id="switch-1">
                                                     <label class="custom-control-label" for="switch-1">Sunday</label>
                                                 </div>
                                             </div>
@@ -36,8 +36,8 @@
 
                                             <div class="houritem_0 col-md-12"></div>
 
-                                            <!--                  <div class="form-group col-sm-12 mt-2 hideable_1" style="display: none;">
-                                              <a href="#" data-id="0" class="add_time_row"><i class="fa fa-plus-circle"></i> Add new time</a>
+                                            <!--<div class="form-group col-sm-12 mt-2 hideable_1" style="display: none;">
+                                                <a href="#" data-id="0" class="add_time_row"><i class="fa fa-plus-circle"></i> Add new time</a>
                                             </div>-->
 
                                             <div class="day_highliter"></div>
@@ -45,24 +45,24 @@
                                         </div>
 
 
-
                                         <div class="item-rows w-100 mb-20">
 
                                             <div class="form-group col-md-12 mb-0">
                                                 <div class="custom-control custom-switch mb-1 pt-10">
-                                                    <input type="checkbox" value="2" name="day_1" class="custom-control-input day_option" id="switch-2" checked="">
+                                                    <input type="checkbox" value="2" name="day_1" (change)="onChange($event)" class="custom-control-input day_option" id="switch-2" checked="">
                                                     <label class="custom-control-label" for="switch-2">Monday</label>
                                                 </div>
                                             </div>
 
-                                            <div class="hour-item col-md-12 hideable_2" id="row_77">
+                                            <div class="hour-item col-md-12 hideable_2" *ngIf="hideable_2==true">
                                                 <div class="row">
                                                     <div class="col-sm-5 pr-0 mb-2">
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
-                                                            <input type="time" class="form-control timepicker" name="start_time_1[]" value="09:00 AM" placeholder="Start time" autocomplete="off">
+
+                                                            <input type="time" class="form-control timepicker" min="09:00" max="18:00" value="{{date2.start}}" placeholder="Start time" autocomplete="off">
                                                         </div>
                                                     </div>
 
@@ -71,7 +71,7 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
-                                                            <input type="time" class="form-control timepicker" name="end_time_1[]" value="05:30 PM" placeholder="End time" autocomplete="off">
+                                                            <input type="time" class="form-control timepicker" name="end_time_1[]" value="{{date2.end}}" placeholder="End time" autocomplete="off">
                                                         </div>
                                                     </div>
 
@@ -95,19 +95,20 @@
 
                                             <div class="form-group col-md-12 mb-0">
                                                 <div class="custom-control custom-switch mb-1 pt-10">
-                                                    <input type="checkbox" value="3" name="day_2" class="custom-control-input day_option" id="switch-3" checked="">
+                                                    <input type="checkbox" value="3" name="day_2" (change)="onChange($event)" class="custom-control-input day_option" id="switch-3" checked="">
                                                     <label class="custom-control-label" for="switch-3">Tuesday</label>
                                                 </div>
                                             </div>
 
-                                            <div class="hour-item col-md-12 hideable_3" id="row_78">
+                                            <div class="hour-item col-md-12 hideable_3" *ngIf="hideable_3==true" id="row_78">
                                                 <div class="row">
                                                     <div class="col-sm-5 pr-0 mb-2">
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
-                                                            <input type="time" class="form-control timepicker" name="start_time_2[]" value="09:00 AM" placeholder="Start time" autocomplete="off">
+
+                                                            <input type="time" class="form-control timepicker" min="09:00" max="18:00" value="{{date3.start}}" placeholder="Start time" autocomplete="off">
                                                         </div>
                                                     </div>
 
@@ -116,11 +117,11 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
-                                                            <input type="time" class="form-control timepicker" name="end_time_2[]" value="11:45 PM" placeholder="End time" autocomplete="off">
+                                                            <input type="time" class="form-control timepicker" name="end_time_1[]" value="{{date3.end}}" placeholder="End time" autocomplete="off">
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-sm-2 mb-2"><a data-id="78" href="https://virmani.robotone.in/admin/appointment/delete_time/78" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>
+                                                    <div class="col-sm-2 mb-2"><a data-id="77" href="https://virmani.robotone.in/admin/appointment/delete_time/77" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>
                                                 </div>
                                             </div>
 
@@ -140,19 +141,20 @@
 
                                             <div class="form-group col-md-12 mb-0">
                                                 <div class="custom-control custom-switch mb-1 pt-10">
-                                                    <input type="checkbox" value="4" name="day_3" class="custom-control-input day_option" id="switch-4" checked="">
+                                                    <input type="checkbox" value="4" name="day_3" (change)="onChange($event)" class="custom-control-input day_option" id="switch-4" checked="">
                                                     <label class="custom-control-label" for="switch-4">Wednesday</label>
                                                 </div>
                                             </div>
 
-                                            <div class="hour-item col-md-12 hideable_4" id="row_79">
+                                            <div class="hour-item col-md-12 hideable_4" *ngIf="hideable_4==true" id="row_79">
                                                 <div class="row">
                                                     <div class="col-sm-5 pr-0 mb-2">
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
-                                                            <input type="time" class="form-control timepicker" name="start_time_3[]" value="09:00 AM" placeholder="Start time" autocomplete="off">
+
+                                                            <input type="time" class="form-control timepicker" min="09:00" max="18:00" value="{{date4.start}}" placeholder="Start time" autocomplete="off">
                                                         </div>
                                                     </div>
 
@@ -161,11 +163,11 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
-                                                            <input type="time" class="form-control timepicker" name="end_time_3[]" value="05:45 PM" placeholder="End time" autocomplete="off">
+                                                            <input type="time" class="form-control timepicker" name="end_time_1[]" value="{{date4.end}}" placeholder="End time" autocomplete="off">
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-sm-2 mb-2"><a data-id="79" href="https://virmani.robotone.in/admin/appointment/delete_time/79" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>
+                                                    <div class="col-sm-2 mb-2"><a data-id="77" href="https://virmani.robotone.in/admin/appointment/delete_time/77" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>
                                                 </div>
                                             </div>
 
@@ -185,19 +187,20 @@
 
                                             <div class="form-group col-md-12 mb-0">
                                                 <div class="custom-control custom-switch mb-1 pt-10">
-                                                    <input type="checkbox" value="5" name="day_4" class="custom-control-input day_option" id="switch-5" checked="">
+                                                    <input type="checkbox" value="5" name="day_4" (change)="onChange($event)" class="custom-control-input day_option" id="switch-5" checked="">
                                                     <label class="custom-control-label" for="switch-5">Thursday</label>
                                                 </div>
                                             </div>
 
-                                            <div class="hour-item col-md-12 hideable_5" id="row_80">
+                                            <div class="hour-item col-md-12 hideable_5" *ngIf="hideable_5==true" id="row_80">
                                                 <div class="row">
                                                     <div class="col-sm-5 pr-0 mb-2">
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
-                                                            <input type="time" class="form-control timepicker" name="start_time_4[]" value="09:00 AM" placeholder="Start time" autocomplete="off">
+
+                                                            <input type="time" class="form-control timepicker" min="09:00" max="18:00" value="{{date5.start}}" placeholder="Start time" autocomplete="off">
                                                         </div>
                                                     </div>
 
@@ -206,11 +209,11 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
-                                                            <input type="time" class="form-control timepicker" name="end_time_4[]" value="05:30 PM" placeholder="End time" autocomplete="off">
+                                                            <input type="time" class="form-control timepicker" name="end_time_1[]" value="{{date5.end}}" placeholder="End time" autocomplete="off">
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-sm-2 mb-2"><a data-id="80" href="https://virmani.robotone.in/admin/appointment/delete_time/80" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>
+                                                    <div class="col-sm-2 mb-2"><a data-id="77" href="https://virmani.robotone.in/admin/appointment/delete_time/77" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>
                                                 </div>
                                             </div>
 
@@ -230,19 +233,20 @@
 
                                             <div class="form-group col-md-12 mb-0">
                                                 <div class="custom-control custom-switch mb-1 pt-10">
-                                                    <input type="checkbox" value="6" name="day_5" class="custom-control-input day_option" id="switch-6" checked="">
+                                                    <input type="checkbox" value="6" name="day_5" (change)="onChange($event)" class="custom-control-input day_option" id="switch-6" checked="">
                                                     <label class="custom-control-label" for="switch-6">Friday</label>
                                                 </div>
                                             </div>
 
-                                            <div class="hour-item col-md-12 hideable_6" id="row_81">
+                                            <div class="hour-item col-md-12 hideable_6" *ngIf="hideable_6==true" id="row_81">
                                                 <div class="row">
                                                     <div class="col-sm-5 pr-0 mb-2">
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
-                                                            <input type="time" class="form-control timepicker" name="start_time_5[]" value="07:00 AM" placeholder="Start time" autocomplete="off">
+
+                                                            <input type="time" class="form-control timepicker" min="09:00" max="18:00" value="{{date6.start}}" placeholder="Start time" autocomplete="off">
                                                         </div>
                                                     </div>
 
@@ -251,11 +255,11 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
-                                                            <input type="time" class="form-control timepicker" name="end_time_5[]" value="09:00 PM" placeholder="End time" autocomplete="off">
+                                                            <input type="time" class="form-control timepicker" name="end_time_1[]" value="{{date6.end}}" placeholder="End time" autocomplete="off">
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-sm-2 mb-2"><a data-id="81" href="https://virmani.robotone.in/admin/appointment/delete_time/81" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>
+                                                    <div class="col-sm-2 mb-2"><a data-id="77" href="https://virmani.robotone.in/admin/appointment/delete_time/77" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>
                                                 </div>
                                             </div>
 
@@ -275,19 +279,20 @@
 
                                             <div class="form-group col-md-12 mb-0">
                                                 <div class="custom-control custom-switch  mb-1 pt-10">
-                                                    <input type="checkbox" value="7" name="day_6" class="custom-control-input day_option" id="switch-7" checked="">
+                                                    <input type="checkbox" value="7" name="day_6" (change)="onChange($event)" class="custom-control-input day_option" id="switch-7" checked="">
                                                     <label class="custom-control-label" for="switch-7">Saturday</label>
                                                 </div>
                                             </div>
 
-                                            <div class="hour-item col-md-12 hideable_7" id="row_82">
+                                            <div class="hour-item col-md-12 hideable_7" *ngIf="hideable_7==true" id="row_82">
                                                 <div class="row">
                                                     <div class="col-sm-5 pr-0 mb-2">
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
-                                                            <input type="time" class="form-control timepicker" name="start_time_6[]" value="09:00 AM" placeholder="Start time" autocomplete="off">
+
+                                                            <input type="time" class="form-control timepicker" min="09:00" max="18:00" value="{{date7.start}}" placeholder="Start time" autocomplete="off">
                                                         </div>
                                                     </div>
 
@@ -296,11 +301,11 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
-                                                            <input type="time" class="form-control timepicker" name="end_time_6[]" value="02:30 PM" placeholder="End time" autocomplete="off">
+                                                            <input type="time" class="form-control timepicker" name="end_time_1[]" value="{{date7.end}}" placeholder="End time" autocomplete="off">
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-sm-2 mb-2"><a data-id="82" href="https://virmani.robotone.in/admin/appointment/delete_time/82" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>
+                                                    <div class="col-sm-2 mb-2"><a data-id="77" href="https://virmani.robotone.in/admin/appointment/delete_time/77" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>
                                                 </div>
                                             </div>
 

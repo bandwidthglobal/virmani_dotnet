@@ -47,18 +47,19 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-       
         if (this.expectedProp != undefined) {
             this.FormInput.date = this.expectedProp.date == '' ? this._commonValidationService.dateFormat_Y_M_D(this.FormInput.date) : this.expectedProp.date;
             this.FormInput.start_Time = new Date("1901-01-01 " + this.expectedProp.start_Time).toTimeString().split(' ')[0];
             var endTime = new Date("1901-01-01 " + this.expectedProp.start_Time);
             this.FormInput.end_Time = endTime.getHours() + ":" + (endTime.getMinutes() + 15) + ":00";
-            this.FormInput.chair = this.expectedProp.chair;
+            this.FormInput.number_Of_Slot = "1";
+            this.FormInput.chair = this.expectedProp.chair.toString();
 
         }
         else {
             this.FormInput.date = this._commonValidationService.dateFormat_Y_M_D(this.FormInput.date);
         }
+        debugger;
         this.formData = new IAppointmentForm(this.FormInput);
         if (this.FormAction === 'add') {
             this.pageTitle = 'Add Appointment';
@@ -81,8 +82,12 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
         this._unsubscribeAll.complete();
     }
     changeAppointmentStatus(status, id, sift) {
-      
         this._waitingRoomService.ChangeAppointmentStatus(id.value, status).subscribe(res => {
+            this.loading = false;
+            this.callBackEvent.emit({
+                status: 'failure',
+                page: this.FormAction,
+            });
             this.router.navigate(["/admin/appointment/chairview"])
         });
     }
@@ -93,10 +98,9 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
             return;
         } else {
             const payload: any = this.formData.getRawValue();
-            // console.log('> saveForm ---> ', payload);
             this.loading = true;
+            debugger;
             this._appointmentFormService.save(payload, this.FormAction).pipe(catchError((error) => {
-                // console.log('> error ---> ', error);
                 this.loading = false;
                 this.error = error;
                 this.callBackEvent.emit({
@@ -106,7 +110,6 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
                 });
                 return '';
             })).subscribe((response) => {
-                // console.log('> save ---> ', response);
                 this.loading = false;
                 this.callBackEvent.emit({
                     status: 'failure',
@@ -115,5 +118,12 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
                 });
             });
         }
+    }
+
+    close() {
+        this.callBackEvent.emit({
+            status: 'failure',
+            page: this.FormAction,
+        });
     }
 };

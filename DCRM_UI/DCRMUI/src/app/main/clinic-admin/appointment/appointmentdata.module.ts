@@ -12,7 +12,7 @@ import { CoreCommonModule } from '@core/common.module';
 import { CoreDirectivesModule } from '@core/directives/directives';
 import { CorePipesModule } from '@core/pipes/pipes.module';
 import { CoreSidebarModule } from '@core/components';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AppointmentListComponent } from 'app/main/clinic-admin/appointment/appointment-list/appointment-list.component';
 import { AppointmentListService } from 'app/main/clinic-admin/appointment/appointment-list/appointment-list.service';
 
@@ -21,7 +21,7 @@ import { AppointmentAddService } from 'app/main/clinic-admin/appointment/appoint
 
 import { AppointmentEditComponent } from 'app/main/clinic-admin/appointment/appointment-edit/appointment-edit.component';
 import { AppointmentEditService } from 'app/main/clinic-admin/appointment/appointment-edit/appointment-edit.service';
-
+import { MatTableModule } from '@angular/material/table';
 import { AppointmentPreviewComponent } from 'app/main/clinic-admin/appointment/appointment-preview/appointment-preview.component';
 import { AppointmentPreviewService } from 'app/main/clinic-admin/appointment/appointment-preview/appointment-preview.service';
 import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
@@ -38,7 +38,14 @@ import { WaitingRoomService } from './waiting-room/waiting-room.service';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarService } from './calendar/calendar.service';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import { AppointmentChairFormComponent } from 'app/main/clinic-admin/appointment/chair-view/appointment-form/appointment-chair-form.component';
+//import {
+//    MatInputModule, MatPaginatorModule, MatProgressSpinnerModule,
+//    MatSortModule, MatTableModule
+//} from '@angular/material';
 // routing
 const routes: Routes = [
     {
@@ -159,7 +166,12 @@ const routes: Routes = [
         CoreSidebarModule,
         FullCalendarModule,
         SharedCommonModule,
-        MaskModule
+        MaskModule,
+        MatProgressSpinnerModule,
+        MatTableModule,
+        MatInputModule,
+        MatPaginatorModule,
+        MatSortModule
     ],
     providers: [AppointmentListService, AppointmentPreviewService, AppointmentEditService, AppointmentAddService,
         AppointmentChairViewService, SetSscheduleFormService, CalenderViewService, WaitingRoomService, CalendarService

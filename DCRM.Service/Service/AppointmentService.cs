@@ -91,7 +91,18 @@ namespace DCRM.Service.Service
                 appointmentDto.Patient_Id = appointment.Patient_Id;
                 if (appointmentDto.Patient_Id > 0)
                 {
+                    var patient= _patientRepository.Get(appointment.Patient_Id);
                     appointmentDto.Patient = _patientRepository.Get(appointment.Patient_Id);
+                    if (patient!=null)
+                    {
+                        appointmentDto.Patient_Name = appointmentDto.Patient.Name;
+                    }
+                   
+                }
+                var doctor = _repository.Get(appointment.Doctor_Id);
+                if (doctor!=null)
+                {
+                    appointmentDto.Doctor_Name = doctor.Name;
                 }
                 appointmentList.Add(appointmentDto);
             }
@@ -377,7 +388,7 @@ namespace DCRM.Service.Service
             #endregion
 
             #region Chair List
-            var chairList = _chairRepository.GetAll().Where(x => x.User_Id == parameters.UserId).ToList();
+            var chairList = _chairRepository.GetAll().Where(x => x.User_Id == parameters.UserId && x.Status==1).ToList();
             appointmentChairView.ChairList = chairList;
             if (!string.IsNullOrEmpty(parameters.ChairIds))
             {
@@ -411,21 +422,11 @@ namespace DCRM.Service.Service
 
                     if (appointment != null)
                     {
-
-                       
                         if (!string.IsNullOrEmpty(parameters.ScheduleDate))
                         {
                             var date = Convert.ToDateTime(parameters.ScheduleDate);
                             appointment = appointmentList.Where(x => x.Date == date ).FirstOrDefault();
                         }
-                        //if (!string.IsNullOrEmpty(parameters.DoctorIds) && !string.IsNullOrEmpty(parameters.ScheduleDate))
-                        //{
-                        //    appointment = appointmentList.Where(x => x.Date.ToString() == parameters.ScheduleDate  && x.Doctor_Id.ToString() == parameters.DoctorIds).FirstOrDefault();
-                        //}
-                        //if (!string.IsNullOrEmpty(parameters.DoctorIds) && string.IsNullOrEmpty(parameters.ScheduleDate))
-                        //{
-                        //    appointment = appointmentList.Where(x => x.Chair == chair.Id.ToString() && x.Doctor_Id.ToString() == parameters.DoctorIds).FirstOrDefault();
-                        //}
                     }
                     AppointmentDto appointmentDto = new AppointmentDto();
                     if (appointment != null)
@@ -449,6 +450,14 @@ namespace DCRM.Service.Service
 
                     appointmentChairList.Add(appointmentChair);
 
+                }
+                if (string.IsNullOrEmpty(parameters.DoctorIds))
+                {
+                    appointmentChairList = appointmentChairList.Where(x=>x.Doctor_Id.ToString().Contains(parameters.DoctorIds)).ToList();
+                }
+                if (string.IsNullOrEmpty(parameters.DoctorIds))
+                {
+                    appointmentChairList = appointmentChairList.Where(x => x.Doctor_Id.ToString().Contains(parameters.DoctorIds)).ToList();
                 }
                 appointmentChairView.ChairList = chairs;
                 appointmentScheduleTime.ChairList = appointmentChairList;

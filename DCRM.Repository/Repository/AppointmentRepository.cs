@@ -4,7 +4,7 @@ using DCRM.Common.Entity;
 using DCRM.Common.Request;
 using DCRM.Repository.Database;
 using DCRM.Repository.IRepository;
-
+using K4os.Hash.xxHash;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -35,17 +35,23 @@ namespace DCRM.Repository.Repository
         }
         public void Create(Appointment appointment)
         {
-             _contex.Appointments.Add(appointment);
+            var appointmentDetails = _contex.Appointments.Where(x => x.Date == appointment.Date);
+            int serialId = 0;
+            if (appointmentDetails.Any()) {
+                serialId = appointmentDetails.Max(x => x.Serial_Id);
+            }
+            appointment.Serial_Id = serialId + 1;
+            _contex.Appointments.Add(appointment);
             _contex.SaveChanges();
         }
 
-       
-       
+
+
         public void Update(Appointment request)
         {
             _contex.Update(request);
             _contex.SaveChanges();
-            
+
         }
 
         public void Delete(long id)
@@ -59,7 +65,7 @@ namespace DCRM.Repository.Repository
             }
         }
 
-        public void ChangeAppointmentStatus(long id,int status)
+        public void ChangeAppointmentStatus(long id, int status)
         {
             var appointment = _contex.Appointments.FirstOrDefault(x => x.Id == id);
             if (appointment != null)

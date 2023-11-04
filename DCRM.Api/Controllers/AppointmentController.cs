@@ -5,6 +5,7 @@ using DCRM.Service.IService;
 using DCRM.Service.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace DCRM.Api.Controllers
 {
@@ -31,6 +32,25 @@ namespace DCRM.Api.Controllers
             return appointments;
         }
 
+        [HttpGet("GetAppointmentCalendar")]
+        public List<Calendar> GetAppointmentCalendar()
+        {
+            var user = Request.HttpContext.Items["User"] as User;
+            var appointments = _appointmentService.GetAppointmentWithPatient(user.Id).OrderByDescending(x => x.Date).ToList();
+            List<Calendar> calendarList=new List<Calendar>();
+            foreach (var appointment in appointments)
+            {
+                Calendar calendar=new Calendar();
+                calendar.id=appointment.Id;
+                calendar.start = Convert.ToDateTime(appointment.Date.ToString().Split(" ")[0] + " " + appointment.Start_Time).ToString();
+                calendar.end = Convert.ToDateTime(appointment.Date.ToString().Split(" ")[0] + " " + appointment.End_Time).ToString();
+                calendar.title = appointment.Patient_Name + "/" + appointment.Doctor_Name;
+                calendarList.Add(calendar);
+
+            }
+            return calendarList;
+        }
+
         [HttpGet("Get/{id}")]
         public Appointment Get(int id)
         {
@@ -53,33 +73,19 @@ namespace DCRM.Api.Controllers
         }
 
         [HttpPost("Create")]
-        public async Task<IActionResult> Create(Appointment appointment)
+        public IActionResult Create(Appointment appointment)
         {
-            try
-            {
                 _appointmentService.Create(appointment);
                 return Ok();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
            
         }
 
         [HttpPost("Update")]
         public IActionResult Update(Appointment appointment)
         {
-            try
-            {
-                _appointmentService.Update(appointment);
-                return Ok(appointment);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-          
+            _appointmentService.Update(appointment);
+            return Ok(appointment);
+
         }
 
 

@@ -27,7 +27,11 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { ContentHeaderModule } from 'app/layout/components/content-header/content-header.module';
 import { LoadingModule } from 'ngx-loading';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-
+import { MatTableModule } from '@angular/material/table';
+//import {
+//    MatInputModule, MatPaginatorModule, MatProgressSpinnerModule,
+//    MatSortModule, MatTableModule
+//} from '@angular/material';
 const appRoutes: Routes = [
     
     //{
@@ -91,6 +95,7 @@ const appRoutes: Routes = [
         CardSnippetModule,
         LayoutModule,
         ContentHeaderModule,
+        MatTableModule,
         NgMultiSelectDropDownModule.forRoot()
     ],
     providers: [

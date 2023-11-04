@@ -21,18 +21,40 @@ export class SetSscheduleFormComponent implements OnInit, OnDestroy {
     public druFromData:any;
     public sidebarToggleRef = false;
     public paymentSidebarToggle = false;
-    public items = [{ itemId: '', itemName: '', itemQuantity: '', itemCost: '' }];
-    public invoiceSelect;
-    public invoiceSelected;
+    
     public drugForm: UntypedFormGroup;
     public loading = false;
     public submitted = false;
     public returnUrl: string;
     public error = '';
-    medicinBrands: any;
-    medicinCategories: any;
+    all_selected_values: string[] = [];
     isEdit = false;
     drugId = 0;
+    hideable_1 = true;
+    hideable_2 = true;
+    hideable_3 = true;
+    hideable_4 = true;
+    hideable_5 = true;
+    hideable_6 = true;
+    hideable_7 = true;
+    apiData: any;
+    date1: any = { start: '', end: '' }
+    date2 = { start: '', end: '' }
+    date3: any = { start: '', end: '' }
+    date4: any = { start: '', end: '' }
+    date5: any = { start: '', end: '' }
+    date6: any = { start: '', end: '' }
+    date7: any = { start: '', end: '' }
+    
+
+    //onChange(value: string): void {
+    //    if (this.all_selected_values.includes(value)) {
+    //        this.all_selected_values = this.all_selected_values.filter((item) => item !== value);
+    //    } else {
+    //        this.all_selected_values.push(value);
+    //    }
+    //    console.log(this.all_selected_values);
+    //}
     // Private
     private _unsubscribeAll: Subject<any>;
     //private _formBuilder: any;
@@ -46,7 +68,7 @@ export class SetSscheduleFormComponent implements OnInit, OnDestroy {
      */
     constructor(
         private router: Router,
-        private _drugFormService: SetSscheduleFormService, private _formBuilder: UntypedFormBuilder, private _route: ActivatedRoute, private _toastrService: ToastrService) {
+        private _setSscheduleFormService: SetSscheduleFormService, private _formBuilder: UntypedFormBuilder, private _route: ActivatedRoute, private _toastrService: ToastrService) {
         this._unsubscribeAll = new Subject();
     }
 
@@ -55,89 +77,74 @@ export class SetSscheduleFormComponent implements OnInit, OnDestroy {
      */
     ngOnInit(): void {
         const id = this._route.snapshot.paramMap.get('id');
-        //if (id != undefined && id != null) {
-        //    this.drugId = parseInt(id);
-        //}
-        //if (this.drugId > 0) {
-        //    this.isEdit = true;
-
-        //    this._drugFormService.onDrugChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-        //        this.drug = response;
-        //        this.base64Image = this.drug.medicine_Image;
-        //    });
-        //}
-        //this._drugFormService.onMedicinBrandChanged.subscribe(res => (this.medicinBrands = res));
-        //this._drugFormService.onMedicinCategoriesChanged.subscribe(res => (this.medicinCategories = res));
-        //this.drugForm = this._formBuilder.group({
-        //    medicinecompany: ['', Validators.required],
-        //    medicinetype: ['', Validators.required],
-        //    basicsalt: ['', Validators.required],
-        //    form: ['', Validators.required],
-        //    dosage: ['', Validators.required],
-        //    doseno: ['', Validators.required],
-        //    details: ['', Validators.required],
-        //    category: ['', Validators.required],
-        //    brand: ['', Validators.required],
-        //});
+        this._setSscheduleFormService.getSchedule().subscribe(res => {
+           
+            this.apiData = res;
+            for (let itme of this.apiData) {
+                if (itme.day_Id == 2) {
+                    this.hideable_2 = true;
+                    this.date2.start = itme.start.split(' ')[0];
+                    this.date2.end = itme.end.split(' ')[0];
+                }
+                if (itme.day_Id == 3) {
+                    this.hideable_3 = true;
+                    this.date3.start = itme.start.split(' ')[0];;
+                    this.date3.end = itme.end.split(' ')[0];;
+                }
+                if (itme.day_Id == 4) {
+                    this.hideable_4 = true;
+                    this.date4.start = itme.start.split(' ')[0];;
+                    this.date4.end = itme.end.split(' ')[0];;
+                }
+                if (itme.day_Id == 5) {
+                    this.hideable_5 = true;
+                    this.date5.start = itme.start.split(' ')[0];;
+                    this.date5.end = itme.end.split(' ')[0];;
+                }
+                if (itme.day_Id == 6) {
+                    this.hideable_6 = true;
+                    this.date6.start = itme.start.split(' ')[0];;
+                    this.date6.end = itme.end.split(' ')[0];;
+                }
+                if (itme.day_Id == 7) {
+                    this.hideable_7 = true;
+                    this.date7.start = itme.start.split(' ')[0];;
+                    this.date7.end = itme.end.split(' ')[0];;
+                }
+            }
+        })
     }
-    //files: any;
-    //base64Image: string | ArrayBuffer | null = null;
-    //// imagePreviewUrl: string | ArrayBuffer | null = null;
-    //convertToBase64(event: any) {
-    //    const file = event.target.files[0];
-    //    this.files = event.target.files;
-    //    if (file) {
-    //        const reader = new FileReader();
-    //        reader.onload = (e: any) => {
-    //            this.base64Image = e.target.result;
-    //        };
-    //        // reader.onload = (e: any) => {
-    //        //   this.imagePreviewUrl = e.target.result;
-    //        //   this.base64Image = e.target.result;
-    //        // };
-    //        reader.readAsDataURL(file);
-    //        //reader.readAsDataURL(this.selectedImage);
-    //    }
-    //}
-    //get f() {
-    //    return this.drugForm.controls;
-    //}
-    //onCategorySelected(ob) {
 
-    //}
-    //onBrandSelected(ob) {
-
-    //}
-    //cancel() {
-    //    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/drug/list';
-    //    this.router.navigateByUrl(this.returnUrl);
-    //}
-    //onSubmit() {
-    //    this.submitted = true;
-
-    //    if (this.drugForm.invalid) {
-    //        return;
-    //    }
-    //    this.drug.id = this.drugId;
-    //    this.drug.medicine_Image = this.base64Image
-    //    this.loading = true;
-    //    debugger;
-    //    this._drugFormService
-    //        .saveForm(this.drug)
-    //        .pipe()
-    //        .subscribe(
-    //            data => {
-    //                this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/drug/list';
-    //                this.router.navigateByUrl(this.returnUrl);
-    //            },
-    //            error => {
-    //                this.error = error;
-    //                this.loading = false;
-    //            }
-    //        );
-    //}
+    onChange(event) {
+        if (event.target.value == 1) {
+            event.target.checked == true ? this.hideable_1 = true : this.hideable_1 = false
+        }
+        if (event.target.value == 2) {
+            event.target.checked == true ? this.hideable_2 = true : this.hideable_2 = false
+        }
+        if (event.target.value == 3) {
+            event.target.checked == true ? this.hideable_3 = true : this.hideable_3 = false
+        }
+        if (event.target.value == 4) {
+            event.target.checked == true ? this.hideable_4 = true : this.hideable_4 = false
+        }
+        if (event.target.value == 5) {
+            event.target.checked == true ? this.hideable_5 = true : this.hideable_5 = false
+        }
+        if (event.target.value == 6) {
+            event.target.checked == true ? this.hideable_6 = true : this.hideable_6 = false
+        }
+        if (event.target.value == 7) {
+            event.target.checked == true ? this.hideable_7 = true : this.hideable_7 = false
+        }
+        if (this.all_selected_values.includes(event.target.value)) {
+            this.all_selected_values = this.all_selected_values.filter((item) => item !== event.target.value);
+        } else {
+            this.all_selected_values.push(event.target.value);
+        }
+    }
     ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
+       
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
     }

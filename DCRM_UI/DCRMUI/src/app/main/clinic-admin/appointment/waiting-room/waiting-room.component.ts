@@ -11,6 +11,9 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { ToastrService } from 'ngx-toastr';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 import { CoreConfigService } from '../../../../../@core/services/config.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource,MatTable } from '@angular/material/table';
 
 @Component({
     selector: 'app-waiting-room',
@@ -38,7 +41,15 @@ export class WaitingRoomComponent implements OnInit, OnDestroy {
     display: string = "none";
     isOpen: boolean = true;
     @ViewChild('myTable') table1;
-    // Private
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort) sort: MatSort;
+    displayedColumns = ['serial_Id', 'patient_Name', 'doctor_Name', 'start_Time', 'end_Time', 'cause','chair'];
+    dataSource: any;
+    listData: MatTableDataSource<any>;
+    
+    
+
+   
     //private _formBuilder: any;
 
     /**
@@ -52,7 +63,7 @@ export class WaitingRoomComponent implements OnInit, OnDestroy {
         this._unsubscribeAll = new Subject();
     }
 
-    // Public Methods
+//    // Public Methods
     // -----------------------------------------------------------------------------------------------------
 
     /**
@@ -81,7 +92,7 @@ export class WaitingRoomComponent implements OnInit, OnDestroy {
         this.table.offset = 0;
         this.table1.offset = 0;
     }
-
+   
     /**
      * Filter By Roles
      *
@@ -113,56 +124,46 @@ export class WaitingRoomComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.getData();
     }
+   
     getData() {
-
+        this.loading = true;
         this._appointmentListService.getWatingRoom().subscribe(response => {
             this.data = response;
             this.rows = this.data;
             this.tempData = this.rows;
             this.tempFilterData = this.rows;
+            //this.listData = new MatTableDataSource(this.rows);
             this.table.offset = 0;
-            debugger;
+            this.loading = false;
         });
-
-        //this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
-        //    // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)
-        //    if (config.layout.animation === 'zoomIn') {
-        //        setTimeout(() => {
-
-        //            this._appointmentListService.onAppointmentListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-        //                this.data = response;
-        //                this.rows = this.data;
-        //                this.tempData = this.rows;
-        //                this.tempFilterData = this.rows;
-        //            });
-        //        }, 450);
-        //    } else {
-        //        this._appointmentListService.onAppointmentListChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-        //            this.data = response;
-        //            this.rows = this.data;
-        //            this.tempData = this.rows;
-        //            this.tempFilterData = this.rows;
-        //        });
-        //    }
-        //});
     }
     ngAfterViewInit() {
-        this.table.bodyComponent.updatePage = function (direction: string): void {
-            debugger;
-            let offset = this.indexes.first / this.pageSize;
-
-            if (direction === 'up') {
-                offset = Math.ceil(offset);
-            } else if (direction === 'down') {
-                offset = Math.floor(offset);
-            }
-
-            if (direction !== undefined && !isNaN(offset)) {
-                this.page.emit({ offset });
-            }
-        }
+        //this.listData.paginator = this.paginator;
+        //this.listData.sort = this.sort;
     }
+    applyFilter(filterValue: string) {
+        filterValue = filterValue.trim(); // Remove whitespace
+        filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+        this.listData.filter = filterValue;
+    }
+    //ngAfterViewInit() {
+    //    this.table.bodyComponent.updatePage = function (direction: string): void {
+    //        debugger;
+    //        let offset = this.indexes.first / this.pageSize;
+
+    //        if (direction === 'up') {
+    //            offset = Math.ceil(offset);
+    //        } else if (direction === 'down') {
+    //            offset = Math.floor(offset);
+    //        }
+
+    //        if (direction !== undefined && !isNaN(offset)) {
+    //            this.page.emit({ offset });
+    //        }
+    //    }
+    //}
     changeAppointmentStatus(evnt, id) {
+        debugger;
         this._appointmentListService.ChangeAppointmentStatus(id, evnt.target.value).subscribe(res => {
             this.getData();
         });

@@ -73,7 +73,12 @@ export class AppointmentFormService {
         });
         const requestOptions = { headers: headers };
         const action: any = mode === 'add' ? 'Create' : 'Update';
-        return this._httpClient.post(`${environment.apiUrl}/Appointment/${action}`, payload, requestOptions);
+        let url = `${environment.apiUrl}/Appointment/Create`
+        if (mode !='add') {
+            url = `${environment.apiUrl}/Appointment/Update`
+        }
+        debugger;
+        return this._httpClient.post(url, payload, requestOptions);
     }
 
     getIDoctors(): Observable<any> {

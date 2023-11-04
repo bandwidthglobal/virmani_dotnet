@@ -33,4 +33,12 @@
     <None Remove="DCRMUI\src\app\main\patient\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="DCRMUI\src\app\main\clinic-admin\appointment\calendar\color.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="DCRMUI\src\app\main\clinic-admin\appointment\calendar\color.ts" />
+  </ItemGroup>
+
 </Project>

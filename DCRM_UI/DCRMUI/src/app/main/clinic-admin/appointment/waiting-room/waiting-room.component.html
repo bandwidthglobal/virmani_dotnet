@@ -54,16 +54,9 @@
                         </div>
                     </div>
                 </div>
-                <!--<table class="datatables-basic table dataTable no-footer dtr-column" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" style="width: 1046px;">
-                    <thead>
-                        <tr><th class="control sorting_disabled dtr-hidden" rowspan="1" colspan="1" style="width: 29px; display: none;" aria-label=""></th><th class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all" rowspan="1" colspan="1" style="width: 24px;" data-col="1" aria-label=""><input type="checkbox" class="form-check-input"></th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 96px;" aria-label="Name: activate to sort column ascending">Name</th><th class="sorting sorting_desc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 99px;" aria-label="Email: activate to sort column ascending" aria-sort="descending">Email</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 86px;" aria-label="Date: activate to sort column ascending">Date</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 119px;" aria-label="Salary: activate to sort column ascending">Salary</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 115px;" aria-label="Status: activate to sort column ascending">Status</th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 124px;" aria-label="Actions">Actions</th></tr>
-                    </thead>
-                    <tbody><tr class="odd"><td class="  control" tabindex="0" style="display: none;"></td><td class="  dt-checkboxes-cell"><input type="checkbox" class="dt-checkboxes form-check-input"></td><td class=""><div class="d-flex justify-content-start align-items-center user-name"><div class="avatar-wrapper"><div class="avatar me-2"><span class="avatar-initial rounded-circle bg-label-secondary">A</span></div></div><div class="d-flex flex-column"><span class="emp_name text-truncate">asdsa</span><small class="emp_post text-truncate text-muted">sdads</small></div></div></td><td class="sorting_1">asda@wda.com</td><td>11/28/2023</td><td>$2131</td><td><span class="badge  bg-label-info">Applied</span></td><td><div class="d-inline-block"><a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a><ul class="dropdown-menu dropdown-menu-end m-0"><li><a href="javascript:;" class="dropdown-item">Details</a></li><li><a href="javascript:;" class="dropdown-item">Archive</a></li><div class="dropdown-divider"></div><li><a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a></li></ul></div><a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="text-primary ti ti-pencil"></i></a></td></tr></tbody>
-                </table>
-                <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 1 of 1 entries</div></div><div class="col-sm-12 col-md-6"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a aria-controls="DataTables_Table_0" aria-disabled="true" aria-role="link" data-dt-idx="previous" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" aria-role="link" aria-current="page" data-dt-idx="0" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item next disabled" id="DataTables_Table_0_next"><a aria-controls="DataTables_Table_0" aria-disabled="true" aria-role="link" data-dt-idx="next" tabindex="0" class="page-link">Next</a></li></ul></div></div></div>-->
-                <!-- Invoice List Table -->
 
-                <div class="table-responsive">
+
+                <div class="table-responsive" style="display:none">
                     <table class="table">
                         <thead>
                             <tr>
@@ -126,7 +119,12 @@
                         </tbody>
                     </table>
                 </div>
-                <div style="display:none">
+                <div>
+                    <div *ngIf="loading==true" class="table-loading">
+                        <div class="table-loading-text">
+                            Loading...
+                        </div>
+                    </div>
                     <ngx-datatable [rows]="rows"
                                    rowHeight="auto"
                                    class="bootstrap core-bootstrap"
@@ -135,7 +133,7 @@
                                    [headerHeight]="50"
                                    [footerHeight]="50"
                                    [scrollbarH]="true">
-                        <ngx-datatable-column name="Serial No" prop="serial_Id" [width]="100"></ngx-datatable-column>
+                        <ngx-datatable-column name="Serial Id" prop="serial_Id"  [width]="100" ></ngx-datatable-column>
                         <ngx-datatable-column name="Patient Name" prop="patient_Name">
                         </ngx-datatable-column>
                         <ngx-datatable-column name="Dentist" prop="doctor_Name">
@@ -150,15 +148,23 @@
                         </ngx-datatable-column>
                         <ngx-datatable-column name="Slot" class="" prop="slot_Time">
                         </ngx-datatable-column>
-                        <ngx-datatable-column name="Actions" [sortable]="false">
+                        <ngx-datatable-column name="Actions" [width]="200" [sortable]="false">
                             <ng-template ngx-datatable-cell-template let-row="row">
                                 <div class="d-flex align-items-center col-actions">
-                                    <select class="form-control" name="appointment_status" id="appointment_status" (change)="changeAppointmentStatus($event,row.id)">
-                                        <option selected="" value="4">Waiting Status</option>
-                                        <option value="5">Processing</option>
+                                    <select class="form-control" style="width:150px" *ngIf="row.appointment_Status==5; else loggedOut" name="appointment_status" id="appointment_status" (change)="changeAppointmentStatus($event,row.id)">
+                                        <option value="4">Waiting Status</option>
+                                        <option selected="" value="5">Processing</option>
                                         <option value="2">Completed</option>
                                     </select>
+                                    <ng-template #loggedOut>
+                                        <select class="form-control" style="width:150px" name="appointment_status" id="appointment_status" (change)="changeAppointmentStatus($event,row.id)">
+                                            <option selected="" value="4">Waiting Status</option>
+                                            <option value="5">Processing</option>
+                                            <option value="2">Completed</option>
+                                        </select>
+                                    </ng-template>
                                 </div>
+
                             </ng-template>
                         </ngx-datatable-column>
                     </ngx-datatable>
