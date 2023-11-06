@@ -2,13 +2,14 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewEncapsul
 import { validationMessages } from "app/shared-common/pipes/error-message";
 import { ToastrService } from "ngx-toastr";
 import { CommonValidationService } from "app/shared-common/services/common-validation.service";
-import { Subject } from 'rxjs';
+import { Subject, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IAppointmentForm, IAppointmentFormModel } from "../model/appointment-from";
 import { AppointmentFormService } from "./appointment-form.service";
 import { User } from "app/auth/models";
 import { WaitingRoomService } from "../waiting-room/waiting-room.service";
 import { Router } from "@angular/router";
+import { debug } from "console";
 
 @Component({
     selector: 'app-appointment-form',
@@ -59,8 +60,17 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
         else {
             this.FormInput.date = this._commonValidationService.dateFormat_Y_M_D(this.FormInput.date);
         }
-        debugger;
+        
         this.formData = new IAppointmentForm(this.FormInput);
+        debugger;
+        if (this.formData.patient_Id.value == null || this.formData.patient_Id.value == 0) {
+            this.formData.p_type.setValue("New Patient");
+        }
+        else {
+            this.formData.p_type.setValue("Old Patient");
+        }
+        
+
         if (this.FormAction === 'add') {
             this.pageTitle = 'Add Appointment';
         } else {
@@ -69,37 +79,58 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
         this._appointmentFormService.getIDoctors().pipe().subscribe((response) => {
             this.IDoctors = response;
         });
+
         this._appointmentFormService.getIPatients().pipe().subscribe((response) => {
             this.IPatients = response;
+            debugger;
         });
+        
         this._appointmentFormService.getIChairList().pipe().subscribe((response) => {
             this.IChairList = response;
         });
     }
-
+   
+    changeOldPatient(type) {
+       
+        if (type == 'old') {
+            this.formData.p_type.setValue("Old Patient");
+        }
+        else {
+            this.formData.p_type.setValue("New Patient");
+        }
+    }
     ngOnDestroy(): void {
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
     }
     changeAppointmentStatus(status, id, sift) {
-        this._waitingRoomService.ChangeAppointmentStatus(id.value, status).subscribe(res => {
-            this.loading = false;
-            this.callBackEvent.emit({
-                status: 'failure',
-                page: this.FormAction,
-            });
-            this.router.navigate(["/admin/appointment/chairview"])
-        });
+
+        this.saveForm(status, id, sift)
+        //this._waitingRoomService.ChangeAppointmentStatus(id.value, status).subscribe(res => {
+        //    this.loading = false;
+        //    this.callBackEvent.emit({
+        //        status: 'failure',
+        //        page: this.FormAction,
+        //    });
+        //    this.router.navigate(["/admin/appointment/chairview"])
+        //});
     }
-    saveForm(): void {
+    saveForm(status, id, sift): void {
         this.submitted = true;
         this._commonValidationService.validateAllFormFields(this.formData);
         if (this.formData.invalid) {
             return;
         } else {
+            
             const payload: any = this.formData.getRawValue();
+            if (status != undefined) {
+                payload.appointment_Status = parseInt(status);
+            }
+            else {
+                payload.appointment_Status = 0;
+            }
+            
             this.loading = true;
-            debugger;
             this._appointmentFormService.save(payload, this.FormAction).pipe(catchError((error) => {
                 this.loading = false;
                 this.error = error;
@@ -119,7 +150,9 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
             });
         }
     }
-
+    patientTypeOpen(obj) {
+        alert(obj);
+    }
     close() {
         this.callBackEvent.emit({
             status: 'failure',

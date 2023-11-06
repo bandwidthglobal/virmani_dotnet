@@ -18,38 +18,62 @@
                                     <p>{{ error }}</p>
                                 </div>
                             </ngb-alert>
+                            <ngb-alert [type]="'success'" [dismissible]="false" *ngIf="success">
+                                <div class="alert-body">
+                                    <p>{{ success }}</p>
+                                </div>
+                            </ngb-alert>
                             <div class="box-body pt-1 pb-1">
-                                <form method="post" class="validate-form" action="https://virmani.robotone.in/admin/appointment/set" role="form" enctype="multipart/form-data">
+                                <div *ngIf="loading==true" class="table-loading">
+                                    <div class="table-loading-text">
+                                        Loading...
+                                    </div>
+                                </div>
+                                <!--<form class="form" [formGroup]="scheduleForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+
+            <div class="col-md-4 col-12">
+                <div class="form-group">
+                    <label for="basic-medicinetype">Medicin Type<span style="color:red">*</span></label>
+                    <input type="text"
+                           [(ngModel)]="scheduledFormModel.start2"
+                           formControlName="start2"
+                           class="form-control"
+                           placeholder="Medicine Type"
+                           aria-describedby="start2"
+                           tabindex="5"
+                           autofocus
+                            />
+
+                </div>
+            </div>
+
+            <div class="col-12" style="text-align:center">
+                <button type="submit" rippleEffect class="btn btn-primary mr-1">Submit</button>
+                <a href="/admin/drug/list" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+        </div>
+    </form>-->
+                                <form class="form" [formGroup]="scheduleForm" (ngSubmit)="onSubmit()">
 
                                     <div class="row main_item">
-
-
                                         <div class="item-rows w-100 mb-20">
-
                                             <div class="form-group col-md-12 mb-0">
                                                 <div class="custom-control custom-switch mb-1 pt-10">
                                                     <input type="checkbox" value="1" name="day_0" (change)="onChange($event)" class="custom-control-input day_option" id="switch-1">
                                                     <label class="custom-control-label" for="switch-1">Sunday</label>
                                                 </div>
                                             </div>
-
-
                                             <div class="houritem_0 col-md-12"></div>
-
-                                            <!--<div class="form-group col-sm-12 mt-2 hideable_1" style="display: none;">
-                                                <a href="#" data-id="0" class="add_time_row"><i class="fa fa-plus-circle"></i> Add new time</a>
-                                            </div>-->
-
                                             <div class="day_highliter"></div>
                                             <div class="day_divider"></div>
                                         </div>
-
-
                                         <div class="item-rows w-100 mb-20">
 
                                             <div class="form-group col-md-12 mb-0">
                                                 <div class="custom-control custom-switch mb-1 pt-10">
-                                                    <input type="checkbox" value="2" name="day_1" (change)="onChange($event)" class="custom-control-input day_option" id="switch-2" checked="">
+                                                    <input type="checkbox"   value="2" name="day_1" (change)="onChange($event)"
+                                                           class="custom-control-input day_option" id="switch-2">
                                                     <label class="custom-control-label" for="switch-2">Monday</label>
                                                 </div>
                                             </div>
@@ -62,7 +86,14 @@
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
 
-                                                            <input type="time" class="form-control timepicker" min="09:00" max="18:00" value="{{date2.start}}" placeholder="Start time" autocomplete="off">
+                                                            <input type="time"
+                                                                   [(ngModel)]="scheduledFormModel.start2"
+                                                                   formControlName="start2"
+                                                                   class="form-control"
+                                                                   placeholder="Medicine Type"
+                                                                   aria-describedby="start2"
+                                                                   tabindex="1"
+                                                                   autofocus />
                                                         </div>
                                                     </div>
 
@@ -71,19 +102,25 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
-                                                            <input type="time" class="form-control timepicker" name="end_time_1[]" value="{{date2.end}}" placeholder="End time" autocomplete="off">
+                                                            <input type="time"
+                                                                   [(ngModel)]="scheduledFormModel.end2"
+                                                                   formControlName="end2"
+                                                                   class="form-control"
+                                                                   aria-describedby="end2"
+                                                                   tabindex="2"
+                                                                   autofocus />
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-sm-2 mb-2"><a data-id="77" href="https://virmani.robotone.in/admin/appointment/delete_time/77" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>
+                                                    <!--<div class="col-sm-2 mb-2"><a data-id="77" href="https://virmani.robotone.in/admin/appointment/delete_time/77" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>-->
                                                 </div>
                                             </div>
 
                                             <div class="houritem_1 col-md-12"></div>
 
                                             <!--                  <div class="form-group col-sm-12 mt-2 hideable_2" style="display: block;">
-                                              <a href="#" data-id="1" class="add_time_row"><i class="fa fa-plus-circle"></i> Add new time</a>
-                                            </div>-->
+                  <a href="#" data-id="1" class="add_time_row"><i class="fa fa-plus-circle"></i> Add new time</a>
+                </div>-->
 
                                             <div class="day_highliter"></div>
                                             <div class="day_divider"></div>
@@ -108,7 +145,13 @@
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
 
-                                                            <input type="time" class="form-control timepicker" min="09:00" max="18:00" value="{{date3.start}}" placeholder="Start time" autocomplete="off">
+                                                            <input type="time"
+                                                                   [(ngModel)]="scheduledFormModel.start3"
+                                                                   formControlName="start3"
+                                                                   class="form-control"
+                                                                   aria-describedby="start3"
+                                                                   tabindex="3"
+                                                                   autofocus />
                                                         </div>
                                                     </div>
 
@@ -117,19 +160,25 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
-                                                            <input type="time" class="form-control timepicker" name="end_time_1[]" value="{{date3.end}}" placeholder="End time" autocomplete="off">
+                                                            <input type="time"
+                                                                   [(ngModel)]="scheduledFormModel.end3"
+                                                                   formControlName="end3"
+                                                                   class="form-control"
+                                                                   aria-describedby="end3"
+                                                                   tabindex="4"
+                                                                   autofocus />
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-sm-2 mb-2"><a data-id="77" href="https://virmani.robotone.in/admin/appointment/delete_time/77" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>
+                                                    <!--<div class="col-sm-2 mb-2"><a data-id="77" href="https://virmani.robotone.in/admin/appointment/delete_time/77" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>-->
                                                 </div>
                                             </div>
 
                                             <div class="houritem_2 col-md-12"></div>
 
                                             <!--                  <div class="form-group col-sm-12 mt-2 hideable_3" style="display: block;">
-                                              <a href="#" data-id="2" class="add_time_row"><i class="fa fa-plus-circle"></i> Add new time</a>
-                                            </div>-->
+                  <a href="#" data-id="2" class="add_time_row"><i class="fa fa-plus-circle"></i> Add new time</a>
+                </div>-->
 
                                             <div class="day_highliter"></div>
                                             <div class="day_divider"></div>
@@ -154,7 +203,13 @@
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
 
-                                                            <input type="time" class="form-control timepicker" min="09:00" max="18:00" value="{{date4.start}}" placeholder="Start time" autocomplete="off">
+                                                            <input type="time"
+                                                                   [(ngModel)]="scheduledFormModel.start4"
+                                                                   formControlName="start4"
+                                                                   class="form-control"
+                                                                   aria-describedby="start4"
+                                                                   tabindex="5"
+                                                                   autofocus />
                                                         </div>
                                                     </div>
 
@@ -163,19 +218,25 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
-                                                            <input type="time" class="form-control timepicker" name="end_time_1[]" value="{{date4.end}}" placeholder="End time" autocomplete="off">
+                                                            <input type="time"
+                                                                   [(ngModel)]="scheduledFormModel.end4"
+                                                                   formControlName="end4"
+                                                                   class="form-control"
+                                                                   aria-describedby="end4"
+                                                                   tabindex="6"
+                                                                   autofocus />
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-sm-2 mb-2"><a data-id="77" href="https://virmani.robotone.in/admin/appointment/delete_time/77" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>
+                                                    <!--<div class="col-sm-2 mb-2"><a data-id="77" href="https://virmani.robotone.in/admin/appointment/delete_time/77" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>-->
                                                 </div>
                                             </div>
 
                                             <div class="houritem_3 col-md-12"></div>
 
                                             <!--                  <div class="form-group col-sm-12 mt-2 hideable_4" style="display: block;">
-                                              <a href="#" data-id="3" class="add_time_row"><i class="fa fa-plus-circle"></i> Add new time</a>
-                                            </div>-->
+                  <a href="#" data-id="3" class="add_time_row"><i class="fa fa-plus-circle"></i> Add new time</a>
+                </div>-->
 
                                             <div class="day_highliter"></div>
                                             <div class="day_divider"></div>
@@ -200,7 +261,13 @@
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
 
-                                                            <input type="time" class="form-control timepicker" min="09:00" max="18:00" value="{{date5.start}}" placeholder="Start time" autocomplete="off">
+                                                            <input type="time"
+                                                                   [(ngModel)]="scheduledFormModel.start5"
+                                                                   formControlName="start5"
+                                                                   class="form-control"
+                                                                   aria-describedby="start5"
+                                                                   tabindex="7"
+                                                                   autofocus />
                                                         </div>
                                                     </div>
 
@@ -209,19 +276,25 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
-                                                            <input type="time" class="form-control timepicker" name="end_time_1[]" value="{{date5.end}}" placeholder="End time" autocomplete="off">
+                                                            <input type="time"
+                                                                   [(ngModel)]="scheduledFormModel.end5"
+                                                                   formControlName="end5"
+                                                                   class="form-control"
+                                                                   aria-describedby="end5"
+                                                                   tabindex="8"
+                                                                   autofocus />
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-sm-2 mb-2"><a data-id="77" href="https://virmani.robotone.in/admin/appointment/delete_time/77" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>
+                                                    <!--<div class="col-sm-2 mb-2"><a data-id="77" href="https://virmani.robotone.in/admin/appointment/delete_time/77" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>-->
                                                 </div>
                                             </div>
 
                                             <div class="houritem_4 col-md-12"></div>
 
                                             <!--                  <div class="form-group col-sm-12 mt-2 hideable_5" style="display: block;">
-                                              <a href="#" data-id="4" class="add_time_row"><i class="fa fa-plus-circle"></i> Add new time</a>
-                                            </div>-->
+                  <a href="#" data-id="4" class="add_time_row"><i class="fa fa-plus-circle"></i> Add new time</a>
+                </div>-->
 
                                             <div class="day_highliter"></div>
                                             <div class="day_divider"></div>
@@ -246,7 +319,13 @@
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
 
-                                                            <input type="time" class="form-control timepicker" min="09:00" max="18:00" value="{{date6.start}}" placeholder="Start time" autocomplete="off">
+                                                            <input type="time"
+                                                                   [(ngModel)]="scheduledFormModel.start6"
+                                                                   formControlName="start6"
+                                                                   class="form-control"
+                                                                   aria-describedby="start6"
+                                                                   tabindex="9"
+                                                                   autofocus />
                                                         </div>
                                                     </div>
 
@@ -255,19 +334,25 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
-                                                            <input type="time" class="form-control timepicker" name="end_time_1[]" value="{{date6.end}}" placeholder="End time" autocomplete="off">
+                                                            <input type="time"
+                                                                   [(ngModel)]="scheduledFormModel.end7"
+                                                                   formControlName="end6"
+                                                                   class="form-control"
+                                                                   aria-describedby="end6"
+                                                                   tabindex="10"
+                                                                   autofocus />
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-sm-2 mb-2"><a data-id="77" href="https://virmani.robotone.in/admin/appointment/delete_time/77" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>
+                                                    <!--<div class="col-sm-2 mb-2"><a data-id="77" href="https://virmani.robotone.in/admin/appointment/delete_time/77" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>-->
                                                 </div>
                                             </div>
 
                                             <div class="houritem_5 col-md-12"></div>
 
                                             <!--                  <div class="form-group col-sm-12 mt-2 hideable_6" style="display: block;">
-                                              <a href="#" data-id="5" class="add_time_row"><i class="fa fa-plus-circle"></i> Add new time</a>
-                                            </div>-->
+                  <a href="#" data-id="5" class="add_time_row"><i class="fa fa-plus-circle"></i> Add new time</a>
+                </div>-->
 
                                             <div class="day_highliter"></div>
                                             <div class="day_divider"></div>
@@ -292,7 +377,13 @@
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
 
-                                                            <input type="time" class="form-control timepicker" min="09:00" max="18:00" value="{{date7.start}}" placeholder="Start time" autocomplete="off">
+                                                            <input type="time"
+                                                                   [(ngModel)]="scheduledFormModel.start7"
+                                                                   formControlName="start7"
+                                                                   class="form-control"
+                                                                   aria-describedby="start7"
+                                                                   tabindex="11"
+                                                                   autofocus />
                                                         </div>
                                                     </div>
 
@@ -301,11 +392,16 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i class="icon-clock"></i></span>
                                                             </div>
-                                                            <input type="time" class="form-control timepicker" name="end_time_1[]" value="{{date7.end}}" placeholder="End time" autocomplete="off">
+                                                            <input type="time"
+                                                                   [(ngModel)]="scheduledFormModel.end7"
+                                                                   formControlName="end7"
+                                                                   class="form-control"
+                                                                   aria-describedby="end7"
+                                                                   tabindex="12"
+                                                                   autofocus />
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-sm-2 mb-2"><a data-id="77" href="https://virmani.robotone.in/admin/appointment/delete_time/77" class="del_time_row delete_item text-danger"><i size="18" data-feather="trash"></i></a></div>
                                                 </div>
                                             </div>
 
@@ -320,7 +416,7 @@
                                         <div class="col-4 col-sm-6 mb-2">
                                         </div>
                                         <div class="col-8 col-sm-12 mb-2">
-                                            <button type="submit" class="btn btn-primary" style="width:150px;"><i class="fa fa-check"></i> Update</button>
+                                            <button type="submit" rippleEffect class="btn btn-primary mr-1">Update</button>
                                         </div>
                                     </div>
                                 </form>

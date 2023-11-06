@@ -31,9 +31,9 @@ public class AppointmentRequest
 
     public DateTime Date { get; set; }
 
-    public DateTime Start_Time { get; set; }
+    public TimeSpan Start_Time { get; set; }
 
-    public DateTime End_Time { get; set; }
+    public TimeSpan End_Time { get; set; }
 
     public string? Meeting_Notes { get; set; }
 
@@ -53,4 +53,17 @@ public class AppointmentRequest
     public sbyte Is_Delete { get; set; }
 
     public DateTime Created_At { get; set; }
+
+    public string? Patient_Name { get; set; }
+    public string? Email { get; set; }
+
+    public string? Phone { get; set; }
+
+    public string? Age { get;}
+
+    public string? Weight { get; }
+
+    public string? Gender { get; }
+
+
 }

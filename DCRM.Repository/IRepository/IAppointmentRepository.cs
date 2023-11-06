@@ -17,7 +17,7 @@ namespace DCRM.Repository.IRepository
         IEnumerable<Appointment> GetAll();
         Appointment Get(long id);
         void Create(Appointment request);
-        void Update(Appointment request);
+        void Update(Appointment request);   
         void Delete(long id);
 
         void ChangeAppointmentStatus(long id, int status);

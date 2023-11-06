@@ -49,7 +49,9 @@ export class  SetSscheduleFormService implements Resolve<any> {
         });
     }
     getSchedule() {
+        
         let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
+        debugger;
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${currentUser.jwtToken}`
@@ -57,6 +59,7 @@ export class  SetSscheduleFormService implements Resolve<any> {
         const requestOptions = { headers: headers };
         return this._httpClient.get(`${environment.apiUrl}/Appointment/GetTimes`, requestOptions)
     }
+   
     getBrandlist(): Promise<any[]> {
         const url = `${environment.apiUrl}/Drug/GetMedicineBrands`;
         return new Promise((resolve, reject) => {
@@ -67,46 +70,15 @@ export class  SetSscheduleFormService implements Resolve<any> {
             }, reject);
         });
     }
-    //getCategoryList(): Promise<any[]> {
-    //    const url = `${environment.apiUrl}/Drug/GetMedicineCategoris`;
-    //    return new Promise((resolve, reject) => {
-    //        this._httpClient.get(url).subscribe((response: any) => {
-    //            this.medicinCategories = response;
-    //            this.onMedicinCategoriesChanged.next(this.medicinCategories);
-    //            resolve(this.medicinCategories);
-    //        }, reject);
-    //    });
-    //}
-
-    //getDrugFormData(id: number): Promise<any[]> {
-    //    const headers = new HttpHeaders({
-    //        'Content-Type': 'application/json',
-    //        'Authorization': `Bearer ${this.currentUser.jwtToken}`
-    //    });
-    //    const requestOptions = { headers: headers };
-    //    const url = `${environment.apiUrl}/Drug/Get/${id}`;
-    //    this.id = id;
-    //    return new Promise((resolve, reject) => {
-    //        this._httpClient.get(url, requestOptions).subscribe((response: any) => {
-
-    //            this.apiData = response;
-    //            this.onDrugChanged.next(this.apiData);
-    //            resolve(this.apiData);
-    //        }, reject);
-    //    });
-    //}
-
-    //saveForm(drug: any) {
-    //    let url = `${environment.apiUrl}/Drug/Create`;
-    //    if (drug.id>0) {
-    //        url = `${environment.apiUrl}/Drug/Update`;
-    //    }
-    //    debugger;
-    //    const headers = new HttpHeaders({
-    //        'Content-Type': 'application/json',
-    //        'Authorization': `Bearer ${this.currentUser.jwtToken}`
-    //    });
-    //    const requestOptions = { headers: headers };
-    //    return this._httpClient.post<any>(url, drug, requestOptions);
-    //}
+    saveForm(drug: any) {
+           const url = `${environment.apiUrl}/Appointment/SetSchedule`;
+       
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.post<any>(url, drug, requestOptions);
+    }
+   
 }

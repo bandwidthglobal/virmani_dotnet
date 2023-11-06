@@ -41,6 +41,7 @@ namespace DCRM.Repository.Repository
                 serialId = appointmentDetails.Max(x => x.Serial_Id);
             }
             appointment.Serial_Id = serialId + 1;
+            
             _contex.Appointments.Add(appointment);
             _contex.SaveChanges();
         }

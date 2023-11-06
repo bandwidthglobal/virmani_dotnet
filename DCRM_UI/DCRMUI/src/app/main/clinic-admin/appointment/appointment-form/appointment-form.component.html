@@ -74,10 +74,10 @@
                                 <div class="form-group">
                                     <div class="form-group plr-10">
                                         <div class="radio radio-info radio-inline mt-10">
-                                            <input name="p_type" [formControl]="formData.p_type" type="radio"
+                                            <input name="p_type"  [formControl]="formData.p_type" type="radio"
                                                 value="Old Patient">
                                             <label class="cs-lable"> Old Patient</label> 
-                                            <input name="p_type" [formControl]="formData.p_type" type="radio"
+                                            <input name="p_type"  [formControl]="formData.p_type" type="radio"
                                                 value="New Patient">
                                             <label class="cs-lable"> New Patient</label>
                                         </div>
@@ -85,16 +85,16 @@
                                 </div>
                             </div>
 
-                            <div *ngIf="formData.get('p_type').value === 'New Patient'" class="col-md-6">
+                            <div *ngIf="formData.p_type.value === 'New Patient'" class="col-md-6">
                                 <shared-ui-text-input [label]="'Name'" [control]="formData.patient_name"
                                     [submitted]="submitted"></shared-ui-text-input>
                             </div>
-                            <div *ngIf="formData.get('p_type').value === 'Old Patient'" class="col-md-6">
-                                <shared-ui-select-input [label]="'Name'" [control]="formData.patient_Id"
+                            <div *ngIf="formData.p_type.value === 'Old Patient'" class="col-md-6">
+                                <shared-ui-select-input [label]="'Name'" [control]="formData.patient_Id" 
                                     [options]="IPatients" [valueKey]="'id'" [displaykey]="'name'"
                                     [submitted]="submitted"></shared-ui-select-input>
                             </div>
-                            <div *ngIf="formData.get('p_type').value === 'New Patient'" class="col-md-6">
+                            <div *ngIf="formData.p_type.value === 'New Patient'" class="col-md-6">
                                 <div class="form-group">
                                     <label [class.invalid-class]="submitted && formData.email.errors">Email</label>
                                     <input type="email" class="form-control" [formControl]="formData.email"
@@ -110,25 +110,25 @@
                                 <shared-ui-text-input [label]="'Phone'" [control]="formData.phone" [mask]="'numeric'"
                                     [submitted]="submitted"></shared-ui-text-input>
                             </div>
-                            <div *ngIf="formData.get('p_type').value === 'New Patient'" class="col-md-6">
+                            <div *ngIf="formData.p_type.value === 'New Patient'" class="col-md-6">
                                 <shared-ui-text-input [label]="'Age'" [control]="formData.age" [mask]="'numeric'"
                                     [submitted]="submitted"></shared-ui-text-input>
                             </div>
 
-                            <div *ngIf="formData.get('p_type').value === 'New Patient'" class="col-md-6">
+                            <div *ngIf="formData.p_type.value === 'New Patient'" class="col-md-6">
                                 <shared-ui-text-input [label]="'Weight'" [control]="formData.weight" [mask]="'numeric'"
                                     [submitted]="submitted"></shared-ui-text-input>
                             </div>
-                            <div *ngIf="formData.get('p_type').value === 'New Patient'" class="col-md-6">
+                            <div *ngIf="formData.p_type.value === 'New Patient'" class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-group plr-10">
                                         <label
-                                            [class.invalid-class]="submitted && formData.gender.errors">Gender</label>
+                                            [class.invalid-class]="submitted && formData.sex.errors">Gender</label>
                                         <div class="radio radio-info radio-inline mt-10">
-                                            <input name="gender" [formControl]="formData.gender" type="radio"
+                                            <input name="sex" [formControl]="formData.sex" type="radio"
                                                 value="Male">
                                             <label class="cs-lable">Male</label> 
-                                            <input name="gender" [formControl]="formData.gender" type="radio"
+                                            <input name="sex" [formControl]="formData.sex" type="radio"
                                                 value="Female">
                                             <label class="cs-lable">Female</label>
                                         </div>

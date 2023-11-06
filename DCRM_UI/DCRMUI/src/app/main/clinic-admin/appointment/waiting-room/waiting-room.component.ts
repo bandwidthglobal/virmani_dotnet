@@ -2,13 +2,8 @@ import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@ang
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
-import { repeaterAnimation } from 'app/main/apps/invoice/invoice.animation';
 import { WaitingRoomService } from '../waiting-room/waiting-room.service';
-import { WaitingRoomModel } from '../waiting-room/waiting-room.model';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 import { CoreConfigService } from '../../../../../@core/services/config.service';
 import { MatPaginator } from '@angular/material/paginator';
@@ -19,7 +14,6 @@ import { MatTableDataSource,MatTable } from '@angular/material/table';
     selector: 'app-waiting-room',
     templateUrl: './waiting-room.component.html',
     styleUrls: ['./waiting-room.component.scss'],
-    animations: [repeaterAnimation],
     encapsulation: ViewEncapsulation.None
 })
 export class WaitingRoomComponent implements OnInit, OnDestroy {

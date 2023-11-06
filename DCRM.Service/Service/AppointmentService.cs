@@ -91,16 +91,16 @@ namespace DCRM.Service.Service
                 appointmentDto.Patient_Id = appointment.Patient_Id;
                 if (appointmentDto.Patient_Id > 0)
                 {
-                    var patient= _patientRepository.Get(appointment.Patient_Id);
+                    var patient = _patientRepository.Get(appointment.Patient_Id);
                     appointmentDto.Patient = _patientRepository.Get(appointment.Patient_Id);
-                    if (patient!=null)
+                    if (patient != null)
                     {
                         appointmentDto.Patient_Name = appointmentDto.Patient.Name;
                     }
-                   
+
                 }
                 var doctor = _repository.Get(appointment.Doctor_Id);
-                if (doctor!=null)
+                if (doctor != null)
                 {
                     appointmentDto.Doctor_Name = doctor.Name;
                 }
@@ -388,7 +388,7 @@ namespace DCRM.Service.Service
             #endregion
 
             #region Chair List
-            var chairList = _chairRepository.GetAll().Where(x => x.User_Id == parameters.UserId && x.Status==1).ToList();
+            var chairList = _chairRepository.GetAll().Where(x => x.User_Id == parameters.UserId && x.Status == 1).ToList();
             appointmentChairView.ChairList = chairList;
             if (!string.IsNullOrEmpty(parameters.ChairIds))
             {
@@ -418,14 +418,14 @@ namespace DCRM.Service.Service
                     TimeSpan duration = TimeSpan.Parse(timr);
                     Appointment appointment = new Appointment();
 
-                   var appointmentList = _appointmentRepository.GetAll().Where(x => x.Chair == chair.Id.ToString() && x.Start_Time == duration).ToList();
+                    var appointmentList = _appointmentRepository.GetAll().Where(x => x.Chair == chair.Id.ToString() && x.Start_Time == duration).ToList();
 
                     if (appointment != null)
                     {
                         if (!string.IsNullOrEmpty(parameters.ScheduleDate))
                         {
                             var date = Convert.ToDateTime(parameters.ScheduleDate);
-                            appointment = appointmentList.Where(x => x.Date == date ).FirstOrDefault();
+                            appointment = appointmentList.Where(x => x.Date == date).FirstOrDefault();
                         }
                     }
                     AppointmentDto appointmentDto = new AppointmentDto();
@@ -453,7 +453,7 @@ namespace DCRM.Service.Service
                 }
                 if (string.IsNullOrEmpty(parameters.DoctorIds))
                 {
-                    appointmentChairList = appointmentChairList.Where(x=>x.Doctor_Id.ToString().Contains(parameters.DoctorIds)).ToList();
+                    appointmentChairList = appointmentChairList.Where(x => x.Doctor_Id.ToString().Contains(parameters.DoctorIds)).ToList();
                 }
                 if (string.IsNullOrEmpty(parameters.DoctorIds))
                 {
@@ -480,9 +480,51 @@ namespace DCRM.Service.Service
             return assaignTimes;
         }
 
-        public void Create(Appointment request)
+        public void Create(AppointmentRequest request)
         {
-            _appointmentRepository.Create(request);
+            long patientId = 0;
+            if (request.Patient_Id == 0)
+            {
+                PatientRequest patientse = new PatientRequest();
+                patientse.Name = request.Patient_Name;
+                patientse.Email = request.Email;
+                patientse.Age = Convert.ToSByte(request.Age);
+                patientse.Mobile = request.Phone;
+                patientse.Sex = "male";// request.Gender;
+                PatientsContact patientsContact = new PatientsContact();
+                List<PatientsContact> patientsContacts = new List<PatientsContact>();
+                patientsContact.Email = request.Email;
+                patientsContact.Phone = request.Phone;
+                patientsContacts.Add(patientsContact);
+                patientse.PatientContacts = patientsContacts;
+                request.Patient_Id = Convert.ToInt32(_patientRepository.Create(patientse));
+            }
+            Appointment appointment = new Appointment();
+            appointment.Id = request.Id;
+            appointment.Chamber_Id = request.Chamber_Id;
+            appointment.User_Id = request.User_Id;
+            appointment.Patient_Id = request.Patient_Id;
+            appointment.Doctor_Id = request.Doctor_Id;
+            appointment.Doctor_Name = request.Doctor_Name;
+            appointment.Chair = request.Chair;
+            appointment.Number_Of_Slot = request.Number_Of_Slot;
+            appointment.Slot_Time = request.Slot_Time;
+            appointment.Cause = request.Cause;
+            appointment.Extra_Notes = request.Extra_Notes;
+            appointment.Prescription_Id = request.Prescription_Id;
+            appointment.Date = request.Date;
+            appointment.Start_Time = request.Start_Time;
+            appointment.End_Time = request.End_Time;
+            appointment.Meeting_Notes = request.Meeting_Notes;
+            appointment.Files = request.Files;
+            appointment.Type = request.Type;
+            appointment.Serial_Id = request.Serial_Id;
+            appointment.Status = request.Status;
+            appointment.Appointment_Status = request.Appointment_Status;
+            appointment.Is_Start = request.Is_Start;
+            appointment.Is_Delete = request.Is_Delete;
+            appointment.Created_At = DateTime.Now;
+            _appointmentRepository.Create(appointment);
         }
         public void Update(Appointment request)
         {
@@ -534,11 +576,11 @@ namespace DCRM.Service.Service
             _timeRepository.Delete(assaignTimes);
         }
 
-        public List<AppointmentDto>GetWaitingRoom(long userId)
+        public List<AppointmentDto> GetWaitingRoom(long userId)
         {
-            List<AppointmentDto> appointments=new List<AppointmentDto>();
+            List<AppointmentDto> appointments = new List<AppointmentDto>();
             var todayDate = System.DateTime.Now.Date;
-            var apointmentList = _appointmentRepository.GetAll().Where(x => x.Appointment_Status==4 || x.Appointment_Status == 5 && x.User_Id== userId).ToList();
+            var apointmentList = _appointmentRepository.GetAll().Where(x => x.Appointment_Status == 4 || x.Appointment_Status == 5 && x.User_Id == userId).ToList();
             foreach (var apointment in apointmentList)
             {
                 AppointmentDto appointmentDto = new AppointmentDto();
@@ -569,9 +611,138 @@ namespace DCRM.Service.Service
             return appointments;
         }
 
-        public void ChangeAppointmentStatus(long id,int status)
+        public void ChangeAppointmentStatus(long id, int status)
         {
             _appointmentRepository.ChangeAppointmentStatus(id, status);
+        }
+
+        public void SetSchedule(ScheduleTimeRequest scheduleTime)
+        {
+
+            for (int i = 1; i < 8; i++)
+            {
+              var time=  _timeRepository.GetAll().Where(x=>x.Day_Id== i && x.User_Id== scheduleTime.User_Id).FirstOrDefault();
+                if (time!=null)
+                {
+                    scheduleTime.User_Id= time.User_Id;
+                    switch (i)
+                    {
+                        case 1:
+                            time.Start = scheduleTime.start1;
+                            time.End = scheduleTime.end1;
+                            time.Time = scheduleTime.start1 + "-" + scheduleTime.end1;
+                            _timeRepository.Update(time);
+                            break;
+                        case 2:
+                            time.Start = scheduleTime.start2;
+                            time.End = scheduleTime.end2;
+                            time.Time = scheduleTime.start2 + "-" + scheduleTime.end2;
+                            _timeRepository.Update(time);
+                            break;
+                        case 3:
+                            time.Start = scheduleTime.start3;
+                            time.End = scheduleTime.end3;
+                            time.Time = scheduleTime.start3 + "-" + scheduleTime.end3;
+                            _timeRepository.Update(time);
+                            break;
+                        case 4:
+                            time.Start = scheduleTime.start4;
+                            time.End = scheduleTime.end4;
+                            time.Time = scheduleTime.start4 + "-" + scheduleTime.end4;
+                            _timeRepository.Update(time);
+                            break;
+                        case 5:
+                            time.Start = scheduleTime.start5;
+                            time.End = scheduleTime.end5;
+                            time.Time = scheduleTime.start5 + "-" + scheduleTime.end5;
+                            _timeRepository.Update(time);
+                            break;
+                        case 6:
+                            time.Start = scheduleTime.start6;
+                            time.End = scheduleTime.end6;
+                            time.Time = scheduleTime.start6 + "-" + scheduleTime.end6;
+                            _timeRepository.Update(time);
+                            break;
+                        case 7:
+                            time.Start = scheduleTime.start7;
+                            time.End = scheduleTime.end7;
+                            time.Time = scheduleTime.start7 + "-" + scheduleTime.end7;
+                            _timeRepository.Update(time);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    Assign_Time assign_Time=new Assign_Time();
+                    switch (i)
+                    {
+                        case 1:
+                            assign_Time.User_Id = Convert.ToInt32(scheduleTime.User_Id);
+                            assign_Time.Day_Id = Convert.ToInt32(scheduleTime.day1);
+                            assign_Time.Start = scheduleTime.start1;
+                            assign_Time.End = scheduleTime.end1;
+                            assign_Time.Time = scheduleTime.start1 + "-" + scheduleTime.end1;
+                            _timeRepository.Insert(assign_Time);
+                            break;
+                        case 2:
+                            assign_Time.User_Id = Convert.ToInt32(scheduleTime.User_Id);
+                            assign_Time.Day_Id = Convert.ToInt32(scheduleTime.day2);
+                            assign_Time.Start = scheduleTime.start2;
+                            assign_Time.End = scheduleTime.end2;
+                            assign_Time.Time = scheduleTime.start2 + "-" + scheduleTime.end2;
+                            _timeRepository.Insert(assign_Time);
+                            break;
+                        case 3:
+                            assign_Time.User_Id = Convert.ToInt32(scheduleTime.User_Id);
+                            assign_Time.Day_Id = Convert.ToInt32(scheduleTime.day3);
+                            assign_Time.Start = scheduleTime.start3;
+                            assign_Time.Day_Id = Convert.ToInt32(scheduleTime.day3);
+                            assign_Time.End = scheduleTime.end3;
+                            assign_Time.Time = scheduleTime.start3 + "-" + scheduleTime.end3;
+                            _timeRepository.Insert(assign_Time);
+                            break;
+                        case 4:
+                            assign_Time.User_Id = Convert.ToInt32(scheduleTime.User_Id);
+                            assign_Time.Day_Id = Convert.ToInt32(scheduleTime.day4);
+                            assign_Time.Start = scheduleTime.start4;
+                            assign_Time.End = scheduleTime.end4;
+                            assign_Time.Time = scheduleTime.start4 + "-" + scheduleTime.end4;
+                            _timeRepository.Insert(assign_Time);
+                            break;
+                        case 5:
+                            assign_Time.User_Id = Convert.ToInt32(scheduleTime.User_Id);
+                            assign_Time.Day_Id = Convert.ToInt32(scheduleTime.day5);
+                            assign_Time.Start = scheduleTime.start5;
+                            assign_Time.End = scheduleTime.end5;
+                            assign_Time.Time = scheduleTime.start5 + "-" + scheduleTime.end5;
+                            _timeRepository.Insert(assign_Time);
+                            break;
+                        case 6:
+                            assign_Time.User_Id = Convert.ToInt32(scheduleTime.User_Id);
+                            assign_Time.Day_Id = Convert.ToInt32(scheduleTime.day6);
+                            assign_Time.Start = scheduleTime.start6;
+                            assign_Time.End = scheduleTime.end6;
+                            assign_Time.Time = scheduleTime.start6 + "-" + scheduleTime.end6;
+                            _timeRepository.Insert(assign_Time);
+                            break;
+                        case 7:
+                            assign_Time.User_Id = Convert.ToInt32(scheduleTime.User_Id);
+                            assign_Time.Day_Id = Convert.ToInt32(scheduleTime.day7);
+                            assign_Time.Start = scheduleTime.start7;
+                            assign_Time.End = scheduleTime.end7;
+                            assign_Time.Time = scheduleTime.start7 + "-" + scheduleTime.end7;
+                            _timeRepository.Insert(assign_Time);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+              
+            }
+           
+            //_appointmentRepository.ChangeAppointmentStatus(id, status);
         }
     }
 }

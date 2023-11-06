@@ -28,6 +28,8 @@ import { ContentHeaderModule } from 'app/layout/components/content-header/conten
 import { LoadingModule } from 'ngx-loading';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MatTableModule } from '@angular/material/table';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
 //import {
 //    MatInputModule, MatPaginatorModule, MatProgressSpinnerModule,
 //    MatSortModule, MatTableModule
@@ -96,6 +98,7 @@ const appRoutes: Routes = [
         LayoutModule,
         ContentHeaderModule,
         MatTableModule,
+        NgxDatatableModule,
         NgMultiSelectDropDownModule.forRoot()
     ],
     providers: [

@@ -1,6 +1,7 @@
 ﻿using DCRM.Common.Authorization;
 using DCRM.Common.Dto;
 using DCRM.Common.Entity;
+using DCRM.Common.RequestModel;
 using DCRM.Service.IService;
 using DCRM.Service.Service;
 using Microsoft.AspNetCore.Http;
@@ -72,12 +73,20 @@ namespace DCRM.Api.Controllers
             return _appointmentService.AppointmentChairViewSearch(parameters);
         }
 
-        [HttpPost("Create")]
-        public IActionResult Create(Appointment appointment)
-        {
-                _appointmentService.Create(appointment);
-                return Ok();
+        //[HttpPost("Create")]
+        //public IActionResult CreateOld(Appointment appointment)
+        //{
+        //        _appointmentService.Create(appointment);
+        //        return Ok();
            
+        //}
+
+        [HttpPost("Create")]
+        public IActionResult Create(AppointmentRequest appointment)
+        {
+            _appointmentService.Create(appointment);
+            return Ok();
+
         }
 
         [HttpPost("Update")]
@@ -141,6 +150,16 @@ namespace DCRM.Api.Controllers
         public IActionResult ChangeAppointmentStatus(long id, int status)
         {
             _appointmentService.ChangeAppointmentStatus(id, status);
+            return Ok();
+        }
+
+        [HttpPost("SetSchedule")]
+        public IActionResult SetSchedule(ScheduleTimeRequest secheduleTime)
+        {
+            var user = Request.HttpContext.Items["User"] as User;
+
+            secheduleTime.User_Id = user.Id;
+            _appointmentService.SetSchedule(secheduleTime);
             return Ok();
         }
     }

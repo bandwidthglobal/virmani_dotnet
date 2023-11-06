@@ -41,6 +41,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+
 import { AppointmentChairFormComponent } from 'app/main/clinic-admin/appointment/chair-view/appointment-form/appointment-chair-form.component';
 //import {
 //    MatInputModule, MatPaginatorModule, MatProgressSpinnerModule,

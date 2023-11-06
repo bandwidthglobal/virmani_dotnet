@@ -8,6 +8,7 @@ using DCRM.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.IdentityModel.Tokens;
 using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.Utilities.Encoders;
 using System.Collections.Generic;
@@ -164,7 +165,7 @@ namespace DCRM.Repository.Repository
 
 
             Patientse patient = new Patientse();
-            long phone = Convert.ToInt64(request.PatientContacts[0].Phone1);
+            long phone = Convert.ToInt64(request.PatientContacts[0].Phone);
             var contactDetails = _contex.Patients_Contact.FirstOrDefault(x => x.Phone1 == phone);
             if (contactDetails == null)
             {
@@ -202,6 +203,10 @@ namespace DCRM.Repository.Repository
                                 item.Updated_At
                                     = System.DateTime.Now;
                                 item.Patient_Id = patient.Id;
+                                if (!string.IsNullOrEmpty(phone.ToString()))
+                                {
+                                    item.Phone1 = phone;
+                                }
                                 item.Relationship_Type = item.Relationship_Type==null? "Relationship" : item.Relationship_Type;
                                 if (string.IsNullOrEmpty(item.Address_O))
                                 {

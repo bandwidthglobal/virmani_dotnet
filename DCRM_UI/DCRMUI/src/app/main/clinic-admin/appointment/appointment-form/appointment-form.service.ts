@@ -74,9 +74,11 @@ export class AppointmentFormService {
         const requestOptions = { headers: headers };
         const action: any = mode === 'add' ? 'Create' : 'Update';
         let url = `${environment.apiUrl}/Appointment/Create`
-        if (mode !='add') {
+       
+        if (mode != 'add') {
             url = `${environment.apiUrl}/Appointment/Update`
         }
+       
         debugger;
         return this._httpClient.post(url, payload, requestOptions);
     }
@@ -98,7 +100,14 @@ export class AppointmentFormService {
         const requestOptions = { headers: headers };
         return this._httpClient.get(`${environment.apiUrl}/Patient/Get/Names`, requestOptions);
     }
-
+    getIPatientsById(id:any): Observable<any> {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.get(`${environment.apiUrl}/Patient/Get/` + id, requestOptions);
+    }
     getIChairList(): Observable<any> {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
