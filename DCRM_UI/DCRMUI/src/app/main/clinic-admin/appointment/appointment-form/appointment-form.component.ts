@@ -10,6 +10,7 @@ import { User } from "app/auth/models";
 import { WaitingRoomService } from "../waiting-room/waiting-room.service";
 import { Router } from "@angular/router";
 import { debug } from "console";
+import { Validators } from "@angular/forms";
 
 @Component({
     selector: 'app-appointment-form',
@@ -47,9 +48,21 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
         this._unsubscribeAll = new Subject();
     }
 
+    convertFrom24To12Format(time) {
+        let hour = (time.split(':'))[0]
+        let min = (time.split(':'))[1]
+        let part = hour > 12 ? 'PM' : 'AM';
+        if (parseInt(hour) == 0)
+            hour = 12;
+        min = (min + '').length == 1 ? `0${min}` : min;
+        hour = hour > 12 ? hour - 12 : hour;
+        hour = (hour + '').length == 1 ? `0${hour}` : hour;
+        return `${hour}:${min} ${part}`;
+    }
     ngOnInit(): void {
         if (this.expectedProp != undefined) {
             this.FormInput.date = this.expectedProp.date == '' ? this._commonValidationService.dateFormat_Y_M_D(this.FormInput.date) : this.expectedProp.date;
+            
             this.FormInput.start_Time = new Date("1901-01-01 " + this.expectedProp.start_Time).toTimeString().split(' ')[0];
             var endTime = new Date("1901-01-01 " + this.expectedProp.start_Time);
             this.FormInput.end_Time = endTime.getHours() + ":" + (endTime.getMinutes() + 15) + ":00";
@@ -60,14 +73,19 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
         else {
             this.FormInput.date = this._commonValidationService.dateFormat_Y_M_D(this.FormInput.date);
         }
-        
+     
         this.formData = new IAppointmentForm(this.FormInput);
-        debugger;
+        
         if (this.formData.patient_Id.value == null || this.formData.patient_Id.value == 0) {
             this.formData.p_type.setValue("New Patient");
+            this.formData.get('patient_name').setValidators([Validators.required])
+            this.formData.get('phone').setValidators([Validators.required])
+            this.formData.get('email').setValidators([Validators.required])
+            this.formData.get('patient_Id').setValue(0);
         }
         else {
             this.formData.p_type.setValue("Old Patient");
+            this.formData.get('phone').disable;
         }
         
 
@@ -82,12 +100,42 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
 
         this._appointmentFormService.getIPatients().pipe().subscribe((response) => {
             this.IPatients = response;
-            debugger;
         });
-        
+        if (this.FormInput.patient_Id > 0) {
+            this.formData.get('patient_Id').setValue(this.FormInput.patient_Id);
+            this._appointmentFormService.getIPatientsById(this.FormInput.patient_Id).subscribe(res => {
+                this.formData.phone.setValue(res.patientContacts[0].phone1);
+                this.formData.get('phone').disable
+            });
+        }
         this._appointmentFormService.getIChairList().pipe().subscribe((response) => {
             this.IChairList = response;
         });
+        this.formData.get('patient_Id').valueChanges.subscribe((patient_Id) => {
+            this._appointmentFormService.getIPatientsById(patient_Id).subscribe(res => {
+                this.formData.phone.setValue(res.patientContacts[0].phone1);
+            });
+            
+        });
+
+        this.formData.get('p_type').valueChanges.subscribe((type) => {
+            if (type == "New Patient") {
+                this.formData.get('phone').enable
+                this.formData.phone.setValue('');
+                this.formData.get('patient_name').setValidators([Validators.required])
+                this.formData.get('phone').setValidators([Validators.required])
+                this.formData.get('email').setValidators([Validators.required])
+                this.formData.get('patient_Id').setValue(0);
+
+            }
+            else {
+                this.formData.get('patient_Id').setValidators([Validators.required])
+                this.formData.get('phone').setValidators([Validators.required])
+                this.formData.get('phone').disable;
+            }
+        });
+
+       
     }
    
     changeOldPatient(type) {
@@ -118,11 +166,15 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
     saveForm(status, id, sift): void {
         this.submitted = true;
         this._commonValidationService.validateAllFormFields(this.formData);
+        debugger;
         if (this.formData.invalid) {
             return;
         } else {
-            
+            //this.FormInput.patient_Id
             const payload: any = this.formData.getRawValue();
+            if (this.FormInput.patient_Id>0) {
+                payload.patient_Id = this.FormInput.patient_Id;
+            }
             if (status != undefined) {
                 payload.appointment_Status = parseInt(status);
             }
@@ -151,7 +203,7 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
         }
     }
     patientTypeOpen(obj) {
-        alert(obj);
+        
     }
     close() {
         this.callBackEvent.emit({

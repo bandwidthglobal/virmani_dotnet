@@ -80,7 +80,7 @@ namespace DCRM.Service.Service
         public List<PatientseDto> GetAll(long userId)
         {
 
-            var patients = _patientRepository.GetAll().Where(x=>x.User_Id== userId);
+            var patients = _patientRepository.GetAll().Where(x => x.User_Id == userId);
             PatientseDto patientseDto = new PatientseDto();
             List<PatientseDto> patientList = new List<PatientseDto>();
             foreach (var patient in patients.ToList())
@@ -113,7 +113,7 @@ namespace DCRM.Service.Service
                     totalCreditAmount = totalCreditAmount + item.Credit_Amount;
                     totalDebitAmount = totalDebitAmount + item.Debit_Amount;
                 }
-                if (totalDebitAmount> totalCreditAmount)
+                if (totalDebitAmount > totalCreditAmount)
                 {
                     addvancePayment = totalCreditAmount - totalDebitAmount;
                 }
@@ -121,7 +121,7 @@ namespace DCRM.Service.Service
                 {
                     duePayment = totalCreditAmount - totalDebitAmount;
                 }
-                patientseDto.AddvancePayment= addvancePayment;
+                patientseDto.AddvancePayment = addvancePayment;
                 patientseDto.DuePayment = duePayment;
                 patientseDto.PatientInsuranceLoans = _patientRepository.GetPatientsInsuranceLoanDetailList(patient.Id);
                 patientseDto.PatientTests = _patientRepository.GetPatientTestList(patient.Id);
@@ -139,52 +139,57 @@ namespace DCRM.Service.Service
         /// <returns></returns>
         public PatientseDto Get(long id)
         {
-            var patient =  _patientRepository.Get(id);
+            var patient = _patientRepository.Get(id);
             PatientseDto patientdto = new PatientseDto();
-            patientdto.Id = patient.Id;
-            patientdto.Chamber_Id = patient.Chamber_Id;
-            patientdto.User_name = patient.UserName;
-            patientdto.Mr_Number = patient.Mr_Number;
-            patientdto.Name = patient.Name;
-            patientdto.User_name = patient.UserName;
-            patientdto.Slug = patient.Slug;
-            patientdto.Thumb = patient.Thumb;
-            patientdto.Email = patient.Email;
-            patientdto.Age = patient.Age;
-            patientdto.Weight = patient.Weight;
-            patientdto.Sex = patient.Sex;
-            patientdto.Title = patient.Title;
-            patientdto.Guardian = patient.Guardian;
-            patientdto.Present_Address = patient.Present_Address;
-            patientdto.Permanent_Address = patient.Permanent_Address;
-            patientdto.Created_At = System.DateTime.UtcNow;
-            var payment = _paymentHistoryRepository.GetAll().Where(x => x.Patient_Id == patient.Id);
-            double addvancePayment = 0;
-            double duePayment = 0;
-            double totalCreditAmount = 0;
-            double totalDebitAmount = 0;
-            double totalBalence = 0;
-            foreach (var item in payment)
+            if (patient != null)
             {
-                totalCreditAmount = totalCreditAmount + item.Credit_Amount;
-                totalDebitAmount = totalDebitAmount + item.Debit_Amount;
-                totalBalence = totalBalence + item.Balance;
+
+
+                patientdto.Id = patient.Id;
+                patientdto.Chamber_Id = patient.Chamber_Id;
+                patientdto.User_name = patient.UserName;
+                patientdto.Mr_Number = patient.Mr_Number;
+                patientdto.Name = patient.Name;
+                patientdto.User_name = patient.UserName;
+                patientdto.Slug = patient.Slug;
+                patientdto.Thumb = patient.Thumb;
+                patientdto.Email = patient.Email;
+                patientdto.Age = patient.Age;
+                patientdto.Weight = patient.Weight;
+                patientdto.Sex = patient.Sex;
+                patientdto.Title = patient.Title;
+                patientdto.Guardian = patient.Guardian;
+                patientdto.Present_Address = patient.Present_Address;
+                patientdto.Permanent_Address = patient.Permanent_Address;
+                patientdto.Created_At = System.DateTime.UtcNow;
+                var payment = _paymentHistoryRepository.GetAll().Where(x => x.Patient_Id == patient.Id);
+                double addvancePayment = 0;
+                double duePayment = 0;
+                double totalCreditAmount = 0;
+                double totalDebitAmount = 0;
+                double totalBalence = 0;
+                foreach (var item in payment)
+                {
+                    totalCreditAmount = totalCreditAmount + item.Credit_Amount;
+                    totalDebitAmount = totalDebitAmount + item.Debit_Amount;
+                    totalBalence = totalBalence + item.Balance;
+                }
+                if (totalDebitAmount < totalCreditAmount)
+                {
+                    addvancePayment = totalCreditAmount - totalDebitAmount;
+                }
+                //if (totalCreditAmount > totalDebitAmount)
+                //{
+                //    duePayment = totalCreditAmount - totalDebitAmount;
+                //}
+                patientdto.AddvancePayment = addvancePayment;
+                patientdto.DuePayment = duePayment;
+                patientdto.TotalBalence = totalBalence;
+                patientdto.PatientInsuranceLoans = _patientRepository.GetPatientsInsuranceLoanDetailList(patient.Id);
+                patientdto.PatientTests = _patientRepository.GetPatientTestList(patient.Id);
+                patientdto.PatientContacts = _patientRepository.GetPatientsContacteDetailList(patient.Id);
+                patientdto.PatientScans = _patientRepository.GetPatientScanList(patient.Id);
             }
-            if (totalDebitAmount < totalCreditAmount)
-            {
-                addvancePayment = totalCreditAmount- totalDebitAmount ;
-            }
-            //if (totalCreditAmount > totalDebitAmount)
-            //{
-            //    duePayment = totalCreditAmount - totalDebitAmount;
-            //}
-            patientdto.AddvancePayment = addvancePayment;
-            patientdto.DuePayment = duePayment;
-            patientdto.TotalBalence = totalBalence;
-            patientdto.PatientInsuranceLoans = _patientRepository.GetPatientsInsuranceLoanDetailList(patient.Id);
-            patientdto.PatientTests = _patientRepository.GetPatientTestList(patient.Id);
-            patientdto.PatientContacts = _patientRepository.GetPatientsContacteDetailList(patient.Id);
-            patientdto.PatientScans = _patientRepository.GetPatientScanList(patient.Id);
             return patientdto;
         }
 
@@ -236,7 +241,7 @@ namespace DCRM.Service.Service
         /// <returns></returns>
         public long Create(PatientRequest request)
         {
-           var patientId=  _patientRepository.Create(request);
+            var patientId = _patientRepository.Create(request);
             return patientId;
         }
         /// <summary>;
@@ -327,7 +332,7 @@ namespace DCRM.Service.Service
         public List<TreatmentplanDto> GetPatientTreatmentplanList(int patientId)
         {
             List<TreatmentplanDto> treatmentplanDtos = new List<TreatmentplanDto>();
-            var treatmentplans = _treatmentplansRepository.GetAll().Where(x => x.Patient_Id == patientId && x.Status==1).ToList();
+            var treatmentplans = _treatmentplansRepository.GetAll().Where(x => x.Patient_Id == patientId && x.Status == 1).ToList();
             foreach (var treatment in treatmentplans)
             {
                 TreatmentplanDto treatmentplanDto = new TreatmentplanDto();
@@ -342,13 +347,13 @@ namespace DCRM.Service.Service
                 treatmentplanDto.UpdatedAt = treatment.Updated_At;
                 treatmentplanDto.Date = treatment.Date;
                 treatmentplanDto.Courtesy = treatment.Courtesy;
-                if (treatment.Treatment_Status==0)
+                if (treatment.Treatment_Status == 0)
                     treatmentplanDto.TreatmentStatus = "Observation";
-                else if(treatment.Treatment_Status == 1)
+                else if (treatment.Treatment_Status == 1)
                     treatmentplanDto.TreatmentStatus = "Completed";
                 else
                     treatmentplanDto.TreatmentStatus = "Incompleted";
-                 treatmentplanDto.Status = treatment.Status;
+                treatmentplanDto.Status = treatment.Status;
                 var teethInfo = _teethinfoRepository.GetAll().Where(x => x.Treatmentplans_Id == treatment.Id).FirstOrDefault();
                 if (teethInfo != null)
                 {
@@ -384,7 +389,7 @@ namespace DCRM.Service.Service
                 WorkDoneDto workDoneDto = new WorkDoneDto();
                 workDoneDto.Id = workdone.Id;
                 workDoneDto.AmtDueCurrentWork = workdone.Current_Work_Amt.ToString();
-                if (workdone.Workdone_Status==0)
+                if (workdone.Workdone_Status == 0)
                 {
                     workDoneDto.WorkdoneStatus = "Observation";
                 }
@@ -403,7 +408,7 @@ namespace DCRM.Service.Service
                     workDoneDto.Doctor_Id = Convert.ToInt32(doctor.Id);
                 }
                 var toothInfo = _teethinfoRepository.GetAll().Where(x => x.Treatmentplans_Id == workdone.Treatment_Id).FirstOrDefault();
-                if (toothInfo!=null)
+                if (toothInfo != null)
                 {
                     workDoneDto.ToothName = toothInfo.Teeth_Number_Note;
                     workDoneDto.Notesdiagnosis = toothInfo.Toth_Note;
@@ -418,7 +423,7 @@ namespace DCRM.Service.Service
                 workDoneDto.Discount = workdone.Discount;
                 workdoneList.Add(workDoneDto);
             }
-            return workdoneList.OrderByDescending(x=>x.Id).ToList();
+            return workdoneList.OrderByDescending(x => x.Id).ToList();
 
         }
 
@@ -460,7 +465,7 @@ namespace DCRM.Service.Service
                 }
                 paymentList.Add(paymentHistoryDto);
             }
-            return paymentList.OrderByDescending(x=>x.Id).ToList();
+            return paymentList.OrderByDescending(x => x.Id).ToList();
 
         }
 
@@ -481,7 +486,7 @@ namespace DCRM.Service.Service
 
         public ReferBy GetReferBy(long patientId)
         {
-            ReferBy referBy= _patientRepository.GetReferBy(patientId);
+            ReferBy referBy = _patientRepository.GetReferBy(patientId);
             return referBy;
         }
     }

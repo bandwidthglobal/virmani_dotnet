@@ -7,7 +7,7 @@ export class IAppointmentFormModel {
     id?: any = 0;
     chamber_Id?: any = 0;
     user_Id?: any = this.currentUser.id;
-    doctor_Id?: any = 0;
+    doctor_Id?: any='' ;
     doctor_Name?: any;
     chair?: any;
     number_Of_Slot?: any;
@@ -16,7 +16,7 @@ export class IAppointmentFormModel {
     extra_Notes?: any;
     prescription_Id?: any = 0;
     date?: any = new Date();
-    start_Time?: any;
+    start_Time?: any='';
     end_Time?: any;
     meeting_Notes?: any;
     files?: any;
@@ -29,13 +29,13 @@ export class IAppointmentFormModel {
     is_Delete?: any = 0;
     created_At?: any = new Date();
 
-    patient_Id?: any=0;
+    patient_Id?: any='';
     patient_name?: any;
     email?: any;
     phone?: any;
     age?: any;
     weight?: any;
-    sex?: any;
+    sex?: any='Male';
 }
 
 export class IAppointmentForm extends FormGroup {
@@ -71,11 +71,13 @@ export class IAppointmentForm extends FormGroup {
     readonly age = this.get('age') as FormControl;
     readonly weight = this.get('weight') as FormControl;
     readonly sex = this.get('sex') as FormControl;
-
+    
     constructor(
         readonly model: IAppointmentFormModel,
         readonly fb: FormBuilder = new FormBuilder()
     ) {
+       
+
         super(
             fb.group(
                 {
@@ -87,7 +89,7 @@ export class IAppointmentForm extends FormGroup {
                     chair: [model?.chair, [Validators.required]],
                     number_Of_Slot: [model?.number_Of_Slot],
                     slot_Time: [model?.slot_Time, [Validators.required]],
-                    cause: [model?.cause],
+                    cause: [model?.cause, [Validators.required]],
                     extra_Notes: [model?.extra_Notes],
                     prescription_Id: [model?.prescription_Id],
                     date: [model?.date, [Validators.required]],
@@ -103,8 +105,7 @@ export class IAppointmentForm extends FormGroup {
                     is_Start: [model?.is_Start],
                     is_Delete: [model?.is_Delete],
                     created_At: [model?.created_At],
-
-                    patient_Id: [model?.patient_Id],
+                    patient_Id: model.patient_Id > 0? [Validators.required]: [model?.patient_Id],
                     patient_name: [model?.patient_name],
                     email: [model?.email, [Validators.email]],
                     phone: [model?.phone, [ Validators.minLength(10), Validators.maxLength(10)]],

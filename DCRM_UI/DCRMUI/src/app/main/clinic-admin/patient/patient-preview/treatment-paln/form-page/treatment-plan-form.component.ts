@@ -117,6 +117,7 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
         });
 
         this.formData.get('milk_teeth').valueChanges.subscribe((milk_teeth) => {
+           
             this.setTeethCategories();
             if (milk_teeth) {
                 this.formData.patchValue({ teeth_id: 7 });
@@ -140,6 +141,7 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
     categoryID: string = 'continents1';
     ITeethCategory: Array<any> = [];
     setTeethCategories() {
+        
         let milk_teeth: any = this.formData.get('milk_teeth').value;
         if (milk_teeth) {
             this.ITeethCategory = this.TeethCategory.filter(f => f.teeth_Category_Name.includes('Milk'));
@@ -201,6 +203,7 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
     }
 
     getRecord_teechinfo(id, teeth_note, image) {
+       
         // console.log('> id ---> ', id);
         // console.log('> teeth_note ---> ', teeth_note);
         // console.log('> image ---> ', image);

@@ -34,26 +34,26 @@ export class AppointmentFormService {
             { id: "12:15:00", text: "12:15 PM" },
             { id: "12:30:00", text: "12:30 PM" },
             { id: "12:45:00", text: "12:45 PM" },
-            { id: "01:00:00", text: "01:00 PM" },
-            { id: "01:15:00", text: "01:15 PM" },
-            { id: "01:30:00", text: "01:30 PM" },
-            { id: "01:45:00", text: "01:45 PM" },
-            { id: "02:00:00", text: "02:00 PM" },
-            { id: "02:15:00", text: "02:15 PM" },
-            { id: "02:30:00", text: "02:30 PM" },
-            { id: "02:45:00", text: "02:45 PM" },
-            { id: "03:00:00", text: "03:00 PM" },
-            { id: "03:15:00", text: "03:15 PM" },
-            { id: "03:30:00", text: "03:30 PM" },
-            { id: "03:45:00", text: "03:45 PM" },
-            { id: "04:00:00", text: "04:00 PM" },
-            { id: "04:15:00", text: "04:15 PM" },
-            { id: "04:30:00", text: "04:30 PM" },
-            { id: "04:45:00", text: "04:45 PM" },
-            { id: "05:00:00", text: "05:00 PM" },
-            { id: "05:15:00", text: "05:15 PM" },
-            { id: "05:30:00", text: "05:30 PM" },
-            { id: "05:45:00", text: "05:45 PM" },
+            { id: "13:00:00", text: "01:00 PM" },
+            { id: "13:15:00", text: "01:15 PM" },
+            { id: "13:30:00", text: "01:30 PM" },
+            { id: "13:45:00", text: "01:45 PM" },
+            { id: "14:00:00", text: "02:00 PM" },
+            { id: "14:15:00", text: "02:15 PM" },
+            { id: "14:30:00", text: "02:30 PM" },
+            { id: "14:45:00", text: "02:45 PM" },
+            { id: "15:00:00", text: "03:00 PM" },
+            { id: "15:15:00", text: "03:15 PM" },
+            { id: "15:30:00", text: "03:30 PM" },
+            { id: "15:45:00", text: "03:45 PM" },
+            { id: "16:00:00", text: "04:00 PM" },
+            { id: "16:15:00", text: "04:15 PM" },
+            { id: "16:30:00", text: "04:30 PM" },
+            { id: "16:45:00", text: "04:45 PM" },
+            { id: "17:00:00", text: "05:00 PM" },
+            { id: "17:15:00", text: "05:15 PM" },
+            { id: "17:30:00", text: "05:30 PM" },
+            { id: "17:45:00", text: "05:45 PM" },
         ];
     }
 
@@ -65,7 +65,14 @@ export class AppointmentFormService {
             { id: "60", text: "60 Mints" },
         ];
     }
-
+    getPatientContact(patientId:any) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.get(`${environment.apiUrl}/Patient/Get` + patientId, requestOptions);
+    }
     save(payload: any, mode: string): Observable<any> {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',

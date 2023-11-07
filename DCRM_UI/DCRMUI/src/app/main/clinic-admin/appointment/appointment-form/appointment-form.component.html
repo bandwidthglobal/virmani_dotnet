@@ -16,42 +16,42 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <shared-ui-select-input [label]="'Dentist/Doctor Name'" [control]="formData.doctor_Id"
-                                    [options]="IDoctors" [valueKey]="'id'" [displaykey]="'name'"
-                                    [submitted]="submitted"></shared-ui-select-input>
+                                                        [options]="IDoctors" [valueKey]="'id'" [displaykey]="'name'"
+                                                        [submitted]="submitted"></shared-ui-select-input>
                             </div>
                             <div class="col-md-6">
                                 <shared-ui-date-input [label]="'Date'" [control]="formData.date"
-                                    [submitted]="submitted"></shared-ui-date-input>
+                                                      [submitted]="submitted"></shared-ui-date-input>
                             </div>
 
                             <div class="col-md-6">
                                 <shared-ui-select-input [label]="'Start time'" [control]="formData.start_Time"
-                                    [options]="IStartTimes" [valueKey]="'id'" [displaykey]="'text'"
-                                    [submitted]="submitted"></shared-ui-select-input>
+                                                        [options]="IStartTimes" [valueKey]="'id'" [displaykey]="'text'"
+                                                        [submitted]="submitted"></shared-ui-select-input>
                             </div>
                             <div class="col-md-6">
                                 <shared-ui-select-input [label]="'Slot time'" [control]="formData.slot_Time"
-                                    [options]="ISlotTimes" [valueKey]="'id'" [displaykey]="'text'"
-                                    [submitted]="submitted"></shared-ui-select-input>
+                                                        [options]="ISlotTimes" [valueKey]="'id'" [displaykey]="'text'"
+                                                        [submitted]="submitted"></shared-ui-select-input>
                             </div>
 
                             <div class="col-md-6">
                                 <shared-ui-text-input [label]="'End time'" [control]="formData.end_Time"
-                                    [submitted]="submitted" [isDisabled]="true"></shared-ui-text-input>
+                                                      [submitted]="submitted" [isDisabled]="true"></shared-ui-text-input>
                             </div>
                             <div class="col-md-6">
                                 <shared-ui-text-input [label]="'No of slot'" [control]="formData.number_Of_Slot"
-                                    [submitted]="submitted" [isDisabled]="true"></shared-ui-text-input>
+                                                      [submitted]="submitted" [isDisabled]="true"></shared-ui-text-input>
                             </div>
 
                             <div class="col-md-6">
                                 <shared-ui-text-input [label]="'Cause'" [control]="formData.cause"
-                                    [submitted]="submitted"></shared-ui-text-input>
+                                                      [submitted]="submitted"></shared-ui-text-input>
                             </div>
                             <div class="col-md-6">
                                 <shared-ui-select-input [label]="'Choose Chair'" [control]="formData.chair"
-                                    [options]="IChairList" [valueKey]="'id'" [displaykey]="'name'"
-                                    [submitted]="submitted"></shared-ui-select-input>
+                                                        [options]="IChairList" [valueKey]="'id'" [displaykey]="'name'"
+                                                        [submitted]="submitted"></shared-ui-select-input>
                             </div>
 
 
@@ -61,24 +61,24 @@
                                         <label>Appointment Type</label>
                                         <div class="radio radio-info radio-inline mt-10">
                                             <input name="type" [formControl]="formData.type"
-                                                type="radio" value="Online">
-                                            <label class="cs-lable">Online</label> 
+                                                   type="radio" value="Online">
+                                            <label class="cs-lable">Online</label>
                                             <input name="type" [formControl]="formData.type"
-                                                type="radio" value="Offline">
+                                                   type="radio" checked value="Offline">
                                             <label class="cs-lable">Offline</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" *ngIf="FormInput.patient_Id==0">
                                 <div class="form-group">
                                     <div class="form-group plr-10">
                                         <div class="radio radio-info radio-inline mt-10">
-                                            <input name="p_type"  [formControl]="formData.p_type" type="radio"
-                                                value="Old Patient">
-                                            <label class="cs-lable"> Old Patient</label> 
-                                            <input name="p_type"  [formControl]="formData.p_type" type="radio"
-                                                value="New Patient">
+                                            <input name="p_type" [formControl]="formData.p_type" type="radio"
+                                                   value="Old Patient">
+                                            <label class="cs-lable"> Old Patient</label>
+                                            <input name="p_type" [formControl]="formData.p_type" type="radio"
+                                                   value="New Patient">
                                             <label class="cs-lable"> New Patient</label>
                                         </div>
                                     </div>
@@ -87,49 +87,54 @@
 
                             <div *ngIf="formData.p_type.value === 'New Patient'" class="col-md-6">
                                 <shared-ui-text-input [label]="'Name'" [control]="formData.patient_name"
-                                    [submitted]="submitted"></shared-ui-text-input>
+                                                      [submitted]="submitted"></shared-ui-text-input>
                             </div>
-                            <div *ngIf="formData.p_type.value === 'Old Patient'" class="col-md-6">
-                                <shared-ui-select-input [label]="'Name'" [control]="formData.patient_Id" 
-                                    [options]="IPatients" [valueKey]="'id'" [displaykey]="'name'"
-                                    [submitted]="submitted"></shared-ui-select-input>
+                            <div  class="col-md-6" *ngIf="formData.p_type.value === 'Old Patient'">
+                                <shared-ui-select-input *ngIf="formData.p_type.value === 'Old Patient'" [label]="'Name'" [control]="formData.patient_Id"
+                                                        [options]="IPatients" [valueKey]="'id'" [displaykey]="'name'"
+                                                        [submitted]="submitted"></shared-ui-select-input>
                             </div>
                             <div *ngIf="formData.p_type.value === 'New Patient'" class="col-md-6">
                                 <div class="form-group">
                                     <label [class.invalid-class]="submitted && formData.email.errors">Email</label>
                                     <input type="email" class="form-control" [formControl]="formData.email"
-                                        [ngClass]="{ 'is-invalid': submitted && formData.email.errors }" />
+                                           [ngClass]="{ 'is-invalid': submitted && formData.email.errors }" />
                                     <ng-container *ngFor="let error of formData.email.errors | errorKeys">
-                                        <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                            }}</span>
+                                        <span *ngIf="submitted" class="invalid-class">
+                                            {{
+ messages[error]
+                                            }}
+                                        </span>
                                     </ng-container>
                                 </div>
                             </div>
-
-                            <div class="col-md-6">
-                                <shared-ui-text-input [label]="'Phone'" [control]="formData.phone" [mask]="'numeric'"
-                                    [submitted]="submitted"></shared-ui-text-input>
+                            <div class="col-md-6" *ngIf="formData.p_type.value === 'New Patient'">
+                                <shared-ui-text-input *ngIf="formData.p_type.value === 'New Patient'" [label]="'Phone'" [control]="formData.phone" [mask]="'numeric'"
+                                                      [submitted]="submitted"></shared-ui-text-input>
+                            </div>
+                            <div class="col-md-6" *ngIf="formData.p_type.value === 'Old Patient'">
+                                <shared-ui-text-input  [label]="'Phone'" [control]="formData.phone" [mask]="'numeric'"
+                                                   [isDisabled]="true"   [submitted]="submitted"></shared-ui-text-input>
                             </div>
                             <div *ngIf="formData.p_type.value === 'New Patient'" class="col-md-6">
                                 <shared-ui-text-input [label]="'Age'" [control]="formData.age" [mask]="'numeric'"
-                                    [submitted]="submitted"></shared-ui-text-input>
+                                                      [submitted]="submitted"></shared-ui-text-input>
                             </div>
 
                             <div *ngIf="formData.p_type.value === 'New Patient'" class="col-md-6">
                                 <shared-ui-text-input [label]="'Weight'" [control]="formData.weight" [mask]="'numeric'"
-                                    [submitted]="submitted"></shared-ui-text-input>
+                                                      [submitted]="submitted"></shared-ui-text-input>
                             </div>
                             <div *ngIf="formData.p_type.value === 'New Patient'" class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-group plr-10">
-                                        <label
-                                            [class.invalid-class]="submitted && formData.sex.errors">Gender</label>
+                                        <label [class.invalid-class]="submitted && formData.sex.errors">Gender</label>
                                         <div class="radio radio-info radio-inline mt-10">
                                             <input name="sex" [formControl]="formData.sex" type="radio"
-                                                value="Male">
-                                            <label class="cs-lable">Male</label> 
+                                                   value="Male">
+                                            <label class="cs-lable">Male</label>
                                             <input name="sex" [formControl]="formData.sex" type="radio"
-                                                value="Female">
+                                                   value="Female">
                                             <label class="cs-lable">Female</label>
                                         </div>
                                     </div>
@@ -139,13 +144,18 @@
                             <div class="col-md-6">
                                 <h3>More Information</h3>
                                 <div class="form-group">
-                                    <label [class.invalid-class]="submitted && formData.meeting_Notes.errors">Extra
-                                        Notes</label>
+                                    <label [class.invalid-class]="submitted && formData.meeting_Notes.errors">
+                                        Extra
+                                        Notes
+                                    </label>
                                     <textarea class="form-control" [formControl]="formData.meeting_Notes"
-                                        [ngClass]="{ 'is-invalid': submitted && formData.meeting_Notes.errors }"></textarea>
+                                              [ngClass]="{ 'is-invalid': submitted && formData.meeting_Notes.errors }"></textarea>
                                     <ng-container *ngFor="let error of formData.meeting_Notes.errors | errorKeys">
-                                        <span *ngIf="submitted" class="invalid-class"> {{ messages[error]
-                                            }}</span>
+                                        <span *ngIf="submitted" class="invalid-class">
+                                            {{
+ messages[error]
+                                            }}
+                                        </span>
                                     </ng-container>
                                 </div>
                             </div>

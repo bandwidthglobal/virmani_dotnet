@@ -113,7 +113,7 @@ export class SetSscheduleFormComponent implements OnInit, OnDestroy {
             this.scheduledFormModel.day1 = '1';
             this.apiData = res;
             for (let itme of this.apiData) {
-              
+                debugger;
                 if (itme.day_Id == 2) {
                     this.hideable_2 = true;
                     this.scheduledFormModel.start2 = itme.start;

@@ -94,16 +94,19 @@
                                                         <p *ngIf="chair.appointmentDetails==null" (click)="appointmentView(0,schedule.slatTime,chair.id);">
                                                             <a href="javascript://">Allot</a>
                                                         </p>
-                                                        <p class="appointment-background pd-5px"  *ngIf="chair.appointmentDetails!=null">
+                                                        <p class="appointment-background pd-5px"  *ngIf="chair.appointmentDetails!=null && chair.appointmentDetails.appointment_Status!=3">
 
                                                             <input type="checkbox" name="name" checked="checked" (change)="changeAppointmentStatus($event,chair.appointmentDetails.id)" value="0" *ngIf="chair.appointmentDetails.appointment_Status==4;else loggedOut" />
 
                                                             <ng-template #loggedOut>
-                                                                <input type="checkbox" name="name" value="4" (change)="changeAppointmentStatus($event,chair.appointmentDetails.id)" />
+                                                                <input type="checkbox" name="name" value="4" 
+                                                                       (change)="changeAppointmentStatus($event,chair.appointmentDetails.id)" 
+                                                                       *ngIf="chair.appointmentDetails.appointment_Status!=2"
+                                                                       />
                                                             </ng-template>
 
 
-                                                            <a href="javascript://" (click)="appointmentView(chair.appointmentDetails.id,schedule.slatTime,chair.id);" class="text-white">
+                                                            <a href="javascript://" (click)="appointmentView(chair.appointmentDetails.id,schedule.slatTime,chair.id,chair.appointmentDetails.appointment_Status);" class="text-white">
                                                                 <p>{{chair.appointmentDetails.patient_Name}}</p>
                                                                 <!--<p>{{chair.appointmentDetails.patient.address}}</p>-->
                                                                 <p><strong>Doctor:</strong> {{chair.appointmentDetails.doctor_Name}}</p>
@@ -134,10 +137,13 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" *ngIf="isAppontmentClose==true">
+                <div class="modal-body" style="height:200px;" *ngIf="isAppontmentClose==true">
                     <div class="row">
-                        <div class="col-12">
-                            <h3>Appointment closed in this slot</h3>
+                        <div class="col-12 text-center mt-3" >
+                            <h3>
+                                {{popupMassage}}
+                                
+                            </h3>
                         </div>
                     </div>
                 </div>

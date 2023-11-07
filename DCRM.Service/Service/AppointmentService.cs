@@ -413,13 +413,16 @@ namespace DCRM.Service.Service
                     appointmentChair.Status = chair.Status;
                     appointmentChair.Address = chair.Address;
                     appointmentChair.Doctor_Id = chair.Doctor_Id;
-                    var startTime = Convert.ToDateTime(time);
-                    var timr = startTime.ToString().Split(" ")[1];
-                    TimeSpan duration = TimeSpan.Parse(timr);
+                    //var startTime = Convert.ToDateTime(timeList[20]);
+                    var newTime = convertFrom24To12Format(time);
+                    //var timr = startTime.ToString().Split(" ")[1];
+                    TimeSpan duration = TimeSpan.Parse(newTime);
                     Appointment appointment = new Appointment();
-
-                    var appointmentList = _appointmentRepository.GetAll().Where(x => x.Chair == chair.Id.ToString() && x.Start_Time == duration).ToList();
-
+                    newTime = newTime + ":00";
+                    var appointmentList = _appointmentRepository.GetAll().Where(x => x.Chair == chair.Id.ToString() && x.Is_Delete==0 && x.Start_Time== duration).ToList();
+                    //var abc=   (appointmentList[0].Start_Time)
+                    //string formatted = Convert.ToDateTime(appointmentList[1].Start_Time.ToString()).ToString("hh:mm tt");//.ToString("hh:mm:ss tt");
+                    //&& x.Start_Time == duration
                     if (appointment != null)
                     {
                         if (!string.IsNullOrEmpty(parameters.ScheduleDate))
@@ -467,6 +470,14 @@ namespace DCRM.Service.Service
             return appointmentChairView;
         }
 
+       public string convertFrom24To12Format(string time)
+        {
+            DateTime d = DateTime.Parse(time);
+            var aa = d.ToString("HH:mm");
+            return aa;
+            
+        }
+
         public List<Assaign_Day> GetDays(long userId)
         {
             List<Assaign_Day> assaignDays = new List<Assaign_Day>();
@@ -482,7 +493,7 @@ namespace DCRM.Service.Service
 
         public void Create(AppointmentRequest request)
         {
-            long patientId = 0;
+          
             if (request.Patient_Id == 0)
             {
                 PatientRequest patientse = new PatientRequest();
@@ -490,7 +501,8 @@ namespace DCRM.Service.Service
                 patientse.Email = request.Email;
                 patientse.Age = Convert.ToSByte(request.Age);
                 patientse.Mobile = request.Phone;
-                patientse.Sex = "male";// request.Gender;
+                patientse.User_Id = request.User_Id;
+                patientse.Sex = request.Gender;
                 PatientsContact patientsContact = new PatientsContact();
                 List<PatientsContact> patientsContacts = new List<PatientsContact>();
                 patientsContact.Email = request.Email;

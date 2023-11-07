@@ -18,7 +18,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     templateUrl: './chair-view.component.html',
     styleUrls: ['./chair-view.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    
+
 })
 export class AppointmentChairViewComponent implements OnInit, OnDestroy {
     // Public
@@ -47,8 +47,8 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
     doctorList: [];
     FormInput: any;
     isAppontmentClose = false;
-    addParam = { start_Time: '', date: '', chair:'' }
-   
+    addParam = { start_Time: '', date: '', chair: '' }
+    public popupMassage = "Appointment closed in this slot";
     @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
     @ViewChild('appointmentModal', { static: false }) workdoneModal: ElementRef;//RECEIVE
     workdoneElm: HTMLElement;
@@ -89,7 +89,7 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
         var t = new Date().getDate();
         var m = new Date().getUTCMonth();
         var y = new Date().getFullYear();
-        this.searchParam.scheduleDate = formatDate(new Date(), 'yyyy-MM-dd', 'en-US') ;
+        this.searchParam.scheduleDate = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
         //this.dropdownSettings: IDropdownSettings = {
         //    singleSelection: false,
         //    idField: 'item_id',
@@ -115,7 +115,7 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
                 obj.item_text = this.data.chairList[i].name;
                 this.dropdownList.push(obj)
             }
-            
+
             this.tempData = this.rows;
             this.tempFilterData = this.rows;
             debugger;
@@ -129,20 +129,20 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
         this._chairViewService.getAppointmentChairViewSearchlist(this.searchParam).subscribe(response => {
             this.data = response;
             this.rows = this.data;
-            if (this.chairList==undefined) {
+            if (this.chairList == undefined) {
                 this.chairList = this.data.chairList;
             }
-            
+
             for (var i = 0; i < this.data.chairList.length; i++) {
                 let obj: any = {}
                 obj.item_id = this.data.chairList[i].id;
                 obj.item_text = this.data.chairList[i].name;
                 this.dropdownList.push(obj)
             }
-            if (this.doctorList==undefined) {
+            if (this.doctorList == undefined) {
                 this.doctorList = this.data.doctorList;
             }
-           
+
             this.appointmentScheduleTimes = this.data.appointmentScheduleTimes
             this.tempData = this.rows;
 
@@ -150,26 +150,31 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
             this.loading = false;
         });
     }
-    appointmentView(appointmentId, slatTime,chair,) {
+    
+    appointmentView(appointmentId, slatTime, chair, status) {
         this.isAppontmentClose = false;
-        //if (this.searchParam.scheduleDate != '') {
-        //    const appointmentDate = formatDate(this.searchParam.scheduleDate + " " + slatTime, 'yyyy-MM-dd hh:mm:ss', 'en-US');
-        //    const todayDate = formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss', 'en-US');
-        //    let appointmentDateTime = new Date(this.searchParam.scheduleDate)
-        //    let todayDateTime = new Date()
-        //    if (appointmentDateTime.getTime() < todayDateTime.getTime()) {
-        //        this.isAppontmentClose = true;
-        //        this.workdoneElm.classList.add('show');
-        //        this.workdoneElm.style.display = 'block';
-        //        this.workdoneElm.style.width = '100vw';
-        //        /* return false;*/
-        //        this.isAppontmentClose = false;
-        //    }
-        //    else{
-        //        this.isAppontmentClose = false;
-        //    }
-          
-        //}
+        if (status === 2) {
+            this.isAppontmentClose = true;
+            this.popupMassage = "Appointment has been completed.";
+            this.workdoneElm.classList.add('show');
+            this.workdoneElm.style.display = 'block';
+            this.workdoneElm.style.width = '100vw';
+            return;
+        }
+
+        const date1 = new Date(this.searchParam.scheduleDate + " " + slatTime);
+        const date2 = new Date(new Date());
+       
+        if (date1.getTime() < date2.getTime()) {
+            this.isAppontmentClose = true;
+            this.workdoneElm.classList.add('show');
+            this.workdoneElm.style.display = 'block';
+            this.workdoneElm.style.width = '100vw';
+        } else {
+
+            this.isAppontmentClose = false;
+        }
+      
         if (appointmentId > 0) {
             this._appointmentEditService.getAppointmentData(appointmentId).subscribe(response => {
                 this.FormInput = response;
@@ -182,6 +187,7 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
         }
         else {
             this.addParam.start_Time = slatTime;
+            debugger;
             this.addParam.date = this.Date;
             this.addParam.chair = chair;
             this.isEdit = false;
@@ -190,7 +196,6 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
             this.workdoneElm.style.display = 'block';
             this.workdoneElm.style.width = '100vw';
         }
-
     }
     redirect(event) {
         this.close();
@@ -215,7 +220,7 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
     onSelectAll(items: any) {
         console.log(items);
     }
-    
+
     dateChange(evt) {
         var date = evt.target.value;
         this.Date = date;
@@ -236,7 +241,7 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
         }, 75);
     }
     changeAppointmentStatus(evnt, id) {
-        
+
         this._waitingRoomServiceService.ChangeAppointmentStatus(id, evnt.target.value).subscribe(res => {
             this.searchData();
         });
