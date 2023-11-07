@@ -67,8 +67,6 @@ namespace DCRM.Repository.Repository
         public void Create(DoctorRequest request)
         {
 
-            try
-            {
                 var doctorDetails = _contex.Doctors.FirstOrDefault(x => x.Email == request.Email);
                 if (doctorDetails == null)
                 {
@@ -149,13 +147,6 @@ namespace DCRM.Repository.Repository
                 {
                     throw new SqlAlreadyFilledException("email is already exist");
                 }
-
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("some technical problem. Please contact to admin");
-            }
         }
 
 

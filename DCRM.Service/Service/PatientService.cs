@@ -332,7 +332,7 @@ namespace DCRM.Service.Service
         public List<TreatmentplanDto> GetPatientTreatmentplanList(int patientId)
         {
             List<TreatmentplanDto> treatmentplanDtos = new List<TreatmentplanDto>();
-            var treatmentplans = _treatmentplansRepository.GetAll().Where(x => x.Patient_Id == patientId && x.Status == 1).ToList();
+            var treatmentplans = _treatmentplansRepository.GetAll().Where(x => x.Patient_Id == patientId && x.Status == 1).OrderByDescending(x=>x.Id).ToList();
             foreach (var treatment in treatmentplans)
             {
                 TreatmentplanDto treatmentplanDto = new TreatmentplanDto();
