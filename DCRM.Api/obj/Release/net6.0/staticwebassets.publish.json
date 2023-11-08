@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "s4vgBGDv2ZuvyHsm1/BhVfdq8+aRGRoNrrvU5zc36no=",
+  "Source": "DCRM.Api",
+  "BasePath": "_content/DCRM.Api",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

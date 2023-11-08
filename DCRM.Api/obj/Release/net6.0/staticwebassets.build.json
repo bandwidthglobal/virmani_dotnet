@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Mf2HQXerKddnGDI4KrieXPLY6FwdxBEy9/5KVTIdBSA=",
+  "Source": "DCRM.Api",
+  "BasePath": "_content/DCRM.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

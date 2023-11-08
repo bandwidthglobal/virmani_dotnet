@@ -42,7 +42,8 @@ namespace DCRM.Repository.Repository
             int id = 0;
             _contex.Database.BeginTransaction();
             Treatmentplans treatmentplans = new Treatmentplans();
-            treatmentplans.Amount = request.Amount;
+            treatmentplans.Amount = request.Estimated_Amount;
+            treatmentplans.Estimated_Amount = request.Estimated_Amount;
             treatmentplans.Courtesy = request.Courtesy;
             treatmentplans.Treatment_Status = request.TreatmentStatus;
             treatmentplans.Sitting_Status = request.SittingStatus;
@@ -71,7 +72,7 @@ namespace DCRM.Repository.Repository
                     teethinfo.Type = request.Type;
                     teethinfo.Teeth_Id = request.Teeth_id;
                     teethinfo.Teeth_Number_Note = request.Teeth_Number_Note;
-                    teethinfo.Toth_Note = request.Toth_Note;
+                    teethinfo.Toth_Note = request.Treatment_Notes;
                     teethinfo.Note_Status = request.Note_Status==null?"": request.Note_Status;
                     teethinfo.Ord = request.Ord == null ? "" : request.Ord;
                     teethinfo.Rmd = request.Rmd == null ? "" : request.Rmd;

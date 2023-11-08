@@ -135,6 +135,7 @@ const routes: Routes = [
         resolve: {
             Sds: WaitingRoomService
         },
+        data: { animation: 'WaitingRoomComponent' }
 
     }
 ];
@@ -172,7 +173,19 @@ const routes: Routes = [
         MatTableModule,
         MatInputModule,
         MatPaginatorModule,
-        MatSortModule
+        MatSortModule,
+        CoreCommonModule,
+        Ng2FlatpickrModule,
+        NgxDatatableModule,
+        FormsModule,
+        CorePipesModule,
+        NgbModule,
+        NgSelectModule,
+        CoreSidebarModule,
+
+        SharedCommonModule,
+        MaskModule,
+
     ],
     providers: [AppointmentListService, AppointmentPreviewService, AppointmentEditService, AppointmentAddService,
         AppointmentChairViewService, SetSscheduleFormService, CalenderViewService, WaitingRoomService, CalendarService

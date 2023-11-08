@@ -2,18 +2,18 @@
     <!-- This is the tree node template for leaf nodes -->
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding [matTreeNodePaddingIndent]="10">
         <!-- use a disabled button to provide padding for tree leaf -->
-        <button (click)="setJobNames(node.category);" class="toggle-btn" mat-icon-button disabled></button>
-        <span (click)="setJobNames(node.category);">{{node.category}}</span>
+        <button (click)="setJobNames(node.category,node.id,node.parent);" class="toggle-btn" mat-icon-button disabled></button>
+        <span (click)="setJobNames(node.category,node.id,node.parent);">{{node.category}}</span>
     </mat-tree-node>
     <!-- This is the tree node template for expandable nodes -->
     <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding [matTreeNodePaddingIndent]="10">
-        <button (click)="setJobNames(node.category);" class="toggle-btn" mat-icon-button matTreeNodeToggle>
+        <button (click)="setJobNames(node.category,node.id,node.parent);" class="toggle-btn" mat-icon-button matTreeNodeToggle>
             <!-- <mat-icon class="mat-icon-rtl-mirror"> -->
             <!-- {{treeControl.isExpanded(node) ? 'expand_more' : '<i data-feather="chevron-down" size="18"></i>'}} -->
             <i data-feather="chevron-right" size="15"></i>
             <!-- <i data-feather="chevron-down" size="18"></i> -->
             <!-- </mat-icon> -->
         </button>
-        <span (click)="setJobNames(node.category);">{{node.category}}</span>
+        <span (click)="setJobNames(node.category,node.id,node.parent);">{{node.category}}</span>
     </mat-tree-node>
 </mat-tree>

@@ -32,6 +32,7 @@ export class PatientPreviewComponent implements OnInit, OnDestroy {
     public submitted = false;
     public returnUrl: string;
     public error = '';
+    isAppointments = false;
     medicinBrands: any;
     medicinCategories: any;
     public brandName: string = "";
@@ -82,7 +83,11 @@ export class PatientPreviewComponent implements OnInit, OnDestroy {
         });
     }
 
-    onTabChange(obj) { }
+    //onTabChange(obj) {
+    //    if (obj =="Appointments") {
+    //        this.isAppointments = true;
+    //    }
+    //}
 
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions

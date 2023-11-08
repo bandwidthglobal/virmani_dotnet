@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
 import { CoreConfigService } from '@core/services/config.service';
 import { PatientPreviewService } from 'app/main/clinic-admin/patient/patient-preview/patient-preview.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 
 import { MatDialog } from '@angular/material/dialog';
@@ -11,12 +11,15 @@ import { TreatmentPlanFormComponent } from './form-page/treatment-plan-form.comp
 import Swal from 'sweetalert2';
 import { WorkDoneForm, WorkDoneFormModel } from './workdone-from';
 import { CommonValidationService } from '../../../../../shared-common/services/common-validation.service';
+import { repeaterAnimation } from '../../../../apps/patient/patient.animation';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 
 @Component({
     selector: 'app-treatment-paln',
     templateUrl: './treatment-paln.component.html',
     styleUrls: ['./treatment-paln.component.scss'],
+    animations: [repeaterAnimation],
     encapsulation: ViewEncapsulation.None
 })
 
@@ -37,6 +40,17 @@ export class TreatmentPalnComponent implements OnInit {
     public error = '';
     public totalAmount = 0;
     public currentAmount = 0;
+    workdoneStatus = 0;
+    public workdoneForm: UntypedFormGroup;
+    public workdone: WorkDoneFormModel = {
+        id: 0,
+        doctor_Id: '',
+        current_Work_Amt: '',
+        discount: 0,
+        total_Amt: 0,
+        workdone_Status: 0,
+        estimated_Amount:''
+    }
     private tempData = [];
     private _unsubscribeAll: Subject<any>;
     public rows;
@@ -50,23 +64,15 @@ export class TreatmentPalnComponent implements OnInit {
     @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
     @ViewChild('workdoneModal', { static: false }) workdoneModal: ElementRef;//RECEIVE
     receiveElm: HTMLElement;
-    workDoneFormData?: WorkDoneForm;
-    @Input() ReceiveFormInput?: WorkDoneFormModel = {
-        id: 0,
-        discount: 0,
-        total_Amt: 0,
-        doctor_Id:''
-    };
-
+    public patientId: any;
     constructor(
-        private router: Router,
         private _patientListService: PatientPreviewService,
         private _coreConfigService: CoreConfigService,
         private _route: ActivatedRoute,
-        private _matDialog: MatDialog
-        , private _commonValidationService: CommonValidationService
-    ) {
+        private _formBuilder: UntypedFormBuilder    ) {
         this._unsubscribeAll = new Subject();
+        
+        debugger;
     }
 
     filterUpdate(event) {
@@ -109,8 +115,7 @@ export class TreatmentPalnComponent implements OnInit {
     addWorkDone(treatmentid,estamount ) {
         this.getDoctors();
         this.treatmentId = treatmentid;
-        this.workDoneFormData = new WorkDoneForm(this.ReceiveFormInput);
-        this.workDoneFormData.estimated_Amount.setValue(estamount);
+        this.workdone.estimated_Amount = estamount;
         this.receiveElm.classList.add('show');
         this.receiveElm.style.width = '100vw';
     }
@@ -121,6 +126,10 @@ export class TreatmentPalnComponent implements OnInit {
             this.receiveElm.style.width = '0';
         }, 75);
     }
+    chamgeStatus(status) {
+        this.workdoneStatus = status;
+    }
+
     getDoctors() {
         this._patientListService.getDoctors().pipe().subscribe((response) => {
             this.doctors = response;
@@ -129,29 +138,33 @@ export class TreatmentPalnComponent implements OnInit {
 
     chngCurrentwork(ev) {
         this.currentAmount = parseInt(ev.target.value)
-        this.workDoneFormData.total_Amt.setValue(this.currentAmount);
+        if (this.workdone.discount == 0) {
+            this.workdone.total_Amt = this.currentAmount;
+        }
+        else {
+            this.workdone.total_Amt = this.currentAmount - this.workdone.discount;
+        }
     }
     chngDiscount(ev) {
         var discount = parseInt(ev.target.value)
         
        if (this.currentAmount > 0 && discount > 0) {
-            this.workDoneFormData.total_Amt.setValue(this.currentAmount - discount);
+            this.workdone.total_Amt=this.currentAmount - discount;
         }
-        
     }
-
+    get f() {
+        return this.workdoneForm.controls;
+    }
     saveWorkDoneForm() {
         this.submitted = true;
-        this._commonValidationService.validateAllFormFields(this.workDoneFormData);
-        if (this.workDoneFormData.invalid) {
-            debugger;
+        if (this.workdoneForm.invalid) {
+            
             return;
         }
-        const payload: any = this.workDoneFormData.getRawValue();
-        payload.treatment_Id = this.treatmentId;
-        debugger;
+        this.workdone.workdone_Status = this.workdoneStatus;
+        this.workdone.treatment_Id = this.treatmentId;
         this.loading = true;
-        this._patientListService.saveWorkDone(payload).pipe(catchError((error) => {
+        this._patientListService.saveWorkDone(this.workdone).pipe(catchError((error) => {
             this.loading = false;
             this.error = error;
             this.callBackEvent.emit({
@@ -174,11 +187,26 @@ export class TreatmentPalnComponent implements OnInit {
         //this.loading = true;
     }
     ngOnInit(): void {
-        
-        this.getData();
-        this.workDoneFormData = new WorkDoneForm(this.ReceiveFormInput);
+        this.workdoneForm = this._formBuilder.group({
+            doctor_Id: ['', Validators.required],
+            current_Work_Amt: ['', Validators.required],
+            discount: [''],
+            total_Amt: [''],
+            estimated_Amount: [''],
+            workdone_Status: [''],
+        });
+        this.patientId = this._route.snapshot.paramMap.get('id');
+        this.getTreatmentList();
     }
-    
+
+    getTreatmentList() {
+        this._patientListService.getTreatmentPalnList(this.patientId).subscribe(response => {
+            this.data = response;
+            this.rows = this.data;
+            this.tempData = this.rows;
+            this.tempFilterData = this.rows;
+        });
+    }
     getData() {
         this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
             // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)
@@ -245,7 +273,7 @@ export class TreatmentPalnComponent implements OnInit {
 
     returnPage() {
         this.showTreatmentForm = false;
-        this.getData();
+        this.getTreatmentList();
     }
 
 

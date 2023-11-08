@@ -64,8 +64,7 @@ export class PatientPreviewService implements Resolve<any> {
                 , this.getLabList(currentId)
                 , this.getPaymentList(currentId)
                 , this.getAppointmentList(currentId)
-                , this.getWorkDoneHistoryList(currentId)
-                , this.getTreatmentPalnList(currentId)
+               /* , this.getWorkDoneHistoryList(currentId)*/
                 , this.getPaymentList(currentId)
                 , this.getDigitalDataList(currentId)
                 , this.getPriscriptionsList(currentId)
@@ -108,7 +107,8 @@ export class PatientPreviewService implements Resolve<any> {
             }, reject);
         });
     }
-    getTreatmentPalnList(id: number): Promise<any[]> {
+
+    getTreatmentPalnList(id: number) {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${this.currentUser.jwtToken}`
@@ -116,16 +116,20 @@ export class PatientPreviewService implements Resolve<any> {
         const requestOptions = { headers: headers };
         const url = `${environment.apiUrl}/Patient/Get/Treatmentplans/${id}`;
         this.id = id;
-        return new Promise((resolve, reject) => {
-            this._httpClient.get(url, requestOptions).subscribe((response: any) => {
-                this.treatmentData = response;
-                debugger;
-                this.onTreatmentChanged.next(this.treatmentData);
-                resolve(this.treatmentData);
-            }, reject);
-        });
+       return this._httpClient.get(url, requestOptions);
     }
-    getWorkDoneHistoryList(id: number): Promise<any[]> {
+
+    getWorkDoneHistoryList(id:any) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        const url = `${environment.apiUrl}/Patient/Get/WorkDones/${id}`;
+       return this._httpClient.get(url, requestOptions);
+    }
+
+    getWorkDoneHistoryList1(id: number): Promise<any[]> {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${this.currentUser.jwtToken}`

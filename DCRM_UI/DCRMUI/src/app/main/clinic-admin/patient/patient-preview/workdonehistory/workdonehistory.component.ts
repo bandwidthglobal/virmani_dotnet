@@ -98,32 +98,41 @@ export class WorkdoneHistoryComponent implements OnInit {
             return isPartialNameMatch;
         });
     }
+    patientId: any = 0;
     ngOnInit(): void {
+        this.patientId = this._route.snapshot.paramMap.get('id');
         this.getData();
     }
     getData() {
-        this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
-            // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)
-            if (config.layout.animation === 'zoomIn') {
-                setTimeout(() => {
+        this._patientListService.getWorkDoneHistoryList(this.patientId).subscribe(response => {
+            this.data = response;
+            this.rows = this.data;
+            this.tempData = this.rows;
+            this.tempFilterData = this.rows;
+        })
 
-                    this._patientListService.onWorkedDoneChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-                        this.data = response;
-                        this.rows = this.data;
-                        this.tempData = this.rows;
-                        this.tempFilterData = this.rows;
-                    });
-                }, 450);
-            } else {
-                this._patientListService.onWorkedDoneChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-                    this.data = response;
-                    this.rows = this.data;
-                    this.tempData = this.rows;
-                    this.tempFilterData = this.rows;
-                    // debugger;
-                });
-            }
-        });
+        //this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
+        //    // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)
+        //    if (config.layout.animation === 'zoomIn') {
+        //        setTimeout(() => {
+
+        //            this._patientListService.onWorkedDoneChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+        //                this.data = response;
+        //                this.rows = this.data;
+        //                this.tempData = this.rows;
+        //                this.tempFilterData = this.rows;
+        //            });
+        //        }, 450);
+        //    } else {
+        //        this._patientListService.onWorkedDoneChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+        //            this.data = response;
+        //            this.rows = this.data;
+        //            this.tempData = this.rows;
+        //            this.tempFilterData = this.rows;
+        //            // debugger;
+        //        });
+        //    }
+        //});
     }
     delete(id) {
         let rowIndex = -1;

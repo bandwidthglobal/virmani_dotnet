@@ -1,12 +1,12 @@
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import * as vMODEL from './validation';
 
-export interface WorkDoneFormModel {
+export class WorkDoneFormModel {
     id?: any;
-    doctor_Id?: any;
+    doctor_Id?: any='';
     treatment_Id ?: any;
     estimated_Amount?: any;
-    current_Work_Amt?: any;
+    current_Work_Amt?: any='';
     discount?: any;
     total_Amt?: any;
     workdone_Status?: any;
@@ -29,7 +29,7 @@ export class WorkDoneForm extends FormGroup {
             fb.group(
                 {
                     id: [model?.id],
-                    doctor_Id: [model?.doctor_Id],
+                    doctor_Id: [model?.doctor_Id, Validators.required],
                     treatment_Id: [model?.treatment_Id],
                     estimated_Amount: [model?.estimated_Amount],
                     current_Work_Amt: [model?.current_Work_Amt, Validators.required],

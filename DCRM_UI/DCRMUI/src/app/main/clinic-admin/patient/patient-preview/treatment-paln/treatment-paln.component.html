@@ -1,10 +1,10 @@
 <div class="content-wrapper container-xxl p-0">
-    <div class="content-body">
+    <div class="content-body p-2">
         <section class="drug-list-wrapper">
             <div class="card">
                 <div class="col-md-6 col-4">
-                    <button (click)="openComplaintForm();" class="btn btn-primary ml-2">
-                        Add Complaints
+                    <button (click)="openComplaintForm();" class="btn btn-primary btn-sm">
+                        <i class="fa fa-plus"></i>   Add Complaints
                     </button>
                 </div>
                 <ng-container *ngIf="showTreatmentForm">
@@ -44,11 +44,11 @@
                     <ngx-datatable [rows]="rows" rowHeight="auto" class="bootstrap core-bootstrap"
                                    [limit]="selectedOption" [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50"
                                    [scrollbarH]="true">
-                        <ngx-datatable-column name="" [width]="20">
+                        <!--<ngx-datatable-column name="" [width]="20">
                             <ng-template let-id="value" ngx-datatable-cell-template>
                                 <input type="checkbox" />
                             </ng-template>
-                        </ngx-datatable-column>>
+                        </ngx-datatable-column>>-->
                         <ngx-datatable-column name="Date" prop="date" [width]="150">
                             <ng-template let-row="row" ngx-datatable-cell-template>
                                 <div class="row">
@@ -90,7 +90,7 @@
         </section>
     </div>
 
-    <div class="modal fade my-modal" tabindex="-1" role="dialog"  #workdoneModal>
+    <div class="modal fade my-modal" tabindex="-1" role="dialog" #workdoneModal>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -100,10 +100,9 @@
                     </button>
                 </div>
                 <div class="modal-body" style="overflow:auto">
-                    <form id="form-modal-workdone"
+                    <form id="form-modal-workdone" [formGroup]="workdoneForm"
                           class="todo-modal needs-validation"
-                           (ngSubmit)="saveWorkDoneForm()"
-                         >
+                          (ngSubmit)="saveWorkDoneForm()">
                         <!-- Modal body -->
                         <div class="modal-body">
 
@@ -114,8 +113,11 @@
                                     <div class="form-group">
                                         <label><strong>By Doctor</strong></label>
                                         <!-- <input type="text" name="supplier" class="form-control" required> -->
-                                        <select  class="form-control select2" [formControl]="workDoneFormData.doctor_Id" 
-                                                aria-describedby="workDoneFormData.doctor_Id">
+                                        <select class="form-control select2"
+                                                [(ngModel)]="workdone.doctor_Id"
+                                                formControlName="doctor_Id"
+                                                aria-describedby="doctor_Id"
+                                                [ngClass]="{ 'is-invalid': submitted && f.doctor_Id.errors }">
                                             <option value="">Select Doctor</option>
                                             <option *ngFor="let item of doctors" value="{{item.id}}">{{item.name}}</option>
                                         </select>
@@ -125,8 +127,12 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Estimated Amount</label>
-                                        <input type="text" [mask]="'numeric'" disabled="disabled" [formControl]="workDoneFormData.estimated_Amount" class="form-control"
-                                               aria-describedby="workDoneFormData.estimated_Amount" tabindex="2" value="5000"/>
+                                        <input type="text" disabled="disabled"
+                                               class="form-control"
+                                               tabindex="2" 
+                                               [(ngModel)]="workdone.estimated_Amount"
+                                               formControlName="estimated_Amount"
+                                               aria-describedby="estimated_Amount" />
                                         <!--<input name="estimate_amt" id="estimate_amt" readonly="" placeholder="" type="number" class="form-control" required="" value="5000" >-->
                                     </div>
                                 </div>
@@ -134,8 +140,12 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Amount Due for Todays's Work.</label>
-                                        <input type="text" [mask]="'numeric'" required [formControl]="workDoneFormData.current_Work_Amt" (change)="chngCurrentwork($event)" class="form-control"
-                                               aria-describedby="workDoneFormData.current_Work_Amt" tabindex="3"  />
+                                        <input type="text" (change)="chngCurrentwork($event)" class="form-control"
+                                               tabindex="3"
+                                               [(ngModel)]="workdone.current_Work_Amt"
+                                               formControlName="current_Work_Amt"
+                                               aria-describedby="current_Work_Amt"
+                                               [ngClass]="{ 'is-invalid': submitted && f.current_Work_Amt.errors }" />
                                         <!--<input name="current_work" id="current_work" (change)="chngCurrentwork($event)" placeholder="" type="number" class="form-control" required="" value="">-->
                                     </div>
                                 </div>
@@ -144,17 +154,23 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Discount.</label>
-                                        <input type="text" [mask]="'numeric'" [formControl]="workDoneFormData.discount" (change)="chngDiscount($event)" class="form-control"
-                                               aria-describedby="workDoneFormData.discount" tabindex="4" value="0"/>
+                                        <input type="text" (change)="chngDiscount($event)" class="form-control"
+                                               tabindex="4" 
+                                               [(ngModel)]="workdone.discount"
+                                               formControlName="discount"
+                                               aria-describedby="discount" />
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Total Amount</label>
-                                        <input type="text" [mask]="'numeric'" disabled="disabled" [formControl]="workDoneFormData.total_Amt" class="form-control"
-                                               aria-describedby="workDoneFormData.discount" tabindex="5" value="0" />
-                                        
+                                        <input type="text" disabled="disabled" class="form-control"
+                                               tabindex="5" value="0"
+                                               [(ngModel)]="workdone.total_Amt"
+                                               formControlName="total_Amt"
+                                               aria-describedby="total_Amt" />
+
                                     </div>
                                 </div>
                                 <div class="payment_bxblock pyatm col-md-6">
@@ -162,23 +178,20 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="workdone_status" [formControl]="workDoneFormData.workdone_Status" required id="observation_new" value="0">
+                                                <input class="form-check-input" type="radio" checked name="workdone_status" (change)="chamgeStatus(0)" id="observation_new" value="0">
                                                 <label class="form-check-label" for="observation_new">
                                                     Observation
                                                 </label>
                                             </div>
-                                            <!--                    </div>
-                                                <div class="col-md-6">-->
+
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="workdone_status" [formControl]="workDoneFormData.workdone_Status" required="" id="completed_new" value="1">
+                                                <input class="form-check-input" type="radio" name="workdone_status" id="completed_new" value="1" (change)="chamgeStatus(1)">
                                                 <label class="form-check-label" for="completed_new">
                                                     Completed
                                                 </label>
                                             </div>
-                                            <!--                    </div>
-                                                <div class="col-md-6">-->
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="workdone_status" [formControl]="workDoneFormData.workdone_Status" required id="incompleted_new" value="2">
+                                                <input class="form-check-input" type="radio" name="workdone_status" id="incompleted_new" value="2" (change)="chamgeStatus(2)">
                                                 <label class="form-check-label" for="incompleted_new">
                                                     Incompleted
                                                 </label>
@@ -199,7 +212,7 @@
                     </form>
 
                 </div>
-                
+
             </div>
         </div>
     </div>

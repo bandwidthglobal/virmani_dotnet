@@ -2,9 +2,9 @@ import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@ang
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Subject } from 'rxjs';
-
-import { WaitingRoomService } from '../waiting-room/waiting-room.service';
+import { takeUntil } from 'rxjs/operators';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
+import { WaitingRoomService } from '../waiting-room/waiting-room.service';
 import { CoreConfigService } from '../../../../../@core/services/config.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';

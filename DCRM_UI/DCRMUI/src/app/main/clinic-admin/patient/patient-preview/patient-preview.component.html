@@ -47,7 +47,7 @@
 
                     <div class="col-xl-12 col-lg-12">
                         <ul ngbNav #navFilled="ngbNav" class="nav-tabs nav-fill">
-                            <li ngbNavItem clcik="onTabChange('Info')">
+                            <li ngbNavItem >
                                 <a ngbNavLink>Patient Info</a>
                                 <ng-template ngbNavContent>
                                     <p>
@@ -56,10 +56,10 @@
                                 </ng-template>
                             </li>
                             <li ngbNavItem>
-                                <a ngbNavLink clcik="onTabChange('Appointments')">Appointments</a>
+                                <a ngbNavLink >Appointments</a>
                                 <ng-template ngbNavContent>
                                     <p>
-                                        <app-patient-appointments></app-patient-appointments>
+                                        <app-patient-appointments ></app-patient-appointments>
                                     </p>
                                 </ng-template>
                             </li>

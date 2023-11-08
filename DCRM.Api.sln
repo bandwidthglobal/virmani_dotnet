@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DCRM.Common", "DCRM.Common\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DCRM.Repository", "DCRM.Repository\DCRM.Repository.csproj", "{6CF5FF87-8108-4296-8143-C8E2DB623FD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCRM_UI", "DCRM_UI\DCRM_UI.csproj", "{B5EED672-2BE9-4A0D-9357-5F0E77AAADC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DCRM_UI", "DCRM_UI\DCRM_UI.csproj", "{B5EED672-2BE9-4A0D-9357-5F0E77AAADC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

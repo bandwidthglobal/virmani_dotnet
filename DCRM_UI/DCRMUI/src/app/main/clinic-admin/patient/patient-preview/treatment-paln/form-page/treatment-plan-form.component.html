@@ -1,4 +1,4 @@
-﻿<div class="col-md-12" id="disp_div">
+﻿<div class="col-md-12 mt-2" id="disp_div">
     <div class="col-md-12">
         <h4 class="form_title">Treatment Plan</h4>
         <div class="clear"></div>
@@ -47,7 +47,7 @@
                 <p class="texp">Tooth Number: <span class="tre-code">
                         <a (click)="toothNumber = []" style="color:#398bf7;" href="javascript:void();"
                             id="clear_teeth">Clear</a></span></p>
-                <span id="tooth_no_note_view">
+                <span id="tooth_no_note_view"   >
                     <ng-container *ngFor="let d of toothNumber; let idx = index;">
                         <span class="mr-2">"{{ d }}
                             <span (click)="removeToothNumber(idx)"
@@ -94,11 +94,11 @@
                         <div class="form-group plr-10">
                             <label>Treatment</label>
                             <div class="radio radio-info radio-inline mt-10">
-                                <input name="treatment" type="radio" value="Observation">
+                                <input name="treatment" checked type="radio" (change)="changeTreatmentStatus(0)" value="0">
                                 <label class="cs-lable">Observation</label> 
-                                <input name="treatment" type="radio" value="Completed">
+                                <input name="treatment" type="radio"  (change)="changeTreatmentStatus(1)" value="1">
                                 <label class="cs-lable">Completed</label>
-                                <input name="treatment" type="radio" value="Incompleted">
+                                <input name="treatment" type="radio"  (change)="changeTreatmentStatus(2)" value="2">
                                 <label class="cs-lable">Incompleted</label>
                             </div>
                         </div>
@@ -110,17 +110,17 @@
                                 [mask]="'numeric'" [submitted]="submitted"></shared-ui-text-input>
                         </div>
 
-                        <div class="col-md-6">
+                        <!--<div class="col-md-6">
                             <shared-ui-text-input [label]="'Courtesy (if any)'" [control]="formData.courtesy"
                                 [mask]="'numeric'" [submitted]="submitted"></shared-ui-text-input>
-                        </div>
-                        <div class="col-md-12">
+                        </div>-->
+                        <!--<div class="col-md-12">
                             <div class="form-group">
                                 <label>Estimated Total Amount</label>
                                 <input type="text" readonly="" class="form-control"
                                     value="{{ formData.estimated_Amount.value }}" />
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <div class="clear"></div>
