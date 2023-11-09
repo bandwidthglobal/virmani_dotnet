@@ -20,7 +20,8 @@ namespace DCRM.Api.Controllers
         [HttpGet("GetAll")]
         public List<ChairDto> GetAll()
         {
-            return _chairService.GetAll();
+            var user = Request.HttpContext.Items["User"] as User;
+            return _chairService.GetAll().Where(x=>x.User_Id== user.Id).ToList();
         }
 
         [HttpGet("Get/{id}")]   
@@ -32,7 +33,9 @@ namespace DCRM.Api.Controllers
         [HttpPost("Create")]
         public IActionResult Create(Chair chair)
         {
-             _chairService.Create(chair);
+            var user = Request.HttpContext.Items["User"] as User;
+            chair.User_Id = user.Id;
+            _chairService.Create(chair);
             return Ok(chair);
         }
 

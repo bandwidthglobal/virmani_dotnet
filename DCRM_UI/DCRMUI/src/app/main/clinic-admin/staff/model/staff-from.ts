@@ -98,7 +98,7 @@ export class StaffForm extends FormGroup {
           email: [model?.email, [Validators.required,Validators.email]],
           password: [model?.password, [Validators.minLength(8)]],
           role: [model?.role],
-          slug: [model?.slug, [Validators.required]],
+         /* slug: [model?.slug, [Validators.required]],*/
           designation: [model?.designation],
           status: [model?.status],
           department: [model?.department],

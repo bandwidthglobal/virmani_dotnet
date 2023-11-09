@@ -33,9 +33,9 @@ export class IAppointmentFormModel {
     patient_name?: any;
     email?: any;
     phone?: any;
-    age?: any;
-    weight?: any;
-    sex?: any='Male';
+    age: string ='';
+    weight: string ='';
+    sex: string ='Male';
 }
 
 export class IAppointmentForm extends FormGroup {

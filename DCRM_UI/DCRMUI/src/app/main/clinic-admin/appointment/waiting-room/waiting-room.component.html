@@ -54,71 +54,6 @@
                         </div>
                     </div>
                 </div>
-
-
-                <div class="table-responsive" style="display:none">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Serial No</th>
-                                <th>Serial Id</th>
-                                <th>Patient Name</th>
-                                <th>Doctor Name</th>
-                                <th>Start Time</th>
-                                <th>End Time</th>
-                                <th>Cause/Treatment</th>
-                                <th>Chair</th>
-                                <th>Slot</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <ng-container *ngFor="let x of rows let i=index">
-                                <tr *ngIf="x.appointment_Status==5" class="backgorundcolor">
-                                    <td style="width:5%">{{ i+1 }}</td>
-                                    <td style="width:5%">{{ x.serial_Id }}</td>
-                                    <td style="width:25%">
-                                        {{ x.patient_Name }}
-                                    </td>
-                                    <td style="width:25%">{{ x.doctor_Name }}</td>
-                                    <td style="width:5%"><label class="badge badge-primary-soft brd-20"><i style="margin-right: 2px" class="fa fa-clock-o mt-5px"></i>{{ x.start_Time }}</label></td>
-                                    <td style="width:5%"><label class="badge badge-primary-soft brd-20"><i style="margin-right: 2px " class="fa fa-clock-o mt-5px"></i>{{ x.end_Time }}</label></td>
-                                    <td style="width:5%">{{ x.cause }}</td>
-                                    <td style="width:5%">{{ x.chair }}</td>
-                                    <td style="width:5%">{{ x.slot_Time }}</td>
-                                    <td style="width:5%">{{ x.appointment_Status }}</td>
-                                    <td width="20%">
-                                        <select class="form-control" style="width:200px" name="appointment_status" id="appointment_status" (change)="changeAppointmentStatus($event,x.id)">
-                                            <option value="4">Waiting Status</option>
-                                            <option selected="" value="5">Processing</option>
-                                            <option value="2">Completed</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr *ngIf="x.appointment_Status!=5">
-                                    <td style="width:5%">{{ i+1 }}</td>
-                                    <td style="width:5%">{{ x.serial_Id }}</td>
-                                    <td style="width:25%">{{ x.patient_Name }}</td>
-                                    <td style="width:25%">{{ x.doctor_Name }}</td>
-                                    <td style="width:5%"><label class="badge badge-primary-soft brd-20"><i style=" margin-right: 2px" class="fa fa-clock-o mt-5px"></i>{{ x.start_Time }}</label></td>
-                                    <td style="width:5%"><label class="badge badge-primary-soft brd-20"><i style="margin-right: 2px " class="fa fa-clock-o mt-5px"></i>{{ x.end_Time }}</label></td>
-                                    <td style="width:5%">{{ x.cause }}</td>
-                                    <td style="width:5%">{{ x.chair }}</td>
-                                    <td style="width:5%">{{ x.slot_Time }}</td>
-                                    <td style="width:5%">{{ x.appointment_Status }}</td>
-                                    <td width="20%">
-                                        <select class="form-control" style="width:200px" name="appointment_status" id="appointment_status" (change)="changeAppointmentStatus($event,x.id)">
-                                            <option selected="" value="4">Waiting Status</option>
-                                            <option value="5">Processing</option>
-                                            <option value="2">Completed</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                            </ng-container>
-                        </tbody>
-                    </table>
-                </div>
                 <div>
                     <div *ngIf="loading==true" class="table-loading">
                         <div class="table-loading-text">
@@ -133,7 +68,8 @@
                                    [headerHeight]="50"
                                    [footerHeight]="50"
                                    [scrollbarH]="true">
-                        <ngx-datatable-column name="Serial Id" prop="serial_Id"  [width]="100" ></ngx-datatable-column>
+                        <ngx-datatable-column name="Serial Id" prop="serial_Id" [width]="100">
+                        </ngx-datatable-column>
                         <ngx-datatable-column name="Patient Name" prop="patient_Name">
                         </ngx-datatable-column>
                         <ngx-datatable-column name="Dentist" prop="doctor_Name">
@@ -151,12 +87,12 @@
                         <ngx-datatable-column name="Actions" [width]="200" [sortable]="false">
                             <ng-template ngx-datatable-cell-template let-row="row">
                                 <div class="d-flex align-items-center col-actions">
-                                    <select class="form-control" style="width:150px" *ngIf="row.appointment_Status==5; else loggedOut" name="appointment_status" id="appointment_status" (change)="changeAppointmentStatus($event,row.id)">
+                                    <select class="form-control" style="width:150px" *ngIf="row.appointment_Status==5; else waiting" name="appointment_status" id="appointment_status" (change)="changeAppointmentStatus($event,row.id)">
                                         <option value="4">Waiting Status</option>
                                         <option selected="" value="5">Processing</option>
                                         <option value="2">Completed</option>
                                     </select>
-                                    <ng-template #loggedOut>
+                                    <ng-template #waiting>
                                         <select class="form-control" style="width:150px" name="appointment_status" id="appointment_status" (change)="changeAppointmentStatus($event,row.id)">
                                             <option selected="" value="4">Waiting Status</option>
                                             <option value="5">Processing</option>

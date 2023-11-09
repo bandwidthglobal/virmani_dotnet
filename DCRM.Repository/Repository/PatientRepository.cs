@@ -165,118 +165,131 @@ namespace DCRM.Repository.Repository
 
 
             Patientse patient = new Patientse();
-            long phone = Convert.ToInt64(request.PatientContacts[0].Phone);
-            var contactDetails = _contex.Patients_Contact.FirstOrDefault(x => x.Phone1 == phone);
-            if (contactDetails == null)
-            {
-                _contex.Database.BeginTransaction();
-                try
-                {
-                    patient.Chamber_Id = request.Chamber_Id == null ? "123456" : request.Chamber_Id;
-                    patient.Mr_Number = request.Mr_Number == null ? "123456" : request.Mr_Number;
-                    patient.Name = request.Name;
-                    patient.User_Id = request.User_Id;
-                    patient.Slug = request.Slug;
-                    patient.Thumb = request.Thumb;
-                    patient.Email = request.Email == null ? phone + "@virmani.com" : request.Email;
-                    patient.Mobile = phone.ToString();
-                    patient.Age = request.Age;
-                    patient.Weight = request.Weight;
-                    patient.Sex = request.Sex;
-                    patient.Title = request.Title;
-                    patient.Role = "Patient";
-                    patient.Guardian = request.Guardian;
-                    patient.Present_Address = request.Present_Address;
-                    patient.Permanent_Address = request.Permanent_Address;
-                    patient.Created_At = System.DateTime.UtcNow;
-                    _contex.Patientses.Add(patient);
-                    _contex.SaveChanges();
 
-                    if (request.PatientContacts != null && request.PatientContacts.Count > 0)
-                    {
-                        foreach (var item in request.PatientContacts)
-                        {
-                            var contact = _contex.Patients_Contact.FirstOrDefault(x => x.Id == item.Id);
-                            if (contact == null)
-                            {
-                                item.Created_At = System.DateTime.Now;
-                                item.Updated_At
-                                    = System.DateTime.Now;
-                                item.Patient_Id = patient.Id;
-                                if (!string.IsNullOrEmpty(phone.ToString()))
-                                {
-                                    item.Phone1 = phone;
-                                }
-                                item.Relationship_Type = item.Relationship_Type==null? "Relationship" : item.Relationship_Type;
-                                if (string.IsNullOrEmpty(item.Address_O))
-                                {
-                                    item.Address_O = string.Empty;
-                                }
-                                _contex.Patients_Contact.Add(item);
-                            }
-                            _contex.SaveChanges();
-                        }
-                    }
-                    if (request.PatientInsuranceLoans != null && request.PatientInsuranceLoans.Count > 0)
-                    {
-                        foreach (var item in request.PatientInsuranceLoans)
-                        {
-                            var insuranceLoan = _contex.Patients_Insurance_Loan.FirstOrDefault(x => x.Id == item.Id);
-                            if (insuranceLoan == null)
-                            {
-                                item.Patients_Id = patient.Id;
-                                item.Created_At = System.DateTime.Now;
-                                item.Updated_At
-                                    = System.DateTime.Now;
-                                _contex.Patients_Insurance_Loan.Add(item);
-                            }
-                            _contex.SaveChanges();
-                        }
-                    }
-                    //if (request.PatientScans != null && request.PatientScans.Count > 0)
-                    //{
-                    //    foreach (var item in request.PatientScans)
-                    //    {
-                    //        var patientScan = _contex.Patient_Scans.FirstOrDefault(x => x.Id == item.Id);
-                    //        if (patientScan == null)
-                    //        {
-                    //            item.Patient_Id = patient.Id;
-                    //            item.Created_At = System.DateTime.Now;
-                    //            item.Updated_At
-                    //                = System.DateTime.Now;
-                    //            _contex.Patient_Scans.Add(item);
-                    //        }
-                    //        _contex.SaveChanges();
-                    //    }
-                    //}
-                    //if (request.PatientTests != null && request.PatientTests.Count > 0)
-                    //{
-                    //    foreach (var item in request.PatientTests)
-                    //    {
-                    //        var patientTest = _contex.Patient_Tests.FirstOrDefault(x => x.Id == item.Id);
-                    //        if (patientTest == null)
-                    //        {
-                    //            item.Patient_Id = patient.Id;
-                    //            item.Created_At = System.DateTime.Now;
-                    //            item.Updated_At
-                    //                = System.DateTime.Now;
-                    //            _contex.Patient_Tests.Add(item);
-                    //        }
-                    //        _contex.SaveChanges();
-                    //    }
-                    //}
-                    _contex.Database.CommitTransaction();
-                    return patient.Id;
-                }
-                catch (Exception ex)
-                {
-                    _contex.Database.RollbackTransaction();
-                    throw new Exception(ex.Message);
-                }
-            }
-            else
+            long phone = Convert.ToInt64(request.PatientContacts[0].Phone1);
+            
+            _contex.Database.BeginTransaction();
+            Random rnd1 = new Random(6); //seed value 10
+            for (int j = 0; j < 4; j++)
             {
-                throw new SqlAlreadyFilledException("phone is already exist");
+                rnd1.Next();
+            }
+            try
+            {
+
+                patient.Chamber_Id = request.Chamber_Id == null ? "123456" : request.Chamber_Id;
+                patient.Mr_Number = request.Mr_Number == null ? "123456" : request.Mr_Number;
+                patient.Name = request.Name;
+                patient.User_Id = request.User_Id;
+                patient.Slug = request.Slug;
+                patient.Thumb = request.Thumb;
+                patient.Email = request.Email == null ? phone + "@virmani.com" : request.Email;
+                patient.Mobile = phone.ToString();
+                patient.Age = Convert.ToInt16(request.Age);
+                patient.Weight = request.Weight;
+                patient.Sex = request.Sex;
+                patient.Title = request.Title;
+                patient.Role = "Patient";
+                patient.Guardian = request.Guardian;
+                patient.Present_Address = request.Present_Address;
+                patient.Permanent_Address = request.Permanent_Address;
+                patient.Created_At = System.DateTime.UtcNow;
+                _contex.Patientses.Add(patient);
+                _contex.SaveChanges();
+
+                if (request.PatientContacts != null && request.PatientContacts.Count > 0)
+                {
+                    foreach (var item in request.PatientContacts)
+                    {
+                        var contact = _contex.Patients_Contact.FirstOrDefault(x => x.Id == item.Id);
+                        if (contact == null)
+                        {
+                            item.Created_At = System.DateTime.Now;
+                            item.Updated_At
+                                = System.DateTime.Now;
+                            item.Patient_Id = patient.Id;
+                            if (!string.IsNullOrEmpty(phone.ToString()))
+                            {
+                                item.Phone1 = phone;
+                            }
+                            item.Relationship_Type = item.Relationship_Type == null ? "Relationship" : item.Relationship_Type;
+                            item.Address_O = string.IsNullOrEmpty(item.Address_O) ? string.Empty : item.Address_O;
+                            item.Address_Other = string.IsNullOrEmpty(item.Address_Other) ? string.Empty : item.Address_Other;
+                            item.Zip_O = string.IsNullOrEmpty(item.Zip_O) ? "0" : item.Zip_O;
+                            item.City_O = string.IsNullOrEmpty(item.City_O) ? string.Empty : item.City_O;
+                            item.Country_O = string.IsNullOrEmpty(item.Country_O) ? string.Empty : item.Country_O;
+                            item.Country_Other = string.IsNullOrEmpty(item.Country_Other) ? string.Empty : item.Country_Other;
+                            item.City_Other = string.IsNullOrEmpty(item.City_Other) ? string.Empty : item.City_Other;
+                            item.Address_R = string.IsNullOrEmpty(item.Address_R) ? string.Empty : item.Address_R;
+                            item.Zip_R = string.IsNullOrEmpty(item.Zip_R) ? "0" : item.Zip_R;
+                            item.City_R = string.IsNullOrEmpty(item.City_R) ? string.Empty : item.City_R;
+                            item.Country_R = string.IsNullOrEmpty(item.Country_R) ? string.Empty : item.Country_R;
+                            item.Doctor_Name = string.IsNullOrEmpty(item.Doctor_Name) ? string.Empty : item.Doctor_Name;
+                            item.Email2 = string.IsNullOrEmpty(item.Email2) ? string.Empty : item.Email2;
+                            item.Medical_History_Allergies = string.IsNullOrEmpty(item.Medical_History_Allergies) ? string.Empty : item.Medical_History_Allergies;
+                            item.Email = string.IsNullOrEmpty(item.Email) ? string.Empty : item.Email;
+                            item.Phone = string.IsNullOrEmpty(item.Phone) ? string.Empty : item.Phone;
+                            item.Special_Notes = string.IsNullOrEmpty(item.Special_Notes) ? string.Empty : item.Special_Notes;
+                            _contex.Patients_Contact.Add(item);
+                        }
+                        _contex.SaveChanges();
+                    }
+                }
+                if (request.PatientInsuranceLoans != null && request.PatientInsuranceLoans.Count > 0)
+                {
+                    foreach (var item in request.PatientInsuranceLoans)
+                    {
+                        var insuranceLoan = _contex.Patients_Insurance_Loan.FirstOrDefault(x => x.Id == item.Id);
+                        if (insuranceLoan == null)
+                        {
+                            item.Patients_Id = patient.Id;
+                            item.Created_At = System.DateTime.Now;
+                            item.Updated_At
+                                = System.DateTime.Now;
+                            _contex.Patients_Insurance_Loan.Add(item);
+                        }
+                        _contex.SaveChanges();
+                    }
+                }
+                //if (request.PatientScans != null && request.PatientScans.Count > 0)
+                //{
+                //    foreach (var item in request.PatientScans)
+                //    {
+                //        var patientScan = _contex.Patient_Scans.FirstOrDefault(x => x.Id == item.Id);
+                //        if (patientScan == null)
+                //        {
+                //            item.Patient_Id = patient.Id;
+                //            item.Created_At = System.DateTime.Now;
+                //            item.Updated_At
+                //                = System.DateTime.Now;
+                //            _contex.Patient_Scans.Add(item);
+                //        }
+                //        _contex.SaveChanges();
+                //    }
+                //}
+                //if (request.PatientTests != null && request.PatientTests.Count > 0)
+                //{
+                //    foreach (var item in request.PatientTests)
+                //    {
+                //        var patientTest = _contex.Patient_Tests.FirstOrDefault(x => x.Id == item.Id);
+                //        if (patientTest == null)
+                //        {
+                //            item.Patient_Id = patient.Id;
+                //            item.Created_At = System.DateTime.Now;
+                //            item.Updated_At
+                //                = System.DateTime.Now;
+                //            _contex.Patient_Tests.Add(item);
+                //        }
+                //        _contex.SaveChanges();
+                //    }
+                //}
+                _contex.Database.CommitTransaction();
+                return patient.Id;
+            }
+            catch (Exception ex)
+            {
+                _contex.Database.RollbackTransaction();
+                throw new Exception(ex.Message);
             }
 
         }
@@ -300,7 +313,7 @@ namespace DCRM.Repository.Repository
                 patient.Slug = request.Slug;
                 patient.Thumb = request.Thumb;
                 patient.Email = request.Email == null ? patient.Email : request.Email;
-                patient.Age = request.Age;
+                patient.Age = Convert.ToInt16(request.Age);
                 patient.Weight = request.Weight;
                 patient.Sex = request.Sex;
                 patient.Title = request.Title;

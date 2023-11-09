@@ -57,6 +57,7 @@ export class DigitaldataComponent implements OnInit, OnDestroy {
     public tags;
     public selectTags;
     public selectAssignee;
+    newPatientId: any;
     base64ImagePreview: string | ArrayBuffer | null = null;
     isOpen: boolean = true;
     @ViewChild('myModal', { static: false }) myModal: ElementRef;
@@ -130,39 +131,47 @@ export class DigitaldataComponent implements OnInit, OnDestroy {
         }
     }
     ngOnInit(): void {
+        this.patientId = parseInt(this._route.snapshot.paramMap.get('id'));
         this.getData();
         this.formData = new DigitalDataForm(this.FormInput);
     }
     getData() {
-        this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
-            // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)
-            if (config.layout.animation === 'zoomIn') {
-                setTimeout(() => {
 
-                    this._patientListService.onScansChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-                        this.data = response;
-                        this.rows = this.data;
-                        this.tempData = this.rows;
-                        this.tempFilterData = this.rows;
-                        if (response.length > 0) {
-                            this.patientId = response[0].patient_Id
-                        }
-                    });
-                }, 450);
-            } else {
-                this._patientListService.onScansChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-                    this.data = response;
-                    this.rows = this.data;
-                    this.tempData = this.rows;
-                    this.tempFilterData = this.rows;
-                    debugger;
-                    if (response.length > 0) {
-                        this.patientId = response[0].patient_Id
-                    }
-
-                });
-            }
+        this._patientListService.getDigitalDataList(this.patientId).subscribe(response => {
+            this.data = response;
+            this.rows = this.data;
+            this.tempData = this.rows;
+            this.tempFilterData = this.rows;
         });
+        //this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
+        //    // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)
+        //    if (config.layout.animation === 'zoomIn') {
+        //        setTimeout(() => {
+
+        //            this._patientListService.onScansChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+        //                this.data = response;
+        //                this.rows = this.data;
+        //                this.tempData = this.rows;
+        //                this.tempFilterData = this.rows;
+        //                if (response.length > 0) {
+        //                    this.patientId = response[0].patient_Id
+        //                }
+        //            });
+        //        }, 450);
+        //    } else {
+        //        this._patientListService.onScansChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+        //            this.data = response;
+        //            this.rows = this.data;
+        //            this.tempData = this.rows;
+        //            this.tempFilterData = this.rows;
+        //            debugger;
+        //            if (response.length > 0) {
+        //                this.patientId = response[0].patient_Id
+        //            }
+
+        //        });
+        //    }
+        //});
     }
     getgetDigitalList() {
         this._patientListService.getDigitalList(this.patientId).subscribe(response => {

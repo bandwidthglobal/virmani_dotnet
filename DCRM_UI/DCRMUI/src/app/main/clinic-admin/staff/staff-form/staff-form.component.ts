@@ -143,7 +143,8 @@ export class StaffFormComponent implements OnInit, OnDestroy {
 
   saveForm(): void {
     this.submitted = true;
-    this._commonValidationService.validateAllFormFields(this.formData);
+      this._commonValidationService.validateAllFormFields(this.formData);
+      debugger;
     if (this.formData.invalid) {
       // console.log('> invalidForm ---> ', this.formData);
       return;

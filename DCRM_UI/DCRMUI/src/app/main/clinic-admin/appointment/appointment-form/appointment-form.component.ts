@@ -81,7 +81,6 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
             this.formData.p_type.setValue("New Patient");
             this.formData.get('patient_name').setValidators([Validators.required])
             this.formData.get('phone').setValidators([Validators.required])
-            this.formData.get('email').setValidators([Validators.required])
             this.formData.get('patient_Id').setValue(0);
         }
         else {
@@ -168,25 +167,18 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
     saveForm(status, id, sift): void {
         this.submitted = true;
         this._commonValidationService.validateAllFormFields(this.formData);
-        debugger;
         if (this.formData.invalid) {
             return;
         } else {
-            //this.FormInput.patient_Id
-           
-            //this.patientId = parseInt(this.formData.patient_Id.value)
             const payload: any = this.formData.getRawValue();
-            //if (this.formData.patient_Id.value >0) {
-            //    payload.patient_Id = this.formData.patient_Id.value;
-            //    payload.phone = parseInt(this.formData.phone.value);
-            //}
+            debugger;
             if (status != undefined) {
                 payload.appointment_Status = parseInt(status);
             }
             else {
                 payload.appointment_Status = 0;
             }
-            
+            debugger;
             this.loading = true;
             this._appointmentFormService.save(payload, this.FormAction).pipe(catchError((error) => {
                 this.loading = false;

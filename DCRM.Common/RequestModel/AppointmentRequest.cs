@@ -59,11 +59,11 @@ public class AppointmentRequest
 
     public string? Phone { get; set; }
 
-    public string? Age { get;}
+    public string? Age { get; set; }
 
-    public string? Weight { get; }
+    public string? Weight { get; set; }
 
-    public string? Gender { get; }
+    public string? Gender { get; set; }
 
 
 }

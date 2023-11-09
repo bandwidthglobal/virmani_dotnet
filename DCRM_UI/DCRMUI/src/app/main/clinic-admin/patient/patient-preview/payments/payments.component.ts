@@ -116,33 +116,39 @@ export class PaymentsComponent implements OnInit {
         });
     }
     ngOnInit(): void {
-
+        this.patientId = this._route.snapshot.paramMap.get('id');
         this.getData();
         this.receiveFormData = new ReceiveForm(this.ReceiveFormInput);
     }
     getData() {
-        this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
-
-            if (config.layout.animation === 'zoomIn') {
-                setTimeout(() => {
-
-                    this._patientListService.onPaymentChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-                        this.data = response;
-                        this.rows = this.data;
-                        this.tempData = this.rows;
-                        this.tempFilterData = this.rows;
-                    });
-                }, 450);
-            } else {
-                this._patientListService.onPaymentChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-                    this.data = response;
-                    this.rows = this.data;
-                    this.tempData = this.rows;
-                    this.tempFilterData = this.rows;
-                    debugger;
-                });
-            }
+        this._patientListService.getPaymentList(this.patientId).subscribe(response => {
+            this.data = response;
+            this.rows = this.data;
+            this.tempData = this.rows;
+            this.tempFilterData = this.rows;
         });
+        //this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
+
+        //    if (config.layout.animation === 'zoomIn') {
+        //        setTimeout(() => {
+
+        //            this._patientListService.onPaymentChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+        //                this.data = response;
+        //                this.rows = this.data;
+        //                this.tempData = this.rows;
+        //                this.tempFilterData = this.rows;
+        //            });
+        //        }, 450);
+        //    } else {
+        //        this._patientListService.onPaymentChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+        //            this.data = response;
+        //            this.rows = this.data;
+        //            this.tempData = this.rows;
+        //            this.tempFilterData = this.rows;
+        //            debugger;
+        //        });
+        //    }
+        //});
     }
     addReceive(id, patientId) {
         this.isPaymentReceiveList = false;

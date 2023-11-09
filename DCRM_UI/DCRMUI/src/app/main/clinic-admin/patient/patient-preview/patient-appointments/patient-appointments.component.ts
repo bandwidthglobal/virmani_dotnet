@@ -37,6 +37,7 @@ export class PatientAppointmentsComponent implements OnInit, OnDestroy {
     public previousStatusFilter = '';
     public _snippetCodeConfirmText = snippet.snippetCodeConfirmText;
     isOpen: boolean = true;
+    patientId: any;
     /**
      * Constructor
      *
@@ -104,31 +105,38 @@ export class PatientAppointmentsComponent implements OnInit, OnDestroy {
         });
     }
     ngOnInit(): void {
+        this.patientId = this._route.snapshot.paramMap.get('id');
         this.getData();
     }
     getData() {
-        this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
-            // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)
-            if (config.layout.animation === 'zoomIn') {
-                setTimeout(() => {
-
-                    this._patientListService.onAppointmentChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-                        this.data = response;
-                        this.rows = this.data;
-                        this.tempData = this.rows;
-                        this.tempFilterData = this.rows;
-                    });
-                }, 450);
-            } else {
-                this._patientListService.onAppointmentChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-                    this.data = response;
-                    this.rows = this.data;
-                    this.tempData = this.rows;
-                    this.tempFilterData = this.rows;
-                   
-                });
-            }
+        this._patientListService.getAppointmentList(this.patientId).subscribe(response => {
+            this.data = response;
+            this.rows = this.data;
+            this.tempData = this.rows;
+            this.tempFilterData = this.rows;
         });
+        //this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
+        //    // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)
+        //    if (config.layout.animation === 'zoomIn') {
+        //        setTimeout(() => {
+
+        //            this._patientListService.onAppointmentChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+        //                this.data = response;
+        //                this.rows = this.data;
+        //                this.tempData = this.rows;
+        //                this.tempFilterData = this.rows;
+        //            });
+        //        }, 450);
+        //    } else {
+        //        this._patientListService.onAppointmentChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
+        //            this.data = response;
+        //            this.rows = this.data;
+        //            this.tempData = this.rows;
+        //            this.tempFilterData = this.rows;
+                   
+        //        });
+        //    }
+        //});
     }
 
 

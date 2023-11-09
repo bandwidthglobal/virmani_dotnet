@@ -84,9 +84,22 @@ export class WaitingRoomComponent implements OnInit, OnDestroy {
         this.rows = temp;
         // Whenever the filter changes, always go back to the first page
         this.table.offset = 0;
-        this.table1.offset = 0;
     }
-   
+    getRowClass = (row) => {
+        if (row.appointment_Status == 5) {
+            return {
+                'row-color': row.appointment_Status == 5,
+               
+            };
+        }
+        else {
+            return {
+                'row-color1': row.appointment_Status < 5,
+            }
+        }
+        
+        
+    }
     /**
      * Filter By Roles
      *

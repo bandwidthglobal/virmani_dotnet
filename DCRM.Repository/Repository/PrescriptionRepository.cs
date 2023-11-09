@@ -25,6 +25,7 @@ namespace DCRM.Repository.Repository
 
         public void Create(Prescription prescription)
         {
+            prescription.Created_At = System.DateTime.UtcNow;
             _contex.Prescription.Add(prescription);
             _contex.SaveChanges();
         }

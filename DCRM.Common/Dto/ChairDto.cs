@@ -7,6 +7,7 @@ namespace DCRM.Common.Dto;
 public partial class ChairDto 
 {
     public int Id { get; set; }
+    public long User_Id { get; set; }
     public string? Name { get; set; }
     public string? Address { get; set; }
     public long Doctor_Id { get; set; }

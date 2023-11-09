@@ -45,6 +45,7 @@ namespace DCRM.Service.Service
             {
                 ChairDto chair = new ChairDto();
                 chair.Id = item.Id;
+                chair.User_Id = item.User_Id;
                 chair.Name = item.Name;
                 chair.Appoinment_Limit = Convert.ToString(item.Appoinment_Limit);
                 chair.Address = item.Address;

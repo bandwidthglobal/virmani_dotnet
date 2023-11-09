@@ -62,11 +62,11 @@ export class PatientPreviewService implements Resolve<any> {
         return new Promise<void>((resolve, reject) => {
             Promise.all([this.getPatientData(currentId)
                 , this.getLabList(currentId)
-                , this.getPaymentList(currentId)
+                /*, this.getPaymentList(currentId)*/
                 , this.getAppointmentList(currentId)
                /* , this.getWorkDoneHistoryList(currentId)*/
-                , this.getPaymentList(currentId)
-                , this.getDigitalDataList(currentId)
+                /*, this.getPaymentList(currentId)*/
+                /*, this.getDigitalDataList(currentId)*/
                 , this.getPriscriptionsList(currentId)
                 , this.getIDiagnosisData()
             ]).then(() => {
@@ -91,7 +91,8 @@ export class PatientPreviewService implements Resolve<any> {
             }, reject);
         });
     }
-    getAppointmentList(id: number): Promise<any[]> {
+
+    getAppointmentList1(id: number): Promise<any[]> {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${this.currentUser.jwtToken}`
@@ -108,6 +109,25 @@ export class PatientPreviewService implements Resolve<any> {
         });
     }
 
+
+    getAppointmentList(id: number) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        const url = `${environment.apiUrl}/Patient/Get/Appointments/${id}`;
+        this.id = id;
+      return  this._httpClient.get(url, requestOptions);
+        //return new Promise((resolve, reject) => {
+        //    this._httpClient.get(url, requestOptions).subscribe((response: any) => {
+        //        this.apiData = response;
+        //        this.onAppointmentChanged.next(this.apiData);
+        //        resolve(this.apiData);
+        //    }, reject);
+        //});
+    }
+
     getTreatmentPalnList(id: number) {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -118,7 +138,6 @@ export class PatientPreviewService implements Resolve<any> {
         this.id = id;
        return this._httpClient.get(url, requestOptions);
     }
-
     getWorkDoneHistoryList(id:any) {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -128,24 +147,7 @@ export class PatientPreviewService implements Resolve<any> {
         const url = `${environment.apiUrl}/Patient/Get/WorkDones/${id}`;
        return this._httpClient.get(url, requestOptions);
     }
-
-    getWorkDoneHistoryList1(id: number): Promise<any[]> {
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.currentUser.jwtToken}`
-        });
-        const requestOptions = { headers: headers };
-        const url = `${environment.apiUrl}/Patient/Get/WorkDones/${id}`;
-        this.id = id;
-        return new Promise((resolve, reject) => {
-            this._httpClient.get(url, requestOptions).subscribe((response: any) => {
-                this.workdoneData = response;
-                this.onWorkedDoneChanged.next(this.workdoneData);
-                resolve(this.workdoneData);
-            }, reject);
-        });
-    }
-    getPaymentList(id: number): Promise<any[]> {
+    getPaymentList(id: number) {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${this.currentUser.jwtToken}`
@@ -153,13 +155,26 @@ export class PatientPreviewService implements Resolve<any> {
         const requestOptions = { headers: headers };
         const url = `${environment.apiUrl}/Patient/Get/Payments/${id}`;
         this.id = id;
-        return new Promise((resolve, reject) => {
-            this._httpClient.get(url, requestOptions).subscribe((response: any) => {
-                this.paymentsData = response;
-                this.onPaymentChanged.next(this.paymentsData);
-                resolve(this.paymentsData);
-            }, reject);
+       return this._httpClient.get(url, requestOptions);
+    }
+    getDigitalDataList(id: number) {
+        debugger;
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
         });
+        const requestOptions = { headers: headers };
+        const url = `${environment.apiUrl}/DigitalData/Get/Patient/${id}`;
+        this.id = id;
+        return  this._httpClient.get(url, requestOptions)
+        //return new Promise((resolve, reject) => {
+        //    this._httpClient.get(url, requestOptions).subscribe((response: any) => {
+        //        this.digitalData = response;
+        //        debugger;
+        //        this.onScansChanged.next(this.digitalData);
+        //        resolve(this.digitalData);
+        //    }, reject);
+        //});
     }
     getLabList(id: number): Promise<any[]> {
         const headers = new HttpHeaders({
@@ -177,7 +192,8 @@ export class PatientPreviewService implements Resolve<any> {
             }, reject);
         });
     }
-    getDigitalDataList(id: number): Promise<any[]> {
+    getDigitalDataList1(id: number): Promise<any[]> {
+        debugger;
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${this.currentUser.jwtToken}`
@@ -188,6 +204,7 @@ export class PatientPreviewService implements Resolve<any> {
         return new Promise((resolve, reject) => {
             this._httpClient.get(url, requestOptions).subscribe((response: any) => {
                 this.digitalData = response;
+                debugger;
                 this.onScansChanged.next(this.digitalData);
                 resolve(this.digitalData);
             }, reject);

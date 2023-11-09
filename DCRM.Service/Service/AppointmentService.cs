@@ -367,7 +367,7 @@ namespace DCRM.Service.Service
             List<string> timeList = new List<string>();
 
 
-            while (DateTime.Today.AddHours(9).AddMinutes(i * 15).Hour < Convert.ToInt32(endtimeHourValue))
+            while (DateTime.Today.AddHours(9).AddMinutes(i * 15).Hour < Convert.ToInt32(17))
             {
                 timeList.Add(DateTime.Today.AddHours(9).AddMinutes(15 * (++i)).ToShortTimeString());
             };
@@ -503,14 +503,14 @@ namespace DCRM.Service.Service
                 PatientRequest patientse = new PatientRequest();
                 patientse.Name = request.Patient_Name;
                 patientse.Email = request.Email;
-                patientse.Age = Convert.ToSByte(request.Age);
+                patientse.Age = request.Age;
                 patientse.Mobile = request.Phone;
                 patientse.User_Id = request.User_Id;
                 patientse.Sex = request.Gender;
                 PatientsContact patientsContact = new PatientsContact();
                 List<PatientsContact> patientsContacts = new List<PatientsContact>();
                 patientsContact.Email = request.Email;
-                patientsContact.Phone = request.Phone;
+                patientsContact.Phone1 = Convert.ToInt64(request.Phone);
                 patientsContacts.Add(patientsContact);
                 patientse.PatientContacts = patientsContacts;
                 request.Patient_Id = Convert.ToInt32(_patientRepository.Create(patientse));
@@ -530,7 +530,16 @@ namespace DCRM.Service.Service
             appointment.Prescription_Id = request.Prescription_Id;
             appointment.Date = request.Date;
             appointment.Start_Time = request.Start_Time;
-            appointment.End_Time = TimeSpan.Parse(request.End_Time);
+            if (!request.End_Time.Contains("60"))
+            {
+                appointment.End_Time = TimeSpan.Parse(request.End_Time);
+            }
+            else
+            {
+                var time = Convert.ToInt16(request.End_Time.Split(':')[0]);
+                appointment.End_Time = TimeSpan.Parse((time + 1).ToString()+":00:00");
+            }
+            
             appointment.Meeting_Notes = request.Meeting_Notes;
             appointment.Files = request.Files;
             appointment.Type = request.Type;
@@ -596,7 +605,8 @@ namespace DCRM.Service.Service
         {
             List<AppointmentDto> appointments = new List<AppointmentDto>();
             var todayDate = System.DateTime.Now.Date;
-            var apointmentList = _appointmentRepository.GetAll().Where(x => x.Appointment_Status == 4 || x.Appointment_Status == 5 && x.User_Id == userId).ToList();
+            var apointmentList = _appointmentRepository.GetAll().Where(x =>  x.User_Id == userId).Where(x => x.Appointment_Status == 4 || x.Appointment_Status == 5).ToList();
+            
             foreach (var apointment in apointmentList)
             {
                 AppointmentDto appointmentDto = new AppointmentDto();

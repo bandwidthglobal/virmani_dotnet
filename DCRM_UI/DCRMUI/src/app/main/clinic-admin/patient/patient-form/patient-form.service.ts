@@ -21,6 +21,7 @@ export class PatientFormService {
             'Authorization': `Bearer ${this.currentUser.jwtToken}`
         });
         const requestOptions = { headers: headers };
+        debugger;
         const action: any = mode === 'add' ? 'Create' : 'Update';
         return this._httpClient.post(`${environment.apiUrl}/Patient/${action}`, payload, requestOptions);
     }

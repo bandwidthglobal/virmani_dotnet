@@ -14,8 +14,7 @@ public  class PatientRequest
     public long User_Id { get; set; }
 
     public string? Mr_Number { get; set; }
-
-    [Required]
+    
     public string Name { get; set; }
 
     public string? User_name { get; set; }
@@ -24,11 +23,10 @@ public  class PatientRequest
 
     public string? Thumb { get; set; }
 
-    [DataType(DataType.EmailAddress)]
-    [EmailAddress]
+    
     public string? Email { get; set; }
 
-    public sbyte? Age { get; set; }
+    public string? Age { get; set; }
 
     public int? Weight { get; set; }
 

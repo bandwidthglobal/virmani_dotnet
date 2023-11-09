@@ -54,8 +54,15 @@
                     <ngx-datatable-column name="Mr. No" prop="mr_Number" [width]="50"></ngx-datatable-column>
                     <ngx-datatable-column name="Name" prop="name" [width]="150"></ngx-datatable-column>
                     <ngx-datatable-column name="Age" prop="age" [width]="50"></ngx-datatable-column>
-                    <ngx-datatable-column name="Phone" prop="mobile" [width]="50"></ngx-datatable-column>
+                    <ngx-datatable-column name="Phone" prop="mobile" [width]="50">
+                        <ng-template ngx-datatable-cell-template let-row="row">
+                            <span>{{row.patientContacts[0].phone1}}</span>
+                        </ng-template>
+                    </ngx-datatable-column>
                     <ngx-datatable-column name="Address" class="" prop="present_Address" [width]="150">
+                        <ng-template ngx-datatable-cell-template let-row="row">
+                            <span>{{row.present_Address}}</span>
+                        </ng-template>
                     </ngx-datatable-column>
                    
                     <ngx-datatable-column name="Prescriptions" [width]="100">

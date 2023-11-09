@@ -6,7 +6,7 @@ namespace DCRM.Common.Entity;
 
 public  class Workdone_New:BaseEntity
 {
-    public int Id { get; set; }
+   
 
     public long Treatment_Id { get; set; }
 

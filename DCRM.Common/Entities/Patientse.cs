@@ -24,7 +24,7 @@ public class Patientse:BaseEntity
 
     public string? Email { get; set; }
 
-    public sbyte? Age { get; set; }
+    public int? Age { get; set; }
 
     public int? Weight { get; set; }
 

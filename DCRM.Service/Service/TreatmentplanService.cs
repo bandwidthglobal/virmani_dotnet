@@ -125,7 +125,22 @@ namespace DCRM.Service.Service
 
             workdone.Created_At=System.DateTime.UtcNow;
             workdone.Updated_At = System.DateTime.UtcNow;
-            _workDoneRepository.Create(workdone);
+            long workDoneId = _workDoneRepository.Create(workdone);
+            if (workDoneId>0)
+            {
+                Payment_History payment = new Payment_History();
+                payment.Workdone_Id = workDoneId;
+                payment.Doctor_Id = workdone.Doctor_Id;
+                payment.Patient_Id = _treatmentplanRepository.GetById(workdone.Treatment_Id).Patient_Id;
+                payment.Debit_Amount = workdone.Total_Amt;
+                payment.Updated_At=System.DateTime.UtcNow;
+                payment.Created_At = System.DateTime.UtcNow;
+                payment.Description = string.Empty;
+                payment.Payment_Mode = string.Empty;
+                payment.Balance = workdone.Total_Amt;
+                _paymentHistoryRepository.Create(payment);
+            }
+
         }
 
 

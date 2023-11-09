@@ -35,8 +35,8 @@
                         </div>
                     </div>
                 </div>
-                <ngx-datatable [rows]="rows" [rowHeight]="50" class="bootstrap core-bootstrap" [limit]="selectedOption"
-                               [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50" [scrollbarH]="true">
+               <ngx-datatable [rows]="rows" [rowHeight]="50" class="bootstrap core-bootstrap" [limit]="selectedOption"
+    [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50" [scrollbarH]="true">
                     <ngx-datatable-column name="Chair Name" prop="name">
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <h4>{{row.name}}</h4>
