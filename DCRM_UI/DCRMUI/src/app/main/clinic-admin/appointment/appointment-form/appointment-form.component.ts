@@ -26,6 +26,7 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
     pageTitle?: string;
     loading: boolean = false;
     submitted: boolean = false;
+    patientId: 0;
     error: any = '';
     messages = validationMessages;
     formData?: IAppointmentForm;
@@ -113,7 +114,10 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
         });
         this.formData.get('patient_Id').valueChanges.subscribe((patient_Id) => {
             this._appointmentFormService.getIPatientsById(patient_Id).subscribe(res => {
-                this.formData.phone.setValue(res.patientContacts[0].phone1);
+                this.patientId = res.patient_Id;
+                this.formData.phone.setValue(res.patientContacts[0].phone1.toString());
+                this.formData.patient_name.setValue(res.name);
+                this.formData.email.setValue(' ');
             });
             
         });
@@ -124,9 +128,7 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
                 this.formData.phone.setValue('');
                 this.formData.get('patient_name').setValidators([Validators.required])
                 this.formData.get('phone').setValidators([Validators.required])
-                this.formData.get('email').setValidators([Validators.required])
                 this.formData.get('patient_Id').setValue(0);
-
             }
             else {
                 this.formData.get('patient_Id').setValidators([Validators.required])
@@ -171,10 +173,13 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
             return;
         } else {
             //this.FormInput.patient_Id
+           
+            //this.patientId = parseInt(this.formData.patient_Id.value)
             const payload: any = this.formData.getRawValue();
-            if (this.FormInput.patient_Id>0) {
-                payload.patient_Id = this.FormInput.patient_Id;
-            }
+            //if (this.formData.patient_Id.value >0) {
+            //    payload.patient_Id = this.formData.patient_Id.value;
+            //    payload.phone = parseInt(this.formData.phone.value);
+            //}
             if (status != undefined) {
                 payload.appointment_Status = parseInt(status);
             }

@@ -33,7 +33,7 @@ public class AppointmentRequest
 
     public TimeSpan Start_Time { get; set; }
 
-    public TimeSpan End_Time { get; set; }
+    public string End_Time { get; set; }
 
     public string? Meeting_Notes { get; set; }
 

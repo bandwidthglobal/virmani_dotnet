@@ -156,12 +156,13 @@ export class WorkdoneHistoryComponent implements OnInit {
                     .pipe()
                     .subscribe(
                         data => {
-                            delete this.tempData[rowIndex];
-                            var temp = [];
-                            this.tempData.forEach((currentValue, index) => {
-                                temp.push(currentValue);
-                            });
-                            this.rows = temp;
+                            this.getData();
+                            //delete this.tempData[rowIndex];
+                            //var temp = [];
+                            //this.tempData.forEach((currentValue, index) => {
+                            //    temp.push(currentValue);
+                            //});
+                            //this.rows = temp;
                         },
                         error => {
                             this.error = error;

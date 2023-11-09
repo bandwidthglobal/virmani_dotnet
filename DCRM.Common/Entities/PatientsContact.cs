@@ -11,8 +11,8 @@ public partial class PatientsContact
     
     public long? Patient_Id { get; set; }
 
-    [Required]
-    public long? Phone1 { get; set; }
+   
+    public long? Phone1 { get; set; } 
 
     public long? Phone2 { get; set; } = 0;
 

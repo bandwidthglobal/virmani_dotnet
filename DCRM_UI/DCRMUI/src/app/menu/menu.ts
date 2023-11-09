@@ -81,7 +81,7 @@ export const menu: CoreMenu[] = [
                 title: 'Staffs',
                 translate: 'MENU.APPS.Staffs',
                 type: 'item',
-                icon: 'calendar',
+                icon: 'users',
                 url: 'admin/staff/list'
             },
             {
@@ -89,7 +89,7 @@ export const menu: CoreMenu[] = [
                 title: 'Dealer',
                 translate: 'MENU.APPS.Dealer',
                 type: 'item',
-                icon: 'calendar',
+                icon: 'user-check',
                 url: 'admin/dealer/list'
             },
             {
@@ -97,7 +97,7 @@ export const menu: CoreMenu[] = [
                 title: 'Doctors',
                 translate: 'MENU.APPS.Doctors',
                 type: 'item',
-                icon: 'calendar',
+                icon: 'user-plus',
                 url: 'admin/doctor/list'
             },
 
@@ -106,7 +106,7 @@ export const menu: CoreMenu[] = [
                 title: 'Settings',
                 translate: 'MENU.APPS.SETTINGS.COLLAPSIBLE',
                 type: 'collapsible',
-                icon: 'file-text',
+                icon: 'settings',
                 children: [
                     //{
                     //    id: 'clinicaldiagnosis',
@@ -158,7 +158,7 @@ export const menu: CoreMenu[] = [
                 title: 'Prescription',
                 translate: 'MENU.APPS.PRESCRIPTION.COLLAPSIBLE',
                 type: 'collapsible',
-                icon: 'shopping-cart',
+                icon: 'file-text',
                 children: [
                     {
                         id: 'createnew',
@@ -184,7 +184,7 @@ export const menu: CoreMenu[] = [
                 title: 'Patients',
                 translate: 'MENU.APPS.Patients',
                 type: 'item',
-                icon: 'calendar',
+                icon: 'user-x',
                 url: 'admin/patient/list'
             },
             {
@@ -192,7 +192,7 @@ export const menu: CoreMenu[] = [
                 title: 'Appointments',
                 translate: 'MENU.APPS.APPOINTMENTS.COLLAPSIBLE',
                 type: 'collapsible',
-                icon: 'user',
+                icon: 'calendar',
                 children: [
                     {
                         id: 'lists',
@@ -242,7 +242,7 @@ export const menu: CoreMenu[] = [
                 title: 'Report',
                 translate: 'MENU.APPS.REPORT.COLLAPSIBLE',
                 type: 'collapsible',
-                icon: 'user',
+                icon: 'bar-chart',
                 children: [
                     {
                         id: 'payments',
@@ -260,7 +260,7 @@ export const menu: CoreMenu[] = [
                 title: 'Drugs',
                 translate: 'MENU.APPS.Drugs',
                 type: 'item',
-                icon: 'medicin',
+                icon: 'heart',
                 url: 'admin/drug/list'
             },
 

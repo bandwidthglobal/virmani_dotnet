@@ -447,8 +447,12 @@ namespace DCRM.Service.Service
                         {
                             appointmentDto.Patient_Name = patient.Name;
                         }
+                        if (doctor != null && patient != null)
+                        {
+                            appointmentChair.AppointmentDetails = appointmentDto;
+                        }
 
-                        appointmentChair.AppointmentDetails = appointmentDto;
+                        
                     }
 
                     appointmentChairList.Add(appointmentChair);
@@ -526,7 +530,7 @@ namespace DCRM.Service.Service
             appointment.Prescription_Id = request.Prescription_Id;
             appointment.Date = request.Date;
             appointment.Start_Time = request.Start_Time;
-            appointment.End_Time = request.End_Time;
+            appointment.End_Time = TimeSpan.Parse(request.End_Time);
             appointment.Meeting_Notes = request.Meeting_Notes;
             appointment.Files = request.Files;
             appointment.Type = request.Type;

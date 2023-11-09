@@ -14,15 +14,17 @@ namespace DCRM.Service.Service
     public class WorkDoneService : IWorkDoneService
     {
         private readonly IRepository<Workdone> _repository;
+        private readonly IRepository<Workdone_New> _workdonenewrepository;
         private readonly IRepository<Treatmentplans> _treatmentRepository;
         public WorkDoneService(
             IRepository<Workdone> repository,
+             IRepository<Workdone_New> workdonenewrepository,
             IRepository<Treatmentplans> treatmentRepository
             )
         {
             _repository = repository;
             _treatmentRepository = treatmentRepository;
-
+            _workdonenewrepository = workdonenewrepository;
         }
         public List<Workdone> GetAll(long patientId)
         {
@@ -62,8 +64,8 @@ namespace DCRM.Service.Service
         }
         public void delete(long id)
         {
-            var workdone = _repository.Get(id);
-            _repository.Delete(workdone);
+            var workdone = _workdonenewrepository.Get(id);
+            _workdonenewrepository.Delete(workdone);
         }
 
     }
