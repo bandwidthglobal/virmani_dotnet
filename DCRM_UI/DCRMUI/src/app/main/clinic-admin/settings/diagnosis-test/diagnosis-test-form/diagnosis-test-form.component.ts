@@ -97,9 +97,9 @@ export class DiagnosisTestFormComponent implements OnInit, OnDestroy {
         }
         this.loading = true;
         this.diagnosisModel.id = this.diagnosisId;
-        
+        debugger;
         this._fromService
-            .save(this.diagnosisId,this.diagnosisForm)
+            .save(this.diagnosisId, this.diagnosisModel)
             .pipe()
             .subscribe(
                 data => {

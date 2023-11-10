@@ -40,16 +40,6 @@ export class SetSscheduleFormComponent implements OnInit, OnDestroy {
     hideable_6 = true;
     hideable_7 = true;
     apiData: any;
-    //schedule: any = [];
-    //date1: any = { start: '', end: '' }
-    //date2 = { start: '', end: '' }
-    //date3: any = { start: '', end: '' }
-    //date4: any = { start: '', end: '' }
-    //date5: any = { start: '', end: '' }
-    //date6: any = { start: '', end: '' }
-    //date7: any = { start: '', end: '' }
-    //setscheduleFormList: any = [];
-    //dateList: any = [];
     public scheduleForm: UntypedFormGroup;
 
     public scheduledFormModel: scheduledFormModel = {
@@ -75,15 +65,6 @@ export class SetSscheduleFormComponent implements OnInit, OnDestroy {
         day6: '',
         day7: '',
     }
-    //onChange=''e: string): void {
-    //    if (this.all_selected_values.includes(value)) {
-    //        this.all_selected_values = this.all_selected_values.filter((item) => item !== value);
-    //    } else {
-    //        this.all_selected_values.push(value);
-    //    }
-    //    console.log(this.all_selected_values);
-    //}
-    // Private
     private _unsubscribeAll: Subject<any>;
     //private _formBuilder: any;
 

@@ -31,7 +31,7 @@ export class IAppointmentFormModel {
 
     patient_Id?: any='';
     patient_name?: any;
-    email?: any;
+    email?: any='';
     phone?: any;
     age: string ='';
     weight: string ='';
@@ -107,7 +107,7 @@ export class IAppointmentForm extends FormGroup {
                     created_At: [model?.created_At],
                     patient_Id: model.patient_Id > 0? [Validators.required]: [model?.patient_Id],
                     patient_name: [model?.patient_name],
-                    email: [model?.email, [Validators.email]],
+                    email: [model?.email],
                     phone: [model?.phone, [ Validators.minLength(10), Validators.maxLength(10)]],
                     age: [model?.age],
                     weight: [model?.weight],

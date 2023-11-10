@@ -31,14 +31,14 @@ namespace DCRM.Api.Controllers
         }
 
         [HttpGet("GetAll")]
-        public async Task<IEnumerable<DealerDto>> GetAllAsync()
+        public IEnumerable<DealerDto> GetAll()
         {
             var user = Request.HttpContext.Items["User"] as User;
             if (user != null)
             {
                 userId = user.Id;
             }
-            var dealerList =await _dealerService.GetAllAsync(userId);
+            var dealerList =_dealerService.GetAll(userId);
             return dealerList;
         }
 
@@ -50,7 +50,7 @@ namespace DCRM.Api.Controllers
             {
                 userId = user.Id;
             }
-            DealerRequest dealer = _dealerService.Get(userId, id);
+            DealerRequest dealer = _dealerService.Get(id);
             return dealer;
         }
 

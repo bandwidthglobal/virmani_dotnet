@@ -116,16 +116,19 @@ export class PaymentsComponent implements OnInit {
         });
     }
     ngOnInit(): void {
+        
         this.patientId = this._route.snapshot.paramMap.get('id');
         this.getData();
         this.receiveFormData = new ReceiveForm(this.ReceiveFormInput);
     }
     getData() {
+        this.loading = true;
         this._patientListService.getPaymentList(this.patientId).subscribe(response => {
             this.data = response;
             this.rows = this.data;
             this.tempData = this.rows;
             this.tempFilterData = this.rows;
+            this.loading = false;
         });
         //this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
 

@@ -58,13 +58,7 @@ namespace DCRM.Api.Controllers
             return  _appointmentService.Get(id);
         }
 
-        [HttpGet("ChairViews")]
-        public AppointmentChairViewDto ChairViews()
-        {
-            var user = Request.HttpContext.Items["User"] as User;
-            return _appointmentService.AppointmentChairView(user.Id);
-        }
-
+        
         [HttpPost("ChairViewsSearch")]
         public AppointmentChairViewDto ChairViewsSearch(AppointmentChairViewSearchParameters parameters)
         {
@@ -73,13 +67,6 @@ namespace DCRM.Api.Controllers
             return _appointmentService.AppointmentChairViewSearch(parameters);
         }
 
-        //[HttpPost("Create")]
-        //public IActionResult CreateOld(Appointment appointment)
-        //{
-        //        _appointmentService.Create(appointment);
-        //        return Ok();
-           
-        //}
 
         [HttpPost("Create")]
         public IActionResult Create(AppointmentRequest appointment)

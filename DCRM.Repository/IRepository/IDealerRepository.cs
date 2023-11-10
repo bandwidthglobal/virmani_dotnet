@@ -14,10 +14,10 @@ namespace DCRM.Repository.IRepository
     public interface IDealerRepository
     {
        
-        Task<IEnumerable<Dealer>> GetDealersAsync(long userId);
+        IEnumerable<Dealer> GetDealers(long userId);
 
-        Dealer Get(long userId, int id);
-        Task<Dealer> GetDealerByIdAsync(long userId,int id);
+        Dealer Get( int id);
+        Dealer GetDealerById(int id);
 
         List<Dealer> GetDealerByUserId(int userId);
 

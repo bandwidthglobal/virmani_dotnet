@@ -200,11 +200,13 @@ export class TreatmentPalnComponent implements OnInit {
     }
 
     getTreatmentList() {
+        this.loading = true;
         this._patientListService.getTreatmentPalnList(this.patientId).subscribe(response => {
             this.data = response;
             this.rows = this.data;
             this.tempData = this.rows;
             this.tempFilterData = this.rows;
+            this.loading = false;
         });
     }
     getData() {

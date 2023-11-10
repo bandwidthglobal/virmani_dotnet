@@ -28,7 +28,7 @@ namespace DCRM.Repository.Repository
         /// </summary>
         /// <returns></returns>
         /// <exception cref="KeyNotFoundException"></exception>
-        public async Task<IEnumerable<Dealer>> GetDealersAsync(long userId)
+        public IEnumerable<Dealer> GetDealers(long userId)
         {
             IEnumerable<Dealer> dealers;
             dealers = _contex.Dealers.Where(x => x.Is_Deleted == 0 && x.User_Id == userId);
@@ -45,18 +45,18 @@ namespace DCRM.Repository.Repository
         /// <returns></returns>
         /// <exception cref="KeyNotFoundException"></exception>
 
-        public async Task<Dealer> GetDealerByIdAsync(long userId, int id)
+        public Dealer GetDealerById(int id)
         {
-            Dealer dealer = await _contex.Dealers.FirstOrDefaultAsync(x => x.Id == id && x.Is_Deleted == 0 && x.User_Id == userId);
+            Dealer dealer = _contex.Dealers.FirstOrDefault(x => x.Id == id && x.Is_Deleted == 0);
             if (dealer != null)
             {
                 return dealer;
             }
             else { throw new KeyNotFoundException("no record found"); }
         }
-        public Dealer  Get(long userId, int id)
+        public Dealer  Get(int id)
         {
-            Dealer dealer = _contex.Dealers.FirstOrDefault(x => x.Id == id && x.Is_Deleted == 0 && x.User_Id == userId);
+            Dealer dealer = _contex.Dealers.FirstOrDefault(x => x.Id == id && x.Is_Deleted == 0);
             if (dealer != null)
             {
                 return dealer;

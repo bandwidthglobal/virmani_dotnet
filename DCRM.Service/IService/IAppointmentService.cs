@@ -29,10 +29,6 @@ namespace DCRM.Service.IService
         void Delete(long id);
 
         List<AppointmentDto> GetAppointmentWithPatient(long userId);
-
-        AppointmentChairViewDto AppointmentChairView(long userId);
-        //List<AppointmentScheduleTime> AppointScheduleList(long userId);
-
         List<Assaign_Day> GetDays(long userId);
         List<Assign_Time> GetTimes(long userId);
         void UpdateTimes(long userId, List<Assign_Time> assignTimes);

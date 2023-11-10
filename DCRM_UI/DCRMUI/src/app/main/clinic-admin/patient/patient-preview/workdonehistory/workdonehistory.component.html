@@ -41,7 +41,11 @@
                         </div>
                     </div>
                 </div>
-
+                <div *ngIf="loading==true" class="table-loading">
+                    <div class="table-loading-text">
+                        Loading...
+                    </div>
+                </div>
                 <!-- Invoice List Table -->
                 <ngx-datatable [rows]="rows"
                                rowHeight="auto"
@@ -77,15 +81,15 @@
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <div class="d-flex align-items-center col-actions">
                                 <!--<a class="mr-1"
-                                   container="body"
-                                   placement="top"
-                                   ngbTooltip="Edit Drug">
-                                    <i size="18" data-feather="edit"></i>
-                                </a>-->
+                       container="body"
+                       placement="top"
+                       ngbTooltip="Edit Drug">
+                        <i size="18" data-feather="edit"></i>
+                    </a>-->
                                 <a class="mr-1"
                                    container="body"
                                    placement="top"
-                                   href="javascript:void(0)" 
+                                   href="javascript:void(0)"
                                    (click)="delete(row.id)"
                                    ngbTooltip="Delete">
                                     <i size="18" data-feather="trash"></i>

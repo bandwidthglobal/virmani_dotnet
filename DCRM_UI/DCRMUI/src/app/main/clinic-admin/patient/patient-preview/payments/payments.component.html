@@ -41,7 +41,11 @@
                         </div>
                     </div>
                 </div>
-
+                <div *ngIf="loading==true" class="table-loading">
+                    <div class="table-loading-text">
+                        Loading...
+                    </div>
+                </div>
                 <!-- Invoice List Table -->
                 <ngx-datatable [rows]="rows"
                                rowHeight="auto"

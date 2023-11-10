@@ -83,7 +83,7 @@ namespace DCRM.Service.Service
 
         public void UpdateDiagonosis(Diagonosis diagonosis)
         {
-            _diagonosisRepository.Insert(diagonosis);
+            _diagonosisRepository.Update(diagonosis);
         }
 
         public void DeleteDiagonosis(long id)

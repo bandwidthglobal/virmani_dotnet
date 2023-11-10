@@ -7,7 +7,7 @@ namespace DCRM.Common.Entities;
 public partial class Diagonosis:BaseEntity
 {
     
-    public int Id { get; set; }
+   
     public long? User_Id { get; set; }
 
     public string? Name { get; set; }

@@ -50,6 +50,7 @@ export class NotAuthorizedComponent implements OnInit {
    */
   ngOnInit(): void {
     // Subscribe to config changes
+    alert('alert')
     this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
       this.coreConfig = config;
     });

@@ -181,7 +181,7 @@ namespace DCRM.Service.Service
         /// <returns></returns>
         public List<DoctorDto> GetDoctorsByUserId(int userId)
         {
-            var doctorList = _doctorRepository.GetDoctorsByUserId(userId).OrderByDescending(x => x.Id);
+            var doctorList = _doctorRepository.GetDoctorsByUserId(userId).OrderByDescending(x => x.Id).ToList();
             DoctorDto doctorDto = new DoctorDto();
             List<DoctorDto> doctorDtoList = new List<DoctorDto>();
             foreach (var doctor in doctorList)
@@ -208,10 +208,10 @@ namespace DCRM.Service.Service
                 doctorDto.Speciality = doctor.Speciality;
                 doctorDto.Role = doctor.Role;
                 doctorDto.Updated_At = doctor.Updated_At;
-                doctorDto.DoctorInsuranceDetailList = _doctorRepository.GetDoctorInsuranceDetailList(Convert.ToInt32(doctor.Id));
-                doctorDto.DoctorBankDetailList = _doctorRepository.GetDoctorBankDetailList(Convert.ToInt32(doctor.Id));
-                doctorDto.DoctorsVaccinationList = _doctorRepository.GetDoctorVaccinationList(Convert.ToInt32(doctor.Id));
-                doctorDto.DoctorsAddressList = _doctorRepository.GetDoctorsAddressDetailList(Convert.ToInt32(doctor.Id));
+                //doctorDto.DoctorInsuranceDetailList = _doctorRepository.GetDoctorInsuranceDetailList(Convert.ToInt32(doctor.Id));
+                //doctorDto.DoctorBankDetailList = _doctorRepository.GetDoctorBankDetailList(Convert.ToInt32(doctor.Id));
+                //doctorDto.DoctorsVaccinationList = _doctorRepository.GetDoctorVaccinationList(Convert.ToInt32(doctor.Id));
+                //doctorDto.DoctorsAddressList = _doctorRepository.GetDoctorsAddressDetailList(Convert.ToInt32(doctor.Id));
                 doctorDtoList.Add(doctorDto);
             }
             return doctorDtoList;

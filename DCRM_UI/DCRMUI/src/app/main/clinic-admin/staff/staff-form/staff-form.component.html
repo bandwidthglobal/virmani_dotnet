@@ -24,7 +24,11 @@
                             </ngb-alert>
                             <div class="box-body pt-1 pb-1">
                                 <div class="card-body">
-
+                                    <div *ngIf="loading==true" class="table-loading">
+                                        <div class="table-loading-text">
+                                            Loading...
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -45,9 +49,9 @@
                                         <div class="col-md-9">
                                             <div class="row">
                                                 <!--<div class="col-md-4">
-                                                    <shared-ui-select-input [label]="'Title'" [control]="formData.slug" [options]="ITitlte"
-                                                                            [valueKey]="'id'" [displaykey]="'name'" [submitted]="submitted"></shared-ui-select-input>
-                                                </div>-->
+                    <shared-ui-select-input [label]="'Title'" [control]="formData.slug" [options]="ITitlte"
+                                            [valueKey]="'id'" [displaykey]="'name'" [submitted]="submitted"></shared-ui-select-input>
+                </div>-->
                                                 <div class="col-md-4">
                                                     <shared-ui-select-input [label]="'Designation'" [control]="formData.designation"
                                                                             [options]="IDesignation" [valueKey]="'id'" [displaykey]="'name'"

@@ -39,10 +39,10 @@ export class LoginComponent implements OnInit {
     private _router: Router,
     private _authenticationService: AuthenticationService
   ) {
-    // redirect to home if already logged in
-    if (this._authenticationService.currentUserValue) {
-      this._router.navigate(['/admin/dashboard']);
-    }
+    
+    //if (this._authenticationService.currentUserValue) {
+    //  this._router.navigate(['/admin/dashboard']);
+    //}
 
     this._unsubscribeAll = new Subject();
 
@@ -106,7 +106,9 @@ export class LoginComponent implements OnInit {
   /**
    * On init
    */
-  ngOnInit(): void {
+    ngOnInit(): void {
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('token');
     this.loginForm = this._formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]

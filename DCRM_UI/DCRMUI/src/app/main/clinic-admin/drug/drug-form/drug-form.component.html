@@ -28,6 +28,11 @@
                                 </div>
                             </ngb-alert>
                             <div class="box-body pt-1 pb-1">
+                                <div *ngIf="loading==true" class="table-loading">
+                                    <div class="table-loading-text">
+                                        Loading...
+                                    </div>
+                                </div>
                                 <form class="form" [formGroup]="drugForm" (ngSubmit)="onSubmit()">
                                     <div class="row">
                                         <div class="col-md-4 col-12">

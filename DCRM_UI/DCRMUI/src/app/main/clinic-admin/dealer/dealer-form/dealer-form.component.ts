@@ -131,10 +131,9 @@ export class DealerFormComponent implements OnInit, OnDestroy {
       payload.dealerMaterialList.map(e => {
         e.material_Date = this._commonValidationService.dateFormat_Y_M_D(e.material_Date);
       });
-      // console.log('> saveForm ---> ', payload);
+     
       this.loading = true;
       this._dealerFormService.save(payload, this.FormAction).pipe(catchError((error) => {
-        // console.log('> error ---> ', error);
         this.loading = false;
         this.error = error;
         this.callBackEvent.emit({
@@ -144,7 +143,6 @@ export class DealerFormComponent implements OnInit, OnDestroy {
         });
         return '';
       })).subscribe((response) => {
-        // console.log('> save ---> ', response);
         this.loading = false;
         this.callBackEvent.emit({
           status: 'failure',

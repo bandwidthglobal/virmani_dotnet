@@ -109,11 +109,14 @@ export class PatientAppointmentsComponent implements OnInit, OnDestroy {
         this.getData();
     }
     getData() {
+        this.loading = true;
         this._patientListService.getAppointmentList(this.patientId).subscribe(response => {
+          
             this.data = response;
             this.rows = this.data;
             this.tempData = this.rows;
             this.tempFilterData = this.rows;
+            this.loading = false;
         });
         //this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
         //    // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)

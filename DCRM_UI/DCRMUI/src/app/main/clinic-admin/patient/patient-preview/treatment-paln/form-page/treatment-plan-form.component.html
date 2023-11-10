@@ -19,21 +19,27 @@
     </div>
 
     <div class="row">
+        <div *ngIf="loading==true" class="table-loading">
+            <div class="table-loading-text">
+                Loading...
+            </div>
+        </div>
         <div class="col-lg-12">
             <div id="container">
                 <!-- <pre>{{ Teeth | json }}</pre> -->
                 <ul [id]="categoryID">
                     <ng-container *ngFor="let t of Teeth; let idx = index;">
+                        x;
                         <ng-container *ngIf="!formData.get('milk_teeth').value">
                             <li class="teethord{{ idx+1 }}">
                                 <a (click)="getRecord_teechinfo(t.id, t.teeth_Note, t.image)" href="javascript://"
-                                    title="" data-original-title="{{ t.teeth_Note }}"></a>
+                                   title="" data-original-title="{{ t.teeth_Note }}"></a>
                             </li>
                         </ng-container>
                         <ng-container *ngIf="formData.get('milk_teeth').value">
                             <li class="teeth_child{{ idx+1 }}">
                                 <a (click)="getRecord_teechinfo(t.id, t.teeth_Note, t.image)" href="javascript://"
-                                    title="" data-original-title="{{ t.teeth_Note }}"></a>
+                                   title="" data-original-title="{{ t.teeth_Note }}"></a>
                             </li>
                         </ng-container>
                     </ng-container>
@@ -44,14 +50,18 @@
 
         <div class="col-lg-12 mt-5">
             <div id="shw_tooth_number">
-                <p class="texp">Tooth Number: <span class="tre-code">
+                <p class="texp">
+                    Tooth Number: <span class="tre-code">
                         <a (click)="toothNumber = []" style="color:#398bf7;" href="javascript:void();"
-                            id="clear_teeth">Clear</a></span></p>
-                <span id="tooth_no_note_view"   >
+                           id="clear_teeth">Clear</a>
+                    </span>
+                </p>
+                <span id="tooth_no_note_view">
                     <ng-container *ngFor="let d of toothNumber; let idx = index;">
-                        <span class="mr-2">"{{ d }}
+                        <span class="mr-2">
+                            "{{ d }}
                             <span (click)="removeToothNumber(idx)"
-                                style="font-size: 25px;cursor:pointer;font-weight: bold;position: relative;top: 2px;padding-left: 5px;color: rgba(0,0,0,0.475);">×</span>
+                                  style="font-size: 25px;cursor:pointer;font-weight: bold;position: relative;top: 2px;padding-left: 5px;color: rgba(0,0,0,0.475);">×</span>
                         </span>
                     </ng-container>
                 </span>
@@ -60,7 +70,7 @@
             <div class="row_">
                 <div class="col-sm-7_">
                     <shared-ui-textarea [label]="'Notes &amp; Diagnosis'" [control]="formData.treatment_Notes"
-                        [submitted]="submitted"></shared-ui-textarea>
+                                        [submitted]="submitted"></shared-ui-textarea>
                 </div>
             </div>
 
@@ -73,32 +83,32 @@
             <div class="row">
                 <div class="col-md-4">
                     <app-hot-code-menu [DiagnosisData]="DiagnosisData"
-                        (callBackEvent)="setJobName($event);"></app-hot-code-menu>
+                                       (callBackEvent)="setJobName($event);"></app-hot-code-menu>
                 </div>
                 <div class="col-md-8">
                     <div class="form-group">
                         <label><strong>Patient Name:</strong> {{ apiData.name }} </label>
                     </div>
                     <shared-ui-select-input [label]="'Treatment Type'" [control]="formData.type"
-                        [options]="ITreatmentType" [valueKey]="'value'" [displaykey]="'text'"
-                        [submitted]="submitted"></shared-ui-select-input>
+                                            [options]="ITreatmentType" [valueKey]="'value'" [displaykey]="'text'"
+                                            [submitted]="submitted"></shared-ui-select-input>
 
                     <shared-ui-text-input [label]="'Job Name'" [control]="formData.job"
-                        [submitted]="submitted"></shared-ui-text-input>
+                                          [submitted]="submitted"></shared-ui-text-input>
 
                     <shared-ui-select-input [label]="'Primary Doctor Name'" [control]="formData.doctor"
-                        [options]="IDoctors" [valueKey]="'id'" [displaykey]="'name'"
-                        [submitted]="submitted"></shared-ui-select-input>
+                                            [options]="IDoctors" [valueKey]="'id'" [displaykey]="'name'"
+                                            [submitted]="submitted"></shared-ui-select-input>
 
                     <div class="form-group">
                         <div class="form-group plr-10">
                             <label>Treatment</label>
                             <div class="radio radio-info radio-inline mt-10">
                                 <input name="treatment" checked type="radio" (change)="changeTreatmentStatus(0)" value="0">
-                                <label class="cs-lable">Observation</label> 
-                                <input name="treatment" type="radio"  (change)="changeTreatmentStatus(1)" value="1">
+                                <label class="cs-lable">Observation</label>
+                                <input name="treatment" type="radio" (change)="changeTreatmentStatus(1)" value="1">
                                 <label class="cs-lable">Completed</label>
-                                <input name="treatment" type="radio"  (change)="changeTreatmentStatus(2)" value="2">
+                                <input name="treatment" type="radio" (change)="changeTreatmentStatus(2)" value="2">
                                 <label class="cs-lable">Incompleted</label>
                             </div>
                         </div>
@@ -107,20 +117,20 @@
                     <div class="row">
                         <div class="col-md-6">
                             <shared-ui-text-input [label]="'Estimated Amount'" [control]="formData.estimated_Amount"
-                                [mask]="'numeric'" [submitted]="submitted"></shared-ui-text-input>
+                                                  [mask]="'numeric'" [submitted]="submitted"></shared-ui-text-input>
                         </div>
 
                         <!--<div class="col-md-6">
-                            <shared-ui-text-input [label]="'Courtesy (if any)'" [control]="formData.courtesy"
-                                [mask]="'numeric'" [submitted]="submitted"></shared-ui-text-input>
-                        </div>-->
+                        <shared-ui-text-input [label]="'Courtesy (if any)'" [control]="formData.courtesy"
+                            [mask]="'numeric'" [submitted]="submitted"></shared-ui-text-input>
+                    </div>-->
                         <!--<div class="col-md-12">
-                            <div class="form-group">
-                                <label>Estimated Total Amount</label>
-                                <input type="text" readonly="" class="form-control"
-                                    value="{{ formData.estimated_Amount.value }}" />
-                            </div>
-                        </div>-->
+                        <div class="form-group">
+                            <label>Estimated Total Amount</label>
+                            <input type="text" readonly="" class="form-control"
+                                value="{{ formData.estimated_Amount.value }}" />
+                        </div>
+                    </div>-->
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -132,8 +142,10 @@
                         </div>
                     </div>
                     <div class="float-right" id="view_divs" style="display: none;">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="closeview();">Fill
-                            Later</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="closeview();">
+                            Fill
+                            Later
+                        </button>
                     </div>
                 </div>
             </div>

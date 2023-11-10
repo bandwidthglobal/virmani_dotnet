@@ -189,6 +189,7 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
             console.log('> invalidForm ---> ', this.formData);
             return;
         } else {
+            this.loading = true;
             const payload: any = this.formData.getRawValue();
             payload.ord = payload.ord ? payload.ord : '';
             payload.rmd = payload.rmd ? payload.rmd : '';

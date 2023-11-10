@@ -23,9 +23,11 @@ namespace DCRM.Service.Service
         /// get all dealers 
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<DealerDto>> GetAllAsync(long userId)
+        public IEnumerable<DealerDto> GetAll(long userId)
         {
-            var dealers =await _dealerRepository.GetDealersAsync(userId);
+            var dealers = _dealerRepository.GetDealers(userId);
+            
+            
             List<DealerDto> dealerList = new List<DealerDto>();
             DealerDto dealerDto;
             foreach (var dealer in dealers.ToList())
@@ -66,8 +68,8 @@ namespace DCRM.Service.Service
                 dealerDto.Pan_Number = dealer.Pan_Number;
                 dealerDto.Updated_At = dealer.Created_At;
                 dealerDto.Created_At = dealer.Updated_At;
-                dealerDto.DealerBankDetailList = _dealerRepository.GetDealerBankDetailDetailList(dealer.Id);
-                dealerDto.DealerMaterialList = _dealerRepository.GetDealerMaterialDetailList(dealer.Id);
+                //dealerDto.DealerBankDetailList = _dealerRepository.GetDealerBankDetailDetailList(dealer.Id);
+                //dealerDto.DealerMaterialList = _dealerRepository.GetDealerMaterialDetailList(dealer.Id);
                 dealerList.Add(dealerDto);
             }
             return dealerList;
@@ -78,10 +80,10 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<DealerDto> GetByIdAsync(long userId, int id)
+        public DealerDto GetById(int id)
         {
 
-            Dealer dealer = await _dealerRepository.GetDealerByIdAsync(userId,id);
+            Dealer dealer =  _dealerRepository.GetDealerById(id);
             DealerDto dealerDto = new DealerDto();
             if (dealer != null)
             {
@@ -126,9 +128,9 @@ namespace DCRM.Service.Service
 
         }
 
-        public DealerRequest Get(long userId, int id)
+        public DealerRequest Get(int id)
         {
-            Dealer dealer =  _dealerRepository.Get(userId, id);
+            Dealer dealer =  _dealerRepository.Get(id);
             DealerRequest dealerDto = new DealerRequest();
             if (dealer != null)
             {

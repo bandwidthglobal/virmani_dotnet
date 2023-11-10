@@ -41,7 +41,7 @@ namespace DCRM.Api.Controllers
 
 
         [HttpGet("GetAll")]
-        public async Task<List<PatientseDto>> GetAll()
+        public List<PatientseDto> GetAll()
         {
             var user = Request.HttpContext.Items["User"] as User;
             List<PatientseDto> patientList = _patientService.GetAll(user.Id);
@@ -53,7 +53,7 @@ namespace DCRM.Api.Controllers
         }
 
         [HttpGet("Get/{id}")]
-        public async Task<PatientseDto> GetAsync(long id)
+        public PatientseDto Get(long id)
         {
             PatientseDto patient = _patientService.Get(id);
             return patient;

@@ -57,8 +57,9 @@ namespace DCRM.Service.Service
         public List<PrescriptionDto> GetAll(long userId)
         {
             var prescriptions = _prescriptionRepository.GetAll().Where(x => x.User_Id == userId);
-            var drugs = _drugRepository.GetAll();
-            var patients = _patientRepository.GetAll();
+            var drugs = _drugRepository.GetAll().ToList();
+            var patients = _patientRepository.GetAll().ToList();
+            var chambers = _chamberRepository.GetAll().ToList();
             List<PrescriptionDto> prescriptionsList = new List<PrescriptionDto>();
             PrescriptionDto prescriptionDto = new PrescriptionDto();
             foreach (var item in prescriptions)
@@ -85,7 +86,7 @@ namespace DCRM.Service.Service
                 prescriptionDto.User_Id = item.User_Id;
                 prescriptionDto.Id = item.Id;
                 prescriptionDto.Chamber_Id = item.Chamber_Id;
-                prescriptionDto.Chamber = _chamberRepository.GetAll().Where(x => x.Uid == item.Chamber_Id.ToString()).FirstOrDefault();
+                prescriptionDto.Chamber = chambers.Where(x => x.Uid == item.Chamber_Id.ToString()).FirstOrDefault(); //_chamberRepository.GetAll().Where(x => x.Uid == item.Chamber_Id.ToString()).FirstOrDefault();
                 prescriptionDto.Check_Report = item.Check_Report;
                 prescriptionDto.Created_At = item.Created_At;
                 prescriptionDto.Next_Duration = item.Next_Duration;

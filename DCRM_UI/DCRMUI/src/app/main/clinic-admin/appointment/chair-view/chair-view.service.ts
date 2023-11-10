@@ -8,12 +8,13 @@ import { User } from '../../../../auth/models';
 @Injectable()
 export class AppointmentChairViewService implements Resolve<any> {
     rows: any;
+    chairRows: any;
     onAppointmentChairChanged: BehaviorSubject<any>;
     public currentUserSubject: Observable<User>;
     id;
     currentUser: any;
-   
-
+    onDoctorChange: BehaviorSubject<any>;
+    onChairChange: BehaviorSubject<any>;
     /**
      * Constructor
      *
@@ -42,6 +43,25 @@ export class AppointmentChairViewService implements Resolve<any> {
             }, reject);
         });
     }
+    row: any;
+    getDoctors() {
+        let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.get(`${environment.apiUrl}/Doctor/Get/Names`, requestOptions);
+    }
+    getChairs() {
+        let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.get(`${environment.apiUrl}/Chair/GetAll`, requestOptions);
+    }
 
     getAppointmentChairViewlist() {
 
@@ -51,10 +71,10 @@ export class AppointmentChairViewService implements Resolve<any> {
             'Authorization': `Bearer ${currentUser.jwtToken}`
         });
         const requestOptions = { headers: headers };
-       return  this._httpClient.get(`${environment.apiUrl}/Appointment/ChairViews`, requestOptions)
+        return this._httpClient.get(`${environment.apiUrl}/Appointment/ChairViews`, requestOptions)
     }
 
-    getAppointmentChairViewSearchlist(params:any) {
+    getAppointmentChairViewSearchlist(params: any) {
 
         let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
         const headers = new HttpHeaders({
@@ -62,6 +82,6 @@ export class AppointmentChairViewService implements Resolve<any> {
             'Authorization': `Bearer ${currentUser.jwtToken}`
         });
         const requestOptions = { headers: headers };
-        return this._httpClient.post(`${environment.apiUrl}/Appointment/ChairViewsSearch`,params, requestOptions)
+        return this._httpClient.post(`${environment.apiUrl}/Appointment/ChairViewsSearch`, params, requestOptions)
     }
 }

@@ -24,14 +24,10 @@ namespace DCRM.Repository.Repository
         public DashboardDto Get(int userId)
         {
             DashboardDto dashboardDto = new DashboardDto();
-            var patientCount = _contex.Patientses.Where(x => x.User_Id == userId && x.Is_Delete == 0).ToList().Count;
-            var staffCount = _contex.Staffs.Where(x => x.User_Id == userId && x.Is_Deleted == 0).ToList().Count;
-            var appointmentCount = _contex.Appointments.Where(x => x.User_Id == userId && x.Is_Delete == 0).ToList().Count;
-            var todayAppointmentCount = _contex.Appointments.Where(x => x.User_Id == userId && x.Is_Delete == 0 && x.Date==System.DateTime.Today).ToList().Count;
-            dashboardDto.PatientCount = patientCount;
-            dashboardDto.StaffCount = staffCount;
-            dashboardDto.AppointmentCount = appointmentCount;
-            dashboardDto.TodayAppointmentCount = todayAppointmentCount;
+            dashboardDto.PatientCount = _contex.Patientses.Where(x => x.User_Id == userId && x.Is_Delete == 0).ToList().Count;
+            dashboardDto.StaffCount = _contex.Staffs.Where(x => x.User_Id == userId && x.Is_Deleted == 0).ToList().Count;
+            dashboardDto.AppointmentCount = _contex.Appointments.Where(x => x.User_Id == userId && x.Is_Delete == 0).ToList().Count;
+            dashboardDto.TodayAppointmentCount = _contex.Appointments.Where(x => x.User_Id == userId && x.Is_Delete == 0 && x.Date==System.DateTime.Today).ToList().Count;
             return dashboardDto;
         }
     }

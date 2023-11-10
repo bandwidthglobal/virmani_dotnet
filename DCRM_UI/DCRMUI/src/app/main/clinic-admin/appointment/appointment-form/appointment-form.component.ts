@@ -167,11 +167,12 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
     saveForm(status, id, sift): void {
         this.submitted = true;
         this._commonValidationService.validateAllFormFields(this.formData);
+        debugger;
         if (this.formData.invalid) {
             return;
         } else {
             const payload: any = this.formData.getRawValue();
-            debugger;
+           
             if (status != undefined) {
                 payload.appointment_Status = parseInt(status);
             }

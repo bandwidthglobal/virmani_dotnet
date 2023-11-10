@@ -45,9 +45,25 @@ export class DiagnosisTestFormService implements Resolve<any> {
         return this._httpClient.get(`${environment.apiUrl}/Settings/Get/Diagonosis/` + id, requestOptions)
     }
 
+    saveProsthesisType(id: any, data: any) {
+        debugger;
+        let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${currentUser.jwtToken}`
+        });
+        let url = `${environment.apiUrl}/Settings/Create/ProsthesisType`;
+        if (id > 0) {
+            url = `${environment.apiUrl}/Settings/Update/ProsthesisType`;
+        }
+        const requestOptions = { headers: headers };
+        return this._httpClient.post(url, data, requestOptions)
+    }
+
     save(id: any, data: any) {
         debugger;
         let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
+        data.user_Id = currentUser.id;
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${currentUser.jwtToken}`

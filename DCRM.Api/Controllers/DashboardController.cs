@@ -21,7 +21,7 @@ namespace DCRM.Api.Controllers
 
        
         [HttpGet("GetUserDashboard")]
-        [Authorize("GetUserDashboard")]
+        [Authorize("User")]
         public DashboardDto Get()
         {
             DashboardDto dashboardDto = new DashboardDto();

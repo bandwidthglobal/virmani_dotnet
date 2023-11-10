@@ -13,6 +13,7 @@ import { WaitingRoomService } from '../waiting-room/waiting-room.service';
 import { formatDate } from '@angular/common';
 import { IAppointmentFormModel } from '../model/appointment-from';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { takeUntil } from 'rxjs/operators';
 @Component({
     selector: 'app-chair-view',
     templateUrl: './chair-view.component.html',
@@ -41,10 +42,10 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
     public previousStatusFilter = '';
     selectedItems = [];
     dropdownSettings = {};
-    chairList: [];
+    chairList:any= [];
     dropdownList = [];
     appointmentScheduleTimes: any;
-    doctorList: [];
+    doctorList: any =[];
     FormInput: any;
     isAppontmentClose = false;
     addParam = { start_Time: '', date: '', chair: '' }
@@ -52,6 +53,7 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
     @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
     @ViewChild('appointmentModal', { static: false }) workdoneModal: ElementRef;//RECEIVE
     workdoneElm: HTMLElement;
+    isChair= true;
     public searchParam: SearchParamModel = {
         doctorIds: '',
         chairIds: "",
@@ -84,69 +86,71 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
      * On init
      */
     ngOnInit(): void {
-        this.loading = true;
-        const id = this._route.snapshot.paramMap.get('id');
-        var t = new Date().getDate();
-        var m = new Date().getUTCMonth();
-        var y = new Date().getFullYear();
+        debugger;
+        this._chairViewService.getDoctors().subscribe(response => {
+            this.doctorList = response;
+        });
+        this._chairViewService.getChairs().subscribe(response => {
+            this.chairList = response;
+        });
+        //const id = this._route.snapshot.paramMap.get('id');
+        //var t = new Date().getDate();
+        //var m = new Date().getUTCMonth();
+        //var y = new Date().getFullYear();
         this.searchParam.scheduleDate = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
-        //this.dropdownSettings: IDropdownSettings = {
-        //    singleSelection: false,
-        //    idField: 'item_id',
-        //    textField: 'item_text',
-        //    selectAllText: 'Select All',
-        //    unSelectAllText: 'UnSelect All',
-        //    itemsShowLimit: 3,
-        //    allowSearchFilter: true
-        //};
-        //this.getData();
+        this.loading = true;
         this.searchData();
     }
-    getData() {
-        this.loading = true;
-        this._chairViewService.getAppointmentChairViewlist().subscribe(response => {
-            this.data = response;
-            this.rows = this.data;
-            debugger;
-            this.chairList = this.data.chairList;
-            for (var i = 0; i < this.data.chairList.length; i++) {
-                let obj: any = {}
-                obj.item_id = this.data.chairList[i].id;
-                obj.item_text = this.data.chairList[i].name;
-                this.dropdownList.push(obj)
-            }
+    //getData() {
+    //    this.loading = true;
+    //    this._chairViewService.getAppointmentChairViewlist().subscribe(response => {
+    //        this.error = "";
+    //        this.data = response;
+    //        this.rows = this.data;
+    //        if (this.data.chairList.length == 0) {
+    //            this.error="No chair found"
+    //        }
+    //        else {
+    //        this.chairList = this.data.chairList;
+    //        for (var i = 0; i < this.data.chairList.length; i++) {
+    //            let obj: any = {}
+    //            obj.item_id = this.data.chairList[i].id;
+    //            obj.item_text = this.data.chairList[i].name;
+    //            this.dropdownList.push(obj)
+    //        }
 
-            this.tempData = this.rows;
-            this.tempFilterData = this.rows;
-            debugger;
-            this.loading = false;
-        });
-    }
+    //        this.tempData = this.rows;
+    //        this.tempFilterData = this.rows;
+                
+    //        }
+    //        this.loading = false;
+    //    });
+    //}
     searchData() {
         this.loading = true;
-        var param = this.searchParam;
-        debugger;
         this._chairViewService.getAppointmentChairViewSearchlist(this.searchParam).subscribe(response => {
             this.data = response;
             this.rows = this.data;
+
             if (this.chairList == undefined) {
                 this.chairList = this.data.chairList;
             }
-
-            for (var i = 0; i < this.data.chairList.length; i++) {
-                let obj: any = {}
-                obj.item_id = this.data.chairList[i].id;
-                obj.item_text = this.data.chairList[i].name;
-                this.dropdownList.push(obj)
+            if (this.data.chairList.length == 0) {
+                this.error = "No chair found"
             }
-            if (this.doctorList == undefined) {
-                this.doctorList = this.data.doctorList;
+            else {
+                //for (var i = 0; i < this.data.chairList.length; i++) {
+                //    let obj: any = {}
+                //    obj.item_id = this.data.chairList[i].id;
+                //    obj.item_text = this.data.chairList[i].name;
+                //    this.dropdownList.push(obj)
+                //}
+
+                this.appointmentScheduleTimes = this.data.appointmentScheduleTimes
+                this.tempData = this.rows;
+
+                this.tempFilterData = this.rows;
             }
-
-            this.appointmentScheduleTimes = this.data.appointmentScheduleTimes
-            this.tempData = this.rows;
-
-            this.tempFilterData = this.rows;
             this.loading = false;
         });
     }

@@ -104,35 +104,15 @@ export class WorkdoneHistoryComponent implements OnInit {
         this.getData();
     }
     getData() {
+        this.loading = true;
         this._patientListService.getWorkDoneHistoryList(this.patientId).subscribe(response => {
             this.data = response;
             this.rows = this.data;
             this.tempData = this.rows;
             this.tempFilterData = this.rows;
+            this.loading = false;
         })
 
-        //this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
-        //    // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)
-        //    if (config.layout.animation === 'zoomIn') {
-        //        setTimeout(() => {
-
-        //            this._patientListService.onWorkedDoneChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-        //                this.data = response;
-        //                this.rows = this.data;
-        //                this.tempData = this.rows;
-        //                this.tempFilterData = this.rows;
-        //            });
-        //        }, 450);
-        //    } else {
-        //        this._patientListService.onWorkedDoneChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-        //            this.data = response;
-        //            this.rows = this.data;
-        //            this.tempData = this.rows;
-        //            this.tempFilterData = this.rows;
-        //            // debugger;
-        //        });
-        //    }
-        //});
     }
     delete(id) {
         let rowIndex = -1;
@@ -157,12 +137,6 @@ export class WorkdoneHistoryComponent implements OnInit {
                     .subscribe(
                         data => {
                             this.getData();
-                            //delete this.tempData[rowIndex];
-                            //var temp = [];
-                            //this.tempData.forEach((currentValue, index) => {
-                            //    temp.push(currentValue);
-                            //});
-                            //this.rows = temp;
                         },
                         error => {
                             this.error = error;
