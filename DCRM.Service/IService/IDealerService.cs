@@ -19,7 +19,7 @@ namespace DCRM.Service.IService
         long Create(DealerRequest request);
         void Update(DealerRequest request);
         void Delete(long id);
-        Task<List<DealerDto>> GetByUserId(int userId);
+        
         DealerRequest Get(int id);
     }
 }

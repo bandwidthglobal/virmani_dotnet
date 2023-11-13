@@ -303,7 +303,7 @@ namespace DCRM.Repository.Repository
         /// <returns></returns>
         public List<DropdownDataDto> NameList(long userId)
         {
-            var doctors = _contex.Doctors.Where(x => x.User_Id == userId).ToList();
+            var doctors = _contex.Doctors.Where(x => x.User_Id == userId && x.Is_Delete==0).ToList();
             DropdownDataDto data = new DropdownDataDto();
             List<DropdownDataDto> dataList = new List<DropdownDataDto>();
             foreach (var doctor in doctors)

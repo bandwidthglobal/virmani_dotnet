@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace DCRM.Api.Controllers
 {
-    [Authorize("User")]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class StaffController : ControllerBase

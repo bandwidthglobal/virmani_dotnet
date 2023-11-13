@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DCRM.Api.Controllers
 {
-    [Authorize("User")]
+    [Authorize]
     [Route("api/Payment")]
     [ApiController]
     public class PaymentController : ControllerBase

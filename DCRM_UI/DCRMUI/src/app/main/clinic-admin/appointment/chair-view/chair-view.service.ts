@@ -60,7 +60,7 @@ export class AppointmentChairViewService implements Resolve<any> {
             'Authorization': `Bearer ${currentUser.jwtToken}`
         });
         const requestOptions = { headers: headers };
-        return this._httpClient.get(`${environment.apiUrl}/Chair/GetAll`, requestOptions);
+        return this._httpClient.get(`${environment.apiUrl}/Chair/GetChairsForDropdown`, requestOptions);
     }
 
     getAppointmentChairViewlist() {

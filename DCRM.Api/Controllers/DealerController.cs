@@ -11,7 +11,7 @@ using DCRM.Api.Models;
 
 namespace DCRM.Api.Controllers
 {
-    [Authorize("User")]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DealerController : ControllerBase

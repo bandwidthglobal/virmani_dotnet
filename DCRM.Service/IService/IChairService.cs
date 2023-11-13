@@ -19,5 +19,7 @@ namespace DCRM.Service.IService
         void Update(Chair chare);
 
         void delete(int id);
+
+        List<ChairDto> GetChairsForDropdown(long userId);
     }
 }
