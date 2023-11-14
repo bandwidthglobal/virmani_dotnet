@@ -1,4 +1,303 @@
-<!-- Main Sidebar -->
-<div>Patient Ifo</div>
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <section class="invoice-add-wrapper">
+            <div class="row invoice-add">
+                <!-- Invoice Add Left starts -->
+                <div class="col-xl-12 col-md-8 col-12">
+                    <div class="card invoice-preview-card">
+                        <!-- Header starts -->
+                        <div class="card-body invoice-padding pb-0">
+                            <div class="box-body pt-1 pb-1">
+                                <div class="card-body">
 
-<!--/ Main Sidebar -->
+                                    <div class="row">
+                                        <div class="col-md-4 col-12">
+                                            <div class="user-avatar-section">
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="ng-star-inserted">
+                                                        <img *ngIf="apiData.thumb!=null" height="104" width="104" alt="User avatar" class="img-fluid rounded" src="{{apiData.thumb}}">
+                                                        <img *ngIf="apiData.thumb==null" height="104" width="104" alt="User avatar" class="img-fluid rounded" src="assets/front/img/avatar.png">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+
+                                            <label for="basic-medicinetype" class="font-weight-bold font-medium-1">Name </label><span class=" d-block">{{apiData.title}}.{{apiData.name}}</span>
+
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label for="mc" class="font-weight-bold font-medium-1">Gender </label>
+                                                <span class="d-block">{{apiData.gender}}</span>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group" style="margin-top:10px;">
+                                                <label class="font-weight-bold font-medium-1">DOB</label>
+                                                <br />
+                                                <span class="d-block">{{apiData.dob}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold font-medium-1">Guardian Person</label>
+                                                <br />
+                                                <span class="d-block">{{apiData.guardian}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold font-medium-1">Sex</label>
+                                                <br />
+                                                <span class="d-block">{{apiData.sex}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold font-medium-1">Age  </label>
+                                                <br />
+                                                <span class="d-block">{{apiData.age}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold font-medium-1">Weight </label>
+                                                <br />
+                                                <span class="d-block">{{apiData.weight}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold font-medium-1">Present Address </label>
+                                                <br />
+                                                <span class="d-block">{{apiData.present_Address}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold font-medium-1">Permanent Address </label>
+                                                <br />
+                                                <span class="d-block">{{apiData.permanent_Address}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <div class="card mb-4">
+                                                <h5 class="card-header">Contact List</h5>
+                                                <div class="table-responsive">
+                                                    <table class="table border-top">
+                                                        <thead>
+                                                            <tr>
+
+                                                                <th class="text-truncate">Phone 1</th>
+                                                                <th class="text-truncate">Phone 2</th>
+                                                                <th class="text-truncate">Phone 3</th>
+                                                                <th class="text-truncate">Phone 4</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="text-truncate">
+                                                                    <i class="ti ti-brand-windows text-info ti-xs me-2"></i>
+                                                                    <span class="fw-medium"> {{apiData.patientContacts[0].phone1}}</span>
+                                                                </td>
+                                                                <td class="text-truncate">{{apiData.patientContacts[0].phone2}}</td>
+                                                                <td class="text-truncate">{{apiData.patientContacts[0].phone3}}</td>
+                                                                <td class="text-truncate"> {{apiData.patientContacts[0].phone4}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <div class="table-responsive">
+                                                    <table class="table border-top">
+                                                        <thead>
+                                                            <tr>
+
+                                                                <th class="text-truncate">Email</th>
+                                                                <th class="text-truncate">Email 2</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="text-truncate">
+                                                                    <span class="fw-medium"> {{apiData.patientContacts[0].email}}</span>
+                                                                </td>
+                                                                <td class="text-truncate">{{apiData.patientContacts[0].email2}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="table-responsive">
+                                                    <table class="table border-top">
+                                                        <thead>
+                                                            <tr>
+
+                                                                <th class="text-truncate">Address R</th>
+                                                                <th class="text-truncate">City R</th>
+                                                                <th class="text-truncate">Zip R</th>
+                                                                <th class="text-truncate">Country R</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="text-truncate">
+                                                                    <i class="ti ti-brand-windows text-info ti-xs me-2"></i>
+                                                                    <span class="fw-medium"> {{apiData.patientContacts[0].address_R}}</span>
+                                                                </td>
+                                                                <td class="text-truncate">{{apiData.patientContacts[0].city_R}}</td>
+                                                                <td class="text-truncate">{{apiData.patientContacts[0].zip_R}}</td>
+                                                                <td class="text-truncate"> {{apiData.patientContacts[0].country_R}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <!--<div class="table-responsive">
+                <table class="table border-top">
+                    <thead>
+                        <tr>
+
+                            <th class="text-truncate">Address R</th>
+                            <th class="text-truncate">City R</th>
+                            <th class="text-truncate">Zip R</th>
+                            <th class="text-truncate">Country R</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let address of apiData.apiDatasAddressList">
+                            <td class="text-truncate">
+                                <i class="ti ti-brand-windows text-info ti-xs me-2"></i>
+                                <span class="fw-medium"> {{address.address_R}}</span>
+                            </td>
+                            <td class="text-truncate">{{address.city_R}}</td>
+                            <td class="text-truncate">{{address.zip_R}}</td>
+                            <td class="text-truncate"> {{address.country_R}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>-->
+                                                <div class="table-responsive">
+                                                    <table class="table border-top">
+                                                        <thead>
+                                                            <tr>
+
+                                                                <th class="text-truncate">Address O</th>
+                                                                <th class="text-truncate">City O</th>
+                                                                <th class="text-truncate">Zip O</th>
+                                                                <th class="text-truncate">Country O</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="text-truncate">
+                                                                    <i class="ti ti-brand-windows text-info ti-xs me-2"></i>
+                                                                    <span class="fw-medium"> {{apiData.patientContacts[0].address_O}}</span>
+                                                                </td>
+                                                                <td class="text-truncate">{{apiData.patientContacts[0].city_O}}</td>
+                                                                <td class="text-truncate">{{apiData.patientContacts[0].zip_O}}</td>
+                                                                <td class="text-truncate"> {{apiData.patientContacts[0].country_O}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="table-responsive">
+                                                    <table class="table border-top">
+                                                        <thead>
+                                                            <tr>
+
+                                                                <th class="text-truncate">Address Other</th>
+                                                                <th class="text-truncate">City Other</th>
+                                                                <th class="text-truncate">Zip Other</th>
+                                                                <th class="text-truncate">Country Other</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="text-truncate">
+                                                                    <i class="ti ti-brand-windows text-info ti-xs me-2"></i>
+                                                                    <span class="fw-medium"> {{apiData.patientContacts[0].address_Other}}</span>
+                                                                </td>
+                                                                <td class="text-truncate">{{apiData.patientContacts[0].city_Other}}</td>
+                                                                <td class="text-truncate">{{apiData.patientContacts[0].zip_Other}}</td>
+                                                                <td class="text-truncate"> {{apiData.patientContacts[0].country_Other}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 col-12">
+                                            <div class="card mb-4">
+                                                <h5 class="card-header">Relative List</h5>
+                                                <div class="table-responsive">
+                                                    <table class="table border-top">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="text-truncate">Physician</th>
+                                                                <th class="text-truncate">Referred By</th>
+                                                                <th class="text-truncate">Doctor Name</th>
+                                                                <th class="text-truncate">Phone</th>
+                                                                <th class="text-truncate">Relationship Type</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="text-truncate">
+                                                                    <span class="fw-medium">{{apiData.patientContacts[0].physician}}</span>
+                                                                </td>
+                                                                <td class="text-truncate"> {{apiData.patientContacts[0].reffered_By}}</td>
+                                                                <td class="text-truncate"> {{apiData.patientContacts[0].doctor_Name}}</td>
+                                                                <td class="text-truncate"> {{apiData.patientContacts[0].phone}}</td>
+                                                                <td class="text-truncate"> {{apiData.patientContacts[0].relationship_Type}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 col-12">
+                                            <div class="card mb-4">
+                                                <h5 class="card-header">Insurance List</h5>
+                                                <div class="table-responsive">
+                                                    <table class="table border-top">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="text-truncate">Insurance Name</th>
+                                                                <th class="text-truncate">Insurance Date</th>
+                                                                <th class="text-truncate">Renewal Date</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                            <tr *ngFor="let bank of apiData.patientInsuranceLoans">
+                                                                <td class="text-truncate">
+                                                                    <i class="ti ti-brand-windows text-info ti-xs me-2"></i>
+                                                                    <span class="fw-medium">{{bank.insurance}}</span>
+                                                                </td>
+                                                                <td class="text-truncate"> {{bank.insurance_Date | date: 'dd/MM/yyyy'}}</td>
+                                                                <td class="text-truncate"> {{bank.renewal_Date | date: 'dd/MM/yyyy'}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    <!--/  Add New Customer Sidebar -->
+</div>
+
+

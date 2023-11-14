@@ -8,7 +8,7 @@ import { IAppointmentForm, IAppointmentFormModel } from "../model/appointment-fr
 import { AppointmentFormService } from "./appointment-form.service";
 import { User } from "app/auth/models";
 import { WaitingRoomService } from "../waiting-room/waiting-room.service";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { debug } from "console";
 import { Validators } from "@angular/forms";
 
@@ -28,6 +28,7 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
     submitted: boolean = false;
     patientId: 0;
     error: any = '';
+    subscription: any;
     messages = validationMessages;
     formData?: IAppointmentForm;
     @Input() FormInput?: any = new IAppointmentFormModel();
@@ -40,9 +41,7 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
     ISlotTimes: Array<any> = this._appointmentFormService.getISlotTimes();
     IChairList: Array<any> = [];
     constructor(
-        private _toastrService: ToastrService,
-        private router: Router,
-        private _waitingRoomService: WaitingRoomService,
+        private _route: ActivatedRoute,
         private _appointmentFormService: AppointmentFormService,
         private _commonValidationService: CommonValidationService,
     ) {
@@ -61,6 +60,10 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
         return `${hour}:${min} ${part}`;
     }
     ngOnInit(): void {
+        this.subscription = this._route.params.subscribe(params => {
+            this.patientId = params['id']
+        });
+       
         if (this.expectedProp != undefined) {
             this.FormInput.date = this.expectedProp.date == '' ? this._commonValidationService.dateFormat_Y_M_D(this.FormInput.date) : this.expectedProp.date;
             
@@ -76,7 +79,16 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
         }
      
         this.formData = new IAppointmentForm(this.FormInput);
-        
+        if (this.patientId > 0) {
+            this.formData.patient_Id.setValue(this.patientId);
+            this._appointmentFormService.getIPatientsById(this.patientId).subscribe(res => {
+                this.patientId = res.patient_Id;
+                this.formData.phone.setValue(res.patientContacts[0].phone1.toString());
+                this.formData.patient_name.setValue(res.name);
+                this.formData.email.setValue(' ');
+            });
+           
+        }
         if (this.formData.patient_Id.value == null || this.formData.patient_Id.value == 0) {
             this.formData.p_type.setValue("New Patient");
             this.formData.get('patient_name').setValidators([Validators.required])

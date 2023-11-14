@@ -2,13 +2,13 @@
     <div class="content-body p-2">
         <section class="drug-list-wrapper">
             <div class="card">
-                <div class="col-md-6 col-4">
-                    <button (click)="openComplaintForm();" class="btn btn-primary btn-sm">
+                <div class="col-md-6 col-4" *ngIf="isAdd">
+                    <button (click)="openComplaintForm(0);" class="btn btn-primary btn-sm">
                         <i class="fa fa-plus"></i>   Add Complaints
                     </button>
                 </div>
                 <ng-container *ngIf="showTreatmentForm">
-                    <app-treatment-plan-form [FormAction]="'add'" [DiagnosisData]="DiagnosisData" [apiData]="apiData"
+                    <app-treatment-plan-form [FormAction]="'add'" [TreatmentId]="treatmentId" [DiagnosisData]="DiagnosisData" [apiData]="apiData"
                                              (callBackEvent)="returnPage();"></app-treatment-plan-form>
                 </ng-container>
                 <ng-container *ngIf="!showTreatmentForm">
@@ -47,13 +47,11 @@
                     </div>
                     <!-- Invoice List Table -->
                     <ngx-datatable [rows]="rows" rowHeight="auto" class="bootstrap core-bootstrap"
-                                   [limit]="selectedOption" [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50"
+                                   [limit]="selectedOption" 
+                                   [columnMode]="ColumnMode.force" 
+                                   [headerHeight]="50" 
+                                   [footerHeight]="50"
                                    [scrollbarH]="true">
-                        <!--<ngx-datatable-column name="" [width]="20">
-            <ng-template let-id="value" ngx-datatable-cell-template>
-                <input type="checkbox" />
-            </ng-template>
-        </ngx-datatable-column>>-->
                         <ngx-datatable-column name="Date" prop="date" [width]="150">
                             <ng-template let-row="row" ngx-datatable-cell-template>
                                 <div class="row">
@@ -61,7 +59,12 @@
                                 </div>
                             </ng-template>
                         </ngx-datatable-column>
-                        <ngx-datatable-column name="Sitting" prop="sitting"></ngx-datatable-column>
+                        <ngx-datatable-column name="Sitting" [Width]="50"  prop="sitting">
+                            <ng-template class="text-center" contenteditable="true" ngx-datatable-cell-template e let-rowIndex="rowIndex" let-value="value" let-row="row">
+                                <span *ngIf="!editable" (dblclick)="editable = true;" style="width:50px!important;border:0;cursor:pointer"> {{row.sitting}} </span>
+                                <input type="number" (change)="setSittingValue(row.id,$event)" style="width:50px!important;border:0" autofocus (keyup)="editable==false" value="{{row.sitting}}" *ngIf="editable" />
+                            </ng-template>
+                        </ngx-datatable-column>
                         <ngx-datatable-column name="Tooth Number" prop="teethNumber"></ngx-datatable-column>
                         <ngx-datatable-column name="Notes & Diagnosis" prop="tothNot"></ngx-datatable-column>
                         <ngx-datatable-column name="Doctor" prop="doctorName"></ngx-datatable-column>
@@ -77,10 +80,10 @@
                                         Work Done
                                     </a>
                                     <br />
-                                    <!--<a class="mr-1" routerLink="/admin/patient/edit/{{ row.id }}" container="body"
-                       placement="top" ngbTooltip="Edit">
-                        <i size="18" data-feather="edit"></i>
-                    </a>-->
+                                    <a class="mr-1" (click)="openComplaintForm(row.id)" container="body"
+                                       placement="top" ngbTooltip="Edit">
+                                        <i size="18" data-feather="edit"></i>
+                                    </a>
                                     <a class="mr-1" href="javascript:void(0)" (click)="delete(row.id,row.patientId)" container="body"
                                        placement="top" ngbTooltip="Delete">
                                         <i size="18" data-feather="trash"></i>
@@ -134,7 +137,7 @@
                                         <label>Estimated Amount</label>
                                         <input type="text" disabled="disabled"
                                                class="form-control"
-                                               tabindex="2" 
+                                               tabindex="2"
                                                [(ngModel)]="workdone.estimated_Amount"
                                                formControlName="estimated_Amount"
                                                aria-describedby="estimated_Amount" />
@@ -160,7 +163,7 @@
                                     <div class="form-group">
                                         <label>Discount.</label>
                                         <input type="text" (change)="chngDiscount($event)" class="form-control"
-                                               tabindex="4" 
+                                               tabindex="4"
                                                [(ngModel)]="workdone.discount"
                                                formControlName="discount"
                                                aria-describedby="discount" />
@@ -170,7 +173,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Total Amount</label>
-                                        <input type="text" disabled="disabled" class="form-control"
+                                        <input type="text" disabled="disabled"
+                                               class="form-control"
                                                tabindex="5" value="0"
                                                [(ngModel)]="workdone.total_Amt"
                                                formControlName="total_Amt"
@@ -179,7 +183,7 @@
                                     </div>
                                 </div>
                                 <div class="payment_bxblock pyatm col-md-6">
-                                    <h4><strong>Treatment</strong></h4>
+                                    <label> Treatment</label>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-check form-check-inline">
@@ -205,13 +209,37 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="payment_bxblock pyatm col-md-12">
+                                    <label>Work Done Notes</label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <textarea class="form-control"
+                                                      tabindex="7"
+                                                      rows="5"
+                                                      cols="20"
+                                                      [(ngModel)]="workdone.workdone_Notes"
+                                                      formControlName="workdone_Notes"
+                                                      aria-describedby="workdone_Notes">
+                                                   </textarea>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-
-                            <!-- Modal footer -->
                             <div class="modal-footer">
-                                <input type="submit" name="update" value="Save" class="btn btn-primary">
-                                <button type="button" class="btn btn-danger" (click)="close()">Close</button>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <a  href="/admin/appointment/add/{{patientId}}" target="_blank"  class="btn btn-primary">Appointment</a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a  href="/admin/prescription/add/{{patientId}}" target="_blank" class="btn btn-primary ml-1">Prescription</a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="submit" name="save" value="Save" class="btn btn-primary ml-1">
+                                        <button type="button" class="btn btn-danger ml-1" (click)="close()">Close</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>

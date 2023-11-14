@@ -61,6 +61,8 @@ namespace DCRM.Common.Dto
 
         public string? Patient_Name { get; set; }
 
+        public string? Patient_Address { get; set; }
+
 
     }
 

@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 
 import { repeaterAnimation } from 'app/main/clinic-admin/prescription/prescription.animation';
@@ -33,6 +33,7 @@ export class PrescriptionAddComponent implements OnInit, OnDestroy {
     patientList: any;
     drugList: any;
     drugRowGroup: any;
+    patientId: any = 0;
     medicinCategoryList: any;
     messages = validationMessages;
     formData?: PrescriptionForm;
@@ -71,6 +72,7 @@ export class PrescriptionAddComponent implements OnInit, OnDestroy {
     drugIdes: any = [];
     drugId: any = '';
     chamber_Id: any = '';
+    subscription: any;
     @Input() FormAction?: 'add' | 'edit' = 'add';
     @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
     @ViewChild('patientModal', { static: false }) patientModal: ElementRef;
@@ -90,7 +92,7 @@ export class PrescriptionAddComponent implements OnInit, OnDestroy {
      * @param {CoreSidebarService} _coreSidebarService
      */
     constructor(
-        private router: Router,
+        private route: ActivatedRoute,
         private _prescriptionAddService: PrescriptionAddService, private _formBuilder: UntypedFormBuilder,
         private _router: Router, private _toastrService: ToastrService, private _commonValidationService: CommonValidationService) {
         this._unsubscribeAll = new Subject();
@@ -101,12 +103,16 @@ export class PrescriptionAddComponent implements OnInit, OnDestroy {
      * On init
      */
     ngOnInit(): void {
+        this.subscription = this.route.params.subscribe(params => {
+            this.patientId = params['id']
+        });
         this.getUserChamber();
         this.getPatients();
         this.getDrugs();
         this.formData = new PrescriptionForm(this.FormInput);
         this.patientFromData = new IPatientForm(this.PatientFormInput);
         this.drugFromData = new DrugForm(this.DrugFormInput);
+        this.formData.patient_Id.setValue(this.patientId);
     }
     ngAfterViewInit(): void {
         this.elm = this.patientModal.nativeElement as HTMLElement;
@@ -354,6 +360,7 @@ export class PrescriptionAddComponent implements OnInit, OnDestroy {
     }
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
+        this.subscription.unsubscribe();
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
     }

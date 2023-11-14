@@ -169,6 +169,7 @@ namespace DCRM.Service.Service
                 patientdto.Name = patient.Name;
                 patientdto.User_name = patient.UserName;
                 patientdto.Slug = patient.Slug;
+                patientdto.Title = patient.Title;
                 patientdto.Thumb = patient.Thumb;
                 patientdto.Email = patient.Email;
                 patientdto.Age = patient.Age;
@@ -389,6 +390,7 @@ namespace DCRM.Service.Service
                 treatmentplanDto.Doctor = treatment.Doctor;
                 treatmentplanDto.Sitting = treatment.Sitting_Status;
                 treatmentplanDto.Amount = treatment.Amount;
+                treatmentplanDto.DoctorName = treatment.DoctorName;
                 treatmentplanDto.CreatedAt = treatment.Created_At;
                 treatmentplanDto.UpdatedAt = treatment.Updated_At;
                 treatmentplanDto.Date = treatment.Date;

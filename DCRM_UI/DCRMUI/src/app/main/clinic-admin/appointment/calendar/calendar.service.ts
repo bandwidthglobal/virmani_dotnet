@@ -58,11 +58,9 @@ export class CalendarService implements Resolve<any> {
         });
         const requestOptions = { headers: headers };
         const url = `${environment.apiUrl}/Appointment/GetAppointmentWithPatient`;
-        const url1 = `api/calendar-events`;
         return new Promise((resolve, reject) => {
             this._httpClient.get(url, requestOptions).subscribe((response: any) => {
                 this.rows = response;
-
                 var objList = []
                 for (var i = 0; i < this.rows.length; i++) {
                     let item = {

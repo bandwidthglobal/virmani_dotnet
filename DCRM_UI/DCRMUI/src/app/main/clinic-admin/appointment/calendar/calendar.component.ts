@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CalendarOptions, EventClickArg } from '@fullcalendar/angular';
 
-import { CoreSidebarService } from '@core/components/core-sidebar/core-sidebar.service';
+
 import { CoreConfigService } from '@core/services/config.service';
 
 import { CalendarService } from '../calendar/calendar.service';
@@ -21,7 +21,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   public slideoutShow = false;
   public events = [];
   public event;
-
+    title: any;
   public calendarOptions: CalendarOptions = {
     headerToolbar: {
       start: 'sidebarToggle, prev,next, title',
@@ -34,13 +34,15 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     eventResizableFromStart: true,
     selectable: true,
     selectMirror: true,
-    dayMaxEvents: 2,
+    dayMaxEvents: 1,
     navLinks: true,
    dateClick: this.handleDateClick.bind(this),
-   eventClick: this.handleUpdateEventClick.bind(this),
+      eventClick: this.handleUpdateEventClick.bind(this),
+      eventMouseEnter:this.onMouseOver.bind(this),
     //eventClassNames: this.eventClass.bind(this),
     select: this.handleDateSelect.bind(this),
       slotMinWidth: 1000,
+      eventDidMount: this.eventDidMount.bind(this),
       //contentHeight: 1000,
       //height: 1000,
       
@@ -57,7 +59,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
    * @param {CoreConfigService} _coreConfigService
    */
   constructor(
-    private _coreSidebarService: CoreSidebarService,
+    
     private _calendarService: CalendarService,
     private _coreConfigService: CoreConfigService
   ) {
@@ -80,23 +82,26 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       Family: 'warning',
       ETC: 'info'
     };
-
+      
     const colorName = calendarsColor[s.event._def.extendedProps.calendar];
     return `bg-light-${colorName}`;
-  }
-
+    }
+    eventDidMount(info) {
+        
+    }
+    onMouseOver(eventRef) {
+        this.title = eventRef.event.title;
+    }
+   
   /**
    * Update Event
    *
    * @param eventRef
    */
     handleUpdateEventClick(eventRef: EventClickArg) {
-        if (eventRef.event.id!=undefined) {
-            
+        if (eventRef.event.id != undefined) {
+             
         }
-       
-    //this._coreSidebarService.getSidebarRegistry('calendar-event-sidebar').toggleOpen();
-    //this._calendarService.updateCurrentEvent(eventRef);
   }
 
   /**
@@ -105,7 +110,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
    * @param name
    */
   toggleSidebar(name): void {
-    this._coreSidebarService.getSidebarRegistry(name).toggleOpen();
+   
   }
 
   /**
@@ -118,11 +123,11 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       newEvent.start = eventRef.start;
       newEvent.end = eventRef.end;
       debugger;
-    this._coreSidebarService.getSidebarRegistry('calendar-event-sidebar').toggleOpen();
+    
     this._calendarService.onCurrentEventChange.next(newEvent);
   }
     handleDateClick(eventRef) {
-        //alert(eventRef.start);
+      
         //debugger;
     }
   // Lifecycle Hooks
@@ -134,17 +139,14 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     // Subscribe config change
     this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
-      // ! If we have zoomIn route Transition then load calendar after 450ms(Transition will finish in 400ms)
       if (config.layout.animation === 'zoomIn') {
         setTimeout(() => {
-          // Subscribe to Event Change
           this._calendarService.onEventChange.subscribe(res => {
             this.events = res;
             this.calendarOptions.events = res;
           });
         }, 450);
       } else {
-        // Subscribe to Event Change
         this._calendarService.onEventChange.subscribe(res => {
           this.events = res;
           this.calendarOptions.events = res;
@@ -153,7 +155,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     });
 
     this._calendarService.onCurrentEventChange.subscribe(res => {
-      this.event = res;
+        this.event = res;
+        
     });
   }
 
@@ -163,7 +166,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     // Store this to _this as we need it on click event to call toggleSidebar
     let _this = this;
-    this.calendarOptions.customButtons = {
+      this.calendarOptions.customButtons = {
+         
       sidebarToggle: {
         text: '',
         click() {

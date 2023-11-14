@@ -21,6 +21,13 @@ namespace DCRM.Api.Controllers
             _treatmentplanService = treatmentplanService;
         }
 
+
+        [HttpGet("Get/{id}")]
+        public TreatmentplanDto Get(Int32 id)
+        {
+            return _treatmentplanService.Edit(id);
+        }
+
         [HttpPost("Create")]
         public IActionResult Create(TreatmentplanRequest request)
         {
@@ -41,6 +48,12 @@ namespace DCRM.Api.Controllers
             return Ok();
         }
 
+        [HttpPost("UpdateSitting")]
+        public IActionResult UpdateSitting(Treatmentplans request)
+        {
+            _treatmentplanService.UpdateSittingValue(request);
+            return Ok();
+        }
 
         [HttpPost("WorkDone/Create")]
         public IActionResult WorkDoneCreate(Workdone_New workdone)

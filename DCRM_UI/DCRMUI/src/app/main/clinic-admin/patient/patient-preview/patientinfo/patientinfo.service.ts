@@ -6,52 +6,40 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../../../../../auth/models';
 
 @Injectable()
-export class PatientinfoService implements Resolve<any> {
+export class PatientInfoService implements Resolve<any> {
+    apiUrl = `${environment.apiUrl}`;
+    id: any;
     apiData: any;
-    onChanged: BehaviorSubject<any>;
-    id;
     currentUser: any;
+    onEditChanged: BehaviorSubject<any>;
 
-    /**
-     * Constructor
-     *
-     * @param {HttpClient} _httpClient
-     */
     constructor(private _httpClient: HttpClient) {
-        // Set the defaults
         this.currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
-        this.onChanged = new BehaviorSubject({});
+        this.onEditChanged = new BehaviorSubject({});
     }
-
-    /**
-     * Resolver
-     *
-     * @param {ActivatedRouteSnapshot} route
-     * @param {RouterStateSnapshot} state
-     * @returns {Observable<any> | Promise<any> | any}
-     * 
-     */
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
         let currentId = Number(route.paramMap.get('id'));
         return new Promise<void>((resolve, reject) => {
-            Promise.all([this.getDrugData(currentId)]).then(() => {
+            Promise.all([this.getApiData(currentId)]).then(() => {
                 resolve();
             }, reject);
         });
     }
-    getDrugData(id: number): Promise<any[]> {
+
+    getApiData(id: number): Promise<any[]> {
+        debugger;
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${this.currentUser.jwtToken}`
         });
         const requestOptions = { headers: headers };
-        const url = `${environment.apiUrl}/Drug/Get/${id}`;
+        const url = `${this.apiUrl}/Patient/Get/${id}`;
         this.id = id;
         return new Promise((resolve, reject) => {
             this._httpClient.get(url, requestOptions).subscribe((response: any) => {
                 this.apiData = response;
-                this.onChanged.next(this.apiData);
+                this.onEditChanged.next(this.apiData);
                 resolve(this.apiData);
             }, reject);
         });

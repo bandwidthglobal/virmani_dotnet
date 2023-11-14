@@ -10,6 +10,8 @@ export class WorkDoneFormModel {
     discount?: any;
     total_Amt?: any;
     workdone_Status?: any;
+    workdone_Notes?: any;
+
 }
 
 export class WorkDoneForm extends FormGroup {
@@ -21,6 +23,7 @@ export class WorkDoneForm extends FormGroup {
     readonly discount = this.get('discount') as FormControl;
     readonly total_Amt = this.get('total_Amt') as FormControl;
     readonly workdone_Status = this.get('workdone_Status') as FormControl;
+    readonly workdone_Notes = this.get('workdone_Notes') as FormControl;
     constructor(
         readonly model: WorkDoneFormModel,
         readonly fb: FormBuilder = new FormBuilder()
@@ -35,6 +38,7 @@ export class WorkDoneForm extends FormGroup {
                     current_Work_Amt: [model?.current_Work_Amt, Validators.required],
                     discount: [model?.discount],
                     total_Amt: [model?.total_Amt],
+                    workdone_Notes: [model?.workdone_Notes],
                     workdone_Status: [model?.workdone_Status, Validators.required],
                 }, {
                 validators: [vMODEL.FormTypeValidation],

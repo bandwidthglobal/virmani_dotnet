@@ -18,6 +18,7 @@ export class AppointmentEditComponent implements OnInit, OnDestroy {
     private _unsubscribeAll: Subject<any>;
     FormInput: any;
     returnUrl: string;
+    subscription: any;
 
     constructor(
         private router: Router,
@@ -28,6 +29,9 @@ export class AppointmentEditComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        //this.subscription = this.route.params.subscribe(params => {
+        //    this.patientId = params['id']
+        //});
         this._appointmentEditService.onEditChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
             // console.log('> onDealerEditChanged ---> ', response);
             this.FormInput = response;
