@@ -32,7 +32,7 @@ export class PatientinfoComponent implements OnInit {
    * On init
    */
     subscription: any;
-    ngOnInit(): void {
+    ngOnInit() {
         let patientId = 0;
         this.subscription = this.route.params.subscribe(params => {
             patientId = params['id']

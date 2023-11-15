@@ -47,11 +47,63 @@
                     </div>
                     <!-- Invoice List Table -->
                     <ngx-datatable [rows]="rows" rowHeight="auto" class="bootstrap core-bootstrap"
-                                   [limit]="selectedOption" 
-                                   [columnMode]="ColumnMode.force" 
-                                   [headerHeight]="50" 
+                                   [limit]="selectedOption"
+                                   [columnMode]="ColumnMode.force"
+                                   [headerHeight]="50"
                                    [footerHeight]="50"
                                    [scrollbarH]="true">
+                        <ngx-datatable-row-detail [rowHeight]="auto"
+                                                  #myDetailRow
+                                                  (toggle)="onDetailToggle($event)">
+                            <ng-template let-row="row"
+                                         let-expanded="expanded"
+                                         ngx-datatable-row-detail-template>
+                                <div style="padding-left:35px;" class="table-responsive">
+                                    <table class="table table-bordered table-sm">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <td>Doctor</td>
+                                                <td>Amount Due for Todays's Work.</td>
+                                                <td>Discount</td>
+                                                <td>Total Amount</td>
+                                                <td>Treatment Status</td>
+                                                <td>Date</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let workdone of row.workdones">
+                                                <td>{{workdone.doctorName}}</td>
+                                                <td>{{workdone.amtDueCurrentWork}}</td>
+                                                <td>{{workdone.discount}}</td>
+                                                <td>{{workdone.totalAmt}}</td>
+                                                <td>{{workdone.workdoneStatus}}</td>
+                                                <td>{{workdone.date}}</td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </ng-template>
+                        </ngx-datatable-row-detail>
+                        <ngx-datatable-column [width]="150"
+                                              [resizeable]="false"
+                                              [sortable]="false"
+                                              [draggable]="false"
+                                              [canAutoResize]="false"
+                                              [frozenLeft]="false">
+                            <ng-template let-row="row"
+                                         let-rowIndex="rowIndex"
+                                         let-expanded="expanded"
+                                         ngx-datatable-cell-template>
+                                <a href="javascript:void(0)"
+                                   [class.datatable-icon-right]="!expanded"
+                                   [class.datatable-icon-down]="expanded"
+                                   title="Expand/Collapse Row"
+                                   (click)="toggleExpandRow(row)">
+                                    Work Done List
+                                </a>
+                            </ng-template>
+                        </ngx-datatable-column>
                         <ngx-datatable-column name="Date" prop="date" [width]="150">
                             <ng-template let-row="row" ngx-datatable-cell-template>
                                 <div class="row">
@@ -59,7 +111,7 @@
                                 </div>
                             </ng-template>
                         </ngx-datatable-column>
-                        <ngx-datatable-column name="Sitting" [Width]="50"  prop="sitting">
+                        <ngx-datatable-column name="Sitting" [Width]="50" prop="sitting">
                             <ng-template class="text-center" contenteditable="true" ngx-datatable-cell-template e let-rowIndex="rowIndex" let-value="value" let-row="row">
                                 <span *ngIf="!editable" (dblclick)="editable = true;" style="width:50px!important;border:0;cursor:pointer"> {{row.sitting}} </span>
                                 <input type="number" (change)="setSittingValue(row.id,$event)" style="width:50px!important;border:0" autofocus (keyup)="editable==false" value="{{row.sitting}}" *ngIf="editable" />
@@ -75,7 +127,7 @@
                         <ngx-datatable-column name="Actions" [width]="200" [sortable]="false">
                             <ng-template ngx-datatable-cell-template let-row="row">
                                 <div class="d-flex align-items-center col-actions">
-                                    <a class="mr-1 btn btn-primary btn-sm" style="width:120px;" (click)="addWorkDone(row.id,row.amount)" href="javascript:void(0)" container="body"
+                                    <a class="mr-1 btn btn-primary btn-sm" style="width:120px;" (click)="addWorkDone(row.id,row.amount,row.teethNumber,row.job)" href="javascript:void(0)" container="body"
                                        placement="top" ngbTooltip="Work Done">
                                         Work Done
                                     </a>
@@ -108,6 +160,10 @@
                     </button>
                 </div>
                 <div class="modal-body" style="overflow:auto">
+                    <div class="row">
+                        <div class="col-md-12 mb-1"><strong>TOOTH NUMBER:</strong> {{toothNumber}}</div>
+                        <div class="col-md-12"><strong>JOB:</strong> {{job}}</div>
+                    </div>
                     <form id="form-modal-workdone" [formGroup]="workdoneForm"
                           class="todo-modal needs-validation"
                           (ngSubmit)="saveWorkDoneForm()">
@@ -230,10 +286,10 @@
                             <div class="modal-footer">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <a  href="/admin/appointment/add/{{patientId}}" target="_blank"  class="btn btn-primary">Appointment</a>
+                                        <a href="/admin/appointment/add/{{patientId}}" target="_blank" class="btn btn-primary">Appointment</a>
                                     </div>
                                     <div class="col-md-3">
-                                        <a  href="/admin/prescription/add/{{patientId}}" target="_blank" class="btn btn-primary ml-1">Prescription</a>
+                                        <a href="/admin/prescription/add/{{patientId}}" target="_blank" class="btn btn-primary ml-1">Prescription</a>
                                     </div>
                                     <div class="col-md-6">
                                         <input type="submit" name="save" value="Save" class="btn btn-primary ml-1">

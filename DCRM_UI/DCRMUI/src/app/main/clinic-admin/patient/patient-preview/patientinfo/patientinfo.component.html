@@ -8,7 +8,7 @@
                         <!-- Header starts -->
                         <div class="card-body invoice-padding pb-0">
                             <div class="box-body pt-1 pb-1">
-                                <div class="card-body">
+                                <div class="card-body" *ngIf="apiData!=null">
 
                                     <div class="row">
                                         <div class="col-md-4 col-12">
@@ -266,20 +266,24 @@
                                                     <table class="table border-top">
                                                         <thead>
                                                             <tr>
-                                                                <th class="text-truncate">Insurance Name</th>
-                                                                <th class="text-truncate">Insurance Date</th>
-                                                                <th class="text-truncate">Renewal Date</th>
+                                                                <th class="text-truncate">Name</th>
+                                                                <th class="text-truncate">Amount</th>
+                                                                <th class="text-truncate">Spent</th>
+                                                                <th class="text-truncate">Amount</th>
+                                                                <th class="text-truncate">Type</th>
+                                                                
                                                             </tr>
                                                         </thead>
                                                         <tbody>
 
-                                                            <tr *ngFor="let bank of apiData.patientInsuranceLoans">
+                                                            <tr *ngFor="let insurance of apiData.patientInsuranceLoans">
                                                                 <td class="text-truncate">
-                                                                    <i class="ti ti-brand-windows text-info ti-xs me-2"></i>
-                                                                    <span class="fw-medium">{{bank.insurance}}</span>
+                                                                    <span class="fw-medium">{{insurance.name}}</span>
                                                                 </td>
-                                                                <td class="text-truncate"> {{bank.insurance_Date | date: 'dd/MM/yyyy'}}</td>
-                                                                <td class="text-truncate"> {{bank.renewal_Date | date: 'dd/MM/yyyy'}}</td>
+                                                                <td class="text-truncate"> {{insurance.amount}}</td>
+                                                                <td class="text-truncate"> {{insurance.balance_Spent}}</td>
+                                                                <td class="text-truncate"> {{insurance.balance_Amount}}</td>
+                                                                <td class="text-truncate"> {{insurance.type}}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>

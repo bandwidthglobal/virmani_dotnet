@@ -1,122 +1,131 @@
 <div class="content-wrapper container-xxl p-0">
-    <div class="content-body">
-        <h4 class="card-title">Patient Details</h4>
-        <div class="content-body card user-card" style="padding:10px;">
-            <section id="basic-tabs-components pdl-10">
-                <div class="row pdl-10">
-                    <div class="col-xl-12 col-lg-12 font-weight-bold">
-                        <h3>{{apiData.name}}</h3>
-                        <span *ngIf="apiData.patientContacts.length>0">{{apiData.patientContacts[0].address_R}}</span>
-                        <p>{{apiData.mr_Number}}</p>
-                    </div>
+   
+            <section id="basic-tabs-components pdl-10" class="invoice-add-wrapper">
+                <div class="row">
+                    <div class="col-xl-12 col-md-8 col-12">
+                        <div class="card invoice-preview-card">
+                            <div class="card-body invoice-padding pb-0">
+                                <div class="col-xl-9 col-md-8 col-12"><div><h3 class="text-primary invoice-logo">Patient Details</h3></div></div>
+                                <div class="row pdl-10">
+                                    <div class="col-xl-12 col-lg-12 font-weight-bold">
+                                        <h3>{{apiData.name}}</h3>
+                                        <span *ngIf="apiData.patientContacts.length>0">{{apiData.patientContacts[0].address_R}}</span>
+                                        <p>{{apiData.mr_Number}}</p>
+                                    </div>
 
-                    <div class="col-xl-12 col-lg-12">
-                        <div class="row mt-30">
-                            <div class="col-xl-5 col-lg-12 font-weight-bold">
-                                Medical History & Allergies: <strong
-                                    *ngIf="apiData.patientContacts.length>0">{{apiData.patientContacts[0].medical_History_Allergies}}</strong>
+                                    <div class="col-xl-12 col-lg-12">
+                                        <div class="row mt-30">
+                                            <div class="col-xl-5 col-lg-12 font-weight-bold">
+                                                Medical History & Allergies: <strong *ngIf="apiData.patientContacts.length>0">{{apiData.patientContacts[0].medical_History_Allergies}}</strong>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-12 font-weight-bold"></div>
+                                            <div class="col-xl-3 col-lg-12 font-weight-bold" *ngIf="apiData.totalBalence<0">
+                                                Advanced
+                                                Payment: <strong>{{apiData.addvancePayment}}</strong>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-12 font-weight-bold" *ngIf="apiData.totalBalence>0">
+                                                Total
+                                                Balance: <strong>{{apiData.totalBalence}}</strong>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-5 col-lg-12 font-weight-bold">
+                                                Special Note: <strong *ngIf="apiData.patientContacts.length>0">{{apiData.patientContacts[0].special_Notes}}</strong>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-12 font-weight-bold"></div>
+                                            <div class="col-xl-3 col-lg-12 font-weight-bold">
+                                                Due Payment:
+                                                <strong>{{apiData.duePayment}}</strong>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-5 col-lg-12 font-weight-bold">
+                                                <p>
+                                                    Referred By: , Referrer Name: <strong *ngIf="apiData.patientContacts.length>0">{{apiData.patientContacts[0].reffered_By}}</strong>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="row match-height mt-30">
+
+                                    <div class="col-xl-12 col-lg-12">
+                                        <ul ngbNav #navFilled="ngbNav" class="nav-tabs nav-fill">
+                                            <li ngbNavItem>
+                                                <a ngbNavLink>Patient Info</a>
+                                                <ng-template ngbNavContent>
+                                                    <p>
+                                                        <app-patientinfo></app-patientinfo>
+                                                    </p>
+                                                </ng-template>
+                                            </li>
+                                            <li ngbNavItem>
+                                                <a ngbNavLink>Appointments</a>
+                                                <ng-template ngbNavContent>
+                                                    <p>
+                                                        <app-patient-appointments></app-patient-appointments>
+                                                    </p>
+                                                </ng-template>
+                                            </li>
+                                            <li ngbNavItem>
+                                                <a href="javascript:void(0)" ngbNavLink>Treatment Plan</a>
+                                                <ng-template ngbNavContent>
+                                                    <p>
+                                                        <app-treatment-paln [DiagnosisData]="DiagnosisData"
+                                                                            [apiData]="apiData"></app-treatment-paln>
+                                                    </p>
+                                                </ng-template>
+                                            </li>
+                                            <li ngbNavItem>
+                                                <a ngbNavLink>Work Done History</a>
+                                                <ng-template ngbNavContent>
+                                                    <p>
+                                                        <app-workdonehistory></app-workdonehistory>
+                                                    </p>
+                                                </ng-template>
+                                            </li>
+                                            <li ngbNavItem>
+                                                <a ngbNavLink>Payments</a>
+                                                <ng-template ngbNavContent>
+                                                    <p>
+                                                        <app-payments></app-payments>
+                                                    </p>
+                                                </ng-template>
+                                            </li>
+                                            <!--<li ngbNavItem>
+                    <a ngbNavLink>Lab</a>
+                    <ng-template ngbNavContent>
+                        <p>
+                            <app-lab></app-lab>
+                        </p>
+                    </ng-template>
+                </li>-->
+                                            <li ngbNavItem>
+                                                <a ngbNavLink>Digital Data</a>
+                                                <ng-template ngbNavContent>
+                                                    <p>
+                                                        <app-digitaldata></app-digitaldata>
+                                                    </p>
+                                                </ng-template>
+                                            </li>
+                                            <li ngbNavItem>
+                                                <a ngbNavLink>Priscriptions</a>
+                                                <ng-template ngbNavContent>
+                                                    <p>
+                                                        <app-priscriptions></app-priscriptions>
+                                                    </p>
+                                                </ng-template>
+                                            </li>
+                                        </ul>
+                                        <div [ngbNavOutlet]="navFilled" class="mt-2"></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-xl-4 col-lg-12 font-weight-bold"></div>
-                            <div class="col-xl-3 col-lg-12 font-weight-bold" *ngIf="apiData.totalBalence<0">Advanced
-                                Payment: <strong>{{apiData.addvancePayment}}</strong></div>
-                            <div class="col-xl-3 col-lg-12 font-weight-bold" *ngIf="apiData.totalBalence>0">Total
-                                Balance: <strong>{{apiData.totalBalence}}</strong></div>
                         </div>
-                        <div class="row">
-                            <div class="col-xl-5 col-lg-12 font-weight-bold">
-                                Special Note: <strong
-                                    *ngIf="apiData.patientContacts.length>0">{{apiData.patientContacts[0].special_Notes}}</strong>
-                            </div>
-                            <div class="col-xl-4 col-lg-12 font-weight-bold"></div>
-                            <div class="col-xl-3 col-lg-12 font-weight-bold">Due Payment:
-                                <strong>{{apiData.duePayment}}</strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-5 col-lg-12 font-weight-bold">
-                                <p> Referred By: , Referrer Name: <strong
-                                        *ngIf="apiData.patientContacts.length>0">{{apiData.patientContacts[0].reffered_By}}</strong>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="row match-height mt-30">
-
-                    <div class="col-xl-12 col-lg-12">
-                        <ul ngbNav #navFilled="ngbNav" class="nav-tabs nav-fill">
-                            <li ngbNavItem >
-                                <a ngbNavLink>Patient Info</a>
-                                <ng-template ngbNavContent>
-                                    <p>
-                                        <app-patientinfo></app-patientinfo>
-                                    </p>
-                                </ng-template>
-                            </li>
-                            <li ngbNavItem>
-                                <a ngbNavLink >Appointments</a>
-                                <ng-template ngbNavContent>
-                                    <p>
-                                        <app-patient-appointments ></app-patient-appointments>
-                                    </p>
-                                </ng-template>
-                            </li>
-                            <li ngbNavItem>
-                                <a href="javascript:void(0)" ngbNavLink>Treatment Plan</a>
-                                <ng-template ngbNavContent>
-                                    <p>
-                                        <app-treatment-paln [DiagnosisData]="DiagnosisData"
-                                            [apiData]="apiData"></app-treatment-paln>
-                                    </p>
-                                </ng-template>
-                            </li>
-                            <li ngbNavItem>
-                                <a ngbNavLink>Work Done History</a>
-                                <ng-template ngbNavContent>
-                                    <p>
-                                        <app-workdonehistory></app-workdonehistory>
-                                    </p>
-                                </ng-template>
-                            </li>
-                            <li ngbNavItem>
-                                <a ngbNavLink>Payments</a>
-                                <ng-template ngbNavContent>
-                                    <p>
-                                        <app-payments></app-payments>
-                                    </p>
-                                </ng-template>
-                            </li>
-                            <!--<li ngbNavItem>
-                                <a ngbNavLink>Lab</a>
-                                <ng-template ngbNavContent>
-                                    <p>
-                                        <app-lab></app-lab>
-                                    </p>
-                                </ng-template>
-                            </li>-->
-                            <li ngbNavItem>
-                                <a ngbNavLink>Digital Data</a>
-                                <ng-template ngbNavContent>
-                                    <p>
-                                        <app-digitaldata></app-digitaldata>
-                                    </p>
-                                </ng-template>
-                            </li>
-                            <li ngbNavItem>
-                                <a ngbNavLink>Priscriptions</a>
-                                <ng-template ngbNavContent>
-                                    <p>
-                                        <app-priscriptions></app-priscriptions>
-                                    </p>
-                                </ng-template>
-                            </li>
-                        </ul>
-                        <div [ngbNavOutlet]="navFilled" class="mt-2"></div>
                     </div>
                 </div>
             </section>
-        </div>
-    </div>
+      
 </div>

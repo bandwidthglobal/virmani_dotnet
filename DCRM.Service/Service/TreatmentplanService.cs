@@ -79,7 +79,7 @@ namespace DCRM.Service.Service
             var treatmentplans = _treatmentplanRepository.Get(request.Id);
             if (treatmentplans != null)
             {
-                treatmentplans.Amount = request.Amount;
+                treatmentplans.Amount = request.Estimated_Amount;
                 treatmentplans.Courtesy = request.Courtesy;
                 treatmentplans.Treatment_Status = request.TreatmentStatus;
                 treatmentplans.Sitting_Status = request.SittingStatus;

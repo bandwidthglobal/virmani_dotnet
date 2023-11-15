@@ -7,6 +7,7 @@ import { CommonValidationService } from "app/shared-common/services/common-valid
 import { IContactsForm, IContactsFormModel } from "../model/contacts-form";
 import { FormArray } from "@angular/forms";
 import { IInsuranceLoanForm, IInsuranceLoanFormModel } from "../model/insurance-loans-form";
+import { ComomnMasterData } from "../../../clinic-admin/comomnmasterdata";
 import { Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -34,7 +35,7 @@ export class PatientFormComponent implements OnInit, OnDestroy {
     };
     @Input() FormAction?: 'add' | 'edit' = 'add';
     @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
-
+   /* ITitleList: Array<any> = [];*/
     ITitleList: Array<any> = [
         { id: 'Mr', text: 'Mr' },
         { id: 'Mrs', text: 'Mrs' },
@@ -44,10 +45,10 @@ export class PatientFormComponent implements OnInit, OnDestroy {
         { id: 'Sir', text: 'Sir' },
         { id: 'Dr', text: 'Dr' },
     ];
-
     IGender: Array<any> = [
         { id: 'Male', text: 'Male' },
         { id: 'Female', text: 'Female' },
+        { id: 'Transgender', text: 'Transgender' },
     ];
 
     IReferList: Array<any> = [
@@ -66,11 +67,14 @@ export class PatientFormComponent implements OnInit, OnDestroy {
         private _toastrService: ToastrService,
         private _patientFormService: PatientFormService,
         private _commonValidationService: CommonValidationService,
+        private _comomnMasterData: ComomnMasterData
     ) {
         this._unsubscribeAll = new Subject();
     }
 
     ngOnInit(): void {
+        //this.ITitleList = this._comomnMasterData.ITitlte;
+        //this.IGender = this._comomnMasterData.IGender;
         this.formData = new IPatientForm(this.FormInput);
         if (this.FormAction === 'add') {
             this.pageTitle = 'Add Patient';

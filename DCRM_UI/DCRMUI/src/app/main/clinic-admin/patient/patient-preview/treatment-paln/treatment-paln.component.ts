@@ -123,12 +123,15 @@ export class TreatmentPalnComponent implements OnInit {
             return isPartialNameMatch;
         });
     }
-
+    toothNumber: any;
+    job: any;
     //Work Done Start
-    addWorkDone(treatmentid,estamount ) {
+    addWorkDone(treatmentid, estamount, toothNumber,job ) {
         this.getDoctors();
         this.treatmentId = treatmentid;
         this.workdone.estimated_Amount = estamount;
+        this.toothNumber = toothNumber;
+        this.job = job;
         this.receiveElm.classList.add('show');
         this.receiveElm.style.width = '100vw';
     }
@@ -208,7 +211,7 @@ export class TreatmentPalnComponent implements OnInit {
     }
     treatment: any = { sitting_Status: 0, id: 0, job: '', type: '', teeth_id:'' }
     setSittingValue(treatmentId, evnt) {
-        debugger;
+       
         this.treatment.sitting_Status = evnt.target.value;
         this.treatment.id = treatmentId;
         this._patientListService.updateSittingStatus(this.treatment).pipe(catchError((error) => {
@@ -297,6 +300,13 @@ export class TreatmentPalnComponent implements OnInit {
     returnPage() {
         this.showTreatmentForm = false;
         this.getTreatmentList();
+    }
+    workdones: any;
+    toggleExpandRow(row) {
+        this.table.rowDetail.toggleExpandRow(row);
+    }
+
+    onDetailToggle(event) {
     }
     ngOnDestroy(): void {
         this._unsubscribeAll.next();

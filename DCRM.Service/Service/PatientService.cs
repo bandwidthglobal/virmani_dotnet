@@ -351,6 +351,9 @@ namespace DCRM.Service.Service
         {
             List<TreatmentplanDto> treatmentplanDtos = new List<TreatmentplanDto>();
 
+            var workdonesQuery = from w in _workdoneNewRepository.GetAll().ToList()
+                                 join d in _doctorRepository.GetAll().ToList() on w.Doctor_Id equals d.Id
+                                 select new { w, d };
             var treatmentplans = from s in _treatmentplansRepository.GetAll().ToList()
                                  join d in _doctorRepository.GetAll().ToList() on s.Doctor equals d.Id
                                  join c in _teethinfoRepository.GetAll().ToList() on s.Id equals c.Treatmentplans_Id
@@ -405,6 +408,31 @@ namespace DCRM.Service.Service
                 treatmentplanDto.Type = treatment.Type;
                 treatmentplanDto.TeethNumber = treatment.TeethNumber;
                 treatmentplanDto.TothNot = treatment.TothNot;
+                WorkDoneDto workdone_New = new WorkDoneDto();
+                List<WorkDoneDto> WorkDoneList = new List<WorkDoneDto>();
+                foreach (var item in workdonesQuery.Where(x=>x.w.Treatment_Id== treatment.Id))
+                {
+                    workdone_New = new WorkDoneDto();
+                    workdone_New.DoctorName = item.d.Name;
+                    if (item.w.Workdone_Status==0)
+                    {
+                        workdone_New.WorkdoneStatus = "Observation";
+                    }
+                    else if (item.w.Workdone_Status == 1)
+                    {
+                        workdone_New.WorkdoneStatus = "Completed";
+                    }
+                    else
+                    {
+                        workdone_New.WorkdoneStatus = "Incompleted";
+                    }
+                    workdone_New.Discount = item.w.Discount;
+                    workdone_New.AmtDueCurrentWork = item.w.Current_Work_Amt.ToString();
+                    workdone_New.TotalAmt = item.w.Total_Amt;
+                    workdone_New.Date = item.w.Created_At.ToString();
+                    WorkDoneList.Add(workdone_New);
+                }
+                treatmentplanDto.Workdones = WorkDoneList;
                 treatmentplanDtos.Add(treatmentplanDto);
             }
             return treatmentplanDtos;
@@ -497,13 +525,14 @@ namespace DCRM.Service.Service
                     paymentHistoryDto.DoctorName = doctor.Name;
                     paymentHistoryDto.DoctorId = Convert.ToInt32(doctor.Id);
                 }
-                var workDoneNew = _workdoneNewRepository.GetAll().Where(x => x.Id == item.Workdone_Id).FirstOrDefault();
+                var workDoneNew = _workdoneNewRepository.Get(item.Workdone_Id);
                 if (workDoneNew != null)
                 {
-                    var treatment = _treatmentplansRepository.GetAll().Where(x => x.Id == workDoneNew.Treatment_Id).FirstOrDefault();
+                    var treatment = _treatmentplansRepository.Get(workDoneNew.Treatment_Id);
                     if (treatment != null)
                     {
                         paymentHistoryDto.ToothCode = treatment.Job;
+                        paymentHistoryDto.RemainingEstimate = treatment.Estimated_Amount - workDoneNew.Current_Work_Amt;
                     }
                 }
                 paymentList.Add(paymentHistoryDto);
