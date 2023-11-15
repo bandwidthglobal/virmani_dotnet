@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DCRM.Api.Controllers
 {
-    [Authorize("User")]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ChairController : ControllerBase
@@ -23,7 +23,12 @@ namespace DCRM.Api.Controllers
             var user = Request.HttpContext.Items["User"] as User;
             return _chairService.GetAll().Where(x=>x.User_Id== user.Id).ToList();
         }
-
+        [HttpGet("GetChairsForDropdown")]
+        public List<ChairDto> GetChairsForDropdown()
+        {
+            var user = Request.HttpContext.Items["User"] as User;
+            return _chairService.GetChairsForDropdown(user.Id);
+        }
         [HttpGet("Get/{id}")]   
         public Chair Get(int id)
         {

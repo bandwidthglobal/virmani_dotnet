@@ -22,6 +22,8 @@ public  class Workdone_New:BaseEntity
     
     public int Workdone_Status { get; set; }
 
+    public string? Workdone_Notes { get; set; }
+
     public DateTime Created_At { get; set; }
 
     public DateTime Updated_At { get; set; }

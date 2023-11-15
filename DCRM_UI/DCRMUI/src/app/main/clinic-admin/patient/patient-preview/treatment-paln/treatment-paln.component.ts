@@ -49,7 +49,8 @@ export class TreatmentPalnComponent implements OnInit {
         discount: 0,
         total_Amt: 0,
         workdone_Status: 0,
-        estimated_Amount:''
+        estimated_Amount: '',
+        workdone_Notes:''
     }
     private tempData = [];
     private _unsubscribeAll: Subject<any>;
@@ -65,16 +66,32 @@ export class TreatmentPalnComponent implements OnInit {
     @ViewChild('workdoneModal', { static: false }) workdoneModal: ElementRef;//RECEIVE
     receiveElm: HTMLElement;
     public patientId: any;
+    showTreatmentForm: boolean = false;
+    isAdd = true;
     constructor(
         private _patientListService: PatientPreviewService,
         private _coreConfigService: CoreConfigService,
+        private router: Router,
         private _route: ActivatedRoute,
         private _formBuilder: UntypedFormBuilder    ) {
         this._unsubscribeAll = new Subject();
-        
-        debugger;
     }
-
+    ngOnInit(): void {
+        this.workdoneForm = this._formBuilder.group({
+            doctor_Id: ['', Validators.required],
+            current_Work_Amt: ['', Validators.required],
+            discount: [''],
+            total_Amt: [''],
+            estimated_Amount: [''],
+            workdone_Status: [''],
+            workdone_Notes: [''],
+        });
+        this.patientId = this._route.snapshot.paramMap.get('id');
+        this.getTreatmentList();
+    }
+    ngAfterViewInit(): void {
+        this.receiveElm = this.workdoneModal.nativeElement as HTMLElement;
+    }
     filterUpdate(event) {
         const val = event.target.value.toLowerCase();
         const temp = this.tempData.filter(function (d) {
@@ -91,14 +108,12 @@ export class TreatmentPalnComponent implements OnInit {
         // Whenever the filter changes, always go back to the first page
         this.table.offset = 0;
     }
-
     filterByStatus(event) {
         const filter = event ? event.value : '';
         this.previousStatusFilter = filter;
         this.tempFilterData = this.filterRows(filter);
         this.rows = this.tempFilterData;
     }
-
     filterRows(statusFilter): any[] {
         // Reset search on select change
         this.searchValue = '';
@@ -108,14 +123,15 @@ export class TreatmentPalnComponent implements OnInit {
             return isPartialNameMatch;
         });
     }
-
-    ngAfterViewInit(): void {
-        this.receiveElm = this.workdoneModal.nativeElement as HTMLElement;
-    }
-    addWorkDone(treatmentid,estamount ) {
+    toothNumber: any;
+    job: any;
+    //Work Done Start
+    addWorkDone(treatmentid, estamount, toothNumber,job ) {
         this.getDoctors();
         this.treatmentId = treatmentid;
         this.workdone.estimated_Amount = estamount;
+        this.toothNumber = toothNumber;
+        this.job = job;
         this.receiveElm.classList.add('show');
         this.receiveElm.style.width = '100vw';
     }
@@ -126,39 +142,13 @@ export class TreatmentPalnComponent implements OnInit {
             this.receiveElm.style.width = '0';
         }, 75);
     }
-    chamgeStatus(status) {
-        this.workdoneStatus = status;
-    }
-
-    getDoctors() {
-        this._patientListService.getDoctors().pipe().subscribe((response) => {
-            this.doctors = response;
-        });
-    }
-
-    chngCurrentwork(ev) {
-        this.currentAmount = parseInt(ev.target.value)
-        if (this.workdone.discount == 0) {
-            this.workdone.total_Amt = this.currentAmount;
-        }
-        else {
-            this.workdone.total_Amt = this.currentAmount - this.workdone.discount;
-        }
-    }
-    chngDiscount(ev) {
-        var discount = parseInt(ev.target.value)
-        
-       if (this.currentAmount > 0 && discount > 0) {
-            this.workdone.total_Amt=this.currentAmount - discount;
-        }
-    }
     get f() {
         return this.workdoneForm.controls;
     }
     saveWorkDoneForm() {
         this.submitted = true;
         if (this.workdoneForm.invalid) {
-            
+
             return;
         }
         this.workdone.workdone_Status = this.workdoneStatus;
@@ -186,17 +176,53 @@ export class TreatmentPalnComponent implements OnInit {
         });
         //this.loading = true;
     }
-    ngOnInit(): void {
-        this.workdoneForm = this._formBuilder.group({
-            doctor_Id: ['', Validators.required],
-            current_Work_Amt: ['', Validators.required],
-            discount: [''],
-            total_Amt: [''],
-            estimated_Amount: [''],
-            workdone_Status: [''],
+    //Work Done End
+    chamgeStatus(status) {
+        this.workdoneStatus = status;
+    }
+    getDoctors() {
+        this._patientListService.getDoctors().pipe().subscribe((response) => {
+            this.doctors = response;
         });
-        this.patientId = this._route.snapshot.paramMap.get('id');
-        this.getTreatmentList();
+    }
+    chngCurrentwork(ev) {
+        this.currentAmount = parseInt(ev.target.value)
+        if (this.workdone.discount == 0) {
+            this.workdone.total_Amt = this.currentAmount;
+        }
+        else {
+            this.workdone.total_Amt = this.currentAmount - this.workdone.discount;
+        }
+    }
+    chngDiscount(ev) {
+        var discount = parseInt(ev.target.value)
+        
+       if (this.currentAmount > 0 && discount > 0) {
+            this.workdone.total_Amt=this.currentAmount - discount;
+        }
+    }
+    nameOld: any;
+    editing: any;
+    storeOldValues(rowIndex) {
+       
+        this.nameOld = this.rows[rowIndex].name;
+       this.editing[rowIndex + '-name'] = true;
+       this.editing = rowIndex;
+    }
+    treatment: any = { sitting_Status: 0, id: 0, job: '', type: '', teeth_id:'' }
+    setSittingValue(treatmentId, evnt) {
+       
+        this.treatment.sitting_Status = evnt.target.value;
+        this.treatment.id = treatmentId;
+        this._patientListService.updateSittingStatus(this.treatment).pipe(catchError((error) => {
+            this.loading = false;
+            this.error = error;
+            return '';
+        })).subscribe((response) => {
+            this.getTreatmentList();
+        });
+       
+       
     }
 
     getTreatmentList() {
@@ -234,7 +260,6 @@ export class TreatmentPalnComponent implements OnInit {
             }
         });
     }
-
     delete(id, patientId) {
         Swal.fire({
             title: 'Are you sure?',
@@ -267,21 +292,24 @@ export class TreatmentPalnComponent implements OnInit {
         })
 
     }
-   
-    showTreatmentForm: boolean = false;
-    openComplaintForm() {
+    openComplaintForm(id) {
+        this.treatmentId = id;
+        this.isAdd = false;
         this.showTreatmentForm = !this.showTreatmentForm;
     }
-
     returnPage() {
         this.showTreatmentForm = false;
         this.getTreatmentList();
     }
+    workdones: any;
+    toggleExpandRow(row) {
+        this.table.rowDetail.toggleExpandRow(row);
+    }
 
-
+    onDetailToggle(event) {
+    }
     ngOnDestroy(): void {
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
     }
-
 }

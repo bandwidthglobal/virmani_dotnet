@@ -13,7 +13,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class AppointmentAddComponent implements OnInit, OnDestroy {
     private _unsubscribeAll: Subject<any>;
-  returnUrl: string;
+    returnUrl: string;
+    subscription: any;
+    patientId: any = 0;
 
     constructor(
         private router: Router,
@@ -21,9 +23,12 @@ export class AppointmentAddComponent implements OnInit, OnDestroy {
         this._unsubscribeAll = new Subject();
     }
   
-    ngOnInit(): void { }
+    ngOnInit(): void {
+       
+    }
 
-  ngOnDestroy(): void {
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
   }

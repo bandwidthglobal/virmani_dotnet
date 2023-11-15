@@ -3,9 +3,9 @@ import * as vMODEL from './validation';
 
 export class ITreatmentPlanFormModel {
 
-    id?: any = 0;
+    id?: any = '';
     date?: any = new Date();
-    doctor?: any = '';
+    doctor?: any = 0;
     job?: any = '';
     jobId?: any = 0;
     type?: any = '';
@@ -13,7 +13,7 @@ export class ITreatmentPlanFormModel {
     patientId?: any = 0;
     amount?: any = 0;
     courtesy?: any = 0;
-    estimated_Amount?: any = '';
+    estimated_Amount?: any = 0;
     printToothName?: any = '';
     individualToothWrk?: any = '';
     completedDate?: any = '';
@@ -71,7 +71,7 @@ export class ITreatmentPlanForm extends FormGroup {
                 {
                     id: [model?.id],
                     date: [model?.date],
-                    doctor: [model?.doctor, [Validators.required]],
+                    doctor: [model?.doctor],
                     job: [model?.job, [Validators.required]],
                     jobId: [model?.jobId],
                     type: [model?.type, [Validators.required]],
@@ -79,7 +79,7 @@ export class ITreatmentPlanForm extends FormGroup {
                     patientId: [model?.patientId, [Validators.required]],
                     amount: [model?.amount],
                     courtesy: [model?.courtesy],
-                    estimated_Amount: [model?.estimated_Amount, [Validators.required]],
+                    estimated_Amount: [model?.estimated_Amount],
                     printToothName: [model?.printToothName],
                     individualToothWrk: [model?.individualToothWrk],
                     completedDate: [model?.completedDate],
@@ -94,7 +94,7 @@ export class ITreatmentPlanForm extends FormGroup {
                     note_Status: [model?.note_Status],
                     ord: [model?.ord],
                     rmd: [model?.rmd],
-                    treatment_Notes: [model?.treatment_Notes, [Validators.required]],
+                    treatment_Notes: [model?.treatment_Notes],
                     estimated_total: [model?.estimated_total],
                 }, {
                 validators: [vMODEL.FormTypeValidation],

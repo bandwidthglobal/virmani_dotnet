@@ -264,39 +264,39 @@ export const menu: CoreMenu[] = [
                 url: 'admin/drug/list'
             },
 
-            {
-                id: 'profile',
-                title: 'Profile',
-                translate: 'MENU.APPS.PROFILE.COLLAPSIBLE',
-                type: 'collapsible',
-                icon: 'user',
-                children: [
-                    {
-                        id: 'personalinfo ',
-                        title: 'Personal Info',
-                        translate: 'MENU.APPS.PROFILE.PersonalInfo',
-                        type: 'item',
-                        icon: 'circle',
-                        url: 'admin/dashboard14'
-                    },
-                    {
-                        id: 'manageeducation',
-                        title: 'Manage Education',
-                        translate: 'MENU.APPS.PROFILE.ManageEducation',
-                        type: 'item',
-                        icon: 'circle',
-                        url: 'admin/dashboard15'
-                    },
-                    {
-                        id: 'manageexperiences',
-                        title: 'Manage Experiences',
-                        translate: 'MENU.APPS.PROFILE.ManageExperiences',
-                        type: 'item',
-                        icon: 'circle',
-                        url: 'admin/dashboard16'
-                    }
-                ]
-            },
+            //{
+            //    id: 'profile',
+            //    title: 'Profile',
+            //    translate: 'MENU.APPS.PROFILE.COLLAPSIBLE',
+            //    type: 'collapsible',
+            //    icon: 'user',
+            //    children: [
+            //        {
+            //            id: 'personalinfo ',
+            //            title: 'Personal Info',
+            //            translate: 'MENU.APPS.PROFILE.PersonalInfo',
+            //            type: 'item',
+            //            icon: 'circle',
+            //            url: 'admin/dashboard14'
+            //        },
+            //        {
+            //            id: 'manageeducation',
+            //            title: 'Manage Education',
+            //            translate: 'MENU.APPS.PROFILE.ManageEducation',
+            //            type: 'item',
+            //            icon: 'circle',
+            //            url: 'admin/dashboard15'
+            //        },
+            //        {
+            //            id: 'manageexperiences',
+            //            title: 'Manage Experiences',
+            //            translate: 'MENU.APPS.PROFILE.ManageExperiences',
+            //            type: 'item',
+            //            icon: 'circle',
+            //            url: 'admin/dashboard16'
+            //        }
+            //    ]
+            //},
 
             {
                 id: 'changepassword',

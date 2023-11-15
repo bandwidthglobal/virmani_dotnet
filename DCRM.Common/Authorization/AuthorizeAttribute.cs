@@ -9,10 +9,10 @@ using Microsoft.AspNetCore.Mvc.Filters;
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public class AuthorizeAttribute : Attribute, IAuthorizationFilter
 {
-    public string _entityName { get; set; }
-   public AuthorizeAttribute(string entityName)
+    //public string _entityName { get; set; }
+   public AuthorizeAttribute()
     {
-        _entityName= entityName;
+       // _entityName= entityName;
     }
     public void OnAuthorization(AuthorizationFilterContext context)
     {
@@ -20,28 +20,22 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
         var allowAnonymous = context.ActionDescriptor.EndpointMetadata.OfType<AllowAnonymousAttribute>().Any();
         if (allowAnonymous)
             return;
-        if (_entityName== "User")
+        if (context.HttpContext.Items["User"] != null)
         {
-           var user = (User)context.HttpContext.Items["User"];
+            var user = (User)context.HttpContext.Items["User"];
             if (user == null)
                 context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
         }
-        else if (_entityName == "Staff")
+        else if (context.HttpContext.Items["Staff"] != null)
         {
             var staff = (StaffDto)context.HttpContext.Items["Staff"];
             if (staff == null)
                 context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
         }
-        else if (_entityName == "Doctor")
+        else if (context.HttpContext.Items["Doctor"] != null)
         {
-            var doctor =(DoctorDto) context.HttpContext.Items["DoctorDto"];
+            var doctor = (DoctorDto)context.HttpContext.Items["DoctorDto"];
             if (doctor == null)
-                context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
-        }
-        else if (_entityName == "Patient")
-        {
-            var patient = context.HttpContext.Items["Patient"];
-            if (patient == null)
                 context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
         }
         // authorization

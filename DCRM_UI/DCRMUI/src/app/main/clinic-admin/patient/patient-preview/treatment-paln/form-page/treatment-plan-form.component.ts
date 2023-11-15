@@ -9,6 +9,7 @@ import { TreatmentPalnFormService } from "./treatment-plan-form.service";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
     selector: 'app-treatment-plan-form',
@@ -20,7 +21,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
 
     private _unsubscribeAll: Subject<any>;
-
+    returnUrl: string;
     pageTitle?: string;
     loading: boolean = false;
     submitted: boolean = false;
@@ -33,6 +34,7 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
     @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
     @Input() apiData?: any = '';
     @Input() DiagnosisData?: any = '';
+    @Input() TreatmentId?: any = 0;
 
 
     ITeethList: Array<any> = [
@@ -42,7 +44,7 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
         },
         {
             id: 2,
-            teeth: 'FDI',
+            teeth: 'FDI1',
         },
         {
             id: 3,
@@ -71,21 +73,37 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
         private _toastrService: ToastrService,
         private _treatmentPalnFormService: TreatmentPalnFormService,
         private _commonValidationService: CommonValidationService,
-        private doms: DomSanitizer
-        // @Inject(MAT_DIALOG_DATA) public data: any,
-        // public matDialogRef: MatDialogRef<TreatmentPlanFormComponent>
+        private router: Router, private _route: ActivatedRoute
     ) {
         this._unsubscribeAll = new Subject();
     }
-
     ngOnInit(): void {
         this.formData = new ITreatmentPlanForm(this.FormInput);
         this.formData.patchValue({ patientId: this.apiData.id });
-        if (this.FormAction === 'add') {
+        if (this.TreatmentId == 0) {
             this.pageTitle = 'Create New';
-        } else {
-            this.pageTitle = 'Edit';
         }
+        else {
+            this.pageTitle = 'Edit';
+            this._treatmentPalnFormService.getTreatment(this.TreatmentId).pipe().subscribe((response) => {
+               
+                this.formData.id.setValue(response.id);
+                this.formData.doctor.setValue(response.doctor);
+                this.formData.job.setValue(response.job);
+                this.formData.jobId.setValue(response.jobId);
+                this.formData.type.setValue(response.type);
+                this.formData.toth_Note.setValue(response.tothNot);
+                this.formData.teeth_id.setValue(response.teeth_id);
+                var toothNumbers = response.teeth_Number_Note.split(',');
+                for (var i = 0; i < toothNumbers.length; i++) {
+                    this.toothNumber.push(toothNumbers[i]);
+                }
+                this.formData.treatment_Notes.setValue(response.tothNot);
+                this.formData.estimated_Amount.setValue(response.estimated_Amount);
+                
+            });
+        }
+        
         this._treatmentPalnFormService.getIDoctors().pipe().subscribe((response) => {
             this.IDoctors = response;
         });
@@ -97,10 +115,10 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
             this.Teeth = response;
         });
         //this.formData.get('estimated_Amount').valueChanges.subscribe((amount) => {
-           
+
         //});
         this.formData.get('teeth_id').valueChanges.subscribe((teeth_id) => {
-            // alert(teeth_id);
+           
             this._treatmentPalnFormService.getTeeth(teeth_id).pipe().subscribe((response) => {
                 this.Teeth = response;
             });
@@ -120,7 +138,7 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
         });
 
         this.formData.get('milk_teeth').valueChanges.subscribe((milk_teeth) => {
-           
+
             this.setTeethCategories();
             if (milk_teeth) {
                 this.formData.patchValue({ teeth_id: 7 });
@@ -140,11 +158,12 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
                 this.categoryID = 'continents3_teeth';
             }
         });
+        this.formData.teeth_id.setValue(4);
     }
     categoryID: string = 'continents1';
     ITeethCategory: Array<any> = [];
     setTeethCategories() {
-        
+
         let milk_teeth: any = this.formData.get('milk_teeth').value;
         if (milk_teeth) {
             this.ITeethCategory = this.TeethCategory.filter(f => f.teeth_Category_Name.includes('Milk'));
@@ -169,10 +188,12 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
         this.formData.treatmentStatus.setValue(status);
     }
     setJobName(event) {
-       
+
         this.formData.patchValue({ job: event.job_name, jobId: event.jon_id });
     }
-
+    Cancel() {
+        window.location.reload();
+    }
     saveForm(): void {
         this.submitted = true;
         let toothNumber = '';
@@ -181,7 +202,7 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
                 toothNumber = this.toothNumber[i];
             }
             else {
-                toothNumber = toothNumber +','+ this.toothNumber[i];
+                toothNumber = toothNumber + ',' + this.toothNumber[i];
             }
         }
         this._commonValidationService.validateAllFormFields(this.formData);
@@ -191,10 +212,14 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
         } else {
             this.loading = true;
             const payload: any = this.formData.getRawValue();
+            debugger;
             payload.ord = payload.ord ? payload.ord : '';
             payload.rmd = payload.rmd ? payload.rmd : '';
             payload.courtesy = payload.courtesy ? payload.courtesy.toString() : '';
             payload.teeth_Number_Note = toothNumber;
+            if (payload.id != undefined && payload.id != '' && payload.id != 0 && payload.id>0) {
+                this.FormAction = "edit";
+            }
             this.loading = true;
             this._treatmentPalnFormService.save(payload, this.FormAction).pipe(catchError((error) => {
                 this.loading = false;
@@ -206,7 +231,7 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
                 });
                 return '';
             })).subscribe((response) => {
-              
+
                 this.loading = false;
                 this.callBackEvent.emit({
                     status: 'failure',
@@ -218,7 +243,7 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
     }
 
     getRecord_teechinfo(id, teeth_note, image) {
-       
+
         let img = image.split('.');
         let str = '(' + img[0] + ') ' + teeth_note;
         console.log('> str ---> ', str);

@@ -51,9 +51,14 @@ namespace DCRM.Service.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Treatmentplans GetById(int id)
+        public Treatmentplans Get(int id)
         {
-            return _treatmentplanRepository.GetById(id);
+            return _treatmentplanRepository.Get(id);
+        }
+
+        public TreatmentplanDto Edit(long id)
+        {
+            return _treatmentplanRepository.Edit(id);
         }
         /// <summary>
         /// create treementplan
@@ -71,10 +76,10 @@ namespace DCRM.Service.Service
         /// <param name="request"></param>
         public void Update(TreatmentplanRequest request)
         {
-            var treatmentplans = _treatmentplanRepository.GetById(request.Id);
+            var treatmentplans = _treatmentplanRepository.Get(request.Id);
             if (treatmentplans != null)
             {
-                treatmentplans.Amount = request.Amount;
+                treatmentplans.Amount = request.Estimated_Amount;
                 treatmentplans.Courtesy = request.Courtesy;
                 treatmentplans.Treatment_Status = request.TreatmentStatus;
                 treatmentplans.Sitting_Status = request.SittingStatus;
@@ -88,6 +93,7 @@ namespace DCRM.Service.Service
                 treatmentplans.Updated_At = System.DateTime.UtcNow;
                 treatmentplans.Individual_Tooth_Wrk = request.IndividualToothWrk;
                 treatmentplans.Print_Tooth_Name = request.PrintToothName;
+                treatmentplans.Estimated_Amount = request.Estimated_Amount;
                 _treatmentplanRepository.UpdateTreatmentplan(treatmentplans);
                 var teethIno = _teethInfoRepository.GetAll().Where(x => x.Treatmentplans_Id == treatmentplans.Id).FirstOrDefault();
                 if (teethIno != null)
@@ -105,7 +111,10 @@ namespace DCRM.Service.Service
 
             }
         }
-
+        public void UpdateSittingValue(Treatmentplans treatmentplan)
+        {
+            _treatmentplanRepository.UpdateSittingValue(treatmentplan);
+        }
         /// <summary>
         /// delete treatment
         /// </summary>
@@ -123,17 +132,17 @@ namespace DCRM.Service.Service
         public void CreateWorkDone(Workdone_New workdone)
         {
 
-            workdone.Created_At=System.DateTime.UtcNow;
+            workdone.Created_At = System.DateTime.UtcNow;
             workdone.Updated_At = System.DateTime.UtcNow;
             long workDoneId = _workDoneRepository.Create(workdone);
-            if (workDoneId>0)
+            if (workDoneId > 0)
             {
                 Payment_History payment = new Payment_History();
                 payment.Workdone_Id = workDoneId;
                 payment.Doctor_Id = workdone.Doctor_Id;
-                payment.Patient_Id = _treatmentplanRepository.GetById(workdone.Treatment_Id).Patient_Id;
+                payment.Patient_Id = _treatmentplanRepository.Get(workdone.Treatment_Id).Patient_Id;
                 payment.Debit_Amount = workdone.Total_Amt;
-                payment.Updated_At=System.DateTime.UtcNow;
+                payment.Updated_At = System.DateTime.UtcNow;
                 payment.Created_At = System.DateTime.UtcNow;
                 payment.Description = string.Empty;
                 payment.Payment_Mode = string.Empty;
@@ -271,7 +280,7 @@ namespace DCRM.Service.Service
 
         public List<Teeth> GetTeethsByCategory(int categoryId)
         {
-            var teeths = _teethRepository.GetAll().Where(x=>x.Teeth_Cat== categoryId).ToList();
+            var teeths = _teethRepository.GetAll().Where(x => x.Teeth_Cat == categoryId).ToList();
             return teeths;
         }
     }

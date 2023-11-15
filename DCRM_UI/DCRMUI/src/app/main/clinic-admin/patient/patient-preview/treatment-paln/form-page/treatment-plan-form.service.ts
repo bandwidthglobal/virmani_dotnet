@@ -24,6 +24,7 @@ export class TreatmentPalnFormService {
         });
         const requestOptions = { headers: headers };
         const action: any = mode === 'add' ? 'Create' : 'Update';
+        debugger;
         return this._httpClient.post(`${this.APIURL}/Treatmentplan/${action}`, payload, requestOptions);
     }
 
@@ -56,5 +57,14 @@ export class TreatmentPalnFormService {
         });
         const requestOptions = { headers: headers };
         return this._httpClient.get(`${environment.apiUrl}/Treatmentplan/Get/TeethCategories`, requestOptions);
+    }
+
+    getTreatment(id:any): Observable<any> {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.get(`${environment.apiUrl}/Treatmentplan/Get/${id}`, requestOptions);
     }
 }

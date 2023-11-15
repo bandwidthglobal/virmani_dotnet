@@ -127,16 +127,20 @@ namespace DCRM.Service.Service
                 AppointmentDto appointmentDto = new AppointmentDto();
                 appointmentDto.Id = appointment.Id;
                 appointmentDto.Serial_Id = appointment.Serial_Id;
+                appointmentDto.Doctor_Id = appointment.Doctor_Id;
+                appointmentDto.Doctor_Name = appointment.Doctor_Name;
                 appointmentDto.Date = appointment.Date;
                 appointmentDto.Start_Time = appointment.Start_Time;
                 appointmentDto.End_Time = appointment.End_Time;
                 appointmentDto.Type = appointment.Type;
                 appointmentDto.Patient_Id = appointment.Patient_Id;
+                appointmentDto.Patient_Name = appointment.Patient_Name;
                 Patientse patientse = new Patientse();
                 patientse.Name = appointment.Patient_Name;
                 patientse.Email = appointment.Email;
                 patientse.Mobile = appointment.Phone;
                 patientse.Mr_Number = appointment.Mr_Number;
+
                 appointmentDto.Patient= patientse;
                 appointmentList.Add(appointmentDto);
             }
@@ -164,6 +168,7 @@ namespace DCRM.Service.Service
                          Doctor_Id = d.Id,
                          Patient_Name = r.Name,
                          Patient_Id = r.Id,
+                         Address=r.Present_Address,
                          Start_Time = s.Start_Time,
                          End_Time = s.End_Time,
                          Chair = s.Chair,
@@ -269,10 +274,12 @@ namespace DCRM.Service.Service
                         if (appointmentDetails != null)
                         {
                             appointmentDto.Id = appointmentDetails.Id;
+                            appointmentDto.Number_Of_Slot = appointmentDetails.Number_Of_Slot;
                             appointmentDto.Appointment_Status = appointmentDetails.Appointment_Status;
                             appointmentDto.Doctor_Name = appointmentDetails.Doctor_Name;
                             appointmentDto.Doctor_Id = appointmentDetails.Doctor_Id;
                             appointmentDto.Patient_Name = appointmentDetails.Patient_Name;
+                            appointmentDto.Patient_Address = appointmentDetails.Address;
                             appointmentChair.AppointmentDetails = appointmentDto;
                         }
                     }

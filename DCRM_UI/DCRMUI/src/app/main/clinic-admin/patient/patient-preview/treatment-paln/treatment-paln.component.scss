@@ -14,3 +14,151 @@
 .pd-25{
     padding:25px!important;
 }
+
+/*
+.table > thead {
+    vertical-align: bottom;
+}
+
+.table-light {
+    --bs-table-bg: #dfdfe3;
+    --bs-table-striped-bg: #dcdce0;
+    --bs-table-striped-color: #4b465c;
+    --bs-table-active-bg: #d3d3d8;
+    --bs-table-active-color: #4b465c;
+    --bs-table-hover-bg: #d9d9de;
+    --bs-table-hover-color: #4b465c;
+    color: #4b465c;
+    border-color: #c1c0c8;
+}
+
+.table-light {
+    --bs-table-color: #4b465c;
+    --bs-table-bg: #dfdfe3;
+    --bs-table-border-color: #c1c0c8;
+    --bs-table-striped-bg: #dcdce0;
+    --bs-table-striped-color: #4b465c;
+    --bs-table-active-bg: #d3d3d8;
+    --bs-table-active-color: #4b465c;
+    --bs-table-hover-bg: #d9d9de;
+    --bs-table-hover-color: #4b465c;
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+}
+
+thead, tbody, tfoot, tr, td, th {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+}
+
+.table:not(.table-borderless) {
+    margin-bottom: 0;
+}
+
+.table {
+    --bs-table-color: var(--bs-body-color);
+    --bs-table-bg: transparent;
+    --bs-table-border-color: var(--bs-border-color);
+    --bs-table-accent-bg: transparent;
+    --bs-table-striped-color: var(--bs-body-color);
+    --bs-table-striped-bg: #fbfbfc;
+    --bs-table-active-color: var(--bs-body-color);
+    --bs-table-active-bg: rgba(115, 103, 240, 0.08);
+    --bs-table-hover-color: var(--bs-body-color);
+    --bs-table-hover-bg: rgba(75, 70, 92, 0.04);
+    width: 100%;
+    margin-bottom: 1rem;
+    color: var(--bs-table-color);
+    vertical-align: middle;
+    border-color: var(--bs-table-border-color);
+}
+
+table {
+    caption-side: bottom;
+    border-collapse: collapse;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+user agent stylesheet
+table {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: gray;
+}
+
+.text-nowrap {
+    white-space: nowrap !important;
+}
+*/
+/*.table > thead {
+    vertical-align: bottom;
+}
+
+.table-dark {
+    --bs-table-bg: #4b4b4b;
+    --bs-table-striped-bg: #4f4f4f;
+    --bs-table-striped-color: #fff;
+    --bs-table-active-bg: #595959;
+    --bs-table-active-color: #fff;
+    --bs-table-hover-bg: #525252;
+    --bs-table-hover-color: #fff;
+    color: #fff;
+    border-color: #6f6f6f;
+}*/
+
+/*.table-dark {
+    --bs-table-color: #fff;
+    --bs-table-bg: #4b4b4b;
+    --bs-table-border-color: #6f6f6f;
+    --bs-table-striped-bg: #4f4f4f;
+    --bs-table-striped-color: #fff;
+    --bs-table-active-bg: #595959;
+    --bs-table-active-color: #fff;
+    --bs-table-hover-bg: #525252;
+    --bs-table-hover-color: #fff;
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+}*/
+
+/*thead, tbody, tfoot, tr, td, th {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+}*/
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/*user agent stylesheet
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+*/
+/*.table {
+    --bs-table-color: var(--bs-body-color);
+    --bs-table-bg: transparent;
+    --bs-table-border-color: var(--bs-border-color);
+    --bs-table-accent-bg: transparent;
+    --bs-table-striped-color: var(--bs-body-color);
+    --bs-table-striped-bg: #fbfbfc;
+    --bs-table-active-color: var(--bs-body-color);
+    --bs-table-active-bg: rgba(115, 103, 240, 0.08);
+    --bs-table-hover-color: var(--bs-body-color);
+    --bs-table-hover-bg: rgba(75, 70, 92, 0.04);
+    width: 100%;
+    margin-bottom: 1rem;
+    color: var(--bs-table-color);
+    vertical-align: middle;
+    border-color: var(--bs-table-border-color);
+    background-color:lightgray;
+}*/

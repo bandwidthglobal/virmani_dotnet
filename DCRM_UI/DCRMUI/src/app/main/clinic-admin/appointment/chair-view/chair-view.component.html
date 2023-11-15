@@ -6,7 +6,7 @@
         <section class="invoice-add-wrapper">
             <div class="row invoice-add">
                 <!-- Invoice Add Left starts -->
-              
+
                 <div class="col-xl-12 col-md-8 col-12">
                     <div class="card invoice-preview-card">
                         <!-- Header starts -->
@@ -85,35 +85,85 @@
                                                 <tr class="table-header">
                                                     <th width="10%" style="padding-left:5px;">Slot Time</th>
                                                     <th width="20%" *ngFor="let chair of chairList">{{chair.name}}</th>
-                                                </tr> 
+                                                </tr>
                                             </thead>
                                             <tbody>
                                                 <tr *ngFor="let schedule of appointmentScheduleTimes">
                                                     <td width="20%" style="padding-left: 5px;"><strong>{{schedule.slatTime}}</strong></td>
-                                                    <td width="20%" *ngFor=" let chair of schedule.chairList">
-                                                        <p *ngIf="chair.appointmentDetails==null" (click)="appointmentView(0,schedule.slatTime,chair.id);">
-                                                            <a href="javascript://">Allot</a>
-                                                        </p>
-                                                        <p class="appointment-background pd-5px"  *ngIf="chair.appointmentDetails!=null && chair.appointmentDetails.appointment_Status!=3">
+                                                    <ng-container *ngFor="let chair of schedule.chairList">
+                                                        <td width="20%" *ngIf="chair.appointmentDetails==null else appointmentCol">
+                                                            <p *ngIf="chair.appointmentDetails==null" (click)="appointmentView(0,schedule.slatTime,chair.id);">
+                                                                <a href="javascript://">Allot</a>
+                                                            </p>
+                                                        </td>
+                                                        <ng-template #appointmentCol>
+                                                            <td width="20%" *ngIf="chair.appointmentDetails.number_Of_Slot==1">
+                                                                <p class="appointment-background pd-5px" *ngIf="chair.appointmentDetails.appointment_Status!=3">
+                                                                    <input type="checkbox" name="name" checked="checked" (change)="changeAppointmentStatus($event,chair.appointmentDetails.id)" value="0" *ngIf="chair.appointmentDetails.appointment_Status==4;else chairOut" />
+                                                                    <ng-template #chairOut>
+                                                                        <input type="checkbox" name="name" value="4"
+                                                                               (change)="changeAppointmentStatus($event,chair.appointmentDetails.id)"
+                                                                               *ngIf="chair.appointmentDetails.appointment_Status!=2" />
+                                                                    </ng-template>
 
-                                                            <input type="checkbox" name="name" checked="checked" (change)="changeAppointmentStatus($event,chair.appointmentDetails.id)" value="0" *ngIf="chair.appointmentDetails.appointment_Status==4;else loggedOut" />
+                                                                    <a href="javascript://" (click)="appointmentView(chair.appointmentDetails.id,schedule.slatTime,chair.id,chair.appointmentDetails.appointment_Status);" class="text-white">
+                                                                        <p>{{chair.appointmentDetails.patient_Name}}</p>
+                                                                         <p>{{chair.appointmentDetails.patient_Address}}</p>
+                                                                        <p><strong>Doctor:</strong> {{chair.appointmentDetails.doctor_Name}}</p>
+                                                                    </a>
+                                                                </p>
+                                                            </td>
+                                                            <td width="20%" *ngIf="chair.appointmentDetails.number_Of_Slot==2" rowspan="2">
+                                                                <p class="appointment-background pd-5px" *ngIf="chair.appointmentDetails.appointment_Status!=3">
+                                                                    <input type="checkbox" name="name" checked="checked" (change)="changeAppointmentStatus($event,chair.appointmentDetails.id)" value="0" *ngIf="chair.appointmentDetails.appointment_Status==4;else chairOut" />
+                                                                    <ng-template #chairOut>
+                                                                        <input type="checkbox" name="name" value="4"
+                                                                               (change)="changeAppointmentStatus($event,chair.appointmentDetails.id)"
+                                                                               *ngIf="chair.appointmentDetails.appointment_Status!=2" />
+                                                                    </ng-template>
 
-                                                            <ng-template #loggedOut>
-                                                                <input type="checkbox" name="name" value="4" 
-                                                                       (change)="changeAppointmentStatus($event,chair.appointmentDetails.id)" 
-                                                                       *ngIf="chair.appointmentDetails.appointment_Status!=2"
-                                                                       />
-                                                            </ng-template>
+                                                                    <a href="javascript://" (click)="appointmentView(chair.appointmentDetails.id,schedule.slatTime,chair.id,chair.appointmentDetails.appointment_Status);" class="text-white">
+                                                                        <p>{{chair.appointmentDetails.patient_Name}}</p>
+                                                                        <p>{{chair.appointmentDetails.patient_Address}}</p>
+                                                                        <p><strong>Doctor:</strong> {{chair.appointmentDetails.doctor_Name}}</p>
+                                                                    </a>
+                                                                </p>
+                                                            </td>
+                                                            <td width="20%" *ngIf="chair.appointmentDetails.number_Of_Slot==3" rowspan="3">
+                                                                <p class="appointment-background pd-5px" *ngIf="chair.appointmentDetails.appointment_Status!=3">
+                                                                    <input type="checkbox" name="name" checked="checked" (change)="changeAppointmentStatus($event,chair.appointmentDetails.id)" value="0" *ngIf="chair.appointmentDetails.appointment_Status==4;else chairOut" />
+                                                                    <ng-template #chairOut>
+                                                                        <input type="checkbox" name="name" value="4"
+                                                                               (change)="changeAppointmentStatus($event,chair.appointmentDetails.id)"
+                                                                               *ngIf="chair.appointmentDetails.appointment_Status!=2" />
+                                                                    </ng-template>
 
+                                                                    <a href="javascript://" (click)="appointmentView(chair.appointmentDetails.id,schedule.slatTime,chair.id,chair.appointmentDetails.appointment_Status);" class="text-white">
+                                                                        <p>{{chair.appointmentDetails.patient_Name}}</p>
+                                                                        <p>{{chair.appointmentDetails.patient_Address}}</p>
+                                                                        <p><strong>Doctor:</strong> {{chair.appointmentDetails.doctor_Name}}</p>
+                                                                    </a>
+                                                                </p>
+                                                            </td>
+                                                            <td width="20%" *ngIf="chair.appointmentDetails.number_Of_Slot==4" rowspan="4">
+                                                                <p class="appointment-background pd-5px" *ngIf="chair.appointmentDetails.appointment_Status!=3">
+                                                                    <input type="checkbox" name="name" checked="checked" (change)="changeAppointmentStatus($event,chair.appointmentDetails.id)" value="0" *ngIf="chair.appointmentDetails.appointment_Status==4;else chairOut" />
+                                                                    <ng-template #chairOut>
+                                                                        <input type="checkbox" name="name" value="4"
+                                                                               (change)="changeAppointmentStatus($event,chair.appointmentDetails.id)"
+                                                                               *ngIf="chair.appointmentDetails.appointment_Status!=2" />
+                                                                    </ng-template>
 
-                                                            <a href="javascript://" (click)="appointmentView(chair.appointmentDetails.id,schedule.slatTime,chair.id,chair.appointmentDetails.appointment_Status);" class="text-white">
-                                                                <p>{{chair.appointmentDetails.patient_Name}}</p>
-                                                                <!--<p>{{chair.appointmentDetails.patient.address}}</p>-->
-                                                                <p><strong>Doctor:</strong> {{chair.appointmentDetails.doctor_Name}}</p>
-                                                            </a>
-                                                        </p>
-
-                                                    </td>
+                                                                    <a href="javascript://" (click)="appointmentView(chair.appointmentDetails.id,schedule.slatTime,chair.id,chair.appointmentDetails.appointment_Status);" class="text-white">
+                                                                        <p>{{chair.appointmentDetails.patient_Name}}</p>
+                                                                        <p>{{chair.appointmentDetails.patient_Address}}</p>
+                                                                        <p><strong>Doctor:</strong> {{chair.appointmentDetails.doctor_Name}}</p>
+                                                                    </a>
+                                                                </p>
+                                                            </td>
+                                                        </ng-template>
+                                                    </ng-container>
+                                                    
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -131,7 +181,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    
+
                     <!--<h4 class="modal-title">Add Appointment</h4>-->
                     <button type="button" class="close" (click)="close()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -139,17 +189,17 @@
                 </div>
                 <div class="modal-body" style="height:200px;" *ngIf="isAppontmentClose==true">
                     <div class="row">
-                        <div class="col-12 text-center mt-3" >
+                        <div class="col-12 text-center mt-3">
                             <h3>
                                 {{popupMassage}}
-                                
+
                             </h3>
                         </div>
                     </div>
                 </div>
                 <div class="modal-body" *ngIf="isAppontmentClose==false">
                     <app-appointment-form *ngIf="isEdit==true" [FormAction]="'edit'" [FormInput]="FormInput" (callBackEvent)="redirect($event);"></app-appointment-form>
-                    <app-appointment-form *ngIf="isAdd==true"  [expectedProp] = "addParam" [FormAction]="'add'" (callBackEvent)="redirect($event);"></app-appointment-form>
+                    <app-appointment-form *ngIf="isAdd==true" [expectedProp]="addParam" [FormAction]="'add'" (callBackEvent)="redirect($event);"></app-appointment-form>
                 </div>
             </div>
         </div>

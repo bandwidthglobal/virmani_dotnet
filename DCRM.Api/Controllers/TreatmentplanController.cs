@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DCRM.Api.Controllers
 {
-    [Authorize("User")]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TreatmentplanController : ControllerBase
@@ -19,6 +19,13 @@ namespace DCRM.Api.Controllers
         public TreatmentplanController(ITreatmentplanService treatmentplanService)
         {
             _treatmentplanService = treatmentplanService;
+        }
+
+
+        [HttpGet("Get/{id}")]
+        public TreatmentplanDto Get(Int32 id)
+        {
+            return _treatmentplanService.Edit(id);
         }
 
         [HttpPost("Create")]
@@ -41,6 +48,12 @@ namespace DCRM.Api.Controllers
             return Ok();
         }
 
+        [HttpPost("UpdateSitting")]
+        public IActionResult UpdateSitting(Treatmentplans request)
+        {
+            _treatmentplanService.UpdateSittingValue(request);
+            return Ok();
+        }
 
         [HttpPost("WorkDone/Create")]
         public IActionResult WorkDoneCreate(Workdone_New workdone)

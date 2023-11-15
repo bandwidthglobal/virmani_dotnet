@@ -86,7 +86,6 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
      * On init
      */
     ngOnInit(): void {
-        debugger;
         this._chairViewService.getDoctors().subscribe(response => {
             this.doctorList = response;
         });
@@ -101,54 +100,18 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
         this.loading = true;
         this.searchData();
     }
-    //getData() {
-    //    this.loading = true;
-    //    this._chairViewService.getAppointmentChairViewlist().subscribe(response => {
-    //        this.error = "";
-    //        this.data = response;
-    //        this.rows = this.data;
-    //        if (this.data.chairList.length == 0) {
-    //            this.error="No chair found"
-    //        }
-    //        else {
-    //        this.chairList = this.data.chairList;
-    //        for (var i = 0; i < this.data.chairList.length; i++) {
-    //            let obj: any = {}
-    //            obj.item_id = this.data.chairList[i].id;
-    //            obj.item_text = this.data.chairList[i].name;
-    //            this.dropdownList.push(obj)
-    //        }
-
-    //        this.tempData = this.rows;
-    //        this.tempFilterData = this.rows;
-                
-    //        }
-    //        this.loading = false;
-    //    });
-    //}
     searchData() {
         this.loading = true;
         this._chairViewService.getAppointmentChairViewSearchlist(this.searchParam).subscribe(response => {
             this.data = response;
             this.rows = this.data;
-
-            if (this.chairList == undefined) {
-                this.chairList = this.data.chairList;
-            }
-            if (this.data.chairList.length == 0) {
+            debugger;
+            if (this.chairList.length == 0) {
                 this.error = "No chair found"
             }
             else {
-                //for (var i = 0; i < this.data.chairList.length; i++) {
-                //    let obj: any = {}
-                //    obj.item_id = this.data.chairList[i].id;
-                //    obj.item_text = this.data.chairList[i].name;
-                //    this.dropdownList.push(obj)
-                //}
-
                 this.appointmentScheduleTimes = this.data.appointmentScheduleTimes
                 this.tempData = this.rows;
-
                 this.tempFilterData = this.rows;
             }
             this.loading = false;
