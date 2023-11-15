@@ -29,6 +29,7 @@
                 <!-- <pre>{{ Teeth | json }}</pre> -->
                 <ul [id]="categoryID">
                     <ng-container *ngFor="let t of Teeth; let idx = index;">
+
                         <ng-container *ngIf="!formData.get('milk_teeth').value">
                             <li class="teethord{{ idx+1 }}">
                                 <a (click)="getRecord_teechinfo(t.id, t.teeth_Note, t.image)" href="javascript://"
