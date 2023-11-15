@@ -17,6 +17,7 @@ export class PatientinfoComponent implements OnInit {
     private _unsubscribeAll: Subject<any>;
     apiData: any;
     returnUrl: string;
+    loading = false;
   /**
    * Constructor
    *
@@ -34,13 +35,13 @@ export class PatientinfoComponent implements OnInit {
     subscription: any;
     ngOnInit() {
         let patientId = 0;
+        this.loading = true;
         this.subscription = this.route.params.subscribe(params => {
             patientId = params['id']
         });
         this._patientPreviewService.getPatientPreview(patientId).subscribe(response => {
             this.apiData = response;
-            debugger;
-           
+            this.loading = false;
         })
   }
 }

@@ -8,6 +8,11 @@
                         <!-- Header starts -->
                         <div class="card-body invoice-padding pb-0">
                             <div class="box-body pt-1 pb-1">
+                                <div *ngIf="loading==true" class="table-loading">
+                                    <div class="table-loading-text">
+                                        Loading...
+                                    </div>
+                                </div>
                                 <div class="card-body" *ngIf="apiData!=null">
 
                                     <div class="row">
@@ -155,29 +160,30 @@
                                                     </table>
                                                 </div>
                                                 <!--<div class="table-responsive">
-                <table class="table border-top">
-                    <thead>
-                        <tr>
+                        <table class="table border-top">
+                            <thead>
+                                <tr>
 
-                            <th class="text-truncate">Address R</th>
-                            <th class="text-truncate">City R</th>
-                            <th class="text-truncate">Zip R</th>
-                            <th class="text-truncate">Country R</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let address of apiData.apiDatasAddressList">
-                            <td class="text-truncate">
-                                <i class="ti ti-brand-windows text-info ti-xs me-2"></i>
-                                <span class="fw-medium"> {{address.address_R}}</span>
-                            </td>
-                            <td class="text-truncate">{{address.city_R}}</td>
-                            <td class="text-truncate">{{address.zip_R}}</td>
-                            <td class="text-truncate"> {{address.country_R}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>-->
+                                    <th class="text-truncate">Address R</th>
+                                    <th class="text-truncate">City R</th>
+                                    <th class="text-truncate">Zip R</th>
+                                    <th class="text-truncate">Country R</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let address of apiData.apiDatasAddressList">
+                                    <td class="text-truncate">
+                                        <i class="ti ti-brand-windows text-info ti-xs me-2"></i>
+                                        <span class="fw-medium"> {{address.address_R}}</span>
+                                    </td>
+                                    <td class="text-truncate">{{address.city_R}}</td>
+                                    <td class="text-truncate">{{address.zip_R}}</td>
+                                    <td class="text-truncate"> {{address.country_R}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>-->
+                                                <
                                                 <div class="table-responsive">
                                                     <table class="table border-top">
                                                         <thead>
@@ -271,7 +277,7 @@
                                                                 <th class="text-truncate">Spent</th>
                                                                 <th class="text-truncate">Amount</th>
                                                                 <th class="text-truncate">Type</th>
-                                                                
+
                                                             </tr>
                                                         </thead>
                                                         <tbody>
