@@ -58,6 +58,13 @@ const routes: Routes = [
         data: { animation: 'AppointmentAddComponent' }
     },
     {
+        path: 'add/:id',
+        component: AppointmentAddComponent,
+        resolve: {
+            Sas: AppointmentAddService
+        },
+    },
+    {
         path: 'add/chairapointment',
         component: AppointmentAddComponent,
         resolve: {

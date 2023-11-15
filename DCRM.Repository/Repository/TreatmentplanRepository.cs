@@ -22,7 +22,7 @@ namespace DCRM.Repository.Repository
         public List<Treatmentplans> GetAll()
         {
             List<Treatmentplans> treatmentplans = new List<Treatmentplans>();
-            treatmentplans = _contex.Treatmentplans.Where(x=>x.Status==1).OrderByDescending(x => x.Id).ToList();
+            treatmentplans = _contex.Treatmentplans.Where(x=>x.Status==1).OrderByDescending(x => x.Sitting_Status).ToList();
             return treatmentplans;
 
         }
@@ -32,9 +32,36 @@ namespace DCRM.Repository.Repository
             return _contex.Treatmentplans.Where(x => x.Patient_Id == patientId && x.Status == 1).OrderByDescending(x => x.Id).ToList();
         }
 
-        public Treatmentplans GetById(long id)
+        public Treatmentplans Get(long id)
         {
             return _contex.Treatmentplans.Where(x => x.Id == id).FirstOrDefault();
+        }
+
+        public TreatmentplanDto Edit(long id)
+        {
+            var lnQuery=(from t in _contex.Treatmentplans
+                        join te in _contex.Teethinfo on t.Id equals te.Treatmentplans_Id
+                        where t.Id == id
+                        select new { t, te }).SingleOrDefault();
+            TreatmentplanDto treatmentplan = new TreatmentplanDto();
+            if (lnQuery != null)
+            {
+                treatmentplan.Estimated_Amount = lnQuery.t.Estimated_Amount;
+                treatmentplan.PatientId = lnQuery.t.Patient_Id;
+                treatmentplan.TreatmentStatus = lnQuery.t.Treatment_Status.ToString();
+                treatmentplan.Id = lnQuery.t.Id;
+                treatmentplan.Amount = lnQuery.t.Amount;
+                treatmentplan.Courtesy = lnQuery.t.Courtesy;
+                treatmentplan.JobId = lnQuery.t.Job_Id;
+                treatmentplan.Job = lnQuery.t.Job;
+                treatmentplan.Teeth_id = lnQuery.te.Teeth_Id;
+                treatmentplan.TothNot = lnQuery.te.Toth_Note;
+                treatmentplan.Doctor = lnQuery.t.Doctor;
+                treatmentplan.Type = lnQuery.te.Type;
+                treatmentplan.Teeth_Number_Note = lnQuery.te.Teeth_Number_Note;
+
+            }
+            return treatmentplan;
         }
 
         public int Create(TreatmentplanRequest request)
@@ -101,7 +128,16 @@ namespace DCRM.Repository.Repository
             _contex.Treatmentplans.Update(treatmentplan);
             _contex.SaveChanges();
         }
-
+        public void UpdateSittingValue(Treatmentplans treatmentplan)
+        {
+            var treatment = _contex.Treatmentplans.AsNoTracking().Where(x => x.Id == treatmentplan.Id).FirstOrDefault();
+            if (treatment != null)
+            {
+                treatment.Sitting_Status = treatmentplan.Sitting_Status;
+                _contex.Treatmentplans.Update(treatment);
+                _contex.SaveChanges();
+            }
+        }
         public void Delete(long id)
         {
             var treatmentplan = _contex.Treatmentplans.Where(x => x.Id == id).FirstOrDefault();

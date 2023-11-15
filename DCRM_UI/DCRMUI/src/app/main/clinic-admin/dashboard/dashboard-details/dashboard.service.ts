@@ -40,7 +40,7 @@ export class DashboardService implements Resolve<any> {
     /**
      * Get rows
      */
-    getDataTableRows(): Promise<any[]> {
+    getDataTableRows1(): Promise<any[]> {
 
         let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
         let type = currentUser.role == "Admin" ? "User" : currentUser.role;
@@ -51,6 +51,23 @@ export class DashboardService implements Resolve<any> {
             });
             const requestOptions = { headers: headers };
             this._httpClient.get(`${environment.apiUrl}/Dashboard/Get` + type +`Dashboard`, requestOptions).subscribe((response: any) => {
+                this.rows = response;
+                this.onDoctorListChanged.next(this.rows);
+                resolve(this.rows);
+            }, reject);
+        });
+    }
+    getDataTableRows(): Promise<any[]> {
+
+        let currentUser = <User>JSON.parse(localStorage.getItem('currentUser'));
+        let type = currentUser.role == "Admin" ? "User" : currentUser.role;
+        return new Promise((resolve, reject) => {
+            const headers = new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${currentUser.jwtToken}`
+            });
+            const requestOptions = { headers: headers };
+            this._httpClient.get(`${environment.apiUrl}/Dashboard/Get`, requestOptions).subscribe((response: any) => {
                 this.rows = response;
                 this.onDoctorListChanged.next(this.rows);
                 resolve(this.rows);

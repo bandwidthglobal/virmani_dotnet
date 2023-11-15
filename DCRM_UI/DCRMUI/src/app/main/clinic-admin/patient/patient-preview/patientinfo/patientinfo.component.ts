@@ -1,4 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PatientPreviewService } from '../patient-preview.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-patientinfo',
@@ -10,14 +14,16 @@ export class PatientinfoComponent implements OnInit {
   public calendarRef = [];
   public tempRef = [];
   public checkAll = true;
-
+    private _unsubscribeAll: Subject<any>;
+    apiData: any;
+    returnUrl: string;
   /**
    * Constructor
    *
    * @param {CoreSidebarService} _coreSidebarService
    * @param {CalendarService} _calendarService
    */
-  constructor() {}
+    constructor(private _patientPreviewService: PatientPreviewService, private route: ActivatedRoute,) {}
 
   // Lifecycle Hooks
   // -----------------------------------------------------------------------------------------------------
@@ -25,11 +31,16 @@ export class PatientinfoComponent implements OnInit {
   /**
    * On init
    */
-    ngOnInit(): void {
-       
-    // Subscribe to Calendar changes
-    //this._calendarService.onCalendarChange.subscribe(res => {
-    //  this.calendarRef = res;
-    //});
+    subscription: any;
+    ngOnInit() {
+        let patientId = 0;
+        this.subscription = this.route.params.subscribe(params => {
+            patientId = params['id']
+        });
+        this._patientPreviewService.getPatientPreview(patientId).subscribe(response => {
+            this.apiData = response;
+            debugger;
+           
+        })
   }
 }

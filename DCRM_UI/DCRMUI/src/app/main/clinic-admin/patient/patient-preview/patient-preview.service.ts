@@ -74,7 +74,15 @@ export class PatientPreviewService implements Resolve<any> {
             }, reject);
         });
     }
-
+    getPatientPreview(id: any) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        const url = `${environment.apiUrl}/Patient/Get/${id}`;
+        return this._httpClient.get(url, requestOptions);
+    }
     getPatientData(id: number): Promise<any[]> {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -353,5 +361,14 @@ export class PatientPreviewService implements Resolve<any> {
         });
         const requestOptions = { headers: headers };
         return this._httpClient.get(`${environment.apiUrl}/Doctor/Get/Names`, requestOptions);
+    }
+
+    updateSittingStatus(payload: any): Observable<any> {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.post(`${environment.apiUrl}/Treatmentplan/UpdateSitting`, payload, requestOptions);
     }
 }

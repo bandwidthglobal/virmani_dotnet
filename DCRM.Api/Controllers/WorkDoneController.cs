@@ -10,7 +10,7 @@ using System.Reflection.Metadata;
 
 namespace DCRM.Api.Controllers
 {
-    [Authorize("User")]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class WorkDoneController : ControllerBase

@@ -41,7 +41,7 @@ import { MaskModule } from 'app/shared-common/directives/mask/mask.module';
 import { TreatmentPlanFormComponent } from './patient-preview/treatment-paln/form-page/treatment-plan-form.component';
 import { HotCodeMenuComponent } from './patient-preview/treatment-paln/form-page/hot-code-menu.component';
 import { PatientPriscriptionsViewComponent } from './patient-prescriptions-view/patient-prescriptions-view.component';
-
+import { ComomnMasterData } from "../../clinic-admin/comomnmasterdata";
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
@@ -135,7 +135,7 @@ export const routes: Routes = [] = [
         MatIconModule,
         MatButtonModule,
     ],
-    providers: [PatientListService, PatientPreviewService, PatientEditService, PatientAddService, PatientinAppointmentsService],
+    providers: [PatientListService, ComomnMasterData, PatientPreviewService, PatientEditService, PatientAddService, PatientinAppointmentsService],
     exports: [PatientListComponent]
 })
 export class PatientDataModule { }

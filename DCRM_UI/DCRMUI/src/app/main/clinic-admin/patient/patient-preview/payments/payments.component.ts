@@ -37,6 +37,7 @@ export class PaymentsComponent implements OnInit {
     public rows;
     public tempFilterData;
     public previousStatusFilter = '';
+    amountDue: any;
     receiveRows: any;
     isOpen: boolean = true;
     isPaymentReceiveList = false;
@@ -47,7 +48,7 @@ export class PaymentsComponent implements OnInit {
     @Input() ReceiveFormInput?: ReceiveFormModel = {
         id: 0,
         payment_History_Id: 0,
-        payment_Type: ''
+        payment_Type: 'Cash'
     };
     /**
      * Constructor
@@ -130,38 +131,19 @@ export class PaymentsComponent implements OnInit {
             this.tempFilterData = this.rows;
             this.loading = false;
         });
-        //this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
-
-        //    if (config.layout.animation === 'zoomIn') {
-        //        setTimeout(() => {
-
-        //            this._patientListService.onPaymentChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-        //                this.data = response;
-        //                this.rows = this.data;
-        //                this.tempData = this.rows;
-        //                this.tempFilterData = this.rows;
-        //            });
-        //        }, 450);
-        //    } else {
-        //        this._patientListService.onPaymentChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
-        //            this.data = response;
-        //            this.rows = this.data;
-        //            this.tempData = this.rows;
-        //            this.tempFilterData = this.rows;
-        //            debugger;
-        //        });
-        //    }
-        //});
     }
-    addReceive(id, patientId) {
+    addReceive(id, patientId, balance) {
         this.isPaymentReceiveList = false;
+        this.amountDue = balance;
         this.receiveFormData = new ReceiveForm(this.ReceiveFormInput);
+        this.receiveFormData.price.setValue(balance);
         this.paymentId = id;
         this.patientId = patientId;
         this.receiveElm.classList.add('show');
         this.receiveElm.style.width = '100vw';
     }
     close(): void {
+        this.error = '';
         this.receiveElm.classList.remove('show');
         this.receiveElm.classList.remove('show');
         setTimeout(() => {
@@ -170,14 +152,22 @@ export class PaymentsComponent implements OnInit {
     }
     saveReceiveForm() {
         this.submitted = true;
-
         this._commonValidationService.validateAllFormFields(this.receiveFormData);
-
+        if (this.receiveFormData.price.value=='') {
+            this.error = "Please enter valid price";
+            return false;
+        }
         if (this.receiveFormData.invalid) {
             return;
         }
+        if (this.receiveFormData.price.value > this.amountDue) {
+            this.error = "Price should not be greater than amount due.";
+            return false;
+        }
+        this.error = '';
         const payload: any = this.receiveFormData.getRawValue();
         payload.payment_History_Id = this.paymentId;
+
 
         this.loading = true;
         this._patientListService.savePayment(payload).pipe(catchError((error) => {
@@ -213,8 +203,10 @@ export class PaymentsComponent implements OnInit {
             debugger;
         });
     }
+   
     getPaymentReceives(id) {
         this.isPaymentReceiveList = true;
+       
         this._patientListService.getPaymentReceives(id).subscribe(resp => {
             this.receiveRows = resp;
             this.receiveElm.classList.add('show');

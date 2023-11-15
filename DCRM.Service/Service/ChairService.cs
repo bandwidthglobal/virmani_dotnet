@@ -68,6 +68,37 @@ namespace DCRM.Service.Service
             return chairList;
         }
 
+        public List<ChairDto> GetChairsForDropdown(long userId)
+        {
+            List<ChairDto> chairList = new List<ChairDto>();
+            var chairs = _repository.GetAll().Where(x=>x.User_Id== userId && x.Status==1).OrderByDescending(x => x.Id ).ToList();
+            foreach (var item in chairs)
+            {
+                ChairDto chair = new ChairDto();
+                chair.Id = item.Id;
+                chair.User_Id = item.User_Id;
+                chair.Name = item.Name;
+                chair.Appoinment_Limit = Convert.ToString(item.Appoinment_Limit);
+                chair.Address = item.Address;
+                chair.Status = "Active";
+                if (item.Status == 0)
+                {
+                    chair.Status = "Inactive";
+                }
+                var doctor = _doctorRepository.Get(item.Doctor_Id);
+                if (doctor != null)
+                {
+                    chair.DoctorName = doctor.Name;
+                }
+                else
+                {
+                    chair.DoctorName = "";
+                }
+                chairList.Add(chair);
+            }
+            return chairList;
+        }
+
         public void Update(Chair chare)
         {
             _repository.Update(chare);

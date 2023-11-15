@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DCRM.Common.Entity;
+using System;
 using System.Collections.Generic;
 
 namespace DCRM.Common.Dto;
@@ -45,4 +46,6 @@ public  class TreatmentplanDto
     public string DoctorName { get; set; }
     public string? TothNot { get; set; }
     public string? TeethNumber { get; set; }
+
+    public List<WorkDoneDto>? Workdones { get; set; }
 }

@@ -47,7 +47,7 @@ namespace DCRM.Service.Service
                 {
                     labDataDto.DoctorName = doctor;
                 }
-                var treatmentPaln = _treatmentplanRepository.GetById(item.Treatment_Id);
+                var treatmentPaln = _treatmentplanRepository.Get(item.Treatment_Id);
                 if (treatmentPaln!=null)
                 {
                     labDataDto.TreatmentCode = treatmentPaln.Job;

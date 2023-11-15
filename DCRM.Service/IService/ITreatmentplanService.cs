@@ -13,7 +13,7 @@ namespace DCRM.Service.IService
     {
         List<Treatmentplans> GetAll(int patientId);
 
-        Treatmentplans GetById(int id);
+        Treatmentplans Get(int id);
 
         long Create(TreatmentplanRequest request);
 
@@ -31,5 +31,9 @@ namespace DCRM.Service.IService
         List<DiagnosisDataDto> GetDiagnosisData();
 
         List<Teeth> GetTeethsByCategory(int categoryId);
+
+        TreatmentplanDto Edit(long id);
+
+        void UpdateSittingValue(Treatmentplans treatmentplan);
     }
 }

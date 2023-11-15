@@ -18,7 +18,7 @@ using DCRM.Common.Entities;
 
 namespace DCRM.Api.Controllers
 {
-    [Authorize("User")]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase

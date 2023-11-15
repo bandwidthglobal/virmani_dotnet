@@ -37,6 +37,14 @@ const routes: Routes = [
         data: { animation: 'PrescriptionAddComponent' }
     },
     {
+        path: 'add/:id',
+        component: PrescriptionAddComponent,
+        resolve: {
+            Sas: PrescriptionAddService
+        },
+        data: { animation: 'PrescriptionAddComponent' }
+    },
+    {
         path: 'list',
         component: PrescriptionListComponent,
         resolve: {

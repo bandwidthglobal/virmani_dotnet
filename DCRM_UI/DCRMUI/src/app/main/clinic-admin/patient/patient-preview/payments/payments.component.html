@@ -100,10 +100,11 @@
                     </ngx-datatable-column>
                     <ngx-datatable-column name="Add payment" [sortable]="false">
                         <ng-template ngx-datatable-cell-template let-row="row">
-                            <div class="d-flex align-items-center col-actions">
+                            <span ngbtooltip="Set Status" *ngIf="row.balance==0" class="badge brd-20 badge-success-soft mt-4px ng-star-inserted" ng-reflect-ngb-tooltip="Set Status"><i class="fa fa-check mt-4px"></i>Paid</span>
+                            <div class="d-flex align-items-center col-actions" *ngIf="row.balance>0">
                                 <a class="btn btn-primary btn-sm btn-add-new ng-tns-c273-4 waves-effect waves-float waves-light"
                                    container="body"
-                                   (click)="addReceive(row.id,row.patientId)"
+                                   (click)="addReceive(row.id,row.patientId,row.balance)"
                                    placement="top"
                                    style="margin-top:5px;"
                                    ngbTooltip="Receive">
@@ -143,12 +144,21 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" *ngIf="isPaymentReceiveList==false">Receive Payment</h5>
-                    <h5 class="modal-title" *ngIf="isPaymentReceiveList==true">Receive Payment Details</h5>
+                    <h5 class="modal-title" *ngIf="isPaymentReceiveList==true">Receive Payment Details</h5><br />
+                   
                     <button type="button" class="close" (click)="close()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+
                 </div>
                 <div class="modal-body" style="overflow:auto" *ngIf="isPaymentReceiveList==false">
+                    <p *ngIf="isPaymentReceiveList==false"><strong>Amount Due:</strong> {{amountDue}}</p>
+
+                    <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+                        <div class="alert-body">
+                            <p>{{ error }}</p>
+                        </div>
+                    </ngb-alert>
                     <form id="form-modal-todo"
                           class="todo-modal needs-validation"
                           (ngSubmit)="(todoForm.form.valid)"
@@ -162,8 +172,7 @@
                             <div class="form-group">
                                 <label for="payment_Type">Payment type *</label>
                                 <select class="form-control" [formControl]="receiveFormData.payment_Type">
-                                    <option value="">Select Payment Type</option>
-                                    <option value="Cash">Cash</option>
+                                    <option selected value="Cash">Cash</option>
                                     <option value="Cheque">Cheque</option>
                                     <option value="NEFT">NEFT</option>
                                     <option value="POS">POS</option>
@@ -198,8 +207,8 @@
                                    [footerHeight]="50"
                                    [scrollbarH]="true">
                         <ngx-datatable-column name="#" prop="id" [width]="50">
-                            <ng-template let-id="value" ngx-datatable-cell-template>
-                                {{ id }}
+                            <ng-template let-id="value" ngx-datatable-cell-template let-row="row">
+                                {{ row.id }}
                             </ng-template>
                         </ngx-datatable-column>
                         <ngx-datatable-column name="Date" prop="created_At">

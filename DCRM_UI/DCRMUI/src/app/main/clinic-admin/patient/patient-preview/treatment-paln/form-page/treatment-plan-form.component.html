@@ -29,7 +29,7 @@
                 <!-- <pre>{{ Teeth | json }}</pre> -->
                 <ul [id]="categoryID">
                     <ng-container *ngFor="let t of Teeth; let idx = index;">
-                       
+
                         <ng-container *ngIf="!formData.get('milk_teeth').value">
                             <li class="teethord{{ idx+1 }}">
                                 <a (click)="getRecord_teechinfo(t.id, t.teeth_Note, t.image)" href="javascript://"
@@ -138,15 +138,18 @@
                 <div class="col-sm-12">
                     <div class="box-footer">
                         <div class="float-right" id="save_divs">
+                            <button type="button" class="btn btn-danger mr-1"  (click)="Cancel();">
+                                Cancel
+                            </button>
                             <button (click)="saveForm()" type="button" class="btn btn-primary">Save</button>
                         </div>
                     </div>
-                    <div class="float-right" id="view_divs" style="display: none;">
+                    <!--<div class="float-right" id="view_divs" >
                         <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="closeview();">
                             Fill
                             Later
                         </button>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
