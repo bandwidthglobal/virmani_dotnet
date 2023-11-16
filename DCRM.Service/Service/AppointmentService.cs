@@ -50,6 +50,70 @@ namespace DCRM.Service.Service
             var appointment = _appointmentRepository.Get(id);
             return appointment;
         }
+        public AppointmentDto GetAppointmentDetails(long id)
+        {
+            AppointmentDto appointmentDto = new AppointmentDto();
+            var tdAppointMent = from a in _appointmentRepository.GetAll().ToList()
+                                join p in _patientRepository.GetAll().ToList() on a.Patient_Id equals p.Id
+                                join d in _repository.GetAll().ToList() on a.Doctor_Id equals d.Id
+                                where a.Id == id
+                                select new
+                                {
+                                    Id = a.Id,
+                                    Appointment_Status = a.Appointment_Status,
+                                    Doctor_Name = d.Name,
+                                    Doctor_Id = d.Id,
+                                    Patient_Name = p.Name,
+                                    Patient_Id = p.Id,
+                                    Start_Time = a.Start_Time,
+                                    End_Time = a.End_Time,
+                                    Chair = a.Chair,
+                                    Number_Of_Slot = a.Number_Of_Slot,
+                                    Serial_Id = a.Serial_Id,
+                                    Type = a.Type,
+                                    Chamber_Id = a.Chamber_Id,
+                                    Cause = a.Cause,
+                                    Date = a.Date,
+                                    Slot_Time = a.Slot_Time,
+                                    Email = p.Email,
+                                    Phone = p.Mobile,
+                                    Mr_Number = p.Mr_Number,
+                                    Meeting_Notes=a.Meeting_Notes,
+                                    Age = p.Age,
+                                    Weight = p.Weight
+
+                                };
+            if (tdAppointMent!=null)
+            {
+                foreach (var appointment in tdAppointMent)
+                {
+                    appointmentDto.Id = appointment.Id;
+                    appointmentDto.Serial_Id = appointment.Serial_Id;
+                    appointmentDto.Doctor_Id = appointment.Doctor_Id;
+                    appointmentDto.Doctor_Name = appointment.Doctor_Name;
+                    appointmentDto.Date = appointment.Date;
+                    appointmentDto.Start_Time = appointment.Start_Time;
+                    appointmentDto.End_Time = appointment.End_Time;
+                    appointmentDto.Type = appointment.Type;
+                    appointmentDto.Patient_Id = appointment.Patient_Id;
+                    appointmentDto.Patient_Name = appointment.Patient_Name;
+                    appointmentDto.Slot_Time = appointment.Slot_Time;
+                    appointmentDto.Number_Of_Slot = appointment.Number_Of_Slot;
+                    appointmentDto.Cause = appointment.Cause;
+                    appointmentDto.Meeting_Notes = appointment.Meeting_Notes;
+                    Patientse patientse = new Patientse();
+                    patientse.Name = appointment.Patient_Name;
+                    patientse.Email = appointment.Email;
+                    patientse.Mobile = appointment.Phone;
+                    patientse.Mr_Number = appointment.Mr_Number;
+                    patientse.Age = appointment.Age;
+                    patientse.Weight = appointment.Weight;
+                    appointmentDto.Patient = patientse;
+                }
+            }
+          
+            return appointmentDto;
+        }
         public List<AppointmentDto> GetByPatientId(int patientId)
         {
             List<AppointmentDto> appointmentList = new List<AppointmentDto>();
@@ -73,10 +137,10 @@ namespace DCRM.Service.Service
                                    Chair = c.Name,
                                    Slot_Time = s.Slot_Time,
                                    Cause = s.Cause
-                     };
+                               };
 
             AppointmentDto appointment = null;
-            appointments = appointments.OrderByDescending(x=>x.Id);
+            appointments = appointments.OrderByDescending(x => x.Id);
             foreach (var item in appointments)
             {
                 appointment = new AppointmentDto();
@@ -117,7 +181,7 @@ namespace DCRM.Service.Service
                                     Slot_Time = a.Slot_Time,
                                     Email = p.Email,
                                     Phone = p.Mobile,
-                                    Mr_Number= p.Mr_Number
+                                    Mr_Number = p.Mr_Number
 
                                 };
 
@@ -141,7 +205,7 @@ namespace DCRM.Service.Service
                 patientse.Mobile = appointment.Phone;
                 patientse.Mr_Number = appointment.Mr_Number;
 
-                appointmentDto.Patient= patientse;
+                appointmentDto.Patient = patientse;
                 appointmentList.Add(appointmentDto);
             }
             return appointmentList;
@@ -168,7 +232,7 @@ namespace DCRM.Service.Service
                          Doctor_Id = d.Id,
                          Patient_Name = r.Name,
                          Patient_Id = r.Id,
-                         Address=r.Present_Address,
+                         Address = r.Present_Address,
                          Start_Time = s.Start_Time,
                          End_Time = s.End_Time,
                          Chair = s.Chair,
@@ -314,7 +378,7 @@ namespace DCRM.Service.Service
             return assaignTimes;
         }
 
-        public void Create(AppointmentRequest request)
+        public long Create(AppointmentRequest request)
         {
 
             if (request.Patient_Id == 0)
@@ -324,6 +388,7 @@ namespace DCRM.Service.Service
                 patientse.Email = request.Email;
                 patientse.Age = request.Age;
                 patientse.Mobile = request.Phone;
+                patientse.Weight = request.Weight==null?0:Convert.ToInt32(request.Weight);
                 patientse.User_Id = request.User_Id;
                 patientse.Sex = request.Gender;
                 PatientsContact patientsContact = new PatientsContact();
@@ -368,7 +433,9 @@ namespace DCRM.Service.Service
             appointment.Is_Start = request.Is_Start;
             appointment.Is_Delete = request.Is_Delete;
             appointment.Created_At = DateTime.Now;
-            _appointmentRepository.Create(appointment);
+            long id = _appointmentRepository.Create(appointment);
+            return id;
+
         }
         public void Update(Appointment request)
         {

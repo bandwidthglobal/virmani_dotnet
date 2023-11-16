@@ -57,8 +57,14 @@ namespace DCRM.Api.Controllers
         {
             return  _appointmentService.Get(id);
         }
-
+        [HttpGet("GetAppointmentDetails/{id}")]
+        public AppointmentDto GetAppointmentDetails(long id)
+        {
+            var appointMent= _appointmentService.GetAppointmentDetails(id);
+            return appointMent;
+        }
         
+
         [HttpPost("ChairViewsSearch")]
         public AppointmentChairViewDto ChairViewsSearch(AppointmentChairViewSearchParameters parameters)
         {
@@ -71,8 +77,8 @@ namespace DCRM.Api.Controllers
         [HttpPost("Create")]
         public IActionResult Create(AppointmentRequest appointment)
         {
-            _appointmentService.Create(appointment);
-            return Ok();
+          long appointmentId=_appointmentService.Create(appointment);
+            return Ok(appointmentId);
 
         }
 

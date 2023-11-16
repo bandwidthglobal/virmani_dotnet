@@ -12,6 +12,14 @@ import { CoreCommonModule } from '@core/common.module';
 import { CoreDirectivesModule } from '@core/directives/directives';
 import { CorePipesModule } from '@core/pipes/pipes.module';
 import { CoreSidebarModule } from '@core/components';
+import { ComomnMasterData } from "../../clinic-admin/comomnmasterdata";
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { SharedCommonModule } from 'app/shared-common/shared-ui.module';
+import { MaskModule } from 'app/shared-common/directives/mask/mask.module';
+import { HotCodeMenuComponent } from './patient-preview/treatment-paln/form-page/hot-code-menu.component';
 
 import { PatientListComponent } from 'app/main/clinic-admin/patient/patient-list/patient-list.component';
 import { PatientListService } from 'app/main/clinic-admin/patient/patient-list/patient-list.service';
@@ -35,17 +43,10 @@ import { PaymentsComponent } from 'app/main/clinic-admin/patient/patient-preview
 import { TreatmentPalnComponent } from 'app/main/clinic-admin/patient/patient-preview/treatment-paln/treatment-paln.component';
 import { WorkdoneHistoryComponent } from 'app/main/clinic-admin/patient/patient-preview/workdonehistory/workdonehistory.component';
 import { PatientFormComponent } from './patient-form/patient-form.component';
-import { SharedCommonModule } from 'app/shared-common/shared-ui.module';
-import { MaskModule } from 'app/shared-common/directives/mask/mask.module';
-
 import { TreatmentPlanFormComponent } from './patient-preview/treatment-paln/form-page/treatment-plan-form.component';
-import { HotCodeMenuComponent } from './patient-preview/treatment-paln/form-page/hot-code-menu.component';
 import { PatientPriscriptionsViewComponent } from './patient-prescriptions-view/patient-prescriptions-view.component';
-import { ComomnMasterData } from "../../clinic-admin/comomnmasterdata";
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatTreeModule } from '@angular/material/tree';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import { PatientDownloadComponent } from 'app/main/clinic-admin/patient/patient-download/patient-download.component';
+import { PatientDownloadService } from 'app/main/clinic-admin/patient/patient-download/patient-download.service';
 
 // routing
 import { RouterModule, Routes } from '@angular/router';
@@ -88,6 +89,14 @@ export const routes: Routes = [] = [
             Ses: PatientPreviewService
         },
     }
+    ,
+    {
+        path: 'download/:id',
+        component: PatientDownloadComponent,
+        resolve: {
+            Ses: PatientDownloadService
+        },
+    }
 ];
 
 @NgModule({
@@ -121,21 +130,14 @@ export const routes: Routes = [] = [
         NgbModule,
         NgSelectModule,
         CoreSidebarModule,
-
         SharedCommonModule,
         MaskModule,
-
-        
         MatDialogModule,
-        // PlatformModule,
-        // NestedTreeControl,
-        // Component,
-        // MatTreeNestedDataSource,
         MatTreeModule,
         MatIconModule,
         MatButtonModule,
     ],
-    providers: [PatientListService, ComomnMasterData, PatientPreviewService, PatientEditService, PatientAddService, PatientinAppointmentsService],
+    providers: [PatientListService, ComomnMasterData, PatientPreviewService, PatientEditService, PatientAddService, PatientinAppointmentsService, PatientDownloadService],
     exports: [PatientListComponent]
 })
 export class PatientDataModule { }

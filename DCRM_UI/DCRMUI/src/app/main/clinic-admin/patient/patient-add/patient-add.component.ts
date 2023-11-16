@@ -29,7 +29,6 @@ export class PatientAddComponent implements OnInit, OnDestroy {
     }
 
     redirect(event) {
-        console.log('> redirect ---> ', event);
         this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/patient/list';
         this.router.navigateByUrl(this.returnUrl);
     }

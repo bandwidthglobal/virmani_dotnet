@@ -22,7 +22,7 @@ namespace DCRM.Service.IService
 
         List<AppointmentDto> GetByPatientId(int patientId);
 
-        void Create(AppointmentRequest request);
+        long Create(AppointmentRequest request);
 
         void Update(Appointment request);
 
@@ -41,5 +41,7 @@ namespace DCRM.Service.IService
         void ChangeAppointmentStatus(long id, int status);
 
         void SetSchedule(ScheduleTimeRequest scheduleTime);
+
+        AppointmentDto GetAppointmentDetails(long id);
     }
 }

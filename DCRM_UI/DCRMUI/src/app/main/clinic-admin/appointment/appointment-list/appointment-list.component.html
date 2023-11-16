@@ -97,17 +97,17 @@
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <div class="d-flex align-items-center col-actions">
                                 <!--<a class="mr-1"
-                                   routerLink="/admin/appointment/preview/{{ row.id }}"
-                                   container="body"
-                                   placement="top"
-                                   ngbTooltip="View Appointment">
-                                    <i size="18" data-feather="eye"></i>
-                                </a>-->
+       routerLink="/admin/appointment/preview/{{ row.id }}"
+       container="body"
+       placement="top"
+       ngbTooltip="View Appointment">
+        <i size="18" data-feather="eye"></i>
+    </a>-->
                                 <a class="mr-1"
                                    routerLink="/admin/appointment/edit/{{ row.id }}"
                                    container="body"
                                    placement="top"
-                                   ngbTooltip="Edit Appointment">
+                                   ngbTooltip="Edit">
                                     <i size="18" data-feather="edit"></i>
                                 </a>
                                 <a class="mr-1"
@@ -115,8 +115,15 @@
                                    (click)="delete(row.id)"
                                    container="body"
                                    placement="top"
-                                   ngbTooltip="Delete Staff">
+                                   ngbTooltip="Delete">
                                     <i size="18" data-feather="trash"></i>
+                                </a>
+                                <a class="mr-1"
+                                   href="javascript:void(0)"
+                                   container="body"
+                                   placement="top"
+                                   ngbTooltip="Download">
+                                   <i class="fa fa-download"></i>
                                 </a>
                             </div>
                         </ng-template>

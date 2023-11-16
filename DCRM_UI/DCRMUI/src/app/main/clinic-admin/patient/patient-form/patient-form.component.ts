@@ -35,7 +35,7 @@ export class PatientFormComponent implements OnInit, OnDestroy {
     };
     @Input() FormAction?: 'add' | 'edit' = 'add';
     @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
-   /* ITitleList: Array<any> = [];*/
+    /* ITitleList: Array<any> = [];*/
     ITitleList: Array<any> = [
         { id: 'Mr', text: 'Mr' },
         { id: 'Mrs', text: 'Mrs' },
@@ -145,7 +145,7 @@ export class PatientFormComponent implements OnInit, OnDestroy {
             //reader.readAsDataURL(this.selectedImage);
         }
     }
-
+    patientId: any;
     saveForm(): void {
         this.submitted = true;
         this._commonValidationService.validateAllFormFields(this.formData);
@@ -162,10 +162,8 @@ export class PatientFormComponent implements OnInit, OnDestroy {
                 e.balance_Amount = e.balance_Amount.toString();
             });
             this.loading = true;
-            debugger;
 
             this._patientFormService.save(payload, this.FormAction).pipe(catchError((error) => {
-                // console.log('> error ---> ', error);
                 this.loading = false;
                 this.error = error;
                 this.callBackEvent.emit({
@@ -175,8 +173,14 @@ export class PatientFormComponent implements OnInit, OnDestroy {
                 });
                 return '';
             })).subscribe((response) => {
-                // console.log('> save ---> ', response);
+                this.patientId = response;
                 this.loading = false;
+                if (this.FormAction === 'add') {
+                    let a = document.createElement('a');
+                    a.href = "/admin/patient/download/" + response.toString();
+                    a.target = "_blank";
+                    a.click();
+                }
                 this.callBackEvent.emit({
                     status: 'failure',
                     data: response,

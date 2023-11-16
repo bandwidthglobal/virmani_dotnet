@@ -72,12 +72,6 @@ namespace DCRM.Common.Dto
         public string title { get; set; }
         public string start { get; set; }
         public string end { get; set; }
-        //      id? = undefined;
-        //url: string;
-        //title: string = '';
-        //start: string;
-        //end: string;
-        //allDay = false;
-        //calendar: '';
+       
     }
 }

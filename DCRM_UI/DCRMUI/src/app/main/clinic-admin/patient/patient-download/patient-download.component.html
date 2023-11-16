@@ -1,0 +1,114 @@
+
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <section class="invoice-add-wrapper">
+            <div class="row invoice-add">
+                <!-- Invoice Add Left starts -->
+                <div class="col-xl-12 col-md-8 col-12">
+                    <div class="card invoice-preview-card">
+                        <!-- Header starts -->
+                        <div class="card-body invoice-padding pb-0">
+                            <div class="box-body pt-1 pb-1">
+
+                                <div class="row">
+                                    <h4 class="col-12">
+                                        <button (click)="printDiv()" type="submit" class="prevr-btn btn btn-primary btn-sm pull-right mr-15"><i class="fa fa-print"></i> Print</button>
+                                    </h4>
+                                </div>
+
+                                <div style="width:100%;" id="dvPrint">
+                                    <h3 style="text-align:center;height:50px;">Patient Details</h3>
+                                    <table width="100%" style="padding:20px;">
+                                        <tr>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight:bold;margin-bottom:30px;">Name</span><span style="margin-left:30px;"><br /></span> {{apiData.title}}.{{apiData.name}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Sex</span><span style="margin-left:30px;"><br /></span> {{apiData.sex}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">DOB</span><span style="margin-left:30px;"><br /></span> {{apiData.dob}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Guardian</span><span style="margin-left:30px;"><br /></span> {{apiData.guardian}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Age</span><span style="margin-left:30px;"></span><br /> {{apiData.age}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Weight</span><span style="margin-left:30px;"></span><br /> {{apiData.weight}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="padding-bottom:30px!important"><span style="font-weight:bold">Present Address</span><span style="margin-left:30px;"></span><br /> {{apiData.present_Address}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight:bold">Permanent Address</span><span style="margin-left:30px;"></span> <br />{{apiData.permanent_Address}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight:bold">Phone 1</span><span style="margin-left:30px;"></span><br /> {{apiData.pahone1}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight:bold">Phone 2</span><span style="margin-left:30px;"></span><br /> {{apiData.pahone2}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight:bold">Phone 3</span><span style="margin-left:30px;"></span><br /> {{apiData.pahone3}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-bottom:30px!important" colspan="2"><span style="font-weight:bold">Email</span><span style="margin-left:30px;"></span><br /> {{apiData.email}}</td>
+                                            <td style="padding-bottom:30px!important"> <span style="font-weight:bold">Email 2</span><span style="margin-left:30px;"></span><br /> {{apiData.email1}}</td>
+                                        </tr>
+                                    </table>
+
+                                    <table width="100%" style="padding:20px;">
+                                        <tr>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Physician</span><span style="margin-left:30px;"><br /></span> {{apiData.patientContacts[0].physician}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Referred By</span><span style="margin-left:30px;"></span><br /> {{apiData.patientContacts[0].reffered_By}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Doctor Name</span><span style="margin-left:30px;"></span><br /> {{apiData.patientContacts[0].doctor_Name}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Relationship Type</span><span style="margin-left:30px;"></span><br /> {{apiData.patientContacts[0].relationship_Type}}</td>
+                                        </tr>
+                                    </table>
+                                    <table width="100%" style="padding:20px;">
+                                        <tr>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Address R</span><span style="margin-left:30px;"><br /></span> {{apiData.patientContacts[0].address_R}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">City R</span><span style="margin-left:30px;"></span><br /> {{apiData.patientContacts[0].city_R}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Zip R</span><span style="margin-left:30px;"></span><br /> {{apiData.patientContacts[0].zip_R}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Country R</span><span style="margin-left:30px;"></span><br /> {{apiData.patientContacts[0].country_R}}</td>
+                                        </tr>
+                                    </table>
+
+                                    <table width="100%" style="padding:20px;">
+                                        <tr>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Address O</span><span style="margin-left:30px;"><br /></span> {{apiData.patientContacts[0].address_O}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">City O</span><span style="margin-left:30px;"></span><br /> {{apiData.patientContacts[0].city_O}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Zip O</span><span style="margin-left:30px;"></span><br /> {{apiData.patientContacts[0].zip_O}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Country O</span><span style="margin-left:30px;"></span><br /> {{apiData.patientContacts[0].country_O}}</td>
+                                        </tr>
+                                    </table>
+                                    <table width="100%" style="padding:20px;">
+                                        <tr>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Address Other</span><span style="margin-left:30px;"><br /></span> {{apiData.patientContacts[0].address_Other}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">City Other</span><span style="margin-left:30px;"></span><br /> {{apiData.patientContacts[0].city_Other}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Zip Other</span><span style="margin-left:30px;"></span><br /> {{apiData.patientContacts[0].zip_Other}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Country Other</span><span style="margin-left:30px;"></span><br /> {{apiData.patientContacts[0].country_Other}}</td>
+                                        </tr>
+                                    </table>
+                                    <table width="100%" style="padding:20px;">
+                                        <tr>
+                                            <td colspan="4" style="text-align: center; padding-bottom: 30px !important"><strong>Insurance Details</strong></td>
+                                        </tr>
+                                        <tr style="padding-bottom:30px!important">
+                                            <td><strong>Name</strong></td>
+                                            <td><strong>Amount</strong></td>
+                                            <td><strong>Spent</strong></td>
+                                            <td><strong>Amount</strong></td>
+                                            <td><strong>Type</strong></td>
+                                        </tr>
+
+                                        <tr *ngFor="let insurance of apiData.patientInsuranceLoans">
+                                            <td class="text-truncate">
+                                                <span class="fw-medium">{{insurance.name}}</span>
+                                            </td>
+                                            <td class="text-truncate"> {{insurance.amount}}</td>
+                                            <td class="text-truncate"> {{insurance.balance_Spent}}</td>
+                                            <td class="text-truncate"> {{insurance.balance_Amount}}</td>
+                                            <td class="text-truncate"> {{insurance.type}}</td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
+
+

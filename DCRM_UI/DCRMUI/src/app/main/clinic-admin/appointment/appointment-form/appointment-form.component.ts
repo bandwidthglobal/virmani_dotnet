@@ -191,7 +191,6 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
             else {
                 payload.appointment_Status = 0;
             }
-            debugger;
             this.loading = true;
             this._appointmentFormService.save(payload, this.FormAction).pipe(catchError((error) => {
                 this.loading = false;
@@ -204,6 +203,10 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
                 return '';
             })).subscribe((response) => {
                 this.loading = false;
+                let a = document.createElement('a');
+                a.href = "/admin/appointment/download/" + response.toString();
+                a.target = "_blank";
+                a.click();
                 this.callBackEvent.emit({
                     status: 'failure',
                     data: response,

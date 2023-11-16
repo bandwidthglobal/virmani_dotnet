@@ -1,0 +1,58 @@
+
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <section class="invoice-add-wrapper">
+            <div class="row invoice-add">
+                <div class="col-xl-12 col-md-8 col-12">
+                    <div class="card invoice-preview-card">
+                        <div class="card-body invoice-padding pb-0">
+                            <div class="box-body pt-1 pb-1">
+                                <div class="row">
+                                    <h4 class="col-12">
+                                        <button (click)="printDiv()" type="submit" class="prevr-btn btn btn-primary btn-sm pull-right mr-15"><i class="fa fa-print"></i> Print</button>
+                                    </h4>
+                                </div>
+
+                                <div style="width:100%;" id="dvPrint">
+                                    <h3 style="text-align:left;height:50px;">Appointment Details</h3>
+                                    <table width="100%" style="padding:20px;">
+                                        <tr>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight:bold;margin-bottom:30px;">Doctor Name</span><span style="margin-left:30px;"><br /></span><span style="width:150px">{{apiData.doctor_Name}}</span></td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Date</span><span style="margin-left:30px;"><br /></span>{{apiData.date}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Start Time</span><span style="margin-left:30px;"><br /></span>{{apiData.start_Time}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">End Time</span><span style="margin-left:30px;"><br /></span>{{apiData.end_Time}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Slot Time</span><span style="margin-left:30px;"><br /></span>{{apiData.slot_Time}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Number Of Slot</span><span style="margin-left:30px;"></span><br /> {{apiData.number_Of_Slot}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight: bold; margin-bottom: 30px; ">Cause</span><span style="margin-left:30px;"></span><br />{{apiData.cause}}</td>
+                                            <td colspan="2" style="padding-bottom:30px!important"><span style="font-weight:bold">Type</span><span style="margin-left:30px;"></span><br />{{apiData.type}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight:bold">Patient Name</span><span style="margin-left:30px;"></span><br />{{apiData.patient.name}}</td>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight:bold">Age</span><span style="margin-left:30px;"></span><br /> {{apiData.patient.age}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight:bold">Weight</span><span style="margin-left:30px;"></span><br /> {{apiData.patient.weight}}</td>
+                                            <td style="padding-bottom:30px!important"> <span style="font-weight:bold">Email</span><span style="margin-left:30px;"></span><br />{{apiData.patient.email}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-bottom:30px!important"><span style="font-weight:bold">Phone</span><span style="margin-left:30px;"></span><br />{{apiData.patient.mobile}}</td>
+                                            <td style="padding-bottom:30px!important"> <span style="font-weight:bold">Meeting Notes</span><span style="margin-left:30px;"></span><br />{{apiData.meeting_Notes}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+

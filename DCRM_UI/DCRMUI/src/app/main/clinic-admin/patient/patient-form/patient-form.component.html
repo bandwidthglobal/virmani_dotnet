@@ -1,5 +1,6 @@
 ﻿<div class="content-wrapper container-xxl p-0">
     <div class="content-body">
+        <a id="printPatient" target="_blank" style="display:none" href="/admin/patient/download/{{patientId}}"></a>
         <section class="invoice-add-wrapper">
             <div class="row invoice-add">
                 <!-- Invoice Add Left starts -->
@@ -64,33 +65,30 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <shared-ui-select-input [label]="'Gender'" [control]="formData.sex"
-                                                        [options]="IGender" [valueKey]="'id'" [displaykey]="'text'"
-                                                        [submitted]="submitted"></shared-ui-select-input>
+                                                                            [options]="IGender" [valueKey]="'id'" [displaykey]="'text'"
+                                                                            [submitted]="submitted"></shared-ui-select-input>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <shared-ui-date-input [label]="'Date of Birth'"
-                                                        [control]="formData.dob"
-                                                        [submitted]="submitted"></shared-ui-date-input>
-                                                </div>
+
                                                 <div class="col-md-4">
                                                     <shared-ui-text-input [label]="'Age'" [control]="formData.age"
-                                                        [mask]="'numeric'"
-                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                                          [mask]="'numeric'"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <shared-ui-text-input [label]="'Weight'" [control]="formData.weight"
+                                                                          [mask]="'numeric'"
+                                                                          [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-md-4">
-                                                    <shared-ui-text-input [label]="'Weight'" [control]="formData.weight"
-                                                        [mask]="'numeric'"
-                                                        [submitted]="submitted"></shared-ui-text-input>
-                                                </div>
-                                                <div class="col-md-4">
+                                                
+                                                <div class="col-md-6">
                                                     <shared-ui-textarea [label]="'Present Address'"
                                                         [control]="formData.present_Address"
                                                         [submitted]="submitted"></shared-ui-textarea>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <shared-ui-textarea [label]="'Permanent Address'"
                                                         [control]="formData.permanent_Address"
                                                         [submitted]="submitted"></shared-ui-textarea>

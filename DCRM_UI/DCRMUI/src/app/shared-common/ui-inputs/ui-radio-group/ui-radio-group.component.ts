@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { validationMessages } from '../error-message';
+import { validationMessages } from '../../pipes/error-message';
 
 @Component({
   selector: 'shared-ui-radio-group',

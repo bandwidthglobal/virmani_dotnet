@@ -33,7 +33,9 @@ namespace DCRM.Repository.Repository
             Appointment appointment = _contex.Appointments.FirstOrDefault(x => x.Id == id && x.Is_Delete == 0);
             return appointment;
         }
-        public void Create(Appointment appointment)
+
+        
+        public long Create(Appointment appointment)
         {
             var appointmentDetails = _contex.Appointments.Where(x => x.Date == appointment.Date);
             int serialId = 0;
@@ -44,6 +46,8 @@ namespace DCRM.Repository.Repository
             
             _contex.Appointments.Add(appointment);
             _contex.SaveChanges();
+            var abc= appointment.Id;
+            return appointment.Id;
         }
 
 

@@ -89,6 +89,10 @@
                                    placement="top" ngbTooltip="Delete Patient">
                                     <i size="18" data-feather="trash"></i>
                                 </a>
+                                <a class="mr-1" href="/admin/patient/download/{{ row.id }}" target="_blank" container="body"
+                                   placement="top" ngbTooltip="downlaod">
+                                    <i size="18" data-feather="download"></i>
+                                </a>
                             </div>
                         </ng-template>
                     </ngx-datatable-column>
