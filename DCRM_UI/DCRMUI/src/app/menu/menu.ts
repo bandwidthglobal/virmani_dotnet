@@ -196,7 +196,7 @@ export const menu: CoreMenu[] = [
                 children: [
                     {
                         id: 'lists',
-                        title: 'Lists',
+                        title: 'List',
                         translate: 'MENU.APPS.APPOINTMENTS.Lists',
                         type: 'item',
                         icon: 'circle',
@@ -251,7 +251,24 @@ export const menu: CoreMenu[] = [
                         type: 'item',
                         icon: 'circle',
                         url: 'admin/reports'
-                    }
+                    },
+                    {
+                        id: 'patientsworkdones',
+                        title: 'Patient Wokdones',
+                        translate: 'MENU.APPS.REPORT.PatientWorkdones',
+                        type: 'item',
+                        icon: 'circle',
+                        url: 'admin/reports/patient-workdones'
+                    },
+                    //{
+                    //    id: 'patientworkdone',
+                    //    title: 'Patient Workdone',
+                    //    translate: 'MENU.APPS.REPORT.PatientWorkdone',
+                    //    type: 'item',
+                    //    icon: 'circle',
+                    //    url: 'admin/reports/patient-workdone'
+                    //}
+
                 ]
             },
 

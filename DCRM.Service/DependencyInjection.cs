@@ -81,6 +81,8 @@ namespace DCRM.Service
             services.AddScoped<IExperienceService, ExperienceService>();
             services.AddScoped<IForgotPasswordService, ForgotPasswordService>();
             services.AddScoped<ISettingService, SettingService>();
+
+            services.AddScoped<IReportService, ReportService>();
             #endregion
             return services;
         }

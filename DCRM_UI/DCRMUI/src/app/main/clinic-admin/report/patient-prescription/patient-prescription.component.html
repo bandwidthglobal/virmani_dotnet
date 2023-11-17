@@ -1,0 +1,129 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <!-- User List -->
+        <section class="users-list-wrapper">
+            <div class="card pd-25">
+                <div class="row">
+                    <div class="col-5">
+                        <div class="form-group">
+                            <label>Select Patient</label>
+                            <ng-select [items]="patientList"
+                                       [(ngModel)]="selectCustomSelected"
+                                       bindLabel="name"
+                                       bindValue="id"
+                                       [searchable]="true">
+                                
+                            </ng-select>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>From</label>
+                                    <input type="date" name="start" id="start" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>To</label>
+                                    <input type="date" name="start" id="end" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="col-2 mt-2">
+                        <button class="btn btn-primary btn-sm " style="margin-top:8px;" name="search" (click)="searchData()" value="search">
+                       <i class="fa fa-search"></i> Search</button>
+                    </div>
+                </div>
+
+
+                <div class="row mt-2">
+                    <div class="col-md-12 col-12">
+                        <strong> Work Don on 15-Nov-2023 Mr.Saini</strong>
+                        <hr />
+                        <div *ngIf="isNoData==true">
+                            <p>No data found to display</p>
+                        </div>
+                        <div *ngIf="isNoData==false">
+                            <p><strong>Dr. Raju Virmani</strong></p>
+                            <p class="ml-1">Impression be to taken after 3 weeks for 11-22 ziroconiya</p>
+                            <p class="ml-1">Clinical Oral Evaluations</p>
+                            <p class="ml-1"><strong>Prescription:</strong></p>
+                            <div class="row ">
+                                <div class="col-md-12 col-12">
+                                    <table width="100%">
+                                        <tr>
+                                            <td width="30">1. )</td>
+                                            <td> <strong class="text-danger"> Tablet Combiflam</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="30"></td>
+                                            <td>sfddsfs</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="30"></td>
+                                            <td>sfddsfs</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="30"></td>
+                                            <td>sfddsfs</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="30"></td>
+                                            <td>sfddsfs</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <p class="mt-1"><strong>Nex Appointment Details</strong></p>
+                            <hr />
+                            <table width="100%">
+                                <tr>
+                                    <td width="30"></td>
+                                    <td>
+                                        <table width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Time</th>
+                                                    <th>Cause</th>
+                                                    <th>Doctor</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="mb-1" style="margin-bottom:20px;">06/12/2023</td>
+                                                    <td class="mb-1" style="margin-bottom:20px;">12:00 PM</td>
+                                                    <td class="mb-1" style="margin-bottom:20px;">Imp. for bridge 11-22</td>
+                                                    <td class="mb-1" style="margin-bottom:20px;">Dr. Raju Virmani</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-1" style="margin-bottom:20px;">06/12/2023</td>
+                                                    <td class="mb-1" style="margin-bottom:20px;">12:00 PM</td>
+                                                    <td class="mb-1" style="margin-bottom:20px;">Imp. for bridge 11-22</td>
+                                                    <td class="mb-1" style="margin-bottom:20px;">Dr. Raju Virmani</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-1" style="margin-bottom:20px;">06/12/2023</td>
+                                                    <td class="mb-1" style="margin-bottom:20px;">12:00 PM</td>
+                                                    <td class="mb-1" style="margin-bottom:20px;">Imp. for bridge 11-22</td>
+                                                    <td class="mb-1" style="margin-bottom:20px;">Dr. Raju Virmani</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+    </div>
+
+</div>

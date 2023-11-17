@@ -1,5 +1,7 @@
 ﻿using DCRM.Common.Authorization;
+using DCRM.Common.Dto;
 using DCRM.Common.Entities;
+using DCRM.Service.IService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,11 +12,17 @@ namespace DCRM.Api.Controllers
     [ApiController]
     public class ReportController : ControllerBase
     {
-        [HttpGet]
-        public Payment payments()
+        IReportService _reportService;
+        public ReportController(IReportService reportService)
         {
-            Payment payment = new Payment();
-            return payment;
+            _reportService=reportService;
+        }
+
+        [HttpGet("Get/WorkDoneDetails/{id}")]
+        public PatientWorkdoneDetailsDto PatientWorkdoneDetails(long id)
+        {
+            PatientWorkdoneDetailsDto workdone = _reportService.PatientWorkdoneDetails(id);
+            return workdone;
         }
 
     }

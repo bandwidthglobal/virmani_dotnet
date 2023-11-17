@@ -69,7 +69,10 @@ public  class DrugDto
 
     public DateTime Updated_At { get; set; }
 
-    public string BrandName { get; set; }
+    public string? BrandName { get; set; }
 
-    public string Category { get; set; }
+    public string? Category { get; set; }
+    public string? Medicine_Brand { get; set; }
+    public string? Company_Name { get; set; }
+    public string? Medicin_Category { get; set; }
 }

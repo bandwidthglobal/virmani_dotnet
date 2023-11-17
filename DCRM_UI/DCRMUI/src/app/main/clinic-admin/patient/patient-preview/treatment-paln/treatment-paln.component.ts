@@ -50,7 +50,7 @@ export class TreatmentPalnComponent implements OnInit {
         total_Amt: 0,
         workdone_Status: 0,
         estimated_Amount: '',
-        workdone_Notes:''
+        workdone_Notes: ''
     }
     private tempData = [];
     private _unsubscribeAll: Subject<any>;
@@ -68,12 +68,14 @@ export class TreatmentPalnComponent implements OnInit {
     public patientId: any;
     showTreatmentForm: boolean = false;
     isAdd = true;
+    isWorkdonesave = false;
+    textboxdisabled = 'disabled'
     constructor(
         private _patientListService: PatientPreviewService,
         private _coreConfigService: CoreConfigService,
         private router: Router,
         private _route: ActivatedRoute,
-        private _formBuilder: UntypedFormBuilder    ) {
+        private _formBuilder: UntypedFormBuilder) {
         this._unsubscribeAll = new Subject();
     }
     ngOnInit(): void {
@@ -86,6 +88,7 @@ export class TreatmentPalnComponent implements OnInit {
             workdone_Status: [''],
             workdone_Notes: [''],
         });
+
         this.patientId = this._route.snapshot.paramMap.get('id');
         this.getTreatmentList();
     }
@@ -126,7 +129,7 @@ export class TreatmentPalnComponent implements OnInit {
     toothNumber: any;
     job: any;
     //Work Done Start
-    addWorkDone(treatmentid, estamount, toothNumber,job ) {
+    addWorkDone(treatmentid, estamount, toothNumber, job) {
         this.getDoctors();
         this.treatmentId = treatmentid;
         this.workdone.estimated_Amount = estamount;
@@ -145,6 +148,7 @@ export class TreatmentPalnComponent implements OnInit {
     get f() {
         return this.workdoneForm.controls;
     }
+    workdoneid: any;
     saveWorkDoneForm() {
         this.submitted = true;
         if (this.workdoneForm.invalid) {
@@ -157,22 +161,24 @@ export class TreatmentPalnComponent implements OnInit {
         this._patientListService.saveWorkDone(this.workdone).pipe(catchError((error) => {
             this.loading = false;
             this.error = error;
-            this.callBackEvent.emit({
-                status: 'failure',
-                data: error,
-            });
             return '';
         })).subscribe((response) => {
-            this.receiveElm.classList.remove('show');
-            this.receiveElm.classList.remove('show');
-            setTimeout(() => {
-                this.receiveElm.style.width = '0';
-            }, 75);
+            this.workdoneid = response;
+            this.workdoneForm.controls.doctor_Id.disable();
+            this.workdoneForm.controls.discount.disable();
+            this.workdoneForm.controls.current_Work_Amt.disable();
+            this.workdoneForm.controls.total_Amt.disable();
+            this.workdoneForm.controls.workdone_Status.disable();
+            this.workdoneForm.controls.workdone_Notes.disable();
+
+            //this.receiveElm.classList.remove('show');
+            //this.receiveElm.classList.remove('show');
+            //setTimeout(() => {
+            //    this.receiveElm.style.width = '0';
+            //}, 75);
+            this.isWorkdonesave = true;
             this.loading = false;
-            this.callBackEvent.emit({
-                status: 'failure',
-                data: response,
-            });
+
         });
         //this.loading = true;
     }
@@ -196,22 +202,22 @@ export class TreatmentPalnComponent implements OnInit {
     }
     chngDiscount(ev) {
         var discount = parseInt(ev.target.value)
-        
-       if (this.currentAmount > 0 && discount > 0) {
-            this.workdone.total_Amt=this.currentAmount - discount;
+
+        if (this.currentAmount > 0 && discount > 0) {
+            this.workdone.total_Amt = this.currentAmount - discount;
         }
     }
     nameOld: any;
     editing: any;
     storeOldValues(rowIndex) {
-       
+
         this.nameOld = this.rows[rowIndex].name;
-       this.editing[rowIndex + '-name'] = true;
-       this.editing = rowIndex;
+        this.editing[rowIndex + '-name'] = true;
+        this.editing = rowIndex;
     }
-    treatment: any = { sitting_Status: 0, id: 0, job: '', type: '', teeth_id:'' }
+    treatment: any = { sitting_Status: 0, id: 0, job: '', type: '', teeth_id: '' }
     setSittingValue(treatmentId, evnt) {
-       
+
         this.treatment.sitting_Status = evnt.target.value;
         this.treatment.id = treatmentId;
         this._patientListService.updateSittingStatus(this.treatment).pipe(catchError((error) => {
@@ -221,8 +227,8 @@ export class TreatmentPalnComponent implements OnInit {
         })).subscribe((response) => {
             this.getTreatmentList();
         });
-       
-       
+
+
     }
 
     getTreatmentList() {
@@ -244,7 +250,7 @@ export class TreatmentPalnComponent implements OnInit {
                         this.data = response;
                         debugger;
                         this.rows = this.data;
-                       
+
                         this.tempData = this.rows;
                         this.tempFilterData = this.rows;
                     });

@@ -50,6 +50,7 @@ public class Appointment
 
     public int? Is_Start { get; set; }
 
+    public long? Workdone_Id { get; set; }
     public sbyte Is_Delete { get; set; }
 
     public DateTime Created_At { get; set; }

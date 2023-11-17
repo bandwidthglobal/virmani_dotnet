@@ -58,15 +58,15 @@
                             <ng-template let-row="row"
                                          let-expanded="expanded"
                                          ngx-datatable-row-detail-template>
-                                <div style="padding-left:35px;" class="table-responsive">
+                                <div style="padding-left:35px; width:50%" class="table-responsive" >
                                     <table class="table table-bordered table-sm">
-                                        <thead class="table-dark">
+                                        <thead class="table-dark" >
                                             <tr>
                                                 <td>Doctor</td>
-                                                <td>Amount Due for Todays's Work.</td>
+                                                <td>Due</td>
                                                 <td>Discount</td>
-                                                <td>Total Amount</td>
-                                                <td>Treatment Status</td>
+                                                <td>Total</td>
+                                                <td>Status</td>
                                                 <td>Date</td>
                                             </tr>
                                         </thead>
@@ -285,14 +285,16 @@
 
                             <div class="modal-footer">
                                 <div class="row">
-                                    <div class="col-md-3">
-                                        <a href="/admin/appointment/add/{{patientId}}" target="_blank" class="btn btn-primary">Appointment</a>
+                                    <div class="col-md-3" *ngIf="isWorkdonesave==true">
+                                        <a href="/admin/appointment/add/{{patientId}}/{{workdoneid}}"  target="_blank" class="btn btn-primary">Appointment</a>
                                     </div>
-                                    <div class="col-md-3">
-                                        <a href="/admin/prescription/add/{{patientId}}" target="_blank" class="btn btn-primary ml-1">Prescription</a>
+                                    <div class="col-md-3" *ngIf="isWorkdonesave==true">
+                                        <a href="/admin/prescription/add/{{patientId}}/{{workdoneid}}"  target="_blank" class="btn btn-primary ml-1">Prescription</a>
                                     </div>
-                                    <div class="col-md-6">
-                                        <input type="submit" name="save" value="Save" class="btn btn-primary ml-1">
+                                    <div class="col-md-4" *ngIf="isWorkdonesave==false">
+                                        <input type="submit" name="save" value="Save"  class="btn btn-primary ml-1">
+                                    </div>
+                                    <div class="col-md-2">
                                         <button type="button" class="btn btn-danger ml-1" (click)="close()">Close</button>
                                     </div>
                                 </div>

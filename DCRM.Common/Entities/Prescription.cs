@@ -20,7 +20,7 @@ public  class Prescription
     public string Next_Duration { get; set; } = null!;
 
     public string Next_Time { get; set; } = null!;
-
+    public long? Workdone_Id { get; set; } 
     public int? Check_Report { get; set; }
 
     public string? Feedback { get; set; }

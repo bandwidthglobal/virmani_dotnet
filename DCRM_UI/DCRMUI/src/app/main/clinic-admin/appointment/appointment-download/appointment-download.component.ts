@@ -22,11 +22,9 @@ export class AppointmentDownloadComponent implements OnInit {
     constructor(private _downloadService: AppointmentDownloadService, private route: ActivatedRoute) {}
     subscription: any;
     ngOnInit() {
-        debugger;
         this.loading = true;
         this._downloadService.getApiData().subscribe(response => {
             this.apiData = response;
-
             this.loading = false;
         });
   }
