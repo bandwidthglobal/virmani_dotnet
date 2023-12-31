@@ -46,7 +46,7 @@ export class WithoutMenuComponent implements OnInit {
    */
   ngOnInit() {
     // Subscribe to config changes
-    this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
+    this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe((config: any) => {
       this.coreConfig = config;
     });
 

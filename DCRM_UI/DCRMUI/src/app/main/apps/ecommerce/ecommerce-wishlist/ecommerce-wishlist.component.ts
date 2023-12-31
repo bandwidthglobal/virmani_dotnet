@@ -12,8 +12,8 @@ import { EcommerceService } from 'app/main/apps/ecommerce/ecommerce.service';
 export class EcommerceWishlistComponent implements OnInit {
   // Public
   public contentHeader: object;
-  public products;
-  public wishlist;
+  public products: any[];
+  public wishlist: any[];
 
   /**
    *
@@ -67,3 +67,4 @@ export class EcommerceWishlistComponent implements OnInit {
     };
   }
 }
+  

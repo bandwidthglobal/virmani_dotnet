@@ -192,7 +192,7 @@ export class StaffFormComponent implements OnInit, OnDestroy {
         control.push(new VaccinationForm(obj));
     }
 
-    removeVaccinationDetails(idx): void {
+    removeVaccinationDetails(idx: number): void {
         const control = <FormArray>this.formData.controls['staffVaccination'];
         control.removeAt(idx);
     }
@@ -211,7 +211,7 @@ export class StaffFormComponent implements OnInit, OnDestroy {
         control.push(new BankDetailForm(obj));
     }
 
-    removeBankDetails(idx): void {
+    removeBankDetails(idx: number): void {
         const control = <FormArray>this.formData.controls['staffBankDetail'];
         control.removeAt(idx);
     }
@@ -233,7 +233,7 @@ export class StaffFormComponent implements OnInit, OnDestroy {
         control.push(new InsuranceDetailForm(obj));
     }
 
-    removeInsuranceDetails(idx): void {
+    removeInsuranceDetails(idx: number): void {
         const control = <FormArray>this.formData.controls['staffInsuranceDetail'];
         control.removeAt(idx);
     }

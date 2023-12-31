@@ -114,7 +114,7 @@ export class CoreMenuVerticalCollapsibleComponent implements OnInit, OnDestroy {
    *
    * @param e
    */
-  toggleOpen(e): void {
+  toggleOpen(e: { preventDefault: () => void; }): void {
     e.preventDefault();
 
     this.isOpen = !this.isOpen;
@@ -197,7 +197,7 @@ export class CoreMenuVerticalCollapsibleComponent implements OnInit, OnDestroy {
    * @param item
    * @returns {boolean}
    */
-  confirmItemInChildren(parent, item): boolean {
+  confirmItemInChildren(parent: CoreMenuItem, item: any): boolean {
     const children = parent.children;
 
     // Return false if parent don't have any children

@@ -9,7 +9,7 @@ import { User } from '../../../../auth/models';
 export class DealerPreviewService implements Resolve<any> {
     apiData: any;
     onDealerPreviewChanged: BehaviorSubject<any>;
-    id;
+    id: number;
     currentUser: any;
 
     /**

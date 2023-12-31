@@ -29,7 +29,7 @@ export class TodoMainSidebarComponent implements OnInit {
    *
    * @param nameRef
    */
-  createNewTodo(nameRef, closeNameRef): void {
+  createNewTodo(nameRef: string, closeNameRef: string): void {
     this._coreSidebarService.getSidebarRegistry(nameRef).toggleOpen();
     this._coreSidebarService.getSidebarRegistry(closeNameRef).toggleOpen();
     this._todoService.createNewTodo();
@@ -40,7 +40,7 @@ export class TodoMainSidebarComponent implements OnInit {
    *
    * @param nameRef
    */
-  toggleSidebar(nameRef): void {
+  toggleSidebar(nameRef: string): void {
     this._coreSidebarService.getSidebarRegistry(nameRef).toggleOpen();
   }
 

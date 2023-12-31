@@ -10,11 +10,11 @@ import { Todo } from './todo.model';
 export class TodoService implements Resolve<any> {
   // Public
   public todos: Todo[];
-  public assignee;
-  public filters;
-  public tags;
+  public assignee: any;
+  public filters: any;
+  public tags: any;
   public tempTodos: Todo[];
-  public currentTodo;
+  public currentTodo: Todo;
   public sortParamRef = 'id';
 
   public onTodoDataChange: BehaviorSubject<any>;
@@ -29,8 +29,8 @@ export class TodoService implements Resolve<any> {
   // Private
   private routeParams: any;
   private sortTodoRef = key => (a, b) => {
-    let fieldA;
-    let fieldB;
+    let fieldA: number | Date;
+    let fieldB: number | Date;
 
     // If sorting is by dueDate => Convert data to date
     if (key === 'dueDate') {
@@ -200,7 +200,7 @@ export class TodoService implements Resolve<any> {
    *
    * @param query
    */
-  getTodosBySearch(query) {
+  getTodosBySearch(query: string) {
     const filteredTodos = this.tempTodos.filter(todo => {
       return todo.title.toLowerCase().includes(query.toLowerCase());
     });
@@ -222,7 +222,7 @@ export class TodoService implements Resolve<any> {
    *
    * @param id
    */
-  setCurrentTodo(id) {
+  setCurrentTodo(id: any) {
     this.currentTodo = this.todos.find(todo => {
       return todo.id === id;
     });
@@ -234,7 +234,7 @@ export class TodoService implements Resolve<any> {
    *
    * @param todo
    */
-  updateCurrentTodo(todo) {
+  updateCurrentTodo(todo: Todo) {
     if (todo.id === undefined) {
       this.currentTodo = todo;
       this.onCurrentTodoChange.next(this.currentTodo);
@@ -281,7 +281,7 @@ export class TodoService implements Resolve<any> {
    *
    * @param sortByParam
    */
-  sortTodos(sortByParam) {
+  sortTodos(sortByParam: string) {
     this.sortParamRef = sortByParam;
     let sortDesc = true;
 

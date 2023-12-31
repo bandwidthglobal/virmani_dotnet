@@ -24,7 +24,7 @@ export class EcommerceCheckoutItemComponent implements OnInit {
    *
    * @param product
    */
-  removeFromCart(product) {
+  removeFromCart(product: { isInCart: boolean; id: any; }) {
     if (product.isInCart === true) {
       this._ecommerceService.removeFromCart(product.id).then(res => {
         product.isInCart = false;
@@ -37,7 +37,7 @@ export class EcommerceCheckoutItemComponent implements OnInit {
    *
    * @param product
    */
-  toggleWishlist(product) {
+  toggleWishlist(product: { isInWishlist: boolean; id: any; }) {
     if (product.isInWishlist === true) {
       this._ecommerceService.removeFromWishlist(product.id).then(res => {
         product.isInWishlist = false;

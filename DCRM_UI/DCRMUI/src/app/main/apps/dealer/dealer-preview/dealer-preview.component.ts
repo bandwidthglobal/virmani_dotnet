@@ -16,8 +16,8 @@ import { DealerPreviewService } from 'app/main/apps/dealer/dealer-preview/dealer
 })
 export class DealerPreviewComponent implements OnInit, OnDestroy {
   // public
-  public apiData;
-  public urlLastValue;
+  public apiData: any;
+  public urlLastValue: string;
   public url = this.router.url;
   public sidebarToggleRef = false;
   public paymentSidebarToggle = false;
@@ -56,7 +56,7 @@ export class DealerPreviewComponent implements OnInit, OnDestroy {
    *
    * @param name
    */
-  toggleSidebar(name): void {
+  toggleSidebar(name: string): void {
     this._coreSidebarService.getSidebarRegistry(name).toggleOpen();
   }
 

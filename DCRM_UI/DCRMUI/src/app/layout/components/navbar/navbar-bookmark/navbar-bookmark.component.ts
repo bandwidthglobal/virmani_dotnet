@@ -69,8 +69,8 @@ export class NavbarBookmarkComponent implements OnInit {
    *
    * @param id
    */
-  removeBookmark(id) {
-    const index = this.bookmarkedItems.findIndex(object => {
+  removeBookmark(id: any) {
+    const index = this.bookmarkedItems.findIndex((object: { id: any; }) => {
       return object.id === id;
     });
     this.bookmarkedItems[index].isBookmarked = false;
@@ -165,7 +165,7 @@ export class NavbarBookmarkComponent implements OnInit {
    *
    * @param event
    */
-  bookmarkUpdate(event) {
+  bookmarkUpdate(event: { target: { value: string; }; }) {
     const val = event.target.value.toLowerCase();
     if (val !== '') {
       this.document.querySelector('.app-content').classList.add('show-overlay');

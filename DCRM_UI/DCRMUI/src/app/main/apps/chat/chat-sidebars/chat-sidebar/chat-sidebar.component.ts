@@ -11,12 +11,12 @@ import { ChatService } from 'app/main/apps/chat/chat.service';
 })
 export class ChatSidebarComponent implements OnInit {
   // Public
-  public contacts;
-  public chatUsers;
-  public searchText;
-  public chats;
+  public contacts: any;
+  public chatUsers: any[];
+  public searchText: any;
+  public chats: any;
   public selectedIndex = null;
-  public userProfile;
+  public userProfile: any;
 
   /**
    * Constructor
@@ -35,7 +35,7 @@ export class ChatSidebarComponent implements OnInit {
    * @param id
    * @param newChat
    */
-  openChat(id) {
+  openChat(id: any) {
     this._chatService.openChat(id);
 
     // Reset unread Message to zero
@@ -51,7 +51,7 @@ export class ChatSidebarComponent implements OnInit {
    *
    * @param name
    */
-  toggleSidebar(name) {
+  toggleSidebar(name: string) {
     this._coreSidebarService.getSidebarRegistry(name).toggleOpen();
   }
 
@@ -96,7 +96,7 @@ export class ChatSidebarComponent implements OnInit {
 
     // Add Unseen Message To Chat User
     this._chatService.onChatsChange.pipe(first()).subscribe(chats => {
-      chats.map(chat => {
+      chats.map((chat: { userId: any; unseenMsgs: any; }) => {
         this.chatUsers.map(user => {
           if (user.id === chat.userId) {
             user.unseenMsgs = chat.unseenMsgs;

@@ -1,11 +1,9 @@
-import { Component, OnInit, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { CoreConfigService } from '@core/services/config.service';
 import { DrugPreviewService } from 'app/main/clinic-admin/drug/drug-preview/drug-preview.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
-import * as snippet from 'app/main/extensions/sweet-alerts/sweet-alerts.snippetcode';
 import Swal from 'sweetalert2';
 @Component({
     selector: 'app-bad-stock-list',
@@ -25,7 +23,7 @@ export class BadStockListComponent implements OnInit {
     private tempData = [];
     private _unsubscribeAll: Subject<any>;
     public rows;
-    public tempFilterData;
+    public tempFilterData: any[];
     public previousStatusFilter = '';
     data: Object;
 
@@ -46,7 +44,7 @@ export class BadStockListComponent implements OnInit {
      *
      * @param event
      */
-    filterUpdate(event) {
+    filterUpdate(event: { target: { value: string; }; }) {
 
         const val = event.target.value.toLowerCase();
 
@@ -70,7 +68,7 @@ export class BadStockListComponent implements OnInit {
      *
      * @param event
      */
-    filterByStatus(event) {
+    filterByStatus(event: { value: any; }) {
         const filter = event ? event.value : '';
         this.previousStatusFilter = filter;
         this.tempFilterData = this.filterRows(filter);
@@ -82,7 +80,7 @@ export class BadStockListComponent implements OnInit {
      *
      * @param statusFilter
      */
-    filterRows(statusFilter): any[] {
+    filterRows(statusFilter: string): any[] {
         // Reset search on select change
         this.searchValue = '';
 
@@ -105,7 +103,7 @@ export class BadStockListComponent implements OnInit {
             this.tempFilterData = this.rows;
         })
     }
-    delete(id) {
+    delete(id: any) {
         let rowIndex = -1;
         this.tempData.forEach((currentValue, index) => {
             if (currentValue.id == id) {

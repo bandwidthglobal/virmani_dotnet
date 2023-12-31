@@ -43,7 +43,7 @@ export class StaffEditComponent implements OnInit, OnDestroy {
         this._unsubscribeAll.complete();
     }
 
-    redirect(event) {
+    redirect(event: any) {
         this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/staff/list';
         this.router.navigateByUrl(this.returnUrl);
     }

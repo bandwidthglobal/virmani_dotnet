@@ -16,7 +16,7 @@ import {
   HTTP_INTERCEPTORS
 } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
-import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 
 import { User, Role } from 'app/auth/models';
 
@@ -124,7 +124,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     // helper functions
 
-    function ok(body) {
+    function ok(body: User | User[]) {
       return of(new HttpResponse({ status: 200, body }));
     }
 
@@ -132,7 +132,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       return throwError({ status: 401, error: { message: 'unauthorized' } });
     }
 
-    function error(message) {
+    function error(message: string) {
       return throwError({ status: 400, error: { message } });
     }
 

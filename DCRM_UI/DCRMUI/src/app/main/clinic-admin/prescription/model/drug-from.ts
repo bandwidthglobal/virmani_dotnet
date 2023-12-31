@@ -1,6 +1,5 @@
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import * as vMODEL from './validation';
-import { DrugListForm, DrugListModel } from './drug-list-form';
 import { User } from 'app/auth/models';
 
 export interface DrugFormModel {

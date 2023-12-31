@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { CoreSidebarService } from '@core/components/core-sidebar/core-sidebar.service';
 
 import { StaffPreviewService } from 'app/main/clinic-admin/staff/staff-preview/staff-preview.service';
 
@@ -15,7 +14,7 @@ import { StaffPreviewService } from 'app/main/clinic-admin/staff/staff-preview/s
 })
 export class StaffPreviewComponent implements OnInit, OnDestroy {
     // Public
-    public staffData;
+    public staffData: any;
     public loading = false;
     public returnUrl: string;
     public error = '';

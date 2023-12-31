@@ -56,49 +56,57 @@
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             <shared-ui-text-input [label]="'Company Name'" [control]="formData.company_Name"
+                                                                                  [mask]="'alphaAllowSpaces'" [maxLength]=30
                                                                                   [submitted]="submitted"></shared-ui-text-input>
                                                         </div>
                                                         <div class="col-md-8">
                                                             <div class="row">
                                                                 <div class="col-md-3">
                                                                     <shared-ui-text-input [label]="'Address (R)'" [control]="formData.address_R"
+                                                                                          [mask]="'alphaNumericAllowSpaces'"
                                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <shared-ui-text-input [label]="'City'" [control]="formData.city_R"
+                                                                                          [mask]="'alphaAllowSpaces'" [maxLength]=30
                                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <shared-ui-text-input [label]="'Zip'" [control]="formData.zip_R" [submitted]="submitted"
-                                                                                          [mask]="'numeric'"></shared-ui-text-input>
+                                                                                          [mask]="'numeric'" [maxLength]=6></shared-ui-text-input>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <shared-ui-text-input [label]="'Country'" [control]="formData.country_R"
+                                                                                          [mask]="'alphaAllowSpaces'" [maxLength]=30
                                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                                 </div>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-md-4">
-                                                            <shared-ui-text-input [label]="'Owner
-            Name 1'" [control]="formData.ownName_1" [submitted]="submitted"></shared-ui-text-input>
+                                                            <shared-ui-text-input [label]="'Owner   Name 1'" [control]="formData.ownName_1"
+                                                                                  [mask]="'alphaAllowSpaces'" [maxLength]=30
+                                                                                  [submitted]="submitted"></shared-ui-text-input>
                                                         </div>
                                                         <div class="col-md-8">
                                                             <div class="row">
                                                                 <div class="col-md-3">
                                                                     <shared-ui-text-input [label]="'Address (O)'" [control]="formData.address_O"
+                                                                                          [mask]="'alphaNumericAllowSpaces'"
                                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <shared-ui-text-input [label]="'City'" [control]="formData.city_O"
+                                                                                          [mask]="'alphaAllowSpaces'" [maxLength]=30
                                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <shared-ui-text-input [label]="'Zip'" [control]="formData.zip_O" [submitted]="submitted"
-                                                                                          [mask]="'numeric'"></shared-ui-text-input>
+                                                                                          [mask]="'numeric'" [maxLength]=6></shared-ui-text-input>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <shared-ui-text-input [label]="'Country'" [control]="formData.country_O"
+                                                                                          [mask]="'alphaAllowSpaces'" [maxLength]=30
                                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                                 </div>
                                                             </div>
@@ -106,6 +114,7 @@
 
                                                         <div class="col-md-4">
                                                             <shared-ui-text-input [label]="'Owner Name 2'" [control]="formData.ownName_2"
+                                                                                  [mask]="'alphaAllowSpaces'" [maxLength]=30
                                                                                   [submitted]="submitted"></shared-ui-text-input>
                                                         </div>
                                                     </div>
@@ -115,12 +124,12 @@
                                             <h4 class="card-title">Contact Information</h4>
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <shared-ui-text-input [label]="'Phone 1'" [control]="formData.phone1" [mask]="'numeric'"
+                                                    <shared-ui-text-input [label]="'Phone 1'" [control]="formData.phone1" [mask]="'numeric'" [maxLength]=10
                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <shared-ui-text-input [label]="'Phone 2'" [control]="formData.phone2" [mask]="'numeric'"
+                                                    <shared-ui-text-input [label]="'Phone 2'" [control]="formData.phone2" [mask]="'numeric'"  [maxLength]=10
                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
@@ -137,13 +146,15 @@
 
                                             <h4 class="card-title">Other Information</h4>
                                             <div class="row">
-                                                <div class="col-md-3">
+                                                <div class="col-md-6">
                                                     <shared-ui-text-input [label]="'PAN Number'" [control]="formData.pan_Number"
+                                                                          [mask]="'alphaNumeric'" [maxLength]=10
                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
-                                                <div class="col-md-3">
+                                                <div class="col-md-6">
                                                     <shared-ui-text-input [label]="'GST Number'" [control]="formData.gst_Number"
+                                                                          [mask]="'alphaNumeric'" [maxLength]=20
                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
                                             </div>
@@ -153,21 +164,24 @@
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <shared-ui-text-input [label]="'Bank Name'" [control]="bankDetail.bank_Name"
+                                                                              [mask]="'alphaAllowSpaces'" [maxLength]=30
                                                                               [submitted]="submitted"></shared-ui-text-input>
                                                     </div>
 
                                                     <div class="col-md-3">
-                                                        <shared-ui-text-input [label]="'Bank Account Number'" [mask]="'numeric'"
+                                                        <shared-ui-text-input [label]="'Bank Account Number'" [mask]="'numeric'" [maxLength]=20
                                                                               [control]="bankDetail.bank_Account_Number" [submitted]="submitted"></shared-ui-text-input>
                                                     </div>
 
-                                                    <div class="col-md-2">
+                                                    <div class="col-md-3">
                                                         <shared-ui-text-input [label]="'IFSC Code'" [control]="bankDetail.ifsc_Code"
+                                                                              [mask]="'alphaNumeric'" [maxLength]=20
                                                                               [submitted]="submitted"></shared-ui-text-input>
                                                     </div>
 
-                                                    <div class="col-md-2">
+                                                    <div class="col-md-3">
                                                         <shared-ui-text-input [label]="'Remarks'" [control]="bankDetail.remarks"
+                                                                              [mask]="'alphaAllowSpaces'" [maxLength]=100
                                                                               [submitted]="submitted"></shared-ui-text-input>
                                                     </div>
 
@@ -194,11 +208,12 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <shared-ui-text-input [label]="'Field Staff Name 1'" [control]="formData.staffName_1"
+                                                                          [mask]="'alphaAllowSpaces'" [maxLength]=30
                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_1" [mask]="'numeric'"
+                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_1" [mask]="'numeric'" [maxLength]=10
                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
@@ -209,11 +224,12 @@
 
                                                 <div class="col-md-6">
                                                     <shared-ui-text-input [label]="'Field Staff Name 2'" [control]="formData.staffName_2"
+                                                                          [mask]="'alphaAllowSpaces'" [maxLength]=30
                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_2" [mask]="'numeric'"
+                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_2" [mask]="'numeric'" [maxLength]=10
                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
@@ -224,11 +240,12 @@
 
                                                 <div class="col-md-6">
                                                     <shared-ui-text-input [label]="'Field Staff Name 3'" [control]="formData.staffName_3"
+                                                                          [mask]="'alphaAllowSpaces'" [maxLength]=30
                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_3" [mask]="'numeric'"
+                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_3" [mask]="'numeric'" [maxLength]=10
                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
@@ -239,11 +256,12 @@
 
                                                 <div class="col-md-6">
                                                     <shared-ui-text-input [label]="'Field Staff Name 4'" [control]="formData.staffName_4"
+                                                                          [mask]="'alphaAllowSpaces'" [maxLength]=30
                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_4" [mask]="'numeric'"
+                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_4" [mask]="'numeric'" [maxLength]=10
                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
@@ -258,11 +276,12 @@
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <shared-ui-text-input [label]="'Materials Name'" [control]="materialDetail.material_Name"
+                                                                              [mask]="'alphaAllowSpaces'" [maxLength]=50  
                                                                               [submitted]="submitted"></shared-ui-text-input>
                                                     </div>
 
                                                     <div class="col-md-3">
-                                                        <shared-ui-text-input [label]="'Cost'" [control]="materialDetail.material_Cost" [mask]="'numeric'"
+                                                        <shared-ui-text-input [label]="'Cost'" [control]="materialDetail.material_Cost" [mask]="'numeric'" [maxLength]=20
                                                                               [submitted]="submitted"></shared-ui-text-input>
                                                     </div>
 
@@ -348,7 +367,7 @@
               <div class="row">
                 <div class="col-md-4">
                   <shared-ui-text-input [label]="'Company Name'" [control]="formData.company_Name"
-                    [submitted]="submitted" [mask]="'numeric'"></shared-ui-text-input>
+                    [submitted]="submitted" [mask]="'alphaAllowSpaces'" [maxLength]=30></shared-ui-text-input>
                 </div>
                 <div class="col-md-8">
                   <div class="row">

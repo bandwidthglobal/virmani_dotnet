@@ -1,11 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { takeUntil, first } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { UntypedFormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 import { AuthenticationService } from 'app/auth/service';
-import { CoreConfigService } from '@core/services/config.service';
 
 @Component({
     selector: 'app-logout',

@@ -24,7 +24,7 @@ export class NumberInputComponent implements OnInit {
   /***
    * On touchspin count change
    */
-  countChange(value) {
+  countChange(value: any) {
     // this.dateValue = value;
     console.log(value);
   }

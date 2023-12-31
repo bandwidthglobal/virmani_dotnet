@@ -12,12 +12,12 @@ import { CalendarService } from 'app/main/apps/calendar/calendar.service';
 })
 export class CalendarEventSidebarComponent implements OnInit {
   //  Decorator
-  @ViewChild('startDatePicker') startDatePicker;
-  @ViewChild('endDatePicker') endDatePicker;
+  @ViewChild('startDatePicker') startDatePicker: { flatpickrElement: { nativeElement: { children: { value: string; }[]; }; }; flatpickr: { clear: () => void; }; };
+  @ViewChild('endDatePicker') endDatePicker: { flatpickrElement: { nativeElement: { children: { value: string; }[]; }; }; flatpickr: { clear: () => void; }; };
 
   // Public
   public event: EventRef;
-  public isDataEmpty;
+  public isDataEmpty: boolean;
   public selectLabel = [
     { label: 'Business', bullet: 'primary' },
     { label: 'Personal', bullet: 'danger' },
@@ -68,7 +68,7 @@ export class CalendarEventSidebarComponent implements OnInit {
    *
    * @param eventForm
    */
-  addEvent(eventForm) {
+  addEvent(eventForm: { valid: any; form: { value: { start: string; end: string; }; }; }) {
     if (eventForm.valid) {
       //! Fix: Temp fix till ng2-flatpicker support ng-modal (Getting NG0100: Expression has changed after it was checked error if we use ng-model with ng2-flatpicker)
       eventForm.form.value.start = this.startDatePicker.flatpickrElement.nativeElement.children[0].value;

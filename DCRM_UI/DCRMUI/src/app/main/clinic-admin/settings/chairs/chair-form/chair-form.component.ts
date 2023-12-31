@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 import { CoreSidebarService } from '@core/components/core-sidebar/core-sidebar.service';
 
@@ -22,8 +21,8 @@ export class ChairFormComponent implements OnInit, OnDestroy {
     // public
     public apiData;
     public sidebarToggleRef = false;
-    public invoiceSelect;
-    public invoiceSelected;
+    public invoiceSelect: any;
+    public invoiceSelected: any;
     isEdit = false;
     chairId = 0;
     public loading = false;
@@ -62,7 +61,7 @@ export class ChairFormComponent implements OnInit, OnDestroy {
      *
      * @param name
      */
-    toggleSidebar(name) {
+    toggleSidebar(name: string) {
         this._coreSidebarService.getSidebarRegistry(name).toggleOpen();
     }
     ngOnInit(): void {

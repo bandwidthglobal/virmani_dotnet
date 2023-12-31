@@ -32,13 +32,13 @@
 
                         <ng-container *ngIf="!formData.get('milk_teeth').value">
                             <li class="teethord{{ idx+1 }}">
-                                <a (click)="getRecord_teechinfo(t.id, t.teeth_Note, t.image)" href="javascript://"
+                                <a (click)="getRecord_teechinfo(t.id, t.teeth_Note, t.teeth_Number)" href="javascript://"
                                    title="" data-original-title="{{ t.teeth_Note }}"></a>
                             </li>
                         </ng-container>
                         <ng-container *ngIf="formData.get('milk_teeth').value">
                             <li class="teeth_child{{ idx+1 }}">
-                                <a (click)="getRecord_teechinfo(t.id, t.teeth_Note, t.image)" href="javascript://"
+                                <a (click)="getRecord_teechinfo(t.id, t.teeth_Note, t.teeth_Number)" href="javascript://"
                                    title="" data-original-title="{{ t.teeth_Note }}"></a>
                             </li>
                         </ng-container>

@@ -13,7 +13,7 @@ import { ReportService } from 'app/main/clinic-admin/report/report-list.service'
 })
 export class ReportComponent implements OnInit {
   // Public
-  public rows;
+  public rows: any[];
   public selectedOption = 10;
   public ColumnMode = ColumnMode;
     public temp = [];
@@ -62,7 +62,7 @@ export class ReportComponent implements OnInit {
    *
    * @param event
    */
-  filterUpdate(event) {
+  filterUpdate(event: { target: { value: string; }; }) {
     // Reset ng-select on search
 
     const val = event.target.value.toLowerCase();
@@ -86,7 +86,7 @@ export class ReportComponent implements OnInit {
     public searchPatientName: any = '';
     searchData() {
         debugger;
-        let temp;
+        let temp: any[];
         if (this.searchDoctorName != '' || this.searchPatientName.toLowerCase() != '') {
             if (this.searchDoctorName != '' && this.searchPatientName.toLowerCase() == '') {
                 temp = this.tempData.filter(u =>
@@ -155,7 +155,7 @@ export class ReportComponent implements OnInit {
       }
     });
   }
-    workdoneView(id) {
+    workdoneView(id: any) {
         this.getWorkDoneData(id)
        
     }
@@ -167,7 +167,7 @@ export class ReportComponent implements OnInit {
             this.workdoneElm.style.display = 'none';
         }, 75);
     }
-    getWorkDoneData(id) {
+    getWorkDoneData(id: any) {
         this._reportService.getWorkDone(id).subscribe(res => {
             this.workDoneData = res;
             this.paymentDetailsList = res.paymentDetailsList;

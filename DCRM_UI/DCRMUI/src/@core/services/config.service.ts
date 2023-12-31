@@ -124,7 +124,7 @@ export class CoreConfigService {
    * @param {{emitEvent: boolean}} param
    */
   setConfig(data, param = { emitEvent: true }): void {
-    let config;
+    let config: { layout: { enableLocalStorage: any; }; };
 
     // Set config = localConfig, If we have else defaultConfig
     this.localConfig = JSON.parse(localStorage.getItem('config'));

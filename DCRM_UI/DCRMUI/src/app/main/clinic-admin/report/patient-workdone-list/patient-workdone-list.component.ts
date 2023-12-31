@@ -1,7 +1,6 @@
-import { Component, OnInit, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 
 import { CoreConfigService } from '@core/services/config.service';
@@ -27,8 +26,8 @@ export class PatientWorkdoneListComponent implements OnInit {
     public error = '';
     private tempData = [];
     private _unsubscribeAll: Subject<any>;
-    public rows;
-    public tempFilterData;
+    public rows: any[];
+    public tempFilterData: any[];
     public previousStatusFilter = '';
     patientList: any;
     selectCustomSelected: any;
@@ -39,7 +38,7 @@ export class PatientWorkdoneListComponent implements OnInit {
     constructor(private router: Router, private _workListService: PatientWorkdonelistService, private _coreConfigService: CoreConfigService, private _route: ActivatedRoute) {
         this._unsubscribeAll = new Subject();
     }
-    filterUpdate(event) {
+    filterUpdate(event: { target: { value: string; }; }) {
         const val = event.target.value.toLowerCase();
         // filter our data
         const temp = this.tempData.filter(function (d) {
@@ -55,7 +54,7 @@ export class PatientWorkdoneListComponent implements OnInit {
     ngOnInit(): void {
         this.getPatients();
     }
-    reverseAndTimeStamp(dateString) {
+    reverseAndTimeStamp(dateString: moment.MomentInput) {
         return moment(dateString).format('DD-MM-YYYY');;
     }
     searchData() {
@@ -75,12 +74,12 @@ export class PatientWorkdoneListComponent implements OnInit {
         }
         this.table.offset = 0;
     }
-    searchWorkdone(evt) {
+    searchWorkdone(evt: any) {
         if (this.selectCustomSelected != undefined) {
             this.getData(this.selectCustomSelected);
         }
     }
-    getData(id) {
+    getData(id: any) {
         this.loading = true;
         this._workListService.getWorkDoneHistoryList(id).subscribe(response => {
             this.data = response;

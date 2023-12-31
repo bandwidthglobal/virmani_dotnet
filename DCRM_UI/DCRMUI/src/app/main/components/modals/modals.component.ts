@@ -30,21 +30,21 @@ export class ModalsComponent implements OnInit {
   // -----------------------------------------------------------------------------------------------------
 
   // modal Basic
-  modalOpen(modalBasic) {
+  modalOpen(modalBasic: any) {
     this.modalService.open(modalBasic, {
       windowClass: 'modal'
     });
   }
 
   // modal Open Vertically Centered
-  modalOpenVC(modalVC) {
+  modalOpenVC(modalVC: any) {
     this.modalService.open(modalVC, {
       centered: true
     });
   }
 
   // modal Open Backdrop Disabled
-  modalOpenBD(modalBD) {
+  modalOpenBD(modalBD: any) {
     this.modalService.open(modalBD, {
       backdrop: false,
       centered: true
@@ -52,7 +52,7 @@ export class ModalsComponent implements OnInit {
   }
 
   // modal Open Animation Disabled
-  modalOpenAD(modalAD) {
+  modalOpenAD(modalAD: any) {
     this.modalService.open(modalAD, {
       centered: true,
       windowClass: 'animation-disable',
@@ -60,7 +60,7 @@ export class ModalsComponent implements OnInit {
     });
   }
   // modal Open Primary
-  modalOpenPrimary(modalPrimary) {
+  modalOpenPrimary(modalPrimary: any) {
     this.modalService.open(modalPrimary, {
       centered: true,
       windowClass: 'modal modal-primary'
@@ -68,7 +68,7 @@ export class ModalsComponent implements OnInit {
   }
 
   // modal Open Secondary
-  modalOpenSecondary(modalSecondary) {
+  modalOpenSecondary(modalSecondary: any) {
     this.modalService.open(modalSecondary, {
       centered: true,
       windowClass: 'modal modal-secondary'
@@ -76,7 +76,7 @@ export class ModalsComponent implements OnInit {
   }
 
   // modal Open Success
-  modalOpenSuccess(modalSuccess) {
+  modalOpenSuccess(modalSuccess: any) {
     this.modalService.open(modalSuccess, {
       centered: true,
       windowClass: 'modal modal-success'
@@ -84,7 +84,7 @@ export class ModalsComponent implements OnInit {
   }
 
   // modal Open Danger
-  modalOpenDanger(modalDanger) {
+  modalOpenDanger(modalDanger: any) {
     this.modalService.open(modalDanger, {
       centered: true,
       windowClass: 'modal modal-danger'
@@ -92,7 +92,7 @@ export class ModalsComponent implements OnInit {
   }
 
   // modal Open Info
-  modalOpenInfo(modalInfo) {
+  modalOpenInfo(modalInfo: any) {
     this.modalService.open(modalInfo, {
       centered: true,
       windowClass: 'modal modal-info'
@@ -100,7 +100,7 @@ export class ModalsComponent implements OnInit {
   }
 
   // modal Open Warning
-  modalOpenWarning(modalWarning) {
+  modalOpenWarning(modalWarning: any) {
     this.modalService.open(modalWarning, {
       centered: true,
       windowClass: 'modal modal-warning'
@@ -108,7 +108,7 @@ export class ModalsComponent implements OnInit {
   }
 
   // modal Open Dark
-  modalOpenDark(modalDark) {
+  modalOpenDark(modalDark: any) {
     this.modalService.open(modalDark, {
       centered: true,
       windowClass: 'modal modal-dark'
@@ -116,7 +116,7 @@ export class ModalsComponent implements OnInit {
   }
 
   // modal Open Extra Small
-  modalOpenXS(modalXS) {
+  modalOpenXS(modalXS: any) {
     this.modalService.open(modalXS, {
       centered: true,
       size: 'xs'
@@ -124,7 +124,7 @@ export class ModalsComponent implements OnInit {
   }
 
   // modal Open Small
-  modalOpenSM(modalSM) {
+  modalOpenSM(modalSM: any) {
     this.modalService.open(modalSM, {
       centered: true,
       size: 'sm'
@@ -132,14 +132,14 @@ export class ModalsComponent implements OnInit {
   }
 
   // modal Open Default
-  modalOpenDefault(modalDefault) {
+  modalOpenDefault(modalDefault: any) {
     this.modalService.open(modalDefault, {
       centered: true
     });
   }
 
   // modal Open Large
-  modalOpenLG(modalLG) {
+  modalOpenLG(modalLG: any) {
     this.modalService.open(modalLG, {
       centered: true,
       size: 'lg'
@@ -147,7 +147,7 @@ export class ModalsComponent implements OnInit {
   }
 
   // modal Open Extra Large
-  modalOpenXL(modalXL) {
+  modalOpenXL(modalXL: any) {
     this.modalService.open(modalXL, {
       centered: true,
       size: 'xl'
@@ -155,13 +155,13 @@ export class ModalsComponent implements OnInit {
   }
 
   // modal Open On Show Event
-  modalOpenOSE(modalOSE) {
+  modalOpenOSE(modalOSE: any) {
     alert('onShow event fired!');
     this.modalService.open(modalOSE);
   }
 
   // modal Open After Show Event
-  modalOpenBDE(modalBDE) {
+  modalOpenBDE(modalBDE: any) {
     this.modalService.open(modalBDE, {
       beforeDismiss: () => {
         setTimeout(() => {
@@ -173,17 +173,17 @@ export class ModalsComponent implements OnInit {
   }
 
   // modal Open Form
-  modalOpenForm(modalForm) {
+  modalOpenForm(modalForm: any) {
     this.modalService.open(modalForm);
   }
 
   // modal Open Srolling Long Content
-  modalOpenSLC(modalSLC) {
+  modalOpenSLC(modalSLC: any) {
     this.modalService.open(modalSLC);
   }
 
   // modal Open Srolling Long Content Inside Modal
-  modalOpenSLCIM(modalSLCIM) {
+  modalOpenSLCIM(modalSLCIM: any) {
     this.modalService.open(modalSLCIM, { scrollable: true });
   }
 

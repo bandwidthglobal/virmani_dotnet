@@ -11,16 +11,16 @@ import Stepper from 'bs-stepper';
 export class FormWizardComponent implements OnInit {
   // public
   public contentHeader: object;
-  public TDNameVar;
-  public TDEmailVar;
-  public TDFirstNameVar;
-  public TDLastNameVar;
-  public twitterVar;
-  public facebookVar;
-  public googleVar;
-  public linkedinVar;
-  public landmarkVar;
-  public addressVar;
+  public TDNameVar: any;
+  public TDEmailVar: any;
+  public TDFirstNameVar: any;
+  public TDLastNameVar: any;
+  public twitterVar: any;
+  public facebookVar: any;
+  public googleVar: any;
+  public linkedinVar: any;
+  public landmarkVar: any;
+  public addressVar: any;
 
   public selectBasic = [
     { name: 'UK' },
@@ -32,14 +32,14 @@ export class FormWizardComponent implements OnInit {
   ];
 
   public selectMulti = [{ name: 'English' }, { name: 'French' }, { name: 'Spanish' }];
-  public selectMultiSelected;
+  public selectMultiSelected: any;
 
   // private
   private horizontalWizardStepper: Stepper;
   private verticalWizardStepper: Stepper;
   private modernWizardStepper: Stepper;
   private modernVerticalWizardStepper: Stepper;
-  private bsStepper;
+  private bsStepper: NodeListOf<Element>;
 
   /**
    * Horizontal Wizard Stepper Next

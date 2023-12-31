@@ -20,13 +20,13 @@ import { ToastrService } from 'ngx-toastr';
 export class DrugEditComponent implements OnInit, OnDestroy {
     // Public
     public url = this.router.url;
-    public urlLastValue;
-    public apiData;
+    public urlLastValue: any;
+    public apiData: any;
     public sidebarToggleRef = false;
     public paymentSidebarToggle = false;
     public items = [{ itemId: '', itemName: '', itemQuantity: '', itemCost: '' }];
-    public invoiceSelect;
-    public invoiceSelected;
+    public invoiceSelect: any;
+    public invoiceSelected: any;
     public addDrugForm: UntypedFormGroup;
     public loading = false;
     public submitted = false;
@@ -75,7 +75,7 @@ export class DrugEditComponent implements OnInit, OnDestroy {
             itemCost: ''
         });
     }
-    deleteItem(id) {
+    deleteItem(id: number) {
         for (let i = 0; i < this.items.length; i++) {
             if (this.items.indexOf(this.items[i]) === id) {
                 this.items.splice(i, 1);
@@ -109,10 +109,10 @@ export class DrugEditComponent implements OnInit, OnDestroy {
     get f() {
         return this.addDrugForm.controls;
     }
-    onCategorySelected(ob) {
+    onCategorySelected(ob: any) {
 
     }
-    onBrandSelected(ob) {
+    onBrandSelected(ob: any) {
 
     }
     cancel() {

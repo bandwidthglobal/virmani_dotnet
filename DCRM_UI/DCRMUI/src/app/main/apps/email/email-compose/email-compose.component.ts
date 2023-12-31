@@ -66,7 +66,7 @@ export class EmailComposeComponent implements OnInit {
    *
    * @param toggleRef
    */
-  togglCcBcc(toggleRef) {
+  togglCcBcc(toggleRef: string) {
     if (toggleRef == 'cc') {
       this.isOpenCC = !this.isOpenCC;
     } else {

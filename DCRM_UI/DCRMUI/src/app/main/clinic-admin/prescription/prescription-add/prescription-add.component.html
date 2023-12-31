@@ -29,7 +29,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="row mb-30p">
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <div *ngIf="loading==true" class="table-loading">
                                         <div class="table-loading-text">
                                             Loading...
@@ -79,7 +79,7 @@
                                         </ng-container>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <label for="next_Time" [class.invalid-class]="submitted && formData.next_Time.errors"></label>
                                     <div class="d_flex">
                                         <select name="next_Time" class="form-control" id="" [formControl]="formData.next_Time"
@@ -107,7 +107,7 @@
                                         <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
                                     </ng-container>
                                 </div>
-                                <div class="col-md-4" style="padding-top:25px">
+                                <div class="col-md-3" style="padding-top:25px">
                                     <label for="basic-medicinetype"></label>
                                     <button class="btn btn-default" (click)="addPatient()">
                                         <i size="18" class="fa fa-plus"></i>

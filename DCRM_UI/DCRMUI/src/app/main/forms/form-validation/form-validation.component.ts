@@ -17,8 +17,8 @@ export class FormValidationComponent implements OnInit {
   public _snippetCodeInputValidation = snippet.snippetCodeInputValidation;
   public _snippetCodeReactiveForms = snippet.snippetCodeReactiveForms;
 
-  public TDNameVar;
-  public TDEmailVar;
+  public TDNameVar: any;
+  public TDEmailVar: any;
 
   public ReactiveUserDetailsForm: UntypedFormGroup;
   public ReactiveUDFormSubmitted = false;

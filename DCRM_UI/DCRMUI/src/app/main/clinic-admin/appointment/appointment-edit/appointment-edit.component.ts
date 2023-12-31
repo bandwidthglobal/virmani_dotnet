@@ -40,7 +40,7 @@ export class AppointmentEditComponent implements OnInit, OnDestroy {
         this._unsubscribeAll.complete();
     }
 
-    redirect(event) {
+    redirect(event: any) {
         console.log('> redirect ---> ', event);
         this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/appointment/list';
         this.router.navigateByUrl(this.returnUrl);

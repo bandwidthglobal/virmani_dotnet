@@ -9,7 +9,7 @@ import { User } from '../../../../auth/models';
 export class DoctorPreviewService implements Resolve<any> {
     apiData: any;
     onDoctorPreviewChanged: BehaviorSubject<any>;
-    id;
+    id: number;
     currentUser: any;
 
     /**

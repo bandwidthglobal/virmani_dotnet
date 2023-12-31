@@ -12,11 +12,11 @@ import { TodoService } from 'app/main/apps/todo/todo.service';
 })
 export class TodoRightSidebarComponent implements OnInit {
   // Public
-  public isDataEmpty;
+  public isDataEmpty: boolean;
   public todo: Todo;
-  public tags;
-  public selectTags;
-  public selectAssignee;
+  public tags: any;
+  public selectTags: any;
+  public selectAssignee: any;
 
   @ViewChild('dueDateRef') private dueDateRef: any;
 
@@ -60,7 +60,7 @@ export class TodoRightSidebarComponent implements OnInit {
   /**
    * Add Todo
    */
-  addTodo(todoForm) {
+  addTodo(todoForm: { valid: any; }) {
     if (todoForm.valid) {
       //! Fix: Temp fix till ng2-flatpicker support ng-modal
       this.todo.dueDate = this.dueDateRef.flatpickrElement.nativeElement.children[0].value;

@@ -11,7 +11,7 @@ export class AppointmentChairViewService implements Resolve<any> {
     chairRows: any;
     onAppointmentChairChanged: BehaviorSubject<any>;
     public currentUserSubject: Observable<User>;
-    id;
+    id: any;
     currentUser: any;
     onDoctorChange: BehaviorSubject<any>;
     onChairChange: BehaviorSubject<any>;

@@ -14,11 +14,11 @@ import { EmailService } from 'app/main/apps/email/email.service';
 })
 export class EmailSidebarComponent implements OnInit {
   // Public
-  public folders;
-  public labels;
-  public openComposeRef;
-  public draftCount;
-  public unReadInboxCount;
+  public folders: any;
+  public labels: any;
+  public openComposeRef: boolean;
+  public draftCount: any;
+  public unReadInboxCount: any;
 
   // Private
   private _unsubscribeAll: Subject<any>;
@@ -49,7 +49,7 @@ export class EmailSidebarComponent implements OnInit {
    *
    * @param nameRef
    */
-  toggleSidebar(nameRef): void {
+  toggleSidebar(nameRef: string): void {
     this._coreSidebarService.getSidebarRegistry(nameRef).toggleOpen();
   }
 

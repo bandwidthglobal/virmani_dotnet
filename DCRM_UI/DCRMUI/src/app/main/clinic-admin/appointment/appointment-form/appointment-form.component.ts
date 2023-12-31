@@ -1,15 +1,12 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewEncapsulation } from "@angular/core";
 import { validationMessages } from "app/shared-common/pipes/error-message";
-import { ToastrService } from "ngx-toastr";
 import { CommonValidationService } from "app/shared-common/services/common-validation.service";
-import { Subject, of } from 'rxjs';
+import { Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IAppointmentForm, IAppointmentFormModel } from "../model/appointment-from";
 import { AppointmentFormService } from "./appointment-form.service";
 import { User } from "app/auth/models";
-import { WaitingRoomService } from "../waiting-room/waiting-room.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { debug } from "console";
 import { Validators } from "@angular/forms";
 
 @Component({
@@ -151,7 +148,7 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
        
     }
    
-    changeOldPatient(type) {
+    changeOldPatient(type: string) {
        
         if (type == 'old') {
             this.formData.p_type.setValue("Old Patient");
@@ -164,7 +161,7 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
     }
-    changeAppointmentStatus(status, id, sift) {
+    changeAppointmentStatus(status: any, id: any, sift: any) {
 
         this.saveForm(status, id, sift)
         //this._waitingRoomService.ChangeAppointmentStatus(id.value, status).subscribe(res => {
@@ -176,7 +173,7 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
         //    this.router.navigate(["/admin/appointment/chairview"])
         //});
     }
-    saveForm(status, id, sift): void {
+    saveForm(status: string, id: any, sift: any): void {
         this.submitted = true;
         this._commonValidationService.validateAllFormFields(this.formData);
         debugger;

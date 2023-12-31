@@ -1,10 +1,8 @@
 import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
-import { takeUntil } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { repeaterAnimation } from 'app/main/clinic-admin/prescription/prescription.animation';
 import { PrescriptionAddService } from 'app/main/clinic-admin/prescription/prescription-add/prescription-add.service';
-import { PrescriptionAddModel } from '../prescription-add/prescription-add.model';
 import { CommonValidationService } from 'app/shared-common/services/common-validation.service';
 import { FormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -12,7 +10,7 @@ import { validationMessages } from '../../../../shared-common/pipes/error-messag
 import { PrescriptionForm, PrescriptionFormModel } from '../model/prescription-from';
 import { DrugListForm, DrugListModel } from '../model/drug-list-form';
 import { IPatientForm, IPatientFormModel } from "../../patient/model/patient-from";
-import { IContactsForm, IContactsFormModel } from "../../patient/model/contacts-form";
+import { IContactsFormModel } from "../../patient/model/contacts-form";
 import { DrugForm, DrugFormModel } from "../model/drug-from";
 import { Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -139,7 +137,7 @@ export class PrescriptionAddComponent implements OnInit, OnDestroy {
         });
 
     }
-    removeDrugList(idx): void {
+    removeDrugList(idx: number): void {
         const control = <FormArray>this.formData.controls['drugList'];
         control.removeAt(idx);
     }
@@ -153,7 +151,7 @@ export class PrescriptionAddComponent implements OnInit, OnDestroy {
         this.elm1.classList.add('show');
         this.elm1.style.width = '100vw';
     }
-    getDrugDetails(id) {
+    getDrugDetails(id: any) {
         this.drugId = id;
         var drugDetails = this.drugList.find(x => x.id == id);
         if (drugDetails != undefined) {
@@ -167,7 +165,7 @@ export class PrescriptionAddComponent implements OnInit, OnDestroy {
 
     }
 
-    getDrugId(id, index) {
+    getDrugId(id: any, index: any) {
         var drugDetails1 = this.drugList.find(x => x.id == id);
         if (drugDetails1 != undefined) {
             this.drugIdes.push(id);
@@ -349,7 +347,7 @@ export class PrescriptionAddComponent implements OnInit, OnDestroy {
      *
      * @param id
      */
-    deleteItem(id) {
+    deleteItem(id: number) {
         for (let i = 0; i < this.drugItems.length; i++) {
             if (this.drugItems.indexOf(this.drugItems[i]) === id) {
                 this.drugItems.splice(i, 1);

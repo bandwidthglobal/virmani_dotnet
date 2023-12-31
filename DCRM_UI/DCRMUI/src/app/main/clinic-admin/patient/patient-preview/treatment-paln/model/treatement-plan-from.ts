@@ -3,7 +3,7 @@ import * as vMODEL from './validation';
 
 export class ITreatmentPlanFormModel {
 
-    id?: any = '';
+    id?: any = 0;
     date?: any = new Date();
     doctor?: any = 0;
     job?: any = '';

@@ -56,7 +56,7 @@ export class CalendarMainSidebarComponent implements OnInit {
    * @param event
    * @param id
    */
-  checkboxChange(event, id) {
+  checkboxChange(event: { target: { checked: any; }; }, id: unknown) {
     const index = this.calendarRef.findIndex(r => {
       if (r.id === id) {
         return id;
@@ -72,7 +72,7 @@ export class CalendarMainSidebarComponent implements OnInit {
    *
    * @param event
    */
-  toggleCheckboxAll(event) {
+  toggleCheckboxAll(event: { target: { checked: boolean; }; }) {
     this.checkAll = event.target.checked;
     if (this.checkAll) {
       this.calendarRef.map(res => {

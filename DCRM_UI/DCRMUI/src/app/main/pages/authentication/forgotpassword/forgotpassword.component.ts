@@ -14,7 +14,7 @@ import { CoreConfigService } from '@core/services/config.service';
 })
 export class ForgotPasswordComponent implements OnInit {
   // Public
-  public emailVar;
+  public emailVar: any;
   public coreConfig: any;
   public forgotPasswordForm: UntypedFormGroup;
   public submitted = false;

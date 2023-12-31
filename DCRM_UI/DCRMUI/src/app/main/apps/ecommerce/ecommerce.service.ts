@@ -12,8 +12,8 @@ export class EcommerceService implements Resolve<any> {
   public productList: Array<any>;
   public wishlist: Array<any>;
   public cartList: Array<any>;
-  public selectedProduct;
-  public relatedProducts;
+  public selectedProduct: any[] | PromiseLike<any[]>;
+  public relatedProducts: any[] | PromiseLike<any[]>;
 
   public onProductListChange: BehaviorSubject<any>;
   public onRelatedProductsChange: BehaviorSubject<any>;
@@ -22,7 +22,7 @@ export class EcommerceService implements Resolve<any> {
   public onSelectedProductChange: BehaviorSubject<any>;
 
   // Private
-  private idHandel;
+  private idHandel: string;
 
   private sortRef = key => (a, b) => {
     const fieldA = a[key];
@@ -138,7 +138,7 @@ export class EcommerceService implements Resolve<any> {
    *
    * @param sortBy
    */
-  sortProduct(sortBy) {
+  sortProduct(sortBy: string) {
     let sortDesc = false;
 
     const sortByKey = (() => {
@@ -164,7 +164,7 @@ export class EcommerceService implements Resolve<any> {
    *
    * @param id
    */
-  addToWishlist(id) {
+  addToWishlist(id: any) {
     return new Promise<void>((resolve, reject) => {
       const lengthRef = this.wishlist.length + 1;
       const wishRef = { id: lengthRef, productId: id };
@@ -181,7 +181,7 @@ export class EcommerceService implements Resolve<any> {
    *
    * @param id
    */
-  removeFromWishlist(id) {
+  removeFromWishlist(id: any) {
     const indexRef = this.wishlist.findIndex(wishlistRef => wishlistRef.productId === id); // Get the index ref
     const indexId = this.wishlist[indexRef].id; // Get the product wishlist id from indexRef
     return new Promise<void>((resolve, reject) => {
@@ -197,7 +197,7 @@ export class EcommerceService implements Resolve<any> {
    *
    * @param id
    */
-  addToCart(id) {
+  addToCart(id: any) {
     return new Promise<void>((resolve, reject) => {
       const maxValueId = Math.max(...this.cartList.map(cart => cart.id), 0) + 1;
       const cartRef = { id: maxValueId, productId: id, qty: 1 };
@@ -219,7 +219,7 @@ export class EcommerceService implements Resolve<any> {
    *
    * @param id
    */
-  removeFromCart(id) {
+  removeFromCart(id: any) {
     const indexRef = this.cartList.findIndex(cartListRef => cartListRef.productId === id); // Get the index ref
     const indexId = this.cartList[indexRef].id; // Get the product wishlist id from indexRef
 

@@ -38,8 +38,8 @@ export class DealerListComponent implements OnInit, OnDestroy {
   // private
   private tempData = [];
   private _unsubscribeAll: Subject<any>;
-  public rows;
-  public tempFilterData;
+  public rows: any[];
+  public tempFilterData: any[];
   public previousStatusFilter = '';
 
   /**
@@ -61,7 +61,7 @@ export class DealerListComponent implements OnInit, OnDestroy {
    *
    * @param event
    */
-  filterUpdate(event) {
+  filterUpdate(event: { target: { value: string; }; }) {
     // Reset ng-select on search
     this.selectedStatus = this.selectStatus[0];
 
@@ -83,7 +83,7 @@ export class DealerListComponent implements OnInit, OnDestroy {
    *
    * @param event
    */
-  filterByStatus(event) {
+  filterByStatus(event: { value: any; }) {
     const filter = event ? event.value : '';
     this.previousStatusFilter = filter;
     this.tempFilterData = this.filterRows(filter);
@@ -95,7 +95,7 @@ export class DealerListComponent implements OnInit, OnDestroy {
    *
    * @param statusFilter
    */
-  filterRows(statusFilter): any[] {
+  filterRows(statusFilter: string): any[] {
     // Reset search on select change
     this.searchValue = '';
 

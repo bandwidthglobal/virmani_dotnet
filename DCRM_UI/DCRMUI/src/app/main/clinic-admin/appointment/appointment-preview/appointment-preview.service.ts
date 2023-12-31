@@ -10,7 +10,7 @@ export class AppointmentPreviewService implements Resolve<any> {
     apiData: any;
     onAppointmentEditChanged: BehaviorSubject<any>;
    
-    id;
+    id: number;
     currentUser: any;
 
     /**

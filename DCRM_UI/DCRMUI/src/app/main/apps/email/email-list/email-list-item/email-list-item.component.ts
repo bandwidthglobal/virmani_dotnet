@@ -13,7 +13,7 @@ import { EmailService } from 'app/main/apps/email/email.service';
 })
 export class EmailListItemComponent implements OnInit {
   // Public
-  public selected;
+  public selected: boolean;
 
   // Private
   private _unsubscribeAll: Subject<any>;

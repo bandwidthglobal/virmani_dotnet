@@ -6,7 +6,6 @@ import { takeUntil } from 'rxjs/operators';
 
 import { repeaterAnimation } from 'app/main/clinic-admin/drug/drug.animation';
 import { DrugPreviewService } from 'app/main/clinic-admin/drug/drug-preview/drug-preview.service';
-import { DrugAddModel } from '../drug-add/drug-add.model';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
@@ -20,13 +19,13 @@ import { ToastrService } from 'ngx-toastr';
 export class DrugPreviewComponent implements OnInit, OnDestroy {
     // Public
     public url = this.router.url;
-    public urlLastValue;
-    public apiData;
+    public urlLastValue: any;
+    public apiData: any;
     public sidebarToggleRef = false;
     public paymentSidebarToggle = false;
     public items = [{ itemId: '', itemName: '', itemQuantity: '', itemCost: '' }];
-    public invoiceSelect;
-    public invoiceSelected;
+    public invoiceSelect: any;
+    public invoiceSelected: any;
     public addDrugForm: UntypedFormGroup;
     public loading = false;
     public submitted = false;

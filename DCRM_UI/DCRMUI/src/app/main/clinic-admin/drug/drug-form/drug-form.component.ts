@@ -124,10 +124,10 @@ export class DrugFormComponent implements OnInit, OnDestroy {
     get f() {
         return this.drugForm.controls;
     }
-    onCategorySelected(ob) {
+    onCategorySelected(ob: any) {
 
     }
-    onBrandSelected(ob) {
+    onBrandSelected(ob: any) {
 
     }
     cancel() {

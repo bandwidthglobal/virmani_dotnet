@@ -37,8 +37,8 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
     public data: any;
     private tempData = [];
     private _unsubscribeAll: Subject<any>;
-    public rows;
-    public tempFilterData;
+    public rows: any[];
+    public tempFilterData: any[];
     public previousStatusFilter = '';
     selectedItems = [];
     dropdownSettings = {};
@@ -118,7 +118,7 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
         });
     }
     
-    appointmentView(appointmentId, slatTime, chair, status) {
+    appointmentView(appointmentId: number, slatTime: string, chair: string, status: number) {
         this.isAppontmentClose = false;
         if (status === 2) {
             this.isAppontmentClose = true;
@@ -207,7 +207,7 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
             this.workdoneElm.style.display = 'none';
         }, 75);
     }
-    changeAppointmentStatus(evnt, id) {
+    changeAppointmentStatus(evnt: { target: { value: any; }; }, id: any) {
 
         this._waitingRoomServiceService.ChangeAppointmentStatus(id, evnt.target.value).subscribe(res => {
             this.searchData();

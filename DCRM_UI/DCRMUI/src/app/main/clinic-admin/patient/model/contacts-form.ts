@@ -1,5 +1,4 @@
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import * as vMODEL from './validation';
 
 export interface IContactsFormModel {
     id?: any;

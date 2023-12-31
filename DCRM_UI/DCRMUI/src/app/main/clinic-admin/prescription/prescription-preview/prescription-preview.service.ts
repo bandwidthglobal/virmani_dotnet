@@ -9,7 +9,7 @@ import { User } from '../../../../auth/models';
 export class PrescriptionPreviewService implements Resolve<any> {
     apiData: any;
     onPrescriptionChanged: BehaviorSubject<any>;
-    id;
+    id: string | number;
     currentUser: any;
     /**
      * Constructor

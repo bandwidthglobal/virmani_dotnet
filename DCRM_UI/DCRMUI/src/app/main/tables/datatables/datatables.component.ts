@@ -40,7 +40,7 @@ export class DatatablesComponent implements OnInit {
   public editingSalary = {};
   public chkBoxSelected = [];
   public SelectionType = SelectionType;
-  public exportCSVData;
+  public exportCSVData: any;
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
   @ViewChild('tableRowDetails') tableRowDetails: any;
@@ -113,7 +113,7 @@ export class DatatablesComponent implements OnInit {
    *
    * @param event
    */
-  filterUpdate(event) {
+  filterUpdate(event: { target: { value: string; }; }) {
     const val = event.target.value.toLowerCase();
 
     // filter our data
@@ -132,7 +132,7 @@ export class DatatablesComponent implements OnInit {
    *
    * @param row
    */
-  rowDetailsToggleExpand(row) {
+  rowDetailsToggleExpand(row: any) {
     this.tableRowDetails.rowDetail.toggleExpandRow(row);
   }
 
@@ -153,7 +153,7 @@ export class DatatablesComponent implements OnInit {
    *
    * @param selected
    */
-  onActivate(event) {
+  onActivate(event: any) {
     // console.log('Activate Event', event);
   }
 

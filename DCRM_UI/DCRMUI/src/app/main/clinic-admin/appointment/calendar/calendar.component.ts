@@ -20,7 +20,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   // Public
   public slideoutShow = false;
   public events = [];
-  public event;
+  public event: any;
     title: any;
   public calendarOptions: CalendarOptions = {
     headerToolbar: {
@@ -74,7 +74,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
    *
    * @param s
    */
-  eventClass(s) {
+  eventClass(s: { event: { _def: { extendedProps: { calendar: string | number; }; }; }; }) {
     const calendarsColor = {
       Business: 'primary',
       Holiday: 'success',
@@ -86,10 +86,10 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     const colorName = calendarsColor[s.event._def.extendedProps.calendar];
     return `bg-light-${colorName}`;
     }
-    eventDidMount(info) {
+    eventDidMount(info: any) {
         
     }
-    onMouseOver(eventRef) {
+    onMouseOver(eventRef: { event: { title: any; }; }) {
         this.title = eventRef.event.title;
     }
    
@@ -109,7 +109,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
    *
    * @param name
    */
-  toggleSidebar(name): void {
+  toggleSidebar(name: string): void {
    
   }
 
@@ -118,7 +118,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
    *
    * @param eventRef
    */
-  handleDateSelect(eventRef) {
+  handleDateSelect(eventRef: { start: string; end: string; }) {
     const newEvent = new EventRef();
       newEvent.start = eventRef.start;
       newEvent.end = eventRef.end;
@@ -126,7 +126,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     
     this._calendarService.onCurrentEventChange.next(newEvent);
   }
-    handleDateClick(eventRef) {
+    handleDateClick(eventRef: any) {
       
         //debugger;
     }

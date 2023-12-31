@@ -192,7 +192,7 @@ export class DoctorFormComponent implements OnInit, OnDestroy {
         control.push(new VaccinationForm(obj));
     }
 
-    removeVaccinationDetails(idx): void {
+    removeVaccinationDetails(idx: number): void {
         const control = <FormArray>this.formData.controls['doctorsVaccinationList'];
         control.removeAt(idx);
     }
@@ -203,7 +203,7 @@ export class DoctorFormComponent implements OnInit, OnDestroy {
         control.push(new BankDetailForm(obj));
     }
 
-    removeBankDetails(idx): void {
+    removeBankDetails(idx: number): void {
         const control = <FormArray>this.formData.controls['doctorBankDetailList'];
         control.removeAt(idx);
     }
@@ -214,7 +214,7 @@ export class DoctorFormComponent implements OnInit, OnDestroy {
         control.push(new InsuranceDetailForm(obj));
     }
 
-    removeInsuranceDetails(idx): void {
+    removeInsuranceDetails(idx: number): void {
         const control = <FormArray>this.formData.controls['doctorInsuranceDetailList'];
         control.removeAt(idx);
     }
@@ -225,7 +225,7 @@ export class DoctorFormComponent implements OnInit, OnDestroy {
         control.push(new AddressForm(obj));
     }
 
-    removeAddressDetails(idx): void {
+    removeAddressDetails(idx: number): void {
         const control = <FormArray>this.formData.controls['doctorsAddressList'];
         control.removeAt(idx);
     }

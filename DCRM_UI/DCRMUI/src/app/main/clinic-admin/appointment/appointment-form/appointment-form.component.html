@@ -46,7 +46,7 @@
 
                             <div class="col-md-6">
                                 <shared-ui-text-input [label]="'Cause'" [control]="formData.cause"
-                                                      [submitted]="submitted"></shared-ui-text-input>
+                                                      [submitted]="submitted" [mask]="'alphaAllowSpaces'" [maxLength]=30></shared-ui-text-input>
                             </div>
                             <div class="col-md-6">
                                 <shared-ui-select-input [label]="'Choose Chair'" [control]="formData.chair"
@@ -87,6 +87,7 @@
 
                             <div *ngIf="formData.p_type.value === 'New Patient'" class="col-md-6">
                                 <shared-ui-text-input [label]="'Name'" [control]="formData.patient_name"
+                                [mask]="'alphaAllowSpaces'" [maxLength]=30
                                                       [submitted]="submitted"></shared-ui-text-input>
                             </div>
                             <div  class="col-md-6" *ngIf="formData.p_type.value === 'Old Patient'">
@@ -109,20 +110,21 @@
                                 </div>
                             </div>
                             <div class="col-md-6" *ngIf="formData.p_type.value === 'New Patient'">
-                                <shared-ui-text-input *ngIf="formData.p_type.value === 'New Patient'" [label]="'Phone'" [control]="formData.phone" [mask]="'numeric'"
+                                <shared-ui-text-input *ngIf="formData.p_type.value === 'New Patient'" [label]="'Phone'" [control]="formData.phone"
+                                 [mask]="'numeric'" [maxLength]=10
                                                       [submitted]="submitted"></shared-ui-text-input>
                             </div>
                             <div class="col-md-6" *ngIf="formData.p_type.value === 'Old Patient'">
-                                <shared-ui-text-input  [label]="'Phone'" [control]="formData.phone" [mask]="'numeric'"
+                                <shared-ui-text-input  [label]="'Phone'" [control]="formData.phone" [mask]="'numeric'" [maxLength]=10
                                                    [isDisabled]="true"   [submitted]="submitted"></shared-ui-text-input>
                             </div>
                             <div *ngIf="formData.p_type.value === 'New Patient'" class="col-md-6">
-                                <shared-ui-text-input [label]="'Age'" [control]="formData.age" [mask]="'numeric'"
+                                <shared-ui-text-input [label]="'Age'" [control]="formData.age" [mask]="'numeric'" [maxLength]=3
                                                       [submitted]="submitted"></shared-ui-text-input>
                             </div>
 
                             <div *ngIf="formData.p_type.value === 'New Patient'" class="col-md-6">
-                                <shared-ui-text-input [label]="'Weight'" [control]="formData.weight" [mask]="'numeric'"
+                                <shared-ui-text-input [label]="'Weight'" [control]="formData.weight" [mask]="'numeric'" [maxLength]=3
                                                       [submitted]="submitted"></shared-ui-text-input>
                             </div>
                             <div *ngIf="formData.p_type.value === 'New Patient'" class="col-md-6">
@@ -148,7 +150,7 @@
                                         Extra
                                         Notes
                                     </label>
-                                    <textarea class="form-control" [formControl]="formData.meeting_Notes"
+                                    <textarea class="form-control" [formControl]="formData.meeting_Notes" [mask]="'alphaAllowSpaces'"
                                               [ngClass]="{ 'is-invalid': submitted && formData.meeting_Notes.errors }"></textarea>
                                     <ng-container *ngFor="let error of formData.meeting_Notes.errors | errorKeys">
                                         <span *ngIf="submitted" class="invalid-class">

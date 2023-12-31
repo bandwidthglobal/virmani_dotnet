@@ -16,9 +16,9 @@ export class EcommerceShopComponent implements OnInit {
   public shopSidebarToggle = false;
   public shopSidebarReset = false;
   public gridViewRef = true;
-  public products;
-  public wishlist;
-  public cartList;
+  public products: { isInWishlist: boolean; forEach: (arg0: (product: any) => void) => void; };
+  public wishlist: any[];
+  public cartList: any[];
   public page = 1;
   public pageSize = 9;
   public searchText = '';
@@ -38,7 +38,7 @@ export class EcommerceShopComponent implements OnInit {
    *
    * @param name
    */
-  toggleSidebar(name): void {
+  toggleSidebar(name: string): void {
     this._coreSidebarService.getSidebarRegistry(name).toggleOpen();
   }
 
@@ -59,7 +59,7 @@ export class EcommerceShopComponent implements OnInit {
   /**
    * Sort Product
    */
-  sortProduct(sortParam) {
+  sortProduct(sortParam: any) {
     this._ecommerceService.sortProduct(sortParam);
   }
 

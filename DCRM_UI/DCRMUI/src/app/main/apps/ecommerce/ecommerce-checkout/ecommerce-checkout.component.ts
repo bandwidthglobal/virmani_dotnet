@@ -14,9 +14,9 @@ import { EcommerceService } from 'app/main/apps/ecommerce/ecommerce.service';
 export class EcommerceCheckoutComponent implements OnInit {
   // Public
   public contentHeader: object;
-  public products;
-  public cartLists;
-  public wishlist;
+  public products: { isInWishlist: boolean; forEach: (arg0: (product: any) => void) => void; };
+  public cartLists: any[];
+  public wishlist: any[];
 
   public address = {
     fullNameVar: '',

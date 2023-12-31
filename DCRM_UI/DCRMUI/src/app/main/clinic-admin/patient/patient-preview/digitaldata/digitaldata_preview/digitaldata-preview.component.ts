@@ -27,11 +27,11 @@ export class DigitaldataPreviewComponent implements OnInit, OnDestroy {
     };
     @Input() FormAction?: 'add' | 'edit' = 'add';
     @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
-  public isDataEmpty;
+  public isDataEmpty: any;
  
-  public tags;
-  public selectTags;
-  public selectAssignee;
+  public tags: any;
+  public selectTags: any;
+  public selectAssignee: any;
 
   public dueDateOptions = {
     altInput: true,

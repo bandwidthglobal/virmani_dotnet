@@ -8,7 +8,6 @@ import { CoreConfigService } from '@core/services/config.service';
 
 import { PatientListService } from 'app/main/clinic-admin/patient/patient-list/patient-list.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BeforeOpenEvent } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
 
 import * as snippet from 'app/main/extensions/sweet-alerts/sweet-alerts.snippetcode';
@@ -79,7 +78,7 @@ export class PatientListComponent implements OnInit, OnDestroy {
      *
      * @param event
      */
-    filterByStatus(event) {
+    filterByStatus(event: { value: any; }) {
         const filter = event ? event.value : '';
         this.previousStatusFilter = filter;
         this.tempFilterData = this.filterRows(filter);
@@ -91,7 +90,7 @@ export class PatientListComponent implements OnInit, OnDestroy {
      *
      * @param statusFilter
      */
-    filterRows(statusFilter): any[] {
+    filterRows(statusFilter: string): any[] {
         // Reset search on select change
         this.searchValue = '';
 
@@ -146,7 +145,7 @@ export class PatientListComponent implements OnInit, OnDestroy {
     //        );
     //}
 
-    delete(id) {
+    delete(id: any) {
         let rowIndex = -1;
         this.tempData.forEach((currentValue, index) => {
             if (currentValue.id == id) {
@@ -183,11 +182,11 @@ export class PatientListComponent implements OnInit, OnDestroy {
         })
 
     }
-    addBadStock(id) {
+    addBadStock(id: any) {
         //var modal = document.getElementById('basicModal');
         this.isOpen = true;
     }
-    addStock(id) {
+    addStock(id: any) {
         this.isOpen = true;
     }
     /**

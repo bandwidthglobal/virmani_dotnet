@@ -17,8 +17,8 @@ import { PrescriptionEditService } from 'app/main/apps/prescription/prescription
 export class PrescriptionEditComponent implements OnInit, OnDestroy {
   // Public
   public url = this.router.url;
-  public urlLastValue;
-  public apiData;
+  public urlLastValue: any;
+  public apiData: any;
   public sidebarToggleRef = false;
   public paymentSidebarToggle = false;
   public items = [{ itemId: '', itemName: '', itemQuantity: '', itemCost: '' }];
@@ -82,7 +82,7 @@ export class PrescriptionEditComponent implements OnInit, OnDestroy {
    *
    * @param id
    */
-  deleteItem(id) {
+  deleteItem(id: number) {
     for (let i = 0; i < this.items.length; i++) {
       if (this.items.indexOf(this.items[i]) === id) {
         this.items.splice(i, 1);

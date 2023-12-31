@@ -8,7 +8,6 @@ import { CoreConfigService } from '@core/services/config.service';
 
 import { DoctorListService } from 'app/main/clinic-admin/doctor/doctor-list/doctor-list.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BeforeOpenEvent } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
 
 import * as snippet from 'app/main/extensions/sweet-alerts/sweet-alerts.snippetcode';
@@ -33,8 +32,8 @@ export class DoctorListComponent implements OnInit, OnDestroy {
     // private
     private tempData = [];
     private _unsubscribeAll: Subject<any>;
-    public rows;
-    public tempFilterData;
+    public rows: any[];
+    public tempFilterData: any[];
     public previousStatusFilter = '';
     public _snippetCodeConfirmText = snippet.snippetCodeConfirmText;
     isOpen: boolean = true;
@@ -81,7 +80,7 @@ export class DoctorListComponent implements OnInit, OnDestroy {
      *
      * @param event
      */
-    filterByStatus(event) {
+    filterByStatus(event: { value: any; }) {
         const filter = event ? event.value : '';
         this.previousStatusFilter = filter;
         this.tempFilterData = this.filterRows(filter);
@@ -93,7 +92,7 @@ export class DoctorListComponent implements OnInit, OnDestroy {
      *
      * @param statusFilter
      */
-    filterRows(statusFilter): any[] {
+    filterRows(statusFilter: string): any[] {
         // Reset search on select change
         this.searchValue = '';
 
@@ -131,7 +130,7 @@ export class DoctorListComponent implements OnInit, OnDestroy {
             }
         });
     }
-    delete(id) {
+    delete(id: any) {
         let rowIndex = -1;
         this.tempData.forEach((currentValue, index) => {
             if (currentValue.id == id) {
@@ -168,7 +167,7 @@ export class DoctorListComponent implements OnInit, OnDestroy {
             }
         })
     }
-    removeData(index): void {
+    removeData(index: number): void {
         this.rows.splice(index, 1)
         this.tempData = this.rows;
         this.tempFilterData = this.rows;

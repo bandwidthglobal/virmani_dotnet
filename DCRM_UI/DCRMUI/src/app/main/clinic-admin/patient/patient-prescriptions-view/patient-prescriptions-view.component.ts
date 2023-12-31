@@ -30,8 +30,8 @@ export class PatientPriscriptionsViewComponent implements OnInit, OnDestroy {
     // private
     private tempData = [];
     private _unsubscribeAll: Subject<any>;
-    public rows;
-    public tempFilterData;
+    public rows: any[];
+    public tempFilterData: any[];
     public previousStatusFilter = '';
     isOpen: boolean = true;
     /**
@@ -52,7 +52,7 @@ export class PatientPriscriptionsViewComponent implements OnInit, OnDestroy {
      *
      * @param event
      */
-    filterUpdate(event) {
+    filterUpdate(event: { target: { value: string; }; }) {
 
         const val = event.target.value.toLowerCase();
 
@@ -77,7 +77,7 @@ export class PatientPriscriptionsViewComponent implements OnInit, OnDestroy {
      *
      * @param event
      */
-    filterByStatus(event) {
+    filterByStatus(event: { value: any; }) {
         const filter = event ? event.value : '';
         this.previousStatusFilter = filter;
         this.tempFilterData = this.filterRows(filter);
@@ -89,7 +89,7 @@ export class PatientPriscriptionsViewComponent implements OnInit, OnDestroy {
      *
      * @param statusFilter
      */
-    filterRows(statusFilter): any[] {
+    filterRows(statusFilter: string): any[] {
         this.searchValue = '';
         statusFilter = statusFilter.toLowerCase();
         return this.tempData.filter(row => {

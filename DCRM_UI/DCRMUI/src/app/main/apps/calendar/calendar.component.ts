@@ -20,7 +20,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   // Public
   public slideoutShow = false;
   public events = [];
-  public event;
+  public event: any;
 
   public calendarOptions: CalendarOptions = {
     headerToolbar: {
@@ -67,7 +67,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
    *
    * @param s
    */
-  eventClass(s) {
+  eventClass(s: { event: { _def: { extendedProps: { calendar: string | number; }; }; }; }) {
     const calendarsColor = {
       Business: 'primary',
       Holiday: 'success',
@@ -95,7 +95,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
    *
    * @param name
    */
-  toggleSidebar(name): void {
+  toggleSidebar(name: string): void {
     this._coreSidebarService.getSidebarRegistry(name).toggleOpen();
   }
 
@@ -104,7 +104,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
    *
    * @param eventRef
    */
-  handleDateSelect(eventRef) {
+  handleDateSelect(eventRef: { start: string; }) {
     const newEvent = new EventRef();
     newEvent.start = eventRef.start;
     this._coreSidebarService.getSidebarRegistry('calendar-event-sidebar').toggleOpen();

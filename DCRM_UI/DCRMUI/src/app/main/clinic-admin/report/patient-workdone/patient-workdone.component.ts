@@ -62,7 +62,7 @@ export class PatientWorkDoneComponent implements OnInit {
    *
    * @param event
    */
-  filterUpdate(event) {
+  filterUpdate(event: { target: { value: string; }; }) {
     // Reset ng-select on search
 
     const val = event.target.value.toLowerCase();
@@ -155,7 +155,7 @@ export class PatientWorkDoneComponent implements OnInit {
       }
     });
   }
-    workdoneView(id) {
+    workdoneView(id: any) {
         this.getWorkDoneData(id)
        
     }
@@ -167,7 +167,7 @@ export class PatientWorkDoneComponent implements OnInit {
             this.workdoneElm.style.display = 'none';
         }, 75);
     }
-    getWorkDoneData(id) {
+    getWorkDoneData(id: any) {
         this._reportService.getWorkDone(id).subscribe(res => {
             this.workDoneData = res;
             this.paymentDetailsList = res.paymentDetailsList;

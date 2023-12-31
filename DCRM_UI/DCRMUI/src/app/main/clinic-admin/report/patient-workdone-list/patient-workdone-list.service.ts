@@ -13,7 +13,7 @@ export class PatientWorkdonelistService implements Resolve<any> {
     medicinCategories: any;
     onMedicinBrandChanged: BehaviorSubject<any>;
     onMedicinCategoriesChanged: BehaviorSubject<any>;
-    id;
+    id: any;
     currentUser: any;
 
     /**

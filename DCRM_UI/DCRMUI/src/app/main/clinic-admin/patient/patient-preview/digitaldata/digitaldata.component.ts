@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CoreSidebarService } from '@core/components/core-sidebar/core-sidebar.service';
 import { CoreConfigService } from '@core/services/config.service';
@@ -38,8 +37,8 @@ export class DigitaldataComponent implements OnInit, OnDestroy {
     apiData: any;
     private tempData = [];
     private _unsubscribeAll: Subject<any>;
-    public rows;
-    public tempFilterData;
+    public rows: any[];
+    public tempFilterData: any[];
     public previousStatusFilter = '';
     public patientId = 0;
     /*loading: boolean = false;*/
@@ -52,11 +51,11 @@ export class DigitaldataComponent implements OnInit, OnDestroy {
     };
     @Input() FormAction?: 'add' | 'edit' = 'add';
     @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
-    public isDataEmpty;
+    public isDataEmpty: any;
 
-    public tags;
-    public selectTags;
-    public selectAssignee;
+    public tags: any;
+    public selectTags: any;
+    public selectAssignee: any;
     newPatientId: any;
     base64ImagePreview: string | ArrayBuffer | null = null;
     isOpen: boolean = true;
@@ -79,7 +78,7 @@ export class DigitaldataComponent implements OnInit, OnDestroy {
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
     }
-    filterUpdate(event) {
+    filterUpdate(event: { target: { value: string; }; }) {
 
         const val = event.target.value.toLowerCase();
 
@@ -98,7 +97,7 @@ export class DigitaldataComponent implements OnInit, OnDestroy {
     }
 
 
-    filterByStatus(event) {
+    filterByStatus(event: { value: any; }) {
         const filter = event ? event.value : '';
         this.previousStatusFilter = filter;
         this.tempFilterData = this.filterRows(filter);
@@ -106,7 +105,7 @@ export class DigitaldataComponent implements OnInit, OnDestroy {
     }
 
 
-    filterRows(statusFilter): any[] {
+    filterRows(statusFilter: string): any[] {
         // Reset search on select change
         this.searchValue = '';
 
@@ -182,15 +181,15 @@ export class DigitaldataComponent implements OnInit, OnDestroy {
             
         })
     }
-    toggleSidebar(nameRef): void {
+    toggleSidebar(nameRef: any): void {
         localStorage.setItem('patientId', this.patientId.toString())
         this.elm1.classList.add('show');
         this.elm1.style.width = '100vw';
     }
-    toggleSidebarPreview(nameRef): void {
+    toggleSidebarPreview(nameRef: string): void {
         this._coreSidebarService.getSidebarRegistry(nameRef).toggleOpen();
     }
-    delete(id) {
+    delete(id: any) {
         let rowIndex = -1;
         this.tempData.forEach((currentValue, index) => {
             if (currentValue.id == id) {
@@ -231,7 +230,7 @@ export class DigitaldataComponent implements OnInit, OnDestroy {
         this.elm = this.myModal.nativeElement as HTMLElement;
         this.elm1 = this.digitalPreviewModal.nativeElement as HTMLElement;
     }
-    preview(id): void {
+    preview(id: any): void {
         this._digitalDataService.getData(id).subscribe(resp => {
             this.apiData = resp;
             this.base64ImagePreview = resp.report_File;

@@ -16,6 +16,7 @@ export class UiTextInputComponent implements OnInit {
   @Input() control?: FormControl;
   @Input() messages?: any = validationMessages;
   @Input() mask?: string = '';
+  @Input() maxLength?: number;
 
   constructor() { }
 

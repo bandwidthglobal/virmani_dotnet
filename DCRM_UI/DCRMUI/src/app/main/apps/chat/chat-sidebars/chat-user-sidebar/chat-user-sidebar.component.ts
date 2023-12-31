@@ -28,7 +28,7 @@ export class ChatUserSidebarComponent implements OnInit {
    *
    * @param name
    */
-  toggleSidebar(name) {
+  toggleSidebar(name: string) {
     this._coreSidebarService.getSidebarRegistry(name).toggleOpen();
   }
 

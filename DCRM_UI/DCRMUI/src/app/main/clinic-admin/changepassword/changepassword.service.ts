@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { environment } from 'environments/environment';
@@ -13,7 +13,7 @@ export class ChangepasswordService implements Resolve<any> {
     medicinCategories: any;
     onMedicinBrandChanged: BehaviorSubject<any>;
     onMedicinCategoriesChanged: BehaviorSubject<any>;
-    id;
+    id: any;
     currentUser: any;
 
     /**
