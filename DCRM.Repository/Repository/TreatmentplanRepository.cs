@@ -4,11 +4,6 @@ using DCRM.Common.RequestModel;
 using DCRM.Repository.Database;
 using DCRM.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Repository.Repository
 {
@@ -21,7 +16,7 @@ namespace DCRM.Repository.Repository
         }
         public List<Treatmentplans> GetAll()
         {
-            List<Treatmentplans> treatmentplans = new List<Treatmentplans>();
+            List<Treatmentplans> treatmentplans = new();
             treatmentplans = _contex.Treatmentplans.Where(x=>x.Status==1).OrderByDescending(x => x.Sitting_Status).ToList();
             return treatmentplans;
 
@@ -43,7 +38,7 @@ namespace DCRM.Repository.Repository
                         join te in _contex.Teethinfo on t.Id equals te.Treatmentplans_Id
                         where t.Id == id
                         select new { t, te }).SingleOrDefault();
-            TreatmentplanDto treatmentplan = new TreatmentplanDto();
+            TreatmentplanDto treatmentplan = new();
             if (lnQuery != null)
             {
                 treatmentplan.Estimated_Amount = lnQuery.t.Estimated_Amount;
@@ -68,29 +63,31 @@ namespace DCRM.Repository.Repository
         {
             int id = 0;
             _contex.Database.BeginTransaction();
-            Treatmentplans treatmentplans = new Treatmentplans();
-            treatmentplans.Amount = request.Estimated_Amount;
-            treatmentplans.Estimated_Amount = request.Estimated_Amount;
-            treatmentplans.Courtesy = request.Courtesy;
-            treatmentplans.Treatment_Status = request.TreatmentStatus;
-            treatmentplans.Sitting_Status = request.SittingStatus;
-            treatmentplans.Doctor = request.Doctor;
-            treatmentplans.Patient_Id = request.PatientId;
-            treatmentplans.Date = request.Date;
-            treatmentplans.Job_Id = request.JobId;
-            treatmentplans.Job = request.Job;
-            treatmentplans.Status = 1;
-            treatmentplans.Completed_Date = request.CompletedDate;
-            treatmentplans.Created_At = System.DateTime.UtcNow;
-            treatmentplans.Updated_At = System.DateTime.UtcNow;
-            treatmentplans.Individual_Tooth_Wrk = request.IndividualToothWrk;
-            treatmentplans.Print_Tooth_Name = request.PrintToothName;
+            Treatmentplans treatmentplans = new()
+            {
+                Amount = request.Estimated_Amount,
+                Estimated_Amount = request.Estimated_Amount,
+                Courtesy = request.Courtesy,
+                Treatment_Status = request.TreatmentStatus,
+                Sitting_Status = request.SittingStatus,
+                Doctor = request.Doctor,
+                Patient_Id = request.PatientId,
+                Date = request.Date,
+                Job_Id = request.JobId,
+                Job = request.Job,
+                Status = 1,
+                Completed_Date = request.CompletedDate,
+                Created_At = System.DateTime.UtcNow,
+                Updated_At = System.DateTime.UtcNow,
+                Individual_Tooth_Wrk = request.IndividualToothWrk,
+                Print_Tooth_Name = request.PrintToothName
+            };
             _contex.Treatmentplans.Add(treatmentplans);
             try
             {
                 _contex.SaveChanges();
                 id = treatmentplans.Id;
-                Teethinfo teethinfo = new Teethinfo();
+                Teethinfo teethinfo = new();
                 if (id > 0)
                 {
                     teethinfo.Treatmentplans_Id = id;
@@ -100,10 +97,10 @@ namespace DCRM.Repository.Repository
                     teethinfo.Teeth_Id = request.Teeth_id;
                     teethinfo.Teeth_Number_Note = request.Teeth_Number_Note;
                     teethinfo.Toth_Note = request.Treatment_Notes;
-                    teethinfo.Note_Status = request.Note_Status==null?"": request.Note_Status;
-                    teethinfo.Ord = request.Ord == null ? "" : request.Ord;
-                    teethinfo.Rmd = request.Rmd == null ? "" : request.Rmd;
-                    teethinfo.Treatment_Notes = request.Treatment_Notes == null ? "" : request.Note_Status;
+                    teethinfo.Note_Status = request.Note_Status ?? "";
+                    teethinfo.Ord = request.Ord ?? "";
+                    teethinfo.Rmd = request.Rmd ?? "";
+                    teethinfo.Treatment_Notes = request.Treatment_Notes ?? "";
                     teethinfo.Date = System.DateTime.UtcNow;
                     _contex.Teethinfo.Add(teethinfo);
                     _contex.SaveChanges();

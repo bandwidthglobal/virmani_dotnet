@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace DCRM.Common.Dto;
+﻿namespace DCRM.Common.Dto;
 
 public  class DrugDto
 {
@@ -14,17 +10,17 @@ public  class DrugDto
    
     public string? Medicine_Name { get; set; }
     
-    public string Medicine_Type { get; set; } 
+    public string? Medicine_Type { get; set; } 
    
-    public string Medicine_Brand_Id { get; set; } 
+    public string? Medicine_Brand_Id { get; set; } 
    
-    public string Medicine_Category_Id { get; set; } 
+    public string? Medicine_Category_Id { get; set; } 
 
     public string? Medicine_Image { get; set; }
   
     public string? Medicine_Company { get; set; }
     
-    public string Basic_Salt { get; set; } 
+    public string? Basic_Salt { get; set; } 
 
     public string? Medicine_Composition { get; set; }
 
@@ -46,19 +42,19 @@ public  class DrugDto
 
     public string? Note { get; set; }
 
-    public string Form { get; set; } 
+    public string? Form { get; set; } 
 
-    public string Description { get; set; } 
+    public string? Description { get; set; } 
 
-    public string Safety_Alerts { get; set; } 
+    public string? Safety_Alerts { get; set; } 
 
-    public string Bactrology { get; set; } 
+    public string? Bactrology { get; set; } 
    
-    public string Dosage { get; set; } 
+    public string? Dosage { get; set; } 
    
-    public string Details { get; set; } 
+    public string? Details { get; set; } 
    
-    public string Dose_No { get; set; } 
+    public string? Dose_No { get; set; } 
 
     public int Status { get; set; }
 

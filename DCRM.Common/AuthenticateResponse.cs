@@ -1,7 +1,4 @@
 namespace DCRM.Common;
-
-using DCRM.Common.Dto;
-using DCRM.Common.Entity;
 using System.Text.Json.Serialization;
 
 public class AuthenticateResponse

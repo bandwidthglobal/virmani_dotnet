@@ -6,7 +6,7 @@ export class BankDetailFormModel {
   id?: any = 0;
   staff_Id?: any = 0;
   bank_Name?: any = '';
-  bank_Account_Number?: any = 0;
+  bank_Account_Number?: any = '';
   ifsc_Code?: any = '';
   remarks?: any = '';
   updated_At?: any = new Date();

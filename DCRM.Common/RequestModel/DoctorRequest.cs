@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DCRM.Common.Entity;
 
@@ -15,7 +13,7 @@ public class DoctorRequest
     [Required]
     public string Name { get; set; } = null!;
 
-    public string Gender { get; set; } = null!;
+    public string? Gender { get; set; } = null!;
 
     public DateTime Dob { get; set; }
 
@@ -57,7 +55,7 @@ public class DoctorRequest
    
     public long? Phone4 { get; set; }
 
-    public string Pan_Number { get; set; } 
+    public string? Pan_Number { get; set; } 
 
     public string? Gst_Number { get; set; }
 

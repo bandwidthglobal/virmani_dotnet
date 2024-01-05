@@ -1,9 +1,6 @@
 namespace DCRM.Service;
-using DCRM.Api.Models;
 using DCRM.Common;
-using DCRM.Common.Entity;
 using DCRM.Service.IService;
-using DCRM.Service.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 

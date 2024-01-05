@@ -1,6 +1,5 @@
 
 using DCRM.Common;
-using DCRM.Common.Dto;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -36,7 +35,7 @@ public class JwtUtils : IJwtUtils
     {
         // generate token that is valid for 15 minutes
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.UTF8.GetBytes(_appSettings.Secret);
+        _ = Encoding.UTF8.GetBytes(_appSettings.Secret);
 
         var signinKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.Secret));
 
@@ -52,7 +51,7 @@ public class JwtUtils : IJwtUtils
     public string GenerateJwtToken(int id, string email, string role,string userName)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.UTF8.GetBytes(_appSettings.Secret);
+        _ = Encoding.UTF8.GetBytes(_appSettings.Secret);
         var signinKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.Secret));
         var tokenDescriptor = new SecurityTokenDescriptor
         {
@@ -68,7 +67,7 @@ public class JwtUtils : IJwtUtils
         return tokenHandler.WriteToken(token);
     }
 
-    public ResponceValidateJwtToken ValidateJwtToken(string token)
+    public ResponceValidateJwtToken? ValidateJwtToken(string token)
     {
         if (token == null)
             return null;
@@ -119,7 +118,7 @@ public class JwtUtils : IJwtUtils
 
         return refreshToken;
 
-        string getUniqueToken()
+        static string getUniqueToken()
         {
             // token is a cryptographically strong random sequence of values
             var token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));

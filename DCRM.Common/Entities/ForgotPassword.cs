@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DCRM.Common.Entities
 {
@@ -21,14 +16,14 @@ namespace DCRM.Common.Entities
         [Required]
         [DataType(DataType.Password)]
         [StringLength(20, MinimumLength = 8, ErrorMessage = "Password should be minimum 8 characters and a maximum of 20 characters")]
-        public string NewPassword { get; set; }
+        public string? NewPassword { get; set; }
 
         //[Required]
         //[DataType(DataType.Password)]
         //[Compare("NewPassword")]
-        public string ConfirmPassword { get; set; } = string.Empty;
+        public string? ConfirmPassword { get; set; } = string.Empty;
 
         [Required]
-        public string Type { get; set; } = string.Empty;
+        public string? Type { get; set; } = string.Empty;
     }
 }

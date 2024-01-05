@@ -16,78 +16,77 @@
                                 <div class="card-body" *ngIf="apiData!=null">
 
                                     <div class="row">
-                                        <div class="col-md-4 col-12">
-                                            <div class="user-avatar-section">
-                                                <div class="d-flex justify-content-start">
-                                                    <div class="ng-star-inserted">
-                                                        <img *ngIf="apiData.thumb!=null" height="104" width="104" alt="User avatar" class="img-fluid rounded" src="{{apiData.thumb}}">
-                                                        <img *ngIf="apiData.thumb==null" height="104" width="104" alt="User avatar" class="img-fluid rounded" src="assets/front/img/avatar.png">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-12">
 
-                                            <label for="basic-medicinetype" class="font-weight-bold font-medium-1">Name </label><span class=" d-block">{{apiData.title}}.{{apiData.name}}</span>
+<h5 class="card-header">Personal Information</h5>
+<div class="table-responsive">
+<table class="table border-top">
+    <thead>
+        <tr>
 
-                                        </div>
-                                        <div class="col-md-4 col-12">
-                                            <div class="form-group">
-                                                <label for="mc" class="font-weight-bold font-medium-1">Gender </label>
-                                                <span class="d-block">{{apiData.gender}}</span>
+            <th class="text-truncate">Name</th>
+            <th class="text-truncate">Gender</th>
+            <th class="text-truncate">DOB</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="text-truncate">
+                <span class="fw-medium">{{apiData.title}}.{{apiData.name}}</span>
+            </td>
+            <td class="text-truncate">{{apiData.gender}}</td>
+            <td class="text-truncate">{{apiData.dob}}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
 
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-12">
-                                            <div class="form-group" style="margin-top:10px;">
-                                                <label class="font-weight-bold font-medium-1">DOB</label>
-                                                <br />
-                                                <span class="d-block">{{apiData.dob}}</span>
-                                            </div>
-                                        </div>
+<div class="table-responsive">
+    <table class="table border-top">
+        <thead>
+            <tr>
+    
+                <th class="text-truncate">Guardian Person</th>
+                <th class="text-truncate">Sex</th>
+                <th class="text-truncate">Age</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-truncate">
+                    <span class="fw-medium">{{apiData.guardian}}</span>
+                </td>
+                <td class="text-truncate">{{apiData.sex}}</td>
+                <td class="text-truncate">{{apiData.age}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
 
-                                        <div class="col-md-4 col-12">
-                                            <div class="form-group">
-                                                <label class="font-weight-bold font-medium-1">Guardian Person</label>
-                                                <br />
-                                                <span class="d-block">{{apiData.guardian}}</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-12">
-                                            <div class="form-group">
-                                                <label class="font-weight-bold font-medium-1">Sex</label>
-                                                <br />
-                                                <span class="d-block">{{apiData.sex}}</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-12">
-                                            <div class="form-group">
-                                                <label class="font-weight-bold font-medium-1">Age  </label>
-                                                <br />
-                                                <span class="d-block">{{apiData.age}}</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-12">
-                                            <div class="form-group">
-                                                <label class="font-weight-bold font-medium-1">Weight </label>
-                                                <br />
-                                                <span class="d-block">{{apiData.weight}}</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-12">
-                                            <div class="form-group">
-                                                <label class="font-weight-bold font-medium-1">Present Address </label>
-                                                <br />
-                                                <span class="d-block">{{apiData.present_Address}}</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-12">
-                                            <div class="form-group">
-                                                <label class="font-weight-bold font-medium-1">Permanent Address </label>
-                                                <br />
-                                                <span class="d-block">{{apiData.permanent_Address}}</span>
-                                            </div>
-                                        </div>
+    <div class="table-responsive">
+        <table class="table border-top">
+            <thead>
+                <tr>
+        
+                    <th class="text-truncate">Weight</th>
+                    <th class="text-truncate">Present Address</th>
+                    <th class="text-truncate">Permanent Address</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-truncate">
+                        <span class="fw-medium">{{apiData.weight}}</span>
+                    </td>
+                    <td class="text-truncate">{{apiData.present_Address}}</td>
+                    <td class="text-truncate">{{apiData.permanent_Address}}</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+                                       
                                         <div class="col-md-12 col-12">
                                             <div class="card mb-4">
                                                 <h5 class="card-header">Contact List</h5>
@@ -136,6 +135,7 @@
                                                     </table>
                                                 </div>
                                                 <div class="table-responsive">
+                                                        <h5 class="card-header">Address Information</h5>
                                                     <table class="table border-top">
                                                         <thead>
                                                             <tr>
@@ -183,7 +183,7 @@
                             </tbody>
                         </table>
                     </div>-->
-                                                <
+                                                
                                                 <div class="table-responsive">
                                                     <table class="table border-top">
                                                         <thead>
@@ -234,7 +234,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        
                                         <div class="col-md-12 col-12">
                                             <div class="card mb-4">
                                                 <h5 class="card-header">Relative List</h5>

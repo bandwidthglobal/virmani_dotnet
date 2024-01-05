@@ -1,12 +1,7 @@
 ﻿using DCRM.Common.Authorization;
-using DCRM.Common.Dto;
 using DCRM.Common.Entity;
 using DCRM.Service.IService;
-using DCRM.Service.Service;
-using Demo_Api.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Reflection.Metadata;
 
 namespace DCRM.Api.Controllers
 {
@@ -83,7 +78,7 @@ namespace DCRM.Api.Controllers
         {
             try
             {
-                _workDoneService.delete(id);
+                _workDoneService.Delete(id);
                 return Ok();
             }
             catch (Exception ex)

@@ -1,9 +1,4 @@
 ﻿using DCRM.Api.Models;
-using DCRM.Common;
-using DCRM.Service.IService;
-using Org.BouncyCastle.Utilities;
-using System.Drawing;
-using System.IO;
 
 namespace DCRM.Api
 {
@@ -47,7 +42,7 @@ namespace DCRM.Api
                 filePath = fileSaveRequest.BaseUrl + "UploadImages/" + fileSaveRequest.Type + "/" + fileSaveRequest.Id + "/" + imageName;
                 return filePath;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return filePath;
             }

@@ -1,35 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DCRM.Common.RequestModel
+﻿namespace DCRM.Common.RequestModel
 {
     public class ScheduleTimeRequest
     {
         public long User_Id { get; set; }
-        public string? start1 { get; set; }
-        public string? start2 { get; set; }
-        public string? start3 { get; set; }
-        public string? start4 { get; set; }
-        public string? start5 { get; set; }
-        public string? start6 { get; set; }
-        public string? start7 { get; set; }
-        public string? end1 { get; set; }
-        public string? end2 { get; set; }
-        public string? end3 { get; set; }
-        public string? end4 { get; set; }
-        public string? end5 { get; set; }
-        public string? end6 { get; set; }
-        public string? end7 { get; set; }
-        public string? day1 { get; set; }
-        public string? day2 { get; set; }
-        public string? day3 { get; set; }
-        public string? day4 { get; set; }
-        public string? day5 { get; set; }
-        public string? day6{ get; set; }
-        public string? day7 { get; set; }
+        public string? Start1 { get; set; }
+        public string? Start2 { get; set; }
+        public string? Start3 { get; set; }
+        public string? Start4 { get; set; }
+        public string? Start5 { get; set; }
+        public string? Start6 { get; set; }
+        public string? Start7 { get; set; }
+        public string? End1 { get; set; }
+        public string? End2 { get; set; }
+        public string? End3 { get; set; }
+        public string? End4 { get; set; }
+        public string? End5 { get; set; }
+        public string? End6 { get; set; }
+        public string? End7 { get; set; }
+        public string? Day1 { get; set; }
+        public string? Day2 { get; set; }
+        public string? Day3 { get; set; }
+        public string? Day4 { get; set; }
+        public string? Day5 { get; set; }
+        public string? Day6{ get; set; }
+        public string? Day7 { get; set; }
         
     }                
 }

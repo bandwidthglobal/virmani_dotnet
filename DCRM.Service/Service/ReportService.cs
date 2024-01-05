@@ -2,11 +2,6 @@
 using DCRM.Common.Entity;
 using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Service.Service
 {
@@ -44,13 +39,13 @@ namespace DCRM.Service.Service
 
         public PatientWorkdoneDetailsDto PatientWorkdoneDetails(long workdoneid)
         {
-            PatientWorkdoneDetailsDto patientWorkdoneDetailsDto = new PatientWorkdoneDetailsDto();
+            PatientWorkdoneDetailsDto patientWorkdoneDetailsDto = new();
             var workdoneQuery = (from w in _workdoneRepository.GetAll().ToList()
                                 join d in _doctorRepository.GetAll().ToList() on w.Doctor_Id equals d.Id
                                 join t in _tretmentRepository.GetAll().ToList() on w.Treatment_Id equals t.Id
                                  join te in _teethInfoRepository.GetAll().ToList() on t.Id equals te.Treatmentplans_Id
                                 where w.Id == workdoneid
-                                select new { DoctorName=d.Name, Job=t.Job,Date=d.Created_At.Value.ToShortDateString()
+                                select new { DoctorName=d.Name,t.Job,Date=d.Created_At.Value.ToShortDateString()
                                 ,TeethNumber=te.Teeth_Number_Note,
                                 ToothNote=te.Toth_Note}).FirstOrDefault();
             if ( workdoneQuery != null )
@@ -65,18 +60,20 @@ namespace DCRM.Service.Service
             var appointments = from a in _appointmentRepository.GetAll().ToList()
                                join d in _doctorRepository.GetAll().ToList() on a.Doctor_Id equals d.Id
                                where a.Workdone_Id == workdoneid
-                               select new { Date = a.Date, DoctorName = d.Name, Cause = a.Cause, Time = a.Start_Time };
+                               select new { a.Date, DoctorName = d.Name, a.Cause, Time = a.Start_Time };
 
 
-            List<AppointmentDto> appointmentList = new List<AppointmentDto>();
+            List<AppointmentDto> appointmentList = new();
 
             foreach (var item in appointments)
             {
-                AppointmentDto appointment = new AppointmentDto();
-                appointment.Date = item.Date;
-                appointment.Doctor_Name = item.DoctorName;
-                appointment.Cause = item.Cause;
-                appointment.Start_Time = item.Time;
+                AppointmentDto appointment = new()
+                {
+                    Date = item.Date,
+                    Doctor_Name = item.DoctorName,
+                    Cause = item.Cause,
+                    Start_Time = item.Time
+                };
                 appointmentList.Add(appointment);
             }
             var drugList = from d in _drugRepository.GetAll().ToList()
@@ -84,29 +81,29 @@ namespace DCRM.Service.Service
                            join mc in _categoryRepository.GetAll().ToList() on d.Medicine_Category_Id equals mc.Id.ToString()
                            select new
                            {
-                               Id=d.Id,
-                               Medicine_Brand = mb.Medicine_Brand,
-                               Company_Name = mb.Company_Name,
-                               Form=d.Form,
-                               Category=mc.Medicine_Category,
-                               Details = d.Details,
-                               Dosage = d.Dosage,
-                               Description = d.Description,
-                               Bactrology = d.Bactrology,
-                               Safety_Alerts = d.Safety_Alerts,
-                               Dose_No=d.Dose_No,
-                               Medicine_Composition=d.Medicine_Composition,
-                               Basic_Salt=mb.Basic_Salt
+                               d.Id,
+                               mb.Medicine_Brand,
+                               mb.Company_Name,
+                               d.Form,
+                               mc.Medicine_Category,
+                               d.Details,
+                               d.Dosage,
+                               d.Description,
+                               d.Bactrology,
+                               d.Safety_Alerts,
+                               d.Dose_No,
+                               d.Medicine_Composition,
+                               mb.Basic_Salt
                            };
 
-            List<DrugDto> drugs = new List<DrugDto>();
+            List<DrugDto> drugs = new();
             if (workdoneQuery != null)
             {
                 var pre = _prescriptionRepository.GetAll().Where(x=>x.Workdone_Id==workdoneid).FirstOrDefault();
-               var drugIds= pre!=null? pre.Drug_Id.Split(','):new string[0];
+               var drugIds= pre!=null? pre.Drug_Id.Split(','): Array.Empty<string>();
                 foreach (string drugId in drugIds)
                 {
-                    DrugDto? drug = new DrugDto();
+                    DrugDto? drug = new();
                     var drugDetails = drugList.Where(x => x.Id == Convert.ToInt32(drugId)).FirstOrDefault();
                     if (drugDetails != null)
                     {
@@ -114,7 +111,7 @@ namespace DCRM.Service.Service
                         drug.Medicine_Brand = drugDetails.Medicine_Brand;
                         drug.Company_Name = drugDetails.Company_Name;
                         drug.Form = drugDetails.Form;
-                        drug.Medicin_Category = drugDetails.Category;
+                        drug.Medicin_Category = drugDetails.Medicine_Category;
                         drug.Details = drugDetails.Details;
                         drug.Dosage = drugDetails.Dosage;
                         drug.Description = drugDetails.Description;

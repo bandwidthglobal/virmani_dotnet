@@ -63,7 +63,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-3">
                                                                     <shared-ui-text-input [label]="'Address (R)'" [control]="formData.address_R"
-                                                                                          [mask]="'alphaNumericAllowSpaces'"
+                                                                                          [mask]="'alphaNumericAllowSpaces'" [maxLength]=100
                                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                                 </div>
                                                                 <div class="col-md-3">
@@ -92,7 +92,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-3">
                                                                     <shared-ui-text-input [label]="'Address (O)'" [control]="formData.address_O"
-                                                                                          [mask]="'alphaNumericAllowSpaces'"
+                                                                                          [mask]="'alphaNumericAllowSpaces'" [maxLength]=100
                                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                                 </div>
                                                                 <div class="col-md-3">
@@ -135,12 +135,12 @@
 
                                                 <div class="col-md-3">
                                                     <shared-ui-email-input [label]="'Email 1'" [control]="formData.email1"
-                                                                           [submitted]="submitted"></shared-ui-email-input>
+                                                                           [submitted]="submitted" [maxLength]=50></shared-ui-email-input>
                                                 </div>
 
                                                 <div class="col-md-3">
                                                     <shared-ui-email-input [label]="'Email 2'" [control]="formData.email2"
-                                                                           [submitted]="submitted"></shared-ui-email-input>
+                                                                           [submitted]="submitted" [maxLength]=50></shared-ui-email-input>
                                                 </div>
                                             </div>
 
@@ -219,7 +219,7 @@
 
                                                 <div class="col-md-3">
                                                     <shared-ui-email-input [label]="'Email'" [control]="formData.staffEmail_1"
-                                                                           [submitted]="submitted"></shared-ui-email-input>
+                                                                           [submitted]="submitted" [maxLength]=50></shared-ui-email-input>
                                                 </div>
 
                                                 <div class="col-md-6">
@@ -235,7 +235,7 @@
 
                                                 <div class="col-md-3">
                                                     <shared-ui-email-input [label]="'Email'" [control]="formData.staffEmail_2"
-                                                                           [submitted]="submitted"></shared-ui-email-input>
+                                                                           [submitted]="submitted" [maxLength]=50></shared-ui-email-input>
                                                 </div>
 
                                                 <div class="col-md-6">
@@ -251,7 +251,7 @@
 
                                                 <div class="col-md-3">
                                                     <shared-ui-email-input [label]="'Email'" [control]="formData.staffEmail_3"
-                                                                           [submitted]="submitted"></shared-ui-email-input>
+                                                                           [submitted]="submitted" [maxLength]=50></shared-ui-email-input>
                                                 </div>
 
                                                 <div class="col-md-6">
@@ -267,7 +267,7 @@
 
                                                 <div class="col-md-3">
                                                     <shared-ui-email-input [label]="'Email'" [control]="formData.staffEmail_4"
-                                                                           [submitted]="submitted"></shared-ui-email-input>
+                                                                           [submitted]="submitted" [maxLength]=50></shared-ui-email-input>
                                                 </div>
                                             </div>
 

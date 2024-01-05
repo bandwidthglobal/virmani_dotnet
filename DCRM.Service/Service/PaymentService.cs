@@ -4,13 +4,6 @@ using DCRM.Common.Entity;
 using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
 using Demo_Api.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Service.Service
 {
@@ -48,13 +41,13 @@ IRepository<Teeth> teethRepository)
 
         public List<Payment_Workdone> GetPaymentWorkdones(int workdoneid)
         {
-            List<Payment_Workdone> paymentWorkdones = new List<Payment_Workdone>();
+            List<Payment_Workdone> paymentWorkdones = new();
             paymentWorkdones = _paymentWorkdoneRepository.GetAll().ToList();
             return paymentWorkdones;
         }
         public Payment_Workdone GetPaymentWorkdone(int workdoneid)
         {
-            Payment_Workdone paymentWorkdone = new Payment_Workdone();
+            Payment_Workdone paymentWorkdone = new();
             paymentWorkdone = _paymentWorkdoneRepository.Get(workdoneid);
             return paymentWorkdone;
         }
@@ -106,8 +99,8 @@ IRepository<Teeth> teethRepository)
                 payment_Details_List.Created_At = DateTime.Now;
                 payment_Details_List.Updated_At = DateTime.Now;
                 _paymentDetailsListRepository.Insert(payment_Details_List);
-                paymentHistory.Balance = paymentHistory.Balance - payment_Details_List.Price;
-                paymentHistory.Credit_Amount = paymentHistory.Credit_Amount + payment_Details_List.Price;
+                paymentHistory.Balance -= payment_Details_List.Price;
+                paymentHistory.Credit_Amount += payment_Details_List.Price;
                 _paymentHistoryRepository.Update(paymentHistory);
             }
 
@@ -115,14 +108,14 @@ IRepository<Teeth> teethRepository)
         }
         public List<Payment_Details_List> GetReceivedPayment(long paymentId)
         {
-            List<Payment_Details_List> receivedList = new List<Payment_Details_List>();
+            List<Payment_Details_List> receivedList = new();
             receivedList = _paymentDetailsListRepository.GetAll().Where(x => x.Payment_History_Id == paymentId).ToList();
             return receivedList;
         }
 
         public List<PaymentReportDto> GetPaymentReportList(long userId)
         {
-            List<PaymentReportDto> paymentReportList = new List<PaymentReportDto>();
+            List<PaymentReportDto> paymentReportList = new();
             var lnquery = from w in _workDoneRepository.GetAll().ToList()
                           join t in _treatmentRepository.GetAll().ToList() on w.Treatment_Id equals t.Id
                           join d in _doctorRepository.GetAll().ToList() on w.Doctor_Id equals d.Id
@@ -133,7 +126,7 @@ IRepository<Teeth> teethRepository)
                           where p.User_Id == userId
                           select new
                           {
-                              Id = ph.Id,
+                              ph.Id,
                               TeethId = ti.Teeth_Id,
                               ToothName = te.Teeth_Note,
                               WorkDoneDate = w.Created_At,
@@ -147,9 +140,12 @@ IRepository<Teeth> teethRepository)
 
             foreach (var item in lnquery.ToList())
             {
-                PaymentReportDto paymentReport = new PaymentReportDto();
-                paymentReport.Id = item.Id;
-                paymentReport.ToothName = "(" + item.TeethId + ") " + item.ToothName; ;
+                PaymentReportDto paymentReport = new()
+                {
+                    Id = item.Id,
+                    ToothName = "(" + item.TeethId + ") " + item.ToothName
+                };
+                ;
                 paymentReport.WorkDoneDate = item.WorkDoneDate;
                 paymentReport.DoctorName = item.DoctorName;
                 paymentReport.TreatementCode = item.TreatementCode;
@@ -163,7 +159,7 @@ IRepository<Teeth> teethRepository)
         }
         public PaymentReportDto GetPaymentReport(long paymentId)
         {
-            PaymentReportDto paymentReport = new PaymentReportDto();
+            PaymentReportDto paymentReport = new();
             var paymentHistory = _paymentHistoryRepository.Get(paymentId);
             if (paymentHistory != null)
             {
@@ -197,14 +193,16 @@ IRepository<Teeth> teethRepository)
                     paymentReport.PatientName = lnquery.PatientName;
                 }
                 var paymentDetilList = _paymentDetailsListRepository.GetAll().Where(x => x.Payment_History_Id == paymentId);
-                List<Payment_Details_List> paymentDetailsList = new List<Payment_Details_List>();
+                List<Payment_Details_List> paymentDetailsList = new();
                 foreach (var payment in paymentDetilList)
                 {
-                    Payment_Details_List paymentDetails = new Payment_Details_List();
-                    paymentDetails.Created_At = payment.Created_At;
-                    paymentDetails.Payment_Type = payment.Payment_Type;
-                    paymentDetails.Price = payment.Price;
-                    paymentDetails.Description = payment.Description;
+                    Payment_Details_List paymentDetails = new()
+                    {
+                        Created_At = payment.Created_At,
+                        Payment_Type = payment.Payment_Type,
+                        Price = payment.Price,
+                        Description = payment.Description
+                    };
                     paymentDetailsList.Add(paymentDetails);
                 }
                 paymentReport.PaymentDetailsList = paymentDetailsList;

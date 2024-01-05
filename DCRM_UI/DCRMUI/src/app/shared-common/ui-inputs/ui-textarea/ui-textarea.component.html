@@ -1,6 +1,6 @@
 <div *ngIf="control" class="form-group">
   <label *ngIf="label" [class.invalid-class]="submitted && control.errors">{{ label }}</label>
-  <textarea [formControl]="control" class="form-control" [placeholder]="placeholder"
+  <textarea [formControl]="control" class="form-control" [placeholder]="placeholder" [maxlength]="maxLength"
     [ngClass]="{ 'is-invalid': submitted && control.errors }" rows="8"></textarea>
   <ng-container *ngFor="let error of control.errors | errorKeys">
     <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>

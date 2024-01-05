@@ -8,7 +8,7 @@ export class InsuranceDetailFormModel {
   insurance?: any = '';
   insurance_Date?: any = '';
   renewal_Date?: any = '';
-  amount_Insured?: any = 0;
+  amount_Insured?: any = '';
   amount_Paid?: any = 0;
   allow_Notifications?: any = 0;
   remarks?: any = '';

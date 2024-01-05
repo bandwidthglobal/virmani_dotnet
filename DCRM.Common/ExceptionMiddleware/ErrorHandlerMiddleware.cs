@@ -28,7 +28,7 @@ public class ErrorHandlerMiddleware
 
             switch(error)
             {
-                case SqlAlreadyFilledException e:
+                case SqlAlreadyFilledException:
                     // custom already exists  error
                     response.StatusCode = (int)HttpStatusCode.Conflict;
                     break;
@@ -36,7 +36,7 @@ public class ErrorHandlerMiddleware
                     // custom application error
                     response.StatusCode = (int)HttpStatusCode.BadRequest;
                     break;
-                case KeyNotFoundException e:
+                case KeyNotFoundException:
                     // not found error
                     response.StatusCode = (int)HttpStatusCode.NotFound;
                     break;

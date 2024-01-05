@@ -15,6 +15,7 @@ export class UiEmailInputComponent implements OnInit {
   @Input() control: FormControl;
   @Input() messages = validationMessages;
   @Input() mask: string = '';
+  @Input() maxLength?: number;
 
   constructor() { }
 

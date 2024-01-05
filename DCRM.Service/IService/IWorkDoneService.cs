@@ -1,10 +1,4 @@
 ﻿using DCRM.Common.Entity;
-using Demo_Api.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Service.IService
 {
@@ -14,6 +8,6 @@ namespace DCRM.Service.IService
         Workdone Get(long id);
         void Create(Workdone workdone,long treatementId);
         void Update(Workdone workdone);
-        void delete(long id);
+        void Delete(long id);
     }
 }

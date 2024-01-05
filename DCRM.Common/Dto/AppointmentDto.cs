@@ -1,9 +1,4 @@
 ﻿using DCRM.Common.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Common.Dto
 {
@@ -68,10 +63,10 @@ namespace DCRM.Common.Dto
 
     public class Calendar
     {
-        public long id { get; set; }
-        public string title { get; set; }
-        public string start { get; set; }
-        public string end { get; set; }
+        public long Id { get; set; }
+        public string? Title { get; set; }
+        public string? Start { get; set; }
+        public string? End { get; set; }
        
     }
 }

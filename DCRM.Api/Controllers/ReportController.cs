@@ -1,8 +1,6 @@
 ﻿using DCRM.Common.Authorization;
 using DCRM.Common.Dto;
-using DCRM.Common.Entities;
 using DCRM.Service.IService;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DCRM.Api.Controllers
@@ -12,7 +10,7 @@ namespace DCRM.Api.Controllers
     [ApiController]
     public class ReportController : ControllerBase
     {
-        IReportService _reportService;
+        readonly IReportService _reportService;
         public ReportController(IReportService reportService)
         {
             _reportService=reportService;

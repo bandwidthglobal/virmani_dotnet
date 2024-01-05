@@ -1,15 +1,6 @@
-﻿using DCRM.Common;
-using DCRM.Common.Dto;
-using DCRM.Common.Entity;
-using DCRM.Common.Request;
+﻿using DCRM.Common.Entity;
 using DCRM.Repository.Database;
 using DCRM.Repository.IRepository;
-using K4os.Hash.xxHash;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Data.SqlTypes;
 
 namespace DCRM.Repository.Repository
 {
@@ -47,7 +38,7 @@ namespace DCRM.Repository.Repository
             _contex.Appointments.Add(appointment);
             _contex.SaveChanges();
             var abc= appointment.Id;
-            return appointment.Id;
+            return (long)appointment.Id;
         }
 
 

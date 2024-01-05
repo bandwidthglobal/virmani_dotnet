@@ -7,12 +7,24 @@
                             <div class="card-body invoice-padding pb-0">
                                 <div class="col-xl-9 col-md-8 col-12"><div><h3 class="text-primary invoice-logo">Patient Details</h3></div></div>
                                 <div class="row pdl-10">
+                                    <div class="col-md-4 col-12">
+                                        <div class="user-avatar-section">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="ng-star-inserted">
+                                                    <img *ngIf="apiData.thumb!=null" height="150" width="150" alt="User avatar" class="img-fluid rounded" src="{{apiData.thumb}}">
+                                                    <img *ngIf="apiData.thumb==null" height="150" width="150" alt="User avatar" class="img-fluid rounded" src="assets/front/img/avatar.png">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                     <div class="col-xl-12 col-lg-12 font-weight-bold">
                                         <h3>{{apiData.name}}</h3>
                                         <span *ngIf="apiData.patientContacts.length>0">{{apiData.patientContacts[0].address_R}}</span>
                                         <p>{{apiData.mr_Number}}</p>
                                     </div>
-
+                                    
+                                    
                                     <div class="col-xl-12 col-lg-12">
                                         <div class="row mt-30">
                                             <div class="col-xl-5 col-lg-12 font-weight-bold">
@@ -41,12 +53,12 @@
                                         <div class="row">
                                             <div class="col-xl-5 col-lg-12 font-weight-bold">
                                                 <p>
-                                                    Referred By: , Referrer Name: <strong *ngIf="apiData.patientContacts.length>0">{{apiData.patientContacts[0].reffered_By}}</strong>
+                                                    Referred By: <strong *ngIf="apiData.patientContacts.length>0">{{apiData.patientContacts[0].reffered_By}}</strong>
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
-
+                                </div>
 
                                 </div>
                                 <div class="row match-height mt-30">

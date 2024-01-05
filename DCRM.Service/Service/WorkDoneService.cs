@@ -1,13 +1,6 @@
 ﻿using DCRM.Common.Entity;
 using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
-using Demo_Api.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Twilio.TwiML.Fax;
 
 namespace DCRM.Service.Service
 {
@@ -28,7 +21,7 @@ namespace DCRM.Service.Service
         }
         public List<Workdone> GetAll(long patientId)
         {
-            List<Workdone> workdoneList = new List<Workdone>();
+            List<Workdone> workdoneList = new();
             workdoneList = _repository.GetAll().Where(x=>x.Wk_Patient_Id==patientId).ToList();
             return workdoneList;
         }
@@ -62,7 +55,7 @@ namespace DCRM.Service.Service
         {
             _repository.Update(workdone);
         }
-        public void delete(long id)
+        public void Delete(long id)
         {
             var workdone = _workdonenewrepository.Get(id);
             _workdonenewrepository.Delete(workdone);

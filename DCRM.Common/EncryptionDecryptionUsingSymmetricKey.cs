@@ -1,12 +1,5 @@
-﻿using DCRM.Common.Entities;
-using DCRM.Common.RequestModel;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Common
 {
@@ -24,18 +17,14 @@ namespace DCRM.Common
 
                 ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
 
-                using (MemoryStream memoryStream = new MemoryStream())
+                using MemoryStream memoryStream = new();
+                using CryptoStream cryptoStream = new((Stream)memoryStream, encryptor, CryptoStreamMode.Write);
+                using (StreamWriter streamWriter = new((Stream)cryptoStream))
                 {
-                    using (CryptoStream cryptoStream = new CryptoStream((Stream)memoryStream, encryptor, CryptoStreamMode.Write))
-                    {
-                        using (StreamWriter streamWriter = new StreamWriter((Stream)cryptoStream))
-                        {
-                            streamWriter.Write(plainText);
-                        }
-
-                        array = memoryStream.ToArray();
-                    }
+                    streamWriter.Write(plainText);
                 }
+
+                array = memoryStream.ToArray();
             }
 
             return Convert.ToBase64String(array);
@@ -46,30 +35,22 @@ namespace DCRM.Common
             byte[] iv = new byte[16];
             byte[] buffer = Convert.FromBase64String(cipherText);
 
-            using (Aes aes = Aes.Create())
-            {
-                aes.Key = Encoding.UTF8.GetBytes(key);
-                aes.IV = iv;
-                ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+            using Aes aes = Aes.Create();
+            aes.Key = Encoding.UTF8.GetBytes(key);
+            aes.IV = iv;
+            ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
 
-                using (MemoryStream memoryStream = new MemoryStream(buffer))
-                {
-                    using (CryptoStream cryptoStream = new CryptoStream((Stream)memoryStream, decryptor, CryptoStreamMode.Read))
-                    {
-                        using (StreamReader streamReader = new StreamReader((Stream)cryptoStream))
-                        {
-                            return streamReader.ReadToEnd();
-                        }
-                    }
-                }
-            }
+            using MemoryStream memoryStream = new(buffer);
+            using CryptoStream cryptoStream = new((Stream)memoryStream, decryptor, CryptoStreamMode.Read);
+            using StreamReader streamReader = new((Stream)cryptoStream);
+            return streamReader.ReadToEnd();
         }
 
         public static string GenerateRandamPassword()
         {
             const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
             StringBuilder res = new StringBuilder();
-            Random rnd = new Random();
+            Random rnd = new();
             int length = 9;
             while (0 < length--)
             {

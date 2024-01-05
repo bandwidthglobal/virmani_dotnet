@@ -1,21 +1,18 @@
 ﻿using DCRM.Common.Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace DCRM.Common.Entity;
 
 public partial class Doctor:BaseEntity
 {
-    public long Id { get; set; }
+    public new long Id { get; set; }
 
     public long User_Id { get; set; }
 
     public string? Thumb { get; set; }
 
-    public string Name { get; set; } = null!;
+    public string? Name { get; set; } = null!;
 
-    public string Gender { get; set; } = null!;
+    public string? Gender { get; set; } = null!;
 
     public DateTime Dob { get; set; }
 
@@ -27,14 +24,14 @@ public partial class Doctor:BaseEntity
 
     public string? Qualification { get; set; }
 
-    public string Email { get; set; } = null!;
+    public string? Email { get; set; } = null!;
 
     public string? Email2 { get; set; }
 
     
     public string? Password { get; set; }
 
-    public string Role { get; set; } = null!;
+    public string? Role { get; set; } = null!;
 
     public string? Speciality { get; set; }
 
@@ -46,7 +43,7 @@ public partial class Doctor:BaseEntity
 
     public long? Phone4 { get; set; }
 
-    public string Pan_Number { get; set; } = null!;
+    public string? Pan_Number { get; set; } = null!;
 
     public string? Gst_Number { get; set; }
 

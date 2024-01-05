@@ -4,7 +4,6 @@ using DCRM.Common.Entities;
 using DCRM.Common.Entity;
 using DCRM.Service.IService;
 using Demo_Api.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DCRM.Api.Controllers
@@ -103,17 +102,17 @@ namespace DCRM.Api.Controllers
         [HttpGet("Get/PaymentReport/{paymentId}")]
         public PaymentReportDto PaymentReport(long paymentId)
         {
-            PaymentReportDto paymentReportDto = new PaymentReportDto();
-            paymentReportDto= _paymentService.GetPaymentReport(paymentId);
+            _ = new PaymentReportDto();
+            PaymentReportDto paymentReportDto = _paymentService.GetPaymentReport(paymentId);
             return paymentReportDto;
         }
 
         [HttpGet("Get/PaymentReports")]
         public List<PaymentReportDto> PaymentReportList()
         {
-            List<PaymentReportDto> paymentReports=new List<PaymentReportDto>();
+            _ = new List<PaymentReportDto>();
             var user = (Request.HttpContext.Items["User"] as User);
-            paymentReports= _paymentService.GetPaymentReportList(user.Id);
+            List<PaymentReportDto> paymentReports = _paymentService.GetPaymentReportList(user.Id);
             return paymentReports;
         }
     }

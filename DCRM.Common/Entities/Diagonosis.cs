@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace DCRM.Common.Entities;
+﻿namespace DCRM.Common.Entities;
 
 public partial class Diagonosis:BaseEntity
 {

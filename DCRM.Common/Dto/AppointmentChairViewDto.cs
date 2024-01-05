@@ -1,9 +1,4 @@
 ﻿using DCRM.Common.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Common.Dto
 {
@@ -27,7 +22,7 @@ namespace DCRM.Common.Dto
     {
         public int Id { get; set; }
 
-        public string Uid { get; set; }
+        public string? Uid { get; set; }
 
         public int User_Id { get; set; }
 

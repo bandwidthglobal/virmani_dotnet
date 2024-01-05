@@ -4,10 +4,7 @@ using DCRM.Common.Entity;
 using DCRM.Common.Request;
 using DCRM.Repository.Database;
 using DCRM.Repository.IRepository;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Data.SqlTypes;
 
 namespace DCRM.Repository.Repository
@@ -73,30 +70,32 @@ namespace DCRM.Repository.Repository
                     try
                     {
                         _contex.Database.BeginTransaction();
-                        Doctor doctor = new Doctor();
-                        doctor.User_Id = request.User_Id;
-                        doctor.Name = request.Name;
-                        doctor.Email = request.Email;
-                        doctor.Thumb = request.Thumb;
-                        doctor.Qualification = request.Qualification;
-                        doctor.Age = request.Age;
-                        doctor.Gender = request.Gender;
-                        doctor.Blood_Group = request.Blood_Group;
-                        doctor.Marital_Status = request.Marital_Status;
-                        doctor.Dob = request.Dob;
-                        doctor.Phone1 = request.Phone1;
-                        doctor.Phone2 = request.Phone2;
-                        doctor.Phone3 = request.Phone3;
-                        doctor.Phone4 = request.Phone4;
-                        doctor.Pan_Number = request.Pan_Number;
-                        doctor.Password = request.Password;
-                        doctor.Gst_Number = request.Gst_Number;
-                        doctor.Speciality = request.Speciality;
-                        doctor.Role = request.Role;
-                        doctor.Is_Delete = 0;
-                        doctor.Created_At = System.DateTime.UtcNow;
-                        doctor.Updated_At = System.DateTime.UtcNow;
-                        _contex.Doctors.Add(doctor);
+                    Doctor doctor = new()
+                    {
+                        User_Id = request.User_Id,
+                        Name = request.Name,
+                        Email = request.Email,
+                        Thumb = request.Thumb,
+                        Qualification = request.Qualification,
+                        Age = request.Age,
+                        Gender = request.Gender,
+                        Blood_Group = request.Blood_Group,
+                        Marital_Status = request.Marital_Status,
+                        Dob = request.Dob,
+                        Phone1 = request.Phone1,
+                        Phone2 = request.Phone2,
+                        Phone3 = request.Phone3,
+                        Phone4 = request.Phone4,
+                        Pan_Number = request.Pan_Number,
+                        Password = request.Password,
+                        Gst_Number = request.Gst_Number,
+                        Speciality = request.Speciality,
+                        Role = request.Role,
+                        Is_Delete = 0,
+                        Created_At = System.DateTime.UtcNow,
+                        Updated_At = System.DateTime.UtcNow
+                    };
+                    _contex.Doctors.Add(doctor);
                         _contex.SaveChanges();
                         if (request.DoctorInsuranceDetailList != null && request.DoctorInsuranceDetailList.Count > 0)
                         {
@@ -304,12 +303,12 @@ namespace DCRM.Repository.Repository
         public List<DropdownDataDto> NameList(long userId)
         {
             var doctors = _contex.Doctors.Where(x => x.User_Id == userId && x.Is_Delete==0).ToList();
-            DropdownDataDto data = new DropdownDataDto();
-            List<DropdownDataDto> dataList = new List<DropdownDataDto>();
+            DropdownDataDto data = new();
+            List<DropdownDataDto> dataList = new();
             foreach (var doctor in doctors)
             {
-                data = new DropdownDataDto();
-                data.Id = doctor.Id; data.Name = doctor.Name; dataList.Add(data);
+                data = new DropdownDataDto { Id = doctor.Id, Name = doctor.Name };
+                dataList.Add(data);
             }
             return dataList;
         }

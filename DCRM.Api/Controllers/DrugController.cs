@@ -1,8 +1,6 @@
 ﻿using DCRM.Common.Authorization;
 using DCRM.Common.Entity;
 using DCRM.Service.IService;
-
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DCRM.Api.Controllers
@@ -13,7 +11,6 @@ namespace DCRM.Api.Controllers
     public class DrugController : ControllerBase
     {
         public readonly IDurgService _drugfService;
-        int _userId = 0;
         public DrugController(IDurgService drugfService) {
             _drugfService= drugfService;
             

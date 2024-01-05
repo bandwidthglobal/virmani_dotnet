@@ -1,14 +1,8 @@
-﻿using AutoMapper;
-using DCRM.Api.Models;
-using DCRM.Common;
-using DCRM.Common.Authorization;
+﻿using DCRM.Common.Authorization;
 using DCRM.Common.Dto;
 using DCRM.Common.Entity;
 using DCRM.Common.RequestModel;
-using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
-using DCRM.Service.Service;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DCRM.Api.Controllers
@@ -70,7 +64,7 @@ namespace DCRM.Api.Controllers
 
 
         [HttpPost("Update")]
-        public async Task<IActionResult> Update(PatientRequest request)
+        public IActionResult Update(PatientRequest request)
         {
             _patientService.Update(request);
             return Ok();

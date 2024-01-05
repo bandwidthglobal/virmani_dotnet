@@ -118,11 +118,11 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <shared-ui-email-input [label]="'Email 1'" [control]="formData.email"
-                                                                            [submitted]="submitted"></shared-ui-email-input>
+                                                                            [submitted]="submitted" [maxLength]=50></shared-ui-email-input>
                                         </div>
                                         <div class="col-md-6">
                                             <shared-ui-email-input [label]="'Email 2'" [control]="formData.email2"
-                                                                    [submitted]="submitted"></shared-ui-email-input>
+                                                                    [submitted]="submitted" [maxLength]=50></shared-ui-email-input>
                                          </div>
                                             </div>
                                         </div>
@@ -135,7 +135,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <shared-ui-text-input [label]="'Address (R)'" [control]="address.address_R"
-                                                                              [mask]="'alphaNumericAllowSpaces'"
+                                                                              [mask]="'alphaNumericAllowSpaces'" [maxLength]=100
                                                                               [submitted]="submitted"></shared-ui-text-input>
                                                     </div>
                                                     <div class="col-md-2">
@@ -158,7 +158,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <shared-ui-text-input [label]="'Address (O)'" [control]="address.address_O"
-                                                                              [mask]="'alphaNumericAllowSpaces'"
+                                                                              [mask]="'alphaNumericAllowSpaces'" [maxLength]=100
                                                                               [submitted]="submitted"></shared-ui-text-input>
                                                     </div>
                                                     <div class="col-md-2">
@@ -180,7 +180,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <shared-ui-text-input [label]="'Address (Other if living away from City)'"
-                                                                              [mask]="'alphaNumericAllowSpaces'"
+                                                                              [mask]="'alphaNumericAllowSpaces'" [maxLength]=100
                                                                               [control]="address.address_Other" [submitted]="submitted"></shared-ui-text-input>
                                                     </div>
                                                     <div class="col-md-2">
@@ -226,7 +226,7 @@
                                                     </div>
                                                     <div class="col">
                                                         <shared-ui-text-input [label]="'Medical History'" [control]="vaccination.medical_History"
-                                                                              [mask]="'alphaNumericAllowSpaces'" [maxLength]=50
+                                                                              [mask]="'alphaNumericAllowSpaces'" [maxLength]=100
                                                                               [submitted]="submitted"></shared-ui-text-input>
                                                     </div>
                                                     <div *ngIf="formData.doctorsVaccinationList.controls.length > 1" class="col">
@@ -334,11 +334,11 @@
                                                 </div>
                                                 <div class="col">
                                                     <shared-ui-text-input [label]="'Amount Insured'" [control]="insurance.amount_Insured"
-                                                                          [submitted]="submitted" [mask]="'numeric'" [maxLength]=20></shared-ui-text-input>
+                                                                          [submitted]="submitted" [mask]="'numeric'" [maxLength]=10></shared-ui-text-input>
                                                 </div>
                                                 <div class="col">
                                                     <shared-ui-text-input [label]="'Amount Paid'" [control]="insurance.amount_Paid"
-                                                                          [submitted]="submitted" [mask]="'numeric'"  [maxLength]=20></shared-ui-text-input>
+                                                                          [submitted]="submitted" [mask]="'numeric'"  [maxLength]=10></shared-ui-text-input>
                                                 </div>
                                             </div>
                                             <div class="row">

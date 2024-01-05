@@ -1,7 +1,4 @@
 ﻿using DCRM.Common.Entity;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace DCRM.Common.Dto;
 

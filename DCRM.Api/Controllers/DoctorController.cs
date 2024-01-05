@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using DCRM.Common;
-using DCRM.Common.Authorization;
+﻿using DCRM.Common.Authorization;
 using DCRM.Common.Dto;
 using DCRM.Common.Entity;
 using DCRM.Service.IService;

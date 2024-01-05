@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
-using DCRM.Common;
 using DCRM.Common.Authorization;
 using DCRM.Common.Dto;
 using DCRM.Common.Entity;
 using DCRM.Service.IService;
-using DCRM.Service.Service;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace DCRM.Api.Controllers
 {
@@ -54,7 +50,7 @@ namespace DCRM.Api.Controllers
             var user = (Request.HttpContext.Items["User"] as User);
             staffRequest.Role = "Staff";
             staffRequest.User_Id = user.Id;
-            long id = _staffService.Create(staffRequest);
+            _ = _staffService.Create(staffRequest);
             return Ok();
         }
 

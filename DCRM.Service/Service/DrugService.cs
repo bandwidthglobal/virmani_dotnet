@@ -1,15 +1,6 @@
-﻿using DCRM;
-using DCRM.Api.Models;
-using DCRM.Common;
-using DCRM.Common.Dto;
-using DCRM.Common.Entity;
-using DCRM.Common.Request;
-using DCRM.Common.RequestModel;
+﻿using DCRM.Common.Entity;
 using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
-using Microsoft.Extensions.Configuration;
-using System.Collections.Generic;
-using System.Numerics;
 
 namespace DCRM.Service.Service
 {

@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace DCRM.Common.Entity;
+﻿namespace DCRM.Common.Entity;
 
 public  class PatientRequest
 {
@@ -15,7 +10,7 @@ public  class PatientRequest
 
     public string? Mr_Number { get; set; }
     
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     public string? User_name { get; set; }
 
