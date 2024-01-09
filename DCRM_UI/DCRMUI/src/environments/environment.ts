@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   hmr: false,
-     //apiUrl: 'https://localhost:7069/api'
-    apiUrl: 'https://virmaniapi.azurewebsites.net/api'
+     apiUrl: 'https://localhost:7069/api'
+    //apiUrl: 'https://virmaniapi.azurewebsites.net/api'
 };
 
 /*
