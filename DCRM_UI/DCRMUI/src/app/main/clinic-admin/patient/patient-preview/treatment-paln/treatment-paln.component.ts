@@ -65,7 +65,7 @@ export class TreatmentPalnComponent implements OnInit {
     public patientId: any;
     showTreatmentForm: boolean = false;
     isAdd = true;
-    isWorkdonesave = false;
+    isWorkdonesave : boolean = true;
     textboxdisabled = 'disabled'
     constructor(
         private _patientListService: PatientPreviewService,
