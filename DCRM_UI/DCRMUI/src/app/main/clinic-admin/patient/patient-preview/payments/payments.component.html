@@ -60,9 +60,10 @@
                             {{ id }}
                         </ng-template>
                     </ngx-datatable-column>>
-                    <ngx-datatable-column name="Doctor Name" prop="doctorName"></ngx-datatable-column>
-                    <ngx-datatable-column name="Tooth Code" prop="toothCode"></ngx-datatable-column>
-                    <ngx-datatable-column name="Date" prop="date">
+                    <ngx-datatable-column name="Dr. Name" prop="doctorName"></ngx-datatable-column>
+                    <ngx-datatable-column name="Treatment Code" prop="toothCode" [width]="170"></ngx-datatable-column>
+                    <ngx-datatable-column name="Tooth Number" prop="toothName"></ngx-datatable-column>
+                    <ngx-datatable-column name="Date" prop="date" [width]="100">
                         <ng-template let-row="row" ngx-datatable-cell-template>
                             <div class="row">
                                 <div class="col-12">{{row.date | date: 'dd/MM/yyyy'}}</div>
@@ -70,35 +71,35 @@
                         </ng-template>
                     </ngx-datatable-column>
                     <ngx-datatable-column name="Description" prop="description"></ngx-datatable-column>
-                    <ngx-datatable-column name="Remaining Estimate" prop="remainingEstimate">
+                    <ngx-datatable-column name="Remain Estimate" prop="remainingEstimate" [width]="140">
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <div class="d-flex align-items-center col-actions">
                                 {{row.remainingEstimate}}
                             </div>
                         </ng-template>
                     </ngx-datatable-column>
-                    <ngx-datatable-column name="Today's Due/Debit" prop="debitAmount">
+                    <ngx-datatable-column name="Today Due" prop="debitAmount" [width]="120">
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <div class="d-flex align-items-center col-actions">
                                 {{row.debitAmount}}
                             </div>
                         </ng-template>
                     </ngx-datatable-column>
-                    <ngx-datatable-column name="Amt paid/Credit" prop="creditAmount">
+                    <ngx-datatable-column name="Amt Paid" prop="creditAmount" [width]="120">
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <div class="d-flex align-items-center col-actions">
                                 {{row.creditAmount}}
                             </div>
                         </ng-template>
                     </ngx-datatable-column>
-                    <ngx-datatable-column name="Balance" prop="balance">
+                    <ngx-datatable-column name="Balance" prop="balance" [width]="120">
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <div class="d-flex align-items-center">
                                 {{row.balance}}
                             </div>
                         </ng-template>
                     </ngx-datatable-column>
-                    <ngx-datatable-column name="Add payment" [sortable]="false">
+                    <ngx-datatable-column name="Add Payment" [sortable]="false" [width]="120">
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <span ngbtooltip="Set Status" *ngIf="row.balance==0" class="badge brd-20 badge-success-soft mt-4px ng-star-inserted" ng-reflect-ngb-tooltip="Set Status"><i class="fa fa-check mt-4px"></i>Paid</span>
                             <div class="d-flex align-items-center col-actions" *ngIf="row.balance>0">
@@ -113,7 +114,7 @@
                             </div>
                         </ng-template>
                     </ngx-datatable-column>
-                    <ngx-datatable-column name="Actions" [sortable]="false">
+                    <ngx-datatable-column name="Actions" [sortable]="false" [width]="80">
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <div class="d-flex align-items-center col-actions">
                                 <a class="mr-1"

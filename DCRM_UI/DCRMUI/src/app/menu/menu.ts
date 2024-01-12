@@ -250,7 +250,7 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.REPORT.Payments',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/reports'
+                        url: 'admin/reports/payments'
                     },
                     {
                         id: 'patientsworkdones',

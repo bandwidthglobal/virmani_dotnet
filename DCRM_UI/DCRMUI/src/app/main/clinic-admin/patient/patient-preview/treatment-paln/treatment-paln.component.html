@@ -118,7 +118,19 @@
                             </ng-template>
                         </ngx-datatable-column>
                         <ngx-datatable-column name="Tooth Number" prop="teethNumber"></ngx-datatable-column>
-                        <ngx-datatable-column name="Notes & Diagnosis" prop="tothNot"></ngx-datatable-column>
+                        <ngx-datatable-column name="Notes & Diagnosis" prop="tothNot">
+                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                <div *ngIf="!row.expanded">
+                                  {{ value | slice:0:20 }}
+                                  <span *ngIf="value.length > 20">
+                                    <a href="javascript://" (click)="toggleExpand(row)">... Show more</a>
+                                  </span>
+                                </div>
+                                <div *ngIf="row.expanded">
+                                  {{ value }}
+                                </div>
+                              </ng-template>
+                        </ngx-datatable-column>
                         <ngx-datatable-column name="Doctor" prop="doctorName"></ngx-datatable-column>
                         <ngx-datatable-column name="Type" prop="type"></ngx-datatable-column>
                         <ngx-datatable-column name="Treatment Code" prop="job"></ngx-datatable-column>

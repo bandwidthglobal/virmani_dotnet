@@ -66,7 +66,7 @@
                                     <div class="col-xl-12 col-lg-12">
                                         <ul ngbNav #navFilled="ngbNav" class="nav-tabs nav-fill">
                                             <li ngbNavItem>
-                                                <a ngbNavLink>Patient Info</a>
+                                                <a ngbNavLink target="_blank" class="btn btn-primary mr-2">Patient Info</a>
                                                 <ng-template ngbNavContent>
                                                     <p>
                                                         <app-patientinfo></app-patientinfo>
@@ -74,7 +74,7 @@
                                                 </ng-template>
                                             </li>
                                             <li ngbNavItem>
-                                                <a ngbNavLink>Appointments</a>
+                                                <a ngbNavLink target="_blank" class="btn btn-primary mr-2">Appointments</a>
                                                 <ng-template ngbNavContent>
                                                     <p>
                                                         <app-patient-appointments></app-patient-appointments>
@@ -82,7 +82,7 @@
                                                 </ng-template>
                                             </li>
                                             <li ngbNavItem>
-                                                <a href="javascript:void(0)" ngbNavLink>Treatment Plan</a>
+                                                <a href="javascript:void(0)" ngbNavLink target="_blank" class="btn btn-primary mr-2">Treatment Plan</a>
                                                 <ng-template ngbNavContent>
                                                     <p>
                                                         <app-treatment-paln [DiagnosisData]="DiagnosisData"
@@ -91,7 +91,7 @@
                                                 </ng-template>
                                             </li>
                                             <li ngbNavItem>
-                                                <a ngbNavLink>Work Done History</a>
+                                                <a ngbNavLink target="_blank" class="btn btn-primary mr-2">Work Done History</a>
                                                 <ng-template ngbNavContent>
                                                     <p>
                                                         <app-workdonehistory></app-workdonehistory>
@@ -99,7 +99,7 @@
                                                 </ng-template>
                                             </li>
                                             <li ngbNavItem>
-                                                <a ngbNavLink>Payments</a>
+                                                <a ngbNavLink target="_blank" class="btn btn-primary mr-2">Payments</a>
                                                 <ng-template ngbNavContent>
                                                     <p>
                                                         <app-payments></app-payments>
@@ -115,7 +115,7 @@
                     </ng-template>
                 </li>-->
                                             <li ngbNavItem>
-                                                <a ngbNavLink>Digital Data</a>
+                                                <a ngbNavLink target="_blank" class="btn btn-primary mr-2">Digital Data</a>
                                                 <ng-template ngbNavContent>
                                                     <p>
                                                         <app-digitaldata></app-digitaldata>
@@ -123,7 +123,7 @@
                                                 </ng-template>
                                             </li>
                                             <li ngbNavItem>
-                                                <a ngbNavLink>Priscriptions</a>
+                                                <a ngbNavLink target="_blank" class="btn btn-primary mr-2">Priscriptions</a>
                                                 <ng-template ngbNavContent>
                                                     <p>
                                                         <app-priscriptions></app-priscriptions>

@@ -28,7 +28,7 @@ import { PatientWorkdoneDetailsService } from 'app/main/clinic-admin/report/pati
 // routing
 const routes: Routes = [
     {
-        path: '',
+        path: 'payments',
         component: ReportComponent,
         resolve: {
             Sas: ReportService

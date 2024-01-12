@@ -232,3 +232,7 @@ logs/webapi-20231113.log
 /DCRM_UI/DCRMUI/src/environments/environment.ts
 /logs/webapi-20240109.log
 /logs/webapi-20240110.log
+/logs/webapi-20240111.log
+/logs/webapi-20240112.log
+/DCRM_UI/DCRMUI/src/app/main/clinic-admin/patient/patient-list/patient-list.component.html
+/DCRM_UI/DCRMUI/src/app/main/clinic-admin/report/patient-workdone-list/patient-workdone-list.component.html

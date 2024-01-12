@@ -123,6 +123,10 @@ export class TreatmentPalnComponent implements OnInit {
             return isPartialNameMatch;
         });
     }
+
+    toggleExpand(row: any): void {
+        row.expanded = !row.expanded;
+    }
     toothNumber: any;
     job: any;
     //Work Done Start

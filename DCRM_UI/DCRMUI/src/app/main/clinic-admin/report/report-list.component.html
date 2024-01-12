@@ -20,20 +20,26 @@
                             <div class="col-3">
                                 <div class="form-group">
                                     <label>Select Doctor</label>
-                                    <select (change)="searchDoctor($event)" class="form-control">
-                                        <option value="">--Select--</option>
-                                        <option *ngFor="let doc of doctorList" value="doc.id">{{doc.name}}</option>
-                                    </select>
+                                    <ng-select [items]="doctorList"
+                                       [(ngModel)]="doctorList"
+                                       bindLabel="name"
+                                       (click)="searchDoctor($event)"
+                                       bindValue="id"
+                                       [searchable]="true">
+                                    </ng-select>
                                 </div>
                             </div>
 
                             <div class="col-3">
                                 <div class="form-group">
                                     <label>Select Patient</label>
-                                    <select id="patient_id" name="patient_id" (change)="searchPatient($event)" class="form-control">
-                                        <option value="">--Select--</option>
-                                        <option *ngFor="let patient of patientList" value="patient.id">{{patient.name}}</option>
-                                    </select>
+                                    <ng-select [items]="patientList"
+                                       [(ngModel)]="patientList"
+                                       bindLabel="name"
+                                       (click)="searchPatient($event)"
+                                       bindValue="id"
+                                       [searchable]="true">
+                                    </ng-select>
                                 </div>
                             </div>
 
