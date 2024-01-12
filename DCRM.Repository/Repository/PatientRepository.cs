@@ -168,7 +168,13 @@ namespace DCRM.Repository.Repository
             {
 
                 patient.Chamber_Id = request.Chamber_Id ?? "123456";
-                patient.Mr_Number = request.Mr_Number ?? "123456";
+                patient.Mr_Number = string.IsNullOrEmpty(request.Mr_Number) ? GenerateUniqueNumber() : request.Mr_Number;
+                 string GenerateUniqueNumber()
+                {
+                    Random random = new();
+                    string uniqueNumber = new(Enumerable.Range(0, 10).OrderBy(x => random.Next()).Take(6).Select(x => (char)(x + '0')).ToArray());
+                    return uniqueNumber;
+                }
                 patient.Name = request.Name;
                 patient.User_Id = request.User_Id;
                 patient.Slug = request.Slug;
@@ -466,7 +472,7 @@ namespace DCRM.Repository.Repository
 
         public List<DropdownDataDto> NameList(long userId)
         {
-            var patients = _contex.Patientses.Where(x => x.User_Id == userId).ToList();
+            var patients = _contex.Patientses.Where(x => x.User_Id == userId && x.Is_Delete == 0).ToList();
             DropdownDataDto data = new();
             List<DropdownDataDto> dataList = new();
             foreach (var patient in patients)
