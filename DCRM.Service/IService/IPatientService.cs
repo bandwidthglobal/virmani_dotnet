@@ -24,7 +24,7 @@ namespace DCRM.Service.IService
 
         List<PaymentHistoryDto> GetPatientpaymentList(int patientId);
 
-        List<DropdownDataDto> NameList(long userId);
+        List<DropdownDataDto> NameAllList(long userId);
 
         ReferBy GetReferBy(long patientId);
 

@@ -470,14 +470,14 @@ namespace DCRM.Repository.Repository
             return labdataList;
         }
 
-        public List<DropdownDataDto> NameList(long userId)
+        public List<DropdownDataDto> NameAllList(long userId)
         {
             var patients = _contex.Patientses.Where(x => x.User_Id == userId && x.Is_Delete == 0).ToList();
             DropdownDataDto data = new();
             List<DropdownDataDto> dataList = new();
             foreach (var patient in patients)
             {
-                data = new DropdownDataDto { Id = patient.Id, Name = patient.Name };
+                data = new DropdownDataDto { Id = patient.Id, Name = patient.Name, Age = patient.Age, Mobile = patient.Mobile, Present_Address = patient.Present_Address};
                 dataList.Add(data);
             }
             return dataList;

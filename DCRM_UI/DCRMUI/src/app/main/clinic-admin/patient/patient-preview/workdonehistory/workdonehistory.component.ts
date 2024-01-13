@@ -56,7 +56,7 @@ export class WorkdoneHistoryComponent implements OnInit {
      *
      * @param event
      */
-    filterUpdate(event) {
+    filterUpdate(event: { target: { value: string; }; }) {
 
         const val = event.target.value.toLowerCase();
 
@@ -86,7 +86,7 @@ export class WorkdoneHistoryComponent implements OnInit {
      *
      * @param event
      */
-    filterByStatus(event) {
+    filterByStatus(event: { value: any; }) {
         const filter = event ? event.value : '';
         this.previousStatusFilter = filter;
         this.tempFilterData = this.filterRows(filter);
@@ -98,7 +98,7 @@ export class WorkdoneHistoryComponent implements OnInit {
      *
      * @param statusFilter
      */
-    filterRows(statusFilter): any[] {
+    filterRows(statusFilter: string): any[] {
         // Reset search on select change
         this.searchValue = '';
 
@@ -125,7 +125,7 @@ export class WorkdoneHistoryComponent implements OnInit {
         })
 
     }
-    delete(id) {
+    delete(id: any) {
         let rowIndex = -1;
         this.tempData.forEach((currentValue, index) => {
             if (currentValue.id == id) {

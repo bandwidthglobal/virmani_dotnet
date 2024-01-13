@@ -78,10 +78,10 @@ namespace DCRM.Api.Controllers
         }
 
         [HttpGet("Get/Names")]
-        public List<DropdownDataDto> PatientNameList()
+        public List<DropdownDataDto> PatientDetailList()
         {
             var user = Request.HttpContext.Items["User"] as User;
-            return _patientService.NameList(user.Id);
+            return _patientService.NameAllList(user.Id);
         }
         [HttpGet("Get/Appointments/{patientId}")]
         public List<AppointmentDto> GetPatientAppointment(int patientId)

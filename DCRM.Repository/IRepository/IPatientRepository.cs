@@ -33,7 +33,7 @@ namespace DCRM.Repository.IRepository
 
         List<Lab_Data> GetPatientLabList();
 
-        List<DropdownDataDto> NameList(long userId);
+        List<DropdownDataDto> NameAllList(long userId);
 
         ReferBy GetReferBy(long patientId);
     } 

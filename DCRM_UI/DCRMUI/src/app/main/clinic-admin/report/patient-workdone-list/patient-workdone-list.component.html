@@ -14,7 +14,13 @@
                                        (click)="searchWorkdone($event)"
                                        bindValue="id"
                                        [searchable]="true">
-
+                                    <ng-template ng-label-tmp let-item="item">
+                                        {{ item.name }} ({{ item.age }}, {{ item.mobile }}, {{item.present_Address}})
+                                    </ng-template>
+                        
+                                    <ng-template ng-option-tmp let-item="item">
+                                        {{ item.name }} ({{ item.age }}, {{ item.mobile }}, {{item.present_Address}})
+                                    </ng-template>
                             </ng-select>
                         </div>
                     </div>

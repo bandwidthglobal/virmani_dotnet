@@ -555,9 +555,9 @@ namespace DCRM.Service.Service
 
         }
 
-        public List<DropdownDataDto> NameList(long userId)
+        public List<DropdownDataDto> NameAllList(long userId)
         {
-            return _patientRepository.NameList(userId);
+            return _patientRepository.NameAllList(userId);
         }
 
         public ReferBy GetReferBy(long patientId)
