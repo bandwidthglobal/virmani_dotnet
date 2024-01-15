@@ -348,10 +348,10 @@ namespace DCRM.Service.Service
             List<TreatmentplanDto> treatmentplanDtos = new();
 
             var workdonesQuery = from w in _workdoneNewRepository.GetAll().ToList()
-                                 join d in _doctorRepository.GetAll().ToList() on w.Doctor_Id equals d.Id
-                                 select new { w, d };
+                                 //join d in _doctorRepository.GetAll().ToList() on w.Doctor_Id equals d.Id
+                                 select new { w };
             var treatmentplans = from s in _treatmentplansRepository.GetAll().ToList()
-                                 join d in _doctorRepository.GetAll().ToList() on s.Doctor equals d.Id
+                                     // join d in _doctorRepository.GetAll().ToList() on s.Doctor equals d.Id
                                  join c in _teethinfoRepository.GetAll().ToList() on s.Id equals c.Treatmentplans_Id
                                  where s.Patient_Id == patientId
                                  select new
@@ -361,7 +361,7 @@ namespace DCRM.Service.Service
                                      JobId = s.Job_Id,
                                      s.Job,
                                      PatientId = s.Patient_Id,
-                                     DoctorName = d.Name,
+                                     DoctorName = s.Doctor != 0 ? _doctorRepository.Get(s.Doctor).Name : null,
                                      s.Doctor,
                                      Sitting = s.Sitting_Status,
                                      s.Amount,
@@ -412,7 +412,7 @@ namespace DCRM.Service.Service
                 {
                     workdone_New = new WorkDoneDto
                     {
-                        DoctorName = item.d.Name
+                        DoctorName = _doctorRepository.Get(item.w.Doctor_Id).Name
                     };
                     if (item.w.Workdone_Status==0)
                     {
