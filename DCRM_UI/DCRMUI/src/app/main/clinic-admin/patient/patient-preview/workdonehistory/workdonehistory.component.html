@@ -47,14 +47,17 @@
                     </div>
                 </div>
                 <div class="row" id="printDiv">
-                    <div class="col-md-12 calender_filter p-2">
                         <div *ngIf="loading==true" class="table-loading">
                             <div class="table-loading-text">
                                 Loading...
                             </div>
                         </div>
-                        </div>
-                        </div>
+                        <table class="table1 table-bordered table-hover" cellspacing="0" style="overflow:scroll;width:100%">
+                            <thead>
+                                <tr class="table-header">
+                                    
+                                </tr>
+                            </thead>
                 <!-- Invoice List Table -->
                 <ngx-datatable [rows]="rows"
                                rowHeight="auto"
@@ -123,6 +126,8 @@
                         </ng-template>
                     </ngx-datatable-column>
                 </ngx-datatable>
+                </table>
+                </div>
             </div>
         </section>
     </div>

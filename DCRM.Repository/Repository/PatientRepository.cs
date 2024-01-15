@@ -208,7 +208,7 @@ namespace DCRM.Repository.Repository
                             {
                                 item.Phone1 = phone;
                             }
-                            item.Relationship_Type ??= "Relationship";
+                            item.Relationship_Type = string.IsNullOrEmpty(item.Relationship_Type) ? string.Empty : item.Relationship_Type;
                             item.Address_O = string.IsNullOrEmpty(item.Address_O) ? string.Empty : item.Address_O;
                             item.Address_Other = string.IsNullOrEmpty(item.Address_Other) ? string.Empty : item.Address_Other;
                             item.Zip_O = string.IsNullOrEmpty(item.Zip_O) ? "0" : item.Zip_O;

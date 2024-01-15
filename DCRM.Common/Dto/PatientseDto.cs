@@ -7,6 +7,7 @@ public partial class PatientseDto
     public int Id { get; set; }
 
     public string Chamber_Id { get; set; } = null!;
+    public string? Relationship_Type { get; set; }
 
     public int User_Id { get; set; }
 
