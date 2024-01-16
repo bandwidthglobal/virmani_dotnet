@@ -140,7 +140,7 @@ namespace DCRM.Service.Service
                     Debit_Amount = workdone.Total_Amt,
                     Updated_At = System.DateTime.UtcNow,
                     Created_At = System.DateTime.UtcNow,
-                    Description = string.Empty,
+                    Description = workdone.Workdone_Notes,
                     Payment_Mode = string.Empty,
                     Balance = workdone.Total_Amt
                 };

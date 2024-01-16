@@ -536,6 +536,7 @@ namespace DCRM.Service.Service
                     if (treatment != null)
                     {
                         paymentHistoryDto.ToothCode = treatment.Job;
+                        paymentHistoryDto.ToothName = treatment.Print_Tooth_Name;
                         paymentHistoryDto.RemainingEstimate = treatment.Estimated_Amount - workDoneNew.Current_Work_Amt;
                     }
                 }

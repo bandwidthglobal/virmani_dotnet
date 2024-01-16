@@ -13,7 +13,7 @@ public partial class PaymentHistoryDto
     public string?  DoctorName { get; set; }
 
     public string? ToothCode { get; set; }
-
+    public string? ToothName { get; set; }
     public string? Date { get; set; }
 
     public string Description { get; set; } = null!;

@@ -77,8 +77,16 @@ export class PaymentsComponent implements OnInit {
 
         // filter our data
         const temp = this.tempData.filter(function (d) {
-            return d.mr_Number.toLowerCase().indexOf(val) !== -1
-                || d.name.toLowerCase().indexOf(val) !== -1
+            return d.id.toString().indexOf(val) !== -1
+                || d.doctorName.toLowerCase().indexOf(val) !== -1
+                || d.toothCode.toLowerCase().indexOf(val) !== -1
+                || d.toothName.toLowerCase().indexOf(val) !== -1
+                || d.date.toLowerCase().indexOf(val) !== -1
+                || d.description.toLowerCase().indexOf(val) !== -1
+                || d.remainingEstimate.toString().indexOf(val) !== -1
+                || d.debitAmount.toString().indexOf(val) !== -1
+                || d.creditAmount.toString().indexOf(val) !== -1
+                || d.balance.toString().indexOf(val) !== -1
                 || !val;
         });
 
@@ -93,7 +101,7 @@ export class PaymentsComponent implements OnInit {
      *
      * @param event
      */
-    filterByStatus(event) {
+    filterByStatus(event: { value: any; }) {
         const filter = event ? event.value : '';
         this.previousStatusFilter = filter;
         this.tempFilterData = this.filterRows(filter);
@@ -105,7 +113,7 @@ export class PaymentsComponent implements OnInit {
      *
      * @param statusFilter
      */
-    filterRows(statusFilter): any[] {
+    filterRows(statusFilter: string): any[] {
         // Reset search on select change
         this.searchValue = '';
 
@@ -132,7 +140,7 @@ export class PaymentsComponent implements OnInit {
             this.loading = false;
         });
     }
-    addReceive(id, patientId, balance) {
+    addReceive(id: any, patientId: any, balance: any) {
         this.isPaymentReceiveList = false;
         this.amountDue = balance;
         this.receiveFormData = new ReceiveForm(this.ReceiveFormInput);
@@ -204,7 +212,7 @@ export class PaymentsComponent implements OnInit {
         });
     }
    
-    getPaymentReceives(id) {
+    getPaymentReceives(id: any) {
         this.isPaymentReceiveList = true;
        
         this._patientListService.getPaymentReceives(id).subscribe(resp => {
@@ -213,7 +221,7 @@ export class PaymentsComponent implements OnInit {
             this.receiveElm.style.width = '100vw';
         });
     }
-    deletePayment(id) {
+    deletePayment(id: any) {
         let rowIndex = -1;
         this.tempData.forEach((currentValue, index) => {
             if (currentValue.id == id) {

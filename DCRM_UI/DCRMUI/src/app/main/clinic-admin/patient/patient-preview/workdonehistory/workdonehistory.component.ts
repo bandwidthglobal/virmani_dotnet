@@ -62,8 +62,14 @@ export class WorkdoneHistoryComponent implements OnInit {
 
         // filter our data
         const temp = this.tempData.filter(function (d) {
-            return d.mr_Number.toLowerCase().indexOf(val) !== -1
-                || d.name.toLowerCase().indexOf(val) !== -1
+            return d.id.toString().indexOf(val) !== -1
+                || d.date.toLowerCase().indexOf(val) !== -1
+                || d.toothName.toLowerCase().indexOf(val) !== -1
+                || d.treatmentCode.toLowerCase().indexOf(val) !== -1
+                || d.doctorName.toLowerCase().indexOf(val) !== -1
+                || d.notesdiagnosis.toLowerCase().indexOf(val) !== -1
+                || d.workdoneStatus.toLowerCase().indexOf(val) !== -1
+                || d.amtDueCurrentWork.toString().indexOf(val) !== -1
                 || !val;
         });
 

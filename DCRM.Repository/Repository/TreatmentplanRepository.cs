@@ -61,7 +61,6 @@ namespace DCRM.Repository.Repository
 
         public int Create(TreatmentplanRequest request)
         {
-            int id = 0;
             _contex.Database.BeginTransaction();
             Treatmentplans treatmentplans = new()
             {
@@ -80,9 +79,10 @@ namespace DCRM.Repository.Repository
                 Created_At = System.DateTime.UtcNow,
                 Updated_At = System.DateTime.UtcNow,
                 Individual_Tooth_Wrk = request.IndividualToothWrk,
-                Print_Tooth_Name = request.PrintToothName
+                Print_Tooth_Name = request.Teeth_Number_Note
             };
             _contex.Treatmentplans.Add(treatmentplans);
+            int id;
             try
             {
                 _contex.SaveChanges();

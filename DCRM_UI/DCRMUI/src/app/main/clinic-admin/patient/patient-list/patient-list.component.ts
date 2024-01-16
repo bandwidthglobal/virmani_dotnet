@@ -56,7 +56,7 @@ export class PatientListComponent implements OnInit, OnDestroy {
      *
      * @param event
      */
-    filterUpdate(event) {
+    filterUpdate(event: { target: { value: string; }; }) {
 
         const val = event.target.value.toLowerCase();
 

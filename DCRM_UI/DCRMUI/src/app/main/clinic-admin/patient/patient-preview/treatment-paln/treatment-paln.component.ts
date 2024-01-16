@@ -92,14 +92,24 @@ export class TreatmentPalnComponent implements OnInit {
     ngAfterViewInit(): void {
         this.receiveElm = this.workdoneModal.nativeElement as HTMLElement;
     }
+ /**
+     * filterUpdate
+     *
+     * @param event
+     */
+
     filterUpdate(event: { target: { value: string; }; }) {
         const val = event.target.value.toLowerCase();
         const temp = this.tempData.filter(function (d) {
-            return d.doctorName.toLowerCase().indexOf(val) !== -1
-                || d.type.toLowerCase().indexOf(val) !== -1
-                || d.treatmentStatus.toLowerCase().indexOf(val) !== -1
+            return d.date.toLowerCase().indexOf(val) !== -1
+                || d.sitting.toString().indexOf(val) !== -1
                 || d.teethNumber.toLowerCase().indexOf(val) !== -1
-                || d.date.toLowerCase().indexOf(val) !== -1
+                || d.tothNot.toLowerCase().indexOf(val) !== -1
+                || (d.doctorName && d.doctorName.toLowerCase().indexOf(val) !== -1) 
+                || d.type.toLowerCase().indexOf(val) !== -1
+                || d.job.toLowerCase().indexOf(val) !== -1
+                || d.amount.toString().indexOf(val) !== -1
+                || d.treatmentStatus.toLowerCase().indexOf(val) !== -1
                 || !val;
         });
 
