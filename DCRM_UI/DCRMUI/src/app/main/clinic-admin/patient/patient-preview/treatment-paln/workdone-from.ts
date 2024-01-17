@@ -6,6 +6,7 @@ export class WorkDoneFormModel {
     doctor_Id?: any='';
     treatment_Id ?: any;
     estimated_Amount?: any;
+    realized_Treatment_Cost?: any;
     current_Work_Amt?: any='';
     discount?: any;
     total_Amt?: any;
@@ -19,6 +20,7 @@ export class WorkDoneForm extends FormGroup {
     readonly doctor_Id = this.get('doctor_Id') as FormControl;
     readonly treatment_Id = this.get('treatment_Id') as FormControl;
     readonly estimated_Amount = this.get('estimated_Amount') as FormControl;
+    readonly realized_Treatment_Cost = this.get('realized_Treatment_Cost') as FormControl;
     readonly current_Work_Amt = this.get('current_Work_Amt') as FormControl;
     readonly discount = this.get('discount') as FormControl;
     readonly total_Amt = this.get('total_Amt') as FormControl;
@@ -35,6 +37,7 @@ export class WorkDoneForm extends FormGroup {
                     doctor_Id: [model?.doctor_Id, Validators.required],
                     treatment_Id: [model?.treatment_Id],
                     estimated_Amount: [model?.estimated_Amount],
+                    realized_Treatment_Cost:[model?.realized_Treatment_Cost],
                     current_Work_Amt: [model?.current_Work_Amt, Validators.required],
                     discount: [model?.discount],
                     total_Amt: [model?.total_Amt],

@@ -44,6 +44,7 @@ export class TreatmentPalnComponent implements OnInit {
         doctor_Id: '',
         current_Work_Amt: '',
         discount: 0,
+        realized_Treatment_Cost: 0,
         total_Amt: 0,
         workdone_Status: 0,
         estimated_Amount: '',
@@ -82,6 +83,7 @@ export class TreatmentPalnComponent implements OnInit {
             discount: [''],
             total_Amt: [''],
             estimated_Amount: [''],
+            realized_Treatment_Cost:[''],
             workdone_Status: [''],
             workdone_Notes: [''],
         });
@@ -140,11 +142,12 @@ export class TreatmentPalnComponent implements OnInit {
     toothNumber: any;
     job: any;
     //Work Done Start
-    addWorkDone(treatmentid: any, estamount: any, toothNumber: any, job: any, doctorName: any) {
+    addWorkDone(treatmentid: any, estamount: any, toothNumber: any, job: any, doctorName: any, workdones:any) {
         this.getDoctors();
         this.workdone.doctor_Id = doctorName;
         this.treatmentId = treatmentid;
         this.workdone.estimated_Amount = estamount;
+        this.workdone.realized_Treatment_Cost =workdones.length > 0 ? workdones[workdones.length-1].totalAmt: 0;
         this.toothNumber = toothNumber;
         this.job = job;
         this.receiveElm.classList.add('show');
@@ -203,6 +206,44 @@ export class TreatmentPalnComponent implements OnInit {
             this.doctors = response;
         });
     }
+
+    saveAndRedirect() {
+        const newTab = window.open('/admin/patient/preview/', '_blank');
+        if (newTab) {
+            const message = 'Thank you for submitting!';
+            const htmlContent = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Thank You</title>
+                <style>
+                    body {
+                        font-family: 'Arial', sans-serif;
+                        text-align: center;
+                        background-color: #f4f4f4;
+                        padding: 20px;
+                    }
+                    p {
+                        font-size: 18px;
+                        color: #008000; /* Green color */
+                    }
+                </style>
+            </head>
+            <body>
+                <p>${message}</p>
+            </body>
+            </html>
+        `;
+    newTab.document.open();
+    newTab.document.write(htmlContent);
+    newTab.document.close();
+    window.close();
+    
+        } else {
+          console.error('Unable to open a new tab.');
+        }
+      }
+    
     chngCurrentwork(ev: { target: { value: string; }; }) {
         this.currentAmount = parseInt(ev.target.value)
         if (this.workdone.discount == 0) {
@@ -251,6 +292,13 @@ export class TreatmentPalnComponent implements OnInit {
             this.tempData = this.rows;
             this.tempFilterData = this.rows;
             this.loading = false;
+            this.rows.forEach(x=>{
+                   if(x.workdones.length > 0){
+                    for (let index = 1; index < x.workdones.length; index++) {
+                        x.workdones[index].totalAmt += x.workdones[index-1].totalAmt;
+                    }
+                   }
+                });
         });
     }
     getData() {

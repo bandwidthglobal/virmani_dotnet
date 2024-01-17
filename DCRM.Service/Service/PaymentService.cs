@@ -167,12 +167,12 @@ IRepository<Teeth> teethRepository)
                 paymentReport.PaidAmount = paymentHistory.Credit_Amount;
                 paymentReport.Balance = paymentHistory.Balance;
                 var workDone = _workDoneRepository.Get(paymentHistory.Workdone_Id);
-                var lnquery = (from w in _workDoneRepository.GetAll().ToList()
+                var lnquery = (from w in _workDoneRepository.GetAll().ToList() 
                                join t in _treatmentRepository.GetAll().ToList() on w.Treatment_Id equals t.Id
                                join d in _doctorRepository.GetAll().ToList() on w.Doctor_Id equals d.Id
                                join ti in _teethInfoRepository.GetAll().ToList() on t.Id equals ti.Treatmentplans_Id
                                join te in _teethRepository.GetAll().ToList() on ti.Teeth_Id equals te.Id
-                               join p in _patientRepository.GetAll().ToList() on t.Patient_Id equals p.Id
+                               join p in _patientRepository.GetAll().ToList() on t.Patient_Id equals p.Id where w.Id == workDone.Id
                                select new
                                {
                                    TeethId=ti.Teeth_Id,

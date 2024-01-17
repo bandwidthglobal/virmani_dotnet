@@ -139,7 +139,7 @@
                         <ngx-datatable-column name="Actions" [width]="200" [sortable]="false">
                             <ng-template ngx-datatable-cell-template let-row="row">
                                 <div class="d-flex align-items-center col-actions">
-                                    <a class="mr-1 btn btn-primary btn-sm" style="width:120px;" (click)="addWorkDone(row.id,row.amount,row.teethNumber,row.job,row.doctorName)" href="javascript:void(0)" container="body"
+                                    <a class="mr-1 btn btn-primary btn-sm" style="width:120px;" (click)="addWorkDone(row.id,row.amount,row.teethNumber,row.job,row.doctorName,row.workdones)" href="javascript:void(0)" container="body"
                                        placement="top" ngbTooltip="Work Done">
                                         Work Done
                                     </a>
@@ -185,7 +185,7 @@
                             <div class="clear"></div>
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label><strong>By Doctor</strong></label>
                                         <!-- <input type="text" name="supplier" class="form-control" required> -->
@@ -200,7 +200,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Estimated Amount</label>
                                         <input type="text" disabled="disabled"
@@ -212,6 +212,21 @@
                                                formControlName="estimated_Amount"
                                                aria-describedby="estimated_Amount" />
                                         <!--<input name="estimate_amt" id="estimate_amt" readonly="" placeholder="" type="number" class="form-control" required="" value="5000" >-->
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Realized treatment cost</label>
+                                        <input type="text" disabled="disabled"
+                                               class="form-control"
+                                               tabindex="2"
+                                               [maxlength]=10
+                                               [mask]="'numeric'"
+                                               [(ngModel)]="workdone.realized_Treatment_Cost"
+                                               formControlName="realized_Treatment_Cost"
+                                               aria-describedby="realized_Treatment_Cost" />
+                                               
                                     </div>
                                 </div>
 
@@ -314,7 +329,7 @@
                                         <a href="/admin/prescription/add/{{patientId}}/{{workdoneid}}"  target="_blank" class="btn btn-primary ml-1">Prescription</a>
                                     </div>
                                     <div class="col-md-2" *ngIf="isWorkdonesave==true">
-                                        <input type="submit" name="save" value="Save"  class="btn btn-primary ml-1">
+                                        <input type="submit" name="save" value="Save"  class="btn btn-primary ml-1" (click)="saveAndRedirect()">
                                     </div>
                                     <div class="col-md-2">
                                         <button type="button" class="btn btn-danger ml-1" (click)="close()">Close</button>
