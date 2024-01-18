@@ -106,27 +106,29 @@ export class ReportComponent implements OnInit {
         else {
             this.rows = this.tempData;
             this.table.offset = 0;
-        }
-        
-           
-           
+        }     
     }
     searchDoctor(event) {
-        if (event.target.options.selectedIndex > 0) {
-            this.searchDoctorName = event.target.options[event.target.options.selectedIndex].text.toLowerCase();
-        }
-        else {
-            this.searchDoctorName = '';
-        }
-    }
+      if (event && event.target && event.target.options && event.target.options.selectedIndex > 0) {
+          const selectedOption = event.target.options[event.target.options.selectedIndex];
+          if (selectedOption) {
+              this.searchDoctorName = selectedOption.text.toLowerCase();
+          } 
+      } else {
+          this.searchDoctorName = '';
+      }
+  }
+  
     searchPatient(event) {
-        if (event.target.options.selectedIndex > 0) {
-            this.searchPatientName = event.target.options[event.target.options.selectedIndex].text.toLowerCase();
-        }
-        else {
-            this.searchPatientName = '';
-        }
+      if (event && event.target && event.target.options && event.target.options.selectedIndex > 0) {
+        const selectedOption = event.target.options[event.target.options.selectedIndex];
+        if (selectedOption) {
+            this.searchPatientName = selectedOption.text.toLowerCase();
+        } 
+    } else {
+        this.searchPatientName = '';
     }
+}
   // Lifecycle Hooks
   // -----------------------------------------------------------------------------------------------------
   /**

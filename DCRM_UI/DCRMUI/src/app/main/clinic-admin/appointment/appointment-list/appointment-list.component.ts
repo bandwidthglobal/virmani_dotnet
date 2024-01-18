@@ -60,7 +60,9 @@ export class AppointmentListComponent implements OnInit, OnDestroy {
         const val = event.target.value.toLowerCase();
         // filter our data
         const temp = this.tempData.filter(function (d) {
-            return d.serial_Id.toLowerCase().indexOf(val) !== -1
+            return d.serial_Id.toString().indexOf(val) !== -1
+                ||d.id.toString().indexOf(val) !== -1
+                || d.date.toLowerCase().indexOf(val) !== -1
                 || d.patient.name.toLowerCase().indexOf(val) !== -1
                 || !val;
         });
@@ -133,6 +135,7 @@ export class AppointmentListComponent implements OnInit, OnDestroy {
                 rowIndex = index
             }
         });
+        
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",

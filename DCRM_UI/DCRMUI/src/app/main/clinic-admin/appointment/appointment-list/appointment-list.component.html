@@ -95,14 +95,7 @@
                     </ngx-datatable-column>
                     <ngx-datatable-column name="Actions" [sortable]="false">
                         <ng-template ngx-datatable-cell-template let-row="row">
-                            <div class="d-flex align-items-center col-actions">
-                                <!--<a class="mr-1"
-       routerLink="/admin/appointment/preview/{{ row.id }}"
-       container="body"
-       placement="top"
-       ngbTooltip="View Appointment">
-        <i size="18" data-feather="eye"></i>
-    </a>-->
+                            <div class="d-flex align-items-center col-actions">                               
                                 <a class="mr-1"
                                    routerLink="/admin/appointment/edit/{{ row.id }}"
                                    container="body"
@@ -119,11 +112,11 @@
                                     <i size="18" data-feather="trash"></i>
                                 </a>
                                 <a class="mr-1"
-                                   href="javascript:void(0)"
+                                   routerLink="/admin/appointment/view/{{ row.id }}"
                                    container="body"
                                    placement="top"
-                                   ngbTooltip="Download">
-                                   <i class="fa fa-download"></i>
+                                   ngbTooltip="View Appointment">
+                                   <i size="18" data-feather="eye"></i>
                                 </a>
                             </div>
                         </ng-template>
