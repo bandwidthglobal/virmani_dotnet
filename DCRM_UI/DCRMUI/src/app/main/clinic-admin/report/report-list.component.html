@@ -53,14 +53,14 @@
                             <div class="col-2">
                                 <div class="form-group">
                                     <label>Start Date</label>
-                                    <input type="date" name="start" id="start" class="form-control">
+                                    <input type="date" name="start" id="start" [(ngModel)] = "searchStartDate" class="form-control">
                                 </div>
                             </div>
 
                             <div class="col-2">
                                 <div class="form-group">
                                     <label>End Date</label>
-                                    <input type="date" name="end" id="end" class="form-control">
+                                    <input type="date" name="end" id="end" [(ngModel)] ="searchEndDate" class="form-control">
                                 </div>
                             </div>
                             <div class="col-2">
@@ -113,7 +113,7 @@
                     <ngx-datatable-column name="Date" prop="workDoneDate">
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <div class="row">
-                                <div class="col-12">{{row.workDoneDate | date: 'dd/MM/yyyy'}}</div>
+                                <div class="col-12">{{row.workDoneDate | date: 'MM/dd/yyyy'}}</div>
                             </div>
                         </ng-template>
                     </ngx-datatable-column>

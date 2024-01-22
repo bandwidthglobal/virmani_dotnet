@@ -1,0 +1,48 @@
+                   <div class="col-xl-12 col-md-12 col-12">
+                        <div class="col-md-2 pull-right text-right">
+                            <a href="javascript://" (click)="printDiv()" class="btn btn-dark"><i class="fa fa-print"></i> Print</a>
+                        </div>
+                    </div>
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <div class="row" id="printDiv">
+                                <div *ngIf="loading==true" class="table-loading">
+                                    <div class="table-loading-text">
+                                        Loading...
+                                    </div>     
+                                </div>
+            <table class="table1 table-bordered table-hover" cellspacing="0" style="overflow:scroll;width:100%">
+                                    <thead>
+                                        <tr class="table-header">
+                                            
+                                        </tr>
+                                    </thead>
+                        <section class="appointment-details">
+                      <div class="card p-2">
+                     <h2>Appointment Details</h2>
+                     <div *ngIf="appointmentDetails">
+                        <p><strong>Id:</strong> {{ appointmentDetails.id }}</p> 
+                        <p><strong>Doctor Name:</strong> {{ appointmentDetails.doctor_Name}}</p>
+                        <p><strong>Date:</strong> {{ appointmentDetails.date }}</p>
+                        <p><strong>Start time:</strong> {{ appointmentDetails.start_Time }}</p>
+                        <p><strong>Slot time:</strong> {{ appointmentDetails.slot_Time }} Mints</p>
+                        <p><strong>End time:</strong> {{ appointmentDetails.end_Time  }}</p>
+                        <p><strong>No of slot:</strong> {{ appointmentDetails.number_Of_Slot }}</p>
+                        <p><strong>Cause:</strong> {{ appointmentDetails.cause }}</p>
+                        <p><strong>Chair:</strong> {{chair }}</p>
+                        <p><strong>Appointment Type:</strong> {{ appointmentDetails.type }}</p>
+                        <p><strong>Name:</strong> {{ Patient.name}}</p>
+                        <p><strong>Email:</strong> {{ Patient.email}}</p>
+                        <p><strong>Phone:</strong> {{ Patient.patientContacts[0].phone1}}</p>
+                        <p><strong>Age:</strong> {{ Patient.age}}</p>
+                        <p><strong>Weight:</strong> {{ Patient.weight}}</p>
+                        <p><strong>Serial No:</strong> {{ appointmentDetails.serial_Id }}</p>
+                        <p><strong>Extra Notes:</strong> {{ appointmentDetails.meeting_Notes }}
+                    </div>
+            </div>
+        </section>
+        </table>
+        <button class="btn btn-primary" (click)="redirect()">Back to List</button>
+    </div>
+</div>
+</div>

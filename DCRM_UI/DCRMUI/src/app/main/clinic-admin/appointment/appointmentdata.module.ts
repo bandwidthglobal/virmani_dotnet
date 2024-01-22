@@ -44,6 +44,7 @@ import { AppointmentFormComponent } from './appointment-form/appointment-form.co
 import { AppointmentChairFormComponent } from 'app/main/clinic-admin/appointment/chair-view/appointment-form/appointment-chair-form.component';
 import { AppointmentDownloadComponent } from 'app/main/clinic-admin/appointment/appointment-download/appointment-download.component';
 import { AppointmentDownloadService } from 'app/main/clinic-admin/appointment/appointment-download/appointment-download.service';
+import { AppointmentViewComponent } from './appointment-view/appointment-view.component';
 const routes: Routes = [
     {
         path: 'add',
@@ -91,6 +92,14 @@ const routes: Routes = [
             Ses: AppointmentEditService
         },
         data: { path: 'user-view/:id', animation: 'AppointmentEditComponent' }
+    },
+    {
+        path: 'view/:id',
+        component: AppointmentViewComponent,
+        resolve: {
+            Ses: AppointmentEditService
+        },
+        data: { path: 'user-view/:id', animation: 'AppointmentViewComponent' }
     },
     {
         path: 'edit/chairapointment/:id',
@@ -162,7 +171,8 @@ const routes: Routes = [
         CalenderViewComponent,
         WaitingRoomComponent,
         CalendarComponent,
-        AppointmentChairFormComponent
+        AppointmentChairFormComponent,
+        AppointmentViewComponent
     ],
     imports: [
         CommonModule,
@@ -198,7 +208,7 @@ const routes: Routes = [
 
     ],
     providers: [AppointmentListService, AppointmentPreviewService, AppointmentEditService, AppointmentAddService, AppointmentDownloadService,
-        AppointmentChairViewService, SetSscheduleFormService, CalenderViewService, WaitingRoomService, CalendarService
+        AppointmentChairViewService, SetSscheduleFormService, CalenderViewService, WaitingRoomService, CalendarService,AppointmentViewComponent
     ],
     exports: [AppointmentListComponent]
 })

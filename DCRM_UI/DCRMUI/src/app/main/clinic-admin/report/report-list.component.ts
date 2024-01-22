@@ -84,35 +84,65 @@ export class ReportComponent implements OnInit {
   }
     public searchDoctorName: any = '';
     public searchPatientName: any = '';
+    public searchStartDate: any = '';
+    public searchEndDate: any = '';
+
     searchData() {
         debugger;
         let temp: any[];
-        if (this.searchDoctorName != '' || this.searchPatientName.toLowerCase() != '') {
-            if (this.searchDoctorName != '' && this.searchPatientName.toLowerCase() == '') {
+        if (this.searchDoctorName != '' || this.searchPatientName.toLowerCase() != '' ||   this.searchStartDate != '' || this.searchEndDate != '') {
+            if (this.searchDoctorName != '' && this.searchPatientName.toLowerCase() == '' &&  this.searchStartDate == '' && this.searchEndDate == '') {
                 temp = this.tempData.filter(u =>
                     u.doctorName.toLowerCase() == this.searchDoctorName.toLowerCase());
             }
-            else if (this.searchDoctorName == '' && this.searchPatientName.toLowerCase() != '') {
+            else if (this.searchDoctorName == '' && this.searchPatientName.toLowerCase() != '' &&  this.searchStartDate == '' && this.searchEndDate == '') {
                 temp = this.tempData.filter(u =>
                     u.patientName.toLowerCase() == this.searchPatientName.toLowerCase());
             }
+             else if (this.searchDoctorName == '' && this.searchPatientName.toLowerCase() == '' && this.searchStartDate != '' && this.searchEndDate == '') {
+              temp = this.tempData.filter(u =>
+                  u.workDoneDate.split("T")[0] >= this.searchStartDate);
+          }
+          else if ( this.searchDoctorName == '' && this.searchPatientName.toLowerCase() == '' && this.searchStartDate == '' && this.searchEndDate != '') {
+            temp = this.tempData.filter(u =>
+                u.workDoneDate.split("T")[0] <=  this.searchEndDate);
+        }
             else {
                 temp = this.tempData.filter(u =>
                     u.doctorName.toLowerCase() == this.searchDoctorName.toLowerCase() && u.patientName.toLowerCase() == this.searchPatientName.toLowerCase());
             }
+                     
             this.rows = temp;
             this.table.offset = 0;
         }
+        else if ( this.searchStartDate != '' || this.searchEndDate != ''){
+          
+          if (this.searchStartDate != '' && this.searchEndDate == '') {
+            temp = this.tempData.filter(u =>
+                u.workDoneDate.split("T")[0] >= this.searchStartDate);
+        }
+        else if (this.searchStartDate == '' && this.searchEndDate != '') {
+            temp = this.tempData.filter(u =>
+                u.workDoneDate.split("T")[0] <=  this.searchEndDate);
+        }
         else {
-            this.rows = this.tempData;
+            temp = this.tempData.filter(u =>
+                u.workDoneDate.split("T")[0] >= this.searchStartDate && u.workDoneDate.split("T")[0] <= this.searchEndDate);
+        } 
+            this.rows = temp;
             this.table.offset = 0;
-        }     
+        }   
+        else
+        {
+          this.rows = this.tempData;
+            this.table.offset = 0;
+        }  
     }
     searchDoctor(event) {
-      if (event && event.target && event.target.options && event.target.options.selectedIndex > 0) {
-          const selectedOption = event.target.options[event.target.options.selectedIndex];
+      if (event && event.target) {
+          const selectedOption = event.target.innerText;
           if (selectedOption) {
-              this.searchDoctorName = selectedOption.text.toLowerCase();
+              this.searchDoctorName = selectedOption.toLowerCase();
           } 
       } else {
           this.searchDoctorName = '';
@@ -120,15 +150,36 @@ export class ReportComponent implements OnInit {
   }
   
     searchPatient(event) {
-      if (event && event.target && event.target.options && event.target.options.selectedIndex > 0) {
-        const selectedOption = event.target.options[event.target.options.selectedIndex];
+      if (event && event.target) {
+        const selectedOption = event.target.innerText.split(" (")[0];
         if (selectedOption) {
-            this.searchPatientName = selectedOption.text.toLowerCase();
+            this.searchPatientName = selectedOption.toLowerCase();
         } 
     } else {
         this.searchPatientName = '';
     }
 }
+ searchByStartDate(event) {
+  if (event && event.target) {
+    const selectedOption = event.target.innerText;
+    if (selectedOption) {
+        this.searchStartDate = selectedOption;
+    } 
+} else {
+    this.searchStartDate = '';
+}
+ }
+
+ searchByEndDate(event) {
+  if (event && event.target) {
+    const selectedOption = event.target.innerText;
+    if (selectedOption) {
+        this.searchEndDate = selectedOption;
+    } 
+} else {
+    this.searchEndDate = '';
+}
+ }
   // Lifecycle Hooks
   // -----------------------------------------------------------------------------------------------------
   /**

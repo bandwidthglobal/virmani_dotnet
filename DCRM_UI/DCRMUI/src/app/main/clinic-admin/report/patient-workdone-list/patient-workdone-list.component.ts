@@ -42,8 +42,14 @@ export class PatientWorkdoneListComponent implements OnInit {
         const val = event.target.value.toLowerCase();
         // filter our data
         const temp = this.tempData.filter(function (d) {
-            return d.mr_Number.toLowerCase().indexOf(val) !== -1
-                || d.name.toLowerCase().indexOf(val) !== -1
+            return d.id.toString().toLowerCase().indexOf(val) !== -1
+                || d.date.toLowerCase().indexOf(val) !== -1
+                || d.toothName.toLowerCase().indexOf(val) !== -1
+                || d.doctorName.toLowerCase().indexOf(val) !== -1
+                || d.notesdiagnosis.toLowerCase().indexOf(val) !== -1
+                || d.treatmentCode.toLowerCase().indexOf(val) !== -1
+                || d.workdoneStatus.toLowerCase().indexOf(val) !== -1
+                || d.amtDueCurrentWork.toString().toLowerCase().indexOf(val) !== -1
                 || !val;
         });
         this.rows = temp;

@@ -154,9 +154,7 @@
                                               [ngClass]="{ 'is-invalid': submitted && formData.meeting_Notes.errors }"></textarea>
                                     <ng-container *ngFor="let error of formData.meeting_Notes.errors | errorKeys">
                                         <span *ngIf="submitted" class="invalid-class">
-                                            {{
- messages[error]
-                                            }}
+                                            {{messages[error]}}
                                         </span>
                                     </ng-container>
                                 </div>
