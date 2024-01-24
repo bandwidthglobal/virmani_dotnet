@@ -69,7 +69,7 @@ export class IContactsForm extends FormGroup {
             fb.group({
                 id: [model?.id],
                 patient_Id: [model?.patient_Id],
-                phone1: [model?.phone1, [Validators.minLength(10), Validators.maxLength(10), Validators.required]],
+                phone1: [model?.phone1, [Validators.minLength(10), Validators.maxLength(10)]],
                 phone2: [model?.phone2, [Validators.minLength(10), Validators.maxLength(10)]],
                 phone3: [model?.phone3, [Validators.minLength(10), Validators.maxLength(10)]],
                 phone4: [model?.phone4, [Validators.minLength(10), Validators.maxLength(10)]],

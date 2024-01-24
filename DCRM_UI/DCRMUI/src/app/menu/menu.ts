@@ -78,7 +78,7 @@ export const menu: CoreMenu[] = [
             //},
             {
                 id: 'staffs',
-                title: 'Staffs',
+                title: 'Staff',
                 translate: 'MENU.APPS.Staffs',
                 type: 'item',
                 icon: 'users',

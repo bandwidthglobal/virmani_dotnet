@@ -79,7 +79,7 @@ export class StaffFormComponent implements OnInit, OnDestroy {
         { id: 'Orthodontics', name: 'Orthodontics' },
         { id: 'Paedodontics  ', name: 'Paedodontics  ' },
         { id: 'Periodontics  ', name: 'Periodontics  ' },
-        { id: 'Prosthetics', name: 'Prosthetics' },
+        { id: 'Prosthodontist', name: 'Prosthodontist' },
     ];
 
     constructor(

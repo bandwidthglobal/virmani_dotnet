@@ -240,8 +240,7 @@ namespace DCRM.Repository.Repository
                         {
                             item.Patients_Id = patient.Id;
                             item.Created_At = System.DateTime.Now;
-                            item.Updated_At
-                                = System.DateTime.Now;
+                            item.Updated_At = System.DateTime.Now;
                             _contex.Patients_Insurance_Loan.Add(item);
                         }
                         _contex.SaveChanges();

@@ -53,9 +53,6 @@ export class PatientFormComponent implements OnInit, OnDestroy {
 
     IReferList: Array<any> = [
         { id: 'Doctor', text: 'Doctor' },
-        { id: 'Patient', text: 'Patient' },
-        { id: 'Staff', text: 'Staff' },
-        { id: 'Other', text: 'Other' },
     ];
 
     IInsureType: Array<any> = [
@@ -102,7 +99,7 @@ export class PatientFormComponent implements OnInit, OnDestroy {
         control.push(new IContactsForm(obj));
     }
 
-    removeContactDetails(idx): void {
+    removeContactDetails(idx: number): void {
         const control = <FormArray>this.formData.controls['patientContacts'];
         control.removeAt(idx);
     }
@@ -121,7 +118,7 @@ export class PatientFormComponent implements OnInit, OnDestroy {
         control.push(new IInsuranceLoanForm(obj));
     }
 
-    removeInsuranceLoan(idx): void {
+    removeInsuranceLoan(idx: number): void {
         const control = <FormArray>this.formData.controls['patientInsuranceLoans'];
         control.removeAt(idx);
     }
