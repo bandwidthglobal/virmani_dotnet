@@ -48,15 +48,16 @@
 
                                         <div class="col-md-9">
                                             <div class="row">
-                                                <!--<div class="col-md-4">
-                    <shared-ui-select-input [label]="'Title'" [control]="formData.slug" [options]="ITitlte"
-                                            [valueKey]="'id'" [displaykey]="'name'" [submitted]="submitted"></shared-ui-select-input>
-                </div>-->
+
                                                 <div class="col-md-4">
+                                                     <shared-ui-select-input [label]="'Title'" [control]="formData.slug" [options]="ITitlte"
+                                                      [valueKey]="'id'" [displaykey]="'name'" [submitted]="submitted"></shared-ui-select-input>
+                                                        </div>
+                                                <!-- <div class="col-md-4">
                                                     <shared-ui-select-input [label]="'Designation'" [control]="formData.designation"
                                                                             [options]="IDesignation" [valueKey]="'id'" [displaykey]="'name'"
                                                                             [submitted]="submitted"></shared-ui-select-input>
-                                                </div>
+                                                </div> -->
                                                 <div class="col-md-4">
                                                     <shared-ui-text-input [label]="'Name'" [control]="formData.name"
                                                                           [submitted]="submitted" [mask]="'alphaAllowSpaces'" [maxLength]=30></shared-ui-text-input>
@@ -97,6 +98,7 @@
                                                     <shared-ui-date-input [label]="'Date of Birth'" [control]="formData.dob"
                                                                           [submitted]="submitted"></shared-ui-date-input>
                                                 </div>
+                                                
                                                 <div class="col-md-4">
                                                     <shared-ui-text-input [label]="'Phone'" [control]="formData.phone" [submitted]="submitted"
                                                                           [mask]="'numeric'" [maxLength]=10></shared-ui-text-input>
@@ -114,22 +116,18 @@
 
                                         <div class="col-md-12">
                                             <div class="row">
-                                                <!-- <div class="col-md-3">
-                                                    <shared-ui-date-input [label]="'Date of Joining'" [control]="formData.date_Of_Joining"
-                                                                          [submitted]="submitted"></shared-ui-date-input>
-                                                </div> -->
-
+                                               
                                                 <div class="col-md-4">
-                                                    <shared-ui-textarea [label]="'Work Experience'" [control]="formData.work_Experience"
-                                                                        [submitted]="submitted" [mask]="'alphaAllowSpaces'"></shared-ui-textarea>
+                                                    <shared-ui-text-input [label]="'Work Experience'" [control]="formData.work_Experience"
+                                                                        [submitted]="submitted" [mask]="'alphaAllowSpaces'" [maxLength]=50></shared-ui-text-input>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <shared-ui-textarea [label]="'Specialization'" [control]="formData.specialization"
-                                                                        [submitted]="submitted" [mask]="'alphaAllowSpaces'"></shared-ui-textarea>
+                                                    <shared-ui-text-input [label]="'Specialization'" [control]="formData.specialization"
+                                                                        [submitted]="submitted" [mask]="'alphaAllowSpaces'" [maxLength]=50></shared-ui-text-input>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <shared-ui-textarea [label]="'Note'" [control]="formData.note"
-                                                                        [submitted]="submitted" [mask]="'alphaAllowSpaces'"></shared-ui-textarea>
+                                                    <shared-ui-text-input [label]="'Note'" [control]="formData.note"
+                                                                        [submitted]="submitted" [mask]="'alphaAllowSpaces'" [maxLength]=50></shared-ui-text-input>
                                                 </div>
                                             </div>
                                         </div>
@@ -138,15 +136,15 @@
                                         </div>
                                         <div class="col-md-12">
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <shared-ui-textarea [label]="'Current Address'" [control]="formData.current_Address"
-                                                    [mask]="'alphaNumericAllowSpaces'"
-                                                                        [submitted]="submitted"></shared-ui-textarea>
+                                                <div class="col">
+                                                    <shared-ui-text-input [label]="'Current Address'" [control]="formData.current_Address"
+                                                    [mask]="'alphaNumericAllowSpaces'" [maxLength]=100
+                                                                        [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <shared-ui-textarea [label]="'Permanent Address'" [control]="formData.permanent_Address"
-                                                    [mask]="'alphaNumericAllowSpaces'"
-                                                                        [submitted]="submitted"></shared-ui-textarea>
+                                                <div class="col">
+                                                    <shared-ui-text-input [label]="'Permanent Address'" [control]="formData.permanent_Address"
+                                                    [mask]="'alphaNumericAllowSpaces'" [maxLength]=100
+                                                                        [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
                                             </div>
                                         </div>
@@ -372,11 +370,7 @@
                                         <shared-ui-select-input [label]="'Title'" [control]="formData.slug" [options]="ITitlte"
                                                                 [valueKey]="'id'" [displaykey]="'name'" [submitted]="submitted"></shared-ui-select-input>
                                     </div>
-                                    <div class="col-md-4">
-                                        <shared-ui-select-input [label]="'Designation'" [control]="formData.designation"
-                                                                [options]="IDesignation" [valueKey]="'id'" [displaykey]="'name'"
-                                                                [submitted]="submitted"></shared-ui-select-input>
-                                    </div>
+                                   
                                     <div class="col-md-4">
                                         <shared-ui-text-input [label]="'Name'" [control]="formData.name"
                                                               [submitted]="submitted" [mask]="'alphaAllowSpaces'" [maxLength]=30></shared-ui-text-input>
@@ -432,16 +426,16 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <shared-ui-textarea [label]="'Work Experience'" [control]="formData.work_Experience"
-                                                            [submitted]="submitted" [mask]="'alphaAllowSpaces'"></shared-ui-textarea>
+                                        <shared-ui-text-input [label]="'Work Experience'" [control]="formData.work_Experience"
+                                                            [submitted]="submitted" [mask]="'alphaAllowSpaces'" [maxLength]=50></shared-ui-text-input>
                                     </div>
                                     <div class="col-md-4">
-                                        <shared-ui-textarea [label]="'Specialization'" [control]="formData.specialization"
-                                                            [submitted]="submitted" [mask]="'alphaAllowSpaces'"></shared-ui-textarea>
+                                        <shared-ui-text-input [label]="'Specialization'" [control]="formData.specialization"
+                                                            [submitted]="submitted" [mask]="'alphaAllowSpaces'" [maxLength]=50></shared-ui-text-input>
                                     </div>
                                     <div class="col-md-4">
-                                        <shared-ui-textarea [label]="'Note'" [control]="formData.note"
-                                                            [submitted]="submitted" [mask]="'alphaAllowSpaces'"></shared-ui-textarea>
+                                        <shared-ui-text-input [label]="'Note'" [control]="formData.note"
+                                                            [submitted]="submitted" [mask]="'alphaAllowSpaces'" [maxLength]=50></shared-ui-text-input>
                                     </div>
                                 </div>
                             </div>
@@ -450,13 +444,13 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <shared-ui-textarea [label]="'Current Address'" [control]="formData.current_Address"
-                                                            [submitted]="submitted"></shared-ui-textarea>
+                                    <div class="col">
+                                        <shared-ui-text-input [label]="'Current Address'" [control]="formData.current_Address"
+                                                            [submitted]="submitted" [maxLength]=100></shared-ui-text-input>
                                     </div>
-                                    <div class="col-md-6">
-                                        <shared-ui-textarea [label]="'Permanent Address'" [control]="formData.permanent_Address"
-                                                            [submitted]="submitted"></shared-ui-textarea>
+                                    <div class="col">
+                                        <shared-ui-text-input [label]="'Permanent Address'" [control]="formData.permanent_Address"
+                                                            [submitted]="submitted" [maxLength]=100></shared-ui-text-input>
                                     </div>
                                 </div>
                             </div>

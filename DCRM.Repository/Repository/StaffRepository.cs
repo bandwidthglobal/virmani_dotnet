@@ -77,7 +77,7 @@ namespace DCRM.Repository.Repository
                         Email = staffRequest.Email,
                         Father = staffRequest.Father,
                         Department = staffRequest.Department,
-                        Designation = staffRequest.Designation,
+                        Slug = staffRequest.Slug,
                         Mother = staffRequest.Mother,
                         Gender = staffRequest.Gender,
                         Blood_Group = staffRequest.Blood_Group,

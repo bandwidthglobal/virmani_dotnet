@@ -69,19 +69,6 @@ export class StaffFormComponent implements OnInit, OnDestroy {
         { id: 'AB-', name: 'AB-' },
     ];
 
-    IDesignation: Array<any> = [
-        { id: 'Community Dentistry', name: 'Community Dentistry' },
-        { id: 'Conservative / Endodontics  ', name: 'Conservative / Endodontics  ' },
-        { id: 'General Dentistry', name: 'General Dentistry' },
-        { id: 'Oral &amp; Maxillofacial Surgery', name: 'Oral &amp; Maxillofacial Surgery' },
-        { id: 'Oral Medicine &amp; Radiology', name: 'Oral Medicine &amp; Radiology' },
-        { id: 'Oral Pathology &amp; Microbiology', name: 'Oral Pathology &amp; Microbiology' },
-        { id: 'Orthodontics', name: 'Orthodontics' },
-        { id: 'Paedodontics  ', name: 'Paedodontics  ' },
-        { id: 'Periodontics  ', name: 'Periodontics  ' },
-        { id: 'Prosthodontist', name: 'Prosthodontist' },
-    ];
-
     constructor(
         private _staffFormService: StaffFormService,
         private _commonValidationService: CommonValidationService,

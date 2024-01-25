@@ -38,7 +38,7 @@ export class InsuranceDetailForm extends FormGroup {
         {
           id: [model?.id],
           staff_Id: [model?.staff_Id],
-          insurance: [model?.insurance, [Validators.required]],
+          insurance: [model?.insurance],
           insurance_Date: [model?.insurance_Date, [Validators.required]],
           renewal_Date: [model?.renewal_Date, [Validators.required]],
           amount_Insured: [model?.amount_Insured],

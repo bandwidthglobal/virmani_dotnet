@@ -29,8 +29,8 @@ export class IInsuranceLoanForm extends FormGroup {
             fb.group({
                 id: [model?.id],
                 patients_Id: [model?.patients_Id],
-                type: [model?.type],
-                name: [model?.name],
+                type: [model?.type, Validators.required],
+                name: [model?.name, Validators.required],
                 amount: [model?.amount],
                 balance_Spent: [model?.balance_Spent],
                 balance_Amount: [model?.balance_Amount],
