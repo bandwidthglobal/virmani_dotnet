@@ -14,7 +14,7 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-3 col-md-8 col-12">
-                                    <a class="btn btn-primary btn-sm ml-2 flot-right" href="/admin/doctor/list"><i class="fa fa-list"></i> All Doctors </a>
+                                    <a class="btn btn-primary btn-sm ml-2 flot-right" href="/admin/doctor/list"><i class="fa fa-list"></i> All Doctor </a>
                                 </div>
                             </div>
                             <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
@@ -91,9 +91,9 @@
                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
                                                 <div class="col">
-                                                    <shared-ui-text-input [label]="'Specialization'" [control]="formData.speciality"
-                                                                          [mask]="'alphaAllowSpaces'" [maxLength]=100
-                                                                          [submitted]="submitted"></shared-ui-text-input>
+                                                    <shared-ui-select-input [label]="'Specialization'" [control]="formData.speciality"
+                                                    [options]="ISpeciality" [valueKey]="'id'" [displaykey]="'name'"
+                                                                          [submitted]="submitted"></shared-ui-select-input>
                                                 </div>
                                             </div>
                                             <div class="md-12">

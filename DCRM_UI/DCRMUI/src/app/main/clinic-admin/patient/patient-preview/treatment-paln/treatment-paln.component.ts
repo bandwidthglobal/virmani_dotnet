@@ -360,7 +360,6 @@ export class TreatmentPalnComponent implements OnInit {
     }
     openComplaintForm(id: any) {
         this.treatmentId = id;
-        this.isAdd = false;
         this.showTreatmentForm = !this.showTreatmentForm;
     }
     returnPage() {

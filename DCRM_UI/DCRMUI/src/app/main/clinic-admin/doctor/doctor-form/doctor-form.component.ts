@@ -70,7 +70,7 @@ export class DoctorFormComponent implements OnInit, OnDestroy {
         { id: 'AB-', name: 'AB-' },
     ];
 
-    IDesignation: Array<any> = [
+    ISpeciality: Array<any> = [
         { id: 'Community Dentistry', name: 'Community Dentistry' },
         { id: 'Conservative / Endodontics  ', name: 'Conservative / Endodontics  ' },
         { id: 'General Dentistry', name: 'General Dentistry' },
@@ -80,7 +80,7 @@ export class DoctorFormComponent implements OnInit, OnDestroy {
         { id: 'Orthodontics', name: 'Orthodontics' },
         { id: 'Paedodontics  ', name: 'Paedodontics  ' },
         { id: 'Periodontics  ', name: 'Periodontics  ' },
-        { id: 'Prosthetics', name: 'Prosthetics' },
+        { id: 'Prosthodontist', name: 'Prosthodontist' },
     ];
 
     constructor(
