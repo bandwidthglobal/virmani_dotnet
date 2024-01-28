@@ -101,7 +101,7 @@
                                                 
                                                 <div class="col-md-4">
                                                     <shared-ui-text-input [label]="'Phone'" [control]="formData.phone" [submitted]="submitted"
-                                                                          [mask]="'numeric'" [maxLength]=10></shared-ui-text-input>
+                                                                          [maxLength]=15></shared-ui-text-input>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <shared-ui-email-input [label]="'Email'" [control]="formData.email"
@@ -127,7 +127,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <shared-ui-text-input [label]="'Note'" [control]="formData.note"
-                                                                        [submitted]="submitted" [mask]="'alphaAllowSpaces'" [maxLength]=50></shared-ui-text-input>
+                                                                        [submitted]="submitted" [maxLength]=50></shared-ui-text-input>
                                                 </div>
                                             </div>
                                         </div>
@@ -138,12 +138,12 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <shared-ui-text-input [label]="'Current Address'" [control]="formData.current_Address"
-                                                    [mask]="'alphaNumericAllowSpaces'" [maxLength]=100
+                                                     [maxLength]=100
                                                                         [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
                                                 <div class="col">
                                                     <shared-ui-text-input [label]="'Permanent Address'" [control]="formData.permanent_Address"
-                                                    [mask]="'alphaNumericAllowSpaces'" [maxLength]=100
+                                                    [maxLength]=100
                                                                         [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
                                             </div>
@@ -169,7 +169,7 @@
                                                     </div>
                                                     <div class="col">
                                                         <shared-ui-text-input [label]="'Remarks'" [control]="vaccination.remarks"
-                                                                              [submitted]="submitted" [mask]="'alphaAllowSpaces'"></shared-ui-text-input>
+                                                                              [submitted]="submitted" ></shared-ui-text-input>
                                                     </div>
                                                     <div class="col">
                                                         <shared-ui-text-input [label]="'Medical History'" [control]="vaccination.medical_History"
@@ -231,7 +231,7 @@
                                                     </div>
                                                     <div class="col">
                                                         <shared-ui-text-input [label]="'Remarks'" [control]="bank.remarks"
-                                                                              [submitted]="submitted" [mask]="'alphaAllowSpaces'"></shared-ui-text-input>
+                                                                              [submitted]="submitted"></shared-ui-text-input>
                                                     </div>
                                                     <div *ngIf="formData.staffBankDetail.controls.length > 1" class="col">
                                                         <div class="float-right">

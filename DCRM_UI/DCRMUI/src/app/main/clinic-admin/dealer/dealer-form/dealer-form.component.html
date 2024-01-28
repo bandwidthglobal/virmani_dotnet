@@ -63,21 +63,21 @@
                                                             <div class="row">
                                                                 <div class="col-md-3">
                                                                     <shared-ui-text-input [label]="'Address (R)'" [control]="formData.address_R"
-                                                                                          [mask]="'alphaNumericAllowSpaces'" [maxLength]=100
+                                                                                           [maxLength]=100
                                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <shared-ui-text-input [label]="'City'" [control]="formData.city_R"
-                                                                                          [mask]="'alphaAllowSpaces'" [maxLength]=30
+                                                                                          [maxLength]=30
                                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <shared-ui-text-input [label]="'Zip'" [control]="formData.zip_R" [submitted]="submitted"
-                                                                                          [mask]="'numeric'" [maxLength]=6></shared-ui-text-input>
+                                                                                          [maxLength]=6></shared-ui-text-input>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <shared-ui-text-input [label]="'Country'" [control]="formData.country_R"
-                                                                                          [mask]="'alphaAllowSpaces'" [maxLength]=30
+                                                                                          [maxLength]=30
                                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                                 </div>
                                                             </div>
@@ -92,21 +92,21 @@
                                                             <div class="row">
                                                                 <div class="col-md-3">
                                                                     <shared-ui-text-input [label]="'Address (O)'" [control]="formData.address_O"
-                                                                                          [mask]="'alphaNumericAllowSpaces'" [maxLength]=100
+                                                                                          [maxLength]=100
                                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <shared-ui-text-input [label]="'City'" [control]="formData.city_O"
-                                                                                          [mask]="'alphaAllowSpaces'" [maxLength]=30
+                                                                                         [maxLength]=30
                                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <shared-ui-text-input [label]="'Zip'" [control]="formData.zip_O" [submitted]="submitted"
-                                                                                          [mask]="'numeric'" [maxLength]=6></shared-ui-text-input>
+                                                                                           [maxLength]=6></shared-ui-text-input>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <shared-ui-text-input [label]="'Country'" [control]="formData.country_O"
-                                                                                          [mask]="'alphaAllowSpaces'" [maxLength]=30
+                                                                                          [maxLength]=30
                                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                                 </div>
                                                             </div>
@@ -124,12 +124,12 @@
                                             <h4 class="card-title">Contact Information</h4>
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <shared-ui-text-input [label]="'Phone 1'" [control]="formData.phone1" [mask]="'numeric'" [maxLength]=10
+                                                    <shared-ui-text-input [label]="'Phone 1'" [control]="formData.phone1"  [maxLength]=15
                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <shared-ui-text-input [label]="'Phone 2'" [control]="formData.phone2" [mask]="'numeric'"  [maxLength]=10
+                                                    <shared-ui-text-input [label]="'Phone 2'" [control]="formData.phone2"  [maxLength]=15
                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
@@ -213,7 +213,7 @@
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_1" [mask]="'numeric'" [maxLength]=10
+                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_1" [maxLength]=15
                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
@@ -229,7 +229,7 @@
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_2" [mask]="'numeric'" [maxLength]=10
+                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_2" [maxLength]=15
                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
@@ -245,7 +245,7 @@
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_3" [mask]="'numeric'" [maxLength]=10
+                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_3" [maxLength]=15
                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
@@ -261,7 +261,7 @@
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_4" [mask]="'numeric'" [maxLength]=10
+                                                    <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_4" [maxLength]=15
                                                                           [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
@@ -506,7 +506,7 @@
             </div>
 
             <div class="col-md-3">
-              <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_1" [mask]="'numeric'"
+              <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_1" 
                 [submitted]="submitted"></shared-ui-text-input>
             </div>
 
@@ -521,7 +521,7 @@
             </div>
 
             <div class="col-md-3">
-              <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_2" [mask]="'numeric'"
+              <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_2"
                 [submitted]="submitted"></shared-ui-text-input>
             </div>
 
@@ -536,7 +536,7 @@
             </div>
 
             <div class="col-md-3">
-              <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_3" [mask]="'numeric'"
+              <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_3" 
                 [submitted]="submitted"></shared-ui-text-input>
             </div>
 
@@ -551,7 +551,7 @@
             </div>
 
             <div class="col-md-3">
-              <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_4" [mask]="'numeric'"
+              <shared-ui-text-input [label]="'Phone'" [control]="formData.staffPhone_4"
                 [submitted]="submitted"></shared-ui-text-input>
             </div>
 

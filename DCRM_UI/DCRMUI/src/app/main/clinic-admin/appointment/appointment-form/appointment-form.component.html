@@ -111,11 +111,11 @@
                             </div>
                             <div class="col-md-6" *ngIf="formData.p_type.value === 'New Patient'">
                                 <shared-ui-text-input *ngIf="formData.p_type.value === 'New Patient'" [label]="'Phone'" [control]="formData.phone"
-                                 [mask]="'numeric'" [maxLength]=10
+                                 [maxLength]=15
                                                       [submitted]="submitted"></shared-ui-text-input>
                             </div>
                             <div class="col-md-6" *ngIf="formData.p_type.value === 'Old Patient'">
-                                <shared-ui-text-input  [label]="'Phone'" [control]="formData.phone" [mask]="'numeric'" [maxLength]=10
+                                <shared-ui-text-input  [label]="'Phone'" [control]="formData.phone"  [maxLength]=15
                                                    [isDisabled]="true"   [submitted]="submitted"></shared-ui-text-input>
                             </div>
                             <div *ngIf="formData.p_type.value === 'New Patient'" class="col-md-6">
@@ -150,7 +150,7 @@
                                         Extra
                                         Notes
                                     </label>
-                                    <textarea class="form-control" [formControl]="formData.meeting_Notes" [mask]="'alphaAllowSpaces'"
+                                    <textarea class="form-control" [formControl]="formData.meeting_Notes" 
                                               [ngClass]="{ 'is-invalid': submitted && formData.meeting_Notes.errors }"></textarea>
                                     <ng-container *ngFor="let error of formData.meeting_Notes.errors | errorKeys">
                                         <span *ngIf="submitted" class="invalid-class">
