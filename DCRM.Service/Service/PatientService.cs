@@ -401,7 +401,7 @@ namespace DCRM.Service.Service
                 else if (treatment.Treatment_Status == 1)
                     treatmentplanDto.TreatmentStatus = "Completed";
                 else
-                    treatmentplanDto.TreatmentStatus = "Incompleted";
+                    treatmentplanDto.TreatmentStatus = "Incomplete";
                 treatmentplanDto.Status = treatment.Status;
                 treatmentplanDto.Type = treatment.Type;
                 treatmentplanDto.TeethNumber = treatment.TeethNumber;
@@ -424,7 +424,7 @@ namespace DCRM.Service.Service
                     }
                     else
                     {
-                        workdone_New.WorkdoneStatus = "Incompleted";
+                        workdone_New.WorkdoneStatus = "Incomplete";
                     }
                     workdone_New.Discount = item.w.Discount;
                     workdone_New.AmtDueCurrentWork = item.w.Current_Work_Amt.ToString();
@@ -478,13 +478,13 @@ namespace DCRM.Service.Service
                 {
                     workDoneDto.WorkdoneStatus = "Observation";
                 }
-                else if (workdone.Workdone_Status == 0)
+                else if (workdone.Workdone_Status == 1)
                 {
                     workDoneDto.WorkdoneStatus = "Completed";
                 }
                 else
                 {
-                    workDoneDto.WorkdoneStatus = "Incompleted";
+                    workDoneDto.WorkdoneStatus = "Incomplete";
                 }
                 workDoneDto.DoctorName = workdone.DoctorName;
                 workDoneDto.Doctor_Id = Convert.ToInt32(workdone.Doctor_Id);

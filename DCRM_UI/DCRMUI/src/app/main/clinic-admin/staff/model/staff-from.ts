@@ -32,7 +32,7 @@ export class StaffFormModel {
   work_Experience?: any = '';
   specialization?: any = '';
   note?: any = '';
-  current_Address?: any = '';
+  current_Address?: any = '-';
   permanent_Address?: any = '';
   pan?: any = '';
   gst?: any = '';
@@ -98,7 +98,7 @@ export class StaffForm extends FormGroup {
           email: [model?.email, [Validators.required,Validators.email]],
           password: [model?.password, [Validators.minLength(8)]],
           role: [model?.role],
-          slug: [model?.slug],
+          slug: [model?.slug,[Validators.required]],
           designation: [model?.designation],
           status: [model?.status],
           department: [model?.department],
@@ -114,7 +114,7 @@ export class StaffForm extends FormGroup {
           work_Experience: [model?.work_Experience],
           specialization: [model?.specialization],
           note: [model?.note],
-          current_Address: [model?.current_Address,[Validators.required]],
+          current_Address: [model?.current_Address],
           permanent_Address: [model?.permanent_Address],
           pan: [model?.pan],
           gst: [model?.gst],

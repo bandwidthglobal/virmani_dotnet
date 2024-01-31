@@ -104,21 +104,21 @@
                                 </a>
                             </ng-template>
                         </ngx-datatable-column>
-                        <ngx-datatable-column name="Date" prop="date" [width]="150">
+                        <ngx-datatable-column name="Date" prop="date" [width]="100">
                             <ng-template let-row="row" ngx-datatable-cell-template>
                                 <div class="row">
                                     <div class="col-12">{{row.date | date: 'dd/MM/yyyy'}}</div>
                                 </div>
                             </ng-template>
                         </ngx-datatable-column>
-                        <ngx-datatable-column name="Sitting" [Width]="50" prop="sitting">
+                        <ngx-datatable-column name="Sitting" prop="sitting" [width]="80">
                             <ng-template class="text-center" contenteditable="true" ngx-datatable-cell-template e let-rowIndex="rowIndex" let-value="value" let-row="row">
                                 <span *ngIf="!editable" (dblclick)="editable = true;" style="width:50px!important;border:0;cursor:pointer"> {{row.sitting}} </span>
                                 <input type="number" (change)="setSittingValue(row.id,$event)" style="width:50px!important;border:0" autofocus (keyup)="editable==false" value="{{row.sitting}}" *ngIf="editable" />
                             </ng-template>
                         </ngx-datatable-column>
                         <ngx-datatable-column name="Tooth Number" prop="teethNumber"></ngx-datatable-column>
-                        <ngx-datatable-column name="Notes & Diagnosis" prop="tothNot">
+                        <ngx-datatable-column name="Notes & Diagnosis" prop="tothNot" [width]="170">
                             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                                 <div *ngIf="!row.expanded">
                                   {{ value | slice:0:20 }}
@@ -134,8 +134,8 @@
                         <ngx-datatable-column name="Dr. Name" prop="doctorName"></ngx-datatable-column>
                         <ngx-datatable-column name="Type" prop="type"></ngx-datatable-column>
                         <ngx-datatable-column name="Treatment Code" prop="job"></ngx-datatable-column>
-                        <ngx-datatable-column name="App Estimate" prop="amount"></ngx-datatable-column>
-                        <ngx-datatable-column name="Status" prop="treatmentStatus"></ngx-datatable-column>
+                        <ngx-datatable-column name="Estimate" prop="amount" [width]="120"></ngx-datatable-column>
+                        <ngx-datatable-column name="Status" prop="treatmentStatus" [width]="120"></ngx-datatable-column>
                         <ngx-datatable-column name="Actions" [width]="200" [sortable]="false">
                             <ng-template ngx-datatable-cell-template let-row="row">
                                 <div class="d-flex align-items-center col-actions">
@@ -192,10 +192,10 @@
                                         <select class="form-control select2"
                                                 [(ngModel)]="workdone.doctor_Id"
                                                 formControlName="doctor_Id"
-                                                aria-describedby="doctor_Id"
+                                                aria-describedby="doctor_Id"2
                                                 [ngClass]="{ 'is-invalid': submitted && f.doctor_Id.errors }">
                                             <option value="">Select Doctor</option>
-                                            <option *ngFor="let item of doctors" value="{{item.id}}" selected = "{{item.name == this.workdone.doctor_Id}}">{{item.name}}</option>
+                                            <option *ngFor="let item of doctors" value="{{item.id}}" selected = "{{item.name == this.treatment.doctor_Id}}">{{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -293,7 +293,7 @@
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="workdone_status" id="incompleted_new" value="2" (change)="chamgeStatus(2)">
                                                 <label class="form-check-label" for="incompleted_new">
-                                                    Incompleted
+                                                    Incomplete
                                                 </label>
                                             </div>
 
@@ -310,7 +310,7 @@
                                                       rows="5"
                                                       cols="20"
                                                       [maxlength]=100
-                                                      [mask]="'alphaAllowSpaces'"
+                                                      [mask]="'alphaNumericAllowSpaces'"
                                                       [(ngModel)]="workdone.workdone_Notes"
                                                       formControlName="workdone_Notes"
                                                       aria-describedby="workdone_Notes">

@@ -258,6 +258,10 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
         console.log('> toothNumber ---> ', this.toothNumber);
     }
 
+    redirect() {
+        const returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/patient/preview';
+        this.router.navigateByUrl(returnUrl);
+    }
     removeToothNumber(idx) {
         this.toothNumber.splice(idx, 1);
     }

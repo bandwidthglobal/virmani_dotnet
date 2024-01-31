@@ -119,7 +119,7 @@
                                                
                                                 <div class="col-md-4">
                                                     <shared-ui-text-input [label]="'Work Experience'" [control]="formData.work_Experience"
-                                                                        [submitted]="submitted" [mask]="'alphaAllowSpaces'" [maxLength]=50></shared-ui-text-input>
+                                                                        [submitted]="submitted" [mask]="'alphaNumericAllowSpaces'" [maxLength]=100></shared-ui-text-input>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <shared-ui-text-input [label]="'Specialization'" [control]="formData.specialization"
@@ -223,7 +223,7 @@
                                                     </div>
                                                     <div class="col">
                                                         <shared-ui-text-input [label]="'Bank Account Number'" [control]="bank.bank_Account_Number"
-                                                                              [submitted]="submitted" [mask]="'numeric'" [maxLength]=20></shared-ui-text-input>
+                                                                              [submitted]="submitted" [mask]="'alphaNumericAllowSpaces'" [maxLength]=20></shared-ui-text-input>
                                                     </div>
                                                     <div class="col">
                                                         <shared-ui-text-input [label]="'IFSC Code'" [control]="bank.ifsc_Code"
@@ -427,7 +427,7 @@
 
                                     <div class="col-md-4">
                                         <shared-ui-text-input [label]="'Work Experience'" [control]="formData.work_Experience"
-                                                            [submitted]="submitted" [mask]="'alphaAllowSpaces'" [maxLength]=50></shared-ui-text-input>
+                                                            [submitted]="submitted" [mask]="'alphaNumericAllowSpaces'" [maxLength]=100></shared-ui-text-input>
                                     </div>
                                     <div class="col-md-4">
                                         <shared-ui-text-input [label]="'Specialization'" [control]="formData.specialization"
@@ -529,7 +529,7 @@
                                         </div>
                                         <div class="col">
                                             <shared-ui-text-input [label]="'Bank Account Number'" [control]="bank.bank_Account_Number"
-                                                                  [submitted]="submitted" [mask]="'numeric'"></shared-ui-text-input>
+                                                                  [submitted]="submitted" [mask]="'alphaNumericAllowSpaces'"></shared-ui-text-input>
                                         </div>
                                         <div class="col">
                                             <shared-ui-text-input [label]="'IFSC Code'" [control]="bank.ifsc_Code"

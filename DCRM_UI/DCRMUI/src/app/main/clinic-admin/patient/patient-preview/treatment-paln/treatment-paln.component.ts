@@ -144,7 +144,7 @@ export class TreatmentPalnComponent implements OnInit {
     //Work Done Start
     addWorkDone(treatmentid: any, estamount: any, toothNumber: any, job: any, doctorName: any, workdones:any) {
         this.getDoctors();
-        this.workdone.doctor_Id = doctorName;
+        this.treatment.doctor_Id = doctorName;
         this.treatmentId = treatmentid;
         this.workdone.estimated_Amount = estamount;
         this.workdone.realized_Treatment_Cost =workdones.length > 0 ? workdones[workdones.length-1].totalAmt: 0;

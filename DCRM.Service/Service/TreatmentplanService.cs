@@ -98,7 +98,7 @@ namespace DCRM.Service.Service
                     teethIno.Type = request.Type;
                     teethIno.Teeth_Id = request.Teeth_id;
                     teethIno.Teeth_Number_Note = request.Teeth_Number_Note;
-                    teethIno.Toth_Note = request.Toth_Note;
+                    teethIno.Toth_Note = request.Treatment_Notes;
                     teethIno.Date = System.DateTime.UtcNow;
                     _teethInfoRepository.Update(teethIno);
                 }

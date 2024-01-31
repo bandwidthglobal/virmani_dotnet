@@ -72,11 +72,11 @@ export class DoctorFormComponent implements OnInit, OnDestroy {
 
     ISpeciality: Array<any> = [
         { id: 'Community Dentistry', name: 'Community Dentistry' },
-        { id: 'Conservative / Endodontics  ', name: 'Conservative / Endodontics  ' },
+        { id: 'Conservative Dentistry & Endodontics', name: 'Conservative Dentistry & Endodontics' },
         { id: 'General Dentistry', name: 'General Dentistry' },
-        { id: 'Oral &amp; Maxillofacial Surgery', name: 'Oral &amp; Maxillofacial Surgery' },
-        { id: 'Oral Medicine &amp; Radiology', name: 'Oral Medicine &amp; Radiology' },
-        { id: 'Oral Pathology &amp; Microbiology', name: 'Oral Pathology &amp; Microbiology' },
+        { id: 'Oral & Maxillofacial Surgery', name: 'Oral & Maxillofacial Surgery' },
+        { id: 'Oral Medicine & Radiology', name: 'Oral Medicine & Radiology' },
+        { id: 'Oral Pathology & Microbiology', name: 'Oral Pathology & Microbiology' },
         { id: 'Orthodontics', name: 'Orthodontics' },
         { id: 'Paedodontics  ', name: 'Paedodontics  ' },
         { id: 'Periodontics  ', name: 'Periodontics  ' },
