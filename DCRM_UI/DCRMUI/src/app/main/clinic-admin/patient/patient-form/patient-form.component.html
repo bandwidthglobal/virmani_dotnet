@@ -216,26 +216,25 @@
                                                         [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
-                                                <div class="col-md-2">
-                                                    <shared-ui-select-input [label]="'Referred By'"
-                                                        [control]="contacts.reffered_By" [options]="IReferList"
-                                                        [valueKey]="'id'" [displaykey]="'text'"
-                                                        [submitted]="submitted"></shared-ui-select-input>
-                                                </div>
-
                                                 <div class="col-md-3">
-                                                    <shared-ui-text-input [label]="'Doctor Name'"
-                                                        [control]="contacts.doctor_Name" [mask]="'alphaAllowSpaces'" [maxLength]=30
+                                                    <shared-ui-text-input [label]="'Referred By'"
+                                                        [control]="contacts.reffered_By" [mask]="'alphaAllowSpaces'" [maxLength]=30
                                                         [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
-                                                <div class="col-md-2">
+                                                <!-- <div class="col-md-3">
+                                                    <shared-ui-text-input [label]="'Doctor Name'"
+                                                        [control]="contacts.doctor_Name" [mask]="'alphaAllowSpaces'" [maxLength]=30
+                                                        [submitted]="submitted"></shared-ui-text-input>
+                                                </div> -->
+
+                                                <div class="col-md-3">
                                                     <shared-ui-text-input [label]="'Phone'" [control]="contacts.phone"
                                                         [maxLength]=15
                                                         [submitted]="submitted"></shared-ui-text-input>
                                                 </div>
 
-                                                <div class="col-md-2">
+                                                <div class="col-md-3">
                                                     <shared-ui-text-input [label]="'Relationship Type'"
                                                         [control]="formData.relationship" [mask]="'alphaAllowSpaces'" [maxLength]=30
                                                         [submitted]="submitted"></shared-ui-text-input>

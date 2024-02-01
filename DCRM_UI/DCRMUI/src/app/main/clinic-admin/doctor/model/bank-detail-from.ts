@@ -32,9 +32,9 @@ export class BankDetailForm extends FormGroup {
         {
           id: [model?.id],
           doctor_Id: [model?.doctor_Id],
-          bank_Name: [model?.bank_Name, [Validators.required]],
+          bank_Name: [model?.bank_Name],
           bank_Account_Number: [model?.bank_Account_Number, [Validators.required]],
-          ifsc_Code: [model?.ifsc_Code, [Validators.required]],
+          ifsc_Code: [model?.ifsc_Code],
           remarks: [model?.remarks],
           updated_At: [model?.updated_At],
         }, {

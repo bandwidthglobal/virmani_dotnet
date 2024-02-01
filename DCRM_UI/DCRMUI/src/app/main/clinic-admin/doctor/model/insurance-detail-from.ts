@@ -8,7 +8,7 @@ export class InsuranceDetailFormModel {
   insurance?: any = '';
   insurance_Date?: any = '';
   renewal_Date?: any = '';
-  amount_Insured?: any = '';
+  amount_Insured?: any = 0;
   amount_Paid?: any = 0;
   allow_Notifications?: any = 0;
   remarks?: any = '';
@@ -38,7 +38,7 @@ export class InsuranceDetailForm extends FormGroup {
         {
           id: [model?.id],
           doctor_Id: [model?.doctor_Id],
-          insurance: [model?.insurance, [Validators.required]],
+          insurance: [model?.insurance],
           insurance_Date: [model?.insurance_Date, [Validators.required]],
           renewal_Date: [model?.renewal_Date, [Validators.required]],
           amount_Insured: [model?.amount_Insured],

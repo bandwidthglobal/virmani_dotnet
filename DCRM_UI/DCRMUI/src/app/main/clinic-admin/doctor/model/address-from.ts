@@ -50,10 +50,10 @@ export class AddressForm extends FormGroup {
         {
           id: [model?.id],
           doctor_Id: [model?.doctor_Id],
-          address_R: [model?.address_R, [Validators.required]],
-          city_R: [model?.city_R, [Validators.required]],
+          address_R: [model?.address_R],
+          city_R: [model?.city_R],
           zip_R: [model?.zip_R, [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
-          country_R: [model?.country_R, [Validators.required]],
+          country_R: [model?.country_R],
           address_O: [model?.address_O],
           city_O: [model?.city_O],
           zip_O: [model?.zip_O, [Validators.minLength(6), Validators.maxLength(6)]],
