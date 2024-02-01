@@ -21,7 +21,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   public slideoutShow = false;
   public events = [];
   public event: any;
-    title: any;
+  public  title: any;
   public calendarOptions: CalendarOptions = {
     headerToolbar: {
       start: 'sidebarToggle, prev,next, title',

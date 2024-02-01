@@ -6,7 +6,7 @@ export class BankDetailFormModel {
   id?: any = 0;
   doctor_Id?: any = 0;
   bank_Name?: any = '';
-  bank_Account_Number?: any = '';
+  bank_Account_Number?: any = 0;
   ifsc_Code?: any = '';
   remarks?: any = '';
   updated_At?: any = new Date();
@@ -33,7 +33,7 @@ export class BankDetailForm extends FormGroup {
           id: [model?.id],
           doctor_Id: [model?.doctor_Id],
           bank_Name: [model?.bank_Name],
-          bank_Account_Number: [model?.bank_Account_Number, [Validators.required]],
+          bank_Account_Number: [model?.bank_Account_Number],
           ifsc_Code: [model?.ifsc_Code],
           remarks: [model?.remarks],
           updated_At: [model?.updated_At],

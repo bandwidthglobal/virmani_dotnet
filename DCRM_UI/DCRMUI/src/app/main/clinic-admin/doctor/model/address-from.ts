@@ -7,7 +7,7 @@ export class AddressFormModel {
   doctor_Id?: any = 0;
   address_R?: any = '';
   city_R?: any = '';
-  zip_R?: any = null;
+  zip_R?: any = 0;
   country_R?: any = '';
   address_O?: any = '';
   city_O?: any = '';
@@ -52,7 +52,7 @@ export class AddressForm extends FormGroup {
           doctor_Id: [model?.doctor_Id],
           address_R: [model?.address_R],
           city_R: [model?.city_R],
-          zip_R: [model?.zip_R, [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
+          zip_R: [model?.zip_R, [Validators.minLength(6), Validators.maxLength(6)]],
           country_R: [model?.country_R],
           address_O: [model?.address_O],
           city_O: [model?.city_O],

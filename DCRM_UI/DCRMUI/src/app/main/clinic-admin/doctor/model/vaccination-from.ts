@@ -6,8 +6,8 @@ export class VaccinationFormModel {
   id?: any = 0;
   doctor_Id?: any = 0;
   vaccination_Type?: any = 0;
-  vaccination_Date?: any = '';
-  reminder_Date_For_Next?: any = '';
+  vaccination_Date?: any = new Date();
+  reminder_Date_For_Next?: any = new Date();
   remarks?: any = '';
   medical_History?: any = '';
   updated_At?: any = new Date();
@@ -35,8 +35,8 @@ export class VaccinationForm extends FormGroup {
           id: [model?.id],
           doctor_Id: [model?.doctor_Id],
           vaccination_Type: [model?.vaccination_Type, [Validators.required]],
-          vaccination_Date: [model?.vaccination_Date, [Validators.required]],
-          reminder_Date_For_Next: [model?.reminder_Date_For_Next, [Validators.required]],
+          vaccination_Date: [model?.vaccination_Date],
+          reminder_Date_For_Next: [model?.reminder_Date_For_Next],
           remarks: [model?.remarks],
           medical_History: [model?.medical_History],
           updated_At: [model?.updated_At],

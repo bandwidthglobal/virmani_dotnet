@@ -82,7 +82,8 @@ export const menu: CoreMenu[] = [
                 translate: 'MENU.APPS.Staffs',
                 type: 'item',
                 icon: 'users',
-                url: 'admin/staff/list'
+                url: 'admin/staff/list',
+                openInNewTab: true
             },
             {
                 id: 'dealer',
@@ -90,7 +91,8 @@ export const menu: CoreMenu[] = [
                 translate: 'MENU.APPS.Dealer',
                 type: 'item',
                 icon: 'user-check',
-                url: 'admin/dealer/list'
+                url: 'admin/dealer/list',
+                openInNewTab: true
             },
             {
                 id: 'doctors',
@@ -98,7 +100,8 @@ export const menu: CoreMenu[] = [
                 translate: 'MENU.APPS.Doctors',
                 type: 'item',
                 icon: 'user-plus',
-                url: 'admin/doctor/list'
+                url: 'admin/doctor/list',
+                openInNewTab: true
             },
 
             {
@@ -130,7 +133,8 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.SETTINGS.DiagnosisTests',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/settings/diagnosistests/list'
+                        url: 'admin/settings/diagnosistests/list',
+                        openInNewTab: true
                     },
                     {
                         id: 'prosthesistype',
@@ -138,7 +142,8 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.SETTINGS.ProsthesisType',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/settings/prosthesistype/list'
+                        url: 'admin/settings/prosthesistype/list',
+                        openInNewTab:true
                     }
                     ,
                     {
@@ -147,7 +152,8 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.SETTINGS.Chairs',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/settings/chair/list'
+                        url: 'admin/settings/chair/list',
+                        openInNewTab:true
                     }
                 ]
             },
@@ -166,7 +172,8 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.PRESCRIPTION.CreateNew',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/prescription/add'
+                        url: 'admin/prescription/add',
+                        openInNewTab: true
                     },
                     {
                         id: 'prescriptions',
@@ -174,7 +181,8 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.PRESCRIPTION.Prescriptions',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/prescription/list'
+                        url: 'admin/prescription/list',
+                        openInNewTab: true
                     },
                 ]
             },
@@ -185,7 +193,8 @@ export const menu: CoreMenu[] = [
                 translate: 'MENU.APPS.Patients',
                 type: 'item',
                 icon: 'user-x',
-                url: 'admin/patient/list'
+                url: 'admin/patient/list',
+                openInNewTab: true
             },
             {
                 id: 'appointments',
@@ -200,7 +209,8 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.APPOINTMENTS.Lists',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/appointment/list'
+                        url: 'admin/appointment/list',
+                        openInNewTab: true
                     },
                     {
                         id: 'chairview',
@@ -208,7 +218,8 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.APPOINTMENTS.ChairView',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/appointment/chairview'
+                        url: 'admin/appointment/chairview',
+                        openInNewTab: true
                     },
                     {
                         id: 'calendarview',
@@ -216,7 +227,8 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.APPOINTMENTS.CalendarView',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/appointment/calendarview'
+                        url: 'admin/appointment/calendarview',
+                        openInNewTab: true
                     },
                     {
                         id: 'setschedule',
@@ -224,7 +236,8 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.APPOINTMENTS.SetSchedule',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/appointment/assign'
+                        url: 'admin/appointment/assign',
+                        openInNewTab: true
                     },
                     {
                         id: 'waitingroom',
@@ -232,7 +245,8 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.APPOINTMENTS.WaitingRoom',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/appointment/waitingroom'
+                        url: 'admin/appointment/waitingroom',
+                        openInNewTab: true
                     }
                 ]
             },
@@ -250,7 +264,8 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.REPORT.Payments',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/reports/payments'
+                        url: 'admin/reports/payments',
+                        openInNewTab: true
                     },
                     {
                         id: 'patientsworkdones',
@@ -258,7 +273,8 @@ export const menu: CoreMenu[] = [
                         translate: 'MENU.APPS.REPORT.PatientWorkdones',
                         type: 'item',
                         icon: 'circle',
-                        url: 'admin/reports/patient-workdones'
+                        url: 'admin/reports/patient-workdones',
+                        openInNewTab: true
                     },
                     //{
                     //    id: 'patientworkdone',
@@ -278,7 +294,8 @@ export const menu: CoreMenu[] = [
                 translate: 'MENU.APPS.Drugs',
                 type: 'item',
                 icon: 'heart',
-                url: 'admin/drug/list'
+                url: 'admin/drug/list',
+                openInNewTab: true
             },
 
             //{
@@ -321,7 +338,8 @@ export const menu: CoreMenu[] = [
                 translate: 'MENU.APPS.ChangePassword',
                 type: 'item',
                 icon: 'key',
-                url: 'admin/changepassword'
+                url: 'admin/changepassword',
+                openInNewTab: true
             },
 
             {
@@ -330,7 +348,8 @@ export const menu: CoreMenu[] = [
                 translate: 'MENU.APPS.Logout',
                 type: 'item',
                 icon: 'unlock',
-                url: 'auth/logout'
+                url: 'auth/logout',
+                openInNewTab: true
             },
 
 
