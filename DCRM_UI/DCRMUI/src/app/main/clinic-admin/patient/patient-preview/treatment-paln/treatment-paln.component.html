@@ -192,7 +192,7 @@
                                         <select class="form-control select2"
                                                 [(ngModel)]="workdone.doctor_Id"
                                                 formControlName="doctor_Id"
-                                                aria-describedby="doctor_Id"2
+                                                aria-describedby="doctor_Id"
                                                 [ngClass]="{ 'is-invalid': submitted && f.doctor_Id.errors }">
                                             <option value="">Select Doctor</option>
                                             <option *ngFor="let item of doctors" value="{{item.id}}" selected = "{{item.name == this.treatment.doctor_Id}}">{{item.name}}</option>

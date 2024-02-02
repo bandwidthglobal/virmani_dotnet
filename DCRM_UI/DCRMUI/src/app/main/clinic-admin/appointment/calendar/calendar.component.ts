@@ -21,7 +21,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   public slideoutShow = false;
   public events = [];
   public event: any;
-  public  title: any;
+  public title: any;
+  public id: any;
   public calendarOptions: CalendarOptions = {
     headerToolbar: {
       start: 'sidebarToggle, prev,next, title',
@@ -89,8 +90,9 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     eventDidMount(info: any) {
         
     }
-    onMouseOver(eventRef: { event: { title: any; }; }) {
+    onMouseOver(eventRef: { event: { title: any , id: any}; }) {
         this.title = eventRef.event.title;
+        this.id = eventRef.event.id;
     }
    
   /**
