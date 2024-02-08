@@ -14,7 +14,7 @@ public class DoctorDto
 
     public string Gender { get; set; } = null!;
 
-    public DateTime Dob { get; set; }
+    public DateTime? Dob { get; set; }
 
     public int Age { get; set; }
 

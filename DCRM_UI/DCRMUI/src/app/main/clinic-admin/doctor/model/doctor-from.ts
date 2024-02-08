@@ -13,7 +13,7 @@ export class DoctorFormModel {
   thumb?: any = '';
   name?: any = '';
   gender?: any = '';
-  dob?: any = '';
+  dob?: any = null;
   age?: any = '';
   marital_Status?: any = '';
   blood_Group?: any = null;
@@ -84,7 +84,7 @@ export class DoctorForm extends FormGroup {
           thumb: [model?.thumb],
           name: [model?.name, [Validators.required]],
           gender: [model?.gender, [Validators.required]],
-          dob: [model?.dob, [Validators.required]],
+          dob: [model?.dob],
           age: [model?.age, [Validators.required]],
           marital_Status: [model?.marital_Status],
           blood_Group: [model?.blood_Group],

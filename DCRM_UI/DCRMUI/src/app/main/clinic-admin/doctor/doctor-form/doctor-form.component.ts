@@ -153,7 +153,11 @@ export class DoctorFormComponent implements OnInit, OnDestroy {
         } else {
             const payload: any = this.formData.getRawValue();
             payload.thumb = this.base64Image;
+            if(payload.dob)
+            {
             payload.dob = this._commonValidationService.dateFormat_Y_M_D(payload.dob);
+            }
+            payload.dob = payload.dob == ''? null : payload.dob;
             payload.doctorsVaccinationList.map(e => {
                 e.vaccination_Date = this._commonValidationService.dateFormat_Y_M_D(e.vaccination_Date);
                 e.reminder_Date_For_Next = this._commonValidationService.dateFormat_Y_M_D(e.reminder_Date_For_Next);
