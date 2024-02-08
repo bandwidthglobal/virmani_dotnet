@@ -21,7 +21,7 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 })
 
 export class TreatmentPalnComponent implements OnInit {
-
+    isSaved: boolean = false;
     public calendarRef = [];
     public tempRef = [];
     public checkAll = true;
@@ -207,44 +207,14 @@ export class TreatmentPalnComponent implements OnInit {
             this.doctors = response;
         });
     }
-
-    saveAndRedirect() {
-        const newTab = window.open('/admin/patient/preview/', '_blank');
-        if (newTab) {
-            const message = 'Thank you for submitting!';
-            const htmlContent = `
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <title>Thank You</title>
-                <style>
-                    body {
-                        font-family: 'Arial', sans-serif;
-                        text-align: center;
-                        background-color: #f4f4f4;
-                        padding: 20px;
-                    }
-                    p {
-                        font-size: 18px;
-                        color: #008000; /* Green color */
-                    }
-                </style>
-            </head>
-            <body>
-                <p>${message}</p>
-            </body>
-            </html>
-        `;
-    newTab.document.open();
-    newTab.document.write(htmlContent);
-    newTab.document.close();
-    window.close();
     
-        } else {
-          console.error('Unable to open a new tab.');
-        }
+      saveAndShowMessage() {
+        this.isSaved = true;
+        setTimeout(() => {
+          this.isSaved = false;
+        }, 5000);
       }
-    
+
     chngCurrentwork(ev: { target: { value: string; }; }) {
         this.currentAmount = parseInt(ev.target.value)
         if (this.workdone.discount == 0) {
