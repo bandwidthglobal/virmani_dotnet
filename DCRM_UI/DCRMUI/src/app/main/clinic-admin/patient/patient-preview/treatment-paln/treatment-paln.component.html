@@ -139,7 +139,7 @@
                         <ngx-datatable-column name="Actions" [width]="200" [sortable]="false">
                             <ng-template ngx-datatable-cell-template let-row="row">
                                 <div class="d-flex align-items-center col-actions">
-                                    <a class="mr-1 btn btn-primary btn-sm" style="width:120px;" (click)="addWorkDone(row.id,row.amount,row.teethNumber,row.job,row.doctorName,row.workdones)" href="javascript:void(0)" container="body"
+                                    <a class="mr-1 btn btn-primary btn-sm" style="width:120px;" (click)="addWorkDone(row.id,row.amount,row.teethNumber,row.job,row.doctorName, row.doctor,row.workdones)" href="javascript:void(0)" container="body"
                                        placement="top" ngbTooltip="Work Done">
                                         Work Done
                                     </a>
@@ -195,7 +195,7 @@
                                                 aria-describedby="doctor_Id"
                                                 [ngClass]="{ 'is-invalid': submitted && f.doctor_Id.errors }">
                                             <option value="">Select Doctor</option>
-                                            <option *ngFor="let item of doctors" value="{{item.id}}" selected = "{{item.name == this.treatment.doctor_Id}}">{{item.name}}</option>
+                                            <option *ngFor="let item of doctors" value="{{item.id}}">{{item.name}}</option>
                                         </select>
                                     </div>
                                 </div>

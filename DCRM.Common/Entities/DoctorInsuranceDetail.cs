@@ -8,9 +8,9 @@ public partial class DoctorInsuranceDetail
 
     public string Insurance { get; set; } = null!;
 
-    public DateTime Insurance_Date { get; set; }
+    public DateTime? Insurance_Date { get; set; }
 
-    public DateTime Renewal_Date { get; set; }
+    public DateTime? Renewal_Date { get; set; }
 
     public long Amount_Insured { get; set; }
 

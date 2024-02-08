@@ -159,8 +159,17 @@ export class DoctorFormComponent implements OnInit, OnDestroy {
                 e.reminder_Date_For_Next = this._commonValidationService.dateFormat_Y_M_D(e.reminder_Date_For_Next);
             });
             payload.doctorInsuranceDetailList.map(e => {
+                if(e.insurance_Date)
+                {
                 e.insurance_Date = this._commonValidationService.dateFormat_Y_M_D(e.insurance_Date);
+                }
+                if(e.renewal_Date)
+                {
                 e.renewal_Date = this._commonValidationService.dateFormat_Y_M_D(e.renewal_Date);
+                }
+                e.insurance_Date = e.insurance_Date == ''? null : e.insurance_Date;
+                e.renewal_Date = e.renewal_Date == ''? null : e.renewal_Date;
+
             });
             // console.log('> saveForm ---> ', payload);
             this.loading = true;
@@ -178,7 +187,7 @@ export class DoctorFormComponent implements OnInit, OnDestroy {
                 // console.log('> save ---> ', response);
                 this.loading = false;
                 this.callBackEvent.emit({
-                    status: 'failure',
+                  status: 'failure',
                     data: response,
                     page: this.FormAction,
                 });
