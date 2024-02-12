@@ -188,7 +188,7 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
         console.log(items);
     }
 
-    dateChange(evt) {
+    dateChange(evt: { target: { value: any; }; }) {
         var date = evt.target.value;
         this.Date = date;
         this.searchData()

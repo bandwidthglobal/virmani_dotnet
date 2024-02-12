@@ -258,3 +258,24 @@ logs/webapi-20231113.log
 /logs/webapi-20240206.log
 /logs/webapi-20240207.log
 /logs/webapi-20240208.log
+/DCRM.Api
+/DCRM.Api/obj/Release/net6.0
+/DCRM.Api/obj/Release/net6.0/DCRM.Api.sourcelink.json
+/DCRM.Api/obj/Release/net6.0/PublishOutputs.0bf92ecf37.txt
+/DCRM.Api/Properties/PublishProfiles
+/DCRM.Api/Properties/PublishProfiles/FolderProfile1.pubxml
+/DCRM.Api/Properties/PublishProfiles/FolderProfile1.pubxml.user
+/DCRM.Api/Properties/PublishProfiles/virmaniapi - FTP1.pubxml
+/DCRM.Api/Properties/PublishProfiles/virmaniapi - FTP1.pubxml.user
+/DCRM.Api/Properties/PublishProfiles/virmaniapi - Web Deploy1.pubxml
+/DCRM.Api/Properties/PublishProfiles/virmaniapi - Web Deploy1.pubxml.user
+/DCRM.Api/Properties/PublishProfiles/virmaniapi - Zip Deploy1.pubxml
+/DCRM.Api/Properties/PublishProfiles/virmaniapi - Zip Deploy1.pubxml.user
+/DCRM.Common/obj/Release/net6.0
+/DCRM.Common/obj/Release/net6.0/DCRM.Common.sourcelink.json
+/DCRM.Repository/obj/Release/net6.0
+/DCRM.Repository/obj/Release/net6.0/DCRM.Repository.sourcelink.json
+/DCRM.Service/obj/Release/net6.0
+/DCRM.Service/obj/Release/net6.0/DCRM.Service.sourcelink.json
+/logs/webapi-20240209.log
+/logs/webapi-20240212.log

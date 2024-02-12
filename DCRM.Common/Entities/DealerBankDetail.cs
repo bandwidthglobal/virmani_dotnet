@@ -6,11 +6,11 @@ public partial class DealerBankDetail
 
     public long Dealer_Id { get; set; }
 
-    public string Bank_Name { get; set; } = null!;
+    public string? Bank_Name { get; set; }
 
-    public long Bank_Account_Number { get; set; }
+    public long? Bank_Account_Number { get; set; }
 
-    public string Ifsc_Code { get; set; } = null!;
+    public string? Ifsc_Code { get; set; }
 
     public string? Remarks { get; set; }
 

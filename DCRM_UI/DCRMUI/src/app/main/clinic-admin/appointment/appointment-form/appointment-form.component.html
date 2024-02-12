@@ -46,7 +46,7 @@
 
                             <div class="col-md-6">
                                 <shared-ui-text-input [label]="'Cause'" [control]="formData.cause"
-                                                      [submitted]="submitted" [mask]="'alphaAllowSpaces'" [maxLength]=30></shared-ui-text-input>
+                                                      [submitted]="submitted" [mask]="'alphaNumericAllowSpaces'" [maxLength]=30></shared-ui-text-input>
                             </div>
                             <div class="col-md-6">
                                 <shared-ui-select-input [label]="'Choose Chair'" [control]="formData.chair"
@@ -87,7 +87,7 @@
 
                             <div *ngIf="formData.p_type.value === 'New Patient'" class="col-md-6">
                                 <shared-ui-text-input [label]="'Name'" [control]="formData.patient_name"
-                                [mask]="'alphaAllowSpaces'" [maxLength]=30
+                                [maxLength]=30
                                                       [submitted]="submitted"></shared-ui-text-input>
                             </div>
                             <div  class="col-md-6" *ngIf="formData.p_type.value === 'Old Patient'">

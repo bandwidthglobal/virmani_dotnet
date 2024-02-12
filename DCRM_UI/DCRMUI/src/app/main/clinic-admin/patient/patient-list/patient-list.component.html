@@ -69,7 +69,7 @@
                     </ngx-datatable-column>
                     <ngx-datatable-column name="Address" class="" prop="present_Address" [width]="150">
                         <ng-template ngx-datatable-cell-template let-row="row">
-                            <span>{{row.present_Address}}</span>
+                            <span>{{row.patientContacts[0].address_R}}</span>
                         </ng-template>
                     </ngx-datatable-column>
                    
