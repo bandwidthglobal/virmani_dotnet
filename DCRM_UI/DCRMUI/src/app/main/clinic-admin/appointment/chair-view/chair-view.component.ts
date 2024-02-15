@@ -133,7 +133,7 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
         const date2 = new Date(new Date());
        
         if (date1.getTime() < date2.getTime()) {
-            this.isAppontmentClose = true;
+            this.isAppontmentClose = false;
             this.workdoneElm.classList.add('show');
             this.workdoneElm.style.display = 'block';
             this.workdoneElm.style.width = '100vw';

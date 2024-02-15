@@ -165,7 +165,7 @@
 
                         <div class="col-md-12 mt-3">
                             <a *ngIf="FormAction=='edit'" (click)="changeAppointmentStatus(1,formData.id,'shift_appointment')" class="btn btn-primary btn-sm mr-10">Shift Appointment</a>
-                            <a *ngIf="FormAction=='edit'" (click)="changeAppointmentStatus(2,formData.id)" class="btn btn-success btn-sm mr-10">Complete Appointment</a>
+                            <!-- <a *ngIf="FormAction=='edit'" (click)="changeAppointmentStatus(2,formData.id)" class="btn btn-success btn-sm mr-10">Complete Appointment</a> -->
                             <a *ngIf="FormAction=='edit'" (click)="changeAppointmentStatus(3,formData.id)" class="btn btn-info btn-sm mr-10">Cancel Appointment</a>
                             <div class="float-right" *ngIf="FormAction=='add'">
                                 <a  class="btn btn-outline-secondary mr-1" (click)="close()">Cancel</a>

@@ -139,7 +139,7 @@
                         <ngx-datatable-column name="Actions" [width]="200" [sortable]="false">
                             <ng-template ngx-datatable-cell-template let-row="row">
                                 <div class="d-flex align-items-center col-actions">
-                                    <a class="mr-1 btn btn-primary btn-sm" style="width:120px;" (click)="addWorkDone(row.id,row.amount,row.teethNumber,row.job,row.doctorName, row.doctor,row.workdones)" href="javascript:void(0)" container="body"
+                                    <a class="mr-1 btn btn-primary btn-sm" style="width:120px;" (click)="addWorkDone(row.id,row.amount,row.teethNumber,row.job,row.doctorName, row.doctor,row.workdones, row.treatmentStatus)" href="javascript:void(0)" container="body"
                                        placement="top" ngbTooltip="Work Done">
                                         Work Done
                                     </a>
@@ -278,20 +278,20 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" checked name="workdone_status" (change)="chamgeStatus(0)" id="observation_new" value="0">
+                                                <input class="form-check-input" type="radio" [checked]= "this.workdone.workdone_Status === 'Observation'" name="workdone_status" (change)="chamgeStatus(0)" id="observation_new" value="0">
                                                 <label class="form-check-label" for="observation_new">
                                                     Observation
                                                 </label>
                                             </div>
 
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="workdone_status" id="completed_new" value="1" (change)="chamgeStatus(1)">
+                                                <input class="form-check-input" type="radio" [checked]= "this.workdone.workdone_Status === 'Completed'" name="workdone_status" id="completed_new" value="1" (change)="chamgeStatus(1)">
                                                 <label class="form-check-label" for="completed_new">
                                                     Completed
                                                 </label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="workdone_status" id="incompleted_new" value="2" (change)="chamgeStatus(2)">
+                                                <input class="form-check-input" type="radio" [checked]= "this.workdone.workdone_Status === 'Incomplete'" name="workdone_status" id="incompleted_new" value="2" (change)="chamgeStatus(2)">
                                                 <label class="form-check-label" for="incompleted_new">
                                                     Incomplete
                                                 </label>
@@ -310,7 +310,6 @@
                                                       rows="5"
                                                       cols="20"
                                                       [maxlength]=100
-                                                      [mask]="'alphaNumericAllowSpaces'"
                                                       [(ngModel)]="workdone.workdone_Notes"
                                                       formControlName="workdone_Notes"
                                                       aria-describedby="workdone_Notes">

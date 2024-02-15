@@ -279,3 +279,6 @@ logs/webapi-20231113.log
 /DCRM.Service/obj/Release/net6.0/DCRM.Service.sourcelink.json
 /logs/webapi-20240209.log
 /logs/webapi-20240212.log
+/DCRM_UI/DCRMUI/src/app/main/clinic-admin/patient/patient-preview/treatment-paln/form-page/treatment-plan-form.component.ts
+/DCRM_UI/DCRMUI/src/app/main/clinic-admin/appointment/appointment-add/appointment-add.component.ts
+/logs/webapi-20240215.log
