@@ -37,7 +37,7 @@ namespace DCRM.Repository.Repository
             
             _contex.Appointments.Add(appointment);
             _contex.SaveChanges();
-            var abc= appointment.Id;
+            appointment.Id = _contex.Appointments.Where(x => x.Serial_Id == appointment.Serial_Id).FirstOrDefault().Id;
             return (long)appointment.Id;
         }
 

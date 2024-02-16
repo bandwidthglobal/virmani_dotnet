@@ -172,6 +172,7 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
         //    });
         //    this.router.navigate(["/admin/appointment/chairview"])
         //});
+        
     }
     saveForm(status: string, id: any, sift: any): void {
         this.submitted = true;
@@ -212,7 +213,7 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
             });
         }
     }
-    patientTypeOpen(obj) {
+    patientTypeOpen(obj: any) {
         
     }
     close() {
