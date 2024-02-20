@@ -105,12 +105,14 @@
                     <ngx-datatable-column name="Actions" [sortable]="false" [width]="80">
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <div class="d-flex align-items-center col-actions">
-                                <!--<a class="mr-1"
-                       container="body"
-                       placement="top"
-                       ngbTooltip="Edit Drug">
-                        <i size="18" data-feather="edit"></i>
-                    </a>-->
+                                <a class="mr-1"
+                                 container="body"
+                                 placement="top"
+                                 href="javascript:void(0)"
+                                 (click)="edit(row.id)"
+                                 ngbTooltip="Edit">
+                                <i size="18" data-feather="edit"></i>
+                           </a>
                                 <a class="mr-1"
                                    container="body"
                                    placement="top"

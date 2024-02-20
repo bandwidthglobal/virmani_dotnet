@@ -92,7 +92,7 @@
                             </div>
                             <div  class="col-md-6" *ngIf="formData.p_type.value === 'Old Patient'">
                                 <shared-ui-select-input *ngIf="formData.p_type.value === 'Old Patient'" [label]="'Name'" [control]="formData.patient_Id"
-                                                        [options]="IPatients" [valueKey]="'id'" [displaykey]="'name'"
+                                                        [options]="IPatients" [valueKey]="'id'" [displaykey]="'name'" [searchable]="true"
                                                         [submitted]="submitted"></shared-ui-select-input>
                             </div>
                             <div *ngIf="formData.p_type.value === 'New Patient'" class="col-md-6">

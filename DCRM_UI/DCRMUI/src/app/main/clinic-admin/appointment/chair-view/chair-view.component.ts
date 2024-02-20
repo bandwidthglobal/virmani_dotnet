@@ -164,7 +164,7 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
             this.workdoneElm.style.width = '100vw';
         }
     }
-    redirect(event) {
+    redirect(event: any) {
         this.close();
         this.searchData();
 

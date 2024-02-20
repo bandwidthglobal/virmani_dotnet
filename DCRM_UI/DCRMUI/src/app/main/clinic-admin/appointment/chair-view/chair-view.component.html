@@ -97,7 +97,7 @@
                                                             </p>
                                                         </td>
                                                         <ng-template #appointmentCol>
-                                                            <td width="20%" *ngIf="chair.appointmentDetails.number_Of_Slot==1">
+                                                            <td width="20%" *ngIf="chair.appointmentDetails.number_Of_Slot==1" rowspan="1">
                                                                 <p class="appointment-background pd-5px" *ngIf="chair.appointmentDetails.appointment_Status!=3">
                                                                     <input type="checkbox" name="name" checked="checked" (change)="changeAppointmentStatus($event,chair.appointmentDetails.id)" value="0" *ngIf="chair.appointmentDetails.appointment_Status==4;else chairOut" />
                                                                     <ng-template #chairOut>
