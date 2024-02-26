@@ -291,3 +291,6 @@ logs/webapi-20231113.log
 /DCRM_UI/DCRMUI/src/app/layout/components/navbar/navbar.component.scss
 /.gitignore
 /.gitignore
+/DCRM_UI/DCRMUI/src/app/layout/components/menu/vertical-menu/vertical-menu.component.ts
+/DCRM.Api/obj/Debug/net6.0/DCRM.Api.AssemblyInfoInputs.cache
+/logs/webapi-20240226.log
