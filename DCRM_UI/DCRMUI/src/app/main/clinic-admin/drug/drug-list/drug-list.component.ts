@@ -53,6 +53,7 @@ export class DrugListComponent implements OnInit, OnDestroy {
      */
     constructor(private router: Router, private _drugListService: DrugListService, private _coreConfigService: CoreConfigService, private _route: ActivatedRoute) {
         this._unsubscribeAll = new Subject();
+        document.title = "Drug";
     }
 
     // Public Methods

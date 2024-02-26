@@ -48,6 +48,7 @@ export class ReportComponent implements OnInit {
     private _coreConfigService: CoreConfigService
   ) {
     this._unsubscribeAll = new Subject();
+    document.title = "Payments";
   }
     ngAfterViewInit(): void {
         this.workdoneElm = this.workdoneModal.nativeElement as HTMLElement;

@@ -74,6 +74,7 @@ export class AppointmentChairViewComponent implements OnInit, OnDestroy {
         , private _waitingRoomServiceService: WaitingRoomService
         , private _appointmentEditService: AppointmentEditService) {
         this._unsubscribeAll = new Subject();
+        document.title = "Chair View";
     }
 
     ngAfterViewInit(): void {

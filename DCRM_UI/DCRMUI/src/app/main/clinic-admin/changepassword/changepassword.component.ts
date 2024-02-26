@@ -55,6 +55,7 @@ export class ChangepasswordComponent implements OnInit, OnDestroy {
         private router: Router,
         private _changePasswordService: ChangepasswordService, private _formBuilder: UntypedFormBuilder, private _route: ActivatedRoute, private _toastrService: ToastrService) {
         this._unsubscribeAll = new Subject();
+        document.title = "Change Password";
     }
 
     /**

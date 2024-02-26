@@ -67,6 +67,7 @@ export class PatientFormComponent implements OnInit, OnDestroy {
         private _comomnMasterData: ComomnMasterData
     ) {
         this._unsubscribeAll = new Subject();
+        document.title = " Create Patient";
     }
 
     ngOnInit(): void {

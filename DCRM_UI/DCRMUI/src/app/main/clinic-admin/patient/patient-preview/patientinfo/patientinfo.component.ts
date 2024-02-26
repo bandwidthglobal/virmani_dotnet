@@ -23,8 +23,10 @@ export class PatientinfoComponent implements OnInit {
    * @param {CoreSidebarService} _coreSidebarService
    * @param {CalendarService} _calendarService
    */
-    constructor(private _patientPreviewService: PatientPreviewService, private route: ActivatedRoute,) {}
-
+    constructor(private _patientPreviewService: PatientPreviewService, private route: ActivatedRoute,)
+     {
+      document.title = "Patient-PatientInfo";
+    }
   // Lifecycle Hooks
   // -----------------------------------------------------------------------------------------------------
 

@@ -79,9 +79,8 @@ export class PrescriptionAddComponent implements OnInit, OnDestroy {
     elm1: HTMLElement;
     drugDetails1: any = [{ index: '', id: '', medicine_Type: '', medicine_Company: '', form: '', dosage: '', description: '', details: '' }];
     public drugItems = [{ id: '', medicine_Type: '', medicine_Company: '', form: '', dosage: '', description: '', details: '' }];
-    public drugitem = {
-        id: '', medicine_Type: '', medicine_Company: '', form: '', dosage: '', description: '', details: ''
-    };
+    public drugitem = [{ id: '', medicine_Type: '', medicine_Company: '', form: '', dosage: '', description: '', details: '' }];
+
     /**
      * Constructor
      *
@@ -94,6 +93,7 @@ export class PrescriptionAddComponent implements OnInit, OnDestroy {
         private _prescriptionAddService: PrescriptionAddService, private _formBuilder: UntypedFormBuilder,
         private _router: Router, private _toastrService: ToastrService, private _commonValidationService: CommonValidationService) {
         this._unsubscribeAll = new Subject();
+        document.title = " Create Prescription";
     }
 
 
@@ -124,6 +124,15 @@ export class PrescriptionAddComponent implements OnInit, OnDestroy {
         const control = <FormArray>this.formData.controls['drugList'];
         control.push(new DrugListForm(obj));
     }
+
+    sortedDrugList(): any[] {
+        return this.drugList.sort((a: { basic_Salt: string; }, b: { basic_Salt: string; }) => {
+            const nameA = a.basic_Salt.toLowerCase();
+            const nameB = b.basic_Salt.toLowerCase();
+            return nameA.localeCompare(nameB);
+        });
+    }
+    
     getUserChamber() {
         this._prescriptionAddService.getUserChamber().subscribe(resp => {
             if (resp != undefined) {

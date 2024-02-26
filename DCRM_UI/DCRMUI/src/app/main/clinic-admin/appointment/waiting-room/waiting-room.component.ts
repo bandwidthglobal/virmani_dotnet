@@ -54,6 +54,7 @@ export class WaitingRoomComponent implements OnInit, OnDestroy {
      */
     constructor(private router: Router, private _appointmentListService: WaitingRoomService, private _coreConfigService: CoreConfigService, private _route: ActivatedRoute) {
         this._unsubscribeAll = new Subject();
+        document.title = "Waiting Room";
     }
 
 //    // Public Methods

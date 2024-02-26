@@ -37,6 +37,7 @@ export class PatientWorkdoneListComponent implements OnInit {
     patientId: any = 0;
     constructor(private router: Router, private _workListService: PatientWorkdonelistService, private _coreConfigService: CoreConfigService, private _route: ActivatedRoute) {
         this._unsubscribeAll = new Subject();
+        document.title = "Patient Workdones";
     }
     filterUpdate(event: { target: { value: string; }; }) {
         const val = event.target.value.toLowerCase();

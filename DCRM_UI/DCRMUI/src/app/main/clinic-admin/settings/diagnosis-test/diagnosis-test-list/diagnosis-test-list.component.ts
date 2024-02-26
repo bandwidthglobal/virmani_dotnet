@@ -53,6 +53,7 @@ export class DiagnosisTestListComponent implements OnInit, OnDestroy {
      */
     constructor(private _listService: DiagnosisTestListService, private _coreConfigService: CoreConfigService) {
         this._unsubscribeAll = new Subject();
+        document.title = "Diagnosis Test";
     }
 
     // Public Methods

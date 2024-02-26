@@ -74,6 +74,7 @@ export class StaffFormComponent implements OnInit, OnDestroy {
         private _commonValidationService: CommonValidationService,
     ) {
         this._unsubscribeAll = new Subject();
+        document.title = "Create Staff";
     }
 
     ngOnInit(): void {

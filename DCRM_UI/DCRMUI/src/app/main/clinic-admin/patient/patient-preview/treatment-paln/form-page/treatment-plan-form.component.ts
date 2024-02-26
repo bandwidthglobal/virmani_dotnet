@@ -194,8 +194,9 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
         this.formData.patchValue({ job: event.job_name, jobId: event.jon_id });
     }
     Cancel() {
-        window.location.reload();
+        this.callBackEvent.emit({});
     }
+    
     saveForm(): void {
         this.submitted = true;
         let toothNumber = '';
@@ -258,11 +259,11 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
         console.log('> toothNumber ---> ', this.toothNumber);
     }
 
-    redirect() {
-        const returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/patient/preview';
-        this.router.navigateByUrl(returnUrl);
-    }
-    removeToothNumber(idx) {
+    // redirect() {
+    //     const returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/patient/preview';
+    //     this.router.navigateByUrl(returnUrl);
+    // }
+    removeToothNumber(idx: any) {
         this.toothNumber.splice(idx, 1);
     }
 };

@@ -46,6 +46,7 @@ export class PatientListComponent implements OnInit, OnDestroy {
      */
     constructor(private router: Router, private _patientListService: PatientListService, private _coreConfigService: CoreConfigService, private _route: ActivatedRoute) {
         this._unsubscribeAll = new Subject();
+        document.title = "Patient";
     }
 
     // Public Methods

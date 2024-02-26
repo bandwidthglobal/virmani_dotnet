@@ -65,6 +65,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     private _coreConfigService: CoreConfigService
   ) {
     this._unsubscribeAll = new Subject();
+    document.title = "Calendar View";
   }
 
   // Public Methods

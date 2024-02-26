@@ -51,6 +51,7 @@ export class ChairListComponent implements OnInit, OnDestroy {
      */
     constructor(private _chairListService: ChairListService, private _coreConfigService: CoreConfigService) {
         this._unsubscribeAll = new Subject();
+        document.title = "Chair";
     }
 
     // Public Methods

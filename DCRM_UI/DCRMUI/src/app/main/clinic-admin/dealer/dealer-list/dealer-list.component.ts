@@ -45,6 +45,7 @@ export class DealerListComponent implements OnInit, OnDestroy {
     private _coreConfigService: CoreConfigService
   ) {
     this._unsubscribeAll = new Subject();
+    document.title = "Dealer";
   }
 
   // Public Methods

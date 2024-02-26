@@ -124,12 +124,11 @@
                     <div class="col-md-121">
                         <div class="form-group">
                             <label for="drug_Id" [class.invalid-class]="submitted && formData.drug_Id.errors">Drug</label>
-
                             <select class="form-control" style="width:300px;" [formControl]="formData.drug_Id" name="drug_Id" (change)='getDrugDetails(drugSelected.value)' #drugSelected
                                     aria-describedby="formData.drug_Id" tabindex="5"
                                     [ngClass]="{ 'is-invalid': submitted && formData.drug_Id.errors }">
                                 <option class='option' value="">Select Drug</option>
-                                <option class='option' *ngFor='let option of drugList' [value]="option.id">{{option.basic_Salt}}</option>
+                                <option class='option' *ngFor='let option of sortedDrugList()' [value]="option.id">{{option.basic_Salt}}</option>
                             </select>
                             <ng-container *ngFor="let error of formData.drug_Id.errors ">
                                 <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
@@ -162,7 +161,7 @@
                                             <div class="col-md-4">
                                                 <select class="form-control" style="width:300px;" [formControl]="drugItems.id" name="drug_Id" (change)='getDrugId(drugSelected.value,i)' #drugSelected>
                                                     <option class='option' value="">Select Drug</option>
-                                                    <option class='option' *ngFor='let opt of drugList' [value]="opt.id">{{opt.basic_Salt}}</option>
+                                                    <option class='option' *ngFor='let opt of sortedDrugList()' [value]="opt.id">{{opt.basic_Salt}}</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-3">

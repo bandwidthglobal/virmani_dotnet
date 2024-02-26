@@ -88,6 +88,7 @@ export class DoctorFormComponent implements OnInit, OnDestroy {
         private _commonValidationService: CommonValidationService,
     ) {
         this._unsubscribeAll = new Subject();
+        document.title = "Create Doctor";
     }
 
     ngOnInit(): void {

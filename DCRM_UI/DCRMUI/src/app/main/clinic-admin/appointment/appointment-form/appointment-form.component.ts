@@ -43,6 +43,7 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
         private _commonValidationService: CommonValidationService,
     ) {
         this._unsubscribeAll = new Subject();
+        document.title = "Create Appointment";
     }
 
     convertFrom24To12Format(time) {

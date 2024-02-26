@@ -266,9 +266,9 @@ namespace DCRM.Service.Service
             }
             var assignTime = _timeRepository.GetAll().Where(x => x.User_Id == parameters.UserId && x.Day_Id == dayid).FirstOrDefault();
             int i = -1;
-            var timeValue = assignTime != null ? Convert.ToDateTime(assignTime.Start).Hour.ToString() : "0";
-            var endtimeHourValue = assignTime != null ? Convert.ToDateTime(assignTime.End).Hour.ToString() : "0";
-            var endtimeMinValue = assignTime != null ? Convert.ToDateTime(assignTime.End).Minute.ToString() : "0";
+            var timeValue = assignTime != null && !string.IsNullOrEmpty(assignTime.Start) ? Convert.ToDateTime(assignTime.Start).Hour.ToString() : "0";
+            var endtimeHourValue = assignTime != null! && !string.IsNullOrEmpty(assignTime.End) ?  Convert.ToDateTime(assignTime.End).Hour.ToString() : "0";
+            var endtimeMinValue = assignTime != null && !string.IsNullOrEmpty(assignTime.End) ? Convert.ToDateTime(assignTime.End).Minute.ToString() : "0";
             var endTime = endtimeHourValue + "." + endtimeMinValue;
             List<string> timeList = new();
             while (DateTime.Today.AddHours(9).AddMinutes(i * 15).Hour < Convert.ToInt32(17))

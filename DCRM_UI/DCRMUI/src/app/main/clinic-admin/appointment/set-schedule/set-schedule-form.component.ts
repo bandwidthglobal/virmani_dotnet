@@ -78,6 +78,7 @@ export class SetSscheduleFormComponent implements OnInit, OnDestroy {
         private router: Router,
         private _setSscheduleFormService: SetSscheduleFormService, private _formBuilder: UntypedFormBuilder, private _route: ActivatedRoute, private _toastrService: ToastrService) {
         this._unsubscribeAll = new Subject();
+        document.title = "Schedule";
     }
 
     /**

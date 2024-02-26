@@ -46,6 +46,7 @@ export class PrescriptionListComponent implements OnInit, OnDestroy {
      */
     constructor(private router: Router, private _prescriptionListService: PrescriptionListService, private _coreConfigService: CoreConfigService, private _route: ActivatedRoute) {
         this._unsubscribeAll = new Subject();
+        document.title = "Prescriptions";
     }
 
     // Public Methods
