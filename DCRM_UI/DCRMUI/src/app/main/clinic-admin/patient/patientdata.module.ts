@@ -50,6 +50,7 @@ import { PatientDownloadService } from 'app/main/clinic-admin/patient/patient-do
 
 // routing
 import { RouterModule, Routes } from '@angular/router';
+import { ReportService } from '../report/report-list.service';
 
 export const routes: Routes = [] = [
     {
@@ -137,7 +138,7 @@ export const routes: Routes = [] = [
         MatIconModule,
         MatButtonModule,
     ],
-    providers: [PatientListService, ComomnMasterData, PatientPreviewService, PatientEditService, PatientAddService, PatientinAppointmentsService, PatientDownloadService],
+    providers: [PatientListService, ComomnMasterData, PatientPreviewService, PatientEditService, PatientAddService, PatientinAppointmentsService, PatientDownloadService,ReportService],
     exports: [PatientListComponent]
 })
 export class PatientDataModule { }

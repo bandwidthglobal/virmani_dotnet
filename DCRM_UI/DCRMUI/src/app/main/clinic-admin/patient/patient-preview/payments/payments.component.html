@@ -140,6 +140,127 @@
         </section>
     </div>
 
+    <div class="modal fade my-modal" tabindex="-1" role="dialog" #viewModal>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" *ngIf="isPaymentReceiveList==false">Receive Payment</h5>
+                    <h5 class="modal-title" *ngIf="isPaymentReceiveList==true">Work Done</h5><br />
+                   
+                    <button type="button" class="close" (click)="closeView()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+
+                 <!-- Modal body -->
+                 <div class="modal-body">
+                    <!--<center>-->
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th width="30%">Tooth Name</th>
+                                <th width="10%"> : </th>
+                                <td><span id="tooth_name">{{workDoneData.toothName}}</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <th width="30%">Work Done</th>
+                                <th width="10%"> : </th>
+                                <td><span id="work_done">{{workDoneData.workDoneDate| date: 'dd/MM/yyyy'}}</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <th width="30%">Treatement Code</th>
+                                <th width="10%"> : </th>
+                                <td><span id="treatment_code">{{workDoneData.treatementCode}}</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <th width="30%">Doctor </th>
+                                <th width="10%"> : </th>
+                                <td><span class="text-capitalize" id="doctor_name">{{workDoneData.doctorName}}</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th width="30%">Patient Name</th>
+                                <th width="10%"> : </th>
+                                <td><span class="text-capitalize" id="patient_name">{{workDoneData.patientName}}</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <th width="30%">Note &amp; Diagnosis</th>
+                                <th width="10%"> : </th>
+                                <td><span id="note_diagnosis">{{workDoneData.noteDiagnosis}} </span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th width="30%">Total Amount</th>
+                                <th width="10%"> : </th>
+                                <td><span id="total_amount">{{workDoneData.totalAmount}}</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th width="30%">Paid Amount</th>
+                                <th width="10%"> : </th>
+                                <td><span id="paid_amount">{{workDoneData.paidAmount}}</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th width="30%">Balance Amount</th>
+                                <th width="10%"> : </th>
+                                <td><span id="balance_amount">{{workDoneData.balance}}</span></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <h4 class="modal-title">RECEIVED PAYMENT DETAILS</h4>
+                    <table id="payment_detial" class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="success table-info">
+                                <th scope="col">#</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr *ngFor="let payment of paymentDetailsList let i=index">
+                                <td>{{i+1}}</td>
+                                <td>{{payment.created_At| date: 'dd/MM/yyyy'}}</td>
+                                <td>{{payment.description}}</td>
+                                <td>{{payment.price}}</td>
+                                <td>{{payment.payment_Type}}</td>
+                            </tr>
+                            <!--<tr *ngIf="isNoData==true"><td colspan="4">No Records</td></tr>-->
+
+                        </tbody>
+                    </table>
+                    <!--</center>-->
+                </div>
+                <div class="modal-footer">
+                    <p type="button" class="pull-right btn btn-primary" (click)="printDiv()" aria-label="Print">Print</p>
+                    <p type="button" class="pull-right btn btn-danger" (click)="close()" aria-label="Close">Close</p>
+                </div>
+            </div>
+        </div>
+    </div>         
     <div class="modal fade my-modal" tabindex="-1" role="dialog" #receiveModal>
         <div class="modal-dialog">
             <div class="modal-content">
@@ -152,6 +273,8 @@
                     </button>
 
                 </div>
+                
+
                 <div class="modal-body" style="overflow:auto" *ngIf="isPaymentReceiveList==false">
                     <p *ngIf="isPaymentReceiveList==false"><strong>Amount Due:</strong> {{amountDue}}</p>
 

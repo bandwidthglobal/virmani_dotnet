@@ -151,9 +151,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Work Done</h4>
+                    <div>
                     <button type="button" class="close" (click)="close()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                    </div>
                 </div>
 
                 <!-- Modal body -->
@@ -215,14 +217,14 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <th width="30%">Paid mount</th>
+                                <th width="30%">Paid Amount</th>
                                 <th width="10%"> : </th>
                                 <td><span id="paid_amount">{{workDoneData.paidAmount}}</span></td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
-                                <th width="30%">Balance mount</th>
+                                <th width="30%">Balance Amount</th>
                                 <th width="10%"> : </th>
                                 <td><span id="balance_amount">{{workDoneData.balance}}</span></td>
                                 <td></td>
@@ -260,6 +262,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
+                    <p type="button" class="pull-right btn btn-primary" (click)="printDiv()" aria-label="Print">Print</p>
                     <p type="button" class="pull-right btn btn-danger" (click)="close()" aria-label="Close">Close</p>
                 </div>
             </div>

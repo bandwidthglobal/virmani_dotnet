@@ -36,6 +36,7 @@ export class ReportComponent implements OnInit {
     @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
     @ViewChild('workdoneModal', { static: false }) workdoneModal: ElementRef;//RECEIVE
     workdoneElm: HTMLElement;
+loading: any;
   /**
    * Constructor
    *
@@ -244,7 +245,14 @@ export class ReportComponent implements OnInit {
             this.doctorList = res;
         })
     }
-  
+    printDiv() {
+      const printContent = document.getElementById("printDiv");
+      const WindowPrt = window.open('', '', 'left=0,top=0,width=900,height=900,toolbar=0,scrollbars=0,status=0');
+      WindowPrt.document.write(printContent.innerHTML);
+      WindowPrt.document.close();
+      WindowPrt.focus();
+      WindowPrt.print();
+  }
   ngOnDestroy(): void {
     // Unsubscribe from all subscriptions
     this._unsubscribeAll.next();

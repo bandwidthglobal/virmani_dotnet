@@ -9,6 +9,7 @@ import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 import { ReceiveForm, ReceiveFormModel } from './receive-from';
 import { CommonValidationService } from '../../../../../shared-common/services/common-validation.service';
 import Swal from 'sweetalert2';
+import { ReportService } from 'app/main/clinic-admin/report/report-list.service';
 @Component({
     selector: 'app-payments',
     templateUrl: './payments.component.html',
@@ -44,12 +45,20 @@ export class PaymentsComponent implements OnInit {
     @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
     @ViewChild('receiveModal', { static: false }) receiveModal: ElementRef;//RECEIVE
     receiveElm: HTMLElement;
+    @ViewChild('viewModal', { static: false }) viewModal: ElementRef;//VIEW
+    viewElm: HTMLElement;
     receiveFormData?: ReceiveForm;
     @Input() ReceiveFormInput?: ReceiveFormModel = {
         id: 0,
         payment_History_Id: 0,
         payment_Type: 'Cash'
     };
+    paymentDetailsList: any;
+    public workDoneData: any = {
+        toothName: "", workDoneDate: "", treatementCode: "", doctorName: "",
+        patientName: "", noteDiagnosis: "", totalAmount: "", paidAmount: "", balance:""
+    };    workdoneElm: any;
+    isNoData: boolean;
     /**
      * Constructor
      *
@@ -57,12 +66,14 @@ export class PaymentsComponent implements OnInit {
      * @param {CalendarService} _calendarService
      */
     constructor(private router: Router, private _patientListService: PatientPreviewService,
+        private _reportService: ReportService,
         private _coreConfigService: CoreConfigService, private _route: ActivatedRoute, private _commonValidationService: CommonValidationService) {
         this._unsubscribeAll = new Subject();
         document.title = "Patient-Payments";
     }
     ngAfterViewInit(): void {
         this.receiveElm = this.receiveModal.nativeElement as HTMLElement;
+        this.viewElm = this.viewModal.nativeElement as HTMLElement;
     }
     // Public Methods
     // -----------------------------------------------------------------------------------------------------
@@ -125,6 +136,18 @@ export class PaymentsComponent implements OnInit {
             return isPartialNameMatch;
         });
     }
+    getWorkDoneData(id: any) {
+        this._reportService.getWorkDone(id).subscribe(res => {
+            this.workDoneData = res;
+            this.paymentDetailsList = res.paymentDetailsList;
+            if (res.paymentDetailsList.length==0) {
+                this.isNoData = true;
+            }
+            this.viewElm.classList.add('show');
+            this.viewElm.style.display = 'block';
+            this.viewElm.style.width = '100vw';
+        })
+    }
     ngOnInit(): void {
         
         this.patientId = this._route.snapshot.paramMap.get('id');
@@ -158,6 +181,22 @@ export class PaymentsComponent implements OnInit {
         setTimeout(() => {
             this.receiveElm.style.width = '0';
         }, 75);
+    }
+    closeView(): void {
+        this.error = '';
+        this.viewElm.classList.remove('show');
+        this.viewElm.classList.remove('show');
+        setTimeout(() => {
+            this.viewElm.style.width = '0';
+        }, 75);
+    }
+    printDiv() {
+        const printContent = document.getElementById("printDiv");
+        const WindowPrt = window.open('', '', 'left=0,top=0,width=900,height=900,toolbar=0,scrollbars=0,status=0');
+        WindowPrt.document.write(printContent.innerHTML);
+        WindowPrt.document.close();
+        WindowPrt.focus();
+        WindowPrt.print();
     }
     saveReceiveForm() {
         this.submitted = true;
@@ -215,12 +254,14 @@ export class PaymentsComponent implements OnInit {
    
     getPaymentReceives(id: any) {
         this.isPaymentReceiveList = true;
-       
-        this._patientListService.getPaymentReceives(id).subscribe(resp => {
-            this.receiveRows = resp;
-            this.receiveElm.classList.add('show');
-            this.receiveElm.style.width = '100vw';
-        });
+        this.getWorkDoneData(id);
+        // this._patientListService.getPaymentReceives(id).subscribe(resp => {
+        //     this.receiveRows = resp;
+        //     this.receiveElm.classList.add('show');
+        //     this.receiveElm.style.width = '100vw';
+            // this.viewElm.classList.add('show');
+            // this.viewElm.style.width = '100vw';
+        //});
     }
     deletePayment(id: any) {
         let rowIndex = -1;

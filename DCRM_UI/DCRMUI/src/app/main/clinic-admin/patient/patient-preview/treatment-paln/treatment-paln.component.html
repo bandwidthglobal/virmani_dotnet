@@ -62,22 +62,26 @@
                                     <table class="table table-bordered table-sm">
                                         <thead class="table-dark" >
                                             <tr>
+                                                <td>Date</td>
                                                 <td>Doctor</td>
                                                 <td>Due</td>
                                                 <td>Discount</td>
                                                 <td>Total</td>
+                                                <td>Paid</td>
+                                                <td>Balance</td>
                                                 <td>Status</td>
-                                                <td>Date</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let workdone of row.workdones">
+                                                <td>{{workdone.date}}</td>
                                                 <td>{{workdone.doctorName}}</td>
                                                 <td>{{workdone.amtDueCurrentWork}}</td>
                                                 <td>{{workdone.discount}}</td>
                                                 <td>{{workdone.totalAmt}}</td>
+                                                <td>{{workdone.paid_amount}}</td>
+                                                <td>{{workdone.balance_amount}}</td>
                                                 <td>{{workdone.workdoneStatus}}</td>
-                                                <td>{{workdone.date}}</td>
                                             </tr>
                                         </tbody>
 
@@ -232,7 +236,7 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Amount Due for Todays's Work.</label>
+                                        <label>Amount Due for Today's Work.</label>
                                         <input type="text" (change)="chngCurrentwork($event)" class="form-control"
                                                tabindex="3"
                                                [maxlength]=10

@@ -196,7 +196,7 @@ export class TreatmentPalnComponent implements OnInit {
             //}, 75);
             this.isWorkdonesave = true;
             this.loading = false;
-
+        
         });
         //this.loading = true;
     }
