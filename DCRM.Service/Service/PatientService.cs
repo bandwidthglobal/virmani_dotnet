@@ -430,6 +430,8 @@ namespace DCRM.Service.Service
                     workdone_New.AmtDueCurrentWork = item.w.Current_Work_Amt.ToString();
                     workdone_New.TotalAmt = item.w.Total_Amt;
                     workdone_New.Date = item.w.Created_At.ToString();
+                    workdone_New.PaidAmount = _paymentHistoryRepository.GetAll().Where(x => x.Patient_Id == patientId && x.Workdone_Id == item.w.Id).FirstOrDefault().Credit_Amount;
+                    workdone_New.BalanceAmount = _paymentHistoryRepository.GetAll().Where(x => x.Patient_Id == patientId && x.Workdone_Id == item.w.Id).FirstOrDefault().Balance;
                     WorkDoneList.Add(workdone_New);
                 }
                 treatmentplanDto.Workdones = WorkDoneList;

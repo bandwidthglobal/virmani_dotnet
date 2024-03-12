@@ -343,3 +343,5 @@ logs/webapi-20231113.log
 /DCRM_UI/obj/Release/net6.0/staticwebassets.pack.json
 /logs/webapi-20240308.log
 /logs/webapi-20240311.log
+/DCRM_UI/DCRMUI/src/app/main/clinic-admin/patient/patient-preview/payments/payments.component.html
+/logs/webapi-20240312.log

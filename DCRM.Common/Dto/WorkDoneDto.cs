@@ -17,6 +17,8 @@
         public double? TotalAmt { get; set; }
 
         public string? WorkdoneStatus { get; set; }
+        public double? PaidAmount { get; set; }
+        public double? BalanceAmount { get; set; }
 
         public string? DoctorName { get; set; } 
 

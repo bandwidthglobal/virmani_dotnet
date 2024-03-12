@@ -157,7 +157,18 @@
                     </button>
                     </div>
                 </div>
-
+                <div class="row" id="printDiv">
+                        <div *ngIf="loading==true" class="table-loading">
+                            <div class="table-loading-text">
+                                Loading...
+                            </div>
+                        </div>
+                        <table class="table1 table-bordered table-hover" cellspacing="0" style="overflow:scroll;width:100%">
+                            <thead>
+                                <tr class="table-header">
+                                    
+                                </tr>
+                            </thead>
                 <!-- Modal body -->
                 <div class="modal-body">
                     <!--<center>-->
@@ -258,6 +269,8 @@
                         </tbody>
                     </table>
                     <!--</center>-->
+                </div>
+                </table>
                 </div>
 
                 <!-- Modal footer -->
