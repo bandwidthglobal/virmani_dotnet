@@ -38,6 +38,11 @@ export class TreatmentPalnComponent implements OnInit {
     public totalAmount = 0;
     public currentAmount = 0;
     workdoneStatus = 0;
+    totalRowAmt = 0;
+    totalDueAmount = 0;
+    totalPaidAmount = 0;
+    totalBalanceAmount = 0;
+    totalDiscountAmount = 0;
     public workdoneForm: UntypedFormGroup;
     public workdone: WorkDoneFormModel = {
         id: 0,
@@ -159,6 +164,17 @@ export class TreatmentPalnComponent implements OnInit {
     close(): void {
         this.receiveElm.classList.remove('show');
         this.receiveElm.classList.remove('show');
+        this.workdoneForm.controls.doctor_Id.enable();
+        this.workdoneForm.controls.discount.enable();
+        this.workdoneForm.controls.current_Work_Amt.enable();
+        this.workdoneForm.controls.workdone_Status.enable();
+        this.workdoneForm.controls.workdone_Notes.enable();
+        this.workdoneForm.controls.discount.setValue(0);
+        this.workdoneForm.controls.current_Work_Amt.reset();
+        this.workdoneForm.controls.workdone_Status.reset();
+        this.workdoneForm.controls.workdone_Notes.reset();
+        this.workdoneForm.controls.total_Amt.setValue(0);
+        this.workdoneForm.controls.doctor_Id.setValue(this.doctors.find(x=>x.id === this.workdone.doctor_Id).name);
         setTimeout(() => {
             this.receiveElm.style.width = '0';
         }, 75);
@@ -195,8 +211,8 @@ export class TreatmentPalnComponent implements OnInit {
             //    this.receiveElm.style.width = '0';
             //}, 75);
             this.isWorkdonesave = true;
-            this.loading = false;
-        
+            // this.loading = false;
+            this.getTreatmentList();
         });
         //this.loading = true;
     }
@@ -266,12 +282,28 @@ export class TreatmentPalnComponent implements OnInit {
             this.tempFilterData = this.rows;
             this.loading = false;
             this.rows.forEach(x=>{
-                   if(x.workdones.length > 0){
-                    for (let index = 1; index < x.workdones.length; index++) {
-                        x.workdones[index].totalAmt += x.workdones[index-1].totalAmt;
-                    }
-                   }
-                });
+                if(x.workdones.length > 0){
+                    let rowDueAmount = 0;
+                    let rowTotalAmount = 0;
+                    let rowPaidAmount = 0;
+                    let rowBalanceAmount = 0;
+                    let rowDiscountAmount = 0;
+                 for (let index = 0; index < x.workdones.length; index++) {
+                    rowDueAmount +=  Number(x.workdones[index].amtDueCurrentWork);
+                    rowTotalAmount +=  Number(x.workdones[index].totalAmt);
+                    rowPaidAmount +=  Number(x.workdones[index].paidAmount);
+                    rowBalanceAmount +=  Number(x.workdones[index].balanceAmount);
+                    rowDiscountAmount +=  Number(x.workdones[index].discount);
+                 }
+                 this.totalDueAmount = rowDueAmount;
+                 this.totalRowAmt = rowTotalAmount;
+                 this.totalPaidAmount = rowPaidAmount;
+                 this.totalBalanceAmount = rowBalanceAmount;
+                 this.totalDiscountAmount = rowDiscountAmount;
+
+                }
+             });
+
         });
     }
     getData() {

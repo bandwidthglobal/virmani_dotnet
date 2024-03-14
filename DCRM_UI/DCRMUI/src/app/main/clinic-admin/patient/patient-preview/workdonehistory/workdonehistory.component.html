@@ -109,7 +109,7 @@
                                  container="body"
                                  placement="top"
                                  href="javascript:void(0)"
-                                 (click)="edit(row.id)"
+                                 (click)="addWorkDone(row.id,row.estimatedAmount,row.toothName,row.treatmentCode,row.doctorName, row.doctor_Id ,row.workdones, row.workdoneStatus)"
                                  ngbTooltip="Edit">
                                 <i size="18" data-feather="edit"></i>
                            </a>
@@ -129,5 +129,189 @@
                 </div>
             </div>
         </section>
+    </div>
+    <div class="modal fade my-modal" tabindex="-1" role="dialog" #workdoneModal>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Workdone</h5>
+                    <button type="button" class="close" (click)="close()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="overflow:auto">
+                    <div class="row">
+                        <div class="col-md-12 mb-1"><strong>TOOTH NUMBER:</strong> {{toothNumber}}</div>
+                        <div class="col-md-12"><strong>JOB:</strong> {{job}}</div>
+                    </div>
+                    <form id="form-modal-workdone" [formGroup]="workdoneForm"
+                          class="todo-modal needs-validation"
+                          (ngSubmit)="saveWorkDoneForm()">
+                        <!-- Modal body -->
+                        <div class="modal-body">
+
+                            <div class="clear"></div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label><strong>By Doctor</strong></label>
+                                        <!-- <input type="text" name="supplier" class="form-control" required> -->
+                                        <select class="form-control select2"
+                                                [(ngModel)]="workdone.doctor_Id"
+                                                formControlName="doctor_Id"
+                                                aria-describedby="doctor_Id"
+                                                [ngClass]="{ 'is-invalid': submitted && f.doctor_Id.errors }">
+                                            <option value="">Select Doctor</option>
+                                            <option *ngFor="let item of doctors" value="{{item.id}}">{{item.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Estimated Amount</label>
+                                        <input type="text" disabled="disabled"
+                                               class="form-control"
+                                               tabindex="2"
+                                               [maxlength]=10
+                                               [mask]="'numeric'"
+                                               [(ngModel)]="workdone.estimated_Amount"
+                                               formControlName="estimated_Amount"
+                                               aria-describedby="estimated_Amount" />
+                                        <!--<input name="estimate_amt" id="estimate_amt" readonly="" placeholder="" type="number" class="form-control" required="" value="5000" >-->
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Realized treatment cost</label>
+                                        <input type="text" disabled="disabled"
+                                               class="form-control"
+                                               tabindex="2"
+                                               [maxlength]=10
+                                               [mask]="'numeric'"
+                                               [(ngModel)]="workdone.realized_Treatment_Cost"
+                                               formControlName="realized_Treatment_Cost"
+                                               aria-describedby="realized_Treatment_Cost" />
+                                               
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Amount Due for Today's Work.</label>
+                                        <input type="text" (change)="chngCurrentwork($event)" class="form-control"
+                                               tabindex="3"
+                                               [maxlength]=10
+                                               [mask]="'numeric'"
+                                               [(ngModel)]="workdone.current_Work_Amt"
+                                               formControlName="current_Work_Amt"
+                                               aria-describedby="current_Work_Amt"
+                                               [ngClass]="{ 'is-invalid': submitted && f.current_Work_Amt.errors }" />
+                                        <!--<input name="current_work" id="current_work" (change)="chngCurrentwork($event)" placeholder="" type="number" class="form-control" required="" value="">-->
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Discount.</label>
+                                        <input type="text" (change)="chngDiscount($event)" class="form-control"
+                                               tabindex="4"
+                                               [maxLength]=10
+                                               [mask]="'numeric'"
+                                               [(ngModel)]="workdone.discount"
+                                               formControlName="discount"
+                                               aria-describedby="discount" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Total Amount</label>
+                                        <input type="text" disabled="disabled"
+                                               class="form-control"
+                                               tabindex="5" value="0"
+                                               [maxLength]=10
+                                               [mask]="'numeric'"
+                                               [(ngModel)]="workdone.total_Amt"
+                                               formControlName="total_Amt"
+                                               aria-describedby="total_Amt" />
+
+                                    </div>
+                                </div>
+                                <div class="payment_bxblock pyatm col-md-6">
+                                    <label> Treatment</label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" [checked]= "this.workdone.workdone_Status === 'Observation'" name="workdone_status" (change)="chamgeStatus(0)" id="observation_new" value="0">
+                                                <label class="form-check-label" for="observation_new">
+                                                    Observation
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" [checked]= "this.workdone.workdone_Status === 'Completed'" name="workdone_status" id="completed_new" value="1" (change)="chamgeStatus(1)">
+                                                <label class="form-check-label" for="completed_new">
+                                                    Completed
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" [checked]= "this.workdone.workdone_Status === 'Incomplete'" name="workdone_status" id="incompleted_new" value="2" (change)="chamgeStatus(2)">
+                                                <label class="form-check-label" for="incompleted_new">
+                                                    Incomplete
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="payment_bxblock pyatm col-md-12">
+                                    <label>Work Done Notes</label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <textarea class="form-control"
+                                                      tabindex="7"
+                                                      rows="5"
+                                                      cols="20"
+                                                      [maxlength]=100
+                                                      [(ngModel)]="workdone.workdone_Notes"
+                                                      formControlName="workdone_Notes"
+                                                      aria-describedby="workdone_Notes">
+                                                   </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <div class="row">
+                                    <div class="col-md-3" *ngIf="isWorkdonesave==true">
+                                        <a href="/admin/appointment/add/{{patientId}}/{{workdoneid}}"  target="_blank" class="btn btn-primary">Appointment</a>
+                                    </div>
+                                    <div class="col-md-3" *ngIf="isWorkdonesave==true">
+                                        <a href="/admin/prescription/add/{{patientId}}/{{workdoneid}}"  target="_blank" class="btn btn-primary ml-1">Prescription</a>
+                                    </div>
+                                    <div class="col-md-2" *ngIf="isWorkdonesave==true">
+                                        <input type="submit" name="save" value="Save"  class="btn btn-primary ml-1" (click)="saveAndShowMessage()">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" class="btn btn-danger ml-1" (click)="close()">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="isSaved"  style="background-color: #008000; color: #ffffff; padding: 10px; border-radius: 5px;">
+                                <p class="thank-you-message">Thank you for submitting!</p>
+                              </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>
