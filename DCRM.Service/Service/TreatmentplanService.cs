@@ -170,8 +170,8 @@ namespace DCRM.Service.Service
                     treatment.Doctor = request.Doctor_Id;
                     _treatmentplanRepository.UpdateTreatmentplan(treatment);
                 }
-                var paymentHistory = _paymentHistoryRepository.Get(treatment.Patient_Id);
-                if(paymentHistory.Id> 0)
+                var paymentHistory = _paymentHistoryRepository.GetAll().Where(x=>x.Patient_Id == treatment.Patient_Id && x.Workdone_Id == workDone.Id).FirstOrDefault();
+                if( paymentHistory != null &&  paymentHistory.Id> 0)
                 {
                     paymentHistory.Doctor_Id = request.Doctor_Id;
                     paymentHistory.Description = request.Workdone_Notes;

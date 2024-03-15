@@ -46,6 +46,8 @@ namespace DCRM.Api.Controllers
         [HttpPost("Update")]
         public IActionResult Update(Chair chair)
         {
+            var user = Request.HttpContext.Items["User"] as User;
+            chair.User_Id = user.Id;
             _chairService.Update(chair);
             return Ok(chair);
         }

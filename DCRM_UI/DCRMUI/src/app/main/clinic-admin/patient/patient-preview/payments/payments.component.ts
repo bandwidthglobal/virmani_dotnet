@@ -59,6 +59,7 @@ export class PaymentsComponent implements OnInit {
         patientName: "", noteDiagnosis: "", totalAmount: "", paidAmount: "", balance:""
     };    workdoneElm: any;
     isNoData: boolean;
+    isPrinted: boolean;
     /**
      * Constructor
      *
@@ -197,6 +198,7 @@ export class PaymentsComponent implements OnInit {
         WindowPrt.document.close();
         WindowPrt.focus();
         WindowPrt.print();
+        this.isPrinted = true;
     }
     saveReceiveForm() {
         this.submitted = true;
