@@ -17,6 +17,7 @@ namespace DCRM.Service.IService
         void Delete(long id);
 
         void CreateWorkDone(Workdone_New workdone);
+        void UpdateWorkdone(Workdone_New workdone);
 
 
         List<TeethCategory> GetTeethCategories();

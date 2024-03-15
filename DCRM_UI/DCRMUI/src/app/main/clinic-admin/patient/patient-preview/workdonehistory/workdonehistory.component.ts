@@ -124,7 +124,7 @@ export class WorkdoneHistoryComponent implements OnInit {
         WindowPrt.focus();
         WindowPrt.print();
     }
-    addWorkDone(treatmentid: any, estamount: any, toothNumber: any, job: any, doctorName: any,  doctor:any ,workdones:any, treatment_Status:any) {
+    EditWorkDone(treatmentid: any, estamount: any, toothNumber: any, job: any, doctorName: any,  doctor:any ,workdones:any, treatment_Status:any) {
         this.getDoctors();
         this.treatment.doctor_Id = doctor;
         this.treatmentId = treatmentid;
@@ -138,7 +138,6 @@ export class WorkdoneHistoryComponent implements OnInit {
         this.workdoneForm.controls.discount.setValue(this.rows.find(x=>x.id === this.treatmentId).discount);
         this.workdoneForm.controls.workdone_Notes.setValue(this.paymentData.find(x=>x.workdoneId === this.treatmentId).description);
         this.workdoneForm.controls.total_Amt.setValue(this.workdoneForm.controls.current_Work_Amt.value - this.workdoneForm.controls.discount.value);
-        this.workdoneForm.controls.realized_Treatment_Cost.setValue(workdones.length > 0 ? workdones[workdones.length-1].totalAmt: 0);
         this.receiveElm.classList.add('show');
         this.receiveElm.style.width = '100vw';
     }
@@ -156,7 +155,6 @@ export class WorkdoneHistoryComponent implements OnInit {
         });
     }
     getTreatmentList() {
-        this.loading = true;
         this._patientListService.getTreatmentPalnList(this.patientId).subscribe(response => {
             this.treatmentData = response;
         });
@@ -176,6 +174,7 @@ export class WorkdoneHistoryComponent implements OnInit {
         }
         this.workdone.workdone_Status = this.workdoneStatus;
         this.workdone.treatment_Id = this.treatmentId;
+        this.workdone.id = this.treatmentId;
         this.loading = true;
         this._patientListService.saveWorkDone(this.workdone).pipe(catchError((error) => {
             this.loading = false;
@@ -197,7 +196,7 @@ export class WorkdoneHistoryComponent implements OnInit {
             //}, 75);
             this.isWorkdonesave = true;
             this.loading = false;
-        
+            this.getData();
         });
         //this.loading = true;
     }

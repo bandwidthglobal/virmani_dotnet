@@ -187,7 +187,7 @@
                 </div>
                 <div class="modal-body" style="overflow:auto">
                     <div class="row">
-                        <div class="col-md-12 mb-1"><strong>TOOTH NUMBER:</strong> {{toothNumber}}</div>
+                        <div class="col-md-12 mb-1"><strong>TOOTH NUMBER:</strong> <span [ngClass]="'enableline' ? 'fontColor:red':'fontColor:black'">{{toothNumber}}</span></div>
                         <div class="col-md-12"><strong>JOB:</strong> {{job}}</div>
                     </div>
                     <form id="form-modal-workdone" [formGroup]="workdoneForm"

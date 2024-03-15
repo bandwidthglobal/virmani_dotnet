@@ -128,7 +128,7 @@ IRepository<Teeth> teethRepository)
                           {
                               ph.Id,
                               TeethId = ti.Teeth_Id,
-                              ToothName = te.Teeth_Note,
+                              ToothName = ti.Teeth_Number_Note,
                               WorkDoneDate = w.Created_At,
                               DoctorName = d.Name,
                               TreatementCode = t.Job,
@@ -143,7 +143,7 @@ IRepository<Teeth> teethRepository)
                 PaymentReportDto paymentReport = new()
                 {
                     Id = item.Id,
-                    ToothName = "(" + item.TeethId + ") " + item.ToothName
+                    ToothName = item.ToothName
                 };
                 ;
                 paymentReport.WorkDoneDate = item.WorkDoneDate;
@@ -176,16 +176,16 @@ IRepository<Teeth> teethRepository)
                                select new
                                {
                                    TeethId=ti.Teeth_Id,
-                                   ToothName = te.Teeth_Note,
+                                   ToothName = ti.Teeth_Number_Note,
                                    WorkDoneDate = w.Created_At,
                                    DoctorName = d.Name,
                                    TreatementCode = t.Job,
                                    NoteDiagnosis = ti.Toth_Note,
-                                   PatientName = p.Name
+                                   PatientName = p.Name           
                                }).FirstOrDefault();
                 if (lnquery != null)
                 {
-                    paymentReport.ToothName ="("+ lnquery.TeethId +") "+ lnquery.ToothName;
+                    paymentReport.ToothName = lnquery.ToothName;
                     paymentReport.WorkDoneDate = lnquery.WorkDoneDate;
                     paymentReport.DoctorName = lnquery.DoctorName;
                     paymentReport.TreatementCode = lnquery.TreatementCode;

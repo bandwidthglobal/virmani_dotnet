@@ -1,4 +1,5 @@
-﻿using DCRM.Common.Dto;
+﻿using Azure.Core;
+using DCRM.Common.Dto;
 using DCRM.Common.Entities;
 using DCRM.Common.Entity;
 using DCRM.Common.RequestModel;
@@ -149,6 +150,35 @@ namespace DCRM.Service.Service
 
         }
 
+        public void UpdateWorkdone(Workdone_New request)
+        {
+            var workDone = _workDoneRepository.Get(request.Id);
+            if (workDone.Id > 0)
+            {
+                workDone.Current_Work_Amt = request.Current_Work_Amt;
+                workDone.Workdone_Status = request.Workdone_Status;
+                workDone.Workdone_Notes = request.Workdone_Notes;
+                workDone.Discount = request.Discount;
+                workDone.Doctor_Id = request.Doctor_Id;
+                workDone.Created_At = System.DateTime.UtcNow;
+                workDone.Updated_At = System.DateTime.UtcNow;
+                workDone.Total_Amt = request.Total_Amt;
+                _workDoneRepository.Update(workDone);
+                var treatment = _treatmentplanRepository.Get(workDone.Treatment_Id);
+                if(treatment.Id> 0)
+                {
+                    treatment.Doctor = request.Doctor_Id;
+                    _treatmentplanRepository.UpdateTreatmentplan(treatment);
+                }
+                var paymentHistory = _paymentHistoryRepository.Get(treatment.Patient_Id);
+                if(paymentHistory.Id> 0)
+                {
+                    paymentHistory.Doctor_Id = request.Doctor_Id;
+                    paymentHistory.Description = request.Workdone_Notes;
+                    _paymentHistoryRepository.Update(paymentHistory);
+                }
+            }
+        }
 
         public List<TeethCategory> GetTeethCategories()
         {

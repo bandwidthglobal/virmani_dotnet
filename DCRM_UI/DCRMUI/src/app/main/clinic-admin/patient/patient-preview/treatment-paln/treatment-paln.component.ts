@@ -73,6 +73,7 @@ export class TreatmentPalnComponent implements OnInit {
     isAdd = true;
     isWorkdonesave : boolean = true;
     textboxdisabled = 'disabled'
+    enableline: boolean;
     constructor(
         private _patientListService: PatientPreviewService,
         private _coreConfigService: CoreConfigService,
@@ -158,6 +159,13 @@ export class TreatmentPalnComponent implements OnInit {
         this.workdone.realized_Treatment_Cost =workdones.length > 0 ? workdones[workdones.length-1].totalAmt: 0;
         this.toothNumber = toothNumber;
         this.job = job;
+        if(workdones.length > 1 )
+        {
+        this.enableline = true;
+        }
+        else{
+             this.enableline = false;
+        }
         this.receiveElm.classList.add('show');
         this.receiveElm.style.width = '100vw';
     }
@@ -306,6 +314,8 @@ export class TreatmentPalnComponent implements OnInit {
 
         });
     }
+
+   
     getData() {
         this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
             // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)
