@@ -13,6 +13,7 @@ namespace DCRM.Service.IService
         void CreatePaymentWorkdone(Payment_Workdone payment_Workdone);
         void UpdatePaymentWorkdone(Payment_Workdone payment_Workdone);
         void DeletePaymentWorkdone(int id);
+        void isPrinted(long id);
         void Create(Payment_History paymentHistory);
         void Update(Payment_History paymentHistory);
         void Delete(long id);

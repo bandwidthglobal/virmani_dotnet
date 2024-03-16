@@ -77,6 +77,12 @@ IRepository<Teeth> teethRepository)
         {
             _paymentHistoryRepository.Update(paymentHistory);
         }
+        public void isPrinted(long id)
+        {
+            var payment = _paymentHistoryRepository.Get(id);
+            payment.isPrinted = 1;
+            _paymentHistoryRepository.Update(payment);
+        }
         public void Delete(long id)
         {
             var payment = _paymentHistoryRepository.Get(id);

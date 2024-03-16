@@ -59,6 +59,16 @@ export class ReportService implements Resolve<any> {
             }, reject);
         });
     }
+
+    updatePrinted(id: any): Observable<any> {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.currentUser.jwtToken}`
+        });
+        const requestOptions = { headers: headers };
+        return this._httpClient.post(`${environment.apiUrl}/Payment/isPrinted/`+ id, requestOptions);
+    }
+
     delete(id: any) {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',

@@ -15,6 +15,7 @@ public partial class Payment_History:BaseEntity
     public double Credit_Amount { get; set; }
 
     public double Debit_Amount { get; set; }
+    public sbyte isPrinted {  get; set; }
 
     /// <summary>
     /// 0=credit,1=debit

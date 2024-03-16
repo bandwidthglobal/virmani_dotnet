@@ -54,6 +54,23 @@ namespace DCRM.Api.Controllers
 
 
         }
+        [HttpPost("isPrinted/{id}")]
+        public IActionResult isPrinted(long id)
+        {
+
+            try
+            {
+                _paymentService.isPrinted(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+
+            }
+
+
+        }
 
         [HttpDelete("Delete/{id}")]
         public IActionResult Delete(long id)

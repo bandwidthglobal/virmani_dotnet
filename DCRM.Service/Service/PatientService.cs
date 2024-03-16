@@ -453,6 +453,7 @@ namespace DCRM.Service.Service
                           join t in _treatmentplansRepository.GetAll().ToList() on w.Treatment_Id equals t.Id
                           join d in _doctorRepository.GetAll().ToList() on t.Doctor equals d.Id
                           join te in _teethinfoRepository.GetAll().ToList() on t.Id equals te.Treatmentplans_Id
+                          join p in _paymentHistoryRepository.GetAll().ToList() on w.Id equals p.Workdone_Id
                           where t.Patient_Id == patientId
                           select new
                           {
@@ -467,6 +468,7 @@ namespace DCRM.Service.Service
                               w.Estimated_Amount,
                               w.Created_At,
                               w.Discount,
+                              p.isPrinted
                           };
 
             foreach (var workdone in lnQuery)
@@ -496,6 +498,7 @@ namespace DCRM.Service.Service
                 workDoneDto.EstimatedAmount = workdone.Estimated_Amount;
                 workDoneDto.Date = Convert.ToString(workdone.Created_At);
                 workDoneDto.Discount = workdone.Discount;
+                workDoneDto.IsPrinted = workdone.isPrinted;
                 workdoneList.Add(workDoneDto);
             }
             return workdoneList.OrderByDescending(x => x.Id).ToList();

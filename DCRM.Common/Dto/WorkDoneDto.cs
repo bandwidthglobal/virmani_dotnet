@@ -9,6 +9,7 @@
         public int? Doctor_Id { get; set; }
 
         public double? EstimatedAmount { get; set; }
+        public sbyte? IsPrinted {  get; set; }
 
         public double? CurrentWorkAmt { get; set; }
 

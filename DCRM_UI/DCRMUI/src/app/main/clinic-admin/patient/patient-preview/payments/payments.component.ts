@@ -60,6 +60,7 @@ export class PaymentsComponent implements OnInit {
     };    workdoneElm: any;
     isNoData: boolean;
     isPrinted: boolean;
+    paymentprintid: any;
     /**
      * Constructor
      *
@@ -138,6 +139,7 @@ export class PaymentsComponent implements OnInit {
         });
     }
     getWorkDoneData(id: any) {
+        this.paymentprintid = id;
         this._reportService.getWorkDone(id).subscribe(res => {
             this.workDoneData = res;
             this.paymentDetailsList = res.paymentDetailsList;
@@ -198,7 +200,10 @@ export class PaymentsComponent implements OnInit {
         WindowPrt.document.close();
         WindowPrt.focus();
         WindowPrt.print();
-        this.isPrinted = true;
+        this._reportService.updatePrinted(this.paymentprintid).subscribe(res => {
+            this.isPrinted = true;
+
+        });
     }
     saveReceiveForm() {
         this.submitted = true;
