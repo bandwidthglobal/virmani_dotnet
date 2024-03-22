@@ -88,13 +88,15 @@ namespace DCRM.Service.Service
                     appointmentDto.Number_Of_Slot = appointment.Number_Of_Slot;
                     appointmentDto.Cause = appointment.Cause;
                     appointmentDto.Meeting_Notes = appointment.Meeting_Notes;
-                    Patientse patientse = new Patientse();
-                    patientse.Name = appointment.Patient_Name;
-                    patientse.Email = appointment.Email;
-                    patientse.Mobile = appointment.Phone;
-                    patientse.Mr_Number = appointment.Mr_Number;
-                    patientse.Age = appointment.Age;
-                    patientse.Weight = appointment.Weight;
+                    Patientse patientse = new()
+                    {
+                        Name = appointment.Patient_Name,
+                        Email = appointment.Email,
+                        Mobile = appointment.Phone,
+                        Mr_Number = appointment.Mr_Number,
+                        Age = appointment.Age,
+                        Weight = appointment.Weight
+                    };
                     appointmentDto.Patient = patientse;
                 }
             }
@@ -520,6 +522,7 @@ namespace DCRM.Service.Service
                     Doctor_Name = apointment.Doctor_Name,
                     Doctor_Id = apointment.Doctor_Id,
                     Patient_Name = apointment.Patient_Name,
+                    Patient_Id = apointment.Patient_Id,
                     Date = apointment.Date,
                     Appointment_Status = apointment.Appointment_Status,
                     Slot_Time = apointment.Slot_Time,

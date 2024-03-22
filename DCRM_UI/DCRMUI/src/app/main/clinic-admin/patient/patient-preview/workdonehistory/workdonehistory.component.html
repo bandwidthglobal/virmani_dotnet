@@ -110,7 +110,7 @@
                                  placement="top"
                                  href="javascript:void(0)"
                                  (click)="EditWorkDone(row.id,row.estimatedAmount,row.toothName,row.treatmentCode,row.doctorName, row.doctor_Id ,row.workdones, row.workdoneStatus)"
-                                 ngbTooltip="Edit">
+                                 ngbTooltip="Edit" [disabled]="isPrinted">
                                 <i size="18" data-feather="edit"></i>
                            </a>
                                 <a class="mr-1"
@@ -118,7 +118,7 @@
                                    placement="top"
                                    href="javascript:void(0)"
                                    (click)="delete(row.id)"
-                                   ngbTooltip="Delete">
+                                   ngbTooltip="Delete" [disabled]="isPrinted">
                                     <i size="18" data-feather="trash"></i>
                                 </a>
                             </div>

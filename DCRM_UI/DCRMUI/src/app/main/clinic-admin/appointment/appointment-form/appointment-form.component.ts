@@ -88,7 +88,7 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
            
         }
         if (this.formData.patient_Id.value == null || this.formData.patient_Id.value == 0) {
-            this.formData.p_type.setValue("New Patient");
+            this.formData.p_type.setValue("Old Patient");
             this.formData.get('patient_name').setValidators([Validators.required])
             this.formData.get('phone').setValidators([Validators.required])
             this.formData.get('patient_Id').setValue(0);
