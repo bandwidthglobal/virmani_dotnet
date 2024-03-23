@@ -39,11 +39,10 @@ namespace DCRM.Service.Service
         }
         public AppointmentDto GetAppointmentDetails(long id)
         {
-            AppointmentDto appointmentDto = new AppointmentDto();
+            AppointmentDto appointmentDto = new();
             var tdAppointMent = from a in _appointmentRepository.GetAll().ToList()
                                 join p in _patientRepository.GetAll().ToList() on a.Patient_Id equals p.Id
                                 join d in _repository.GetAll().ToList() on a.Doctor_Id equals d.Id
-                                where a.Id == id
                                 select new
                                 {
                                     a.Id,

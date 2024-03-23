@@ -71,7 +71,7 @@ export class PaymentsComponent implements OnInit {
         private _reportService: ReportService,
         private _coreConfigService: CoreConfigService, private _route: ActivatedRoute, private _commonValidationService: CommonValidationService) {
         this._unsubscribeAll = new Subject();
-        document.title = "Patient-Payments";
+        document.title = "Patient: " + this._patientListService.patientData.name  +"-Payments";
     }
     ngAfterViewInit(): void {
         this.receiveElm = this.receiveModal.nativeElement as HTMLElement;

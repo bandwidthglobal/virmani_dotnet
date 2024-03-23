@@ -25,7 +25,7 @@ export class PatientinfoComponent implements OnInit {
    */
     constructor(private _patientPreviewService: PatientPreviewService, private route: ActivatedRoute,)
      {
-      document.title = "Patient-PatientInfo";
+      document.title = "Patient: " + this._patientPreviewService.patientData.name + "-PatientInfo";
     }
   // Lifecycle Hooks
   // -----------------------------------------------------------------------------------------------------

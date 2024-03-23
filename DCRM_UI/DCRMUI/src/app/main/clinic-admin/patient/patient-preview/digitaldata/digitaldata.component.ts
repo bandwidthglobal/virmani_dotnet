@@ -73,7 +73,7 @@ export class DigitaldataComponent implements OnInit, OnDestroy {
         private _coreConfigService: CoreConfigService, private _route: ActivatedRoute, private _coreSidebarService: CoreSidebarService
         , private _commonValidationService: CommonValidationService, private _digitalDataFormService: DigitalDataService) {
         this._unsubscribeAll = new Subject();
-        document.title = "Patient-DigitalData";
+        document.title = "Patient: " + this._patientListService.patientData.name + "-DigitalData";
     }
     ngOnDestroy(): void {
         this._unsubscribeAll.next();

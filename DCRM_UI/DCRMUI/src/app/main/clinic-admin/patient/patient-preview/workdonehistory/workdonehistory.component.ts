@@ -78,7 +78,7 @@ export class WorkdoneHistoryComponent implements OnInit {
      */
     constructor(private router: Router, private _patientListService: PatientPreviewService, private _coreConfigService: CoreConfigService, private _route: ActivatedRoute, private _formBuilder: UntypedFormBuilder) {
         this._unsubscribeAll = new Subject();
-        document.title = "Patient -WorkdoneHistory";
+        document.title = "Patient: " + this._patientListService.patientData.name +"-WorkdoneHistory";
     }
     ngAfterViewInit(): void {
         this.receiveElm = this.workdoneModal.nativeElement as HTMLElement;

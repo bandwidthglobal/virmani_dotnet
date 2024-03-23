@@ -45,6 +45,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
      */
     constructor(private router: Router, private _dashboardService: DashboardService, private _coreConfigService: CoreConfigService, private _route: ActivatedRoute) {
         this._unsubscribeAll = new Subject();
+        document.title = "Dashboard";
     }
 
     // Public Methods

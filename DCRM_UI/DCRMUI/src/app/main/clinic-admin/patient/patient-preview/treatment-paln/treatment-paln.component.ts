@@ -81,7 +81,7 @@ export class TreatmentPalnComponent implements OnInit {
         private _route: ActivatedRoute,
         private _formBuilder: UntypedFormBuilder) {
         this._unsubscribeAll = new Subject();
-        document.title = "Patient-TreatmentPlan";
+        document.title = "Patient: " +  this._patientListService.patientData.name +"-TreatmentPlan";
     }
     ngOnInit(): void {
         this.workdoneForm = this._formBuilder.group({
