@@ -453,7 +453,6 @@ namespace DCRM.Service.Service
                           join t in _treatmentplansRepository.GetAll().ToList() on w.Treatment_Id equals t.Id
                           join d in _doctorRepository.GetAll().ToList() on t.Doctor equals d.Id
                           join te in _teethinfoRepository.GetAll().ToList() on t.Id equals te.Treatmentplans_Id
-                          join p in _paymentHistoryRepository.GetAll().ToList() on w.Id equals p.Workdone_Id
                           where t.Patient_Id == patientId
                           select new
                           {
@@ -468,7 +467,7 @@ namespace DCRM.Service.Service
                               w.Estimated_Amount,
                               w.Created_At,
                               w.Discount,
-                              p.isPrinted
+                              _paymentHistoryRepository.GetAll().Where(x => x.Workdone_Id == w.Id).Last().isPrinted,
                           };
 
             foreach (var workdone in lnQuery)

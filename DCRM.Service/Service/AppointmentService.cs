@@ -14,9 +14,11 @@ namespace DCRM.Service.Service
         public readonly IRepository<Chair> _chairRepository;
         public readonly IRepository<Assaign_Day> _dayrepository;
         public readonly IRepository<Assign_Time> _timeRepository;
+        public readonly IRepository<PatientsContact> _patientContactRepository;
+
 
         public AppointmentService(IAppointmentRepository appointmentRepository, IPatientRepository patientRepository
-            , IRepository<Doctor> repository, IRepository<Chair> chairRepository, IRepository<Assaign_Day> dayrepository, IRepository<Assign_Time> timeRepository)
+            , IRepository<Doctor> repository, IRepository<Chair> chairRepository, IRepository<Assaign_Day> dayrepository, IRepository<Assign_Time> timeRepository, IRepository<PatientsContact> patientContactRepository)
         {
             _appointmentRepository = appointmentRepository;
             _patientRepository = patientRepository;
@@ -24,6 +26,8 @@ namespace DCRM.Service.Service
             _chairRepository = chairRepository;
             _dayrepository = dayrepository;
             _timeRepository = timeRepository;
+            _patientContactRepository = patientContactRepository;
+            
         }
 
         public IEnumerable<Appointment> GetAll(long userId, string role)
@@ -211,6 +215,7 @@ namespace DCRM.Service.Service
             var td = from s in _appointmentRepository.GetAll().ToList()
                      join r in _patientRepository.GetAll().ToList() on s.Patient_Id equals r.Id
                      join d in _repository.GetAll().ToList() on s.Doctor_Id equals d.Id
+                     join pc in _patientContactRepository.GetAll().ToList() on r.Id equals pc.Patient_Id
                      where s.User_Id == parameters.UserId
                      && s.Date.Ticks.Equals(Convert.ToDateTime(parameters.ScheduleDate).Ticks)
                      && s.Status == 0
@@ -230,6 +235,8 @@ namespace DCRM.Service.Service
                          s.Serial_Id,
                          s.Type,
                          s.Chamber_Id,
+                         s.Cause,
+                         pc.Phone1
                      };
             #endregion
             #region Slot Time List  
@@ -338,6 +345,8 @@ namespace DCRM.Service.Service
                             appointmentDto.Doctor_Id = appointmentDetails.Doctor_Id;
                             appointmentDto.Patient_Name = appointmentDetails.Patient_Name;
                             appointmentDto.Patient_Address = appointmentDetails.Address;
+                            appointmentDto.Cause = appointmentDetails.Cause;
+                            appointmentDto.Mobile = appointmentDetails.Phone1;
                             appointmentChair.AppointmentDetails = appointmentDto;
                         }
                     }

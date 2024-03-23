@@ -15,6 +15,7 @@ namespace DCRM.Common.Dto
         public long Doctor_Id { get; set; }
 
         public string? Doctor_Name { get; set; }
+        public long? Mobile {  get; set; }
 
         public string? Chair { get; set; }
 
