@@ -99,23 +99,24 @@
                                 </div>
                             </ng-template>
                         </ngx-datatable-row-detail>
-                        <ngx-datatable-column [width]="150"
-                                              [resizeable]="false"
-                                              [sortable]="false"
-                                              [draggable]="false"
-                                              [canAutoResize]="false"
-                                              [frozenLeft]="false">
-                            <ng-template let-row="row"
-                                         let-rowIndex="rowIndex"
-                                         let-expanded="expanded"
-                                         ngx-datatable-cell-template>
-                                <a href="javascript:void(0)"
-                                   [class.datatable-icon-right]="!expanded"
-                                   [class.datatable-icon-down]="expanded"
-                                   title="Expand/Collapse Row"
-                                   (click)="toggleExpandRow(row)">
-                                    Work Done List
-                                </a>
+                        <ngx-datatable-column name="Actions" [width]="200" [sortable]="false">
+                            <ng-template ngx-datatable-cell-template let-row="row">
+                                <div class="d-flex align-items-center col-actions">
+                                    <a class="mr-1 btn btn-primary btn-sm" style="width:120px;" (click)="addWorkDone(row.id,row.amount,row.teethNumber,row.job,row.doctorName, row.doctor,row.workdones, row.treatmentStatus)" href="javascript:void(0)" container="body"
+                                       placement="top" ngbTooltip="Work Done">
+                                        Work Done
+                                    </a>
+                                    <br />
+                                    <a class="mr-1" (click)="openComplaintForm(row.id)" container="body"
+                                       placement="top" ngbTooltip="Edit">
+                                        <i size="18" data-feather="edit"></i>
+                                    </a>
+                                    <a class="mr-1" href="javascript:void(0)" (click)="delete(row.id,row.patientId)" container="body"
+                                       placement="top" ngbTooltip="Delete">
+                                        <i size="18" data-feather="trash"></i>
+                                    </a>
+
+                                </div>
                             </ng-template>
                         </ngx-datatable-column>
                         <ngx-datatable-column name="Date" prop="date" [width]="100">
@@ -125,7 +126,7 @@
                                 </div>
                             </ng-template>
                         </ngx-datatable-column>
-                        <ngx-datatable-column name="Sitting" prop="sitting" [width]="80">
+                        <ngx-datatable-column name="Sitting" prop="sitting" [width]="70">
                             <ng-template class="text-center" contenteditable="true" ngx-datatable-cell-template e let-rowIndex="rowIndex" let-value="value" let-row="row">
                                 <span *ngIf="!editable" (dblclick)="editable = true;" style="width:50px!important;border:0;cursor:pointer"> {{row.sitting}} </span>
                                 <input type="number" (change)="setSittingValue(row.id,$event)" style="width:50px!important;border:0" autofocus (keyup)="editable==false" value="{{row.sitting}}" *ngIf="editable" />
@@ -150,24 +151,23 @@
                         <ngx-datatable-column name="Treatment Code" prop="job"></ngx-datatable-column>
                         <ngx-datatable-column name="Estimate" prop="amount" [width]="120"></ngx-datatable-column>
                         <ngx-datatable-column name="Status" prop="treatmentStatus" [width]="120"></ngx-datatable-column>
-                        <ngx-datatable-column name="Actions" [width]="200" [sortable]="false">
-                            <ng-template ngx-datatable-cell-template let-row="row">
-                                <div class="d-flex align-items-center col-actions">
-                                    <a class="mr-1 btn btn-primary btn-sm" style="width:120px;" (click)="addWorkDone(row.id,row.amount,row.teethNumber,row.job,row.doctorName, row.doctor,row.workdones, row.treatmentStatus)" href="javascript:void(0)" container="body"
-                                       placement="top" ngbTooltip="Work Done">
-                                        Work Done
-                                    </a>
-                                    <br />
-                                    <a class="mr-1" (click)="openComplaintForm(row.id)" container="body"
-                                       placement="top" ngbTooltip="Edit">
-                                        <i size="18" data-feather="edit"></i>
-                                    </a>
-                                    <a class="mr-1" href="javascript:void(0)" (click)="delete(row.id,row.patientId)" container="body"
-                                       placement="top" ngbTooltip="Delete">
-                                        <i size="18" data-feather="trash"></i>
-                                    </a>
-
-                                </div>
+                        <ngx-datatable-column [width]="150"
+                                              [resizeable]="false"
+                                              [sortable]="false"
+                                              [draggable]="false"
+                                              [canAutoResize]="false"
+                                              [frozenLeft]="false">
+                            <ng-template let-row="row"
+                                         let-rowIndex="rowIndex"
+                                         let-expanded="expanded"
+                                         ngx-datatable-cell-template>
+                                <a href="javascript:void(0)"
+                                   [class.datatable-icon-right]="!expanded"
+                                   [class.datatable-icon-down]="expanded"
+                                   title="Expand/Collapse Row"
+                                   (click)="toggleExpandRow(row)">
+                                    Work Done List
+                                </a>
                             </ng-template>
                         </ngx-datatable-column>
                     </ngx-datatable>
@@ -336,7 +336,7 @@
                             <div class="modal-footer">
                                 <div class="row">
                                     <div class="col-md-3" *ngIf="isWorkdonesave==true">
-                                        <a href="/admin/appointment/add/{{patientId}}/{{workdoneid}}"  target="_blank" class="btn btn-primary">Appointment</a>
+                                        <a href="/admin/appointment/chairview"  target="_blank" class="btn btn-primary">Appointment</a>
                                     </div>
                                     <div class="col-md-3" *ngIf="isWorkdonesave==true">
                                         <a href="/admin/prescription/add/{{patientId}}/{{workdoneid}}"  target="_blank" class="btn btn-primary ml-1">Prescription</a>

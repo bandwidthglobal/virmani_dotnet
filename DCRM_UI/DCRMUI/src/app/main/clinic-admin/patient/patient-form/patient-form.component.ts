@@ -175,7 +175,7 @@ export class PatientFormComponent implements OnInit, OnDestroy {
                 this.loading = false;
                 if (this.FormAction === 'add') {
                     let a = document.createElement('a');
-                    a.href = "/admin/patient/download/" + response.toString();
+                    // a.href = "/admin/patient/download/" + response.toString();
                     a.target = "_blank";
                     a.click();
                 }

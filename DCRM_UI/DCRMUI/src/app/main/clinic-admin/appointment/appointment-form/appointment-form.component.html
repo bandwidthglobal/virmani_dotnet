@@ -86,12 +86,12 @@
                             </div>
 
                             <div *ngIf="formData.p_type.value === 'New Patient'" class="col-md-6">
-                                <shared-ui-text-input [label]="'Name'" [control]="formData.patient_name"
+                                <shared-ui-text-input [label]="' Patient Name'" [control]="formData.patient_name"
                                 [maxLength]=30
                                                       [submitted]="submitted"></shared-ui-text-input>
                             </div>
                             <div  class="col-md-6" *ngIf="formData.p_type.value === 'Old Patient'">
-                                <shared-ui-select-input *ngIf="formData.p_type.value === 'Old Patient'" [label]="'Name'" [control]="formData.patient_Id"
+                                <shared-ui-select-input *ngIf="formData.p_type.value === 'Old Patient'" [label]="' Patient Name'" [control]="formData.patient_Id"
                                                         [options]="IPatients" [valueKey]="'id'" [displaykey]="'name'" [searchable]="true"
                                                         [submitted]="submitted"></shared-ui-select-input>
                             </div>

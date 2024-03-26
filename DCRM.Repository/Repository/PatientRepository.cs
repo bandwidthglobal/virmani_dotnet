@@ -179,7 +179,7 @@ namespace DCRM.Repository.Repository
                 patient.User_Id = request.User_Id;
                 patient.Slug = request.Slug;
                 patient.Thumb = request.Thumb;
-                patient.Email = request.Email ?? phone + "@virmani.com";
+                patient.Email = request.Email;
                 patient.Mobile = phone.ToString();
                 patient.Age = Convert.ToInt16(request.Age);
                 patient.Weight = request.Weight;

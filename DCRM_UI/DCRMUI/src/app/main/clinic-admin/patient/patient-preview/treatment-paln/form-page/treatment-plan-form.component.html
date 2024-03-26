@@ -89,12 +89,13 @@
                     <div class="form-group">
                         <label><strong>Patient Name:</strong> {{ apiData.name }} </label>
                     </div>
-                    <shared-ui-select-input [label]="'Treatment Type'" [control]="formData.type"
-                                            [options]="ITreatmentType" [valueKey]="'value'" [displaykey]="'text'"
-                                            [submitted]="submitted"></shared-ui-select-input>
 
                     <shared-ui-text-input [label]="'Job Name'" [control]="formData.job"
                                           [submitted]="submitted"></shared-ui-text-input>
+
+                    <shared-ui-select-input [label]="'Treatment Type'" [control]="formData.type"
+                                          [options]="ITreatmentType" [valueKey]="'value'" [displaykey]="'text'"
+                                          [submitted]="submitted"></shared-ui-select-input>
 
                     <shared-ui-select-input [label]="'Primary Doctor Name'" [control]="formData.doctor"
                                             [options]="IDoctors" [valueKey]="'id'" [displaykey]="'name'"
