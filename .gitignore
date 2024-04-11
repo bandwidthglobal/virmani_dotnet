@@ -352,3 +352,11 @@ logs/webapi-20231113.log
 /logs/webapi-20240315.log
 /logs/webapi-20240316.log
 /logs/webapi-20240317.log
+DCRM.Repository/obj/
+.vs/DCRM.Api/v17/
+DCRM.Service/obj/
+.vs/
+DCRM.Common/bin/
+DCRM.Common/obj/
+DCRM.Repository/bin/
+DCRM.Service/bin/
