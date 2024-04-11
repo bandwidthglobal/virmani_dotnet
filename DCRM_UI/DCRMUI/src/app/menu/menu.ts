@@ -155,6 +155,16 @@ export const menu: CoreMenu[] = [
                         url: 'admin/settings/chair/list',
                         openInNewTab:true
                     }
+                    ,
+                    {
+                        id: 'masterdata',
+                        title: 'Master Data',
+                        translate: 'MENU.APPS.SETTINGS.MasterData',
+                        type: 'item',
+                        icon: 'circle',
+                        url: 'admin/settings/masterdata/list',
+                        openInNewTab:true
+                    }
                 ]
             },
 

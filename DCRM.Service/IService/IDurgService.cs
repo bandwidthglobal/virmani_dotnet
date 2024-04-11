@@ -1,4 +1,6 @@
-﻿using DCRM.Common.Entity;
+﻿using DCRM.Common.Dto;
+using DCRM.Common.Entities;
+using DCRM.Common.Entity;
 
 namespace DCRM.Service.IService
 {
@@ -29,5 +31,12 @@ namespace DCRM.Service.IService
         void AddBadStock(MedicineBadStock medicineBadStock);
         void DeleteBadStock(int id);
         void DeleteStock(int id);
+        List<MasterDataDto> GetAllMaster();
+        List<MasterType> GetAllMasterType();
+        void UpdateMaster(MasterData obj);
+        void CreateMaster(MasterData obj);
+
+        void DeleteMaster(int id);
+        MasterData GetMaster(int id);
     }
 }

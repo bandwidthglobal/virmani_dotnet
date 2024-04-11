@@ -82,6 +82,8 @@ namespace DCRM.Repository.Database
         public virtual DbSet<MedicineBrand> Medicine_Brand { get; set; }
 
         public virtual DbSet<MedicineCategory> Medicine_Category { get; set; }
+        public virtual DbSet<MasterData> Master_Data { get; set; }
+        public virtual DbSet<MasterType> Master_Type { get; set; }
 
         public virtual DbSet<Experience> Experiences { get; set; }
 

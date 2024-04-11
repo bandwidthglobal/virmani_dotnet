@@ -1,4 +1,6 @@
 ﻿using DCRM.Common.Authorization;
+using DCRM.Common.Dto;
+using DCRM.Common.Entities;
 using DCRM.Common.Entity;
 using DCRM.Service.IService;
 using Microsoft.AspNetCore.Mvc;
@@ -104,6 +106,50 @@ namespace DCRM.Api.Controllers
         public IActionResult DeleteMedicineStock(int id)
         {
             _drugfService.DeleteStock(id);
+            return Ok(id.ToString());
+        }
+
+        //Masters api
+
+        [AllowAnonymous]
+        [HttpGet("master/getall")]
+        public List<MasterDataDto> GetAllMaster()
+        {
+            return _drugfService.GetAllMaster();
+        }
+        [AllowAnonymous]
+        [HttpGet("master/get/{id}")]
+        public MasterData GetMaster(int id)
+        {
+            var masterData = _drugfService.GetMaster(id);
+            return masterData;
+        }
+        [AllowAnonymous]
+        [HttpGet("master/type/getall")]
+        public List<MasterType> GetAllMasterType()
+        {
+            return _drugfService.GetAllMasterType();
+        }
+
+        [HttpPost("master/create")]
+        public IActionResult CreateMaster(MasterData obj)
+        {
+            _drugfService.CreateMaster(obj);
+            return Ok();
+        }
+
+        [HttpPost("master/Update")]
+        public IActionResult UpdateMaster(MasterData obj)
+        {
+
+            _drugfService.UpdateMaster(obj);
+            return Ok(obj);
+        }
+
+        [HttpDelete("master/delete/{id}")]
+        public IActionResult DeleteMaster(int id)
+        {
+            _drugfService.DeleteMaster(id);
             return Ok(id.ToString());
         }
     }

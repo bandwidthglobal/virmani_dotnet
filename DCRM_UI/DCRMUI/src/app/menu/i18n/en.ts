@@ -31,6 +31,7 @@ export const locale = {
                     DiagnosisTests: 'Diagnosis Tests',
                     ProsthesisType: 'Prosthesis Type',
                     Chairs: 'Chairs',
+                    MasterData: 'Master Data',
                 },
                 PRESCRIPTION: {
                     COLLAPSIBLE: 'Prescription',
