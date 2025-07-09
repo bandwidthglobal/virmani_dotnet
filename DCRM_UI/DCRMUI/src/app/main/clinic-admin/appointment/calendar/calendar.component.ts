@@ -103,7 +103,10 @@ export class CalendarComponent implements OnInit, AfterViewInit {
    */
     handleUpdateEventClick(eventRef: EventClickArg) {
         if (eventRef.event.id != undefined) {
-             
+          let a = document.createElement('a');
+          a.href = "/admin/appointment/view/"+eventRef.event.id;
+          a.target = "_self";
+          a.click();
         }
   }
 
@@ -178,5 +181,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
         }
       }
     };
+  }
+  eventClick(event){
+    console.log(event);
   }
 }

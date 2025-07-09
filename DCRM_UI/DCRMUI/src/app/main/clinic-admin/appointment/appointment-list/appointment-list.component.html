@@ -93,6 +93,20 @@
                             </div>
                         </ng-template>
                     </ngx-datatable-column>
+                    <ngx-datatable-column name="Status" class="" prop="appointment_Status" >
+                        <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                            
+                            <div style="background-color: rgba(106,116,123,.1); color: #444; border-radius: 20px !important;" *ngIf="(value===1)">
+                                <i class="fa fa-circle" style="margin-right:5px;"></i><span>Shifted</span>
+                            </div>
+                            <div style="background-color: rgba(220,53,69,.1); color: #dc3545; border-radius: 20px !important; " *ngIf="(value===3)">
+                                <i class="fa fa-circle" style="margin-right:5px;"></i><span>Cancelled</span>
+                            </div>
+                            <div style="background-color: rgba(7, 141, 61, 0.1); color: #258925; border-radius: 20px !important;" *ngIf="(value!==1  && value!==3)">
+                                <i class="fa fa-circle" style="margin-right:5px;"></i><span>Booked</span>
+                            </div>
+                        </ng-template>
+                    </ngx-datatable-column>
                     <ngx-datatable-column name="Actions" [sortable]="false">
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <div class="d-flex align-items-center col-actions">                               

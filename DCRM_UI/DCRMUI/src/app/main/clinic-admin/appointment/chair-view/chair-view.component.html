@@ -87,9 +87,9 @@
                                                     <th width="20%" *ngFor="let chair of chairList">{{chair.name}}</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody> 
                                                 <tr *ngFor="let schedule of appointmentScheduleTimes">
-                                                    <td width="20%" style="padding-left: 5px;"><strong>{{schedule.slatTime}}</strong></td>
+                                                    <td width="20%" style="padding-left: 5px;"><strong>{{searchParam.scheduleDate}} {{schedule.slatTime}}</strong></td>
                                                     <ng-container *ngFor="let chair of schedule.chairList">
                                                         <td width="20%" *ngIf="chair.appointmentDetails==null else appointmentCol">
                                                             <p *ngIf="chair.appointmentDetails==null" (click)="appointmentView(0,schedule.slatTime,chair.id);">

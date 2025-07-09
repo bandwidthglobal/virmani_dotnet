@@ -27,12 +27,13 @@
                             <div class="col-md-6">
                                 <shared-ui-select-input [label]="'Start time'" [control]="formData.start_Time"
                                                         [options]="IStartTimes" [valueKey]="'id'" [displaykey]="'text'"
-                                                        [submitted]="submitted"></shared-ui-select-input>
+                                                        [submitted]="submitted" (change) = "fnSetStartTime($event, 1)"></shared-ui-select-input>
                             </div>
                             <div class="col-md-6">
                                 <shared-ui-select-input [label]="'Slot time'" [control]="formData.slot_Time"
                                                         [options]="ISlotTimes" [valueKey]="'id'" [displaykey]="'text'"
-                                                        [submitted]="submitted"></shared-ui-select-input>
+                                                        [submitted]="submitted" (change) = "fnSetStartTime($event, 2)"></shared-ui-select-input>
+                                      
                             </div>
 
                             <div class="col-md-6">
@@ -91,9 +92,31 @@
                                                       [submitted]="submitted"></shared-ui-text-input>
                             </div>
                             <div  class="col-md-6" *ngIf="formData.p_type.value === 'Old Patient'">
-                                <shared-ui-select-input *ngIf="formData.p_type.value === 'Old Patient'" [label]="' Patient Name'" [control]="formData.patient_Id"
+                                <div class="ng-autocomplete" style="width: 100%;">
+                                    <ng-autocomplete 
+                                      [data]="IPatients"
+                                      formControlName="formData.patient_Id"
+                                      [initialValue]="patientName"
+                                      [searchKeyword]="keyword"
+                                      placeholder="Select Patient"
+                                      (selected)='selectEvent($event)'
+                                      (inputChanged)='onChangeSearch($event)'
+                                      (inputFocused)='onFocused($event)'
+                                      [itemTemplate]="itemTemplate"
+                                      [notFoundTemplate]="notFoundTemplate">                                 
+                                    </ng-autocomplete>
+                                    
+                                    <ng-template #itemTemplate let-item>
+                                    <a [innerHTML]="item.name"></a>
+                                    </ng-template>
+                                    
+                                    <ng-template #notFoundTemplate let-notFound>
+                                    <div [innerHTML]="notFound"></div>
+                                    </ng-template>
+                                    </div>
+                                <!-- <shared-ui-select-input *ngIf="formData.p_type.value === 'Old Patient'" [label]="' Patient Name'" [control]="formData.patient_Id"
                                                         [options]="IPatients" [valueKey]="'id'" [displaykey]="'name'" [searchable]="true"
-                                                        [submitted]="submitted"></shared-ui-select-input>
+                                                        [submitted]="submitted"></shared-ui-select-input> -->
                             </div>
                             <div *ngIf="formData.p_type.value === 'New Patient'" class="col-md-6">
                                 <div class="form-group">
@@ -164,6 +187,7 @@
                         </div>
 
                         <div class="col-md-12 mt-3">
+                            <a (click)="backBtn()" class="btn btn-info btn-sm mr-10">Back</a>
                             <a *ngIf="FormAction=='edit'" (click)="changeAppointmentStatus(1,formData.id,'shift_appointment')" class="btn btn-primary btn-sm mr-10">Shift Appointment</a>
                             <!-- <a *ngIf="FormAction=='edit'" (click)="changeAppointmentStatus(2,formData.id)" class="btn btn-success btn-sm mr-10">Complete Appointment</a> -->
                             <a *ngIf="FormAction=='edit'" (click)="changeAppointmentStatus(3,formData.id)" class="btn btn-info btn-sm mr-10">Cancel Appointment</a>

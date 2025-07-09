@@ -83,7 +83,7 @@ export const menu: CoreMenu[] = [
                 type: 'item',
                 icon: 'users',
                 url: 'admin/staff/list',
-                openInNewTab: true
+                openInNewTab: false
             },
             {
                 id: 'dealer',
@@ -92,7 +92,7 @@ export const menu: CoreMenu[] = [
                 type: 'item',
                 icon: 'user-check',
                 url: 'admin/dealer/list',
-                openInNewTab: true
+                openInNewTab: false
             },
             {
                 id: 'doctors',
@@ -101,7 +101,7 @@ export const menu: CoreMenu[] = [
                 type: 'item',
                 icon: 'user-plus',
                 url: 'admin/doctor/list',
-                openInNewTab: true
+                openInNewTab: false
             },
 
             {
@@ -134,7 +134,7 @@ export const menu: CoreMenu[] = [
                         type: 'item',
                         icon: 'circle',
                         url: 'admin/settings/diagnosistests/list',
-                        openInNewTab: true
+                        openInNewTab: false
                     },
                     {
                         id: 'prosthesistype',
@@ -143,7 +143,7 @@ export const menu: CoreMenu[] = [
                         type: 'item',
                         icon: 'circle',
                         url: 'admin/settings/prosthesistype/list',
-                        openInNewTab:true
+                        openInNewTab:false
                     }
                     ,
                     {
@@ -153,7 +153,7 @@ export const menu: CoreMenu[] = [
                         type: 'item',
                         icon: 'circle',
                         url: 'admin/settings/chair/list',
-                        openInNewTab:true
+                        openInNewTab:false
                     }
                     ,
                     {
@@ -163,7 +163,7 @@ export const menu: CoreMenu[] = [
                         type: 'item',
                         icon: 'circle',
                         url: 'admin/settings/masterdata/list',
-                        openInNewTab:true
+                        openInNewTab:false
                     }
                 ]
             },
@@ -183,7 +183,7 @@ export const menu: CoreMenu[] = [
                         type: 'item',
                         icon: 'circle',
                         url: 'admin/prescription/add',
-                        openInNewTab: true
+                        openInNewTab: false
                     },
                     {
                         id: 'prescriptions',
@@ -192,7 +192,7 @@ export const menu: CoreMenu[] = [
                         type: 'item',
                         icon: 'circle',
                         url: 'admin/prescription/list',
-                        openInNewTab: true
+                        openInNewTab: false
                     },
                 ]
             },
@@ -204,7 +204,7 @@ export const menu: CoreMenu[] = [
                 type: 'item',
                 icon: 'user-x',
                 url: 'admin/patient/list',
-                openInNewTab: true
+                openInNewTab: false
             },
             {
                 id: 'appointments',
@@ -220,7 +220,7 @@ export const menu: CoreMenu[] = [
                         type: 'item',
                         icon: 'circle',
                         url: 'admin/appointment/list',
-                        openInNewTab: true
+                        openInNewTab: false
                     },
                     {
                         id: 'chairview',
@@ -229,7 +229,7 @@ export const menu: CoreMenu[] = [
                         type: 'item',
                         icon: 'circle',
                         url: 'admin/appointment/chairview',
-                        openInNewTab: true
+                        openInNewTab: false
                     },
                     {
                         id: 'calendarview',
@@ -238,7 +238,7 @@ export const menu: CoreMenu[] = [
                         type: 'item',
                         icon: 'circle',
                         url: 'admin/appointment/calendarview',
-                        openInNewTab: true
+                        openInNewTab: false
                     },
                     {
                         id: 'setschedule',
@@ -247,7 +247,7 @@ export const menu: CoreMenu[] = [
                         type: 'item',
                         icon: 'circle',
                         url: 'admin/appointment/assign',
-                        openInNewTab: true
+                        openInNewTab: false
                     },
                     {
                         id: 'waitingroom',
@@ -256,7 +256,7 @@ export const menu: CoreMenu[] = [
                         type: 'item',
                         icon: 'circle',
                         url: 'admin/appointment/waitingroom',
-                        openInNewTab: true
+                        openInNewTab: false
                     }
                 ]
             },
@@ -275,7 +275,7 @@ export const menu: CoreMenu[] = [
                         type: 'item',
                         icon: 'circle',
                         url: 'admin/reports/payments',
-                        openInNewTab: true
+                        openInNewTab: false
                     },
                     {
                         id: 'patientsworkdones',
@@ -284,7 +284,7 @@ export const menu: CoreMenu[] = [
                         type: 'item',
                         icon: 'circle',
                         url: 'admin/reports/patient-workdones',
-                        openInNewTab: true
+                        openInNewTab: false
                     },
                     //{
                     //    id: 'patientworkdone',
@@ -305,7 +305,7 @@ export const menu: CoreMenu[] = [
                 type: 'item',
                 icon: 'heart',
                 url: 'admin/drug/list',
-                openInNewTab: true
+                openInNewTab: false
             },
 
             //{
@@ -349,7 +349,7 @@ export const menu: CoreMenu[] = [
                 type: 'item',
                 icon: 'key',
                 url: 'admin/changepassword',
-                openInNewTab: true
+                openInNewTab: false
             },
 
             {
@@ -359,7 +359,7 @@ export const menu: CoreMenu[] = [
                 type: 'item',
                 icon: 'unlock',
                 url: 'auth/logout',
-                openInNewTab: true
+                openInNewTab: false
             },
 
 

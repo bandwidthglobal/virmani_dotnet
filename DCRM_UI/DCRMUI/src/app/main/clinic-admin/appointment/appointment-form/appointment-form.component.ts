@@ -28,6 +28,8 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
     subscription: any;
     messages = validationMessages;
     formData?: IAppointmentForm;
+    keyword = 'name';
+    patientName='';
     @Input() FormInput?: any = new IAppointmentFormModel();
     @Input() FormAction?: 'add' | 'edit' = 'add';
     @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
@@ -78,12 +80,13 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
      
         this.formData = new IAppointmentForm(this.FormInput);
         if (this.patientId > 0) {
-            this.formData.patient_Id.setValue(this.patientId);
-            this._appointmentFormService.getIPatientsById(this.patientId).subscribe(res => {
+            this.formData.patient_Id.setValue(this.FormInput.patient_Id);
+            this._appointmentFormService.getIPatientsById(this.FormInput.patient_Id).subscribe(res => {
                 this.patientId = res.patient_Id;
                 this.formData.phone.setValue(res.patientContacts[0].phone1.toString());
                 this.formData.patient_name.setValue(res.name);
                 this.formData.email.setValue(' ');
+                this.patientName=res.name;
             });
            
         }
@@ -127,6 +130,7 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
                 this.formData.phone.setValue(res.patientContacts[0].phone1.toString());
                 this.formData.patient_name.setValue(res.name);
                 this.formData.email.setValue(' ');
+                this.patientName=res.name;
             });
             
         });
@@ -146,9 +150,51 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
             }
         });
 
+        var data={target:{value: this.formData.start_Time.value}};
+        this.fnSetStartTime(data,1);
+
        
     }
-   
+    fnSetStartTime(event: any, type: number)
+    {
+        console.log(event.target.value);
+        if(type===1)
+        {
+          var slots=parseFloat(this.formData.get('slot_Time').value);
+          if(slots<15)
+          {
+            slots=slots*60;           
+          }
+          var endDateObj = new Date("2024-01-01 "+event.target.value).setMinutes(slots);
+          var endTimeObj = new Date(endDateObj);
+          var hours = endTimeObj.getHours();
+          var minues = endTimeObj.getMinutes();
+          var sec = endTimeObj.getSeconds();
+          var startTime = hours+":"+minues+":00";
+          if(minues.toString().length<2)
+          {
+           startTime = hours+":"+minues+"0:00";
+          }
+          this.formData.get('end_Time').setValue(startTime);
+        }else{
+            var slots=parseFloat(event.target.value);
+          if(slots<15)
+          {
+            slots=slots*60;           
+          }
+          var endDateObj = new Date("2024-01-01 "+this.formData.get('start_Time').value).setMinutes(slots);
+          var endTimeObj = new Date(endDateObj);
+          var hours = endTimeObj.getHours();
+          var minues = endTimeObj.getMinutes();
+          var sec = endTimeObj.getSeconds();
+          var startTime = hours+":"+minues+":00";
+          if(minues.toString().length<2)
+          {
+           startTime = hours+":"+minues+"0:00";
+          }
+          this.formData.get('end_Time').setValue(startTime);
+        }
+    }
     changeOldPatient(type: string) {
        
         if (type == 'old') {
@@ -203,8 +249,8 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
             })).subscribe((response) => {
                 this.loading = false;
                 let a = document.createElement('a');
-                a.href = "/admin/appointment/download/" + response.toString();
-                a.target = "_blank";
+                a.href = "/admin/appointment/list";
+                a.target = "_self";
                 a.click();
                 this.callBackEvent.emit({
                     status: 'failure',
@@ -223,4 +269,25 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
             page: this.FormAction,
         });
     }
+    backBtn(){
+        let a = document.createElement('a');
+                a.href = "/admin/appointment/list";
+                a.target = "_self";
+                a.click();
+    }
+    selectEvent(item) {
+        if(item.id)
+        {
+         this.formData.patient_Id.setValue(item.id);
+        }
+      }
+    
+      onChangeSearch(val: string) {
+        // fetch remote data from here
+        // And reassign the 'data' which is binded to 'data' property.
+      }
+      
+      onFocused(e){
+        // do something when input is focused
+      }
 };

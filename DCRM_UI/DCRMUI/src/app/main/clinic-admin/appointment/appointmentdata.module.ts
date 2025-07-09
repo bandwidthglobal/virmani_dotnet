@@ -29,6 +29,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { AppointmentListComponent } from 'app/main/clinic-admin/appointment/appointment-list/appointment-list.component';
 import { AppointmentListService } from 'app/main/clinic-admin/appointment/appointment-list/appointment-list.service';
 
@@ -194,6 +196,8 @@ const routes: Routes = [
         MatInputModule,
         MatPaginatorModule,
         MatSortModule,
+        MatAutocompleteModule,
+        AutocompleteLibModule,
         CoreCommonModule,
         Ng2FlatpickrModule,
         NgxDatatableModule,

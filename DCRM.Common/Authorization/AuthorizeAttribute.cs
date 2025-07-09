@@ -34,7 +34,7 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
         }
         else if (context.HttpContext.Items["Doctor"] != null)
         {
-            var doctor = (DoctorDto)context.HttpContext.Items["DoctorDto"];
+            var doctor = (DoctorDto)context.HttpContext.Items["Doctor"];
             if (doctor == null)
                 context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
         }

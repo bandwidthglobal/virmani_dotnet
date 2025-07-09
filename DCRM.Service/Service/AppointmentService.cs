@@ -173,7 +173,8 @@ namespace DCRM.Service.Service
                                     a.Slot_Time,
                                     p.Email,
                                     Phone = p.Mobile,
-                                    p.Mr_Number
+                                    p.Mr_Number,
+                                    a.Status
 
                                 };
 
@@ -191,6 +192,8 @@ namespace DCRM.Service.Service
                 appointmentDto.Type = appointment.Type;
                 appointmentDto.Patient_Id = appointment.Patient_Id;
                 appointmentDto.Patient_Name = appointment.Patient_Name;
+                appointmentDto.Appointment_Status = appointment.Appointment_Status;
+                appointmentDto.Status = appointment.Status;
                 Patientse patientse = new()
                 {
                     Name = appointment.Patient_Name,

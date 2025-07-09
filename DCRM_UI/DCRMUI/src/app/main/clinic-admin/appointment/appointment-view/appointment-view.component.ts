@@ -65,8 +65,9 @@ export class AppointmentViewComponent implements OnInit, OnDestroy {
     }
 
     redirect() {
-        const returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/appointment/list';
-        this.router.navigateByUrl(returnUrl);
+        //const returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/appointment/list';
+        //this.router.navigateByUrl(returnUrl);
+        history.go(-1);
     }
 
      printDiv() {
