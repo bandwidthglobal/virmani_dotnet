@@ -1,18 +1,16 @@
 ﻿using DCRM.Common.Entities;
-using System;
-using System.Collections.Generic;
 
 namespace DCRM.Common.Entity;
 
 public class Patientse:BaseEntity
 {
-    public int Id { get; set; } 
+    public new int Id { get; set; } 
 
-    public string Chamber_Id { get; set; }
+    public string? Chamber_Id { get; set; }
 
     public long User_Id { get; set; }
 
-    public string Mr_Number { get; set; } 
+    public string? Mr_Number { get; set; } 
 
     public string? Name { get; set; }
 

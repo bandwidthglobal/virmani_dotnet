@@ -42,9 +42,7 @@ export class AppointmentChairFormComponent implements OnInit, OnDestroy {
     ISlotTimes: Array<any> = this._appointmentFormService.getISlotTimes();
     IChairList: Array<any> = [];
     constructor(private router: Router,
-         private _route: ActivatedRoute,
-        private _toastrService: ToastrService,
-        private _appointmentFormService: AppointmentFormService,
+         private _appointmentFormService: AppointmentFormService,
         private _commonValidationService: CommonValidationService,
     ) {
         this._unsubscribeAll = new Subject();

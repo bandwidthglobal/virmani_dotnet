@@ -45,7 +45,7 @@ export class FormRepeaterComponent implements OnInit {
    *
    * @param id
    */
-  deleteItem(id) {
+  deleteItem(id: number) {
     for (let i = 0; i < this.items.length; i++) {
       if (this.items.indexOf(this.items[i]) === id) {
         this.items.splice(i, 1);

@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
 
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 import { colors } from 'app/colors.const';
 import { CardAdvanceService } from 'app/main/ui/card/card-advance/card-advance.service';
@@ -32,10 +31,10 @@ export class CardAdvanceComponent implements OnInit, OnDestroy {
   public stateDangerChartoptions;
 
   // Chat Widget
-  public userProfile;
-  public chatUser;
-  public chats;
-  public newChat;
+  public userProfile: { id: any; };
+  public chatUser: any;
+  public chats: { chat: any[]; };
+  public newChat: { message: string; time: string; senderId: any; };
   public chatMessage = '';
 
   // private

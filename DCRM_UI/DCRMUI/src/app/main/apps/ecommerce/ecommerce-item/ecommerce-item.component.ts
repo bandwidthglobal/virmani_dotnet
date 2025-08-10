@@ -11,7 +11,7 @@ import { EcommerceService } from 'app/main/apps/ecommerce/ecommerce.service';
 })
 export class EcommerceItemComponent implements OnInit {
   // Input Decorotor
-  @Input() product;
+  @Input() product: any;
   @Input() isWishlistOpen = false;
 
   // Public
@@ -31,7 +31,7 @@ export class EcommerceItemComponent implements OnInit {
    *
    * @param product
    */
-  toggleWishlist(product) {
+  toggleWishlist(product: { isInWishlist: boolean; id: any; }) {
     if (product.isInWishlist === true) {
       this._ecommerceService.removeFromWishlist(product.id).then(res => {
         product.isInWishlist = false;
@@ -48,7 +48,7 @@ export class EcommerceItemComponent implements OnInit {
    *
    * @param product
    */
-  addToCart(product) {
+  addToCart(product: { id: any; isInCart: boolean; }) {
     this._ecommerceService.addToCart(product.id).then(res => {
       product.isInCart = true;
     });

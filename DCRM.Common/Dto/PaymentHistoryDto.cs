@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DCRM.Common.Dto;
+﻿namespace DCRM.Common.Dto;
 
 public partial class PaymentHistoryDto
 {
@@ -16,7 +13,7 @@ public partial class PaymentHistoryDto
     public string?  DoctorName { get; set; }
 
     public string? ToothCode { get; set; }
-
+    public string? ToothName { get; set; }
     public string? Date { get; set; }
 
     public string Description { get; set; } = null!;

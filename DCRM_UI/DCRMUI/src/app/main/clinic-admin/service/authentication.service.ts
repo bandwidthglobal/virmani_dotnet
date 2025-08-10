@@ -4,9 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from 'environments/environment';
-import { User, Role, AuthenticateRequest } from 'app/auth/models';
+import { User, Role } from 'app/auth/models';
 import { ToastrService } from 'ngx-toastr';
-import { request } from 'https';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -71,7 +70,7 @@ export class AuthenticationService {
    */
     login1(email: string, password: string) {
 
-        var authenticateRequest;
+        var authenticateRequest: { Email: string; Password: string; };
         authenticateRequest.Email = email;
         authenticateRequest.Password = password;
     return this._http

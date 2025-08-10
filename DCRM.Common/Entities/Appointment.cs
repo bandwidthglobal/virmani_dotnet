@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DCRM.Common.Entity;
+﻿namespace DCRM.Common.Entity;
 
 public class Appointment
 {
-    public int Id { get; set; }
+    public int? Id { get; set; }
 
     public int Chamber_Id { get; set; }
 

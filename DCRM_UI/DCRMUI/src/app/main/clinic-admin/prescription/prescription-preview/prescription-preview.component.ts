@@ -1,12 +1,11 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { repeaterAnimation } from 'app/main/clinic-admin/prescription/prescription.animation';
 import { PrescriptionPreviewService } from 'app/main/clinic-admin/prescription/prescription-preview/prescription-preview.service';
-import { PrescriptionAddModel } from '../prescription-add/prescription-add.model';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 

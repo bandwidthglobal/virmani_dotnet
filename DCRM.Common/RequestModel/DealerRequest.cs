@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DCRM.Common.Entity;
 
@@ -16,7 +14,7 @@ public partial class DealerRequest
     [Required]
     public string OwnName_1 { get; set; } = null!;
 
-    public string OwnName_2 { get; set; } = null!;
+    public string? OwnName_2 { get; set; }
 
     [DataType(DataType.PhoneNumber)]
     [StringLength(10, MinimumLength = 10, ErrorMessage = "phone number should be minimum 10 digit")]
@@ -25,7 +23,7 @@ public partial class DealerRequest
     [DataType(DataType.PhoneNumber)]
     [StringLength(10, MinimumLength = 10, ErrorMessage = "phone number should be minimum 10 digit")]
     [Phone]
-    public string Phone2 { get; set; } = null!;
+    public string? Phone2 { get; set; }
 
     [DataType(DataType.EmailAddress)]
     [EmailAddress]
@@ -33,12 +31,12 @@ public partial class DealerRequest
 
     [DataType(DataType.EmailAddress)]
     [EmailAddress]
-    public string Email2 { get; set; } = null!;
+    public string? Email2 { get; set; }
 
     [Required]
     public string Address_R { get; set; } = null!;
 
-    public string Address_O { get; set; } = null!;
+    public string? Address_O { get; set; } = null!;
 
     [Required]
     public string City_R { get; set; } = null!;
@@ -49,11 +47,11 @@ public partial class DealerRequest
     [Required]
     public string Country_R { get; set; } = null!;
 
-    public string City_O { get; set; } = null!;
+    public string? City_O { get; set; } = null!;
 
-    public string Zip_O { get; set; } = null!;
+    public string? Zip_O { get; set; } = null!;
 
-    public string Country_O { get; set; } = null!;
+    public string? Country_O { get; set; } = null!;
 
     public string? StaffName_1 { get; set; }
 
@@ -79,9 +77,9 @@ public partial class DealerRequest
 
     public string? StaffEmail_4 { get; set; }
 
-    public string Gst_Number { get; set; } = null!;
+    public string? Gst_Number { get; set; } 
 
-    public string Pan_Number { get; set; } = null!;
+    public string? Pan_Number { get; set; }
 
     public string? Thumb { get; set; }
 

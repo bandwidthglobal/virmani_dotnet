@@ -42,6 +42,7 @@ export class DealerFormComponent implements OnInit, OnDestroy {
     private _commonValidationService: CommonValidationService,
   ) {
     this._unsubscribeAll = new Subject();
+    document.title = "Create Dealer";
   }
 
   ngOnInit(): void {

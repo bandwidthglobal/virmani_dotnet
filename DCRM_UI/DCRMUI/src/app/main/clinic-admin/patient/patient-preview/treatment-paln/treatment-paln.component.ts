@@ -1,16 +1,13 @@
-import { Component, OnInit, OnDestroy, ViewChild, ViewEncapsulation, Input, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 import { Subject } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
 import { CoreConfigService } from '@core/services/config.service';
 import { PatientPreviewService } from 'app/main/clinic-admin/patient/patient-preview/patient-preview.service';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 
-import { MatDialog } from '@angular/material/dialog';
-import { TreatmentPlanFormComponent } from './form-page/treatment-plan-form.component';
 import Swal from 'sweetalert2';
-import { WorkDoneForm, WorkDoneFormModel } from './workdone-from';
-import { CommonValidationService } from '../../../../../shared-common/services/common-validation.service';
+import { WorkDoneFormModel } from './workdone-from';
 import { repeaterAnimation } from '../../../../apps/patient/patient.animation';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
@@ -24,7 +21,7 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 })
 
 export class TreatmentPalnComponent implements OnInit {
-
+    isSaved: boolean = false;
     public calendarRef = [];
     public tempRef = [];
     public checkAll = true;
@@ -41,12 +38,18 @@ export class TreatmentPalnComponent implements OnInit {
     public totalAmount = 0;
     public currentAmount = 0;
     workdoneStatus = 0;
+    totalRowAmt = 0;
+    totalDueAmount = 0;
+    totalPaidAmount = 0;
+    totalBalanceAmount = 0;
+    totalDiscountAmount = 0;
     public workdoneForm: UntypedFormGroup;
     public workdone: WorkDoneFormModel = {
         id: 0,
         doctor_Id: '',
         current_Work_Amt: '',
         discount: 0,
+        realized_Treatment_Cost: 0,
         total_Amt: 0,
         workdone_Status: 0,
         estimated_Amount: '',
@@ -54,8 +57,8 @@ export class TreatmentPalnComponent implements OnInit {
     }
     private tempData = [];
     private _unsubscribeAll: Subject<any>;
-    public rows;
-    public tempFilterData;
+    public rows: any[];
+    public tempFilterData: any[];
     public previousStatusFilter = '';
     treatmentId: any = 0;
     doctors: Array<any> = [];
@@ -68,8 +71,9 @@ export class TreatmentPalnComponent implements OnInit {
     public patientId: any;
     showTreatmentForm: boolean = false;
     isAdd = true;
-    isWorkdonesave = false;
+    isWorkdonesave : boolean = true;
     textboxdisabled = 'disabled'
+    enableline: boolean;
     constructor(
         private _patientListService: PatientPreviewService,
         private _coreConfigService: CoreConfigService,
@@ -77,6 +81,7 @@ export class TreatmentPalnComponent implements OnInit {
         private _route: ActivatedRoute,
         private _formBuilder: UntypedFormBuilder) {
         this._unsubscribeAll = new Subject();
+        document.title = "Patient: " +  this._patientListService.patientData.name +"-TreatmentPlan";
     }
     ngOnInit(): void {
         this.workdoneForm = this._formBuilder.group({
@@ -85,6 +90,7 @@ export class TreatmentPalnComponent implements OnInit {
             discount: [''],
             total_Amt: [''],
             estimated_Amount: [''],
+            realized_Treatment_Cost:[''],
             workdone_Status: [''],
             workdone_Notes: [''],
         });
@@ -95,14 +101,24 @@ export class TreatmentPalnComponent implements OnInit {
     ngAfterViewInit(): void {
         this.receiveElm = this.workdoneModal.nativeElement as HTMLElement;
     }
-    filterUpdate(event) {
+ /**
+     * filterUpdate
+     *
+     * @param event
+     */
+
+    filterUpdate(event: { target: { value: string; }; }) {
         const val = event.target.value.toLowerCase();
         const temp = this.tempData.filter(function (d) {
-            return d.doctorName.toLowerCase().indexOf(val) !== -1
-                || d.type.toLowerCase().indexOf(val) !== -1
-                || d.treatmentStatus.toLowerCase().indexOf(val) !== -1
+            return d.date.toLowerCase().indexOf(val) !== -1
+                || d.sitting.toString().indexOf(val) !== -1
                 || d.teethNumber.toLowerCase().indexOf(val) !== -1
-                || d.date.toLowerCase().indexOf(val) !== -1
+                || d.tothNot.toLowerCase().indexOf(val) !== -1
+                || (d.doctorName && d.doctorName.toLowerCase().indexOf(val) !== -1) 
+                || d.type.toLowerCase().indexOf(val) !== -1
+                || d.job.toLowerCase().indexOf(val) !== -1
+                || d.amount.toString().indexOf(val) !== -1
+                || d.treatmentStatus.toLowerCase().indexOf(val) !== -1
                 || !val;
         });
 
@@ -111,13 +127,13 @@ export class TreatmentPalnComponent implements OnInit {
         // Whenever the filter changes, always go back to the first page
         this.table.offset = 0;
     }
-    filterByStatus(event) {
+    filterByStatus(event: { value: any; }) {
         const filter = event ? event.value : '';
         this.previousStatusFilter = filter;
         this.tempFilterData = this.filterRows(filter);
         this.rows = this.tempFilterData;
     }
-    filterRows(statusFilter): any[] {
+    filterRows(statusFilter: string): any[] {
         // Reset search on select change
         this.searchValue = '';
         statusFilter = statusFilter.toLowerCase();
@@ -126,21 +142,47 @@ export class TreatmentPalnComponent implements OnInit {
             return isPartialNameMatch;
         });
     }
+
+    toggleExpand(row: any): void {
+        row.expanded = !row.expanded;
+    }
     toothNumber: any;
     job: any;
     //Work Done Start
-    addWorkDone(treatmentid, estamount, toothNumber, job) {
+    addWorkDone(treatmentid: any, estamount: any, toothNumber: any, job: any, doctorName: any,  doctor:any ,workdones:any, treatment_Status:any) {
         this.getDoctors();
+        this.treatment.doctor_Id = doctor;
         this.treatmentId = treatmentid;
         this.workdone.estimated_Amount = estamount;
+        this.workdone.doctor_Id = doctor;
+        this.workdone.workdone_Status = treatment_Status;
+        this.workdone.realized_Treatment_Cost =workdones.length > 0 ? workdones[workdones.length-1].totalAmt: 0;
         this.toothNumber = toothNumber;
         this.job = job;
+        if(workdones.length > 1 )
+        {
+        this.enableline = true;
+        }
+        else{
+             this.enableline = false;
+        }
         this.receiveElm.classList.add('show');
         this.receiveElm.style.width = '100vw';
     }
     close(): void {
         this.receiveElm.classList.remove('show');
         this.receiveElm.classList.remove('show');
+        this.workdoneForm.controls.doctor_Id.enable();
+        this.workdoneForm.controls.discount.enable();
+        this.workdoneForm.controls.current_Work_Amt.enable();
+        this.workdoneForm.controls.workdone_Status.enable();
+        this.workdoneForm.controls.workdone_Notes.enable();
+        this.workdoneForm.controls.discount.setValue(0);
+        this.workdoneForm.controls.current_Work_Amt.reset();
+        this.workdoneForm.controls.workdone_Status.reset();
+        this.workdoneForm.controls.workdone_Notes.reset();
+        this.workdoneForm.controls.total_Amt.setValue(0);
+        this.workdoneForm.controls.doctor_Id.setValue(this.doctors.find(x=>x.id === this.workdone.doctor_Id).name);
         setTimeout(() => {
             this.receiveElm.style.width = '0';
         }, 75);
@@ -177,13 +219,13 @@ export class TreatmentPalnComponent implements OnInit {
             //    this.receiveElm.style.width = '0';
             //}, 75);
             this.isWorkdonesave = true;
-            this.loading = false;
-
+            // this.loading = false;
+            this.getTreatmentList();
         });
         //this.loading = true;
     }
     //Work Done End
-    chamgeStatus(status) {
+    chamgeStatus(status: number) {
         this.workdoneStatus = status;
     }
     getDoctors() {
@@ -191,7 +233,15 @@ export class TreatmentPalnComponent implements OnInit {
             this.doctors = response;
         });
     }
-    chngCurrentwork(ev) {
+    
+      saveAndShowMessage() {
+        this.isSaved = true;
+        setTimeout(() => {
+          this.isSaved = false;
+        }, 5000);
+      }
+
+    chngCurrentwork(ev: { target: { value: string; }; }) {
         this.currentAmount = parseInt(ev.target.value)
         if (this.workdone.discount == 0) {
             this.workdone.total_Amt = this.currentAmount;
@@ -200,7 +250,7 @@ export class TreatmentPalnComponent implements OnInit {
             this.workdone.total_Amt = this.currentAmount - this.workdone.discount;
         }
     }
-    chngDiscount(ev) {
+    chngDiscount(ev: { target: { value: string; }; }) {
         var discount = parseInt(ev.target.value)
 
         if (this.currentAmount > 0 && discount > 0) {
@@ -209,14 +259,14 @@ export class TreatmentPalnComponent implements OnInit {
     }
     nameOld: any;
     editing: any;
-    storeOldValues(rowIndex) {
+    storeOldValues(rowIndex: string) {
 
         this.nameOld = this.rows[rowIndex].name;
         this.editing[rowIndex + '-name'] = true;
         this.editing = rowIndex;
     }
     treatment: any = { sitting_Status: 0, id: 0, job: '', type: '', teeth_id: '' }
-    setSittingValue(treatmentId, evnt) {
+    setSittingValue(treatmentId: any, evnt: { target: { value: any; }; }) {
 
         this.treatment.sitting_Status = evnt.target.value;
         this.treatment.id = treatmentId;
@@ -239,8 +289,33 @@ export class TreatmentPalnComponent implements OnInit {
             this.tempData = this.rows;
             this.tempFilterData = this.rows;
             this.loading = false;
+            this.rows.forEach(x=>{
+                if(x.workdones.length > 0){
+                    let rowDueAmount = 0;
+                    let rowTotalAmount = 0;
+                    let rowPaidAmount = 0;
+                    let rowBalanceAmount = 0;
+                    let rowDiscountAmount = 0;
+                 for (let index = 0; index < x.workdones.length; index++) {
+                    rowDueAmount +=  Number(x.workdones[index].amtDueCurrentWork);
+                    rowTotalAmount +=  Number(x.workdones[index].totalAmt);
+                    rowPaidAmount +=  Number(x.workdones[index].paidAmount);
+                    rowBalanceAmount +=  Number(x.workdones[index].balanceAmount);
+                    rowDiscountAmount +=  Number(x.workdones[index].discount);
+                 }
+                 this.totalDueAmount = rowDueAmount;
+                 this.totalRowAmt = rowTotalAmount;
+                 this.totalPaidAmount = rowPaidAmount;
+                 this.totalBalanceAmount = rowBalanceAmount;
+                 this.totalDiscountAmount = rowDiscountAmount;
+
+                }
+             });
+
         });
     }
+
+   
     getData() {
         this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
             // If we have zoomIn route Transition then load datatable after 450ms(Transition will finish in 400ms)
@@ -266,7 +341,7 @@ export class TreatmentPalnComponent implements OnInit {
             }
         });
     }
-    delete(id, patientId) {
+    delete(id: any, patientId: number) {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -298,9 +373,8 @@ export class TreatmentPalnComponent implements OnInit {
         })
 
     }
-    openComplaintForm(id) {
+    openComplaintForm(id: any) {
         this.treatmentId = id;
-        this.isAdd = false;
         this.showTreatmentForm = !this.showTreatmentForm;
     }
     returnPage() {
@@ -308,11 +382,11 @@ export class TreatmentPalnComponent implements OnInit {
         this.getTreatmentList();
     }
     workdones: any;
-    toggleExpandRow(row) {
+    toggleExpandRow(row: any) {
         this.table.rowDetail.toggleExpandRow(row);
     }
 
-    onDetailToggle(event) {
+    onDetailToggle(event: any) {
     }
     ngOnDestroy(): void {
         this._unsubscribeAll.next();

@@ -30,7 +30,7 @@ export class DealerAddComponent implements OnInit, OnDestroy {
     this._unsubscribeAll.complete();
   }
 
-  redirect(event) {
+  redirect(event: any) {
     console.log('> redirect ---> ', event);
     this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/dealer/list';
     this.router.navigateByUrl(this.returnUrl);

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DCRM.Common.Entity;
+﻿namespace DCRM.Common.Entity;
 
 public class AppointmentRequest
 {
@@ -33,7 +30,7 @@ public class AppointmentRequest
 
     public TimeSpan Start_Time { get; set; }
 
-    public string End_Time { get; set; }
+    public string? End_Time { get; set; }
 
     public string? Meeting_Notes { get; set; }
 

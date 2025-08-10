@@ -51,21 +51,29 @@
                         </ng-template>
                     </ngx-datatable-column>
 
-                    <ngx-datatable-column name="Mr. No" prop="mr_Number" [width]="50"></ngx-datatable-column>
-                    <ngx-datatable-column name="Name" prop="name" [width]="150"></ngx-datatable-column>
+                    <ngx-datatable-column name="Mr. No" prop="mr_Number" [width]="100">
+                            <ng-template let-row="row" ngx-datatable-cell-template>
+                              <a [routerLink]="['/admin/patient/preview/', row.id]">{{ row.mr_Number }}</a>
+                            </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Name" prop="name" [width]="200">
+                          <ng-template let-row="row" ngx-datatable-cell-template>
+                            <a [routerLink]="['/admin/patient/preview/', row.id]">{{ row.name }}</a>
+                          </ng-template>
+                    </ngx-datatable-column>
                     <ngx-datatable-column name="Age" prop="age" [width]="50"></ngx-datatable-column>
-                    <ngx-datatable-column name="Phone" prop="mobile" [width]="50">
+                    <ngx-datatable-column name="Phone" prop="mobile" [width]="100">
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <span>{{row.patientContacts[0].phone1}}</span>
                         </ng-template>
                     </ngx-datatable-column>
                     <ngx-datatable-column name="Address" class="" prop="present_Address" [width]="150">
                         <ng-template ngx-datatable-cell-template let-row="row">
-                            <span>{{row.present_Address}}</span>
+                            <span>{{row.patientContacts[0].address_R}}</span>
                         </ng-template>
                     </ngx-datatable-column>
                    
-                    <ngx-datatable-column name="Prescriptions" [width]="100">
+                    <ngx-datatable-column name="Prescris" [width]="50">
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <a class="mr-1" routerLink="/admin/patient/priscriptions/{{ row.id }}" container="body"
                                placement="top" ngbTooltip="View Prescriptions">

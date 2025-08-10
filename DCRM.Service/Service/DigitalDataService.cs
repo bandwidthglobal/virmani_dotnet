@@ -1,11 +1,6 @@
 ﻿using DCRM.Common.Entity;
 using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Service.Service
 {
@@ -19,7 +14,7 @@ namespace DCRM.Service.Service
 
         public List<Patient_Scans> GetPatientScans(long patientId)
         {
-            List<Patient_Scans> patientScanList = new List<Patient_Scans>();
+            List<Patient_Scans> patientScanList = new();
             patientScanList= _patientScansRepository.GetAll().Where(x=>x.Patient_Id==patientId && x.Status==1).OrderByDescending(x=>x.Id).ToList();
             return patientScanList;
         }

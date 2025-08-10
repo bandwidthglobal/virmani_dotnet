@@ -1,12 +1,7 @@
-﻿using DCRM.Common;
-using DCRM.Common.Dto;
-using DCRM.Common.Entities;
+﻿using DCRM.Common.Entities;
 using DCRM.Common.Request;
 using DCRM.Service.IService;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.Configuration;
 
 namespace DCRM.Api.Controllers
 {
@@ -60,10 +55,6 @@ namespace DCRM.Api.Controllers
         {
             var user_otp = _forgotPasswordService.GetOtp(userOtp);
             string? OtpExpiresTime = _configuration.GetSection("OtpExpires").Value;
-
-            long id = 0;
-              
-
             if (!string.IsNullOrEmpty(user_otp.Otp))
             {
                 var expiresTime = user_otp.CreatedDate.AddMinutes(Convert.ToInt32(OtpExpiresTime));
@@ -71,7 +62,7 @@ namespace DCRM.Api.Controllers
                 {
                     throw new Exception("otp is expired");
                 }
-                id = _forgotPasswordService.MatchOtp(userOtp.Email, user_otp.UserType);
+                long id = _forgotPasswordService.MatchOtp(userOtp.Email, user_otp.UserType);
                 user_otp.EntityId = id;
                 return Ok(user_otp);
             }
@@ -86,10 +77,6 @@ namespace DCRM.Api.Controllers
         {
             var user_otp = _forgotPasswordService.GetOtp(userOtp);
             string? OtpExpiresTime = _configuration.GetSection("OtpExpires").Value;
-
-            long id = 0;
-
-
             if (!string.IsNullOrEmpty(user_otp.Otp))
             {
                 var expiresTime = user_otp.CreatedDate.AddMinutes(Convert.ToInt32(OtpExpiresTime));
@@ -97,7 +84,7 @@ namespace DCRM.Api.Controllers
                 {
                     return BadRequest("otp is expired");
                 }
-                id = _forgotPasswordService.MatchOtp(userOtp.PhoneNumber, user_otp.UserType);
+                long id = _forgotPasswordService.MatchOtp(userOtp.PhoneNumber, user_otp.UserType);
                 user_otp.EntityId = id;
                 return Ok(user_otp);
             }

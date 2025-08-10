@@ -1,15 +1,11 @@
-﻿using DCRM;
-using DCRM.Api.Models;
-using DCRM.Common;
+﻿using DCRM.Common;
 using DCRM.Common.Dto;
 using DCRM.Common.Entity;
 using DCRM.Common.Request;
 using DCRM.Common.RequestModel;
 using DCRM.Repository.IRepository;
-using DCRM.Repository.Repository;
 using DCRM.Service.IService;
 using Microsoft.Extensions.Configuration;
-using System.Numerics;
 
 namespace DCRM.Service.Service
 {
@@ -54,35 +50,37 @@ namespace DCRM.Service.Service
 
 
             var list=  _doctorRepository.GetAll();
-            DoctorDto doctorDto = new DoctorDto();
-            List<DoctorDto> doctorLis=new List<DoctorDto>();
+            _ = new DoctorDto();
+            List<DoctorDto> doctorLis=new();
             foreach (var doctor in list.ToList())
             {
-                doctorDto = new DoctorDto();
-                doctorDto.Id = doctor.Id;
-                doctorDto.User_Id = doctor.User_Id;
-                doctorDto.Name = doctor.Name;
-                doctorDto.Email = doctor.Email;
-                doctorDto.Thumb = doctor.Thumb;
-                doctorDto.Qualification = doctor.Qualification;
-                doctorDto.Age = doctor.Age;
-                doctorDto.Gender = doctor.Gender;
-                doctorDto.Blood_Group = doctor.Blood_Group;
-                doctorDto.Marital_Status = doctor.Marital_Status;
-                doctorDto.Dob = doctor.Dob;
-                doctorDto.Phone1 = doctor.Phone1;
-                doctorDto.Phone2 = doctor.Phone2;
-                doctorDto.Phone3 = doctor.Phone3;
-                doctorDto.Phone4 = doctor.Phone4;
-                doctorDto.Pan_Number = doctor.Pan_Number;
-                doctorDto.Gst_Number = doctor.Gst_Number;
-                doctorDto.Speciality = doctor.Speciality;
-                doctorDto.Role = doctor.Role;
-                doctorDto.Updated_At = doctor.Updated_At;
-                doctorDto.DoctorInsuranceDetailList = _doctorRepository.GetDoctorInsuranceDetailList(Convert.ToInt32(doctor.Id));
-                doctorDto.DoctorBankDetailList = _doctorRepository.GetDoctorBankDetailList(Convert.ToInt32(doctor.Id));
-                doctorDto.DoctorsVaccinationList = _doctorRepository.GetDoctorVaccinationList(Convert.ToInt32(doctor.Id));
-                doctorDto.DoctorsAddressList = _doctorRepository.GetDoctorsAddressDetailList(Convert.ToInt32(doctor.Id));
+                DoctorDto doctorDto = new()
+                {
+                    Id = doctor.Id,
+                    User_Id = doctor.User_Id,
+                    Name = doctor.Name,
+                    Email = doctor.Email,
+                    Thumb = doctor.Thumb,
+                    Qualification = doctor.Qualification,
+                    Age = doctor.Age,
+                    Gender = doctor.Gender,
+                    Blood_Group = doctor.Blood_Group,
+                    Marital_Status = doctor.Marital_Status,
+                    Dob = doctor.Dob,
+                    Phone1 = doctor.Phone1,
+                    Phone2 = doctor.Phone2,
+                    Phone3 = doctor.Phone3,
+                    Phone4 = doctor.Phone4,
+                    Pan_Number = doctor.Pan_Number,
+                    Gst_Number = doctor.Gst_Number,
+                    Speciality = doctor.Speciality,
+                    Role = doctor.Role,
+                    Updated_At = doctor.Updated_At,
+                    DoctorInsuranceDetailList = _doctorRepository.GetDoctorInsuranceDetailList(Convert.ToInt32(doctor.Id)),
+                    DoctorBankDetailList = _doctorRepository.GetDoctorBankDetailList(Convert.ToInt32(doctor.Id)),
+                    DoctorsVaccinationList = _doctorRepository.GetDoctorVaccinationList(Convert.ToInt32(doctor.Id)),
+                    DoctorsAddressList = _doctorRepository.GetDoctorsAddressDetailList(Convert.ToInt32(doctor.Id))
+                };
                 doctorLis.Add(doctorDto);
             }
             return doctorLis;
@@ -97,31 +95,33 @@ namespace DCRM.Service.Service
         {
 
             var doctor =  _doctorRepository.Get(id);
-            DoctorDto doctorDto = new DoctorDto();
-            doctorDto.Id = doctor.Id;
-            doctorDto.User_Id = doctor.User_Id;
-            doctorDto.Name = doctor.Name;
-            doctorDto.Email = doctor.Email;
-            doctorDto.Thumb = doctor.Thumb;
-            doctorDto.Qualification = doctor.Qualification;
-            doctorDto.Age = doctor.Age;
-            doctorDto.Gender = doctor.Gender;
-            doctorDto.Blood_Group = doctor.Blood_Group;
-            doctorDto.Marital_Status = doctor.Marital_Status;
-            doctorDto.Dob = doctor.Dob;
-            doctorDto.Phone1 = doctor.Phone1;
-            doctorDto.Phone2 = doctor.Phone2;
-            doctorDto.Phone3 = doctor.Phone3;
-            doctorDto.Phone4 = doctor.Phone4;
-            doctorDto.Pan_Number = doctor.Pan_Number;
-            doctorDto.Gst_Number = doctor.Gst_Number;
-            doctorDto.Speciality = doctor.Speciality;
-            doctorDto.Role = doctor.Role;
-            doctorDto.Updated_At = doctor.Updated_At;
-            doctorDto.DoctorInsuranceDetailList = _doctorRepository.GetDoctorInsuranceDetailList(Convert.ToInt32(doctor.Id));
-            doctorDto.DoctorBankDetailList = _doctorRepository.GetDoctorBankDetailList(Convert.ToInt32(doctor.Id));
-            doctorDto.DoctorsVaccinationList = _doctorRepository.GetDoctorVaccinationList(Convert.ToInt32(doctor.Id));
-            doctorDto.DoctorsAddressList = _doctorRepository.GetDoctorsAddressDetailList(Convert.ToInt32(doctor.Id));
+            DoctorDto doctorDto = new()
+            {
+                Id = doctor.Id,
+                User_Id = doctor.User_Id,
+                Name = doctor.Name,
+                Email = doctor.Email,
+                Thumb = doctor.Thumb,
+                Qualification = doctor.Qualification,
+                Age = doctor.Age,
+                Gender = doctor.Gender,
+                Blood_Group = doctor.Blood_Group,
+                Marital_Status = doctor.Marital_Status,
+                Dob = doctor.Dob,
+                Phone1 = doctor.Phone1,
+                Phone2 = doctor.Phone2,
+                Phone3 = doctor.Phone3,
+                Phone4 = doctor.Phone4,
+                Pan_Number = doctor.Pan_Number,
+                Gst_Number = doctor.Gst_Number,
+                Speciality = doctor.Speciality,
+                Role = doctor.Role,
+                Updated_At = doctor.Updated_At,
+                DoctorInsuranceDetailList = _doctorRepository.GetDoctorInsuranceDetailList(Convert.ToInt32(doctor.Id)),
+                DoctorBankDetailList = _doctorRepository.GetDoctorBankDetailList(Convert.ToInt32(doctor.Id)),
+                DoctorsVaccinationList = _doctorRepository.GetDoctorVaccinationList(Convert.ToInt32(doctor.Id)),
+                DoctorsAddressList = _doctorRepository.GetDoctorsAddressDetailList(Convert.ToInt32(doctor.Id))
+            };
             return doctorDto;
 
             // return await _staffRepository.GetStaffByIdAsync(id); ;
@@ -137,11 +137,13 @@ namespace DCRM.Service.Service
             string password = EncryptionDecryptionUsingSymmetricKey.GenerateRandamPassword();
             request.Password = EncryptionDecryptionUsingSymmetricKey.EncryptString(_configuration.GetSection("PasswordHasKey").Value, password);
             _doctorRepository.Create(request);
-            NotificationRequest notificationRequest = new NotificationRequest();
-            notificationRequest.EmailAddress = request.Email;
-            notificationRequest.UserName = request.Name;
-            notificationRequest.Password = password;
-           _notificationService.SendRegistrationMail(notificationRequest);
+            NotificationRequest notificationRequest = new()
+            {
+                EmailAddress = request.Email,
+                UserName = request.Name,
+                Password = password
+            };
+            _notificationService.SendRegistrationMail(notificationRequest);
             
         }
 
@@ -182,28 +184,30 @@ namespace DCRM.Service.Service
         public List<DoctorDto> GetDoctorsByUserId(int userId)
         {
             var doctorList = _doctorRepository.GetDoctorsByUserId(userId).OrderByDescending(x => x.Id).ToList();
-            DoctorDto doctorDto = new DoctorDto();
-            List<DoctorDto> doctorDtoList = new List<DoctorDto>();
+            DoctorDto doctorDto = new();
+            List<DoctorDto> doctorDtoList = new();
             foreach (var doctor in doctorList)
             {
-                doctorDto = new DoctorDto();
-                doctorDto.Id = doctor.Id;
-                doctorDto.User_Id = doctor.User_Id;
-                doctorDto.Name = doctor.Name;
-                doctorDto.Email = doctor.Email;
-                doctorDto.Thumb = doctor.Thumb;
-                doctorDto.Qualification = doctor.Qualification;
-                doctorDto.Age = doctor.Age;
-                doctorDto.Gender = doctor.Gender;
-                doctorDto.Blood_Group = doctor.Blood_Group;
-                doctorDto.Marital_Status = doctor.Marital_Status;
-                doctorDto.Dob = doctor.Dob;
-                doctorDto.Phone1 = doctor.Phone1;
-                doctorDto.Phone2 = doctor.Phone2;
-                doctorDto.Phone3 = doctor.Phone3;
-                doctorDto.Phone4 = doctor.Phone4;
-                doctorDto.Pan_Number = doctor.Pan_Number;
-                doctorDto.Gst_Number = doctor.Gst_Number;
+                doctorDto = new DoctorDto
+                {
+                    Id = doctor.Id,
+                    User_Id = doctor.User_Id,
+                    Name = doctor.Name,
+                    Email = doctor.Email,
+                    Thumb = doctor.Thumb,
+                    Qualification = doctor.Qualification,
+                    Age = doctor.Age,
+                    Gender = doctor.Gender,
+                    Blood_Group = doctor.Blood_Group,
+                    Marital_Status = doctor.Marital_Status,
+                    Dob = doctor.Dob,
+                    Phone1 = doctor.Phone1,
+                    Phone2 = doctor.Phone2,
+                    Phone3 = doctor.Phone3,
+                    Phone4 = doctor.Phone4,
+                    Pan_Number = doctor.Pan_Number,
+                    Gst_Number = doctor.Gst_Number
+                };
                 doctorDto.Marital_Status = doctor.Marital_Status;
                 doctorDto.Speciality = doctor.Speciality;
                 doctorDto.Role = doctor.Role;

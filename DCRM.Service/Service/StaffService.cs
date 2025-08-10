@@ -1,15 +1,11 @@
-﻿using DCRM;
-using DCRM.Api.Models;
-using DCRM.Common;
+﻿using DCRM.Common;
 using DCRM.Common.Dto;
-using DCRM.Common.Entities;
 using DCRM.Common.Entity;
 using DCRM.Common.Request;
 using DCRM.Common.RequestModel;
 using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
 using Microsoft.Extensions.Configuration;
-using System.Text;
 
 namespace DCRM.Service.Service
 {
@@ -61,7 +57,7 @@ namespace DCRM.Service.Service
         /// <returns></returns>
         public StaffDto Get(int id)
         {
-            StaffDto staffDto = new StaffDto();
+            StaffDto staffDto = new();
             var staff =  _staffRepository.Get(id);
             if (staff != null)
             {
@@ -106,10 +102,12 @@ namespace DCRM.Service.Service
             long id= _staffRepository.Create(staffRequest);
             if (id>0)
             {
-                NotificationRequest notificationRequest = new NotificationRequest();
-                notificationRequest.EmailAddress = staffRequest.Email;
-                notificationRequest.UserName = staffRequest.Name;
-                notificationRequest.Password = password;
+                NotificationRequest notificationRequest = new()
+                {
+                    EmailAddress = staffRequest.Email,
+                    UserName = staffRequest.Name,
+                    Password = password
+                };
                 _notificationService.SendRegistrationMail(notificationRequest);
             }
             return id;
@@ -152,8 +150,8 @@ namespace DCRM.Service.Service
         public List<StaffDto> GetStaffsByUserId(int userId)
         {
             var staffList = _staffRepository.GetStaffsByUserId(userId).OrderByDescending(x => x.Id);
-            StaffDto staffDto = new StaffDto();
-            List<StaffDto> staffDtoList = new List<StaffDto>();
+            StaffDto staffDto = new();
+            List<StaffDto> staffDtoList = new();
             foreach (var staff in staffList)
             {
                 staffDto.Id = staff.Id;

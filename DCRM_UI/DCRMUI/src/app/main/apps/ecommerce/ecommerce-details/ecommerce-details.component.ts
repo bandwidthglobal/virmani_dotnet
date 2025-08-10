@@ -14,10 +14,10 @@ import { EcommerceService } from 'app/main/apps/ecommerce/ecommerce.service';
 export class EcommerceDetailsComponent implements OnInit {
   // public
   public contentHeader: object;
-  public product;
-  public wishlist;
-  public cartList;
-  public relatedProducts;
+  public product: { isInWishlist: boolean; id: any; isInCart: boolean; };
+  public wishlist: any[];
+  public cartList: any[];
+  public relatedProducts: any[];
 
   // Swiper
   public swiperResponsive: SwiperConfigInterface = {
@@ -62,7 +62,7 @@ export class EcommerceDetailsComponent implements OnInit {
    *
    * @param product
    */
-  toggleWishlist(product) {
+  toggleWishlist(product: { isInWishlist: boolean; id: any; }) {
     if (product.isInWishlist === true) {
       this._ecommerceService.removeFromWishlist(product.id).then(res => {
         product.isInWishlist = false;
@@ -79,7 +79,7 @@ export class EcommerceDetailsComponent implements OnInit {
    *
    * @param product
    */
-  addToCart(product) {
+  addToCart(product: { id: any; isInCart: boolean; }) {
     this._ecommerceService.addToCart(product.id).then(res => {
       product.isInCart = true;
     });

@@ -5,7 +5,7 @@
       [ngClass]="{ 'is-invalid': submitted && control.errors }" />
   </ng-container>
   <ng-container *ngIf="!isDisabled">
-    <input type="text" [formControl]="control" class="form-control" [placeholder]="placeholder"
+    <input type="text" [formControl]="control" class="form-control" [placeholder]="placeholder" [maxlength]="maxLength"
       [ngClass]="{ 'is-invalid': submitted && control.errors }" />
   </ng-container>
   <ng-container *ngFor="let error of control.errors | errorKeys">

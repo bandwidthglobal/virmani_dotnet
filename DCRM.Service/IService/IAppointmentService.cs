@@ -1,16 +1,6 @@
-﻿using DCRM.Api.Models;
-using DCRM.Common;
-using DCRM.Common.Dto;
-using DCRM.Common.Entities;
+﻿using DCRM.Common.Dto;
 using DCRM.Common.Entity;
-using DCRM.Common.Request;
 using DCRM.Common.RequestModel;
-using Demo_Api.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Service.IService
 {

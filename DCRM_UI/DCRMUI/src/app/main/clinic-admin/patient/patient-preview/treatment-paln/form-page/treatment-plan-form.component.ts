@@ -144,6 +144,7 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
                 this.formData.patchValue({ teeth_id: 7 });
             }
             let teeth_id = this.formData.get('teeth_id').value;
+
             if (teeth_id == 3) {
                 this.categoryID = 'continents2';
             } else if (teeth_id == 4) {
@@ -160,6 +161,7 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
         });
         this.formData.teeth_id.setValue(4);
     }
+    
     categoryID: string = 'continents1';
     ITeethCategory: Array<any> = [];
     setTeethCategories() {
@@ -171,7 +173,7 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
         } else {
             this.ITeethCategory = this.TeethCategory.filter(f => !f.teeth_Category_Name.includes('Milk'));
             console.log('> setTeethCategories else ---> ', this.ITeethCategory);
-        }
+        }   
     }
 
     removeQoutes(background) {
@@ -192,8 +194,9 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
         this.formData.patchValue({ job: event.job_name, jobId: event.jon_id });
     }
     Cancel() {
-        window.location.reload();
+        this.callBackEvent.emit({});
     }
+    
     saveForm(): void {
         this.submitted = true;
         let toothNumber = '';
@@ -242,10 +245,10 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
         }
     }
 
-    getRecord_teechinfo(id, teeth_note, image) {
+    getRecord_teechinfo(id, teeth_note, teeth_Number) {
 
-        let img = image.split('.');
-        let str = '(' + img[0] + ') ' + teeth_note;
+        //let img = image.split('.');
+        let str = '(' + teeth_Number + ') ' + teeth_note;
         console.log('> str ---> ', str);
         this.setToothNumber(str);
     }
@@ -256,7 +259,11 @@ export class TreatmentPlanFormComponent implements OnInit, OnDestroy {
         console.log('> toothNumber ---> ', this.toothNumber);
     }
 
-    removeToothNumber(idx) {
+    // redirect() {
+    //     const returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/patient/preview';
+    //     this.router.navigateByUrl(returnUrl);
+    // }
+    removeToothNumber(idx: any) {
         this.toothNumber.splice(idx, 1);
     }
 };

@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
 
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 
 import { CoreConfigService } from '@core/services/config.service';
@@ -32,8 +31,8 @@ export class PatientAppointmentsComponent implements OnInit, OnDestroy {
     // private
     private tempData = [];
     private _unsubscribeAll: Subject<any>;
-    public rows;
-    public tempFilterData;
+    public rows: any[];
+    public tempFilterData: any[];
     public previousStatusFilter = '';
     public _snippetCodeConfirmText = snippet.snippetCodeConfirmText;
     isOpen: boolean = true;
@@ -47,6 +46,7 @@ export class PatientAppointmentsComponent implements OnInit, OnDestroy {
      */
     constructor(private router: Router, private _patientListService: PatientPreviewService, private _coreConfigService: CoreConfigService, private _route: ActivatedRoute) {
         this._unsubscribeAll = new Subject();
+        document.title = "Patient: " + this._patientListService.patientData.name + "-Appointments";
     }
 
     // Public Methods
@@ -57,7 +57,7 @@ export class PatientAppointmentsComponent implements OnInit, OnDestroy {
      *
      * @param event
      */
-    filterUpdate(event) {
+    filterUpdate(event: { target: { value: string; }; }) {
 
         const val = event.target.value.toLowerCase();
 
@@ -81,7 +81,7 @@ export class PatientAppointmentsComponent implements OnInit, OnDestroy {
      *
      * @param event
      */
-    filterByStatus(event) {
+    filterByStatus(event: { value: any; }) {
         const filter = event ? event.value : '';
         this.previousStatusFilter = filter;
         this.tempFilterData = this.filterRows(filter);
@@ -93,7 +93,7 @@ export class PatientAppointmentsComponent implements OnInit, OnDestroy {
      *
      * @param statusFilter
      */
-    filterRows(statusFilter): any[] {
+    filterRows(statusFilter: string): any[] {
         // Reset search on select change
         this.searchValue = '';
 

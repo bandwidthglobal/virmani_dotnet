@@ -1,8 +1,6 @@
 ﻿using DCRM.Common.RequestModel;
 using DCRM.Service.IService;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace DCRM.Api.Controllers
 {

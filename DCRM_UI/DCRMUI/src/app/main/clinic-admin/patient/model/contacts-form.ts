@@ -1,5 +1,4 @@
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import * as vMODEL from './validation';
 
 export interface IContactsFormModel {
     id?: any;
@@ -70,7 +69,7 @@ export class IContactsForm extends FormGroup {
             fb.group({
                 id: [model?.id],
                 patient_Id: [model?.patient_Id],
-                phone1: [model?.phone1, [Validators.minLength(10), Validators.maxLength(10), Validators.required]],
+                phone1: [model?.phone1, [Validators.minLength(10), Validators.maxLength(10)]],
                 phone2: [model?.phone2, [Validators.minLength(10), Validators.maxLength(10)]],
                 phone3: [model?.phone3, [Validators.minLength(10), Validators.maxLength(10)]],
                 phone4: [model?.phone4, [Validators.minLength(10), Validators.maxLength(10)]],
@@ -78,11 +77,11 @@ export class IContactsForm extends FormGroup {
                 email2: [model?.email2, Validators.email],
                 address_R: [model?.address_R],
                 city_R: [model?.city_R],
-                zip_R: [model?.zip_R, [Validators.minLength(6), Validators.maxLength(6)]],
+                zip_R: [model?.zip_R],
                 country_R: [model?.country_R],
                 address_O: [model?.address_O],
                 city_O: [model?.city_O],
-                zip_O: [model?.zip_O, [Validators.minLength(6), Validators.maxLength(6)]],
+                zip_O: [model?.zip_O],
                 country_O: [model?.country_O],
                 address_Other: [model?.address_Other],
                 city_Other: [model?.city_Other],

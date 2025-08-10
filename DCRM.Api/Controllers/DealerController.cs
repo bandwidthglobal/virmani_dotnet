@@ -1,13 +1,8 @@
-﻿using AutoMapper;
-using DCRM.Common.Dto;
+﻿using DCRM.Common.Dto;
 using DCRM.Common.Entity;
-using DCRM.Common;
 using DCRM.Service.IService;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using DCRM.Service.Service;
 using DCRM.Common.Authorization;
-using DCRM.Api.Models;
 
 namespace DCRM.Api.Controllers
 {
@@ -33,8 +28,7 @@ namespace DCRM.Api.Controllers
         [HttpGet("GetAll")]
         public IEnumerable<DealerDto> GetAll()
         {
-            var user = Request.HttpContext.Items["User"] as User;
-            if (user != null)
+            if (Request.HttpContext.Items["User"] is User user)
             {
                 userId = user.Id;
             }
@@ -45,8 +39,7 @@ namespace DCRM.Api.Controllers
         [HttpGet("Get/{id}")]
         public DealerRequest Get(int id)
         {
-            var user = Request.HttpContext.Items["User"] as User;
-            if (user != null)
+            if (Request.HttpContext.Items["User"] is User user)
             {
                 userId = user.Id;
             }
@@ -58,8 +51,7 @@ namespace DCRM.Api.Controllers
         [HttpPost("Create")]
         public IActionResult Create(DealerRequest request)
         {
-            
-            var id = _dealerService.Create(request);
+            _ = _dealerService.Create(request);
             return Ok();
         }
 

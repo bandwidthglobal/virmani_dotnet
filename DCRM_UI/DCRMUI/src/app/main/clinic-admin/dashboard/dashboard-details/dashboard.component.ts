@@ -8,8 +8,6 @@ import { CoreConfigService } from '@core/services/config.service';
 
 import { DashboardService } from 'app/main/clinic-admin/dashboard/dashboard-details/dashboard.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BeforeOpenEvent } from '@sweetalert2/ngx-sweetalert2';
-import Swal from 'sweetalert2';
 
 import * as snippet from 'app/main/extensions/sweet-alerts/sweet-alerts.snippetcode';
 @Component({
@@ -33,8 +31,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     // private
     private tempData = [];
     private _unsubscribeAll: Subject<any>;
-    public rows;
-    public tempFilterData;
+    public rows: any[];
+    public tempFilterData: any[];
     public previousStatusFilter = '';
     public _snippetCodeConfirmText = snippet.snippetCodeConfirmText;
     isOpen: boolean = true;
@@ -47,6 +45,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
      */
     constructor(private router: Router, private _dashboardService: DashboardService, private _coreConfigService: CoreConfigService, private _route: ActivatedRoute) {
         this._unsubscribeAll = new Subject();
+        document.title = "Dashboard";
     }
 
     // Public Methods
@@ -57,7 +56,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
      *
      * @param event
      */
-    filterUpdate(event) {
+    filterUpdate(event: { target: { value: string; }; }) {
         // Reset ng-select on search
 
 
@@ -79,7 +78,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
      *
      * @param event
      */
-    filterByStatus(event) {
+    filterByStatus(event: { value: any; }) {
         const filter = event ? event.value : '';
         this.previousStatusFilter = filter;
         this.tempFilterData = this.filterRows(filter);
@@ -91,7 +90,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
      *
      * @param statusFilter
      */
-    filterRows(statusFilter): any[] {
+    filterRows(statusFilter: string): any[] {
         // Reset search on select change
         this.searchValue = '';
 

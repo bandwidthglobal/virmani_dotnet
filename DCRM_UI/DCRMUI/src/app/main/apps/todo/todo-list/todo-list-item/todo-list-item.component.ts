@@ -12,7 +12,7 @@ export class TodoListItemComponent implements OnInit {
   @Input() todo: Todo;
 
   // Public
-  public selected;
+  public selected: any;
 
   /**
    * Constructor
@@ -25,7 +25,7 @@ export class TodoListItemComponent implements OnInit {
    *
    * @param stateRef
    */
-  checkboxStateChange(stateRef) {
+  checkboxStateChange(stateRef: boolean) {
     this.todo.completed = stateRef;
     this._todoService.updateCurrentTodo(this.todo);
   }

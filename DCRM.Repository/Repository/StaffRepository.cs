@@ -1,13 +1,9 @@
 ﻿using DCRM.Common;
-using DCRM.Common.Dto;
 using DCRM.Common.Entity;
 using DCRM.Common.Request;
 using DCRM.Repository.Database;
 using DCRM.Repository.IRepository;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Data.SqlTypes;
 
 namespace DCRM.Repository.Repository
@@ -74,34 +70,36 @@ namespace DCRM.Repository.Repository
                     try
                     {
                         _contex.Database.BeginTransaction();
-                        Staff staff = new Staff();
-                        staff.User_Id = staffRequest.User_Id;
-                        staff.Name = staffRequest.Name;
-                        staff.Email = staffRequest.Email;
-                        staff.Father = staffRequest.Father;
-                        staff.Department = staffRequest.Department;
-                        staff.Designation = staffRequest.Designation;
-                        staff.Mother = staffRequest.Mother;
-                        staff.Gender = staffRequest.Gender;
-                        staff.Blood_Group = staffRequest.Blood_Group;
-                        staff.Marital_Status = staffRequest.Marital_Status;
-                        staff.Date_Of_Joining = staffRequest.Date_Of_Joining;
-                        staff.Dob = staffRequest.Dob;
-                        staff.Phone = staffRequest.Phone;
-                        staff.Gst = staffRequest.Gst;
-                        staff.Pan = staffRequest.Pan;
-                        staff.Thumb = staffRequest.Thumb;
-                        staff.Password = staffRequest.Password;
-                        staff.Qualification = staffRequest.Qualification;
-                        staff.Work_Experience = staffRequest.Work_Experience;
-                        staff.Specialization = staffRequest.Specialization;
-                        staff.Note = staffRequest.Note;
-                        staff.Permanent_Address = staffRequest.Permanent_Address;
-                        staff.Current_Address = staffRequest.Current_Address;
-                        staff.Is_Deleted = 0;
-                        staff.Status = 1;
-                        staff.Created_At = System.DateTime.UtcNow;
-                        _contex.Staffs.Add(staff);
+                    Staff staff = new()
+                    {
+                        User_Id = staffRequest.User_Id,
+                        Name = staffRequest.Name,
+                        Email = staffRequest.Email,
+                        Father = staffRequest.Father,
+                        Department = staffRequest.Department,
+                        Slug = staffRequest.Slug,
+                        Mother = staffRequest.Mother,
+                        Gender = staffRequest.Gender,
+                        Blood_Group = staffRequest.Blood_Group,
+                        Marital_Status = staffRequest.Marital_Status,
+                        Date_Of_Joining = staffRequest.Date_Of_Joining,
+                        Dob = staffRequest.Dob,
+                        Phone = staffRequest.Phone,
+                        Gst = staffRequest.Gst,
+                        Pan = staffRequest.Pan,
+                        Thumb = staffRequest.Thumb,
+                        Password = staffRequest.Password,
+                        Qualification = staffRequest.Qualification,
+                        Work_Experience = staffRequest.Work_Experience,
+                        Specialization = staffRequest.Specialization,
+                        Note = staffRequest.Note,
+                        Permanent_Address = staffRequest.Permanent_Address,
+                        Current_Address = staffRequest.Current_Address,
+                        Is_Deleted = 0,
+                        Status = 1,
+                        Created_At = System.DateTime.UtcNow
+                    };
+                    _contex.Staffs.Add(staff);
                         _contex.SaveChanges();
                         if (staffRequest.StaffInsuranceDetail != null && staffRequest.StaffInsuranceDetail.Count > 0)
                         {

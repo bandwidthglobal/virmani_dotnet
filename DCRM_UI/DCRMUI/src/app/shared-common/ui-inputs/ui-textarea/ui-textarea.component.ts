@@ -14,6 +14,7 @@ export class UiTextareaComponent implements OnInit {
   @Input() placeholder?: string = '';
   @Input() control?: FormControl;
   @Input() messages = validationMessages;
+  @Input() maxLength?: number;
 
   constructor() { }
 

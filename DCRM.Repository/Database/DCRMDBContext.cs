@@ -1,18 +1,7 @@
-﻿using Azure;
-using DCRM.Common;
-using DCRM.Common.Entities;
+﻿using DCRM.Common.Entities;
 using DCRM.Common.Entity;
 using Demo_Api.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Org.BouncyCastle.Bcpg.Sig;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Repository.Database
 {
@@ -93,6 +82,8 @@ namespace DCRM.Repository.Database
         public virtual DbSet<MedicineBrand> Medicine_Brand { get; set; }
 
         public virtual DbSet<MedicineCategory> Medicine_Category { get; set; }
+        public virtual DbSet<MasterData> Master_Data { get; set; }
+        public virtual DbSet<MasterType> Master_Type { get; set; }
 
         public virtual DbSet<Experience> Experiences { get; set; }
 

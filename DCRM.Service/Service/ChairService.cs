@@ -2,11 +2,6 @@
 using DCRM.Common.Entity;
 using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Service.Service
 {
@@ -22,7 +17,7 @@ namespace DCRM.Service.Service
         {
             _repository.Insert(chare);
         }
-        public void delete(int id)
+        public void Delete(int id)
         {
             var chair = _repository.Get(id);
             if (chair != null) {
@@ -39,17 +34,19 @@ namespace DCRM.Service.Service
 
         public List<ChairDto> GetAll()
         {
-            List<ChairDto> chairList = new List<ChairDto>(); 
+            List<ChairDto> chairList = new(); 
            var chairs=_repository.GetAll().OrderByDescending(x=>x.Id).ToList();
             foreach (var item in chairs)
             {
-                ChairDto chair = new ChairDto();
-                chair.Id = item.Id;
-                chair.User_Id = item.User_Id;
-                chair.Name = item.Name;
-                chair.Appoinment_Limit = Convert.ToString(item.Appoinment_Limit);
-                chair.Address = item.Address;
-                chair.Status = "Active";    
+                ChairDto chair = new()
+                {
+                    Id = item.Id,
+                    User_Id = item.User_Id,
+                    Name = item.Name,
+                    Appoinment_Limit = Convert.ToString(item.Appoinment_Limit),
+                    Address = item.Address,
+                    Status = "Active"
+                };
                 if (item.Status == 0)
                 {
                     chair.Status = "Inactive";
@@ -70,17 +67,19 @@ namespace DCRM.Service.Service
 
         public List<ChairDto> GetChairsForDropdown(long userId)
         {
-            List<ChairDto> chairList = new List<ChairDto>();
+            List<ChairDto> chairList = new();
             var chairs = _repository.GetAll().Where(x=>x.User_Id== userId && x.Status==1).OrderByDescending(x => x.Id ).ToList();
             foreach (var item in chairs)
             {
-                ChairDto chair = new ChairDto();
-                chair.Id = item.Id;
-                chair.User_Id = item.User_Id;
-                chair.Name = item.Name;
-                chair.Appoinment_Limit = Convert.ToString(item.Appoinment_Limit);
-                chair.Address = item.Address;
-                chair.Status = "Active";
+                ChairDto chair = new()
+                {
+                    Id = item.Id,
+                    User_Id = item.User_Id,
+                    Name = item.Name,
+                    Appoinment_Limit = Convert.ToString(item.Appoinment_Limit),
+                    Address = item.Address,
+                    Status = "Active"
+                };
                 if (item.Status == 0)
                 {
                     chair.Status = "Inactive";

@@ -2,12 +2,6 @@
 using DCRM.Common.Entity;
 using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
-using Demo_Api.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Service.Service
 {
@@ -24,23 +18,25 @@ namespace DCRM.Service.Service
         }
         public List<LabDataDto> GetLabDataList(long patientId)
         {
-            List<LabDataDto> labDataDtoList= new List<LabDataDto>();
+            List<LabDataDto> labDataDtoList= new();
             var labDataList = _labDataRepository.GetAll().Where(x => x.Patient_Id == patientId && x.Is_Deleted==0).ToList();
             foreach(var item in labDataList)
             {
-                LabDataDto labDataDto = new LabDataDto();
-                labDataDto.Patient_Id = item.Patient_Id;
-                labDataDto.Arch=item.Arch;
-                labDataDto.Prosthesis_Type = item.Prosthesis_Type;
-                labDataDto.Teeth_Number = item.Teeth_Number;
-                labDataDto.Impression_Date = item.Impression_Date;
-                labDataDto.Lab_Instructions = item.Lab_Instructions;
-                labDataDto.Shade = item.Shade;
-                labDataDto.Due_Date = item.Due_Date;
-                labDataDto.Notes = item.Notes;
-                labDataDto.Send_Date = item.Send_Date;
-                labDataDto.Created_At = item.Created_At;
-                labDataDto.Laboratory_Name = item.Laboratory_Name;
+                LabDataDto labDataDto = new()
+                {
+                    Patient_Id = item.Patient_Id,
+                    Arch = item.Arch,
+                    Prosthesis_Type = item.Prosthesis_Type,
+                    Teeth_Number = item.Teeth_Number,
+                    Impression_Date = item.Impression_Date,
+                    Lab_Instructions = item.Lab_Instructions,
+                    Shade = item.Shade,
+                    Due_Date = item.Due_Date,
+                    Notes = item.Notes,
+                    Send_Date = item.Send_Date,
+                    Created_At = item.Created_At,
+                    Laboratory_Name = item.Laboratory_Name
+                };
                 labDataDtoList.Add(labDataDto);
                 var doctor = _doctorRepository.Get(item.Id).Name;
                 if (doctor!=null)

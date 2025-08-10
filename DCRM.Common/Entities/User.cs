@@ -1,16 +1,10 @@
 ﻿using DCRM.Common.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace DCRM.Common.Entity
 {
     public partial class User:BaseEntity
     {
-        public int Id { get; set; }
+        public new int Id { get; set; }
 
         public int Parent_Id { get; set; }
 

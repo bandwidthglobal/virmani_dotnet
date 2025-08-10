@@ -8,7 +8,6 @@ import { CoreConfigService } from '@core/services/config.service';
 
 import { DrugListService } from 'app/main/clinic-admin/drug/drug-list/drug-list.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BeforeOpenEvent } from '@sweetalert2/ngx-sweetalert2';
 import { BadStockAddComponent } from 'app/main/clinic-admin/drug/drug-list/bad-stock-add/bad-stock-add.component';
 import Swal from 'sweetalert2';
 
@@ -34,8 +33,8 @@ export class DrugListComponent implements OnInit, OnDestroy {
     // private
     private tempData = [];
     private _unsubscribeAll: Subject<any>;
-    public rows;
-    public tempFilterData;
+    public rows: any[];
+    public tempFilterData: any[];
     public previousStatusFilter = '';
     display: string = "none";
     public _snippetCodeConfirmText = snippet.snippetCodeConfirmText;
@@ -54,6 +53,7 @@ export class DrugListComponent implements OnInit, OnDestroy {
      */
     constructor(private router: Router, private _drugListService: DrugListService, private _coreConfigService: CoreConfigService, private _route: ActivatedRoute) {
         this._unsubscribeAll = new Subject();
+        document.title = "Drug";
     }
 
     // Public Methods
@@ -64,7 +64,7 @@ export class DrugListComponent implements OnInit, OnDestroy {
      *
      * @param event
      */
-    filterUpdate(event) {
+    filterUpdate(event: { target: { value: string; }; }) {
         const val = event.target.value.toLowerCase();
         // filter our data
         const temp = this.tempData.filter(function (d) {
@@ -85,7 +85,7 @@ export class DrugListComponent implements OnInit, OnDestroy {
      *
      * @param event
      */
-    filterByStatus(event) {
+    filterByStatus(event: { value: any; }) {
         const filter = event ? event.value : '';
         this.previousStatusFilter = filter;
         this.tempFilterData = this.filterRows(filter);
@@ -97,7 +97,7 @@ export class DrugListComponent implements OnInit, OnDestroy {
      *
      * @param statusFilter
      */
-    filterRows(statusFilter): any[] {
+    filterRows(statusFilter: string): any[] {
         // Reset search on select change
         this.searchValue = '';
 
@@ -177,14 +177,14 @@ export class DrugListComponent implements OnInit, OnDestroy {
     ngAfterViewInit(): void {
         this.receiveElm = this.receiveModal.nativeElement as HTMLElement;
     }
-    addBadStock(id) {
+    addBadStock(id: any) {
         this.isBad = true;
         this.isStock = false;
         this.drugId = id;
         this.receiveElm.classList.add('show');
         this.receiveElm.style.width = '100vw';
     }
-    addStock(id) {
+    addStock(id: any) {
         this.isBad = false;
         this.isStock = true;
         this.drugId = id;

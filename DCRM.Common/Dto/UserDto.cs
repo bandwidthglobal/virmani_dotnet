@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DCRM.Common.Dto
+﻿namespace DCRM.Common.Dto
 {
     public class UserDto
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
-        public int Parent_Id { get; set; }
+        public int? Parent_Id { get; set; }
 
         public string? Name { get; set; }
 
@@ -99,7 +92,7 @@ namespace DCRM.Common.Dto
 
         public string? Google_Analytics { get; set; }
 
-        public int Enable_Appointment { get; set; }
+        public int? Enable_Appointment { get; set; }
 
         public int? Enable_Rating { get; set; }
 

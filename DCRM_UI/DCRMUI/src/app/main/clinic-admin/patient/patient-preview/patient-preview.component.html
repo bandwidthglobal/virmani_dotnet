@@ -3,16 +3,28 @@
             <section id="basic-tabs-components pdl-10" class="invoice-add-wrapper">
                 <div class="row">
                     <div class="col-xl-12 col-md-8 col-12">
-                        <div class="card invoice-preview-card">
+                        <div class="card invoice-preview-card">-
                             <div class="card-body invoice-padding pb-0">
                                 <div class="col-xl-9 col-md-8 col-12"><div><h3 class="text-primary invoice-logo">Patient Details</h3></div></div>
                                 <div class="row pdl-10">
+                                    <div class="col-md-4 col-12">
+                                        <div class="user-avatar-section">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="ng-star-inserted">
+                                                    <img *ngIf="apiData.thumb!=null" height="150" width="150" alt="User avatar" class="img-fluid rounded" src="{{apiData.thumb}}">
+                                                    <img *ngIf="apiData.thumb==null" height="150" width="150" alt="User avatar" class="img-fluid rounded" src="assets/front/img/avatar.png">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                     <div class="col-xl-12 col-lg-12 font-weight-bold">
                                         <h3>{{apiData.name}}</h3>
                                         <span *ngIf="apiData.patientContacts.length>0">{{apiData.patientContacts[0].address_R}}</span>
                                         <p>{{apiData.mr_Number}}</p>
                                     </div>
-
+                                    
+                                    
                                     <div class="col-xl-12 col-lg-12">
                                         <div class="row mt-30">
                                             <div class="col-xl-5 col-lg-12 font-weight-bold">
@@ -41,12 +53,12 @@
                                         <div class="row">
                                             <div class="col-xl-5 col-lg-12 font-weight-bold">
                                                 <p>
-                                                    Referred By: , Referrer Name: <strong *ngIf="apiData.patientContacts.length>0">{{apiData.patientContacts[0].reffered_By}}</strong>
+                                                    Referred By: <strong *ngIf="apiData.patientContacts.length>0">{{apiData.patientContacts[0].reffered_By}}</strong>
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
-
+                                </div>
 
                                 </div>
                                 <div class="row match-height mt-30">
@@ -54,7 +66,7 @@
                                     <div class="col-xl-12 col-lg-12">
                                         <ul ngbNav #navFilled="ngbNav" class="nav-tabs nav-fill">
                                             <li ngbNavItem>
-                                                <a ngbNavLink>Patient Info</a>
+                                                <a ngbNavLink target="_blank" class="btn btn-primary mr-2 btn-primary-tab">Patient Info</a>
                                                 <ng-template ngbNavContent>
                                                     <p>
                                                         <app-patientinfo></app-patientinfo>
@@ -62,7 +74,7 @@
                                                 </ng-template>
                                             </li>
                                             <li ngbNavItem>
-                                                <a ngbNavLink>Appointments</a>
+                                                <a ngbNavLink target="_blank" class="btn btn-primary mr-2 btn-primary-tab" >Appointments</a>
                                                 <ng-template ngbNavContent>
                                                     <p>
                                                         <app-patient-appointments></app-patient-appointments>
@@ -70,7 +82,7 @@
                                                 </ng-template>
                                             </li>
                                             <li ngbNavItem>
-                                                <a href="javascript:void(0)" ngbNavLink>Treatment Plan</a>
+                                                <a href="javascript:void(0)" ngbNavLink target="_blank" class="btn btn-primary mr-2 btn-primary-tab">Treatment & Work Done</a>
                                                 <ng-template ngbNavContent>
                                                     <p>
                                                         <app-treatment-paln [DiagnosisData]="DiagnosisData"
@@ -79,7 +91,7 @@
                                                 </ng-template>
                                             </li>
                                             <li ngbNavItem>
-                                                <a ngbNavLink>Work Done History</a>
+                                                <a ngbNavLink target="_blank" class="btn btn-primary mr-2 btn-primary-tab">Work Done History</a>
                                                 <ng-template ngbNavContent>
                                                     <p>
                                                         <app-workdonehistory></app-workdonehistory>
@@ -87,7 +99,7 @@
                                                 </ng-template>
                                             </li>
                                             <li ngbNavItem>
-                                                <a ngbNavLink>Payments</a>
+                                                <a ngbNavLink target="_blank" class="btn btn-primary mr-2 btn-primary-tab">Payments</a>
                                                 <ng-template ngbNavContent>
                                                     <p>
                                                         <app-payments></app-payments>
@@ -103,7 +115,7 @@
                     </ng-template>
                 </li>-->
                                             <li ngbNavItem>
-                                                <a ngbNavLink>Digital Data</a>
+                                                <a ngbNavLink target="_blank" class="btn btn-primary mr-2 btn-primary-tab">Digital Data</a>
                                                 <ng-template ngbNavContent>
                                                     <p>
                                                         <app-digitaldata></app-digitaldata>
@@ -111,7 +123,7 @@
                                                 </ng-template>
                                             </li>
                                             <li ngbNavItem>
-                                                <a ngbNavLink>Priscriptions</a>
+                                                <a ngbNavLink target="_blank" class="btn btn-primary mr-2 btn-primary-tab">Prescription</a>
                                                 <ng-template ngbNavContent>
                                                     <p>
                                                         <app-priscriptions></app-priscriptions>

@@ -8,11 +8,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class ChatService {
   public contacts: any[];
   public chats: any[];
-  public userProfile;
+  public userProfile: any[] | PromiseLike<any[]>;
   public isChatOpen: Boolean;
   public chatUsers: any[];
-  public selectedChat;
-  public selectedChatUser;
+  public selectedChat: any;
+  public selectedChatUser: any;
 
   public onContactsChange: BehaviorSubject<any>;
   public onChatsChange: BehaviorSubject<any>;
@@ -141,7 +141,7 @@ export class ChatService {
    *
    * @param id
    */
-  selectedChats(id) {
+  selectedChats(id: any) {
     const selectChat = this.chats.find(chat => chat.userId === id);
 
     // If Chat is Avaiable of Selected Id
@@ -168,7 +168,7 @@ export class ChatService {
    * @param id
    * @param chat
    */
-  createNewChat(id, chat) {
+  createNewChat(id: any, chat: { message: any; time?: string; senderId?: any; }) {
     const newChat = {
       userId: id,
       unseenMsgs: 0,
@@ -193,7 +193,7 @@ export class ChatService {
    *
    * @param id
    */
-  openChat(id) {
+  openChat(id: any) {
     this.isChatOpen = true;
     this.onChatOpenChange.next(this.isChatOpen);
     this.selectedChats(id);
@@ -204,7 +204,7 @@ export class ChatService {
    *
    * @param chats
    */
-  updateChat(chats) {
+  updateChat(chats: { chat?: any[]; id?: any; }) {
     return new Promise<void>((resolve, reject) => {
       this._httpClient.post('api/chat-chats/' + chats.id, { ...chats }).subscribe(() => {
         this.getChats();

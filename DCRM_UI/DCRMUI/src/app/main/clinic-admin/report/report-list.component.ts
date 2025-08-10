@@ -13,7 +13,7 @@ import { ReportService } from 'app/main/clinic-admin/report/report-list.service'
 })
 export class ReportComponent implements OnInit {
   // Public
-  public rows;
+  public rows: any[];
   public selectedOption = 10;
   public ColumnMode = ColumnMode;
     public temp = [];
@@ -36,6 +36,7 @@ export class ReportComponent implements OnInit {
     @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
     @ViewChild('workdoneModal', { static: false }) workdoneModal: ElementRef;//RECEIVE
     workdoneElm: HTMLElement;
+loading: any;
   /**
    * Constructor
    *
@@ -48,6 +49,7 @@ export class ReportComponent implements OnInit {
     private _coreConfigService: CoreConfigService
   ) {
     this._unsubscribeAll = new Subject();
+    document.title = "Payments";
   }
     ngAfterViewInit(): void {
         this.workdoneElm = this.workdoneModal.nativeElement as HTMLElement;
@@ -62,7 +64,7 @@ export class ReportComponent implements OnInit {
    *
    * @param event
    */
-  filterUpdate(event) {
+  filterUpdate(event: { target: { value: string; }; }) {
     // Reset ng-select on search
 
     const val = event.target.value.toLowerCase();
@@ -84,49 +86,102 @@ export class ReportComponent implements OnInit {
   }
     public searchDoctorName: any = '';
     public searchPatientName: any = '';
+    public searchStartDate: any = '';
+    public searchEndDate: any = '';
+
     searchData() {
         debugger;
-        let temp;
-        if (this.searchDoctorName != '' || this.searchPatientName.toLowerCase() != '') {
-            if (this.searchDoctorName != '' && this.searchPatientName.toLowerCase() == '') {
+        let temp: any[];
+        if (this.searchDoctorName != '' || this.searchPatientName.toLowerCase() != '' ||   this.searchStartDate != '' || this.searchEndDate != '') {
+            if (this.searchDoctorName != '' && this.searchPatientName.toLowerCase() == '' &&  this.searchStartDate == '' && this.searchEndDate == '') {
                 temp = this.tempData.filter(u =>
                     u.doctorName.toLowerCase() == this.searchDoctorName.toLowerCase());
             }
-            else if (this.searchDoctorName == '' && this.searchPatientName.toLowerCase() != '') {
+            else if (this.searchDoctorName == '' && this.searchPatientName.toLowerCase() != '' &&  this.searchStartDate == '' && this.searchEndDate == '') {
                 temp = this.tempData.filter(u =>
                     u.patientName.toLowerCase() == this.searchPatientName.toLowerCase());
             }
+             else if (this.searchDoctorName == '' && this.searchPatientName.toLowerCase() == '' && this.searchStartDate != '' && this.searchEndDate == '') {
+              temp = this.tempData.filter(u =>
+                  u.workDoneDate.split("T")[0] >= this.searchStartDate);
+          }
+          else if ( this.searchDoctorName == '' && this.searchPatientName.toLowerCase() == '' && this.searchStartDate == '' && this.searchEndDate != '') {
+            temp = this.tempData.filter(u =>
+                u.workDoneDate.split("T")[0] <=  this.searchEndDate);
+        }
             else {
                 temp = this.tempData.filter(u =>
                     u.doctorName.toLowerCase() == this.searchDoctorName.toLowerCase() && u.patientName.toLowerCase() == this.searchPatientName.toLowerCase());
             }
+                     
             this.rows = temp;
             this.table.offset = 0;
         }
-        else {
-            this.rows = this.tempData;
-            this.table.offset = 0;
+        else if ( this.searchStartDate != '' || this.searchEndDate != ''){
+          
+          if (this.searchStartDate != '' && this.searchEndDate == '') {
+            temp = this.tempData.filter(u =>
+                u.workDoneDate.split("T")[0] >= this.searchStartDate);
         }
-        
-           
-           
+        else if (this.searchStartDate == '' && this.searchEndDate != '') {
+            temp = this.tempData.filter(u =>
+                u.workDoneDate.split("T")[0] <=  this.searchEndDate);
+        }
+        else {
+            temp = this.tempData.filter(u =>
+                u.workDoneDate.split("T")[0] >= this.searchStartDate && u.workDoneDate.split("T")[0] <= this.searchEndDate);
+        } 
+            this.rows = temp;
+            this.table.offset = 0;
+        }   
+        else
+        {
+          this.rows = this.tempData;
+            this.table.offset = 0;
+        }  
     }
     searchDoctor(event) {
-        if (event.target.options.selectedIndex > 0) {
-            this.searchDoctorName = event.target.options[event.target.options.selectedIndex].text.toLowerCase();
-        }
-        else {
-            this.searchDoctorName = '';
-        }
-    }
+      if (event && event.target) {
+          const selectedOption = event.target.innerText;
+          if (selectedOption) {
+              this.searchDoctorName = selectedOption.toLowerCase();
+          } 
+      } else {
+          this.searchDoctorName = '';
+      }
+  }
+  
     searchPatient(event) {
-        if (event.target.options.selectedIndex > 0) {
-            this.searchPatientName = event.target.options[event.target.options.selectedIndex].text.toLowerCase();
-        }
-        else {
-            this.searchPatientName = '';
-        }
+      if (event && event.target) {
+        const selectedOption = event.target.innerText.split(" (")[0];
+        if (selectedOption) {
+            this.searchPatientName = selectedOption.toLowerCase();
+        } 
+    } else {
+        this.searchPatientName = '';
     }
+}
+ searchByStartDate(event) {
+  if (event && event.target) {
+    const selectedOption = event.target.innerText;
+    if (selectedOption) {
+        this.searchStartDate = selectedOption;
+    } 
+} else {
+    this.searchStartDate = '';
+}
+ }
+
+ searchByEndDate(event) {
+  if (event && event.target) {
+    const selectedOption = event.target.innerText;
+    if (selectedOption) {
+        this.searchEndDate = selectedOption;
+    } 
+} else {
+    this.searchEndDate = '';
+}
+ }
   // Lifecycle Hooks
   // -----------------------------------------------------------------------------------------------------
   /**
@@ -155,7 +210,7 @@ export class ReportComponent implements OnInit {
       }
     });
   }
-    workdoneView(id) {
+    workdoneView(id: any) {
         this.getWorkDoneData(id)
        
     }
@@ -167,7 +222,7 @@ export class ReportComponent implements OnInit {
             this.workdoneElm.style.display = 'none';
         }, 75);
     }
-    getWorkDoneData(id) {
+    getWorkDoneData(id: any) {
         this._reportService.getWorkDone(id).subscribe(res => {
             this.workDoneData = res;
             this.paymentDetailsList = res.paymentDetailsList;
@@ -190,7 +245,14 @@ export class ReportComponent implements OnInit {
             this.doctorList = res;
         })
     }
-  
+    printDiv() {
+      const printContent = document.getElementById("printDiv");
+      const WindowPrt = window.open('', '', 'left=0,top=0,width=900,height=900,toolbar=0,scrollbars=0,status=0');
+      WindowPrt.document.write(printContent.innerHTML);
+      WindowPrt.document.close();
+      WindowPrt.focus();
+      WindowPrt.print();
+  }
   ngOnDestroy(): void {
     // Unsubscribe from all subscriptions
     this._unsubscribeAll.next();

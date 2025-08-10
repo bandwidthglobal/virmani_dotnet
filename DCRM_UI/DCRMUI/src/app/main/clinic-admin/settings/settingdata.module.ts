@@ -16,7 +16,11 @@ const routes: Routes = [
      {
          path: 'prosthesistype',
          loadChildren: () => import('./prosthesis-type/prosthesis-type.module').then(m => m.ProsthesisTypeDataModule)
-    }
+    },
+    {
+        path: 'masterdata',
+        loadChildren: () => import('./master-data/master-data.module').then(m => m.MasterDataModule)
+   }
 ];
 
 @NgModule({

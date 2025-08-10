@@ -1,15 +1,9 @@
 ﻿using DCRM.Common.RequestModel;
 using DCRM.Service.IService;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Identity.Client;
-using MySqlX.XDevAPI.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
-using System.Threading.Tasks;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 
@@ -31,7 +25,7 @@ namespace DCRM.Service.Service
             string password = _configuration.GetSection("SMTPSetting:Password").Value;
             string subject = "Virmani Account";//_configuration.GetSection("SMTPSetting:Subject").Value;
             const string fromEmail = "no-reply@virmani.com";
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.Append("Hi " + notification.UserName);
             sb.Append("<br/>");
             sb.Append("<br/>");
@@ -55,7 +49,7 @@ namespace DCRM.Service.Service
                 DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure,
             };
 
-            using (SmtpClient smtpClient = new SmtpClient(smtpServer))
+            using (SmtpClient smtpClient = new(smtpServer))
             {
                 smtpClient.Credentials = new NetworkCredential(userId, password);
 
@@ -83,7 +77,7 @@ namespace DCRM.Service.Service
                 DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure
             };
 
-            using (SmtpClient smtpClient = new SmtpClient(smtpServer))
+            using (SmtpClient smtpClient = new(smtpServer))
             {
                 smtpClient.Credentials = new NetworkCredential(userId, password);
                 smtpClient.Port = Convert.ToInt32(port);

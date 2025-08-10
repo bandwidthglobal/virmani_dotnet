@@ -1,5 +1,4 @@
-﻿using DCRM;
-using DCRM.Api.Models;
+﻿using DCRM.Api.Models;
 using DCRM.Common;
 using DCRM.Common.Dto;
 using DCRM.Common.Entities;
@@ -73,7 +72,7 @@ namespace DCRM.Service.Service
         {
             var chamber = _chamberRepository.GetAll().Where(x => x.User_Id == 2).FirstOrDefault();
             var user = _userRepository.Get(id);
-            UserDto userDto = new UserDto();
+            UserDto userDto = new();
             if (chamber != null)
             {
                 userDto.Name = user.Name;
@@ -91,12 +90,14 @@ namespace DCRM.Service.Service
         /// <returns></returns>
         public long Create(UserRequest userRequest)
         {
-            User user = new User();
-            user.Name = userRequest.Name;
-            user.Email = userRequest.Email;
-            user.Password = EncryptionDecryptionUsingSymmetricKey.EncryptString(_configuration.GetSection("PasswordHasKey").Value, userRequest.Password);
-            user.Role = userRequest.Role;
-            user.Status =1;
+            User user = new()
+            {
+                Name = userRequest.Name,
+                Email = userRequest.Email,
+                Password = EncryptionDecryptionUsingSymmetricKey.EncryptString(_configuration.GetSection("PasswordHasKey").Value, userRequest.Password),
+                Role = userRequest.Role,
+                Status = 1
+            };
             long id = _userRepository.Create(user);
             return id;
         }

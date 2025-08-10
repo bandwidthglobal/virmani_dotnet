@@ -82,7 +82,7 @@ export class CoreThemeCustomizerComponent implements OnInit, OnDestroy {
     });
 
     // Subscribe to the config changes
-    this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
+    this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe((config: { [key: string]: any; }) => {
       // Update config
       this.coreConfig = config;
 

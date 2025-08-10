@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 import { repeaterAnimation } from 'app/main/apps/invoice/invoice.animation';
 import { CalenderViewService } from '../calendar-view/calendar-view.service';
@@ -20,13 +19,13 @@ import { ToastrService } from 'ngx-toastr';
 export class CalenderViewComponent implements OnInit, OnDestroy {
     // Public
     public url = this.router.url;
-    public urlLastValue;
+    public urlLastValue: any;
     public druFromData:any;
     public sidebarToggleRef = false;
     public paymentSidebarToggle = false;
     public items = [{ itemId: '', itemName: '', itemQuantity: '', itemCost: '' }];
-    public invoiceSelect;
-    public invoiceSelected;
+    public invoiceSelect: any;
+    public invoiceSelected: any;
     public drugForm: UntypedFormGroup;
     public loading = false;
     public submitted = false;
@@ -103,10 +102,10 @@ export class CalenderViewComponent implements OnInit, OnDestroy {
         //});
     }
     
-    onCategorySelected(ob) {
+    onCategorySelected(ob: any) {
 
     }
-    onBrandSelected(ob) {
+    onBrandSelected(ob: any) {
 
     }
     

@@ -1,7 +1,5 @@
 ﻿using DCRM.Common;
 using DCRM.Service.IService;
-using DCRM.Service.Service;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DCRM.Api.Controllers

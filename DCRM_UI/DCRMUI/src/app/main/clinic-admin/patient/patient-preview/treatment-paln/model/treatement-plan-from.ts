@@ -3,7 +3,7 @@ import * as vMODEL from './validation';
 
 export class ITreatmentPlanFormModel {
 
-    id?: any = '';
+    id?: any = 0;
     date?: any = new Date();
     doctor?: any = 0;
     job?: any = '';
@@ -72,9 +72,9 @@ export class ITreatmentPlanForm extends FormGroup {
                     id: [model?.id],
                     date: [model?.date],
                     doctor: [model?.doctor],
-                    job: [model?.job, [Validators.required]],
+                    job: [model?.job],
                     jobId: [model?.jobId],
-                    type: [model?.type, [Validators.required]],
+                    type: [model?.type],
                     status: [model?.status],
                     patientId: [model?.patientId, [Validators.required]],
                     amount: [model?.amount],

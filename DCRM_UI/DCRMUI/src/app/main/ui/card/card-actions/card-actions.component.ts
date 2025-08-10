@@ -25,7 +25,7 @@ export class CardActionsComponent implements OnInit {
    *
    * @param $event
    */
-  reload($event) {
+  reload($event: string) {
     // This is fake API call example for reload
     if ($event === 'reload') {
       console.log($event, ': Start');

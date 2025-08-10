@@ -28,7 +28,7 @@ export class DoctorAddComponent implements OnInit, OnDestroy {
     this._unsubscribeAll.complete();
   }
 
-  redirect(event) {
+  redirect(event: any) {
     console.log('> redirect ---> ', event);
     this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/admin/doctor/list';
     this.router.navigateByUrl(this.returnUrl);

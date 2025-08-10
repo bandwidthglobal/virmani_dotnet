@@ -13,7 +13,7 @@ export class DrugPreviewService implements Resolve<any> {
     medicinCategories: any;
     onMedicinBrandChanged: BehaviorSubject<any>;
     onMedicinCategoriesChanged: BehaviorSubject<any>;
-    id;
+    id: number;
     currentUser: any;
     drugId: any;
     /**

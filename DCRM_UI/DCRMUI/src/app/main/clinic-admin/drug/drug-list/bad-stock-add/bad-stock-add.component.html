@@ -54,7 +54,7 @@
                             <div class="form-group">
                                 <label>Qty <span class="text-danger">*</span></label>
                                 <input type="text" [formControl]="formData.quantity" class="form-control" placeholder=""
-                                       aria-describedby="formData.quantity" tabindex="4"
+                                       aria-describedby="formData.quantity" tabindex="4"[maxlength]=10
                                        [ngClass]="{ 'is-invalid': submitted && formData.quantity.errors }" />
                                 <ng-container *ngFor="let error of formData.quantity.errors ">
                                     <span *ngIf="submitted" class="invalid-class"> {{ messages[error] }}</span>
@@ -64,7 +64,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label>Note</label>
-                                <textarea name="note" class="form-control" [formControl]="formData.note"  aria-describedby="formData.note" tabindex="5"></textarea>
+                                <textarea name="note" class="form-control" [formControl]="formData.note"  aria-describedby="formData.note" tabindex="5" [maxlength]=100></textarea>
                             </div>
                         </div>
 

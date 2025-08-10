@@ -184,7 +184,7 @@ export class CoreSidebarComponent implements OnInit, OnDestroy {
    */
   ngOnInit(): void {
     // Subscribe to app-config changes
-    this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
+    this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe((config: { layout: { type: string; }; }) => {
       this._coreConfig = config;
       if (config.layout.type == 'vertical') {
         this.menuClass = 'vertical-menu-modern';

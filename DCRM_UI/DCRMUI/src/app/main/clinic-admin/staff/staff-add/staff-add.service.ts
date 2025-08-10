@@ -9,7 +9,7 @@ import { User } from '../../../../auth/models';
 export class StaffAddService implements Resolve<any> {
     apiData: any;
     onStaffEditChanged: BehaviorSubject<any>;
-    id;
+    id: any;
     currentUser: any;
 
     /**

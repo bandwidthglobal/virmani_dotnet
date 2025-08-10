@@ -1,11 +1,6 @@
 ﻿using DCRM.Common.Dto;
 using DCRM.Common.Entity;
 using DCRM.Common.RequestModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Service.IService
 {
@@ -22,6 +17,7 @@ namespace DCRM.Service.IService
         void Delete(long id);
 
         void CreateWorkDone(Workdone_New workdone);
+        void UpdateWorkdone(Workdone_New workdone);
 
 
         List<TeethCategory> GetTeethCategories();

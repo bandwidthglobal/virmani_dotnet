@@ -1,13 +1,6 @@
-﻿using DCRM.Common;
-using DCRM.Common.Dto;
+﻿using DCRM.Common.Dto;
+using DCRM.Common.Entities;
 using DCRM.Common.Entity;
-using DCRM.Common.Request;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Repository.IRepository
 {
@@ -28,6 +21,12 @@ namespace DCRM.Repository.IRepository
         List<MedicineBrand> GetMedicineBrands();
 
         List<MedicineCategory> GetMedicineCategoris();
+        void CreateMaster(MasterData obj);
+        void UpdateMaster(MasterData obj);
+        void DeleteMaster(int id);
+        List<MasterDataDto> GetAllMaster();
+        List<MasterType> GetAllMasterType();
+        MasterData GetMaster(int id);
 
     } 
 }

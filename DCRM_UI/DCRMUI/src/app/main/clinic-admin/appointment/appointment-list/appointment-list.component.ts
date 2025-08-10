@@ -8,7 +8,6 @@ import { CoreConfigService } from '@core/services/config.service';
 
 import { AppointmentListService } from 'app/main/clinic-admin/appointment/appointment-list/appointment-list.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BeforeOpenEvent } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
 
 import * as snippet from 'app/main/extensions/sweet-alerts/sweet-alerts.snippetcode';
@@ -32,8 +31,8 @@ export class AppointmentListComponent implements OnInit, OnDestroy {
     // private
     private tempData = [];
     private _unsubscribeAll: Subject<any>;
-    public rows;
-    public tempFilterData;
+    public rows: any[];
+    public tempFilterData: any[];
     public previousStatusFilter = '';
     display: string = "none";
     public _snippetCodeConfirmText = snippet.snippetCodeConfirmText;
@@ -47,6 +46,7 @@ export class AppointmentListComponent implements OnInit, OnDestroy {
      */
     constructor(private router: Router, private _appointmentListService: AppointmentListService, private _coreConfigService: CoreConfigService, private _route: ActivatedRoute) {
         this._unsubscribeAll = new Subject();
+        document.title = "Appointment";
     }
 
     // Public Methods
@@ -57,11 +57,13 @@ export class AppointmentListComponent implements OnInit, OnDestroy {
      *
      * @param event
      */
-    filterUpdate(event) {
+    filterUpdate(event: { target: { value: string; }; }) {
         const val = event.target.value.toLowerCase();
         // filter our data
         const temp = this.tempData.filter(function (d) {
-            return d.serial_Id.toLowerCase().indexOf(val) !== -1
+            return d.serial_Id.toString().indexOf(val) !== -1
+                ||d.id.toString().indexOf(val) !== -1
+                || d.date.toLowerCase().indexOf(val) !== -1
                 || d.patient.name.toLowerCase().indexOf(val) !== -1
                 || !val;
         });
@@ -77,7 +79,7 @@ export class AppointmentListComponent implements OnInit, OnDestroy {
      *
      * @param event
      */
-    filterByStatus(event) {
+    filterByStatus(event: { value: any; }) {
         const filter = event ? event.value : '';
         this.previousStatusFilter = filter;
         this.tempFilterData = this.filterRows(filter);
@@ -89,7 +91,7 @@ export class AppointmentListComponent implements OnInit, OnDestroy {
      *
      * @param statusFilter
      */
-    filterRows(statusFilter): any[] {
+    filterRows(statusFilter: string): any[] {
         // Reset search on select change
         this.searchValue = '';
 
@@ -127,13 +129,14 @@ export class AppointmentListComponent implements OnInit, OnDestroy {
             }
         });
     }
-    delete(id) {
+    delete(id: any) {
         let rowIndex = -1;
         this.tempData.forEach((currentValue, index) => {
             if (currentValue.id == id) {
                 rowIndex = index
             }
         });
+        
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -165,11 +168,11 @@ export class AppointmentListComponent implements OnInit, OnDestroy {
         })
        
     }
-    addBadStock(id) {
+    addBadStock(id: any) {
         //var modal = document.getElementById('basicModal');
         this.display = "block";
     }
-    addStock(id) {
+    addStock(id: any) {
         this.display = "block";
     }
     /**

@@ -10,7 +10,7 @@ import { ChatService } from 'app/main/apps/chat/chat.service';
 })
 export class ChatActiveSidebarComponent implements OnInit {
   // Public
-  public chatUser;
+  public chatUser: any;
 
   /**
    * Constructor
@@ -28,7 +28,7 @@ export class ChatActiveSidebarComponent implements OnInit {
    *
    * @param name
    */
-  toggleSidebar(name) {
+  toggleSidebar(name: string) {
     this._coreSidebarService.getSidebarRegistry(name).toggleOpen();
   }
 

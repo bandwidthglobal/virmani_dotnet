@@ -40,8 +40,8 @@ export class DiagnosisTestListComponent implements OnInit, OnDestroy {
     // private
     private tempData = [];
     private _unsubscribeAll: Subject<any>;
-    public rows;
-    public tempFilterData;
+    public rows: any[];
+    public tempFilterData: any[];
     public previousStatusFilter = '';
 
     /**
@@ -53,6 +53,7 @@ export class DiagnosisTestListComponent implements OnInit, OnDestroy {
      */
     constructor(private _listService: DiagnosisTestListService, private _coreConfigService: CoreConfigService) {
         this._unsubscribeAll = new Subject();
+        document.title = "Diagnosis Test";
     }
 
     // Public Methods
@@ -63,7 +64,7 @@ export class DiagnosisTestListComponent implements OnInit, OnDestroy {
      *
      * @param event
      */
-    filterUpdate(event) {
+    filterUpdate(event: { target: { value: string; }; }) {
         this.selectedStatus = this.selectStatus[0];
         const val = event.target.value.toLowerCase();
         const temp = this.tempData.filter(function (d) {
@@ -82,7 +83,7 @@ export class DiagnosisTestListComponent implements OnInit, OnDestroy {
      *
      * @param event
      */
-    filterByStatus(event) {
+    filterByStatus(event: { value: any; }) {
         const filter = event ? event.value : '';
         this.previousStatusFilter = filter;
         this.tempFilterData = this.filterRows(filter);
@@ -94,7 +95,7 @@ export class DiagnosisTestListComponent implements OnInit, OnDestroy {
      *
      * @param statusFilter
      */
-    filterRows(statusFilter): any[] {
+    filterRows(statusFilter: string): any[] {
         // Reset search on select change
         this.searchValue = '';
 
@@ -106,7 +107,7 @@ export class DiagnosisTestListComponent implements OnInit, OnDestroy {
         });
     }
 
-    delete(id) {
+    delete(id: any) {
         let rowIndex = -1;
         this.tempData.forEach((currentValue, index) => {
             if (currentValue.id == id) {

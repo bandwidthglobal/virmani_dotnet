@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DCRM.Common.Entity;
+﻿namespace DCRM.Common.Entity;
 
 public partial class Dealer
 {
@@ -13,15 +10,15 @@ public partial class Dealer
 
     public string Own_Name_1 { get; set; } = null!;
 
-    public string Own_Name_2 { get; set; } = null!;
+    public string? Own_Name_2 { get; set; } = null!;
 
     public string Phone1 { get; set; } = null!;
 
-    public string Phone2 { get; set; } = null!;
+    public string? Phone2 { get; set; } = null!;
 
     public string Email1 { get; set; } = null!;
 
-    public string Email2 { get; set; } = null!;
+    public string? Email2 { get; set; }
 
     public string Address_R { get; set; } = null!;
 
@@ -63,9 +60,9 @@ public partial class Dealer
 
     public string? Staff_Email4 { get; set; }
 
-    public string Gst_Number { get; set; } = null!;
+    public string? Gst_Number { get; set; }
 
-    public string Pan_Number { get; set; } = null!;
+    public string? Pan_Number { get; set; }
 
     public string? Image { get; set; }
 

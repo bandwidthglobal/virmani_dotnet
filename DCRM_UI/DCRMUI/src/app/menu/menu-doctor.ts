@@ -13,7 +13,7 @@ export const menuDoctor: CoreMenu[] = [
         children: [
             {
                 id: 'dashboards',
-                title: 'Dashboards',
+                title: 'Dashboard',
                 translate: 'MENU.APPS.Dashboards',
                 type: 'item',
                 icon: 'home',

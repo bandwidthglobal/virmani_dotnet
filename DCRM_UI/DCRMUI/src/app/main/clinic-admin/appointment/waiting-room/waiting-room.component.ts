@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@ang
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 import { WaitingRoomService } from '../waiting-room/waiting-room.service';
 import { CoreConfigService } from '../../../../../@core/services/config.service';
@@ -55,6 +54,7 @@ export class WaitingRoomComponent implements OnInit, OnDestroy {
      */
     constructor(private router: Router, private _appointmentListService: WaitingRoomService, private _coreConfigService: CoreConfigService, private _route: ActivatedRoute) {
         this._unsubscribeAll = new Subject();
+        document.title = "Waiting Room";
     }
 
 //    // Public Methods
@@ -85,7 +85,7 @@ export class WaitingRoomComponent implements OnInit, OnDestroy {
         // Whenever the filter changes, always go back to the first page
         this.table.offset = 0;
     }
-    getRowClass = (row) => {
+    getRowClass = (row: { appointment_Status: number; }) => {
         if (row.appointment_Status == 5) {
             return {
                 'row-color': row.appointment_Status == 5,
@@ -105,7 +105,7 @@ export class WaitingRoomComponent implements OnInit, OnDestroy {
      *
      * @param event
      */
-    filterByStatus(event) {
+    filterByStatus(event: { value: any; }) {
         const filter = event ? event.value : '';
         this.previousStatusFilter = filter;
         this.tempFilterData = this.filterRows(filter);
@@ -117,7 +117,7 @@ export class WaitingRoomComponent implements OnInit, OnDestroy {
      *
      * @param statusFilter
      */
-    filterRows(statusFilter): any[] {
+    filterRows(statusFilter: string): any[] {
         // Reset search on select change
         this.searchValue = '';
 
@@ -169,7 +169,7 @@ export class WaitingRoomComponent implements OnInit, OnDestroy {
     //        }
     //    }
     //}
-    changeAppointmentStatus(evnt, id) {
+    changeAppointmentStatus(evnt: { target: { value: any; }; }, id: any) {
         debugger;
         this._appointmentListService.ChangeAppointmentStatus(id, evnt.target.value).subscribe(res => {
             this.getData();

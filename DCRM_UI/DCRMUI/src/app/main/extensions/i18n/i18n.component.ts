@@ -61,7 +61,7 @@ export class I18nComponent implements OnInit {
    *
    * @param language
    */
-  setLanguage(language) {
+  setLanguage(language: string) {
     this._translateService.use(language);
   }
 

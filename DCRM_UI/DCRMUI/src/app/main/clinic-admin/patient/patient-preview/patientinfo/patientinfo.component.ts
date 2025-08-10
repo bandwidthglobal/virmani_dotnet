@@ -1,8 +1,7 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PatientPreviewService } from '../patient-preview.service';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-patientinfo',
@@ -24,8 +23,10 @@ export class PatientinfoComponent implements OnInit {
    * @param {CoreSidebarService} _coreSidebarService
    * @param {CalendarService} _calendarService
    */
-    constructor(private _patientPreviewService: PatientPreviewService, private route: ActivatedRoute,) {}
-
+    constructor(private _patientPreviewService: PatientPreviewService, private route: ActivatedRoute,)
+     {
+      document.title = "Patient: " + this._patientPreviewService.patientData.name + "-PatientInfo";
+    }
   // Lifecycle Hooks
   // -----------------------------------------------------------------------------------------------------
 

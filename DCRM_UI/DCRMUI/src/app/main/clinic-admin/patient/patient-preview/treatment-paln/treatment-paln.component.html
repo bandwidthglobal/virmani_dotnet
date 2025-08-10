@@ -62,29 +62,95 @@
                                     <table class="table table-bordered table-sm">
                                         <thead class="table-dark" >
                                             <tr>
+                                                <td>Date</td>
                                                 <td>Doctor</td>
                                                 <td>Due</td>
                                                 <td>Discount</td>
                                                 <td>Total</td>
+                                                <td>Paid</td>
+                                                <td>Balance</td>
                                                 <td>Status</td>
-                                                <td>Date</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let workdone of row.workdones">
+                                                <td>{{workdone.date}}</td>
                                                 <td>{{workdone.doctorName}}</td>
                                                 <td>{{workdone.amtDueCurrentWork}}</td>
                                                 <td>{{workdone.discount}}</td>
                                                 <td>{{workdone.totalAmt}}</td>
+                                                <td>{{workdone.paidAmount}}</td>
+                                                <td>{{workdone.balanceAmount}}</td>
                                                 <td>{{workdone.workdoneStatus}}</td>
-                                                <td>{{workdone.date}}</td>
                                             </tr>
                                         </tbody>
+                                        <tr>
+                                            <td>Grand Total</td>
+                                            <td>-</td>
+                                            <td>{{totalDueAmount}}</td>
+                                            <td>{{totalDiscountAmount}}</td>
+                                            <td>{{totalRowAmt}}</td>
+                                            <td>{{totalPaidAmount}}</td>
+                                            <td>{{totalBalanceAmount}}</td>
+                                            <td>-</td>
+                                        </tr>
 
                                     </table>
                                 </div>
                             </ng-template>
                         </ngx-datatable-row-detail>
+                        <ngx-datatable-column name="Actions" [width]="200" [sortable]="false">
+                            <ng-template ngx-datatable-cell-template let-row="row">
+                                <div class="d-flex align-items-center col-actions">
+                                    <a class="mr-1 btn btn-primary btn-sm" style="width:120px;" (click)="addWorkDone(row.id,row.amount,row.teethNumber,row.job,row.doctorName, row.doctor,row.workdones, row.treatmentStatus)" href="javascript:void(0)" container="body"
+                                       placement="top" ngbTooltip="Work Done">
+                                        Work Done
+                                    </a>
+                                    <br />
+                                    <a class="mr-1" (click)="openComplaintForm(row.id)" container="body"
+                                       placement="top" ngbTooltip="Edit">
+                                        <i size="18" data-feather="edit"></i>
+                                    </a>
+                                    <a class="mr-1" href="javascript:void(0)" (click)="delete(row.id,row.patientId)" container="body"
+                                       placement="top" ngbTooltip="Delete">
+                                        <i size="18" data-feather="trash"></i>
+                                    </a>
+
+                                </div>
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Date" prop="date" [width]="100">
+                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                <div class="row">
+                                    <div class="col-12">{{row.date | date: 'dd/MM/yyyy'}}</div>
+                                </div>
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Sitting" prop="sitting" [width]="70">
+                            <ng-template class="text-center" contenteditable="true" ngx-datatable-cell-template e let-rowIndex="rowIndex" let-value="value" let-row="row">
+                                <span *ngIf="!editable" (dblclick)="editable = true;" style="width:50px!important;border:0;cursor:pointer"> {{row.sitting}} </span>
+                                <input type="number" (change)="setSittingValue(row.id,$event)" style="width:50px!important;border:0" autofocus (keyup)="editable==false" value="{{row.sitting}}" *ngIf="editable" />
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Tooth Number" prop="teethNumber"></ngx-datatable-column>
+                        <ngx-datatable-column name="Notes & Diagnosis" prop="tothNot" [width]="170">
+                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                <div *ngIf="!row.expanded">
+                                  {{ value | slice:0:20 }}
+                                  <span *ngIf="value.length > 20">
+                                    <a href="javascript://" (click)="toggleExpand(row)">... Show more</a>
+                                  </span>
+                                </div>
+                                <div *ngIf="row.expanded">
+                                  {{ value }}
+                                </div>
+                              </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Dr. Name" prop="doctorName"></ngx-datatable-column>
+                        <ngx-datatable-column name="Type" prop="type"></ngx-datatable-column>
+                        <ngx-datatable-column name="Treatment Code" prop="job"></ngx-datatable-column>
+                        <ngx-datatable-column name="Estimate" prop="amount" [width]="120"></ngx-datatable-column>
+                        <ngx-datatable-column name="Status" prop="treatmentStatus" [width]="120"></ngx-datatable-column>
                         <ngx-datatable-column [width]="150"
                                               [resizeable]="false"
                                               [sortable]="false"
@@ -104,46 +170,6 @@
                                 </a>
                             </ng-template>
                         </ngx-datatable-column>
-                        <ngx-datatable-column name="Date" prop="date" [width]="150">
-                            <ng-template let-row="row" ngx-datatable-cell-template>
-                                <div class="row">
-                                    <div class="col-12">{{row.date | date: 'dd/MM/yyyy'}}</div>
-                                </div>
-                            </ng-template>
-                        </ngx-datatable-column>
-                        <ngx-datatable-column name="Sitting" [Width]="50" prop="sitting">
-                            <ng-template class="text-center" contenteditable="true" ngx-datatable-cell-template e let-rowIndex="rowIndex" let-value="value" let-row="row">
-                                <span *ngIf="!editable" (dblclick)="editable = true;" style="width:50px!important;border:0;cursor:pointer"> {{row.sitting}} </span>
-                                <input type="number" (change)="setSittingValue(row.id,$event)" style="width:50px!important;border:0" autofocus (keyup)="editable==false" value="{{row.sitting}}" *ngIf="editable" />
-                            </ng-template>
-                        </ngx-datatable-column>
-                        <ngx-datatable-column name="Tooth Number" prop="teethNumber"></ngx-datatable-column>
-                        <ngx-datatable-column name="Notes & Diagnosis" prop="tothNot"></ngx-datatable-column>
-                        <ngx-datatable-column name="Doctor" prop="doctorName"></ngx-datatable-column>
-                        <ngx-datatable-column name="Type" prop="type"></ngx-datatable-column>
-                        <ngx-datatable-column name="Treatment Code" prop="job"></ngx-datatable-column>
-                        <ngx-datatable-column name="App Estimate" prop="amount"></ngx-datatable-column>
-                        <ngx-datatable-column name="Status" prop="treatmentStatus"></ngx-datatable-column>
-                        <ngx-datatable-column name="Actions" [width]="200" [sortable]="false">
-                            <ng-template ngx-datatable-cell-template let-row="row">
-                                <div class="d-flex align-items-center col-actions">
-                                    <a class="mr-1 btn btn-primary btn-sm" style="width:120px;" (click)="addWorkDone(row.id,row.amount,row.teethNumber,row.job)" href="javascript:void(0)" container="body"
-                                       placement="top" ngbTooltip="Work Done">
-                                        Work Done
-                                    </a>
-                                    <br />
-                                    <a class="mr-1" (click)="openComplaintForm(row.id)" container="body"
-                                       placement="top" ngbTooltip="Edit">
-                                        <i size="18" data-feather="edit"></i>
-                                    </a>
-                                    <a class="mr-1" href="javascript:void(0)" (click)="delete(row.id,row.patientId)" container="body"
-                                       placement="top" ngbTooltip="Delete">
-                                        <i size="18" data-feather="trash"></i>
-                                    </a>
-
-                                </div>
-                            </ng-template>
-                        </ngx-datatable-column>
                     </ngx-datatable>
                 </ng-container>
             </div>
@@ -161,7 +187,7 @@
                 </div>
                 <div class="modal-body" style="overflow:auto">
                     <div class="row">
-                        <div class="col-md-12 mb-1"><strong>TOOTH NUMBER:</strong> {{toothNumber}}</div>
+                        <div class="col-md-12 mb-1"><strong>TOOTH NUMBER:</strong> <span [ngClass]="'enableline' ? 'fontColor:red':'fontColor:black'">{{toothNumber}}</span></div>
                         <div class="col-md-12"><strong>JOB:</strong> {{job}}</div>
                     </div>
                     <form id="form-modal-workdone" [formGroup]="workdoneForm"
@@ -173,7 +199,7 @@
                             <div class="clear"></div>
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label><strong>By Doctor</strong></label>
                                         <!-- <input type="text" name="supplier" class="form-control" required> -->
@@ -188,12 +214,14 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Estimated Amount</label>
                                         <input type="text" disabled="disabled"
                                                class="form-control"
                                                tabindex="2"
+                                               [maxlength]=10
+                                               [mask]="'numeric'"
                                                [(ngModel)]="workdone.estimated_Amount"
                                                formControlName="estimated_Amount"
                                                aria-describedby="estimated_Amount" />
@@ -201,11 +229,28 @@
                                     </div>
                                 </div>
 
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Realized treatment cost</label>
+                                        <input type="text" disabled="disabled"
+                                               class="form-control"
+                                               tabindex="2"
+                                               [maxlength]=10
+                                               [mask]="'numeric'"
+                                               [(ngModel)]="workdone.realized_Treatment_Cost"
+                                               formControlName="realized_Treatment_Cost"
+                                               aria-describedby="realized_Treatment_Cost" />
+                                               
+                                    </div>
+                                </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Amount Due for Todays's Work.</label>
+                                        <label>Amount Due for Today's Work.</label>
                                         <input type="text" (change)="chngCurrentwork($event)" class="form-control"
                                                tabindex="3"
+                                               [maxlength]=10
+                                               [mask]="'numeric'"
                                                [(ngModel)]="workdone.current_Work_Amt"
                                                formControlName="current_Work_Amt"
                                                aria-describedby="current_Work_Amt"
@@ -220,6 +265,8 @@
                                         <label>Discount.</label>
                                         <input type="text" (change)="chngDiscount($event)" class="form-control"
                                                tabindex="4"
+                                               [maxLength]=10
+                                               [mask]="'numeric'"
                                                [(ngModel)]="workdone.discount"
                                                formControlName="discount"
                                                aria-describedby="discount" />
@@ -232,6 +279,8 @@
                                         <input type="text" disabled="disabled"
                                                class="form-control"
                                                tabindex="5" value="0"
+                                               [maxLength]=10
+                                               [mask]="'numeric'"
                                                [(ngModel)]="workdone.total_Amt"
                                                formControlName="total_Amt"
                                                aria-describedby="total_Amt" />
@@ -243,22 +292,22 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" checked name="workdone_status" (change)="chamgeStatus(0)" id="observation_new" value="0">
+                                                <input class="form-check-input" type="radio" [checked]= "this.workdone.workdone_Status === 'Observation'" name="workdone_status" (change)="chamgeStatus(0)" id="observation_new" value="0">
                                                 <label class="form-check-label" for="observation_new">
                                                     Observation
                                                 </label>
                                             </div>
 
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="workdone_status" id="completed_new" value="1" (change)="chamgeStatus(1)">
+                                                <input class="form-check-input" type="radio" [checked]= "this.workdone.workdone_Status === 'Completed'" name="workdone_status" id="completed_new" value="1" (change)="chamgeStatus(1)">
                                                 <label class="form-check-label" for="completed_new">
                                                     Completed
                                                 </label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="workdone_status" id="incompleted_new" value="2" (change)="chamgeStatus(2)">
+                                                <input class="form-check-input" type="radio" [checked]= "this.workdone.workdone_Status === 'Incomplete'" name="workdone_status" id="incompleted_new" value="2" (change)="chamgeStatus(2)">
                                                 <label class="form-check-label" for="incompleted_new">
-                                                    Incompleted
+                                                    Incomplete
                                                 </label>
                                             </div>
 
@@ -274,6 +323,7 @@
                                                       tabindex="7"
                                                       rows="5"
                                                       cols="20"
+                                                      [maxlength]=100
                                                       [(ngModel)]="workdone.workdone_Notes"
                                                       formControlName="workdone_Notes"
                                                       aria-describedby="workdone_Notes">
@@ -286,19 +336,22 @@
                             <div class="modal-footer">
                                 <div class="row">
                                     <div class="col-md-3" *ngIf="isWorkdonesave==true">
-                                        <a href="/admin/appointment/add/{{patientId}}/{{workdoneid}}"  target="_blank" class="btn btn-primary">Appointment</a>
+                                        <a href="/admin/appointment/chairview"  target="_blank" class="btn btn-primary">Appointment</a>
                                     </div>
                                     <div class="col-md-3" *ngIf="isWorkdonesave==true">
                                         <a href="/admin/prescription/add/{{patientId}}/{{workdoneid}}"  target="_blank" class="btn btn-primary ml-1">Prescription</a>
                                     </div>
-                                    <div class="col-md-4" *ngIf="isWorkdonesave==false">
-                                        <input type="submit" name="save" value="Save"  class="btn btn-primary ml-1">
+                                    <div class="col-md-2" *ngIf="isWorkdonesave==true">
+                                        <input type="submit" name="save" value="Save"  class="btn btn-primary ml-1" (click)="saveAndShowMessage()">
                                     </div>
                                     <div class="col-md-2">
                                         <button type="button" class="btn btn-danger ml-1" (click)="close()">Close</button>
                                     </div>
                                 </div>
                             </div>
+                            <div *ngIf="isSaved"  style="background-color: #008000; color: #ffffff; padding: 10px; border-radius: 5px;">
+                                <p class="thank-you-message">Thank you for submitting!</p>
+                              </div>
                         </div>
                     </form>
 

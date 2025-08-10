@@ -80,7 +80,7 @@ export class CoreMenuService {
    * @param key
    * @param menu
    */
-  register(key, menu): void {
+  register(key: string, menu: any): void {
     // Confirm if the key already used
     if (this._registry[key]) {
       console.error(`Menu with the key '${key}' already exists. Either unregister it first or use a unique key.`);
@@ -100,7 +100,7 @@ export class CoreMenuService {
    *
    * @param key
    */
-  unregister(key): void {
+  unregister(key: string | number): void {
     // Confirm if the menu exists
     if (!this._registry[key]) {
       console.warn(`Menu with the key '${key}' doesn't exist in the registry.`);
@@ -151,7 +151,7 @@ export class CoreMenuService {
    *
    * @param key
    */
-  setCurrentMenu(key): void {
+  setCurrentMenu(key: string): void {
     // Confirm if the sidebar exists
     if (!this._registry[key]) {
       console.warn(`Menu with the key '${key}' doesn't exist in the registry.`);

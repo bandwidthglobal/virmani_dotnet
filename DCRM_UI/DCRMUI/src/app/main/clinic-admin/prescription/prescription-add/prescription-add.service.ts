@@ -10,7 +10,7 @@ export class PrescriptionAddService implements Resolve<any> {
     apiData: any;
     onDrugChanged: BehaviorSubject<any>;
     onPatientChanged: BehaviorSubject<any>;
-    id;
+    id: any;
     currentUser: any;
     drugList: any;
     patientList: any;

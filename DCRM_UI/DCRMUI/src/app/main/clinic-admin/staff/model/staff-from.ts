@@ -32,7 +32,7 @@ export class StaffFormModel {
   work_Experience?: any = '';
   specialization?: any = '';
   note?: any = '';
-  current_Address?: any = '';
+  current_Address?: any = '-';
   permanent_Address?: any = '';
   pan?: any = '';
   gst?: any = '';
@@ -98,23 +98,23 @@ export class StaffForm extends FormGroup {
           email: [model?.email, [Validators.required,Validators.email]],
           password: [model?.password, [Validators.minLength(8)]],
           role: [model?.role],
-         /* slug: [model?.slug, [Validators.required]],*/
+          slug: [model?.slug,[Validators.required]],
           designation: [model?.designation],
           status: [model?.status],
           department: [model?.department],
           father: [model?.father],
           mother: [model?.mother],
-          gender: [model?.gender, [Validators.required]],
+          gender: [model?.gender],
           marital_Status: [model?.marital_Status],
-          blood_Group: [model?.blood_Group, [Validators.required]],
-          dob: [model?.dob, [Validators.required]],
-          date_Of_Joining: [model?.date_Of_Joining, [Validators.required]],
+          blood_Group: [model?.blood_Group],
+          dob: [model?.dob],
+          date_Of_Joining: [model?.date_Of_Joining],
           phone: [model?.phone, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
           qualification: [model?.qualification],
           work_Experience: [model?.work_Experience],
           specialization: [model?.specialization],
           note: [model?.note],
-          current_Address: [model?.current_Address,[Validators.required]],
+          current_Address: [model?.current_Address],
           permanent_Address: [model?.permanent_Address],
           pan: [model?.pan],
           gst: [model?.gst],

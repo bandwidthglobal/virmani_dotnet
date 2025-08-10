@@ -1,14 +1,7 @@
-﻿using DCRM;
-using DCRM.Api.Models;
-using DCRM.Common;
-using DCRM.Common.Dto;
+﻿using DCRM.Common.Dto;
 using DCRM.Common.Entity;
-using DCRM.Common.Request;
-using DCRM.Common.RequestModel;
 using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
-using Microsoft.Extensions.Configuration;
-using System.Numerics;
 
 namespace DCRM.Service.Service
 {
@@ -60,13 +53,15 @@ namespace DCRM.Service.Service
             var drugs = _drugRepository.GetAll().ToList();
             var patients = _patientRepository.GetAll().ToList();
             var chambers = _chamberRepository.GetAll().ToList();
-            List<PrescriptionDto> prescriptionsList = new List<PrescriptionDto>();
-            PrescriptionDto prescriptionDto = new PrescriptionDto();
+            List<PrescriptionDto> prescriptionsList = new();
+            PrescriptionDto prescriptionDto = new();
             foreach (var item in prescriptions)
             {
-                prescriptionDto = new PrescriptionDto();
-                prescriptionDto.Next_Duration = item.Next_Duration;
-                List<Drug> drugList = new List<Drug>();
+                prescriptionDto = new PrescriptionDto
+                {
+                    Next_Duration = item.Next_Duration
+                };
+                List<Drug> drugList = new();
                 var patientDrugIds = item.Drug_Id.Split(',');
                 foreach (var did in patientDrugIds)
                 {
@@ -102,14 +97,16 @@ namespace DCRM.Service.Service
             var prescriptions = _prescriptionRepository.GetAll().Where(x => x.Patient_Id == patientId);
             var drugs = _drugRepository.GetAll();
             var patients = _patientRepository.GetAll();
-            List<PrescriptionDto> prescriptionsList = new List<PrescriptionDto>();
-            PrescriptionDto prescriptionDto = new PrescriptionDto();
+            List<PrescriptionDto> prescriptionsList = new();
+            PrescriptionDto prescriptionDto = new();
             foreach (var item in prescriptions)
             {
-                prescriptionDto = new PrescriptionDto();
-                prescriptionDto.Next_Duration = item.Next_Duration;
-                prescriptionDto.Id = item.Id;
-                prescriptionDto.Created_At = item.Created_At;
+                prescriptionDto = new PrescriptionDto
+                {
+                    Next_Duration = item.Next_Duration,
+                    Id = item.Id,
+                    Created_At = item.Created_At
+                };
                 var patient = patients.Where(x => x.Id == item.Patient_Id).FirstOrDefault();
                 if (patient != null)
                 {
@@ -125,20 +122,22 @@ namespace DCRM.Service.Service
 
         public PrescriptionDto PrescriptionPreview(long id)
         {
-            PrescriptionDto prescriptionDto = new PrescriptionDto();
+            PrescriptionDto prescriptionDto = new();
             var prescriptions = _prescriptionRepository.Get(id);
             var drugs = _drugRepository.GetAll();
             var patients = _patientRepository.GetAll();
-            List<PrescriptionDto> prescriptionsList = new List<PrescriptionDto>();
+            List<PrescriptionDto> prescriptionsList = new();
             if (prescriptions != null) 
             {
-                prescriptionDto = new PrescriptionDto();
-                prescriptionDto.Next_Duration = prescriptions.Next_Duration;
-                List<DrugDto> drugList = new List<DrugDto>();
+                prescriptionDto = new PrescriptionDto
+                {
+                    Next_Duration = prescriptions.Next_Duration
+                };
+                List<DrugDto> drugList = new();
                 var patientDrugIds = prescriptions.Drug_Id.Split(',');
                 foreach (var did in patientDrugIds)
                 {
-                    DrugDto drugDto=new DrugDto();
+                    DrugDto drugDto=new();
                     var patientDrug = drugs.Where(x => x.Id == Convert.ToInt32(did)).FirstOrDefault();
                     if (patientDrug!=null)
                     {

@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from 'environments/environment';
 import { User } from '../../../../auth/models';
 
@@ -63,6 +62,12 @@ export class AppointmentFormService {
             { id: "30", text: "30 Mints" },
             { id: "45", text: "45 Mints" },
             { id: "60", text: "60 Mints" },
+            { id: "1.5", text: "1.5 Hrs" },
+            { id: "2", text: "2 Hrs" },
+            { id: "2.5", text: "2.5 Hrs" },
+            { id: "3", text: "3 Hrs" },
+            { id: "3.5", text: "3.5 Hrs" },
+            { id: "4", text: "4 Hrs" },
         ];
     }
     getPatientContact(patientId:any) {

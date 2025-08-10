@@ -1,18 +1,12 @@
-﻿using DCRM;
-using DCRM.Api.Models;
-using DCRM.Common;
+﻿using DCRM.Common;
 using DCRM.Common.Dto;
 using DCRM.Common.Entities;
 using DCRM.Common.Entity;
 using DCRM.Common.Request;
-using DCRM.Common.RequestModel;
 using DCRM.Repository.IRepository;
-using DCRM.Repository.Repository;
 using DCRM.Service.IService;
 using Demo_Api.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System.Reflection;
 
 namespace DCRM.Service.Service
 {
@@ -89,8 +83,8 @@ namespace DCRM.Service.Service
             var patientContacts = _contactRepository.GetAll().ToList();
             var patientPayments = _paymentHistoryRepository.GetAll().ToList();
             var patients = _patientRepository.GetAll().Where(x => x.User_Id == userId && x.Is_Delete == 0).ToList();
-            PatientseDto patientseDto = new PatientseDto();
-            List<PatientseDto> patientList = new List<PatientseDto>();
+            PatientseDto patientseDto = new();
+            List<PatientseDto> patientList = new();
             foreach (var patient in patients)
             {
                 patientseDto = new PatientseDto();
@@ -119,8 +113,8 @@ namespace DCRM.Service.Service
                 double totalDebitAmount = 0;
                 foreach (var item in payment)
                 {
-                    totalCreditAmount = totalCreditAmount + item.Credit_Amount;
-                    totalDebitAmount = totalDebitAmount + item.Debit_Amount;
+                    totalCreditAmount += item.Credit_Amount;
+                    totalDebitAmount += item.Debit_Amount;
                 }
                 if (totalDebitAmount > totalCreditAmount)
                 {
@@ -138,7 +132,7 @@ namespace DCRM.Service.Service
                 {
                     patientseDto.PatientContacts = patientContacts.Where(x => x.Patient_Id == patient.Id).ToList();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     throw;
                 }
@@ -188,9 +182,9 @@ namespace DCRM.Service.Service
                 double totalBalence = 0;
                 foreach (var item in payment)
                 {
-                    totalCreditAmount = totalCreditAmount + item.Credit_Amount;
-                    totalDebitAmount = totalDebitAmount + item.Debit_Amount;
-                    totalBalence = totalBalence + item.Balance;
+                    totalCreditAmount += item.Credit_Amount;
+                    totalDebitAmount += item.Debit_Amount;
+                    totalBalence += item.Balance;
                 }
                 if (totalDebitAmount < totalCreditAmount)
                 {
@@ -311,18 +305,20 @@ namespace DCRM.Service.Service
         /// <returns></returns>
         public List<LabDataDto> GetPatientLabData(int patientId)
         {
-            List<Lab_Data> labDataList = new List<Lab_Data>();
-            List<LabDataDto> labDatas = new List<LabDataDto>();
+            List<Lab_Data> labDataList = new();
+            List<LabDataDto> labDatas = new();
             labDataList = _patientRepository.GetPatientLabList().Where(x => x.Patient_Id == patientId).ToList();
             foreach (var item in labDataList)
             {
-                LabDataDto labData = new LabDataDto();
-                labData.Id = item.Id;
-                labData.Doctor_Id = item.Doctor_Id;
-                labData.Patient_Id = item.Patient_Id;
-                labData.Treatment_Id = item.Treatment_Id;
-                labData.Workdone_Id = item.Workdone_Id;
-                labData.Due_Date = item.Due_Date;
+                LabDataDto labData = new()
+                {
+                    Id = item.Id,
+                    Doctor_Id = item.Doctor_Id,
+                    Patient_Id = item.Patient_Id,
+                    Treatment_Id = item.Treatment_Id,
+                    Workdone_Id = item.Workdone_Id,
+                    Due_Date = item.Due_Date
+                };
                 var Prosthesis_Type = _prosthesisRepository.Get(Convert.ToInt32(item.Prosthesis_Type));
                 if (Prosthesis_Type != null)
                 {
@@ -349,71 +345,75 @@ namespace DCRM.Service.Service
         /// <returns></returns>
         public List<TreatmentplanDto> GetPatientTreatmentplanList(int patientId)
         {
-            List<TreatmentplanDto> treatmentplanDtos = new List<TreatmentplanDto>();
+            List<TreatmentplanDto> treatmentplanDtos = new();
 
             var workdonesQuery = from w in _workdoneNewRepository.GetAll().ToList()
-                                 join d in _doctorRepository.GetAll().ToList() on w.Doctor_Id equals d.Id
-                                 select new { w, d };
+                                 //join d in _doctorRepository.GetAll().ToList() on w.Doctor_Id equals d.Id
+                                 select new { w };
             var treatmentplans = from s in _treatmentplansRepository.GetAll().ToList()
-                                 join d in _doctorRepository.GetAll().ToList() on s.Doctor equals d.Id
+                                     // join d in _doctorRepository.GetAll().ToList() on s.Doctor equals d.Id
                                  join c in _teethinfoRepository.GetAll().ToList() on s.Id equals c.Treatmentplans_Id
                                  where s.Patient_Id == patientId
                                  select new
                                  {
 
-                                     Id = s.Id,
+                                     s.Id,
                                      JobId = s.Job_Id,
-                                     Job = s.Job,
+                                     s.Job,
                                      PatientId = s.Patient_Id,
-                                     DoctorName = d.Name,
-                                     Doctor = s.Doctor,
+                                     DoctorName = s.Doctor != 0 ? _doctorRepository.Get(s.Doctor).Name : null,
+                                     s.Doctor,
                                      Sitting = s.Sitting_Status,
-                                     Amount = s.Amount,
+                                     s.Amount,
                                      CreatedAt = s.Created_At,
                                      UpdatedAt = s.Updated_At,
-                                     Date = s.Date,
-                                     Courtesy = s.Courtesy,
-                                     Treatment_Status = s.Treatment_Status,
-                                     Status = s.Status,
-                                     Type = c.Type,
+                                     s.Date,
+                                     s.Courtesy,
+                                     s.Treatment_Status,
+                                     s.Status,
+                                     c.Type,
                                      TeethNumber = c.Teeth_Number_Note,
                                      TothNot = c.Toth_Note,
-                                     Sitting_Status = s.Sitting_Status,
-                                     Created_At = s.Created_At,
-                                     Updated_At = s.Updated_At,
+                                     s.Sitting_Status,
+                                     s.Created_At,
+                                     s.Updated_At,
                                  };
 
             foreach (var treatment in treatmentplans)
             {
-                TreatmentplanDto treatmentplanDto = new TreatmentplanDto();
-                treatmentplanDto.Id = treatment.Id;
-                treatmentplanDto.JobId = treatment.JobId;
-                treatmentplanDto.Job = treatment.Job;
-                treatmentplanDto.PatientId = treatment.PatientId;
-                treatmentplanDto.Doctor = treatment.Doctor;
-                treatmentplanDto.Sitting = treatment.Sitting_Status;
-                treatmentplanDto.Amount = treatment.Amount;
-                treatmentplanDto.DoctorName = treatment.DoctorName;
-                treatmentplanDto.CreatedAt = treatment.Created_At;
-                treatmentplanDto.UpdatedAt = treatment.Updated_At;
-                treatmentplanDto.Date = treatment.Date;
-                treatmentplanDto.Courtesy = treatment.Courtesy;
+                TreatmentplanDto treatmentplanDto = new()
+                {
+                    Id = treatment.Id,
+                    JobId = treatment.JobId,
+                    Job = treatment.Job,
+                    PatientId = treatment.PatientId,
+                    Doctor = treatment.Doctor,
+                    Sitting = treatment.Sitting_Status,
+                    Amount = treatment.Amount,
+                    DoctorName = treatment.DoctorName,
+                    CreatedAt = treatment.Created_At,
+                    UpdatedAt = treatment.Updated_At,
+                    Date = treatment.Date,
+                    Courtesy = treatment.Courtesy
+                };
                 if (treatment.Treatment_Status == 0)
                     treatmentplanDto.TreatmentStatus = "Observation";
                 else if (treatment.Treatment_Status == 1)
                     treatmentplanDto.TreatmentStatus = "Completed";
                 else
-                    treatmentplanDto.TreatmentStatus = "Incompleted";
+                    treatmentplanDto.TreatmentStatus = "Incomplete";
                 treatmentplanDto.Status = treatment.Status;
                 treatmentplanDto.Type = treatment.Type;
                 treatmentplanDto.TeethNumber = treatment.TeethNumber;
                 treatmentplanDto.TothNot = treatment.TothNot;
-                WorkDoneDto workdone_New = new WorkDoneDto();
-                List<WorkDoneDto> WorkDoneList = new List<WorkDoneDto>();
+                WorkDoneDto workdone_New = new();
+                List<WorkDoneDto> WorkDoneList = new();
                 foreach (var item in workdonesQuery.Where(x=>x.w.Treatment_Id== treatment.Id))
                 {
-                    workdone_New = new WorkDoneDto();
-                    workdone_New.DoctorName = item.d.Name;
+                    workdone_New = new WorkDoneDto
+                    {
+                        DoctorName = _doctorRepository.Get(item.w.Doctor_Id).Name
+                    };
                     if (item.w.Workdone_Status==0)
                     {
                         workdone_New.WorkdoneStatus = "Observation";
@@ -424,12 +424,14 @@ namespace DCRM.Service.Service
                     }
                     else
                     {
-                        workdone_New.WorkdoneStatus = "Incompleted";
+                        workdone_New.WorkdoneStatus = "Incomplete";
                     }
                     workdone_New.Discount = item.w.Discount;
                     workdone_New.AmtDueCurrentWork = item.w.Current_Work_Amt.ToString();
                     workdone_New.TotalAmt = item.w.Total_Amt;
                     workdone_New.Date = item.w.Created_At.ToString();
+                    workdone_New.PaidAmount = _paymentHistoryRepository.GetAll().Where(x => x.Patient_Id == patientId && x.Workdone_Id == item.w.Id).FirstOrDefault().Credit_Amount;
+                    workdone_New.BalanceAmount = _paymentHistoryRepository.GetAll().Where(x => x.Patient_Id == patientId && x.Workdone_Id == item.w.Id).FirstOrDefault().Balance;
                     WorkDoneList.Add(workdone_New);
                 }
                 treatmentplanDto.Workdones = WorkDoneList;
@@ -446,7 +448,7 @@ namespace DCRM.Service.Service
         /// <returns></returns>
         public List<WorkDoneDto> GetPatientWorkDoneList(int patientId)
         {
-            List<WorkDoneDto> workdoneList = new List<WorkDoneDto>();
+            List<WorkDoneDto> workdoneList = new();
             var lnQuery = from w in _workdoneNewRepository.GetAll().ToList()
                           join t in _treatmentplansRepository.GetAll().ToList() on w.Treatment_Id equals t.Id
                           join d in _doctorRepository.GetAll().ToList() on t.Doctor equals d.Id
@@ -454,35 +456,38 @@ namespace DCRM.Service.Service
                           where t.Patient_Id == patientId
                           select new
                           {
-                              Id = w.Id,
-                              Current_Work_Amt = w.Current_Work_Amt,
-                              Workdone_Status = w.Workdone_Status,
+                              w.Id,
+                              w.Current_Work_Amt,
+                              w.Workdone_Status,
                               DoctorName = d.Name,
                               Doctor_Id = d.Id,
                               ToothName = te.Teeth_Number_Note,
                               Notesdiagnosis = te.Toth_Note,
-                              Job = t.Job,
-                              Estimated_Amount = w.Estimated_Amount,
-                              Created_At = w.Created_At,
-                              Discount = w.Discount,
+                              t.Job,
+                              w.Estimated_Amount,
+                              w.Created_At,
+                              w.Discount,
+                              _paymentHistoryRepository.GetAll().Where(x => x.Workdone_Id == w.Id).Last().isPrinted,
                           };
 
             foreach (var workdone in lnQuery)
             {
-                WorkDoneDto workDoneDto = new WorkDoneDto();
-                workDoneDto.Id = workdone.Id;
-                workDoneDto.AmtDueCurrentWork = workdone.Current_Work_Amt.ToString();
+                WorkDoneDto workDoneDto = new()
+                {
+                    Id = workdone.Id,
+                    AmtDueCurrentWork = workdone.Current_Work_Amt.ToString()
+                };
                 if (workdone.Workdone_Status == 0)
                 {
                     workDoneDto.WorkdoneStatus = "Observation";
                 }
-                else if (workdone.Workdone_Status == 0)
+                else if (workdone.Workdone_Status == 1)
                 {
                     workDoneDto.WorkdoneStatus = "Completed";
                 }
                 else
                 {
-                    workDoneDto.WorkdoneStatus = "Incompleted";
+                    workDoneDto.WorkdoneStatus = "Incomplete";
                 }
                 workDoneDto.DoctorName = workdone.DoctorName;
                 workDoneDto.Doctor_Id = Convert.ToInt32(workdone.Doctor_Id);
@@ -492,6 +497,7 @@ namespace DCRM.Service.Service
                 workDoneDto.EstimatedAmount = workdone.Estimated_Amount;
                 workDoneDto.Date = Convert.ToString(workdone.Created_At);
                 workDoneDto.Discount = workdone.Discount;
+                workDoneDto.IsPrinted = workdone.isPrinted;
                 workdoneList.Add(workDoneDto);
             }
             return workdoneList.OrderByDescending(x => x.Id).ToList();
@@ -505,20 +511,22 @@ namespace DCRM.Service.Service
         /// <returns></returns>
         public List<PaymentHistoryDto> GetPatientpaymentList(int patientId)
         {
-            List<PaymentHistoryDto> paymentList = new List<PaymentHistoryDto>();
+            List<PaymentHistoryDto> paymentList = new();
             var payments = _paymentHistoryRepository.GetAll().Where(x => x.Patient_Id == patientId).ToList();
             foreach (var item in payments)
             {
-                PaymentHistoryDto paymentHistoryDto = new PaymentHistoryDto();
-                paymentHistoryDto.Id = item.Id;
-                paymentHistoryDto.Date = Convert.ToString(item.Created_At);
-                paymentHistoryDto.Description = item.Description;
-                paymentHistoryDto.Balance = item.Balance;
-                paymentHistoryDto.DebitAmount = item.Debit_Amount;
-                paymentHistoryDto.CreditAmount = item.Credit_Amount;
-                paymentHistoryDto.WorkdoneId = item.Workdone_Id;
-                paymentHistoryDto.PatientId = item.Patient_Id;
-                paymentHistoryDto.DoctorId = item.Doctor_Id;
+                PaymentHistoryDto paymentHistoryDto = new()
+                {
+                    Id = item.Id,
+                    Date = Convert.ToString(item.Created_At),
+                    Description = item.Description,
+                    Balance = item.Balance,
+                    DebitAmount = item.Debit_Amount,
+                    CreditAmount = item.Credit_Amount,
+                    WorkdoneId = item.Workdone_Id,
+                    PatientId = item.Patient_Id,
+                    DoctorId = item.Doctor_Id
+                };
                 var doctor = _doctorRepository.Get(item.Doctor_Id);
                 if (doctor != null)
                 {
@@ -532,7 +540,8 @@ namespace DCRM.Service.Service
                     if (treatment != null)
                     {
                         paymentHistoryDto.ToothCode = treatment.Job;
-                        paymentHistoryDto.RemainingEstimate = treatment.Estimated_Amount - workDoneNew.Current_Work_Amt;
+                        paymentHistoryDto.ToothName = treatment.Print_Tooth_Name;
+                        paymentHistoryDto.RemainingEstimate = treatment.Estimated_Amount != 0 ? treatment.Estimated_Amount - workDoneNew.Current_Work_Amt : 0;
                     }
                 }
                 paymentList.Add(paymentHistoryDto);
@@ -551,9 +560,9 @@ namespace DCRM.Service.Service
 
         }
 
-        public List<DropdownDataDto> NameList(long userId)
+        public List<DropdownDataDto> NameAllList(long userId)
         {
-            return _patientRepository.NameList(userId);
+            return _patientRepository.NameAllList(userId);
         }
 
         public ReferBy GetReferBy(long patientId)

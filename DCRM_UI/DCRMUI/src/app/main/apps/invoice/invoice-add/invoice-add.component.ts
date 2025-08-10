@@ -17,10 +17,10 @@ import { InvoiceAddService } from 'app/main/apps/invoice/invoice-add/invoice-add
 })
 export class InvoiceAddComponent implements OnInit, OnDestroy {
   // public
-  public apiData;
+  public apiData: any;
   public sidebarToggleRef = false;
-  public invoiceSelect;
-  public invoiceSelected;
+  public invoiceSelect: any;
+  public invoiceSelected: any;
 
   public paymentDetails = {
     totalDue: '$12,110.55',
@@ -87,7 +87,7 @@ export class InvoiceAddComponent implements OnInit, OnDestroy {
    *
    * @param id
    */
-  deleteItem(id) {
+  deleteItem(id: number) {
     for (let i = 0; i < this.items.length; i++) {
       if (this.items.indexOf(this.items[i]) === id) {
         this.items.splice(i, 1);
@@ -101,7 +101,7 @@ export class InvoiceAddComponent implements OnInit, OnDestroy {
    *
    * @param name
    */
-  toggleSidebar(name) {
+  toggleSidebar(name: string) {
     this._coreSidebarService.getSidebarRegistry(name).toggleOpen();
   }
 

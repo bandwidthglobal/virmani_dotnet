@@ -11,7 +11,7 @@ import { DealerPreviewService } from 'app/main/clinic-admin/dealer/dealer-previe
 })
 export class DealerPreviewComponent implements OnInit, OnDestroy {
     // Public
-    public dealerData;
+    public dealerData: any;
     public loading = false;
     public returnUrl: string;
     public error = '';

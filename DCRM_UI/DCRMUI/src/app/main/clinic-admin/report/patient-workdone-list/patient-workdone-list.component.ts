@@ -1,7 +1,6 @@
-import { Component, OnInit, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 
 import { CoreConfigService } from '@core/services/config.service';
@@ -27,8 +26,8 @@ export class PatientWorkdoneListComponent implements OnInit {
     public error = '';
     private tempData = [];
     private _unsubscribeAll: Subject<any>;
-    public rows;
-    public tempFilterData;
+    public rows: any[];
+    public tempFilterData: any[];
     public previousStatusFilter = '';
     patientList: any;
     selectCustomSelected: any;
@@ -38,13 +37,20 @@ export class PatientWorkdoneListComponent implements OnInit {
     patientId: any = 0;
     constructor(private router: Router, private _workListService: PatientWorkdonelistService, private _coreConfigService: CoreConfigService, private _route: ActivatedRoute) {
         this._unsubscribeAll = new Subject();
+        document.title = "Patient Workdones";
     }
-    filterUpdate(event) {
+    filterUpdate(event: { target: { value: string; }; }) {
         const val = event.target.value.toLowerCase();
         // filter our data
         const temp = this.tempData.filter(function (d) {
-            return d.mr_Number.toLowerCase().indexOf(val) !== -1
-                || d.name.toLowerCase().indexOf(val) !== -1
+            return d.id.toString().toLowerCase().indexOf(val) !== -1
+                || d.date.toLowerCase().indexOf(val) !== -1
+                || d.toothName.toLowerCase().indexOf(val) !== -1
+                || d.doctorName.toLowerCase().indexOf(val) !== -1
+                || d.notesdiagnosis.toLowerCase().indexOf(val) !== -1
+                || d.treatmentCode.toLowerCase().indexOf(val) !== -1
+                || d.workdoneStatus.toLowerCase().indexOf(val) !== -1
+                || d.amtDueCurrentWork.toString().toLowerCase().indexOf(val) !== -1
                 || !val;
         });
         this.rows = temp;
@@ -55,7 +61,7 @@ export class PatientWorkdoneListComponent implements OnInit {
     ngOnInit(): void {
         this.getPatients();
     }
-    reverseAndTimeStamp(dateString) {
+    reverseAndTimeStamp(dateString: moment.MomentInput) {
         return moment(dateString).format('DD-MM-YYYY');;
     }
     searchData() {
@@ -75,12 +81,12 @@ export class PatientWorkdoneListComponent implements OnInit {
         }
         this.table.offset = 0;
     }
-    searchWorkdone(evt) {
+    searchWorkdone(evt: any) {
         if (this.selectCustomSelected != undefined) {
             this.getData(this.selectCustomSelected);
         }
     }
-    getData(id) {
+    getData(id: any) {
         this.loading = true;
         this._workListService.getWorkDoneHistoryList(id).subscribe(response => {
             this.data = response;

@@ -1,8 +1,4 @@
-﻿using DCRM.Common.Entity;
-using System;
-using System.Collections.Generic;
-
-namespace DCRM.Common.RequestModel;
+﻿namespace DCRM.Common.RequestModel;
 
 public  class TreatmentplanRequest
 {
@@ -46,7 +42,7 @@ public  class TreatmentplanRequest
 
     public DateTime UpdatedAt { get; set; }
     public string? Note_Status { get; set; }
-    public string Ord { get; set; }
-    public string Rmd { get; set; }
-    public string Treatment_Notes { get; set; }
+    public string? Ord { get; set; }
+    public string? Rmd { get; set; }
+    public string? Treatment_Notes { get; set; }
 }

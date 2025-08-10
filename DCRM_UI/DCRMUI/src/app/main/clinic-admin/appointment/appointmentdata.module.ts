@@ -29,6 +29,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { AppointmentListComponent } from 'app/main/clinic-admin/appointment/appointment-list/appointment-list.component';
 import { AppointmentListService } from 'app/main/clinic-admin/appointment/appointment-list/appointment-list.service';
 
@@ -44,6 +46,7 @@ import { AppointmentFormComponent } from './appointment-form/appointment-form.co
 import { AppointmentChairFormComponent } from 'app/main/clinic-admin/appointment/chair-view/appointment-form/appointment-chair-form.component';
 import { AppointmentDownloadComponent } from 'app/main/clinic-admin/appointment/appointment-download/appointment-download.component';
 import { AppointmentDownloadService } from 'app/main/clinic-admin/appointment/appointment-download/appointment-download.service';
+import { AppointmentViewComponent } from './appointment-view/appointment-view.component';
 const routes: Routes = [
     {
         path: 'add',
@@ -91,6 +94,14 @@ const routes: Routes = [
             Ses: AppointmentEditService
         },
         data: { path: 'user-view/:id', animation: 'AppointmentEditComponent' }
+    },
+    {
+        path: 'view/:id',
+        component: AppointmentViewComponent,
+        resolve: {
+            Ses: AppointmentEditService
+        },
+        data: { path: 'user-view/:id', animation: 'AppointmentViewComponent' }
     },
     {
         path: 'edit/chairapointment/:id',
@@ -162,7 +173,8 @@ const routes: Routes = [
         CalenderViewComponent,
         WaitingRoomComponent,
         CalendarComponent,
-        AppointmentChairFormComponent
+        AppointmentChairFormComponent,
+        AppointmentViewComponent
     ],
     imports: [
         CommonModule,
@@ -184,6 +196,8 @@ const routes: Routes = [
         MatInputModule,
         MatPaginatorModule,
         MatSortModule,
+        MatAutocompleteModule,
+        AutocompleteLibModule,
         CoreCommonModule,
         Ng2FlatpickrModule,
         NgxDatatableModule,
@@ -198,7 +212,7 @@ const routes: Routes = [
 
     ],
     providers: [AppointmentListService, AppointmentPreviewService, AppointmentEditService, AppointmentAddService, AppointmentDownloadService,
-        AppointmentChairViewService, SetSscheduleFormService, CalenderViewService, WaitingRoomService, CalendarService
+        AppointmentChairViewService, SetSscheduleFormService, CalenderViewService, WaitingRoomService, CalendarService,AppointmentViewComponent
     ],
     exports: [AppointmentListComponent]
 })

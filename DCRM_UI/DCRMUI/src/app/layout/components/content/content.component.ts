@@ -12,7 +12,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class ContentComponent {
   public coreConfig: any;
-  public animate;
+  public animate: string;
 
   // Private
   private _unsubscribeAll: Subject<any>;
@@ -72,7 +72,7 @@ export class ContentComponent {
    */
   ngOnInit(): void {
     // Subscribe config change
-    this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
+    this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe((config: any) => {
       this.coreConfig = config;
       this.animate = this.coreConfig.layout.animation;
     });

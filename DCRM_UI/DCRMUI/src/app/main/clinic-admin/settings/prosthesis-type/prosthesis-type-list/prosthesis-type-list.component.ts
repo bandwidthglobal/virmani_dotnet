@@ -42,6 +42,7 @@ export class ProsthesisTypeComponent implements OnInit, OnDestroy {
      */
     constructor(private _service: ProsthesisTypeListService, private _coreConfigService: CoreConfigService) {
         this._unsubscribeAll = new Subject();
+        document.title = "Prosthesis-Type";
     }
 
     // Public Methods

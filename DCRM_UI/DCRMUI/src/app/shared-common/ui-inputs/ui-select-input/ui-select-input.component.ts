@@ -19,7 +19,7 @@ export class UiSelectInputComponent implements OnInit {
   @Input() displaykey?: string = '';
   @Input() isMultiple?: boolean = false;
   @Input() submitted?: boolean = false;
-
+  @Input() searchable?: boolean = false;
   constructor() { }
 
   ngOnInit(): void { }

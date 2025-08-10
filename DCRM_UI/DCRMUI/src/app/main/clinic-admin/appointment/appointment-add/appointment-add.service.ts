@@ -9,7 +9,7 @@ import { User } from '../../../../auth/models';
 export class AppointmentAddService implements Resolve<any> {
     apiData: any;
     onAppointmentEditChanged: BehaviorSubject<any>;
-    id;
+    id: any;
     currentUser: any;
 
     /**

@@ -1,13 +1,12 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { Subject } from 'rxjs';
-import { catchError, takeUntil } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 import { repeaterAnimation } from 'app/main/apps/invoice/invoice.animation';
 import { DrugListService } from 'app/main/clinic-admin/drug/drug-list/drug-list.service';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { validationMessages } from 'app/shared-common/pipes/error-message';
+import { UntypedFormGroup } from '@angular/forms';
 import { BadStockForm, BadStockFormModel } from './bad-stock-from-model';
 import { CommonValidationService } from '../../../../../shared-common/services/common-validation.service';
 
@@ -23,12 +22,12 @@ export class BadStockAddComponent implements OnInit, OnDestroy {
 
     public url = this.router.url;
 
-    public urlLastValue;
-    public apiData;
+    public urlLastValue: any;
+    public apiData: any;
     public sidebarToggleRef = false;
     public paymentSidebarToggle = false;
-    public invoiceSelect;
-    public invoiceSelected;
+    public invoiceSelect: any;
+    public invoiceSelected: any;
     public addDrugForm: UntypedFormGroup;
     public loading = false;
     public returnUrl: string;
@@ -42,7 +41,7 @@ export class BadStockAddComponent implements OnInit, OnDestroy {
         pharmacy_Id:0
     };
     @Output('parentModalClose') parentFun: EventEmitter<any> = new EventEmitter();
-    @Input() drugId; 
+    @Input() drugId: any; 
     selectedBatchId = '';
     private _unsubscribeAll: Subject<any>;
 
@@ -72,7 +71,7 @@ export class BadStockAddComponent implements OnInit, OnDestroy {
         this.parentFun.emit();
     }
 
-    getBatchId(evt) {
+    getBatchId(evt: { target: { value: string; }; }) {
         let expiry_Date = '';
         this.selectedBatchId = evt.target.value;
         this.bachNoData.forEach(function (item) {

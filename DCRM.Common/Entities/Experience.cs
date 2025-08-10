@@ -1,6 +1,4 @@
 ﻿using DCRM.Common.Entities;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DCRM.Common.Entity;
@@ -15,5 +13,5 @@ public partial class Experience:BaseEntity
     [Required]
     public string Years { get; set; } = null!;
 
-    public string Details { get; set; } = null!;
+    public string? Details { get; set; } = null!;
 }

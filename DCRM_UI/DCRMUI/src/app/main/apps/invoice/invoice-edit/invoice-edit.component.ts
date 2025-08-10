@@ -19,8 +19,8 @@ import { InvoiceEditService } from 'app/main/apps/invoice/invoice-edit/invoice-e
 export class InvoiceEditComponent implements OnInit, OnDestroy {
   // Public
   public url = this.router.url;
-  public urlLastValue;
-  public apiData;
+  public urlLastValue: string;
+  public apiData: any;
   public sidebarToggleRef = false;
   public paymentSidebarToggle = false;
   public items = [{ itemId: '', itemName: '', itemQuantity: '', itemCost: '' }];
@@ -87,7 +87,7 @@ export class InvoiceEditComponent implements OnInit, OnDestroy {
    *
    * @param id
    */
-  deleteItem(id) {
+  deleteItem(id: number) {
     for (let i = 0; i < this.items.length; i++) {
       if (this.items.indexOf(this.items[i]) === id) {
         this.items.splice(i, 1);
@@ -101,7 +101,7 @@ export class InvoiceEditComponent implements OnInit, OnDestroy {
    *
    * @param name
    */
-  toggleSidebar(name): void {
+  toggleSidebar(name: string): void {
     this._coreSidebarService.getSidebarRegistry(name).toggleOpen();
   }
 

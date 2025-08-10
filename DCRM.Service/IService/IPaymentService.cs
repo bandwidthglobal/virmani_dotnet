@@ -1,11 +1,6 @@
 ﻿using DCRM.Common.Dto;
 using DCRM.Common.Entities;
 using Demo_Api.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Service.IService
 {
@@ -18,6 +13,7 @@ namespace DCRM.Service.IService
         void CreatePaymentWorkdone(Payment_Workdone payment_Workdone);
         void UpdatePaymentWorkdone(Payment_Workdone payment_Workdone);
         void DeletePaymentWorkdone(int id);
+        void isPrinted(long id);
         void Create(Payment_History paymentHistory);
         void Update(Payment_History paymentHistory);
         void Delete(long id);

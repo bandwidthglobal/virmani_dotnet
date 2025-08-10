@@ -352,8 +352,16 @@ export class PatientPreviewService implements Resolve<any> {
             'Authorization': `Bearer ${this.currentUser.jwtToken}`
         });
         const requestOptions = { headers: headers };
-        return this._httpClient.post(`${environment.apiUrl}/Treatmentplan/WorkDone/Create`, payload, requestOptions);
+        if(payload.id > 0)
+        {
+        return this._httpClient.post(`${environment.apiUrl}/Treatmentplan/WorkDone/Update`, payload, requestOptions);
+        }
+        else
+        {
+            return this._httpClient.post(`${environment.apiUrl}/Treatmentplan/WorkDone/Create`, payload, requestOptions);
+        }
     }
+    
     getDoctors(): Observable<any> {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { takeUntil, first } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { RegisterService } from 'app/auth/service/register.service';
 import { CoreConfigService } from '@core/services/config.service';
@@ -112,7 +112,7 @@ export class RegisterComponent implements OnInit {
         });
 
         // Subscribe to config changes
-        this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
+        this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe((config: any) => {
             this.coreConfig = config;
         });
     }

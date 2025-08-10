@@ -1,11 +1,5 @@
-﻿using DCRM.Common.Entity;
-using DCRM.Repository.IRepository;
+﻿using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Service.Service
 {

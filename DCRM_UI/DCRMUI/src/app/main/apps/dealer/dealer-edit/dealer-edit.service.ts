@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class DealerEditService implements Resolve<any> {
   apiData: any;
   onInvoicEditChanged: BehaviorSubject<any>;
-  id;
+  id: number;
 
   /**
    * Constructor

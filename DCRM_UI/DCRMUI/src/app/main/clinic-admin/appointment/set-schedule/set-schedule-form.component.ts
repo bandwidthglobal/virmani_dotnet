@@ -2,12 +2,11 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewEncapsulation } from '@an
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Subject } from 'rxjs';
-import { debounce, takeUntil } from 'rxjs/operators';
 
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SetSscheduleFormService } from './set-schedule-form.service';
-import { SetSscheduleFormModel, scheduledFormModel } from './set-schedule-form.model';
+import { scheduledFormModel } from './set-schedule-form.model';
 
 @Component({
     selector: 'app-set-schedule-form',
@@ -18,7 +17,7 @@ import { SetSscheduleFormModel, scheduledFormModel } from './set-schedule-form.m
 export class SetSscheduleFormComponent implements OnInit, OnDestroy {
     // Public
     public url = this.router.url;
-    public urlLastValue;
+    public urlLastValue: any;
     public druFromData: any;
     public sidebarToggleRef = false;
     public paymentSidebarToggle = false;
@@ -79,6 +78,7 @@ export class SetSscheduleFormComponent implements OnInit, OnDestroy {
         private router: Router,
         private _setSscheduleFormService: SetSscheduleFormService, private _formBuilder: UntypedFormBuilder, private _route: ActivatedRoute, private _toastrService: ToastrService) {
         this._unsubscribeAll = new Subject();
+        document.title = "Schedule";
     }
 
     /**
@@ -170,7 +170,7 @@ export class SetSscheduleFormComponent implements OnInit, OnDestroy {
 
     }
 
-    getDayTime(dayId) {
+    getDayTime(dayId: any) {
        /* this._setSscheduleFormService.getSchedule().subscribe(res => {*/
             this.loading = false;
         debugger;
@@ -224,7 +224,7 @@ export class SetSscheduleFormComponent implements OnInit, OnDestroy {
             debugger;
        /* })*/
     }
-    onChange(event) {
+    onChange(event: { target: { value: number; checked: boolean; }; }) {
        
         if (event.target.value == 1) {
             if (event.target.checked == true) {

@@ -1,7 +1,6 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { CoreConfigService } from '@core/services/config.service';
 import { PatientPrescriptionService } from 'app/main/clinic-admin/report/patient-prescription/patient-prescription.service';
 
@@ -13,7 +12,7 @@ import { PatientPrescriptionService } from 'app/main/clinic-admin/report/patient
 })
 export class PatientPrescriptionComponent implements OnInit {
   // Public
-  public rows;
+  public rows: any[];
   public selectedOption = 10;
   public ColumnMode = ColumnMode;
     public temp = [];
@@ -62,7 +61,7 @@ export class PatientPrescriptionComponent implements OnInit {
    *
    * @param event
    */
-  filterUpdate(event) {
+  filterUpdate(event: { target: { value: string; }; }) {
     // Reset ng-select on search
 
     const val = event.target.value.toLowerCase();
@@ -86,7 +85,7 @@ export class PatientPrescriptionComponent implements OnInit {
     public searchPatientName: any = '';
     searchData() {
         
-        let temp;
+        let temp: any[];
         if (this.searchDoctorName != '' || this.searchPatientName.toLowerCase() != '') {
             if (this.searchDoctorName != '' && this.searchPatientName.toLowerCase() == '') {
                 temp = this.tempData.filter(u =>
@@ -155,7 +154,7 @@ export class PatientPrescriptionComponent implements OnInit {
     //  }
     //});
   }
-    workdoneView(id) {
+    workdoneView(id: any) {
         //this.getWorkDoneData(id)
        
     }
@@ -167,7 +166,7 @@ export class PatientPrescriptionComponent implements OnInit {
         //    this.workdoneElm.style.display = 'none';
         //}, 75);
     }
-    getWorkDoneData(id) {
+    getWorkDoneData(id: any) {
         //this._reportService.getWorkDone(id).subscribe(res => {
         //    this.workDoneData = res;
         //    this.paymentDetailsList = res.paymentDetailsList;

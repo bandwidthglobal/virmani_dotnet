@@ -1,15 +1,8 @@
-﻿using DCRM;
-using DCRM.Api.Models;
-using DCRM.Common;
-using DCRM.Common.Dto;
+﻿using DCRM.Common.Dto;
+using DCRM.Common.Entities;
 using DCRM.Common.Entity;
-using DCRM.Common.Request;
-using DCRM.Common.RequestModel;
 using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
-using Microsoft.Extensions.Configuration;
-using System.Collections.Generic;
-using System.Numerics;
 
 namespace DCRM.Service.Service
 {
@@ -88,6 +81,30 @@ namespace DCRM.Service.Service
             return _drugRepository.GetMedicineCategoris();
         }
 
+        public List<MasterDataDto> GetAllMaster()
+        {
+            return _drugRepository.GetAllMaster();
+        }
+        public List<MasterType> GetAllMasterType()
+        {
+            return _drugRepository.GetAllMasterType();
+        }
+        public void UpdateMaster(MasterData obj)
+        {
+            _drugRepository.UpdateMaster(obj);
+        }
+        public void CreateMaster(MasterData obj)
+        {
+            _drugRepository.CreateMaster(obj);
+        }
+        public void DeleteMaster(int id)
+        {
+            _drugRepository.DeleteMaster(id);
+        }
+        public MasterData GetMaster(int id)
+        {
+            return _drugRepository.GetMaster(id);
+        }
         public List<MedicineBadStock> GetMedicineBadStocks(int drugId)
         {
             var medicineBadStockList = _badStockRepository.GetAll().Where(x => x.Pharmacy_Id == drugId && x.Is_Deleted==0).OrderByDescending(x=>x.Id).ToList();

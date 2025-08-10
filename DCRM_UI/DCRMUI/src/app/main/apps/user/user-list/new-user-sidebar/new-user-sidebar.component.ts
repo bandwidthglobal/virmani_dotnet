@@ -6,9 +6,9 @@ import { CoreSidebarService } from '@core/components/core-sidebar/core-sidebar.s
   templateUrl: './new-user-sidebar.component.html'
 })
 export class NewUserSidebarComponent implements OnInit {
-  public fullname;
-  public username;
-  public email;
+  public fullname: any;
+  public username: any;
+  public email: any;
 
   /**
    * Constructor
@@ -22,7 +22,7 @@ export class NewUserSidebarComponent implements OnInit {
    *
    * @param name
    */
-  toggleSidebar(name): void {
+  toggleSidebar(name: string): void {
     this._coreSidebarService.getSidebarRegistry(name).toggleOpen();
   }
 
@@ -31,7 +31,7 @@ export class NewUserSidebarComponent implements OnInit {
    *
    * @param form
    */
-  submit(form) {
+  submit(form: { valid: any; }) {
     if (form.valid) {
       this.toggleSidebar('new-user-sidebar');
     }

@@ -4,18 +4,8 @@ using DCRM.Common.Entity;
 using DCRM.Common.Request;
 using DCRM.Repository.Database;
 using DCRM.Repository.IRepository;
-
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.IdentityModel.Tokens;
-using Org.BouncyCastle.Asn1.X509;
-using Org.BouncyCastle.Utilities.Encoders;
-using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Data;
-using System.Data.SqlTypes;
-using System.Reflection;
 
 namespace DCRM.Repository.Repository
 {
@@ -169,7 +159,7 @@ namespace DCRM.Repository.Repository
             long phone = Convert.ToInt64(request.PatientContacts[0].Phone1);
             
             _contex.Database.BeginTransaction();
-            Random rnd1 = new Random(6); //seed value 10
+            Random rnd1 = new(6); //seed value 10
             for (int j = 0; j < 4; j++)
             {
                 rnd1.Next();
@@ -177,13 +167,19 @@ namespace DCRM.Repository.Repository
             try
             {
 
-                patient.Chamber_Id = request.Chamber_Id == null ? "123456" : request.Chamber_Id;
-                patient.Mr_Number = request.Mr_Number == null ? "123456" : request.Mr_Number;
+                patient.Chamber_Id = request.Chamber_Id ?? "123456";
+                patient.Mr_Number = string.IsNullOrEmpty(request.Mr_Number) ? GenerateUniqueNumber() : request.Mr_Number;
+                 string GenerateUniqueNumber()
+                {
+                    Random random = new();
+                    string uniqueNumber = new(Enumerable.Range(0, 10).OrderBy(x => random.Next()).Take(6).Select(x => (char)(x + '0')).ToArray());
+                    return uniqueNumber;
+                }
                 patient.Name = request.Name;
                 patient.User_Id = request.User_Id;
                 patient.Slug = request.Slug;
                 patient.Thumb = request.Thumb;
-                patient.Email = request.Email == null ? phone + "@virmani.com" : request.Email;
+                patient.Email = request.Email;
                 patient.Mobile = phone.ToString();
                 patient.Age = Convert.ToInt16(request.Age);
                 patient.Weight = request.Weight;
@@ -212,7 +208,7 @@ namespace DCRM.Repository.Repository
                             {
                                 item.Phone1 = phone;
                             }
-                            item.Relationship_Type = item.Relationship_Type == null ? "Relationship" : item.Relationship_Type;
+                            item.Relationship_Type = string.IsNullOrEmpty(item.Relationship_Type) ? string.Empty : item.Relationship_Type;
                             item.Address_O = string.IsNullOrEmpty(item.Address_O) ? string.Empty : item.Address_O;
                             item.Address_Other = string.IsNullOrEmpty(item.Address_Other) ? string.Empty : item.Address_Other;
                             item.Zip_O = string.IsNullOrEmpty(item.Zip_O) ? "0" : item.Zip_O;
@@ -244,8 +240,7 @@ namespace DCRM.Repository.Repository
                         {
                             item.Patients_Id = patient.Id;
                             item.Created_At = System.DateTime.Now;
-                            item.Updated_At
-                                = System.DateTime.Now;
+                            item.Updated_At = System.DateTime.Now;
                             _contex.Patients_Insurance_Loan.Add(item);
                         }
                         _contex.SaveChanges();
@@ -305,14 +300,14 @@ namespace DCRM.Repository.Repository
             Patientse patient = _contex.Patientses.FirstOrDefault(x => x.Id == request.Id);
             if (patient != null)
             {
-                patient.Chamber_Id = request.Chamber_Id == null ? patient.Chamber_Id : request.Chamber_Id;
+                patient.Chamber_Id = request.Chamber_Id ?? patient.Chamber_Id;
                 patient.UserName = request.User_name;
-                patient.Mr_Number = request.Mr_Number == null ? patient.Mr_Number : request.Mr_Number;
+                patient.Mr_Number = request.Mr_Number ?? patient.Mr_Number;
                 patient.Name = request.Name;
                 patient.UserName = request.User_name;
                 patient.Slug = request.Slug;
                 patient.Thumb = request.Thumb;
-                patient.Email = request.Email == null ? patient.Email : request.Email;
+                patient.Email = request.Email ?? patient.Email;
                 patient.Age = Convert.ToInt16(request.Age);
                 patient.Weight = request.Weight;
                 patient.Sex = request.Sex;
@@ -463,33 +458,33 @@ namespace DCRM.Repository.Repository
 
         public List<Patient_Scans> GetPatientScanList()
         {
-            List<Patient_Scans> patientScans = new List<Patient_Scans>();
-            patientScans = _contex.Patient_Scans.ToList();
+            _ = new List<Patient_Scans>();
+            List<Patient_Scans> patientScans = _contex.Patient_Scans.ToList();
             return patientScans;
         }
         public List<Lab_Data> GetPatientLabList()
         {
-            List<Lab_Data> labdataList = new List<Lab_Data>();
-            labdataList = _contex.Lab_Data.ToList();
+            _ = new List<Lab_Data>();
+            List<Lab_Data> labdataList = _contex.Lab_Data.ToList();
             return labdataList;
         }
 
-        public List<DropdownDataDto> NameList(long userId)
+        public List<DropdownDataDto> NameAllList(long userId)
         {
-            var patients = _contex.Patientses.Where(x => x.User_Id == userId).ToList();
-            DropdownDataDto data = new DropdownDataDto();
-            List<DropdownDataDto> dataList = new List<DropdownDataDto>();
+            var patients = _contex.Patientses.Where(x => x.User_Id == userId && x.Is_Delete == 0).ToList();
+            DropdownDataDto data = new();
+            List<DropdownDataDto> dataList = new();
             foreach (var patient in patients)
             {
-                data = new DropdownDataDto();
-                data.Id = patient.Id; data.Name = patient.Name; dataList.Add(data);
+                data = new DropdownDataDto { Id = patient.Id, Name = patient.Name, Age = patient.Age, Mobile = patient.Mobile, Present_Address = patient.Present_Address};
+                dataList.Add(data);
             }
             return dataList;
         }
 
         public ReferBy GetReferBy(long patientId)
         {
-            ReferBy referBy = new ReferBy();
+            ReferBy referBy = new();
             var contact = _contex.Patients_Contact.FirstOrDefault(x => x.Patient_Id == patientId);
             if (contact != null)
             {

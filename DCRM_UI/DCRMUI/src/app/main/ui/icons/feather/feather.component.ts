@@ -16,8 +16,8 @@ export class FeatherComponent implements OnInit {
   public contentHeader: object;
   public json = require('feather-icons/dist/icons.json');
   public copyCodeStatus: boolean = false;
-  public searchText;
-  public data;
+  public searchText: any;
+  public data: any;
 
   // Private
   private options: GlobalConfig;
@@ -39,7 +39,7 @@ export class FeatherComponent implements OnInit {
    *
    * @param value
    */
-  copy(value) {
+  copy(value: string) {
     const selectBox = document.createElement('textarea');
     selectBox.style.position = 'fixed';
     selectBox.value = value;

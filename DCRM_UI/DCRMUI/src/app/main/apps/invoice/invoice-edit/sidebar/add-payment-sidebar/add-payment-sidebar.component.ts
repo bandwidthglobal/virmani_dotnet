@@ -28,7 +28,7 @@ export class AddPaymentSidebarComponent implements OnInit {
    *
    * @param name
    */
-  toggleSidebar(name): void {
+  toggleSidebar(name: string): void {
     this._coreSidebarService.getSidebarRegistry(name).toggleOpen();
   }
 

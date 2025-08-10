@@ -1,6 +1,4 @@
 ﻿using Demo_Api.Models;
-using System;
-using System.Collections.Generic;
 
 namespace DCRM.Common.Dto;
 

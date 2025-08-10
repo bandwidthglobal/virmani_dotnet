@@ -17,7 +17,7 @@ export class NavbarSearchComponent implements OnInit {
   public pages = [];
   public files = [];
   public contacts = [];
-  public pageSearchLimit;
+  public pageSearchLimit: number;
 
   // Decorators
   @ViewChild('openSearch') private _inputElement: ElementRef;
@@ -78,7 +78,7 @@ export class NavbarSearchComponent implements OnInit {
    *
    * @param event
    */
-  autoSuggestion(event) {
+  autoSuggestion(event: { keyCode: number; }) {
     if (38 === event.keyCode) {
       return this.prevActiveMatch();
     }

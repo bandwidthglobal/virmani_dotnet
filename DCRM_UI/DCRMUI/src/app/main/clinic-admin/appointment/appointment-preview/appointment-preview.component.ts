@@ -20,13 +20,13 @@ import { ToastrService } from 'ngx-toastr';
 export class AppointmentPreviewComponent implements OnInit, OnDestroy {
     // Public
     public url = this.router.url;
-    public urlLastValue;
-    public apiData;
+    public urlLastValue: any;
+    public apiData: any;
     public sidebarToggleRef = false;
     public paymentSidebarToggle = false;
     public items = [{ itemId: '', itemName: '', itemQuantity: '', itemCost: '' }];
-    public invoiceSelect;
-    public invoiceSelected;
+    public invoiceSelect: any;
+    public invoiceSelected: any;
     public addDrugForm: UntypedFormGroup;
     public loading = false;
     public submitted = false;
@@ -72,12 +72,12 @@ export class AppointmentPreviewComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this._appointmentPreviewService.onAppointmentEditChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
             this.drug = response;
-            this.medicinBrands.forEach((currentValue, index) => {
+            this.medicinBrands.forEach((currentValue: { id: string; medicine_Brand: string; }, index: any) => {
                 if (currentValue.id == this.drug.medicine_Brand_Id) {
                     this.brandName = currentValue.medicine_Brand;
                 }
             });
-            this.medicinCategories.forEach((currentValue, index) => {
+            this.medicinCategories.forEach((currentValue: { id: string; medicine_Category: string; }, index: any) => {
                 if (currentValue.id == this.drug.medicine_Category_Id) {
                     this.category = currentValue.medicine_Category;
                 }

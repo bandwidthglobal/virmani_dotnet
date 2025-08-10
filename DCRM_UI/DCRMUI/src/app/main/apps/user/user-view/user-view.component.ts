@@ -15,8 +15,8 @@ import { UserViewService } from 'app/main/apps/user/user-view/user-view.service'
 export class UserViewComponent implements OnInit, OnDestroy {
   // public
   public url = this.router.url;
-  public lastValue;
-  public data;
+  public lastValue: string;
+  public data: any;
 
   // private
   private _unsubscribeAll: Subject<any>;

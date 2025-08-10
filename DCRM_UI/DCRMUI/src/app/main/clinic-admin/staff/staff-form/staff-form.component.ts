@@ -69,24 +69,12 @@ export class StaffFormComponent implements OnInit, OnDestroy {
         { id: 'AB-', name: 'AB-' },
     ];
 
-    IDesignation: Array<any> = [
-        { id: 'Community Dentistry', name: 'Community Dentistry' },
-        { id: 'Conservative / Endodontics  ', name: 'Conservative / Endodontics  ' },
-        { id: 'General Dentistry', name: 'General Dentistry' },
-        { id: 'Oral &amp; Maxillofacial Surgery', name: 'Oral &amp; Maxillofacial Surgery' },
-        { id: 'Oral Medicine &amp; Radiology', name: 'Oral Medicine &amp; Radiology' },
-        { id: 'Oral Pathology &amp; Microbiology', name: 'Oral Pathology &amp; Microbiology' },
-        { id: 'Orthodontics', name: 'Orthodontics' },
-        { id: 'Paedodontics  ', name: 'Paedodontics  ' },
-        { id: 'Periodontics  ', name: 'Periodontics  ' },
-        { id: 'Prosthetics', name: 'Prosthetics' },
-    ];
-
     constructor(
         private _staffFormService: StaffFormService,
         private _commonValidationService: CommonValidationService,
     ) {
         this._unsubscribeAll = new Subject();
+        document.title = "Create Staff";
     }
 
     ngOnInit(): void {
@@ -159,8 +147,17 @@ export class StaffFormComponent implements OnInit, OnDestroy {
                 e.reminder_Date_For_Next = this._commonValidationService.dateFormat_Y_M_D(e.reminder_Date_For_Next);
             });
             payload.staffInsuranceDetail.map(e => {
+                if(e.insurance_Date)
+                {
                 e.insurance_Date = this._commonValidationService.dateFormat_Y_M_D(e.insurance_Date);
+                }
+                if(e.renewal_Date)
+                {
                 e.renewal_Date = this._commonValidationService.dateFormat_Y_M_D(e.renewal_Date);
+                }
+                e.insurance_Date = e.insurance_Date == ''? null: e.insurance_Date;
+                e.renewal_Date = e.renewal_Date == ''? null: e.renewal_Date;
+
             });
             // console.log('> saveForm ---> ', payload);
             this.loading = true;
@@ -192,7 +189,7 @@ export class StaffFormComponent implements OnInit, OnDestroy {
         control.push(new VaccinationForm(obj));
     }
 
-    removeVaccinationDetails(idx): void {
+    removeVaccinationDetails(idx: number): void {
         const control = <FormArray>this.formData.controls['staffVaccination'];
         control.removeAt(idx);
     }
@@ -211,7 +208,7 @@ export class StaffFormComponent implements OnInit, OnDestroy {
         control.push(new BankDetailForm(obj));
     }
 
-    removeBankDetails(idx): void {
+    removeBankDetails(idx: number): void {
         const control = <FormArray>this.formData.controls['staffBankDetail'];
         control.removeAt(idx);
     }
@@ -233,7 +230,7 @@ export class StaffFormComponent implements OnInit, OnDestroy {
         control.push(new InsuranceDetailForm(obj));
     }
 
-    removeInsuranceDetails(idx): void {
+    removeInsuranceDetails(idx: number): void {
         const control = <FormArray>this.formData.controls['staffInsuranceDetail'];
         control.removeAt(idx);
     }

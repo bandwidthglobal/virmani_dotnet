@@ -20,34 +20,47 @@
                             <div class="col-3">
                                 <div class="form-group">
                                     <label>Select Doctor</label>
-                                    <select (change)="searchDoctor($event)" class="form-control">
-                                        <option value="">--Select--</option>
-                                        <option *ngFor="let doc of doctorList" value="doc.id">{{doc.name}}</option>
-                                    </select>
+                                    <ng-select [items]="doctorList"
+                                       [(ngModel)]="doctorList"
+                                       bindLabel="name"
+                                       (click)="searchDoctor($event)"
+                                       bindValue="id"
+                                       [searchable]="true">
+                                    </ng-select>
                                 </div>
                             </div>
 
                             <div class="col-3">
                                 <div class="form-group">
                                     <label>Select Patient</label>
-                                    <select id="patient_id" name="patient_id" (change)="searchPatient($event)" class="form-control">
-                                        <option value="">--Select--</option>
-                                        <option *ngFor="let patient of patientList" value="patient.id">{{patient.name}}</option>
-                                    </select>
+                                    <ng-select [items]="patientList"
+                                       [(ngModel)]="patientList"
+                                       bindLabel="name"
+                                       (click)="searchPatient($event)"
+                                       bindValue="id"
+                                       [searchable]="true">
+                                    <ng-template ng-label-tmp let-item="item">
+                                        {{ item.name }} ({{ item.age }}, {{ item.mobile }}, {{item.present_Address}})
+                                    </ng-template>
+                        
+                                    <ng-template ng-option-tmp let-item="item">
+                                        {{ item.name }} ({{ item.age }}, {{ item.mobile }}, {{item.present_Address}})
+                                    </ng-template>
+                                    </ng-select>
                                 </div>
                             </div>
 
                             <div class="col-2">
                                 <div class="form-group">
                                     <label>Start Date</label>
-                                    <input type="date" name="start" id="start" class="form-control">
+                                    <input type="date" name="start" id="start" [(ngModel)] = "searchStartDate" class="form-control">
                                 </div>
                             </div>
 
                             <div class="col-2">
                                 <div class="form-group">
                                     <label>End Date</label>
-                                    <input type="date" name="end" id="end" class="form-control">
+                                    <input type="date" name="end" id="end" [(ngModel)] ="searchEndDate" class="form-control">
                                 </div>
                             </div>
                             <div class="col-2">
@@ -100,7 +113,7 @@
                     <ngx-datatable-column name="Date" prop="workDoneDate">
                         <ng-template ngx-datatable-cell-template let-row="row">
                             <div class="row">
-                                <div class="col-12">{{row.workDoneDate | date: 'dd/MM/yyyy'}}</div>
+                                <div class="col-12">{{row.workDoneDate | date: 'MM/dd/yyyy'}}</div>
                             </div>
                         </ng-template>
                     </ngx-datatable-column>
@@ -138,11 +151,24 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Work Done</h4>
+                    <div>
                     <button type="button" class="close" (click)="close()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                    </div>
                 </div>
-
+                <div class="row" id="printDiv">
+                        <div *ngIf="loading==true" class="table-loading">
+                            <div class="table-loading-text">
+                                Loading...
+                            </div>
+                        </div>
+                        <table class="table1 table-bordered table-hover" cellspacing="0" style="overflow:scroll;width:100%">
+                            <thead>
+                                <tr class="table-header">
+                                    
+                                </tr>
+                            </thead>
                 <!-- Modal body -->
                 <div class="modal-body">
                     <!--<center>-->
@@ -202,14 +228,14 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <th width="30%">Paid mount</th>
+                                <th width="30%">Paid Amount</th>
                                 <th width="10%"> : </th>
                                 <td><span id="paid_amount">{{workDoneData.paidAmount}}</span></td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
-                                <th width="30%">Balance mount</th>
+                                <th width="30%">Balance Amount</th>
                                 <th width="10%"> : </th>
                                 <td><span id="balance_amount">{{workDoneData.balance}}</span></td>
                                 <td></td>
@@ -244,9 +270,12 @@
                     </table>
                     <!--</center>-->
                 </div>
+                </table>
+                </div>
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
+                    <p type="button" class="pull-right btn btn-primary" (click)="printDiv()" aria-label="Print">Print</p>
                     <p type="button" class="pull-right btn btn-danger" (click)="close()" aria-label="Close">Close</p>
                 </div>
             </div>

@@ -1,5 +1,4 @@
-﻿using DCRM.Common.Entities;
-using DCRM.Repository.Database;
+﻿using DCRM.Repository.Database;
 using DCRM.Repository.IRepository;
 using DCRM.Repository.Repository;
 using DCRM.Service.IService;
@@ -7,12 +6,6 @@ using DCRM.Service.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Service
 {

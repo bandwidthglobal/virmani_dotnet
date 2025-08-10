@@ -37,7 +37,7 @@ export class StockAddComponent implements OnInit, OnDestroy {
     @Output('parentModalClose') parentFun: EventEmitter<any> = new EventEmitter();
     // Private
     private _unsubscribeAll: Subject<any>;
-    @Input() drugId; 
+    @Input() drugId: any; 
     public stockModel: StockFormModel = {
         id: 0,
         medicine_Id: "",

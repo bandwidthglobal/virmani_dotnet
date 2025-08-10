@@ -1,10 +1,5 @@
 ﻿using DCRM.Common.Dto;
 using DCRM.Common.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Service.IService
 {
@@ -18,7 +13,7 @@ namespace DCRM.Service.IService
 
         void Update(Chair chare);
 
-        void delete(int id);
+        void Delete(int id);
 
         List<ChairDto> GetChairsForDropdown(long userId);
     }

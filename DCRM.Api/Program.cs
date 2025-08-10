@@ -1,12 +1,6 @@
-using DCRM.Api;
 //using DCRM.Api.Middlewares;
-using DCRM.Api.Models;
 using DCRM.Common;
-using DCRM.Common.RequestLoggingMiddleware;
 using DCRM.Service;
-using DCRM.Service.IService;
-using DCRM.Service.Service;
-using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Text.Json.Serialization;
@@ -52,7 +46,7 @@ builder.Services.AddSwaggerGen(option =>
                             Id="Bearer"
                         }
                     },
-                    new string[]{}
+                    Array.Empty<string>()
                 }
             });
 });

@@ -11,14 +11,14 @@ export class EmailService implements Resolve<any> {
   // Public
   public emails: Email[];
   public selectedEmails: Email[];
-  public openedEmail;
+  public openedEmail: Email;
   public searchText = '';
   public composeEmailRef: boolean;
-  public draftEmailsCount;
-  public unReadInboxCount;
-  public isEmailDetailOpen;
-  public labelHandle;
-  public folderHandle;
+  public draftEmailsCount: any;
+  public unReadInboxCount: any;
+  public isEmailDetailOpen: boolean;
+  public labelHandle: string;
+  public folderHandle: string;
 
   public folders: any[];
   public labels: any[];
@@ -180,7 +180,7 @@ export class EmailService implements Resolve<any> {
    *
    * @param value
    */
-  composeEmail(value) {
+  composeEmail(value: boolean) {
     this.composeEmailRef = value;
     this.composeEmailChanged.next(this.composeEmailRef);
   }
@@ -190,7 +190,7 @@ export class EmailService implements Resolve<any> {
    *
    * @param folderId
    */
-  updateFolderOnSelectedEmails(folderRef): void {
+  updateFolderOnSelectedEmails(folderRef: string): void {
     this.selectedEmails.map(email => {
       email.folder = folderRef;
       this.updateEmail(email);
@@ -206,7 +206,7 @@ export class EmailService implements Resolve<any> {
    *
    * @param labelRef
    */
-  updateLabelOnSelectedEmails(labelRef) {
+  updateLabelOnSelectedEmails(labelRef: any) {
     this.selectedEmails.map(email => {
       if (email.labels.indexOf(labelRef) === -1) {
         // If labelRef isn't in email labels add it
@@ -330,7 +330,7 @@ export class EmailService implements Resolve<any> {
    *
    * @param email
    */
-  toggleStarred(email) {
+  toggleStarred(email: Email) {
     if (email.isStarred === false) {
       email.isStarred = true;
     } else {
@@ -345,7 +345,7 @@ export class EmailService implements Resolve<any> {
    * @param email
    * @returns {Promise<any>}
    */
-  updateEmail(email): Promise<any> {
+  updateEmail(email: Email): Promise<any> {
     return new Promise((resolve, reject) => {
       this._httpClient.post('api/emails-data/' + email.id, { ...email }).subscribe(response => {
         this.getEmails().then(emails => {
@@ -361,7 +361,7 @@ export class EmailService implements Resolve<any> {
    *
    * @param openedEmail
    */
-  setOpenedEmail(openedEmail) {
+  setOpenedEmail(openedEmail: Email) {
     this.selectedEmails = [];
     this.selectedEmails[0] = openedEmail;
     this.onSelectedEmailsChanged.next(this.selectedEmails);
@@ -372,7 +372,7 @@ export class EmailService implements Resolve<any> {
    *
    * @param id
    */
-  openEmailDetails(id): void {
+  openEmailDetails(id: number): void {
     this.openedEmail = this.emails.find(email => {
       return email.id === id;
     });
@@ -394,7 +394,7 @@ export class EmailService implements Resolve<any> {
    *
    * @param id
    */
-  markAsRead(id) {
+  markAsRead(id: number) {
     this.selectedEmails.map(email => {
       if (email.id === id) {
         email.isRead = true;
@@ -444,7 +444,7 @@ export class EmailService implements Resolve<any> {
   /**
    * Get Email On Query
    */
-  getMailOnQuery(value) {
+  getMailOnQuery(value: string) {
     const filteredMail = this.tempEmails.filter(email => {
       return email.subject.toLowerCase().includes(value);
     });

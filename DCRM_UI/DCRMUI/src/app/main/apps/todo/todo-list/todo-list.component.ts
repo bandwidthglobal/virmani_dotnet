@@ -42,7 +42,7 @@ export class TodoListComponent implements OnInit {
    *
    * @param nameRef
    */
-  toggleSidebar(nameRef): void {
+  toggleSidebar(nameRef: string): void {
     this._coreSidebarService.getSidebarRegistry(nameRef).toggleOpen();
   }
 
@@ -51,7 +51,7 @@ export class TodoListComponent implements OnInit {
    *
    * @param sortRef
    */
-  updateSort(sortRef) {
+  updateSort(sortRef: any) {
     this._todoService.sortTodos(sortRef);
   }
 
@@ -60,7 +60,7 @@ export class TodoListComponent implements OnInit {
    *
    * @param queryRef
    */
-  updateQuery(queryRef) {
+  updateQuery(queryRef: { target: { value: any; }; }) {
     this._todoService.getTodosBySearch(queryRef.target.value);
   }
 
@@ -69,7 +69,7 @@ export class TodoListComponent implements OnInit {
    *
    * @param idRef
    */
-  openTodo(idRef) {
+  openTodo(idRef: any) {
     this._todoService.setCurrentTodo(idRef);
     this._coreSidebarService.getSidebarRegistry('todo-sidebar-right').toggleOpen();
   }

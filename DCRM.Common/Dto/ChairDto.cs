@@ -1,8 +1,4 @@
-﻿using DCRM.Common.Entities;
-using System;
-using System.Collections.Generic;
-
-namespace DCRM.Common.Dto;
+﻿namespace DCRM.Common.Dto;
 
 public partial class ChairDto 
 {

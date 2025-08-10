@@ -40,7 +40,7 @@ export class MaskDirective {
   }
 
   @HostListener('blur', ['$event'])
-  blur($event): void {
+  blur($event: { target: any; }): void {
     if (this.decimales) {
       // console.log('> blur ---> ');
       const item = $event.target;
@@ -54,7 +54,7 @@ export class MaskDirective {
   }
 
   @HostListener('input', ['$event'])
-  change($event): void {
+  change($event: { target: any; }): void {
     const item = $event.target;
     const value = item.value;
     let pos = item.selectionStart;

@@ -1,4 +1,4 @@
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import * as vMODEL from './validation';
 import { User } from 'app/auth/models';
 
@@ -38,9 +38,9 @@ export class InsuranceDetailForm extends FormGroup {
         {
           id: [model?.id],
           doctor_Id: [model?.doctor_Id],
-          insurance: [model?.insurance, [Validators.required]],
-          insurance_Date: [model?.insurance_Date, [Validators.required]],
-          renewal_Date: [model?.renewal_Date, [Validators.required]],
+          insurance: [model?.insurance],
+          insurance_Date: [model?.insurance_Date],
+          renewal_Date: [model?.renewal_Date],
           amount_Insured: [model?.amount_Insured],
           amount_Paid: [model?.amount_Paid],
           allow_Notifications: [model?.allow_Notifications],

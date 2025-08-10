@@ -18,10 +18,10 @@ import { UserEditService } from 'app/main/apps/user/user-edit/user-edit.service'
 export class UserEditComponent implements OnInit, OnDestroy {
   // Public
   public url = this.router.url;
-  public urlLastValue;
-  public rows;
-  public currentRow;
-  public tempRow;
+  public urlLastValue: string;
+  public rows: any[];
+  public currentRow: { avatar: string; };
+  public tempRow: any;
   public avatarImage: string;
 
   @ViewChild('accountForm') accountForm: NgForm;
@@ -79,7 +79,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
    *
    * @param form
    */
-  submit(form) {
+  submit(form: { valid: any; }) {
     if (form.valid) {
       console.log('Submitted...!');
     }

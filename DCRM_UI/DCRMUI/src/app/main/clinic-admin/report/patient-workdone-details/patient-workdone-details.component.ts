@@ -1,7 +1,6 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { CoreConfigService } from '@core/services/config.service';
 import { PatientWorkdoneDetailsService } from '../patient-workdone-details/patient-workdone-details.service';
 
@@ -13,7 +12,7 @@ import { PatientWorkdoneDetailsService } from '../patient-workdone-details/patie
 })
 export class PatientWorkdoneDetailsComponent implements OnInit {
   // Public
-    public rows;
+    public rows: any;
     apiData: any;
   public selectedOption = 10;
   public ColumnMode = ColumnMode;

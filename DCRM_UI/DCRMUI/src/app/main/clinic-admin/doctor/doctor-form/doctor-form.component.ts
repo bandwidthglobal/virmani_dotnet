@@ -70,17 +70,17 @@ export class DoctorFormComponent implements OnInit, OnDestroy {
         { id: 'AB-', name: 'AB-' },
     ];
 
-    IDesignation: Array<any> = [
+    ISpeciality: Array<any> = [
         { id: 'Community Dentistry', name: 'Community Dentistry' },
-        { id: 'Conservative / Endodontics  ', name: 'Conservative / Endodontics  ' },
+        { id: 'Conservative Dentistry & Endodontics', name: 'Conservative Dentistry & Endodontics' },
         { id: 'General Dentistry', name: 'General Dentistry' },
-        { id: 'Oral &amp; Maxillofacial Surgery', name: 'Oral &amp; Maxillofacial Surgery' },
-        { id: 'Oral Medicine &amp; Radiology', name: 'Oral Medicine &amp; Radiology' },
-        { id: 'Oral Pathology &amp; Microbiology', name: 'Oral Pathology &amp; Microbiology' },
+        { id: 'Oral & Maxillofacial Surgery', name: 'Oral & Maxillofacial Surgery' },
+        { id: 'Oral Medicine & Radiology', name: 'Oral Medicine & Radiology' },
+        { id: 'Oral Pathology & Microbiology', name: 'Oral Pathology & Microbiology' },
         { id: 'Orthodontics', name: 'Orthodontics' },
         { id: 'Paedodontics  ', name: 'Paedodontics  ' },
         { id: 'Periodontics  ', name: 'Periodontics  ' },
-        { id: 'Prosthetics', name: 'Prosthetics' },
+        { id: 'Prosthodontist', name: 'Prosthodontist' },
     ];
 
     constructor(
@@ -88,6 +88,7 @@ export class DoctorFormComponent implements OnInit, OnDestroy {
         private _commonValidationService: CommonValidationService,
     ) {
         this._unsubscribeAll = new Subject();
+        document.title = "Create Doctor";
     }
 
     ngOnInit(): void {
@@ -153,14 +154,27 @@ export class DoctorFormComponent implements OnInit, OnDestroy {
         } else {
             const payload: any = this.formData.getRawValue();
             payload.thumb = this.base64Image;
+            if(payload.dob)
+            {
             payload.dob = this._commonValidationService.dateFormat_Y_M_D(payload.dob);
+            }
+            payload.dob = payload.dob == ''? null : payload.dob;
             payload.doctorsVaccinationList.map(e => {
                 e.vaccination_Date = this._commonValidationService.dateFormat_Y_M_D(e.vaccination_Date);
                 e.reminder_Date_For_Next = this._commonValidationService.dateFormat_Y_M_D(e.reminder_Date_For_Next);
             });
             payload.doctorInsuranceDetailList.map(e => {
+                if(e.insurance_Date)
+                {
                 e.insurance_Date = this._commonValidationService.dateFormat_Y_M_D(e.insurance_Date);
+                }
+                if(e.renewal_Date)
+                {
                 e.renewal_Date = this._commonValidationService.dateFormat_Y_M_D(e.renewal_Date);
+                }
+                e.insurance_Date = e.insurance_Date == ''? null : e.insurance_Date;
+                e.renewal_Date = e.renewal_Date == ''? null : e.renewal_Date;
+
             });
             // console.log('> saveForm ---> ', payload);
             this.loading = true;
@@ -178,7 +192,7 @@ export class DoctorFormComponent implements OnInit, OnDestroy {
                 // console.log('> save ---> ', response);
                 this.loading = false;
                 this.callBackEvent.emit({
-                    status: 'failure',
+                  status: 'failure',
                     data: response,
                     page: this.FormAction,
                 });
@@ -192,7 +206,7 @@ export class DoctorFormComponent implements OnInit, OnDestroy {
         control.push(new VaccinationForm(obj));
     }
 
-    removeVaccinationDetails(idx): void {
+    removeVaccinationDetails(idx: number): void {
         const control = <FormArray>this.formData.controls['doctorsVaccinationList'];
         control.removeAt(idx);
     }
@@ -203,7 +217,7 @@ export class DoctorFormComponent implements OnInit, OnDestroy {
         control.push(new BankDetailForm(obj));
     }
 
-    removeBankDetails(idx): void {
+    removeBankDetails(idx: number): void {
         const control = <FormArray>this.formData.controls['doctorBankDetailList'];
         control.removeAt(idx);
     }
@@ -214,7 +228,7 @@ export class DoctorFormComponent implements OnInit, OnDestroy {
         control.push(new InsuranceDetailForm(obj));
     }
 
-    removeInsuranceDetails(idx): void {
+    removeInsuranceDetails(idx: number): void {
         const control = <FormArray>this.formData.controls['doctorInsuranceDetailList'];
         control.removeAt(idx);
     }
@@ -225,7 +239,7 @@ export class DoctorFormComponent implements OnInit, OnDestroy {
         control.push(new AddressForm(obj));
     }
 
-    removeAddressDetails(idx): void {
+    removeAddressDetails(idx: number): void {
         const control = <FormArray>this.formData.controls['doctorsAddressList'];
         control.removeAt(idx);
     }

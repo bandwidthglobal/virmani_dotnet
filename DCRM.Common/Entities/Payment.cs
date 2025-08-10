@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DCRM.Common.Entities;
+﻿namespace DCRM.Common.Entities;
 
 public partial class Payment:BaseEntity
 {
-    public int Id { get; set; }
+    public new int Id { get; set; }
 
     public string Puid { get; set; } = null!;
 

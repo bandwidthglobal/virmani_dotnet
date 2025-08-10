@@ -1,21 +1,8 @@
-﻿using DCRM;
-using DCRM.Api.Models;
-using DCRM.Common;
-using DCRM.Common.Dto;
-using DCRM.Common.Entities;
+﻿using DCRM.Common.Dto;
 using DCRM.Common.Entity;
-using DCRM.Common.Request;
 using DCRM.Common.RequestModel;
 using DCRM.Repository.IRepository;
-using DCRM.Repository.Repository;
 using DCRM.Service.IService;
-using Demo_Api.Models;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using Org.BouncyCastle.Asn1.X509;
-using System.Globalization;
-using System.Numerics;
-using Twilio.TwiML.Voice;
 
 namespace DCRM.Service.Service
 {
@@ -27,9 +14,11 @@ namespace DCRM.Service.Service
         public readonly IRepository<Chair> _chairRepository;
         public readonly IRepository<Assaign_Day> _dayrepository;
         public readonly IRepository<Assign_Time> _timeRepository;
+        public readonly IRepository<PatientsContact> _patientContactRepository;
+
 
         public AppointmentService(IAppointmentRepository appointmentRepository, IPatientRepository patientRepository
-            , IRepository<Doctor> repository, IRepository<Chair> chairRepository, IRepository<Assaign_Day> dayrepository, IRepository<Assign_Time> timeRepository)
+            , IRepository<Doctor> repository, IRepository<Chair> chairRepository, IRepository<Assaign_Day> dayrepository, IRepository<Assign_Time> timeRepository, IRepository<PatientsContact> patientContactRepository)
         {
             _appointmentRepository = appointmentRepository;
             _patientRepository = patientRepository;
@@ -37,6 +26,8 @@ namespace DCRM.Service.Service
             _chairRepository = chairRepository;
             _dayrepository = dayrepository;
             _timeRepository = timeRepository;
+            _patientContactRepository = patientContactRepository;
+            
         }
 
         public IEnumerable<Appointment> GetAll(long userId, string role)
@@ -52,42 +43,41 @@ namespace DCRM.Service.Service
         }
         public AppointmentDto GetAppointmentDetails(long id)
         {
-            AppointmentDto appointmentDto = new AppointmentDto();
+            AppointmentDto appointmentDto = new();
             var tdAppointMent = from a in _appointmentRepository.GetAll().ToList()
                                 join p in _patientRepository.GetAll().ToList() on a.Patient_Id equals p.Id
                                 join d in _repository.GetAll().ToList() on a.Doctor_Id equals d.Id
-                                where a.Id == id
                                 select new
                                 {
-                                    Id = a.Id,
-                                    Appointment_Status = a.Appointment_Status,
+                                    a.Id,
+                                    a.Appointment_Status,
                                     Doctor_Name = d.Name,
                                     Doctor_Id = d.Id,
                                     Patient_Name = p.Name,
                                     Patient_Id = p.Id,
-                                    Start_Time = a.Start_Time,
-                                    End_Time = a.End_Time,
-                                    Chair = a.Chair,
-                                    Number_Of_Slot = a.Number_Of_Slot,
-                                    Serial_Id = a.Serial_Id,
-                                    Type = a.Type,
-                                    Chamber_Id = a.Chamber_Id,
-                                    Cause = a.Cause,
-                                    Date = a.Date,
-                                    Slot_Time = a.Slot_Time,
-                                    Email = p.Email,
+                                    a.Start_Time,
+                                    a.End_Time,
+                                    a.Chair,
+                                    a.Number_Of_Slot,
+                                    a.Serial_Id,
+                                    a.Type,
+                                    a.Chamber_Id,
+                                    a.Cause,
+                                    a.Date,
+                                    a.Slot_Time,
+                                    p.Email,
                                     Phone = p.Mobile,
-                                    Mr_Number = p.Mr_Number,
-                                    Meeting_Notes=a.Meeting_Notes,
-                                    Age = p.Age,
-                                    Weight = p.Weight
+                                    p.Mr_Number,
+                                    a.Meeting_Notes,
+                                    p.Age,
+                                    p.Weight
 
                                 };
             if (tdAppointMent!=null)
             {
                 foreach (var appointment in tdAppointMent)
                 {
-                    appointmentDto.Id = appointment.Id;
+                    appointmentDto.Id = (int)appointment.Id;
                     appointmentDto.Serial_Id = appointment.Serial_Id;
                     appointmentDto.Doctor_Id = appointment.Doctor_Id;
                     appointmentDto.Doctor_Name = appointment.Doctor_Name;
@@ -101,13 +91,15 @@ namespace DCRM.Service.Service
                     appointmentDto.Number_Of_Slot = appointment.Number_Of_Slot;
                     appointmentDto.Cause = appointment.Cause;
                     appointmentDto.Meeting_Notes = appointment.Meeting_Notes;
-                    Patientse patientse = new Patientse();
-                    patientse.Name = appointment.Patient_Name;
-                    patientse.Email = appointment.Email;
-                    patientse.Mobile = appointment.Phone;
-                    patientse.Mr_Number = appointment.Mr_Number;
-                    patientse.Age = appointment.Age;
-                    patientse.Weight = appointment.Weight;
+                    Patientse patientse = new()
+                    {
+                        Name = appointment.Patient_Name,
+                        Email = appointment.Email,
+                        Mobile = appointment.Phone,
+                        Mr_Number = appointment.Mr_Number,
+                        Age = appointment.Age,
+                        Weight = appointment.Weight
+                    };
                     appointmentDto.Patient = patientse;
                 }
             }
@@ -124,27 +116,27 @@ namespace DCRM.Service.Service
                                where s.Patient_Id == patientId
                                select new
                                {
-                                   Id = s.Id,
-                                   Appointment_Status = s.Appointment_Status,
+                                   s.Id,
+                                   s.Appointment_Status,
                                    Doctor_Name = d.Name,
                                    Doctor_Id = d.Id,
-                                   Start_Time = s.Start_Time,
-                                   End_Time = s.End_Time,
-                                   Number_Of_Slot = s.Number_Of_Slot,
-                                   Serial_Id = s.Serial_Id,
-                                   Type = s.Type,
-                                   Chamber_Id = s.Chamber_Id,
+                                   s.Start_Time,
+                                   s.End_Time,
+                                   s.Number_Of_Slot,
+                                   s.Serial_Id,
+                                   s.Type,
+                                   s.Chamber_Id,
                                    Chair = c.Name,
-                                   Slot_Time = s.Slot_Time,
-                                   Cause = s.Cause
+                                   s.Slot_Time,
+                                   s.Cause
                                };
 
-            AppointmentDto appointment = null;
+            AppointmentDto? appointment = null;
             appointments = appointments.OrderByDescending(x => x.Id);
             foreach (var item in appointments)
             {
                 appointment = new AppointmentDto();
-                appointment.Id = item.Id;
+                appointment.Id = (int)item.Id;
                 appointment.Start_Time = item.Start_Time;
                 appointment.Slot_Time = item.Slot_Time;
                 appointment.Cause = item.Cause;
@@ -163,25 +155,26 @@ namespace DCRM.Service.Service
                                 where a.User_Id == userId
                                 select new
                                 {
-                                    Id = a.Id,
-                                    Appointment_Status = a.Appointment_Status,
+                                    a.Id,
+                                    a.Appointment_Status,
                                     Doctor_Name = d.Name,
                                     Doctor_Id = d.Id,
                                     Patient_Name = p.Name,
                                     Patient_Id = p.Id,
-                                    Start_Time = a.Start_Time,
-                                    End_Time = a.End_Time,
-                                    Chair = a.Chair,
-                                    Number_Of_Slot = a.Number_Of_Slot,
-                                    Serial_Id = a.Serial_Id,
-                                    Type = a.Type,
-                                    Chamber_Id = a.Chamber_Id,
-                                    Cause = a.Cause,
-                                    Date = a.Date,
-                                    Slot_Time = a.Slot_Time,
-                                    Email = p.Email,
+                                    a.Start_Time,
+                                    a.End_Time,
+                                    a.Chair,
+                                    a.Number_Of_Slot,
+                                    a.Serial_Id,
+                                    a.Type,
+                                    a.Chamber_Id,
+                                    a.Cause,
+                                    a.Date,
+                                    a.Slot_Time,
+                                    p.Email,
                                     Phone = p.Mobile,
-                                    Mr_Number = p.Mr_Number
+                                    p.Mr_Number,
+                                    a.Status
 
                                 };
 
@@ -189,7 +182,7 @@ namespace DCRM.Service.Service
             foreach (var appointment in tdAppointMent)
             {
                 AppointmentDto appointmentDto = new AppointmentDto();
-                appointmentDto.Id = appointment.Id;
+                appointmentDto.Id = (int)appointment.Id;
                 appointmentDto.Serial_Id = appointment.Serial_Id;
                 appointmentDto.Doctor_Id = appointment.Doctor_Id;
                 appointmentDto.Doctor_Name = appointment.Doctor_Name;
@@ -199,11 +192,15 @@ namespace DCRM.Service.Service
                 appointmentDto.Type = appointment.Type;
                 appointmentDto.Patient_Id = appointment.Patient_Id;
                 appointmentDto.Patient_Name = appointment.Patient_Name;
-                Patientse patientse = new Patientse();
-                patientse.Name = appointment.Patient_Name;
-                patientse.Email = appointment.Email;
-                patientse.Mobile = appointment.Phone;
-                patientse.Mr_Number = appointment.Mr_Number;
+                appointmentDto.Appointment_Status = appointment.Appointment_Status;
+                appointmentDto.Status = appointment.Status;
+                Patientse patientse = new()
+                {
+                    Name = appointment.Patient_Name,
+                    Email = appointment.Email,
+                    Mobile = appointment.Phone,
+                    Mr_Number = appointment.Mr_Number
+                };
 
                 appointmentDto.Patient = patientse;
                 appointmentList.Add(appointmentDto);
@@ -213,33 +210,36 @@ namespace DCRM.Service.Service
 
         public AppointmentChairViewDto AppointmentChairViewSearch(AppointmentChairViewSearchParameters parameters)
         {
-            List<AppointmentScheduleTime> appointScheduleList = new List<AppointmentScheduleTime>();
-            AppointmentChairViewDto appointmentChairView = new AppointmentChairViewDto();
-            List<DropdownDataDto> doctorList = new List<DropdownDataDto>();
+            List<AppointmentScheduleTime> appointScheduleList = new();
+            AppointmentChairViewDto appointmentChairView = new();
+            List<DropdownDataDto> doctorList = new();
             // Get Appontment
             #region Get Appointment
             var td = from s in _appointmentRepository.GetAll().ToList()
                      join r in _patientRepository.GetAll().ToList() on s.Patient_Id equals r.Id
                      join d in _repository.GetAll().ToList() on s.Doctor_Id equals d.Id
+                     join pc in _patientContactRepository.GetAll().ToList() on r.Id equals pc.Patient_Id
                      where s.User_Id == parameters.UserId
                      && s.Date.Ticks.Equals(Convert.ToDateTime(parameters.ScheduleDate).Ticks)
                      && s.Status == 0
                      select new
                      {
-                         Id = s.Id,
-                         Appointment_Status = s.Appointment_Status,
+                         s.Id,
+                         s.Appointment_Status,
                          Doctor_Name = d.Name,
                          Doctor_Id = d.Id,
                          Patient_Name = r.Name,
                          Patient_Id = r.Id,
                          Address = r.Present_Address,
-                         Start_Time = s.Start_Time,
-                         End_Time = s.End_Time,
-                         Chair = s.Chair,
-                         Number_Of_Slot = s.Number_Of_Slot,
-                         Serial_Id = s.Serial_Id,
-                         Type = s.Type,
-                         Chamber_Id = s.Chamber_Id,
+                         s.Start_Time,
+                         s.End_Time,
+                         s.Chair,
+                         s.Number_Of_Slot,
+                         s.Serial_Id,
+                         s.Type,
+                         s.Chamber_Id,
+                         s.Cause,
+                         pc.Phone1
                      };
             #endregion
             #region Slot Time List  
@@ -277,11 +277,11 @@ namespace DCRM.Service.Service
             }
             var assignTime = _timeRepository.GetAll().Where(x => x.User_Id == parameters.UserId && x.Day_Id == dayid).FirstOrDefault();
             int i = -1;
-            var timeValue = assignTime != null ? Convert.ToDateTime(assignTime.Start).Hour.ToString() : "0";
-            var endtimeHourValue = assignTime != null ? Convert.ToDateTime(assignTime.End).Hour.ToString() : "0";
-            var endtimeMinValue = assignTime != null ? Convert.ToDateTime(assignTime.End).Minute.ToString() : "0";
+            var timeValue = assignTime != null && !string.IsNullOrEmpty(assignTime.Start) ? Convert.ToDateTime(assignTime.Start).Hour.ToString() : "0";
+            var endtimeHourValue = assignTime != null! && !string.IsNullOrEmpty(assignTime.End) ?  Convert.ToDateTime(assignTime.End).Hour.ToString() : "0";
+            var endtimeMinValue = assignTime != null && !string.IsNullOrEmpty(assignTime.End) ? Convert.ToDateTime(assignTime.End).Minute.ToString() : "0";
             var endTime = endtimeHourValue + "." + endtimeMinValue;
-            List<string> timeList = new List<string>();
+            List<string> timeList = new();
             while (DateTime.Today.AddHours(9).AddMinutes(i * 15).Hour < Convert.ToInt32(17))
             {
                 timeList.Add(DateTime.Today.AddHours(9).AddMinutes(15 * (++i)).ToShortTimeString());
@@ -300,22 +300,26 @@ namespace DCRM.Service.Service
 
             foreach (var time in timeList)
             {
-                AppointmentScheduleTime appointmentScheduleTime = new AppointmentScheduleTime();
-                appointmentScheduleTime.SlatTime = time;
-                List<AppointmentChair> appointmentChairList = new List<AppointmentChair>();
-                List<Chair> chairs = new List<Chair>();
+                AppointmentScheduleTime appointmentScheduleTime = new()
+                {
+                    SlatTime = time
+                };
+                List<AppointmentChair> appointmentChairList = new();
+                List<Chair> chairs = new();
                 foreach (var chair in chairList)
                 {
                     chairs.Add(chair);
-                    Appointment appointment = new Appointment();
-                    AppointmentDto appointmentDto = new AppointmentDto();
-                    AppointmentChair appointmentChair = new AppointmentChair();
-                    appointmentChair.Name = chair.Name;
-                    appointmentChair.Id = chair.Id;
-                    appointmentChair.Appoinment_Limit = chair.Appoinment_Limit;
-                    appointmentChair.Status = chair.Status;
-                    appointmentChair.Address = chair.Address;
-                    appointmentChair.Doctor_Id = chair.Doctor_Id;
+                    Appointment appointment = new();
+                    AppointmentDto appointmentDto = new();
+                    AppointmentChair appointmentChair = new()
+                    {
+                        Name = chair.Name,
+                        Id = chair.Id,
+                        Appoinment_Limit = chair.Appoinment_Limit,
+                        Status = chair.Status,
+                        Address = chair.Address,
+                        Doctor_Id = chair.Doctor_Id
+                    };
                     var newTime = convertFrom24To12Format(time);
                     newTime = newTime + ":00";
                     TimeSpan duration = TimeSpan.Parse(newTime);
@@ -337,13 +341,15 @@ namespace DCRM.Service.Service
 
                         if (appointmentDetails != null)
                         {
-                            appointmentDto.Id = appointmentDetails.Id;
+                            appointmentDto.Id = (int)appointmentDetails.Id;
                             appointmentDto.Number_Of_Slot = appointmentDetails.Number_Of_Slot;
                             appointmentDto.Appointment_Status = appointmentDetails.Appointment_Status;
                             appointmentDto.Doctor_Name = appointmentDetails.Doctor_Name;
                             appointmentDto.Doctor_Id = appointmentDetails.Doctor_Id;
                             appointmentDto.Patient_Name = appointmentDetails.Patient_Name;
                             appointmentDto.Patient_Address = appointmentDetails.Address;
+                            appointmentDto.Cause = appointmentDetails.Cause;
+                            appointmentDto.Mobile = appointmentDetails.Phone1;
                             appointmentChair.AppointmentDetails = appointmentDto;
                         }
                     }
@@ -367,13 +373,13 @@ namespace DCRM.Service.Service
 
         public List<Assaign_Day> GetDays(long userId)
         {
-            List<Assaign_Day> assaignDays = new List<Assaign_Day>();
+            List<Assaign_Day> assaignDays = new();
             assaignDays = _dayrepository.GetAll().Where(x => x.User_Id == userId).ToList();
             return assaignDays;
         }
         public List<Assign_Time> GetTimes(long userId)
         {
-            List<Assign_Time> assaignTimes = new List<Assign_Time>();
+            List<Assign_Time> assaignTimes = new();
             assaignTimes = _timeRepository.GetAll().Where(x => x.User_Id == userId).ToList();
             return assaignTimes;
         }
@@ -383,37 +389,41 @@ namespace DCRM.Service.Service
 
             if (request.Patient_Id == 0)
             {
-                PatientRequest patientse = new PatientRequest();
-                patientse.Name = request.Patient_Name;
-                patientse.Email = request.Email;
-                patientse.Age = request.Age;
-                patientse.Mobile = request.Phone;
-                patientse.Weight = request.Weight==null?0:Convert.ToInt32(request.Weight);
-                patientse.User_Id = request.User_Id;
-                patientse.Sex = request.Gender;
-                PatientsContact patientsContact = new PatientsContact();
-                List<PatientsContact> patientsContacts = new List<PatientsContact>();
+                PatientRequest patientse = new()
+                {
+                    Name = request.Patient_Name,
+                    Email = request.Email,
+                    Age = request.Age,
+                    Mobile = request.Phone,
+                    Weight = request.Weight == null ? 0 : Convert.ToInt32(request.Weight),
+                    User_Id = request.User_Id,
+                    Sex = request.Gender
+                };
+                PatientsContact patientsContact = new();
+                List<PatientsContact> patientsContacts = new();
                 patientsContact.Email = request.Email;
                 patientsContact.Phone1 = Convert.ToInt64(request.Phone);
                 patientsContacts.Add(patientsContact);
                 patientse.PatientContacts = patientsContacts;
                 request.Patient_Id = Convert.ToInt32(_patientRepository.Create(patientse));
             }
-            Appointment appointment = new Appointment();
-            appointment.Id = request.Id;
-            appointment.Chamber_Id = request.Chamber_Id;
-            appointment.User_Id = request.User_Id;
-            appointment.Patient_Id = request.Patient_Id;
-            appointment.Doctor_Id = request.Doctor_Id;
-            appointment.Doctor_Name = request.Doctor_Name;
-            appointment.Chair = request.Chair;
-            appointment.Number_Of_Slot = request.Number_Of_Slot;
-            appointment.Slot_Time = request.Slot_Time;
-            appointment.Cause = request.Cause;
-            appointment.Extra_Notes = request.Extra_Notes;
-            appointment.Prescription_Id = request.Prescription_Id;
-            appointment.Date = request.Date;
-            appointment.Start_Time = request.Start_Time;
+            Appointment appointment = new()
+            {
+                Id = request.Id,
+                Chamber_Id = request.Chamber_Id,
+                User_Id = request.User_Id,
+                Patient_Id = request.Patient_Id,
+                Doctor_Id = request.Doctor_Id,
+                Doctor_Name = request.Doctor_Name,
+                Chair = request.Chair,
+                Number_Of_Slot = request.Number_Of_Slot,
+                Slot_Time = request.Slot_Time,
+                Cause = request.Cause,
+                Extra_Notes = request.Extra_Notes,
+                Prescription_Id = request.Prescription_Id,
+                Date = request.Date,
+                Start_Time = request.Start_Time
+            };
             if (!request.End_Time.Contains("60"))
             {
                 appointment.End_Time = TimeSpan.Parse(request.End_Time);
@@ -460,12 +470,14 @@ namespace DCRM.Service.Service
             {
                 if (item.Id == 0)
                 {
-                    Assign_Time time = new Assign_Time();
-                    time.User_Id = item.User_Id;
-                    time.Day_Id = item.Day_Id;
-                    time.Start = item.Start;
-                    time.Time = item.Time;
-                    time.End = item.End;
+                    Assign_Time time = new()
+                    {
+                        User_Id = item.User_Id,
+                        Day_Id = item.Day_Id,
+                        Start = item.Start,
+                        Time = item.Time,
+                        End = item.End
+                    };
                     _timeRepository.Create(time);
                 }
                 else
@@ -489,45 +501,48 @@ namespace DCRM.Service.Service
 
         public List<AppointmentDto> GetWaitingRoom(long userId)
         {
-            List<AppointmentDto> appointments = new List<AppointmentDto>();
+            List<AppointmentDto> appointments = new();
             var tdAppointMent = from s in _appointmentRepository.GetAll().ToList()
                                 join r in _patientRepository.GetAll().ToList() on s.Patient_Id equals r.Id
                                 join d in _repository.GetAll().ToList() on s.Doctor_Id equals d.Id
                                 where s.User_Id == userId && (s.Appointment_Status == 4 || s.Appointment_Status == 5)
                                 select new
                                 {
-                                    Id = s.Id,
-                                    Appointment_Status = s.Appointment_Status,
+                                    s.Id,
+                                    s.Appointment_Status,
                                     Doctor_Name = d.Name,
                                     Doctor_Id = d.Id,
                                     Patient_Name = r.Name,
                                     Patient_Id = r.Id,
-                                    Start_Time = s.Start_Time,
-                                    End_Time = s.End_Time,
-                                    Chair = s.Chair,
-                                    Number_Of_Slot = s.Number_Of_Slot,
-                                    Serial_Id = s.Serial_Id,
-                                    Type = s.Type,
-                                    Chamber_Id = s.Chamber_Id,
-                                    Cause = s.Cause,
-                                    Date = s.Date,
-                                    Slot_Time = s.Slot_Time,
+                                    s.Start_Time,
+                                    s.End_Time,
+                                    s.Chair,
+                                    s.Number_Of_Slot,
+                                    s.Serial_Id,
+                                    s.Type,
+                                    s.Chamber_Id,
+                                    s.Cause,
+                                    s.Date,
+                                    s.Slot_Time,
                                 };
             foreach (var apointment in tdAppointMent)
             {
-                AppointmentDto appointmentDto = new AppointmentDto();
-                appointmentDto.Id = apointment.Id;
-                appointmentDto.Doctor_Name = apointment.Doctor_Name;
-                appointmentDto.Doctor_Id = apointment.Doctor_Id;
-                appointmentDto.Patient_Name = apointment.Patient_Name;
-                appointmentDto.Date = apointment.Date;
-                appointmentDto.Appointment_Status = apointment.Appointment_Status;
-                appointmentDto.Slot_Time = apointment.Slot_Time;
-                appointmentDto.Start_Time = apointment.Start_Time;
-                appointmentDto.End_Time = apointment.End_Time;
-                appointmentDto.Cause = apointment.Cause;
-                appointmentDto.Chair = apointment.Chair;
-                appointmentDto.Serial_Id = apointment.Serial_Id;
+                AppointmentDto appointmentDto = new()
+                {
+                    Id = (int)apointment.Id,
+                    Doctor_Name = apointment.Doctor_Name,
+                    Doctor_Id = apointment.Doctor_Id,
+                    Patient_Name = apointment.Patient_Name,
+                    Patient_Id = apointment.Patient_Id,
+                    Date = apointment.Date,
+                    Appointment_Status = apointment.Appointment_Status,
+                    Slot_Time = apointment.Slot_Time,
+                    Start_Time = apointment.Start_Time,
+                    End_Time = apointment.End_Time,
+                    Cause = apointment.Cause,
+                    Chair = apointment.Chair,
+                    Serial_Id = apointment.Serial_Id
+                };
                 appointments.Add(appointmentDto);
             }
             return appointments;
@@ -550,52 +565,52 @@ namespace DCRM.Service.Service
                     switch (i)
                     {
                         case 1:
-                            time.Start = scheduleTime.start1;
-                            time.End = scheduleTime.end1;
+                            time.Start = scheduleTime.Start1;
+                            time.End = scheduleTime.End1;
                             time.Day_Id = i;
-                            time.Time = scheduleTime.start1 + "-" + scheduleTime.end1;
+                            time.Time = scheduleTime.Start1 + "-" + scheduleTime.End1;
                             _timeRepository.Update(time);
                             break;
                         case 2:
-                            time.Start = scheduleTime.start2;
-                            time.End = scheduleTime.end2;
+                            time.Start = scheduleTime.Start2;
+                            time.End = scheduleTime.End2;
                             time.Day_Id = i;
-                            time.Time = scheduleTime.start2 + "-" + scheduleTime.end2;
+                            time.Time = scheduleTime.Start2 + "-" + scheduleTime.End2;
                             _timeRepository.Update(time);
                             break;
                         case 3:
-                            time.Start = scheduleTime.start3;
-                            time.End = scheduleTime.end3;
+                            time.Start = scheduleTime.Start3;
+                            time.End = scheduleTime.End3;
                             time.Day_Id = i;
-                            time.Time = scheduleTime.start3 + "-" + scheduleTime.end3;
+                            time.Time = scheduleTime.Start3 + "-" + scheduleTime.End3;
                             _timeRepository.Update(time);
                             break;
                         case 4:
-                            time.Start = scheduleTime.start4;
-                            time.End = scheduleTime.end4;
+                            time.Start = scheduleTime.Start4;
+                            time.End = scheduleTime.End4;
                             time.Day_Id = i;
-                            time.Time = scheduleTime.start4 + "-" + scheduleTime.end4;
+                            time.Time = scheduleTime.Start4 + "-" + scheduleTime.End4;
                             _timeRepository.Update(time);
                             break;
                         case 5:
-                            time.Start = scheduleTime.start5;
-                            time.End = scheduleTime.end5;
+                            time.Start = scheduleTime.Start5;
+                            time.End = scheduleTime.End5;
                             time.Day_Id = i;
-                            time.Time = scheduleTime.start5 + "-" + scheduleTime.end5;
+                            time.Time = scheduleTime.Start5 + "-" + scheduleTime.End5;
                             _timeRepository.Update(time);
                             break;
                         case 6:
-                            time.Start = scheduleTime.start6;
-                            time.End = scheduleTime.end6;
+                            time.Start = scheduleTime.Start6;
+                            time.End = scheduleTime.End6;
                             time.Day_Id = i;
-                            time.Time = scheduleTime.start6 + "-" + scheduleTime.end6;
+                            time.Time = scheduleTime.Start6 + "-" + scheduleTime.End6;
                             _timeRepository.Update(time);
                             break;
                         case 7:
-                            time.Start = scheduleTime.start7;
-                            time.End = scheduleTime.end7;
+                            time.Start = scheduleTime.Start7;
+                            time.End = scheduleTime.End7;
                             time.Day_Id = i;
-                            time.Time = scheduleTime.start7 + "-" + scheduleTime.end7;
+                            time.Time = scheduleTime.Start7 + "-" + scheduleTime.End7;
                             _timeRepository.Update(time);
                             break;
                         default:
@@ -610,62 +625,62 @@ namespace DCRM.Service.Service
                         case 1:
                             assign_Time.User_Id = Convert.ToInt32(scheduleTime.User_Id);
                             assign_Time.Day_Id = i;
-                            assign_Time.Start = scheduleTime.start1;
-                            assign_Time.End = scheduleTime.end1;
-                            assign_Time.Time = scheduleTime.start1 + "-" + scheduleTime.end1;
+                            assign_Time.Start = scheduleTime.Start1;
+                            assign_Time.End = scheduleTime.End1;
+                            assign_Time.Time = scheduleTime.Start1 + "-" + scheduleTime.End1;
                             _timeRepository.Insert(assign_Time);
                             break;
                         case 2:
                             assign_Time.User_Id = Convert.ToInt32(scheduleTime.User_Id);
                             assign_Time.Day_Id = i;//Convert.ToInt32(scheduleTime.day2==""?0: scheduleTime.day2);
-                            assign_Time.Start = scheduleTime.start2;
-                            assign_Time.End = scheduleTime.end2;
-                            assign_Time.Time = scheduleTime.start2 + "-" + scheduleTime.end2;
+                            assign_Time.Start = scheduleTime.Start2;
+                            assign_Time.End = scheduleTime.End2;
+                            assign_Time.Time = scheduleTime.Start2 + "-" + scheduleTime.End2;
                             _timeRepository.Insert(assign_Time);
                             break;
                         case 3:
                             assign_Time.User_Id = Convert.ToInt32(scheduleTime.User_Id);
                             //assign_Time.Day_Id = Convert.ToInt32(scheduleTime.day3 == "" ? 0 : scheduleTime.day3);
-                            assign_Time.Start = scheduleTime.start3;
+                            assign_Time.Start = scheduleTime.Start3;
                             assign_Time.Day_Id = i;//
-                            assign_Time.End = scheduleTime.end3;
-                            assign_Time.Time = scheduleTime.start3 + "-" + scheduleTime.end3;
+                            assign_Time.End = scheduleTime.End3;
+                            assign_Time.Time = scheduleTime.Start3 + "-" + scheduleTime.End3;
                             _timeRepository.Insert(assign_Time);
                             break;
                         case 4:
                             assign_Time.User_Id = Convert.ToInt32(scheduleTime.User_Id);
                             assign_Time.Day_Id = i;
                             //assign_Time.Day_Id = Convert.ToInt32(scheduleTime.day4==""?0: scheduleTime.day4);
-                            assign_Time.Start = scheduleTime.start4;
-                            assign_Time.End = scheduleTime.end4;
-                            assign_Time.Time = scheduleTime.start4 + "-" + scheduleTime.end4;
+                            assign_Time.Start = scheduleTime.Start4;
+                            assign_Time.End = scheduleTime.End4;
+                            assign_Time.Time = scheduleTime.Start4 + "-" + scheduleTime.End4;
                             _timeRepository.Insert(assign_Time);
                             break;
                         case 5:
                             assign_Time.User_Id = Convert.ToInt32(scheduleTime.User_Id);
                             //assign_Time.Day_Id = Convert.ToInt32(scheduleTime.day5 == "" ? 0 : scheduleTime.day5);
                             assign_Time.Day_Id = i;
-                            assign_Time.Start = scheduleTime.start5;
-                            assign_Time.End = scheduleTime.end5;
-                            assign_Time.Time = scheduleTime.start5 + "-" + scheduleTime.end5;
+                            assign_Time.Start = scheduleTime.Start5;
+                            assign_Time.End = scheduleTime.End5;
+                            assign_Time.Time = scheduleTime.Start5 + "-" + scheduleTime.End5;
                             _timeRepository.Insert(assign_Time);
                             break;
                         case 6:
                             assign_Time.User_Id = Convert.ToInt32(scheduleTime.User_Id);
                             assign_Time.Day_Id = i;//
                             //assign_Time.Day_Id = Convert.ToInt32(scheduleTime.day6 == "" ? 0 : scheduleTime.day6);
-                            assign_Time.Start = scheduleTime.start6;
-                            assign_Time.End = scheduleTime.end6;
-                            assign_Time.Time = scheduleTime.start6 + "-" + scheduleTime.end6;
+                            assign_Time.Start = scheduleTime.Start6;
+                            assign_Time.End = scheduleTime.End6;
+                            assign_Time.Time = scheduleTime.Start6 + "-" + scheduleTime.End6;
                             _timeRepository.Insert(assign_Time);
                             break;
                         case 7:
                             assign_Time.User_Id = Convert.ToInt32(scheduleTime.User_Id);
                             assign_Time.Day_Id = i;
                             //assign_Time.Day_Id = Convert.ToInt32(scheduleTime.day7 == "" ? 0 : scheduleTime.day7);
-                            assign_Time.Start = scheduleTime.start7;
-                            assign_Time.End = scheduleTime.end7;
-                            assign_Time.Time = scheduleTime.start7 + "-" + scheduleTime.end7;
+                            assign_Time.Start = scheduleTime.Start7;
+                            assign_Time.End = scheduleTime.End7;
+                            assign_Time.Time = scheduleTime.Start7 + "-" + scheduleTime.End7;
                             _timeRepository.Insert(assign_Time);
                             break;
                         default:

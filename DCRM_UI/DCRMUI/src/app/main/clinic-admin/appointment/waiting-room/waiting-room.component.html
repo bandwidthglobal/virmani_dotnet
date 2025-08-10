@@ -71,6 +71,9 @@
                         <ngx-datatable-column name="Serial Id" prop="serial_Id" [width]="100">
                         </ngx-datatable-column>
                         <ngx-datatable-column name="Patient Name" prop="patient_Name">
+                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                <a [routerLink]="['/admin/patient/preview/', row.patient_Id]">{{ row.patient_Name }}</a>
+                              </ng-template>
                         </ngx-datatable-column>
                         <ngx-datatable-column name="Dentist" prop="doctor_Name">
                         </ngx-datatable-column>

@@ -18,7 +18,7 @@ import { UserListService } from 'app/main/apps/user/user-list/user-list.service'
 export class UserListComponent implements OnInit {
   // Public
   public sidebarToggleRef = false;
-  public rows;
+  public rows: any[];
   public selectedOption = 10;
   public ColumnMode = ColumnMode;
   public temp = [];
@@ -85,7 +85,7 @@ export class UserListComponent implements OnInit {
    *
    * @param event
    */
-  filterUpdate(event) {
+  filterUpdate(event: { target: { value: string; }; }) {
     // Reset ng-select on search
     this.selectedRole = this.selectRole[0];
     this.selectedPlan = this.selectPlan[0];
@@ -110,7 +110,7 @@ export class UserListComponent implements OnInit {
    *
    * @param name
    */
-  toggleSidebar(name): void {
+  toggleSidebar(name: string): void {
     this._coreSidebarService.getSidebarRegistry(name).toggleOpen();
   }
 
@@ -119,7 +119,7 @@ export class UserListComponent implements OnInit {
    *
    * @param event
    */
-  filterByRole(event) {
+  filterByRole(event: { value: any; }) {
     const filter = event ? event.value : '';
     this.previousRoleFilter = filter;
     this.temp = this.filterRows(filter, this.previousPlanFilter, this.previousStatusFilter);
@@ -131,7 +131,7 @@ export class UserListComponent implements OnInit {
    *
    * @param event
    */
-  filterByPlan(event) {
+  filterByPlan(event: { value: any; }) {
     const filter = event ? event.value : '';
     this.previousPlanFilter = filter;
     this.temp = this.filterRows(this.previousRoleFilter, filter, this.previousStatusFilter);
@@ -143,7 +143,7 @@ export class UserListComponent implements OnInit {
    *
    * @param event
    */
-  filterByStatus(event) {
+  filterByStatus(event: { value: any; }) {
     const filter = event ? event.value : '';
     this.previousStatusFilter = filter;
     this.temp = this.filterRows(this.previousRoleFilter, this.previousPlanFilter, filter);
@@ -157,7 +157,7 @@ export class UserListComponent implements OnInit {
    * @param planFilter
    * @param statusFilter
    */
-  filterRows(roleFilter, planFilter, statusFilter): any[] {
+  filterRows(roleFilter: string, planFilter: string, statusFilter: string): any[] {
     // Reset search on select change
     this.searchValue = '';
 

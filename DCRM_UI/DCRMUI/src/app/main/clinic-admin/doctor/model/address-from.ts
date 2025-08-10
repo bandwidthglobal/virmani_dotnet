@@ -1,4 +1,4 @@
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import * as vMODEL from './validation';
 import { User } from 'app/auth/models';
 
@@ -7,7 +7,7 @@ export class AddressFormModel {
   doctor_Id?: any = 0;
   address_R?: any = '';
   city_R?: any = '';
-  zip_R?: any = null;
+  zip_R?: any = 0;
   country_R?: any = '';
   address_O?: any = '';
   city_O?: any = '';
@@ -50,10 +50,10 @@ export class AddressForm extends FormGroup {
         {
           id: [model?.id],
           doctor_Id: [model?.doctor_Id],
-          address_R: [model?.address_R, [Validators.required]],
-          city_R: [model?.city_R, [Validators.required]],
-          zip_R: [model?.zip_R, [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
-          country_R: [model?.country_R, [Validators.required]],
+          address_R: [model?.address_R],
+          city_R: [model?.city_R],
+          zip_R: [model?.zip_R, [Validators.minLength(6), Validators.maxLength(6)]],
+          country_R: [model?.country_R],
           address_O: [model?.address_O],
           city_O: [model?.city_O],
           zip_O: [model?.zip_O, [Validators.minLength(6), Validators.maxLength(6)]],

@@ -1,14 +1,6 @@
-﻿using DCRM.Common;
-using DCRM.Common.Dto;
-using DCRM.Common.Entity;
-using DCRM.Common.Request;
+﻿using DCRM.Common.Entity;
 using DCRM.Repository.Database;
 using DCRM.Repository.IRepository;
-
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Data.SqlTypes;
 
 namespace DCRM.Repository.Repository
@@ -118,8 +110,6 @@ namespace DCRM.Repository.Repository
         /// <returns></returns>
         public long Create(DealerRequest request)
         {
-            long id = 0;
-
             var dealerDetails = _contex.Dealers.FirstOrDefault(x => x.Company_Name == request.Company_Name);
             if (dealerDetails == null)
             {
@@ -127,40 +117,42 @@ namespace DCRM.Repository.Repository
                 {
 
                     _contex.Database.BeginTransaction();
-                    Dealer dealer = new Dealer();
-                    dealer.User_Id = request.User_Id;
-                    dealer.Company_Name = request.Company_Name;
-                    dealer.Own_Name_1 = request.OwnName_1;
-                    dealer.Own_Name_2 = request.OwnName_2 == null ? "" : request.OwnName_2;
-                    dealer.Phone1 = request.Phone1 == null ? "" : request.Phone1;
-                    dealer.Phone2 = request.Phone2 == null ? "" : request.Phone2;
-                    dealer.Email1 = request.Email1 == null ? "" : request.Email1;
-                    dealer.Email2 = request.Email2 == null ? "" : request.Email2;
-                    dealer.Address_R = request.Address_R;
-                    dealer.Address_O = request.Address_O==null?"": request.Address_O;
-                    dealer.City_R = request.City_R;
-                    dealer.City_O = request.City_O == null ? "" : request.City_O;
-                    dealer.Zip_R = request.Zip_R;
-                    dealer.Zip_O = request.Zip_O == null ? "" : request.Zip_O;
-                    dealer.Country_O = request.Country_O == null ? "" : request.Country_O;
-                    dealer.Country_R = request.Country_R;
-                    dealer.Staff_Name1 = request.StaffName_1 == null ? "" : request.StaffName_1;
-                    dealer.Staff_Name2 = request.StaffName_2 == null ? "" : request.StaffName_2;
-                    dealer.Staff_Name3 = request.StaffName_3 == null ? "" : request.StaffName_3;
-                    dealer.Staff_Name4 = request.StaffName_4 == null ? "" : request.StaffName_4;
-                    dealer.Staff_Email1 = request.StaffEmail_1 == null ? "" : request.StaffEmail_1;
-                    dealer.Staff_Email2 = request.StaffEmail_2 == null ? "" : request.StaffEmail_2;
-                    dealer.Staff_Email3 = request.StaffEmail_3 == null ? "" : request.StaffEmail_3;
-                    dealer.Staff_Email4 = request.StaffEmail_4 == null ? "" : request.StaffEmail_4;
-                    dealer.Staff_Phone1 = Convert.ToInt64(request.StaffPhone_1);
-                    dealer.Staff_Phone2 = Convert.ToInt64(request.StaffPhone_2);
-                    dealer.Staff_Phone3 = Convert.ToInt64(request.StaffPhone_3);
-                    dealer.Staff_Phone4 = Convert.ToInt64(request.StaffPhone_4);
-                    dealer.Image = request.Thumb == null ? "" : request.Thumb;
-                    dealer.Gst_Number = request.Gst_Number;
-                    dealer.Pan_Number = request.Pan_Number;
-                    dealer.Updated_At = System.DateTime.UtcNow;
-                    dealer.Created_At = System.DateTime.UtcNow;
+                    Dealer dealer = new()
+                    {
+                        User_Id = request.User_Id,
+                        Company_Name = request.Company_Name,
+                        Own_Name_1 = request.OwnName_1,
+                        Own_Name_2 = request.OwnName_2 ?? "",
+                        Phone1 = request.Phone1 ?? "",
+                        Phone2 = request.Phone2 ?? "",
+                        Email1 = request.Email1 ?? "",
+                        Email2 = request.Email2 ?? "",
+                        Address_R = request.Address_R,
+                        Address_O = request.Address_O ?? "",
+                        City_R = request.City_R,
+                        City_O = request.City_O ?? "",
+                        Zip_R = request.Zip_R,
+                        Zip_O = request.Zip_O ?? "",
+                        Country_O = request.Country_O ?? "",
+                        Country_R = request.Country_R,
+                        Staff_Name1 = request.StaffName_1 ?? "",
+                        Staff_Name2 = request.StaffName_2 ?? "",
+                        Staff_Name3 = request.StaffName_3 ?? "",
+                        Staff_Name4 = request.StaffName_4 ?? "",
+                        Staff_Email1 = request.StaffEmail_1 ?? "",
+                        Staff_Email2 = request.StaffEmail_2 ?? "",
+                        Staff_Email3 = request.StaffEmail_3 ?? "",
+                        Staff_Email4 = request.StaffEmail_4 ?? "",
+                        Staff_Phone1 = Convert.ToInt64(request.StaffPhone_1),
+                        Staff_Phone2 = Convert.ToInt64(request.StaffPhone_2),
+                        Staff_Phone3 = Convert.ToInt64(request.StaffPhone_3),
+                        Staff_Phone4 = Convert.ToInt64(request.StaffPhone_4),
+                        Image = request.Thumb ?? "",
+                        Gst_Number = request.Gst_Number,
+                        Pan_Number = request.Pan_Number,
+                        Updated_At = System.DateTime.UtcNow,
+                        Created_At = System.DateTime.UtcNow
+                    };
                     _contex.Dealers.Add(dealer);
                     _contex.SaveChanges();
 
@@ -245,14 +237,14 @@ namespace DCRM.Repository.Repository
                     dealer.Zip_O = request.Zip_O;
                     dealer.Country_O = request.Country_O;
                     dealer.Country_R = request.Country_R;
-                    dealer.Staff_Name1 = request.StaffName_1 == null ? "" : request.StaffName_1;
-                    dealer.Staff_Name2 = request.StaffName_2 == null ? "" : request.StaffName_2;
-                    dealer.Staff_Name3 = request.StaffName_3 == null ? "" : request.StaffName_3;
-                    dealer.Staff_Name4 = request.StaffName_4 == null ? "" : request.StaffName_4;
-                    dealer.Staff_Email1 = request.StaffEmail_1 == null ? "" : request.StaffEmail_1;
-                    dealer.Staff_Email2 = request.StaffEmail_2 == null ? "" : request.StaffEmail_2;
-                    dealer.Staff_Email3 = request.StaffEmail_3 == null ? "" : request.StaffEmail_3;
-                    dealer.Staff_Email4 = request.StaffEmail_4 == null ? "" : request.StaffEmail_4;
+                    dealer.Staff_Name1 = request.StaffName_1 ?? "";
+                    dealer.Staff_Name2 = request.StaffName_2 ?? "";
+                    dealer.Staff_Name3 = request.StaffName_3 ?? "";
+                    dealer.Staff_Name4 = request.StaffName_4 ?? "";
+                    dealer.Staff_Email1 = request.StaffEmail_1 ?? "";
+                    dealer.Staff_Email2 = request.StaffEmail_2 ?? "";
+                    dealer.Staff_Email3 = request.StaffEmail_3 ?? "";
+                    dealer.Staff_Email4 = request.StaffEmail_4 ?? "";
                     dealer.Staff_Phone1 = Convert.ToInt64(request.StaffPhone_1);
                     dealer.Staff_Phone2 = Convert.ToInt64(request.StaffPhone_2);
                     dealer.Staff_Phone3 = Convert.ToInt64(request.StaffPhone_3);

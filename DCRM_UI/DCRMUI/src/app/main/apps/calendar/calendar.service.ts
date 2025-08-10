@@ -8,10 +8,10 @@ import { EventRef } from 'app/main/apps/calendar/calendar.model';
 @Injectable()
 export class CalendarService implements Resolve<any> {
   // Public
-  public events;
-  public calendar;
-  public currentEvent;
-  public tempEvents;
+  public events: any[] | PromiseLike<any[]>;
+  public calendar: any[] | PromiseLike<any[]>;
+  public currentEvent: EventRef;
+  public tempEvents: any[];
 
   public onEventChange: BehaviorSubject<any>;
   public onCurrentEventChange: BehaviorSubject<any>;

@@ -3,18 +3,10 @@ using DCRM.Common.Entities;
 using DCRM.Common.Entity;
 using DCRM.Common.Request;
 using DCRM.Repository.IRepository;
-using DCRM.Repository.Repository;
 using DCRM.Service.IService;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using Twilio.Types;
 
 namespace DCRM.Service.Service
 {
@@ -91,7 +83,7 @@ namespace DCRM.Service.Service
                     DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure
                 };
 
-                using (SmtpClient smtpClient = new SmtpClient(smtpServer))
+                using (SmtpClient smtpClient = new(smtpServer))
                 {
                     smtpClient.Credentials = new NetworkCredential(userId, password);
                     smtpClient.Port = Convert.ToInt32(port);
@@ -113,14 +105,16 @@ namespace DCRM.Service.Service
                 }
                 else
                 {
-                    Userotp userOtpNew = new Userotp();
-                    userOtpNew.PhoneNumber = "";
-                    userOtpNew.Email = email;
-                    userOtpNew.Otp = otp;
-                    userOtpNew.UserType = type;
-                    userOtpNew.EntityId = entityId;
-                    userOtpNew.CreatedDate = DateTime.Now;
-                    userOtpNew.UpdatedDate = DateTime.Now;
+                    Userotp userOtpNew = new()
+                    {
+                        PhoneNumber = "",
+                        Email = email,
+                        Otp = otp,
+                        UserType = type,
+                        EntityId = entityId,
+                        CreatedDate = DateTime.Now,
+                        UpdatedDate = DateTime.Now
+                    };
                     _userOtpRepository.Create(userOtpNew);
                 }
             }
@@ -190,12 +184,14 @@ namespace DCRM.Service.Service
                 }
                 else
                 {
-                    Userotp userOtpNew = new Userotp();
-                    userOtpNew.PhoneNumber = phoneMumber;
-                    userOtpNew.Otp = otp;
-                    userOtpNew.UserType = type;
-                    userOtpNew.CreatedDate = DateTime.Now;
-                    userOtpNew.UpdatedDate = DateTime.Now;
+                    Userotp userOtpNew = new()
+                    {
+                        PhoneNumber = phoneMumber,
+                        Otp = otp,
+                        UserType = type,
+                        CreatedDate = DateTime.Now,
+                        UpdatedDate = DateTime.Now
+                    };
                     _userOtpRepository.Create(userOtpNew);
                 }
             }

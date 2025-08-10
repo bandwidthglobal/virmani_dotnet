@@ -3,9 +3,7 @@ using DCRM.Common.Entity;
 using DCRM.Common.Request;
 using DCRM.Repository.Database;
 using DCRM.Repository.IRepository;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Immutable;
 using System.Data.SqlTypes;
 
 namespace DCRM.Repository.Repository

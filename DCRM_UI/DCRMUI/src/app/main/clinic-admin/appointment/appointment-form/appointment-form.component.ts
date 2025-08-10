@@ -1,15 +1,12 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewEncapsulation } from "@angular/core";
 import { validationMessages } from "app/shared-common/pipes/error-message";
-import { ToastrService } from "ngx-toastr";
 import { CommonValidationService } from "app/shared-common/services/common-validation.service";
-import { Subject, of } from 'rxjs';
+import { Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IAppointmentForm, IAppointmentFormModel } from "../model/appointment-from";
 import { AppointmentFormService } from "./appointment-form.service";
 import { User } from "app/auth/models";
-import { WaitingRoomService } from "../waiting-room/waiting-room.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { debug } from "console";
 import { Validators } from "@angular/forms";
 
 @Component({
@@ -31,6 +28,8 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
     subscription: any;
     messages = validationMessages;
     formData?: IAppointmentForm;
+    keyword = 'name';
+    patientName='';
     @Input() FormInput?: any = new IAppointmentFormModel();
     @Input() FormAction?: 'add' | 'edit' = 'add';
     @Output() callBackEvent: EventEmitter<any> = new EventEmitter<any>();
@@ -46,6 +45,7 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
         private _commonValidationService: CommonValidationService,
     ) {
         this._unsubscribeAll = new Subject();
+        document.title = "Create Appointment";
     }
 
     convertFrom24To12Format(time) {
@@ -80,17 +80,18 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
      
         this.formData = new IAppointmentForm(this.FormInput);
         if (this.patientId > 0) {
-            this.formData.patient_Id.setValue(this.patientId);
-            this._appointmentFormService.getIPatientsById(this.patientId).subscribe(res => {
+            this.formData.patient_Id.setValue(this.FormInput.patient_Id);
+            this._appointmentFormService.getIPatientsById(this.FormInput.patient_Id).subscribe(res => {
                 this.patientId = res.patient_Id;
                 this.formData.phone.setValue(res.patientContacts[0].phone1.toString());
                 this.formData.patient_name.setValue(res.name);
                 this.formData.email.setValue(' ');
+                this.patientName=res.name;
             });
            
         }
         if (this.formData.patient_Id.value == null || this.formData.patient_Id.value == 0) {
-            this.formData.p_type.setValue("New Patient");
+            this.formData.p_type.setValue("Old Patient");
             this.formData.get('patient_name').setValidators([Validators.required])
             this.formData.get('phone').setValidators([Validators.required])
             this.formData.get('patient_Id').setValue(0);
@@ -129,6 +130,7 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
                 this.formData.phone.setValue(res.patientContacts[0].phone1.toString());
                 this.formData.patient_name.setValue(res.name);
                 this.formData.email.setValue(' ');
+                this.patientName=res.name;
             });
             
         });
@@ -148,10 +150,52 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
             }
         });
 
+        var data={target:{value: this.formData.start_Time.value}};
+        this.fnSetStartTime(data,1);
+
        
     }
-   
-    changeOldPatient(type) {
+    fnSetStartTime(event: any, type: number)
+    {
+        console.log(event.target.value);
+        if(type===1)
+        {
+          var slots=parseFloat(this.formData.get('slot_Time').value);
+          if(slots<15)
+          {
+            slots=slots*60;           
+          }
+          var endDateObj = new Date("2024-01-01 "+event.target.value).setMinutes(slots);
+          var endTimeObj = new Date(endDateObj);
+          var hours = endTimeObj.getHours();
+          var minues = endTimeObj.getMinutes();
+          var sec = endTimeObj.getSeconds();
+          var startTime = hours+":"+minues+":00";
+          if(minues.toString().length<2)
+          {
+           startTime = hours+":"+minues+"0:00";
+          }
+          this.formData.get('end_Time').setValue(startTime);
+        }else{
+            var slots=parseFloat(event.target.value);
+          if(slots<15)
+          {
+            slots=slots*60;           
+          }
+          var endDateObj = new Date("2024-01-01 "+this.formData.get('start_Time').value).setMinutes(slots);
+          var endTimeObj = new Date(endDateObj);
+          var hours = endTimeObj.getHours();
+          var minues = endTimeObj.getMinutes();
+          var sec = endTimeObj.getSeconds();
+          var startTime = hours+":"+minues+":00";
+          if(minues.toString().length<2)
+          {
+           startTime = hours+":"+minues+"0:00";
+          }
+          this.formData.get('end_Time').setValue(startTime);
+        }
+    }
+    changeOldPatient(type: string) {
        
         if (type == 'old') {
             this.formData.p_type.setValue("Old Patient");
@@ -164,7 +208,7 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
     }
-    changeAppointmentStatus(status, id, sift) {
+    changeAppointmentStatus(status: any, id: any, sift: any) {
 
         this.saveForm(status, id, sift)
         //this._waitingRoomService.ChangeAppointmentStatus(id.value, status).subscribe(res => {
@@ -175,8 +219,9 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
         //    });
         //    this.router.navigate(["/admin/appointment/chairview"])
         //});
+        
     }
-    saveForm(status, id, sift): void {
+    saveForm(status: string, id: any, sift: any): void {
         this.submitted = true;
         this._commonValidationService.validateAllFormFields(this.formData);
         debugger;
@@ -204,8 +249,8 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
             })).subscribe((response) => {
                 this.loading = false;
                 let a = document.createElement('a');
-                a.href = "/admin/appointment/download/" + response.toString();
-                a.target = "_blank";
+                a.href = "/admin/appointment/list";
+                a.target = "_self";
                 a.click();
                 this.callBackEvent.emit({
                     status: 'failure',
@@ -215,7 +260,7 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
             });
         }
     }
-    patientTypeOpen(obj) {
+    patientTypeOpen(obj: any) {
         
     }
     close() {
@@ -224,4 +269,25 @@ export class AppointmentFormComponent implements OnInit, OnDestroy {
             page: this.FormAction,
         });
     }
+    backBtn(){
+        let a = document.createElement('a');
+                a.href = "/admin/appointment/list";
+                a.target = "_self";
+                a.click();
+    }
+    selectEvent(item) {
+        if(item.id)
+        {
+         this.formData.patient_Id.setValue(item.id);
+        }
+      }
+    
+      onChangeSearch(val: string) {
+        // fetch remote data from here
+        // And reassign the 'data' which is binded to 'data' property.
+      }
+      
+      onFocused(e){
+        // do something when input is focused
+      }
 };

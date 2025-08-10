@@ -13,7 +13,7 @@ export class NavbarCartComponent implements OnInit {
   // Public
   public products = [];
   public cartList = [];
-  public cartListLength;
+  public cartListLength: number;
 
   // Private
   private _unsubscribeAll: Subject<any>;

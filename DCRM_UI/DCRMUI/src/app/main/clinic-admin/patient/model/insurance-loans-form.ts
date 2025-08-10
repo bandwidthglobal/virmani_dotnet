@@ -1,5 +1,4 @@
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import * as vMODEL from './validation';
 
 export interface IInsuranceLoanFormModel {
     id?: any;
@@ -30,8 +29,8 @@ export class IInsuranceLoanForm extends FormGroup {
             fb.group({
                 id: [model?.id],
                 patients_Id: [model?.patients_Id],
-                type: [model?.type, Validators.required],
-                name: [model?.name, Validators.required],
+                type: [model?.type],
+                name: [model?.name],
                 amount: [model?.amount],
                 balance_Spent: [model?.balance_Spent],
                 balance_Amount: [model?.balance_Amount],

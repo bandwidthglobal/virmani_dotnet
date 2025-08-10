@@ -14,7 +14,7 @@ export class CoreSidebarService {
    * @param key
    * @returns {CoreSidebarComponent}
    */
-  getSidebarRegistry(key): CoreSidebarComponent {
+  getSidebarRegistry(key: string): CoreSidebarComponent {
     // Check if the sidebar registered
 
     if (!this._registry[key]) {

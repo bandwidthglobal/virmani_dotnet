@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DCRM.Common.Entities;
+﻿namespace DCRM.Common.Entities;
 
 public partial class Payment_Workdone:BaseEntity
 {
-    public int Id { get; set; }
+    public new int Id { get; set; }
 
     public int Patient_Id { get; set; }
 

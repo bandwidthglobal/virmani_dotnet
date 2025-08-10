@@ -1,14 +1,10 @@
-﻿using DCRM.Common.Dto;
+﻿using Azure.Core;
+using DCRM.Common.Dto;
 using DCRM.Common.Entities;
 using DCRM.Common.Entity;
 using DCRM.Common.RequestModel;
 using DCRM.Repository.IRepository;
 using DCRM.Service.IService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Service.Service
 {
@@ -103,7 +99,7 @@ namespace DCRM.Service.Service
                     teethIno.Type = request.Type;
                     teethIno.Teeth_Id = request.Teeth_id;
                     teethIno.Teeth_Number_Note = request.Teeth_Number_Note;
-                    teethIno.Toth_Note = request.Toth_Note;
+                    teethIno.Toth_Note = request.Treatment_Notes;
                     teethIno.Date = System.DateTime.UtcNow;
                     _teethInfoRepository.Update(teethIno);
                 }
@@ -137,21 +133,52 @@ namespace DCRM.Service.Service
             long workDoneId = _workDoneRepository.Create(workdone);
             if (workDoneId > 0)
             {
-                Payment_History payment = new Payment_History();
-                payment.Workdone_Id = workDoneId;
-                payment.Doctor_Id = workdone.Doctor_Id;
-                payment.Patient_Id = _treatmentplanRepository.Get(workdone.Treatment_Id).Patient_Id;
-                payment.Debit_Amount = workdone.Total_Amt;
-                payment.Updated_At = System.DateTime.UtcNow;
-                payment.Created_At = System.DateTime.UtcNow;
-                payment.Description = string.Empty;
-                payment.Payment_Mode = string.Empty;
-                payment.Balance = workdone.Total_Amt;
+                Payment_History payment = new()
+                {
+                    Workdone_Id = workDoneId,
+                    Doctor_Id = workdone.Doctor_Id,
+                    Patient_Id = _treatmentplanRepository.Get(workdone.Treatment_Id).Patient_Id,
+                    Debit_Amount = workdone.Total_Amt,
+                    Updated_At = System.DateTime.UtcNow,
+                    Created_At = System.DateTime.UtcNow,
+                    Description = workdone.Workdone_Notes,
+                    Payment_Mode = string.Empty,
+                    Balance = workdone.Total_Amt
+                };
                 _paymentHistoryRepository.Create(payment);
             }
 
         }
 
+        public void UpdateWorkdone(Workdone_New request)
+        {
+            var workDone = _workDoneRepository.Get(request.Id);
+            if (workDone.Id > 0)
+            {
+                workDone.Current_Work_Amt = request.Current_Work_Amt;
+                workDone.Workdone_Status = request.Workdone_Status;
+                workDone.Workdone_Notes = request.Workdone_Notes;
+                workDone.Discount = request.Discount;
+                workDone.Doctor_Id = request.Doctor_Id;
+                workDone.Created_At = System.DateTime.UtcNow;
+                workDone.Updated_At = System.DateTime.UtcNow;
+                workDone.Total_Amt = request.Total_Amt;
+                _workDoneRepository.Update(workDone);
+                var treatment = _treatmentplanRepository.Get(workDone.Treatment_Id);
+                if(treatment.Id> 0)
+                {
+                    treatment.Doctor = request.Doctor_Id;
+                    _treatmentplanRepository.UpdateTreatmentplan(treatment);
+                }
+                var paymentHistory = _paymentHistoryRepository.GetAll().Where(x=>x.Patient_Id == treatment.Patient_Id && x.Workdone_Id == workDone.Id).FirstOrDefault();
+                if( paymentHistory != null &&  paymentHistory.Id> 0)
+                {
+                    paymentHistory.Doctor_Id = request.Doctor_Id;
+                    paymentHistory.Description = request.Workdone_Notes;
+                    _paymentHistoryRepository.Update(paymentHistory);
+                }
+            }
+        }
 
         public List<TeethCategory> GetTeethCategories()
         {
@@ -166,17 +193,19 @@ namespace DCRM.Service.Service
 
 
 
-        public List<DiagnosisDataDto> BuildTree(DiagnosisDataDto current, List<DiagnosisDataDto> allitems)
+        public static List<DiagnosisDataDto> BuildTree(DiagnosisDataDto current, List<DiagnosisDataDto> allitems)
         {
             var diagnosisDataDtos = allitems.Where(c => c.Parent == current.Id).ToList();
-            List<DiagnosisDataDto> childs = new List<DiagnosisDataDto>();
+            List<DiagnosisDataDto> childs = new();
             foreach (var item in diagnosisDataDtos)
             {
-                DiagnosisDataDto childData = new DiagnosisDataDto();
-                childData.Id = item.Id;
-                childData.Category = item.Category;
-                childData.Code = item.Code;
-                childData.Parent = item.Parent;
+                DiagnosisDataDto childData = new()
+                {
+                    Id = item.Id,
+                    Category = item.Category,
+                    Code = item.Code,
+                    Parent = item.Parent
+                };
                 childs.Add(childData);
             }
 
@@ -191,17 +220,19 @@ namespace DCRM.Service.Service
         public List<DiagnosisDataDto> GetDiagnosisData()
         {
             var diagnosisDataList = _diagnosisDataRepository.GetAll().ToList();
-            List<DiagnosisDataDto> rootList = new List<DiagnosisDataDto>();
+            List<DiagnosisDataDto> rootList = new();
             foreach (var parent in diagnosisDataList)
             {
-                DiagnosisDataDto parentData = new DiagnosisDataDto();
-                parentData.Id = parent.Id;
-                parentData.Category = parent.Category;
-                parentData.Code = parent.Code;
-                parentData.Parent = parent.Parent;
+                DiagnosisDataDto parentData = new()
+                {
+                    Id = parent.Id,
+                    Category = parent.Category,
+                    Code = parent.Code,
+                    Parent = parent.Parent
+                };
                 rootList.Add(parentData);
             }
-            List<DiagnosisDataDto> DiagnosisDataList = new List<DiagnosisDataDto>();
+            List<DiagnosisDataDto> DiagnosisDataList = new();
             foreach (var item in rootList.Where(x => x.Parent == 0))
             {
                 item.Children = BuildTree(item, rootList);
@@ -213,53 +244,63 @@ namespace DCRM.Service.Service
         public List<DiagnosisDataDto> GetDiagnosisDataOld()
         {
             var diagnosisDataList = _diagnosisDataRepository.GetAll().Where(x => x.Parent == 0).ToList();
-            List<DiagnosisDataDto> parentList = new List<DiagnosisDataDto>();
+            List<DiagnosisDataDto> parentList = new();
 
             foreach (var parent in diagnosisDataList)
             {
-                DiagnosisDataDto parentData = new DiagnosisDataDto();
-                parentData.Id = parent.Id;
-                parentData.Category = parent.Category;
-                parentData.Code = parent.Code;
-                parentData.Parent = parent.Parent;
+                DiagnosisDataDto parentData = new()
+                {
+                    Id = parent.Id,
+                    Category = parent.Category,
+                    Code = parent.Code,
+                    Parent = parent.Parent
+                };
 
                 var children = _diagnosisDataRepository.GetAll().Where(x => x.Parent == parent.Id).ToList();
-                List<DiagnosisDataDto> childrenList = new List<DiagnosisDataDto>();
+                List<DiagnosisDataDto> childrenList = new();
                 foreach (var child in children)
                 {
-                    DiagnosisDataDto childData = new DiagnosisDataDto();
-                    childData.Id = child.Id;
-                    childData.Category = child.Category;
-                    childData.Code = child.Code;
-                    childData.Parent = child.Parent;
+                    DiagnosisDataDto childData = new()
+                    {
+                        Id = child.Id,
+                        Category = child.Category,
+                        Code = child.Code,
+                        Parent = child.Parent
+                    };
                     var children1 = _diagnosisDataRepository.GetAll().Where(x => x.Parent == child.Id).ToList();
-                    List<DiagnosisDataDto> childrenList1 = new List<DiagnosisDataDto>();
+                    List<DiagnosisDataDto> childrenList1 = new();
                     foreach (var child1 in children1)
                     {
-                        DiagnosisDataDto childData2 = new DiagnosisDataDto();
-                        childData2.Id = child1.Id;
-                        childData2.Category = child1.Category;
-                        childData2.Code = child1.Code;
-                        childData2.Parent = child1.Parent;
+                        DiagnosisDataDto childData2 = new()
+                        {
+                            Id = child1.Id,
+                            Category = child1.Category,
+                            Code = child1.Code,
+                            Parent = child1.Parent
+                        };
                         var children2 = _diagnosisDataRepository.GetAll().Where(x => x.Parent == child1.Id).ToList();
-                        List<DiagnosisDataDto> childrenList3 = new List<DiagnosisDataDto>();
+                        List<DiagnosisDataDto> childrenList3 = new();
                         foreach (var child2 in children2)
                         {
-                            DiagnosisDataDto childData3 = new DiagnosisDataDto();
-                            childData3.Id = child2.Id;
-                            childData3.Category = child2.Category;
-                            childData3.Code = child2.Code;
-                            childData3.Parent = child2.Parent;
+                            DiagnosisDataDto childData3 = new()
+                            {
+                                Id = child2.Id,
+                                Category = child2.Category,
+                                Code = child2.Code,
+                                Parent = child2.Parent
+                            };
 
                             var children3 = _diagnosisDataRepository.GetAll().Where(x => x.Parent == child2.Id).ToList();
-                            List<DiagnosisDataDto> childrenList4 = new List<DiagnosisDataDto>();
+                            List<DiagnosisDataDto> childrenList4 = new();
                             foreach (var child3 in children3)
                             {
-                                DiagnosisDataDto childData4 = new DiagnosisDataDto();
-                                childData4.Id = child3.Id;
-                                childData4.Category = child3.Category;
-                                childData4.Code = child3.Code;
-                                childData4.Parent = child3.Parent;
+                                DiagnosisDataDto childData4 = new()
+                                {
+                                    Id = child3.Id,
+                                    Category = child3.Category,
+                                    Code = child3.Code,
+                                    Parent = child3.Parent
+                                };
                                 childrenList4.Add(childData4);
                             }
                             childData3.Children = childrenList4;

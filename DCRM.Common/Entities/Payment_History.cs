@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DCRM.Common.Entities;
+﻿namespace DCRM.Common.Entities;
 
 public partial class Payment_History:BaseEntity
 {
-    public long Id { get; set; }
+    public new long Id { get; set; }
 
     public long Doctor_Id { get; set; }
 
@@ -18,6 +15,7 @@ public partial class Payment_History:BaseEntity
     public double Credit_Amount { get; set; }
 
     public double Debit_Amount { get; set; }
+    public sbyte isPrinted {  get; set; }
 
     /// <summary>
     /// 0=credit,1=debit

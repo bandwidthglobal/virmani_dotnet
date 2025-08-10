@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 import { CoreSidebarService } from '@core/components/core-sidebar/core-sidebar.service';
 
@@ -22,8 +21,8 @@ export class DiagnosisTestFormComponent implements OnInit, OnDestroy {
     // public
     public apiData;
     public sidebarToggleRef = false;
-    public invoiceSelect;
-    public invoiceSelected;
+    public invoiceSelect: any;
+    public invoiceSelected: any;
     isEdit = false;
     diagnosisId = 0;
     public loading = false;
@@ -59,7 +58,7 @@ export class DiagnosisTestFormComponent implements OnInit, OnDestroy {
      *
      * @param name
      */
-    toggleSidebar(name) {
+    toggleSidebar(name: string) {
         this._coreSidebarService.getSidebarRegistry(name).toggleOpen();
     }
     ngOnInit(): void {

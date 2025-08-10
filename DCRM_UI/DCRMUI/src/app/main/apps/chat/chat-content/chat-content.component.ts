@@ -15,11 +15,11 @@ export class ChatContentComponent implements OnInit {
 
   // Public
   public activeChat: Boolean;
-  public chats;
-  public chatUser;
-  public userProfile;
+  public chats: { chat: any[]; };
+  public chatUser: { id: any; };
+  public userProfile: { id: any; };
   public chatMessage = '';
-  public newChat;
+  public newChat: { message: any; time?: string; senderId?: any; };
 
   /**
    * Constructor

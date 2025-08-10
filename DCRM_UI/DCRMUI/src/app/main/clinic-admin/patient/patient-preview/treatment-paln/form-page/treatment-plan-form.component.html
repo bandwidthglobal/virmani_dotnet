@@ -32,13 +32,13 @@
 
                         <ng-container *ngIf="!formData.get('milk_teeth').value">
                             <li class="teethord{{ idx+1 }}">
-                                <a (click)="getRecord_teechinfo(t.id, t.teeth_Note, t.image)" href="javascript://"
+                                <a (click)="getRecord_teechinfo(t.id, t.teeth_Note, t.teeth_Number)" href="javascript://"
                                    title="" data-original-title="{{ t.teeth_Note }}"></a>
                             </li>
                         </ng-container>
                         <ng-container *ngIf="formData.get('milk_teeth').value">
                             <li class="teeth_child{{ idx+1 }}">
-                                <a (click)="getRecord_teechinfo(t.id, t.teeth_Note, t.image)" href="javascript://"
+                                <a (click)="getRecord_teechinfo(t.id, t.teeth_Note, t.teeth_Number)" href="javascript://"
                                    title="" data-original-title="{{ t.teeth_Note }}"></a>
                             </li>
                         </ng-container>
@@ -89,12 +89,13 @@
                     <div class="form-group">
                         <label><strong>Patient Name:</strong> {{ apiData.name }} </label>
                     </div>
-                    <shared-ui-select-input [label]="'Treatment Type'" [control]="formData.type"
-                                            [options]="ITreatmentType" [valueKey]="'value'" [displaykey]="'text'"
-                                            [submitted]="submitted"></shared-ui-select-input>
 
                     <shared-ui-text-input [label]="'Job Name'" [control]="formData.job"
                                           [submitted]="submitted"></shared-ui-text-input>
+
+                    <shared-ui-select-input [label]="'Treatment Type'" [control]="formData.type"
+                                          [options]="ITreatmentType" [valueKey]="'value'" [displaykey]="'text'"
+                                          [submitted]="submitted"></shared-ui-select-input>
 
                     <shared-ui-select-input [label]="'Primary Doctor Name'" [control]="formData.doctor"
                                             [options]="IDoctors" [valueKey]="'id'" [displaykey]="'name'"
@@ -109,7 +110,7 @@
                                 <input name="treatment" type="radio" (change)="changeTreatmentStatus(1)" value="1">
                                 <label class="cs-lable">Completed</label>
                                 <input name="treatment" type="radio" (change)="changeTreatmentStatus(2)" value="2">
-                                <label class="cs-lable">Incompleted</label>
+                                <label class="cs-lable">Incomplete</label>
                             </div>
                         </div>
                     </div>

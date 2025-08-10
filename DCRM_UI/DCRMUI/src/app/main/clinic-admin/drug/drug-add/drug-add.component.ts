@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 import { repeaterAnimation } from 'app/main/apps/invoice/invoice.animation';
 import { DrugAddService } from 'app/main/clinic-admin/drug/drug-add/drug-add.service';
@@ -75,7 +74,7 @@ export class DrugAddComponent implements OnInit, OnDestroy {
             itemCost: ''
         });
     }
-    deleteItem(id) {
+    deleteItem(id: number) {
         for (let i = 0; i < this.items.length; i++) {
             if (this.items.indexOf(this.items[i]) === id) {
                 this.items.splice(i, 1);
@@ -106,10 +105,10 @@ export class DrugAddComponent implements OnInit, OnDestroy {
     get f() {
         return this.addDrugForm.controls;
     }
-    onCategorySelected(ob) {
+    onCategorySelected(ob: any) {
 
     }
-    onBrandSelected(ob) {
+    onBrandSelected(ob: any) {
 
     }
     cancel() {

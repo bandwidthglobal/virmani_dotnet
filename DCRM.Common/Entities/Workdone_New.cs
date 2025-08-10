@@ -1,6 +1,4 @@
 ﻿using DCRM.Common.Entities;
-using System;
-using System.Collections.Generic;
 
 namespace DCRM.Common.Entity;
 

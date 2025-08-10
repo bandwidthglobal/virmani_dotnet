@@ -1,12 +1,11 @@
 import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
-import { catchError, first, takeUntil } from 'rxjs/operators';
+import { first, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 import { CoreConfigService } from '@core/services/config.service';
 import { ForgotPasswordService } from 'app/authpage/authentication/forgotpassword/forgotpassword.service';
-import { debug } from 'console';
 import { Router } from '@angular/router';
 
 @Component({

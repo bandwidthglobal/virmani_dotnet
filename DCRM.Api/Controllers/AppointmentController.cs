@@ -3,10 +3,7 @@ using DCRM.Common.Dto;
 using DCRM.Common.Entity;
 using DCRM.Common.RequestModel;
 using DCRM.Service.IService;
-using DCRM.Service.Service;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace DCRM.Api.Controllers
 {
@@ -38,14 +35,16 @@ namespace DCRM.Api.Controllers
         {
             var user = Request.HttpContext.Items["User"] as User;
             var appointments = _appointmentService.GetAppointmentWithPatient(user.Id).OrderByDescending(x => x.Date).ToList();
-            List<Calendar> calendarList=new List<Calendar>();
+            List<Calendar> calendarList=new();
             foreach (var appointment in appointments)
             {
-                Calendar calendar=new Calendar();
-                calendar.id=appointment.Id;
-                calendar.start = Convert.ToDateTime(appointment.Date.ToString().Split(" ")[0] + " " + appointment.Start_Time).ToString();
-                calendar.end = Convert.ToDateTime(appointment.Date.ToString().Split(" ")[0] + " " + appointment.End_Time).ToString();
-                calendar.title = appointment.Patient_Name + "/" + appointment.Doctor_Name;
+                Calendar calendar = new()
+                {
+                    Id = appointment.Id,
+                    Start = Convert.ToDateTime(appointment.Date.ToString().Split(" ")[0] + " " + appointment.Start_Time).ToString(),
+                    End = Convert.ToDateTime(appointment.Date.ToString().Split(" ")[0] + " " + appointment.End_Time).ToString(),
+                    Title = appointment.Patient_Name + "/" + appointment.Doctor_Name
+                };
                 calendarList.Add(calendar);
 
             }
@@ -111,8 +110,8 @@ namespace DCRM.Api.Controllers
         public List<Assign_Time> GetAllTime()
         {
             var user = Request.HttpContext.Items["User"] as User;
-            List<Assign_Time> times= new List<Assign_Time>();
-            times = _appointmentService.GetTimes(user.Id);
+            _ = new List<Assign_Time>();
+            List<Assign_Time> times = _appointmentService.GetTimes(user.Id);
             return times;
         }
 
@@ -127,7 +126,7 @@ namespace DCRM.Api.Controllers
         [HttpDelete("DeleteTime/{id}")]
         public IActionResult DeleteTimes(int id)
         {
-            var user = Request.HttpContext.Items["User"] as User;
+            _ = Request.HttpContext.Items["User"] as User;
             _appointmentService.DeleteTime(id);
             return Ok();
         }

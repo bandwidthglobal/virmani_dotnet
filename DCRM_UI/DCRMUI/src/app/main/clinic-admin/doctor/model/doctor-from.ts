@@ -13,10 +13,10 @@ export class DoctorFormModel {
   thumb?: any = '';
   name?: any = '';
   gender?: any = '';
-  dob?: any = '';
+  dob?: any = null;
   age?: any = '';
   marital_Status?: any = '';
-  blood_Group?: any = '';
+  blood_Group?: any = null;
   qualification?: any = '';
   email?: any = '';
   email2?: any = null;
@@ -24,9 +24,9 @@ export class DoctorFormModel {
   role?: any = 'doctor';
   speciality?: any = '';
   phone1?: any = '';
-  phone2?: any = '';
-  phone3?: any = '';
-  phone4?: any = '';
+  phone2?: any = null;
+  phone3?: any = null;
+  phone4?: any = null;
   pan_Number?: any = '';
   gst_Number?: any = '';
   is_Delete?: any = 0;
@@ -84,10 +84,10 @@ export class DoctorForm extends FormGroup {
           thumb: [model?.thumb],
           name: [model?.name, [Validators.required]],
           gender: [model?.gender, [Validators.required]],
-          dob: [model?.dob, [Validators.required]],
+          dob: [model?.dob],
           age: [model?.age, [Validators.required]],
           marital_Status: [model?.marital_Status],
-          blood_Group: [model?.blood_Group, [Validators.required]],
+          blood_Group: [model?.blood_Group],
           qualification: [model?.qualification],
           email: [model?.email, [Validators.required, Validators.email]],
           email2: [model?.email2, [Validators.email]],
@@ -95,9 +95,9 @@ export class DoctorForm extends FormGroup {
           role: [model?.role],
           speciality: [model?.speciality],
           phone1: [model?.phone1, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-          phone2: [model?.phone2, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-          phone3: [model?.phone3, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-          phone4: [model?.phone4, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+          phone2: [model?.phone2, [Validators.minLength(10), Validators.maxLength(10)]],
+          phone3: [model?.phone3, [Validators.minLength(10), Validators.maxLength(10)]],
+          phone4: [model?.phone4, [Validators.minLength(10), Validators.maxLength(10)]],
           pan_Number: [model?.pan_Number],
           gst_Number: [model?.gst_Number],
           is_Delete: [model?.is_Delete],

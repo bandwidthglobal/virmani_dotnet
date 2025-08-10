@@ -1,0 +1,455 @@
+2024-07-30 20:25:50.350 +05:30  INF  User profile is available. Using 'C:\Users\pramo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+
+2024-07-30 20:25:50.755 +05:30  INF  Now listening on: https://localhost:7069
+
+2024-07-30 20:25:50.755 +05:30  INF  Now listening on: http://localhost:5069
+
+2024-07-30 20:25:50.955 +05:30  INF  Application started. Press Ctrl+C to shut down.
+
+2024-07-30 20:25:50.959 +05:30  INF  Hosting environment: Development
+
+2024-07-30 20:25:50.960 +05:30  INF  Content root path: C:\Projects\EZProjects\virmani_dotnet\DCRM.Api\
+
+2024-07-30 20:25:52.178 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger - -
+
+2024-07-30 20:25:52.583 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/index.html - -
+
+2024-07-30 20:25:52.593 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger - - - 301 0 - 421.3401ms
+
+2024-07-30 20:25:52.751 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/index.html - - - 200 - text/html;charset=utf-8 167.9220ms
+
+2024-07-30 20:25:52.785 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - -
+
+2024-07-30 20:25:52.786 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - -
+
+2024-07-30 20:25:52.788 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - -
+
+2024-07-30 20:25:52.794 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - -
+
+2024-07-30 20:25:52.809 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_framework/aspnetcore-browser-refresh.js - - - 200 11974 application/javascript;+charset=utf-8 23.3789ms
+
+2024-07-30 20:25:52.896 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/_vs/browserLink - -
+
+2024-07-30 20:25:52.922 +05:30  INF  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+
+2024-07-30 20:25:52.922 +05:30  INF  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+
+2024-07-30 20:25:52.928 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 133.9886ms
+
+2024-07-30 20:25:52.928 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui.css - - - 200 143632 text/css 140.4636ms
+
+2024-07-30 20:25:52.956 +05:30  INF  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+
+2024-07-30 20:25:52.957 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 170.8956ms
+
+2024-07-30 20:25:53.025 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 128.6019ms
+
+2024-07-30 20:25:53.179 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - -
+
+2024-07-30 20:25:53.499 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 320.1509ms
+
+2024-07-30 20:26:03.342 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Authenticate/user - -
+
+2024-07-30 20:26:03.351 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:26:03.354 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Authenticate/user - - - 204 - - 11.8125ms
+
+2024-07-30 20:26:03.357 +05:30  INF  Request starting HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 50
+
+2024-07-30 20:26:03.357 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:26:04.975 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api)'
+
+2024-07-30 20:26:05.018 +05:30  INF  Route matched with {action = "Post", controller = "Authenticate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Post(System.String, DCRM.Common.AuthenticateRequest) on controller DCRM.Api.Controllers.AuthenticateController (DCRM.Api).
+
+2024-07-30 20:26:09.570 +05:30  INF  Executed DbCommand (241ms) [Parameters=[@__authenticateRequest_Email_0='?' (Size = 4000), @__authenticateRequest_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE ((`u`.`Status` = 1) AND (`u`.`Email` = @__authenticateRequest_Email_0)) AND (`u`.`Password` = @__authenticateRequest_Password_1)
+LIMIT 2
+
+2024-07-30 20:26:09.977 +05:30  INF  Executing OkObjectResult, writing value of type 'DCRM.Common.AuthenticateResponse'.
+
+2024-07-30 20:26:09.995 +05:30  INF  Executed action DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api) in 4971.545ms
+
+2024-07-30 20:26:09.996 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AuthenticateController.Post (DCRM.Api)'
+
+2024-07-30 20:26:10.016 +05:30  INF  Request finished HTTP/2 POST https://localhost:7069/api/Authenticate/user application/json 50 - 200 - application/json;+charset=utf-8 6659.1107ms
+
+2024-07-30 20:26:10.054 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Dashboard/Get - -
+
+2024-07-30 20:26:10.057 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:26:10.057 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Dashboard/Get - - - 204 - - 3.1755ms
+
+2024-07-30 20:26:10.060 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Dashboard/Get application/json -
+
+2024-07-30 20:26:10.060 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:26:10.873 +05:30  INF  Executed DbCommand (224ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2024-07-30 20:26:10.873 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.DashboardController.Get (DCRM.Api)'
+
+2024-07-30 20:26:10.874 +05:30  INF  Route matched with {action = "Get", controller = "Dashboard"}. Executing controller action with signature DCRM.Common.Dto.DashboardDto Get() on controller DCRM.Api.Controllers.DashboardController (DCRM.Api).
+
+2024-07-30 20:26:11.632 +05:30  INF  Executed DbCommand (220ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Patientses` AS `p`
+WHERE (`p`.`User_Id` = @__p_0) AND (`p`.`Is_Delete` = 0)
+
+2024-07-30 20:26:12.295 +05:30  INF  Executed DbCommand (222ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Staffs` AS `s`
+WHERE (`s`.`User_Id` = @__userId_0) AND (`s`.`Is_Deleted` = 0)
+
+2024-07-30 20:26:12.955 +05:30  INF  Executed DbCommand (221ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Appointments` AS `a`
+WHERE (`a`.`User_Id` = @__userId_0) AND (`a`.`Is_Delete` = 0)
+
+2024-07-30 20:26:13.633 +05:30  INF  Executed DbCommand (219ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Appointments` AS `a`
+WHERE ((`a`.`User_Id` = @__userId_0) AND (`a`.`Is_Delete` = 0)) AND (`a`.`Date` = CURDATE())
+
+2024-07-30 20:26:13.634 +05:30  INF  Executing ObjectResult, writing value of type 'DCRM.Common.Dto.DashboardDto'.
+
+2024-07-30 20:26:13.636 +05:30  INF  Executed action DCRM.Api.Controllers.DashboardController.Get (DCRM.Api) in 2761.6692ms
+
+2024-07-30 20:26:13.636 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.DashboardController.Get (DCRM.Api)'
+
+2024-07-30 20:26:13.636 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Dashboard/Get application/json - - 200 - application/json;+charset=utf-8 3576.8358ms
+
+2024-07-30 20:26:46.330 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Patient/GetAll - -
+
+2024-07-30 20:26:46.333 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:26:46.335 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Patient/GetAll - - - 204 - - 5.1042ms
+
+2024-07-30 20:26:46.342 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Patient/GetAll application/json -
+
+2024-07-30 20:26:46.344 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:26:47.037 +05:30  INF  Executed DbCommand (221ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2024-07-30 20:26:47.038 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.PatientController.GetAll (DCRM.Api)'
+
+2024-07-30 20:26:47.041 +05:30  INF  Route matched with {action = "GetAll", controller = "Patient"}. Executing controller action with signature System.Collections.Generic.List`1[DCRM.Common.Dto.PatientseDto] GetAll() on controller DCRM.Api.Controllers.PatientController (DCRM.Api).
+
+2024-07-30 20:26:47.947 +05:30  INF  Executed DbCommand (439ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Address_O`, `p`.`Address_Other`, `p`.`Address_R`, `p`.`City_O`, `p`.`City_Other`, `p`.`City_R`, `p`.`Country_O`, `p`.`Country_Other`, `p`.`Country_R`, `p`.`Created_At`, `p`.`Doctor_Name`, `p`.`Email`, `p`.`Email2`, `p`.`Medical_History_Allergies`, `p`.`Patient_Id`, `p`.`Phone`, `p`.`Phone1`, `p`.`Phone2`, `p`.`Phone3`, `p`.`Phone4`, `p`.`Physician`, `p`.`Reffered_By`, `p`.`Relationship_Type`, `p`.`Special_Notes`, `p`.`Updated_At`, `p`.`Zip_O`, `p`.`Zip_Other`, `p`.`Zip_R`
+FROM `Patients_Contact` AS `p`
+
+2024-07-30 20:26:48.831 +05:30  INF  Executed DbCommand (222ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Amount_Type`, `p`.`Balance`, `p`.`Created_At`, `p`.`Credit_Amount`, `p`.`Debit_Amount`, `p`.`Description`, `p`.`Doctor_Id`, `p`.`Patient_Id`, `p`.`Payment_Mode`, `p`.`Updated_At`, `p`.`Workdone_Id`, `p`.`isPrinted`
+FROM `Payment_History` AS `p`
+
+2024-07-30 20:26:49.532 +05:30  INF  Executed DbCommand (220ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Age`, `p`.`Chamber_Id`, `p`.`Created_At`, `p`.`Email`, `p`.`Guardian`, `p`.`Is_Delete`, `p`.`Mobile`, `p`.`Mr_Number`, `p`.`Name`, `p`.`Password`, `p`.`Permanent_Address`, `p`.`Present_Address`, `p`.`Role`, `p`.`Sex`, `p`.`Slug`, `p`.`Thumb`, `p`.`Title`, `p`.`UserName`, `p`.`User_Id`, `p`.`Verify_Code`, `p`.`Weight`
+FROM `Patientses` AS `p`
+WHERE `p`.`Is_Delete` = 0
+
+2024-07-30 20:26:50.212 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DCRM.Common.Dto.PatientseDto, DCRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+
+2024-07-30 20:26:50.290 +05:30  INF  Executed action DCRM.Api.Controllers.PatientController.GetAll (DCRM.Api) in 3249.6891ms
+
+2024-07-30 20:26:50.291 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.PatientController.GetAll (DCRM.Api)'
+
+2024-07-30 20:26:50.293 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Patient/GetAll application/json - - 200 - application/json;+charset=utf-8 3950.2271ms
+
+2024-07-30 20:26:52.678 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Doctor/GetAll - -
+
+2024-07-30 20:26:52.679 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:26:52.679 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Doctor/GetAll - - - 204 - - 0.4676ms
+
+2024-07-30 20:26:52.688 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Doctor/GetAll application/json -
+
+2024-07-30 20:26:52.688 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:26:53.346 +05:30  INF  Executed DbCommand (220ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2024-07-30 20:26:53.347 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.DoctorController.GetAll (DCRM.Api)'
+
+2024-07-30 20:26:53.348 +05:30  INF  Route matched with {action = "GetAll", controller = "Doctor"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[DCRM.Common.Dto.DoctorDto] GetAll() on controller DCRM.Api.Controllers.DoctorController (DCRM.Api).
+
+2024-07-30 20:26:54.228 +05:30  INF  Executed DbCommand (438ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+WHERE (`d`.`User_Id` = @__p_0) AND (`d`.`Is_Delete` = 0)
+
+2024-07-30 20:26:55.113 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DCRM.Common.Dto.DoctorDto, DCRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+
+2024-07-30 20:26:55.158 +05:30  INF  Executed action DCRM.Api.Controllers.DoctorController.GetAll (DCRM.Api) in 1810.3517ms
+
+2024-07-30 20:26:55.158 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.DoctorController.GetAll (DCRM.Api)'
+
+2024-07-30 20:26:55.158 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Doctor/GetAll application/json - - 200 - application/json;+charset=utf-8 2470.7208ms
+
+2024-07-30 20:27:11.762 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Doctor/Get/23 - -
+
+2024-07-30 20:27:11.762 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:27:11.762 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Doctor/Get/23 - - - 204 - - 0.4464ms
+
+2024-07-30 20:27:11.767 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Doctor/Get/23 application/json -
+
+2024-07-30 20:27:11.767 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:27:12.428 +05:30  INF  Executed DbCommand (220ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2024-07-30 20:27:12.429 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.DoctorController.Get (DCRM.Api)'
+
+2024-07-30 20:27:12.430 +05:30  INF  Route matched with {action = "Get", controller = "Doctor"}. Executing controller action with signature DCRM.Common.Dto.DoctorDto Get(Int64) on controller DCRM.Api.Controllers.DoctorController (DCRM.Api).
+
+2024-07-30 20:27:13.096 +05:30  INF  Executed DbCommand (221ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+WHERE `d`.`Id` = @__id_0
+LIMIT 1
+
+2024-07-30 20:27:13.763 +05:30  INF  Executed DbCommand (221ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Allow_Notifications`, `d`.`Amount_Insured`, `d`.`Amount_Paid`, `d`.`Doctor_Id`, `d`.`Insurance`, `d`.`Insurance_Date`, `d`.`Remarks`, `d`.`Renewal_Date`, `d`.`Updated_At`
+FROM `Doctor_Insurance_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2024-07-30 20:27:14.436 +05:30  INF  Executed DbCommand (222ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Bank_Account_Number`, `d`.`Bank_Name`, `d`.`Doctor_Id`, `d`.`Ifsc_Code`, `d`.`Remarks`, `d`.`Updated_At`
+FROM `Doctor_Bank_Details` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2024-07-30 20:27:15.111 +05:30  INF  Executed DbCommand (225ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Doctor_Id`, `d`.`Medical_History`, `d`.`Remarks`, `d`.`Reminder_Date_For_Next`, `d`.`Updated_At`, `d`.`Vaccination_Date`, `d`.`Vaccination_Type`
+FROM `Doctors_Vaccination` AS `d`
+WHERE `d`.`Doctor_Id` = @__p_0
+
+2024-07-30 20:27:15.777 +05:30  INF  Executed DbCommand (222ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address_O`, `d`.`Address_Other`, `d`.`Address_R`, `d`.`City_O`, `d`.`City_Other`, `d`.`City_R`, `d`.`Country_O`, `d`.`Country_Other`, `d`.`Country_R`, `d`.`Created_At`, `d`.`Doctor_Id`, `d`.`Updated_At`, `d`.`Zip_O`, `d`.`Zip_Other`, `d`.`Zip_R`
+FROM `Doctors_Address` AS `d`
+WHERE `d`.`Doctor_Id` = @__doctorId_0
+
+2024-07-30 20:27:15.778 +05:30  INF  Executing ObjectResult, writing value of type 'DCRM.Common.Dto.DoctorDto'.
+
+2024-07-30 20:27:15.793 +05:30  INF  Executed action DCRM.Api.Controllers.DoctorController.Get (DCRM.Api) in 3363.6972ms
+
+2024-07-30 20:27:15.794 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.DoctorController.Get (DCRM.Api)'
+
+2024-07-30 20:27:15.794 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Doctor/Get/23 application/json - - 200 - application/json;+charset=utf-8 4026.9086ms
+
+2024-07-30 20:29:18.665 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Doctor/GetAll - -
+
+2024-07-30 20:29:18.665 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:29:18.665 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Doctor/GetAll - - - 204 - - 0.3018ms
+
+2024-07-30 20:29:18.671 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Doctor/GetAll application/json -
+
+2024-07-30 20:29:18.671 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:29:19.331 +05:30  INF  Executed DbCommand (221ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2024-07-30 20:29:19.331 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.DoctorController.GetAll (DCRM.Api)'
+
+2024-07-30 20:29:19.332 +05:30  INF  Route matched with {action = "GetAll", controller = "Doctor"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[DCRM.Common.Dto.DoctorDto] GetAll() on controller DCRM.Api.Controllers.DoctorController (DCRM.Api).
+
+2024-07-30 20:29:20.213 +05:30  INF  Executed DbCommand (443ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+WHERE (`d`.`User_Id` = @__p_0) AND (`d`.`Is_Delete` = 0)
+
+2024-07-30 20:29:21.312 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DCRM.Common.Dto.DoctorDto, DCRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+
+2024-07-30 20:29:21.339 +05:30  INF  Executed action DCRM.Api.Controllers.DoctorController.GetAll (DCRM.Api) in 2007.4447ms
+
+2024-07-30 20:29:21.339 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.DoctorController.GetAll (DCRM.Api)'
+
+2024-07-30 20:29:21.339 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Doctor/GetAll application/json - - 200 - application/json;+charset=utf-8 2668.3339ms
+
+2024-07-30 20:29:33.447 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Appointment/GetAppointmentWithPatient - -
+
+2024-07-30 20:29:33.448 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:29:33.448 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Appointment/GetAppointmentWithPatient - - - 204 - - 0.5174ms
+
+2024-07-30 20:29:33.451 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Appointment/GetAppointmentWithPatient application/json -
+
+2024-07-30 20:29:33.456 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:29:34.113 +05:30  INF  Executed DbCommand (220ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2024-07-30 20:29:34.113 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AppointmentController.GetAppointmentWithPatient (DCRM.Api)'
+
+2024-07-30 20:29:34.114 +05:30  INF  Route matched with {action = "GetAppointmentWithPatient", controller = "Appointment"}. Executing controller action with signature System.Collections.Generic.List`1[DCRM.Common.Dto.AppointmentDto] GetAppointmentWithPatient() on controller DCRM.Api.Controllers.AppointmentController (DCRM.Api).
+
+2024-07-30 20:29:34.994 +05:30  INF  Executed DbCommand (437ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`Appointment_Status`, `a`.`Cause`, `a`.`Chair`, `a`.`Chamber_Id`, `a`.`Created_At`, `a`.`Date`, `a`.`Doctor_Id`, `a`.`Doctor_Name`, `a`.`End_Time`, `a`.`Extra_Notes`, `a`.`Files`, `a`.`Is_Delete`, `a`.`Is_Start`, `a`.`Meeting_Notes`, `a`.`Number_Of_Slot`, `a`.`Patient_Id`, `a`.`Prescription_Id`, `a`.`Serial_Id`, `a`.`Slot_Time`, `a`.`Start_Time`, `a`.`Status`, `a`.`Type`, `a`.`User_Id`, `a`.`Workdone_Id`
+FROM `Appointments` AS `a`
+WHERE `a`.`Is_Delete` = 0
+
+2024-07-30 20:29:35.875 +05:30  INF  Executed DbCommand (224ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Age`, `p`.`Chamber_Id`, `p`.`Created_At`, `p`.`Email`, `p`.`Guardian`, `p`.`Is_Delete`, `p`.`Mobile`, `p`.`Mr_Number`, `p`.`Name`, `p`.`Password`, `p`.`Permanent_Address`, `p`.`Present_Address`, `p`.`Role`, `p`.`Sex`, `p`.`Slug`, `p`.`Thumb`, `p`.`Title`, `p`.`UserName`, `p`.`User_Id`, `p`.`Verify_Code`, `p`.`Weight`
+FROM `Patientses` AS `p`
+WHERE `p`.`Is_Delete` = 0
+
+2024-07-30 20:29:37.213 +05:30  INF  Executed DbCommand (222ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+
+2024-07-30 20:29:37.284 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DCRM.Common.Dto.AppointmentDto, DCRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+
+2024-07-30 20:29:37.314 +05:30  INF  Executed action DCRM.Api.Controllers.AppointmentController.GetAppointmentWithPatient (DCRM.Api) in 3200.5907ms
+
+2024-07-30 20:29:37.314 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AppointmentController.GetAppointmentWithPatient (DCRM.Api)'
+
+2024-07-30 20:29:37.315 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Appointment/GetAppointmentWithPatient application/json - - 200 - application/json;+charset=utf-8 3863.9984ms
+
+2024-07-30 20:29:51.929 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Appointment/GetAppointmentWithPatient - -
+
+2024-07-30 20:29:51.930 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:29:51.930 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Appointment/GetAppointmentWithPatient - - - 204 - - 0.3899ms
+
+2024-07-30 20:29:51.936 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Appointment/GetAppointmentWithPatient application/json -
+
+2024-07-30 20:29:51.937 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:29:52.602 +05:30  INF  Executed DbCommand (221ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2024-07-30 20:29:52.603 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AppointmentController.GetAppointmentWithPatient (DCRM.Api)'
+
+2024-07-30 20:29:52.603 +05:30  INF  Route matched with {action = "GetAppointmentWithPatient", controller = "Appointment"}. Executing controller action with signature System.Collections.Generic.List`1[DCRM.Common.Dto.AppointmentDto] GetAppointmentWithPatient() on controller DCRM.Api.Controllers.AppointmentController (DCRM.Api).
+
+2024-07-30 20:29:53.485 +05:30  INF  Executed DbCommand (440ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`Appointment_Status`, `a`.`Cause`, `a`.`Chair`, `a`.`Chamber_Id`, `a`.`Created_At`, `a`.`Date`, `a`.`Doctor_Id`, `a`.`Doctor_Name`, `a`.`End_Time`, `a`.`Extra_Notes`, `a`.`Files`, `a`.`Is_Delete`, `a`.`Is_Start`, `a`.`Meeting_Notes`, `a`.`Number_Of_Slot`, `a`.`Patient_Id`, `a`.`Prescription_Id`, `a`.`Serial_Id`, `a`.`Slot_Time`, `a`.`Start_Time`, `a`.`Status`, `a`.`Type`, `a`.`User_Id`, `a`.`Workdone_Id`
+FROM `Appointments` AS `a`
+WHERE `a`.`Is_Delete` = 0
+
+2024-07-30 20:29:54.364 +05:30  INF  Executed DbCommand (221ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Age`, `p`.`Chamber_Id`, `p`.`Created_At`, `p`.`Email`, `p`.`Guardian`, `p`.`Is_Delete`, `p`.`Mobile`, `p`.`Mr_Number`, `p`.`Name`, `p`.`Password`, `p`.`Permanent_Address`, `p`.`Present_Address`, `p`.`Role`, `p`.`Sex`, `p`.`Slug`, `p`.`Thumb`, `p`.`Title`, `p`.`UserName`, `p`.`User_Id`, `p`.`Verify_Code`, `p`.`Weight`
+FROM `Patientses` AS `p`
+WHERE `p`.`Is_Delete` = 0
+
+2024-07-30 20:29:55.688 +05:30  INF  Executed DbCommand (221ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+
+2024-07-30 20:29:55.707 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DCRM.Common.Dto.AppointmentDto, DCRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+
+2024-07-30 20:29:55.708 +05:30  INF  Executed action DCRM.Api.Controllers.AppointmentController.GetAppointmentWithPatient (DCRM.Api) in 3105.0736ms
+
+2024-07-30 20:29:55.708 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AppointmentController.GetAppointmentWithPatient (DCRM.Api)'
+
+2024-07-30 20:29:55.708 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Appointment/GetAppointmentWithPatient application/json - - 200 - application/json;+charset=utf-8 3771.8187ms
+
+2024-07-30 20:32:58.974 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Appointment/GetAppointmentWithPatient - -
+
+2024-07-30 20:32:58.975 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:32:58.979 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Appointment/GetAppointmentWithPatient - - - 204 - - 4.3358ms
+
+2024-07-30 20:32:58.987 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Appointment/GetAppointmentWithPatient application/json -
+
+2024-07-30 20:32:58.987 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:32:59.627 +05:30  INF  Executed DbCommand (212ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2024-07-30 20:32:59.628 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AppointmentController.GetAppointmentWithPatient (DCRM.Api)'
+
+2024-07-30 20:32:59.628 +05:30  INF  Route matched with {action = "GetAppointmentWithPatient", controller = "Appointment"}. Executing controller action with signature System.Collections.Generic.List`1[DCRM.Common.Dto.AppointmentDto] GetAppointmentWithPatient() on controller DCRM.Api.Controllers.AppointmentController (DCRM.Api).
+
+2024-07-30 20:33:00.492 +05:30  INF  Executed DbCommand (426ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`Appointment_Status`, `a`.`Cause`, `a`.`Chair`, `a`.`Chamber_Id`, `a`.`Created_At`, `a`.`Date`, `a`.`Doctor_Id`, `a`.`Doctor_Name`, `a`.`End_Time`, `a`.`Extra_Notes`, `a`.`Files`, `a`.`Is_Delete`, `a`.`Is_Start`, `a`.`Meeting_Notes`, `a`.`Number_Of_Slot`, `a`.`Patient_Id`, `a`.`Prescription_Id`, `a`.`Serial_Id`, `a`.`Slot_Time`, `a`.`Start_Time`, `a`.`Status`, `a`.`Type`, `a`.`User_Id`, `a`.`Workdone_Id`
+FROM `Appointments` AS `a`
+WHERE `a`.`Is_Delete` = 0
+
+2024-07-30 20:33:01.344 +05:30  INF  Executed DbCommand (213ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Age`, `p`.`Chamber_Id`, `p`.`Created_At`, `p`.`Email`, `p`.`Guardian`, `p`.`Is_Delete`, `p`.`Mobile`, `p`.`Mr_Number`, `p`.`Name`, `p`.`Password`, `p`.`Permanent_Address`, `p`.`Present_Address`, `p`.`Role`, `p`.`Sex`, `p`.`Slug`, `p`.`Thumb`, `p`.`Title`, `p`.`UserName`, `p`.`User_Id`, `p`.`Verify_Code`, `p`.`Weight`
+FROM `Patientses` AS `p`
+WHERE `p`.`Is_Delete` = 0
+
+2024-07-30 20:33:02.639 +05:30  INF  Executed DbCommand (217ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+
+2024-07-30 20:33:02.649 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DCRM.Common.Dto.AppointmentDto, DCRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+
+2024-07-30 20:33:02.650 +05:30  INF  Executed action DCRM.Api.Controllers.AppointmentController.GetAppointmentWithPatient (DCRM.Api) in 3021.6136ms
+
+2024-07-30 20:33:02.650 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AppointmentController.GetAppointmentWithPatient (DCRM.Api)'
+
+2024-07-30 20:33:02.650 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Appointment/GetAppointmentWithPatient application/json - - 200 - application/json;+charset=utf-8 3662.7421ms
+
+2024-07-30 20:35:15.126 +05:30  INF  Request starting HTTP/2 OPTIONS https://localhost:7069/api/Appointment/GetAppointmentWithPatient - -
+
+2024-07-30 20:35:15.127 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:35:15.130 +05:30  INF  Request finished HTTP/2 OPTIONS https://localhost:7069/api/Appointment/GetAppointmentWithPatient - - - 204 - - 1.3027ms
+
+2024-07-30 20:35:15.133 +05:30  INF  Request starting HTTP/2 GET https://localhost:7069/api/Appointment/GetAppointmentWithPatient application/json -
+
+2024-07-30 20:35:15.134 +05:30  INF  CORS policy execution successful.
+
+2024-07-30 20:35:15.777 +05:30  INF  Executed DbCommand (213ms) [Parameters=[@__id_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`About_Me`, `u`.`Account_Type`, `u`.`Address`, `u`.`Available_Days`, `u`.`Bn_Name`, `u`.`City`, `u`.`Country`, `u`.`Created_At`, `u`.`Currency`, `u`.`Degree`, `u`.`Email`, `u`.`Email_Verified`, `u`.`Enable_Appointment`, `u`.`Enable_Rating`, `u`.`Exp_Years`, `u`.`Facebook`, `u`.`Google_Analytics`, `u`.`Image`, `u`.`Instagram`, `u`.`Linkedin`, `u`.`Name`, `u`.`Parent_Id`, `u`.`Password`, `u`.`Paypal_Email`, `u`.`Paypal_Mode`, `u`.`Paypal_Payment`, `u`.`Paystack_Payment`, `u`.`Paystack_Public_Key`, `u`.`Paystack_Secret_Key`, `u`.`Phone`, `u`.`Publish_Key`, `u`.`Qr_Code`, `u`.`Razorpay_Key_Id`, `u`.`Razorpay_Key_Secret`, `u`.`Razorpay_Payment`, `u`.`Role`, `u`.`Secret_Key`, `u`.`Skype`, `u`.`Slug`, `u`.`Specialist`, `u`.`Status`, `u`.`Stripe_Payment`, `u`.`Thumb`, `u`.`Trial_Expire`, `u`.`Twitter`, `u`.`User_Name`, `u`.`User_Type`, `u`.`Verify_Code`, `u`.`Whatsapp`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__id_0
+LIMIT 1
+
+2024-07-30 20:35:15.777 +05:30  INF  Executing endpoint 'DCRM.Api.Controllers.AppointmentController.GetAppointmentWithPatient (DCRM.Api)'
+
+2024-07-30 20:35:15.777 +05:30  INF  Route matched with {action = "GetAppointmentWithPatient", controller = "Appointment"}. Executing controller action with signature System.Collections.Generic.List`1[DCRM.Common.Dto.AppointmentDto] GetAppointmentWithPatient() on controller DCRM.Api.Controllers.AppointmentController (DCRM.Api).
+
+2024-07-30 20:35:16.631 +05:30  INF  Executed DbCommand (429ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`Appointment_Status`, `a`.`Cause`, `a`.`Chair`, `a`.`Chamber_Id`, `a`.`Created_At`, `a`.`Date`, `a`.`Doctor_Id`, `a`.`Doctor_Name`, `a`.`End_Time`, `a`.`Extra_Notes`, `a`.`Files`, `a`.`Is_Delete`, `a`.`Is_Start`, `a`.`Meeting_Notes`, `a`.`Number_Of_Slot`, `a`.`Patient_Id`, `a`.`Prescription_Id`, `a`.`Serial_Id`, `a`.`Slot_Time`, `a`.`Start_Time`, `a`.`Status`, `a`.`Type`, `a`.`User_Id`, `a`.`Workdone_Id`
+FROM `Appointments` AS `a`
+WHERE `a`.`Is_Delete` = 0
+
+2024-07-30 20:35:17.485 +05:30  INF  Executed DbCommand (214ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Age`, `p`.`Chamber_Id`, `p`.`Created_At`, `p`.`Email`, `p`.`Guardian`, `p`.`Is_Delete`, `p`.`Mobile`, `p`.`Mr_Number`, `p`.`Name`, `p`.`Password`, `p`.`Permanent_Address`, `p`.`Present_Address`, `p`.`Role`, `p`.`Sex`, `p`.`Slug`, `p`.`Thumb`, `p`.`Title`, `p`.`UserName`, `p`.`User_Id`, `p`.`Verify_Code`, `p`.`Weight`
+FROM `Patientses` AS `p`
+WHERE `p`.`Is_Delete` = 0
+
+2024-07-30 20:35:18.776 +05:30  INF  Executed DbCommand (212ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Age`, `d`.`Blood_Group`, `d`.`Created_At`, `d`.`Dob`, `d`.`Email`, `d`.`Email2`, `d`.`Gender`, `d`.`Gst_Number`, `d`.`Is_Delete`, `d`.`Marital_Status`, `d`.`Name`, `d`.`Pan_Number`, `d`.`Password`, `d`.`Phone1`, `d`.`Phone2`, `d`.`Phone3`, `d`.`Phone4`, `d`.`Qualification`, `d`.`Role`, `d`.`Speciality`, `d`.`Thumb`, `d`.`Updated_At`, `d`.`User_Id`
+FROM `Doctors` AS `d`
+
+2024-07-30 20:35:18.813 +05:30  INF  Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DCRM.Common.Dto.AppointmentDto, DCRM.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+
+2024-07-30 20:35:18.815 +05:30  INF  Executed action DCRM.Api.Controllers.AppointmentController.GetAppointmentWithPatient (DCRM.Api) in 3037.3685ms
+
+2024-07-30 20:35:18.815 +05:30  INF  Executed endpoint 'DCRM.Api.Controllers.AppointmentController.GetAppointmentWithPatient (DCRM.Api)'
+
+2024-07-30 20:35:18.815 +05:30  INF  Request finished HTTP/2 GET https://localhost:7069/api/Appointment/GetAppointmentWithPatient application/json - - 200 - application/json;+charset=utf-8 3681.6927ms
+

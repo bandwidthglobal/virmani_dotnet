@@ -1,9 +1,4 @@
 ﻿using DCRM.Common.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DCRM.Common.Dto
 {
@@ -17,6 +12,6 @@ namespace DCRM.Common.Dto
         public Prescription? Prescription { get; set; }
         public List<DrugDto>? Drugs { get; set; }
         public List<AppointmentDto>? Appointments { get; set; }
-        public string ToothNote { get; set; }
+        public string? ToothNote { get; set; }
     }
 }

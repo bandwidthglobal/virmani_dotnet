@@ -2,7 +2,6 @@
 using DCRM.Common.Dto;
 using DCRM.Common.Entity;
 using DCRM.Service.IService;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DCRM.Api.Controllers
@@ -47,6 +46,8 @@ namespace DCRM.Api.Controllers
         [HttpPost("Update")]
         public IActionResult Update(Chair chair)
         {
+            var user = Request.HttpContext.Items["User"] as User;
+            chair.User_Id = user.Id;
             _chairService.Update(chair);
             return Ok(chair);
         }
@@ -54,7 +55,7 @@ namespace DCRM.Api.Controllers
         [HttpPost("Delete/{id}")]
         public IActionResult Delete(int id)
         {
-            _chairService.delete(id);
+            _chairService.Delete(id);
             return Ok(id);
         }
     }

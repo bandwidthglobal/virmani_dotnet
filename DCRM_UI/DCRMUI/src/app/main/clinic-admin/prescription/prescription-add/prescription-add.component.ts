@@ -1,10 +1,8 @@
 import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
-import { takeUntil } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { repeaterAnimation } from 'app/main/clinic-admin/prescription/prescription.animation';
 import { PrescriptionAddService } from 'app/main/clinic-admin/prescription/prescription-add/prescription-add.service';
-import { PrescriptionAddModel } from '../prescription-add/prescription-add.model';
 import { CommonValidationService } from 'app/shared-common/services/common-validation.service';
 import { FormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -12,7 +10,7 @@ import { validationMessages } from '../../../../shared-common/pipes/error-messag
 import { PrescriptionForm, PrescriptionFormModel } from '../model/prescription-from';
 import { DrugListForm, DrugListModel } from '../model/drug-list-form';
 import { IPatientForm, IPatientFormModel } from "../../patient/model/patient-from";
-import { IContactsForm, IContactsFormModel } from "../../patient/model/contacts-form";
+import { IContactsFormModel } from "../../patient/model/contacts-form";
 import { DrugForm, DrugFormModel } from "../model/drug-from";
 import { Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -81,9 +79,8 @@ export class PrescriptionAddComponent implements OnInit, OnDestroy {
     elm1: HTMLElement;
     drugDetails1: any = [{ index: '', id: '', medicine_Type: '', medicine_Company: '', form: '', dosage: '', description: '', details: '' }];
     public drugItems = [{ id: '', medicine_Type: '', medicine_Company: '', form: '', dosage: '', description: '', details: '' }];
-    public drugitem = {
-        id: '', medicine_Type: '', medicine_Company: '', form: '', dosage: '', description: '', details: ''
-    };
+    public drugitem = [{ id: '', medicine_Type: '', medicine_Company: '', form: '', dosage: '', description: '', details: '' }];
+
     /**
      * Constructor
      *
@@ -96,6 +93,7 @@ export class PrescriptionAddComponent implements OnInit, OnDestroy {
         private _prescriptionAddService: PrescriptionAddService, private _formBuilder: UntypedFormBuilder,
         private _router: Router, private _toastrService: ToastrService, private _commonValidationService: CommonValidationService) {
         this._unsubscribeAll = new Subject();
+        document.title = " Create Prescription";
     }
 
 
@@ -126,6 +124,15 @@ export class PrescriptionAddComponent implements OnInit, OnDestroy {
         const control = <FormArray>this.formData.controls['drugList'];
         control.push(new DrugListForm(obj));
     }
+
+    sortedDrugList(): any[] {
+        return this.drugList.sort((a: { basic_Salt: string; }, b: { basic_Salt: string; }) => {
+            const nameA = a.basic_Salt.toLowerCase();
+            const nameB = b.basic_Salt.toLowerCase();
+            return nameA.localeCompare(nameB);
+        });
+    }
+    
     getUserChamber() {
         this._prescriptionAddService.getUserChamber().subscribe(resp => {
             if (resp != undefined) {
@@ -139,7 +146,7 @@ export class PrescriptionAddComponent implements OnInit, OnDestroy {
         });
 
     }
-    removeDrugList(idx): void {
+    removeDrugList(idx: number): void {
         const control = <FormArray>this.formData.controls['drugList'];
         control.removeAt(idx);
     }
@@ -153,7 +160,7 @@ export class PrescriptionAddComponent implements OnInit, OnDestroy {
         this.elm1.classList.add('show');
         this.elm1.style.width = '100vw';
     }
-    getDrugDetails(id) {
+    getDrugDetails(id: any) {
         this.drugId = id;
         var drugDetails = this.drugList.find(x => x.id == id);
         if (drugDetails != undefined) {
@@ -167,7 +174,7 @@ export class PrescriptionAddComponent implements OnInit, OnDestroy {
 
     }
 
-    getDrugId(id, index) {
+    getDrugId(id: any, index: any) {
         var drugDetails1 = this.drugList.find(x => x.id == id);
         if (drugDetails1 != undefined) {
             this.drugIdes.push(id);
@@ -349,7 +356,7 @@ export class PrescriptionAddComponent implements OnInit, OnDestroy {
      *
      * @param id
      */
-    deleteItem(id) {
+    deleteItem(id: number) {
         for (let i = 0; i < this.drugItems.length; i++) {
             if (this.drugItems.indexOf(this.drugItems[i]) === id) {
                 this.drugItems.splice(i, 1);

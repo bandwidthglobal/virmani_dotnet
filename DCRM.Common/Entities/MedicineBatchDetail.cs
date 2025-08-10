@@ -1,12 +1,10 @@
 ﻿using DCRM.Common.Entities;
-using System;
-using System.Collections.Generic;
 
 namespace DCRM.Common.Entity;
 
 public partial class MedicineBatchDetail:BaseEntity
 {
-    public int Id { get; set; }
+    public new int Id { get; set; }
 
     public long Medicine_Id { get; set; }
 
@@ -14,13 +12,13 @@ public partial class MedicineBatchDetail:BaseEntity
 
     public string? Expiry_Date { get; set; }
 
-    public string Batch_No { get; set; } 
+    public string? Batch_No { get; set; } 
 
-    public string Packing_Qty { get; set; } 
+    public string? Packing_Qty { get; set; } 
 
-    public string Purchase_Rate_Packing { get; set; } 
+    public string? Purchase_Rate_Packing { get; set; } 
 
-    public string Quantity { get; set; } 
+    public string? Quantity { get; set; } 
 
     public string? Mrp { get; set; }
 

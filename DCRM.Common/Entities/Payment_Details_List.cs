@@ -1,12 +1,10 @@
 ﻿using DCRM.Common.Entities;
-using System;
-using System.Collections.Generic;
 
 namespace Demo_Api.Models;
 
 public partial class Payment_Details_List:BaseEntity
 {
-    public long Id { get; set; }
+    public new long Id { get; set; }
 
     public long Payment_History_Id { get; set; }
 

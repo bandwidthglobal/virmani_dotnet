@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 
 import { ToastService } from 'app/main/components/toasts/toasts.service';
 
@@ -25,7 +25,7 @@ export class ToastsComponent implements OnInit {
   // Public Methods
   // -----------------------------------------------------------------------------------------------------
 
-  toastBasic(data, delayTime) {
+  toastBasic(data: string | TemplateRef<any>, delayTime: any) {
     this.toastService.show(data, {
       delay: delayTime,
       autohide: true

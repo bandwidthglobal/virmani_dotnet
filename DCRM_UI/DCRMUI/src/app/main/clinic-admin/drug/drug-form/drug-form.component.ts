@@ -70,6 +70,7 @@ export class DrugFormComponent implements OnInit, OnDestroy {
         private router: Router,
         private _drugFormService: DrugFormService, private _formBuilder: UntypedFormBuilder, private _route: ActivatedRoute, private _toastrService: ToastrService) {
         this._unsubscribeAll = new Subject();
+        document.title = "Create Drug";
     }
 
     /**
@@ -124,10 +125,10 @@ export class DrugFormComponent implements OnInit, OnDestroy {
     get f() {
         return this.drugForm.controls;
     }
-    onCategorySelected(ob) {
+    onCategorySelected(ob: any) {
 
     }
-    onBrandSelected(ob) {
+    onBrandSelected(ob: any) {
 
     }
     cancel() {
